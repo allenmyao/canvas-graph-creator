@@ -1,0 +1,9 @@
+# node packages
+node_modules/
+
+# output files
+dist/
+
+# log files
+npm-debug.log
+npm-debug.log.*
