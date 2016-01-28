@@ -20,6 +20,11 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
+// Tasks below this line are from the webpack-with-common-libs gulpfile:
+// https://github.com/webpack/webpack-with-common-libs/blob/master/gulpfile.js
+// A few modifications were made to enable HMR (Hot Module Replacement) and
+// to make the dev server accessible from the host machine when run in a VM
+
 // The development server (the recommended option for development)
 gulp.task('default', ['webpack-dev-server']);
 
