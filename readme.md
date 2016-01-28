@@ -1,9 +1,12 @@
-# Canvas Graphs Prototype
+# Canvas Graphs Creator
 
 ## Building
 
 To build the code, run the following:
 ```bash
+# Install dependencies
+npm install
+# Compile code to ./dist/app.js
 gulp build
 ```
 
