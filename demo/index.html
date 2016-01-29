@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Demo</title>
+    <title>Canvas Graph Creator</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="./base.css" />
     <link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
 <body>
     <div class="container">
-        <canvas id="canvas" width="800" height="600"></canvas>
-        <div>Click on empty space in the box above to add a node.</div>
-        <div>Click on a node to select it. Selected nodes have a red border.</div>
-        <div>Select a second node to add an edge.</div>
+        <h1 class="title">Canvas Graph Creator</h1>
+
+        <canvas id="canvas" width="1024" height="600"></canvas>
+
+        <div id="canvas-info">
+            <div>Click on empty space in the box above to add a node.</div>
+            <div>Click on a node to select it. Selected nodes have a red border.</div>
+            <div>Select a second node to add an edge.</div>
+        </div>
     </div>
 
     <script src="/assets/app.js"></script>
