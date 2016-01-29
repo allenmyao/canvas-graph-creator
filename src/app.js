@@ -7,17 +7,12 @@ import {Edge} from './edge';
 var canvas;
 var context;
 var graph;
-var canvasLeft;
-var canvasTop;
 
 function init() {
 
     canvas = document.getElementById('canvas');
-    canvas.setAttribute('width', 800);
-    canvas.setAttribute('height', 600);
-
-    canvasLeft = canvas.offsetLeft;
-    canvasTop = canvas.offsetTop;
+    // canvas.setAttribute('width', 800);
+    // canvas.setAttribute('height', 600);
 
     context = canvas.getContext('2d');
     // context.imageSmoothingEnabled = true;
@@ -30,6 +25,7 @@ function init() {
 }
 
 function draw() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     graph.draw(context);
     window.requestAnimationFrame(draw);
 }
@@ -37,6 +33,9 @@ function draw() {
 window.addEventListener('load', init, false);
 
 function clickEventListener(event) {
+    let canvasLeft = canvas.offsetLeft;
+    let canvasTop = canvas.offsetTop;
+
     let x = event.pageX - canvasLeft;
     let y = event.pageY - canvasTop;
 
