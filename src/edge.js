@@ -1,9 +1,25 @@
 export class Edge {
+
+    startx = null;
+    starty = null;
+    destx = null;
+    desty = null;
+
     constructor(start, dest, weight = null, isDirected = false) {
         this.start = start;
         this.dest = dest;
         this.weight = weight;
         this.isDirected = isDirected;
+        this.update();
+    }
+
+    update() {
+        let startPoint = this.start.edgePointInDirection(this.dest.x, this.dest.y);
+        let destPoint = this.dest.edgePointInDirection(this.start.x, this.start.y);
+        this.startx = startPoint.x;
+        this.starty = startPoint.y;
+        this.destx = destPoint.x;
+        this.desty = destPoint.y;
     }
 
     draw(context) {
@@ -11,16 +27,33 @@ export class Edge {
 
         context.strokeStyle = 'black';
 
+        this.svg(context);
+    }
+
+    path(context) {
         // Create a new path
         context.beginPath();
 
         // Start path at given point
-        context.moveTo(this.start.x, this.start.y);
+        context.moveTo(this.startx, this.starty);
 
         // Draw line to given point
-        context.lineTo(this.dest.x, this.dest.y);
+        context.lineTo(this.destx, this.desty);
 
         // Draw to the canvas
         context.stroke();
+    }
+
+    svg(context) {
+        let path = new Path2D(this.line(this.startx, this.starty, this.destx, this.desty));
+        context.stroke(path);
+    }
+
+    line(x1, y1, x2, y2) {
+        // A 300,300 0 0,0
+        return `
+                M ${x1},${y1}
+                L ${x2},${y2}
+                `;
     }
 }

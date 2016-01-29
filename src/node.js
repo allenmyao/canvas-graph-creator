@@ -1,7 +1,7 @@
 export class Node {
     static numNodes = 0;
 
-    static radius = 10;
+    static radius = 30;
 
     id = Node.numNodes++;
     isSelected = false;
@@ -9,16 +9,26 @@ export class Node {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.isSelected = false;
     }
-
 
     containsPoint(x, y) {
         return this.distanceToPoint(x, y) <= Node.radius;
     }
 
     distanceToPoint(x, y) {
-        return Math.sqrt(Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2));
+        let dx = x - this.x;
+        let dy = y - this.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    edgePointInDirection(x, y) {
+        let dx = x - this.x;
+        let dy = y - this.y;
+        let scale = Math.sqrt(dx * dx + dy * dy);
+        return {
+            x: this.x + dx * Node.radius / scale,
+            y: this.y + dy * Node.radius / scale
+        };
     }
 
     draw(context) {
@@ -27,6 +37,10 @@ export class Node {
         context.fillStyle = 'white';
         context.strokeStyle = this.isSelected ? 'red' : 'black';
 
+        this.svg(context);
+    }
+
+    arc(context) {
         // Create a new path
         context.beginPath();
 
@@ -34,7 +48,25 @@ export class Node {
         context.arc(this.x, this.y, Node.radius, 0, 2 * Math.PI);
 
         // Draw to the canvas
-        context.fill();
+        // context.fill();
         context.stroke();
     }
+
+    svg(context) {
+        let path = new Path2D(this.circle(this.x, this.y, Node.radius));
+        // context.fill(path);
+        context.stroke(path);
+    }
+
+    circle(x, y, r) {
+        r = Math.abs(r);
+        return `
+                M ${x} ${y}
+                m ${-1 * r}, 0
+                a ${r},${r} 0 1,0 ${r * 2},0
+                a ${r},${r} 0 1,0 ${r * -2},0
+                `;
+    }
+
+
 }
