@@ -2,6 +2,8 @@
 
 ## Building
 
+Make sure you have Node installed.
+
 To build the code, run the following:
 ```bash
 # Install dependencies
