@@ -2,7 +2,7 @@
 node_modules/
 
 # output files
-dist/
+dist/js/
 
 # log files
 npm-debug.log
