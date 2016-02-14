@@ -7,6 +7,9 @@ export class Node {
     isSelected = false;
 
     constructor(x, y) {
+        if (arguments.length < 2) {
+            throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
+        }
         this.x = x;
         this.y = y;
     }
