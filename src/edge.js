@@ -30,6 +30,7 @@ export class Edge {
         this.svg(context);
     }
 
+
     path(context) {
         // Create a new path
         context.beginPath();
@@ -43,6 +44,9 @@ export class Edge {
         // Draw to the canvas
         context.stroke();
     }
+
+
+
 
     svg(context) {
         let path = new Path2D(this.line(this.startx, this.starty, this.destx, this.desty));

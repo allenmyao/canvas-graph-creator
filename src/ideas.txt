@@ -1,0 +1,9 @@
+	
+
+
+	if(click on nodes for adding another node) //mouse listener black box
+	{
+		numEdge++;
+		rad = Node.radius;
+		drawCurvedEdge(startx, starty, dest, numEdge, rad);
+	}

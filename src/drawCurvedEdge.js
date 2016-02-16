@@ -1,4 +1,3 @@
-//we'll also need to create a function in the node class to call draw curved edge when multiple edges become necessary
 
 
 
