@@ -1,17 +1,15 @@
-//We'll need to update the node class to contain (x,y) center values --> {cX, cY}
-//this function should be a method of the edge class
 //we'll also need to create a function in the node class to call draw curved edge when multiple edges become necessary
 
 
 
-function drawCurvedEdge(node1, node2, numEdge, rad) {
+function drawCurvedEdge(startx, starty, destx, desty, numEdge, rad) {
   
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
-    var c1x = node1.cX;
-    var c1y = node1.cY;
-    var c2x = node2.cX;
-    var c2y = node2.cY;
+    var c1x = startx;
+    var c1y = starty;
+    var c2x = destx;
+    var c2y = destx;
     var edgeNum = numEdge; 
     var r = rad;
 

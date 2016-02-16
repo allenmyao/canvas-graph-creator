@@ -1,12 +1,11 @@
 import {Node} from './node';
 import {Edge} from './edge';
-import {curvedEdge} from './curvedEdge'
+import {drawCurvedEdge} from './drawCurvedEdge';
 
 export class Graph {
     constructor(nodes, edges) {
         this.nodes = new Set(nodes);
         this.edges = new Set(edges);
-        this.curvedEdges = new Set(curvedEdges);
     }
 
     import() {
@@ -23,10 +22,10 @@ export class Graph {
         this.edges.add(edge);
     }
 
-    addCurvedEdge(curvedEdge){
-        consolelog('Adding curved edge between ' + edge.start.id + ' and ' + edge.dest.id);
-        this.curverdEdges.add(curvedEdge);
-    }
+//  addCurvedEdge(curvedEdge){
+//     consolelog('Adding curved edge between ' + edge.start.id + ' and ' + edge.dest.id);
+//     this.curverdEdges.add(curvedEdge);
+//    }
 
     hasEdge(start, dest) {
         for (let edge of this.edges) {
@@ -55,8 +54,5 @@ export class Graph {
             node.draw(context);
         });
 
-        this.curvedEdges.forEach((curvedEdge) => {
-            curvedEdge.draw(context);
-        });
     }
 }
