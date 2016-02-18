@@ -4,6 +4,9 @@ node_modules/
 # output files
 dist/js/
 
+# test output
+coverage/
+
 # log files
 npm-debug.log
 npm-debug.log.*
