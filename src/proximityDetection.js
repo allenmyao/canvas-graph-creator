@@ -1,62 +1,55 @@
-var EDGE_DISTANCE_THRESHOLD = 10;
-var edgeData = [];
-var nodeData = [];
-var r = 30;
-nodeData[0] = [160, 273];
-nodeData[1] = [312, 200];
+vvar EDGE_DISTANCE_THRESHOLD = 10;
+var DEFAULT_RADIUS = 30;
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-    };
-}
-
-document.getElementById("drawEdges").addEventListener("click", function(){
-    calculateEdges();
-});
-
-document.getElementById("canvas").addEventListener("click", function(evt) {
-    var mouse = getMousePos(canvas, evt);
-    findClosestEdge(edgeData, mouse.x, mouse.y);
-});
-
-function drawBase() {
+//cleanvs the canvas
+function resetCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.lineWidth = 1;
-    context.strokeStyle="#000000";
-    drawNodes();
-    drawEdges();
 }
 
-function drawEdges() {
-    for(var i = 0; i < edgeData.length; i++){
-        context.beginPath();
-        context.moveTo(edgeData[i][0],edgeData[i][1]);
-        context.quadraticCurveTo(edgeData[i][2],edgeData[i][3],edgeData[i][4],edgeData[i][5]);
-        context.stroke();
-    }
+//sets style. call prior to drawEdge or drawNode
+//lineColor: hex string that defines color (ex: "#FF0000")
+//width: width of line
+function setStyle(lineColor, width){
+    context.strokeStyle = "#FF0000";
+    context.lineWidth = width;
 }
 
-function drawNodes(){
-    for(var i = 0; i < nodeData.length; i++){
-        context.beginPath();
-        context.arc(nodeData[i][0], nodeData[i][1], r, 0, 2*Math.PI);
-        context.stroke();
-    }
+//drawing function, draws edges
+//edge: edge Object to be drawn
+function drawEdge(edge){
+    context.beginPath();
+    context.moveTo(edge.startX, edge.startY);
+    context.quadraticCurveTo(edge.controlX, edge.controlY, edge.endX, edge.endY);
+    context.stroke();
 }
 
-function calculateEdges() {
-    var c1x = nodeData[0][0];
-    var c1y = nodeData[0][1];
-    var c2x = nodeData[1][0];
-    var c2y = nodeData[1][1];
-    var edgeNum = 4;
-    r = 30;
-   
+//drawing function, draws nodes
+//node: node Object to be drawn
+function drawNode(node){
+    context.beginPath();
+    context.arc(node.x, node.y, DEFAULT_RADIUS, 0, 2*Math.PI);
+    context.stroke();
+}
+
+//generates generic canvas drawing data for a given number of edges between two nodes
+//arguments:
+//startNode: starting Node object
+//endNode: ending Node object
+//edgeNum: number of edges between the nodes
+//type: (currently unused) specifies type of edge (directed? self-loop?)
+//returns:
+//an array of Edge objects
+function calculateEdges(startNode, endNode, edgeNum, type) {
+    var c1x = startNode.x;
+    var c1y = startNode.y;
+    var c2x = endNode.x;
+    var c2y = endNode.y;
+    var r = DEFAULT_RADIUS;
+  
+    //auxiliary variables for conceptual understanding
+    //will be refactored if needed
     var c2xtrans = c2x - c1x;
     var c2ytrans = c2y - c1y;
     var c1xtrans = 0;
@@ -66,48 +59,57 @@ function calculateEdges() {
     var c1yrot = 0;
     var c2xrot = c2xtrans*Math.cos(-theta) - c2ytrans*Math.sin(-theta);
     var c2yrot = 0;
-   
-    edgeData = [];
+  
+    var edges = [];
     for(var i = 0; i < edgeNum; i++){
         var currTheta = (Math.PI*(i+1)/(edgeNum + 1) - Math.PI/2);
-        edgeData[i] = [r*Math.cos(currTheta), r*Math.sin(currTheta),
+        var edgedata = [r*Math.cos(currTheta), r*Math.sin(currTheta),
                        c2xrot/2, c2xrot*(2*currTheta/Math.PI),
                        c2xrot - r*Math.cos(currTheta), r*Math.sin(currTheta)];
         //rotate and translate back
         for(var j = 0; j < 3; j++){
-            var tempX = edgeData[i][2*j]*Math.cos(theta) - edgeData[i][2*j+1]*Math.sin(theta) + c1x;
-            var tempY = edgeData[i][2*j]*Math.sin(theta) + edgeData[i][2*j+1]*Math.cos(theta) + c1y;
-            edgeData[i][2*j] = tempX;
-            edgeData[i][2*j+1] = tempY;
+            var tempX = edgedata[2*j]*Math.cos(theta) - edgedata[2*j+1]*Math.sin(theta) + c1x;
+            var tempY = edgedata[2*j]*Math.sin(theta) + edgedata[2*j+1]*Math.cos(theta) + c1y;
+            edgedata[2*j] = tempX;
+            edgedata[2*j+1] = tempY;
         }
+        edges[edges.length] = new Edge(startNode, endNode,
+                                       edgedata[0], edgedata[1], edgedata[2],
+                                       edgedata[3], edgedata[4], edgedata[5]);
     }
-    drawBase();
+    return edges;
 }
 
-function findClosestEdge(edgeData, mouseX, mouseY){
-    if(edgeData.length > 0){
-        drawBase();
+//returns the closest edge in the array to the specified point, or false if it's not within the default threshold or if the array is empty
+//arguments:
+//edges: an array of Edge objects to be examined
+//pointX, pointY: numerical values that represent the location of the point
+//returns false if edges is empty or if the edge is not within the standard threshold
+function findClosestEdge(edges, pointX, pointY){
+    if(edges.length > 0){
         var shortestDist = canvas.width + canvas.height;
         var shortestIndex = 0;
-        for(var i = 0; i < edgeData.length ; i++){
-            var tempDist = calcBezierDistance(mouseX, mouseY, edgeData[i][0], edgeData[i][1], edgeData[i][2], edgeData[i][3], edgeData[i][4], edgeData[i][5]);
+        for(var i = 0; i < edges.length ; i++){
+            //calls the helper function to find the distance
+            var tempDist = calcBezierDistance(pointX, pointY, edges[i].startX, edges[i].startY, edges[i].controlX, edges[i].controlY, edges[i].endX, edges[i].endY);
             if(shortestDist > tempDist){
                 shortestDist = tempDist;
                 shortestIndex = i;
             }
         }
-        //highlight the edge
+      
         if(shortestDist < EDGE_DISTANCE_THRESHOLD){
-            context.beginPath();
-            context.strokeStyle="#FF0000";
-            context.lineWidth = 3;
-            context.moveTo(edgeData[shortestIndex][0],edgeData[shortestIndex][1]);
-            context.quadraticCurveTo(edgeData[shortestIndex][2],edgeData[shortestIndex][3],edgeData[shortestIndex][4],edgeData[shortestIndex][5]);
-            context.stroke();
+            return edges[shortestIndex];
         }
+        return false;
+        //highlight the edge
     }
+    return false;
 }
 
+//the following two functions adapted from: http://stackoverflow.com/questions/27176423/function-to-solve-cubic-equation-analytically
+//calculates cube root
+//self-explanatory
 function cuberoot(x) {
     var y = Math.pow(Math.abs(x), 1/3);
     return x < 0 ? -y : y;
@@ -163,22 +165,23 @@ function solveCubic(a, b, c, d) {
 }
 
 
-
-function calcBezierDistance(mouseX, mouseY, startX, startY, controlX, controlY, endX, endY) {
+//helper function that calculates the distance between a specified point and a quadratic bezier
+function calcBezierDistance(pointX, pointY, startX, startY, controlX, controlY, endX, endY) {
     //preliminary, commonly used values
     var aX = controlX - startX;
     var aY = controlY - startY;
     var bX = endX - controlX - aX;
     var bY = endY - controlY - aY;
-    var mX = startX - mouseX;
-    var mY = startY - mouseY;
+    var mX = startX - pointX;
+    var mY = startY - pointY;
+  
     //coefficients for the cubic to be solved
     var a = bX*bX + bY*bY;
     var b = 3*(aX*bX + aY*bY);
     var c = 2*(aX*aX + aY*aY) + mX*bX + mY*bY;
     var d = mX*aX + mY*aY;
-    //cubic solver adapted from: http://stackoverflow.com/questions/27176423/function-to-solve-cubic-equation-analytically
     var ans = solveCubic(a, b, c, d);
+  
     //reject any that violates x = [0, 1]
     for(var i = ans.length - 1; i >= 0; i--) {
         if(ans[i] > 1 || ans[i] < 0) {
@@ -187,32 +190,36 @@ function calcBezierDistance(mouseX, mouseY, startX, startY, controlX, controlY, 
     }
     ans[ans.length] = 0;
     ans[ans.length] = 1; //edge cases
+  
     //minimize dist
     var smallestDist = canvas.width + canvas.height;
-    //diagnostics
-    var smallestX;
-    var smallestY;
+    //diagnostic values
+    //var smallestX;
+    //var smallestY;
+  
     //curves are parametrized as:  P(t) = (1-t)²P0 + 2t(1-t)P1 +t²P2.
     for(var j = 0; j < ans.length; j++){
         var t = ans[j];
         var curvePointX = (1 - t)*startX*(1-t) + 2*t*(1 - t)*controlX + t*t*endX;
         var curvePointY = (1 - t)*startY*(1-t) + 2*t*(1 - t)*controlY + t*t*endY;
-        var tempDist = Math.sqrt((curvePointX - mouseX)*(curvePointX - mouseX) + (curvePointY - mouseY)*(curvePointY - mouseY));
+        var tempDist = Math.sqrt((curvePointX - pointX)*(curvePointX - pointX) + (curvePointY - pointY)*(curvePointY - pointY));
         if(smallestDist > tempDist) {
             smallestDist = tempDist;
-            smallestX = curvePointX;
-            smallestY = curvePointY;
+            //smallestX = curvePointX;
+            //smallestY = curvePointY;
         }
     }
     context.lineWidth = 1;
     context.strokeStyle="#000000";
+  
     //diagnostic drawings
     /*context.beginPath();
     context.arc(smallestX, smallestY, 5, 0, 2*Math.PI);
     context.stroke();
     context.beginPath();
-    context.moveTo(mouseX,mouseY);
+    context.moveTo(pointX,pointY);
     context.lineTo(smallestX,smallestY);
     context.stroke();*/
+  
     return smallestDist;
 }
