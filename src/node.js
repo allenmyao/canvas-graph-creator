@@ -2,7 +2,7 @@ export class Node {
     static numNodes = 0;
 
     static radius = 30;
-    edgeList = []
+    edgeList = [];
     id = Node.numNodes++;
     isSelected = false;
 
