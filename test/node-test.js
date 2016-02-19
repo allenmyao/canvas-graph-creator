@@ -24,4 +24,16 @@ describe('Node', () => {
             tempNode.containsPoint(300,200).should.be.false;
        });
     })
+    describe('#distanceToPoint', () => {
+        var tempNode = new Node(1,2);
+       it('simple distance calculation', () => {
+            tempNode.distanceToPoint(3,2).should.equal(2)
+       });
+       it('simple distance calculation', () => {
+            tempNode.distanceToPoint(3,5).should.equal(Math.sqrt(4+9))
+       });
+       it('negative point test', () => {
+            tempNode.distanceToPoint(-1,2).should.equal(2)
+       });
+    })
 });
