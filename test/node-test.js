@@ -29,22 +29,32 @@ describe('Node', () => {
 
     describe('#distanceToPoint', () => {
         var tempNode = new Node(1,2);
-       it('simple distance calculation', () => {
+       it('should do this distance calculation', () => {
             tempNode.distanceToPoint(3,2).should.equal(2)
        });
-       it('simple distance calculation 2', () => {
+       it('should do this simple distance calculation 2', () => {
             tempNode.distanceToPoint(3,5).should.equal(Math.sqrt(4+9))
        });
-       it('negative point test', () => {
+       it('should do this negative point test', () => {
             tempNode.distanceToPoint(-1,2).should.equal(2)
        });
     })
 
     describe('#edgePointInDirection', () => {
         var tempNode = new Node(1,0);
-       it('simple point check', () => {
+       it('should do this simple point check', () => {
             tempNode.edgePointInDirection(50,0)["x"].should.equal(31)
             tempNode.edgePointInDirection(50,0)["y"].should.equal(0)
        });
-    })
+       it('should account for a point within the radius of the node', () => {
+            tempNode.edgePointInDirection(20,0)["x"].should.equal(31)
+            tempNode.edgePointInDirection(-1,0)["x"].should.equal(-29)
+            tempNode.edgePointInDirection(20,0)["y"].should.equal(0)
+       });
+       it('should throw error when point is at node origin', () => {
+            (function () {
+                tempNode.edgePointInDirection(1,0);
+            }).should.throw(Error);
+       });
+      })
 });
