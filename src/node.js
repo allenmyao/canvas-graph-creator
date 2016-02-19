@@ -25,15 +25,15 @@ export class Node {
     }
 
     edgePointInDirection(x, y) {
-        if(x==this.x && y==this.y){
-          throw new Error("Point is at origin of Node")
+        if (x === this.x && y === this.y) {
+            throw new Error('Point is at origin of Node');
         }
         let dx = x - this.x;
         let dy = y - this.y;
-        let scale = Math.sqrt(dx * dx + dy * dy);
+        let distance = Math.sqrt(dx * dx + dy * dy);
         return {
-            x: this.x + dx * Node.radius / scale,
-            y: this.y + dy * Node.radius / scale
+            x: this.x + dx * Node.radius / distance,
+            y: this.y + dy * Node.radius / distance
         };
     }
 
