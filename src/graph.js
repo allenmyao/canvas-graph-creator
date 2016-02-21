@@ -7,21 +7,25 @@ export class Graph {
         this.edges = new Set(edges);
     }
 
-    import() {
-
-    }
-
     addNode(node) {
         console.log('Adding node at (' + node.x + ',' + node.y + ')');
         this.nodes.add(node);
     }
 
     addEdge(edge) {
+        if (!this.nodes.has(edge.start) || !this.nodes.has(edge.dest)) {
+            throw new Error('Edge nodes are not in the graph');
+        }
+
         console.log('Adding edge between ' + edge.start.id + ' and ' + edge.dest.id);
         this.edges.add(edge);
     }
 
     hasEdge(start, dest) {
+        if (!this.nodes.has(start) || !this.nodes.has(dest)) {
+            throw new Error('Nodes are not in the graph');
+        }
+
         for (let edge of this.edges) {
             if (edge.start === start && edge.dest === dest) {
                 return true;
