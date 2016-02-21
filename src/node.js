@@ -24,6 +24,7 @@ export class Node {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
+    // ISSSUE: if (x, y) is equal to the node's position, this function will divide by zero
     edgePointInDirection(x, y) {
         if (x === this.x && y === this.y) {
             throw new Error('Point is at origin of Node');

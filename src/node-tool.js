@@ -32,4 +32,8 @@ export class NodeTool extends Tool {
         }
     }
 
+    dropOnNone(graph, droppedObj, startX, startY, x, y) {
+        this.selectNone(graph, x, y);
+    }
+
 }

@@ -32,7 +32,6 @@ export class EdgeTool extends Tool {
         }
     }
 
-    // mouse events on empty space
     selectNone(graph, x, y) {
         // deselect?
     }

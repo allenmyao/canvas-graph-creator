@@ -32,6 +32,7 @@ export class MouseHandler {
             this.isDragging = false;
 
             // drop object
+            // ISSUE: dragged object cannot detect itself (when using tool that doesn't move the object)
             if (this.graph.hasComponent(x, y, this.draggedObject)) {
                 currentTool.dropOnObject(this.graph, this.draggedObject, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
             } else {

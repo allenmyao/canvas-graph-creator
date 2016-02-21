@@ -2,6 +2,7 @@ import { Tool } from './tool';
 import { Node } from './node';
 
 export class MoveTool extends Tool {
+
     name = 'Move Tool';
 
     constructor(icon) {
@@ -45,4 +46,5 @@ export class MoveTool extends Tool {
             droppedObj.y = startY;
         }
     }
+
 }
