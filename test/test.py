@@ -21,24 +21,33 @@ def main(robot):
 
 
 def test(robot):
-	node1 = robot.createNode(30, 30)
+	node1 = robot.createNode(33, 33)
 
-	#robot.save_screenshot('1_expected.png')
-	robot.assertScreenshot('1_expected.png')
+	robot.save_screenshot('1_expected.png')
+	#robot.assertScreenshot('1_expected.png')
+	node2 = robot.createNode(84, 84)
+
+	robot.edge(node1, node2)
 
 	robot.assertNode(node1)
 
-	robot.select(node1)
-	node2 = robot.createNode(180, 180)
 
-	#robot.save_screenshot('2_expected.png')
-	robot.assertScreenshot('2_expected.png')
+	robot.select(node1)
+	#node3 = robot.createNode(180, 180)
+
+
+	robot.save_screenshot('2_expected.png')
+	#robot.assertScreenshot('2_expected.png')
+
+	#robot.assertNode(node2)
 
 	robot.select(node1)
 	robot.select(node2, 10, 10)
 
-	#robot.save_screenshot('3_expected.png')
-	robot.assertScreenshot('3_expected.png')
+
+
+	robot.save_screenshot('3_expected.png')
+	#robot.assertScreenshot('3_expected.png')
 	return
 
 
@@ -102,7 +111,7 @@ class CGC(CanvasDriver):
 		top = int(location['y']) + node.y - 40
 		bottom = int(location['y']) + node.y + 40
 		img = img.crop((left, top, right, bottom))
-		#img.save('surrounding.png')
+		img.save('surrounding.png')
 		#TODO use opencv to see if node actually exists
 
 	def assertScreenshot(self, name):
@@ -118,8 +127,14 @@ class CGC(CanvasDriver):
 			self.click(self.selected.x, self.selected.y)
 			self.selected = None
 
-	def selected(self, node):
-		return self.selected == None
+	def is_selected(self, node):
+		return self.selected != None
+
+	def edge(self, node1, node2):
+		if not self.is_selected(node1):
+			self.select(node1)
+		self.click(node2.x, node2.y)
+		self.selected = None
 
 	def select(self, node, offset_x = 0, offset_y = 0):
 		self.deselect()
