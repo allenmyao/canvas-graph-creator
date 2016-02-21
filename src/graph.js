@@ -1,6 +1,5 @@
 import {Node} from './node';
 import {Edge} from './edge';
-import {drawCurvedEdge} from './drawCurvedEdge';
 
 export class Graph {
     constructor(nodes, edges) {
@@ -22,10 +21,6 @@ export class Graph {
         this.edges.add(edge);
     }
 
-//  addCurvedEdge(curvedEdge){
-//     consolelog('Adding curved edge between ' + edge.start.id + ' and ' + edge.dest.id);
-//     this.curverdEdges.add(curvedEdge);
-//    }
 
     hasEdge(start, dest) {
         for (let edge of this.edges) {
