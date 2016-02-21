@@ -36,25 +36,19 @@ a, a:hover, a:visited {
     display: block;
 }
 
-.vcenter-wrapper {
-    // Generic vertical centering, when context is unknown
-    // Apply this class on the parent element
+.vcenter-wrapper::before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    margin-right: -.25em;
+    vertical-align: middle;
+}
 
-    &::before {
-        content: "";
-        display: inline-block;
-        width: 0;
-        height: 100%;
-        margin-right: -.25em;
-        vertical-align: middle;
-    }
-
-    .vcenter {
-        // The element(s) to be vertically centered
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 1rem;
-    }
+.vcenter-wrapper .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
 }
 
 span.vcenter-wrapper {
@@ -64,14 +58,15 @@ span.vcenter-wrapper {
 .hcenter-wrapper {
     text-align: center;
 
-    .hcenter {
-        margin: auto;
-        text-align: start;
-    }
+
+}
+
+.hcenter-wrapper .hcenter {
+    margin: auto;
+    text-align: start;
 }
 
 .no-text-select {
-    // Purely visual, doesn't affect functionality
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -89,9 +84,6 @@ span.vcenter-wrapper {
 }
 
 .clearfix::after {
-    // The "Clearfix" hack
-    // Forces bottom edge of element to be below any floated children
-    // Source: https://css-tricks.com/snippets/css/clear-fix/
     content: "";
     display: table;
     clear: both;

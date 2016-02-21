@@ -22,8 +22,15 @@ export class Edge {
         this.desty = destPoint.y;
     }
 
+    containsPoint(x, y) {
+        // TODO: implement this
+        return false;
+    }
+
     draw(context) {
         // console.log('Drawing edge from ' + this.start.id + ' to ' + this.dest.id);
+
+        this.update();
 
         context.strokeStyle = 'black';
 
