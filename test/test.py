@@ -3,10 +3,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from PIL import Image
+from io import BytesIO
+import base64
+import ImageChops
 
 def main(robot):
 
-	robot.loadSite('http://localhost:8080/index.html', '//*[@id="canvas"]')
+	robot.loadSite('http://localhost:8080/webpack-dev-server/index.html', )
+	robot.switch_to_frame('iframe')
+	robot.select_canvas('//*[@id="canvas"]')
 
 	test(robot)
 
@@ -16,14 +22,23 @@ def main(robot):
 
 def test(robot):
 	node1 = robot.createNode(30, 30)
-	robot.screenshot('1')
+
+	#robot.save_screenshot('1_expected.png')
+	robot.assertScreenshot('1_expected.png')
+
+	robot.assertNode(node1)
 
 	robot.select(node1)
 	node2 = robot.createNode(180, 180)
-	robot.screenshot('2')
+
+	#robot.save_screenshot('2_expected.png')
+	robot.assertScreenshot('2_expected.png')
 
 	robot.select(node1)
 	robot.select(node2, 10, 10)
+
+	#robot.save_screenshot('3_expected.png')
+	robot.assertScreenshot('3_expected.png')
 	return
 
 
@@ -46,15 +61,23 @@ class CanvasDriver:
 	def click(self, x, y):
 		ActionChains(self.driver).move_to_element_with_offset(self.canvas, x , y).click().perform()
 
-	def loadSite(self, url, canvas_xpath):
+	def loadSite(self, url):
 		self.driver.get(url);
-		self.canvas = self.driver.find_element_by_xpath(canvas_xpath);
+
+	def switch_to_frame(self, iframe):
+		self.driver.switch_to_frame(self.driver.find_element_by_tag_name(iframe))
+
+	def select_canvas(self, xpath):
+		self.canvas = self.driver.find_element_by_xpath(xpath);
 
 	def close(self):
 		self.driver.close()
 
-	def screenshot(self, browser):
-		self.driver.get_screenshot_as_file(self.browser + '_' + browser + '.png')
+	def screenshot(self):
+		return Image.open(BytesIO(base64.decodestring(self.driver.get_screenshot_as_base64())))
+
+	def save_screenshot(self, name):
+		self.driver.get_screenshot_as_file(self.browser + '_' + name)
 
 class CGC(CanvasDriver):
 	def __init__(self, driver, browser):
@@ -69,6 +92,26 @@ class CGC(CanvasDriver):
 		node = Node(self, x, y)
 		self.nodes.append(node)
 		return node
+
+	def assertNode(self, node):
+		location = self.canvas.location_once_scrolled_into_view
+		img = self.screenshot()
+
+		left = int(location['x']) + node.x - 40
+		right = int(location['x']) + node.x + 40
+		top = int(location['y']) + node.y - 40
+		bottom = int(location['y']) + node.y + 40
+		img = img.crop((left, top, right, bottom))
+		#img.save('surrounding.png')
+		#TODO use opencv to see if node actually exists
+
+	def assertScreenshot(self, name):
+		img1 = self.screenshot()
+		img2 = Image.open(self.browser + '_' + name)
+		if ImageChops.difference(img1, img2).getbbox() is not None:
+			img1.save(self.browser + '_Error_' + name)
+			print 'Assertion Error: current state does not match ' + name
+
 
 	def deselect(self):
 		if self.selected != None:
