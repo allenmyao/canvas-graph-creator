@@ -1,5 +1,3 @@
-import {}
-
 export class Edge {
 
     startx = null;
@@ -24,8 +22,8 @@ export class Edge {
         this.starty = startPoint.y;
         this.destx = destPoint.x;
         this.desty = destPoint.y;
-        this.controlX = (startx+destx)/2;
-        this.controlY = (starty+desty)/2;
+        this.controlX = (this.startx + this.destx) / 2;
+        this.controlY = (this.starty + this.desty) / 2;
     }
 
     draw(context) {
