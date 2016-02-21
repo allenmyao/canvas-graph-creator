@@ -28,11 +28,27 @@ export class Graph {
         }
 
         for (let edge of this.edges) {
-            if (edge.start === start && edge.dest === dest) {
+            if (edge.start === start && edge.dest === dest
+                    || edge.start === dest && edge.dest === start) {
                 return true;
             }
         }
         return false;
+    }
+
+
+    getEdge(start, dest) {
+        if (!this.nodes.has(start) || !this.nodes.has(dest)) {
+            throw new Error('Nodes are not in the graph');
+        }
+
+        for (let edge of this.edges) {
+            if (edge.start === start && edge.dest === dest
+                    || edge.start === dest && edge.dest === start) {
+                return edge;
+            }
+        }
+        return null;
     }
 
     forEachNode(callback) {

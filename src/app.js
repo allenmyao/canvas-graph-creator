@@ -1,9 +1,9 @@
 import 'babel-polyfill';
- 
+
 import {Graph} from './graph';
 import {Node} from './node';
 import {Edge} from './edge';
- 
+
 var canvas;
 var context;
 var graph;
@@ -13,16 +13,16 @@ var mouseDown;      // Is the mouse being held?
 var stateFuncDown;  // The function that will be applied when we click
 var stateFuncUp;    // The function that will be applied when we unclick
 var stateFuncMove;  // The function that will be applied when we move the mouse
- 
+
 function init() {
- 
+
     canvas = document.getElementById('canvas');
     // canvas.setAttribute('width', 800);
     // canvas.setAttribute('height', 600);
- 
+
     context = canvas.getContext('2d');
     // context.imageSmoothingEnabled = true;
- 
+
     graph = new Graph();
 
     tempTarget = null;
@@ -30,7 +30,7 @@ function init() {
     stateFuncDown = function(x,y) {tempTarget = mouseSelect(x,y);};
     stateFuncUp = function(x,y) {nodeClick(x,y); tempTarget = null;};
     stateFuncMove = function(x,y) {};
- 
+
     canvas.addEventListener('mousedown', downEventListener, false);
     canvas.addEventListener('mouseup', upEventListener, false);
     canvas.addEventListener('mousemove', moveEventListener, false);
@@ -55,7 +55,7 @@ function nodeClick(x,y) {//split up more functionality to the move listener
   let startNode = null;
   graph.forEachNode((node) => {
       // console.log('checking node ' + node.id);
- 
+
       if (node.containsPoint(x, y)) {
           if (node.isSelected || !selectedNode) {
               selectedNode = node;
@@ -63,7 +63,7 @@ function nodeClick(x,y) {//split up more functionality to the move listener
       } else if (node.isSelected) {
           startNode = node;
       }
- 
+
       if (selectedNode && startNode) {
           return false;
       }
@@ -83,20 +83,19 @@ function nodeClick(x,y) {//split up more functionality to the move listener
       selectedNode.isSelected = false;
     }
   }
- 
+
   if (selectedNode && startNode) {
       // check if edge already exists
       if (graph.hasEdge(startNode, selectedNode)) {
           console.log('Edge already exists');
- 
-          selectedNode.isSelected = false;
-          // startNode.isSelected = false;
-          return;
+
+          let edge = graph.getEdge(startNode, selectedNode);
+          edge.numEdges++;
+      } else {
+          let edge = new Edge(startNode, selectedNode);
+          graph.addEdge(edge);
       }
- 
-      let edge = new Edge(startNode, selectedNode);
-      graph.addEdge(edge);
- 
+
       startNode.isSelected = false;
       selectedNode.isSelected = false;
   } else if (!selectedNode) {
@@ -108,20 +107,20 @@ function nodeClick(x,y) {//split up more functionality to the move listener
               return false;
           }
       });
- 
+
       if (!isTooClose) {
           let node = new Node(x, y);
           graph.addNode(node);
       }
   }
 }
- 
+
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     graph.draw(context);
     window.requestAnimationFrame(draw);
 }
- 
+
 window.addEventListener('load', init, false);
 
 function downEventListener(event) {
@@ -149,10 +148,10 @@ function upEventListener(event) {
 function moveEventListener(event) {
     let canvasLeft = canvas.offsetLeft;
     let canvasTop = canvas.offsetTop;
- 
+
     let x = event.pageX - canvasLeft;
     let y = event.pageY - canvasTop;
- 
+
     stateFuncMove(x,y);
 }
 
