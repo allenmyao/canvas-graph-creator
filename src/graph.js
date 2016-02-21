@@ -21,6 +21,7 @@ export class Graph {
         this.edges.add(edge);
     }
 
+
     hasEdge(start, dest) {
         if (!this.nodes.has(start) || !this.nodes.has(dest)) {
             throw new Error('Nodes are not in the graph');
@@ -51,5 +52,6 @@ export class Graph {
         this.nodes.forEach((node) => {
             node.draw(context);
         });
+
     }
 }

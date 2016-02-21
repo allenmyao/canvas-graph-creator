@@ -1,9 +1,13 @@
+import {}
+
 export class Edge {
 
     startx = null;
     starty = null;
     destx = null;
     desty = null;
+    controlX = null;
+    controlY = null;
 
     constructor(start, dest, weight = null, isDirected = false) {
         this.start = start;
@@ -20,6 +24,8 @@ export class Edge {
         this.starty = startPoint.y;
         this.destx = destPoint.x;
         this.desty = destPoint.y;
+        this.controlX = (startx+destx)/2;
+        this.controlY = (starty+desty)/2;
     }
 
     draw(context) {
@@ -29,6 +35,7 @@ export class Edge {
 
         this.svg(context);
     }
+
 
     path(context) {
         // Create a new path
@@ -43,6 +50,9 @@ export class Edge {
         // Draw to the canvas
         context.stroke();
     }
+
+
+
 
     svg(context) {
         let path = new Path2D(this.line(this.startx, this.starty, this.destx, this.desty));
