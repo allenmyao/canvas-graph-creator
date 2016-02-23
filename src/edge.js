@@ -4,6 +4,8 @@ export class Edge {
     starty = null;
     destx = null;
     desty = null;
+    controlX = null;
+    controlY = null;
 
     constructor(start, dest, weight = null, isDirected = false) {
         this.start = start;
@@ -20,6 +22,8 @@ export class Edge {
         this.starty = startPoint.y;
         this.destx = destPoint.x;
         this.desty = destPoint.y;
+        this.controlX = (this.startx + this.destx) / 2;
+        this.controlY = (this.starty + this.desty) / 2;
     }
 
     containsPoint(x, y) {
@@ -37,6 +41,7 @@ export class Edge {
         this.svg(context);
     }
 
+
     path(context) {
         // Create a new path
         context.beginPath();
@@ -50,6 +55,9 @@ export class Edge {
         // Draw to the canvas
         context.stroke();
     }
+
+
+
 
     svg(context) {
         let path = new Path2D(this.line(this.startx, this.starty, this.destx, this.desty));
