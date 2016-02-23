@@ -4,6 +4,10 @@ import { Edge } from './edge';
 
 export class MouseHandler {
 
+    // distance the mouse needs to move to start a drag
+    // this prevents accidentally dragging a few pixels when actually trying to click
+    DRAG_THRESHOLD = 7;
+
     selectedObject = null;
     draggedObject = null;
 
@@ -56,11 +60,11 @@ export class MouseHandler {
         if (!this.isDragging) {
             // check for dragging
             if (this.mousePressed) {
-                // check for drag
+                // check if mouse movement passes threshold
                 let dx = x - this.clickStartX;
                 let dy = y - this.clickStartY;
 
-                if (Math.sqrt(dx * dx + dy * dy) >= 5) {
+                if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
                     this.isDragging = true;
                     this.draggedObject = this.selectedObject;
                 }
