@@ -44,12 +44,10 @@ export class Node {
     }
 
     draw(context) {
-        // console.log('Drawing node ' + this.id + ' at (' + this.x + ',' + this.y + ')');
-
         context.fillStyle = 'white';
         context.strokeStyle = this.isSelected ? 'red' : 'black';
 
-        this.svg(context);
+        this.arc(context);
     }
 
     arc(context) {
@@ -63,22 +61,5 @@ export class Node {
         // context.fill();
         context.stroke();
     }
-
-    svg(context) {
-        let path = new Path2D(this.circle(this.x, this.y, Node.radius));
-        // context.fill(path);
-        context.stroke(path);
-    }
-
-    circle(x, y, r) {
-        r = Math.abs(r);
-        return `
-                M ${x} ${y}
-                m ${-1 * r}, 0
-                a ${r},${r} 0 1,0 ${r * 2},0
-                a ${r},${r} 0 1,0 ${r * -2},0
-                `;
-    }
-
 
 }

@@ -32,15 +32,12 @@ export class Edge {
     }
 
     draw(context) {
-        // console.log('Drawing edge from ' + this.start.id + ' to ' + this.dest.id);
-
         this.update();
 
         context.strokeStyle = 'black';
 
-        this.svg(context);
+        this.path(context);
     }
-
 
     path(context) {
         // Create a new path
@@ -56,19 +53,4 @@ export class Edge {
         context.stroke();
     }
 
-
-
-
-    svg(context) {
-        let path = new Path2D(this.line(this.startx, this.starty, this.destx, this.desty));
-        context.stroke(path);
-    }
-
-    line(x1, y1, x2, y2) {
-        // A 300,300 0 0,0
-        return `
-                M ${x1},${y1}
-                L ${x2},${y2}
-                `;
-    }
 }

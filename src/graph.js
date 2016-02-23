@@ -36,26 +36,8 @@ export class Graph {
     }
 
     hasComponent(x, y, ignore) {
-        let hasComponent = false;
-        this.forEachNode((node) => {
-            if (node !== ignore && node.containsPoint(x, y)) {
-                hasComponent = true;
-                return false;
-            }
-        });
-
-        if (hasComponent) {
-            return true;
-        }
-
-        this.forEachEdge((edge) => {
-            if (edge !== ignore && edge.containsPoint(x, y)) {
-                hasComponent = true;
-                return false;
-            }
-        });
-
-        return hasComponent;
+        let component = this.getComponent(x, y);
+        return component !== ignore && component !== null;
     }
 
     getComponent(x, y) {
