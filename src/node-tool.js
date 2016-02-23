@@ -15,7 +15,6 @@ export class NodeTool extends Tool {
         }
     }
 
-    // mouse events on empty space
     selectNone(graph, x, y) {
         let isTooClose = false;
         graph.forEachNode((node) => {
