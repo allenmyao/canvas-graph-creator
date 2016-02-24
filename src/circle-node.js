@@ -36,10 +36,6 @@ export class CircleNode extends Node {
         context.fillStyle = 'white';
         context.strokeStyle = this.isSelected ? 'red' : 'black';
 
-        this.arc(context);
-    }
-
-    arc(context) {
         // Create a new path
         context.beginPath();
 

@@ -27,6 +27,8 @@ export class MouseHandler {
 
         if (this.graph.hasComponent(x, y)) {
             this.selectedObject = this.graph.getComponent(x, y);
+            this.clickStartX = this.selectedObject.x;
+            this.clickStartY = this.selectedObject.y;
         }
     }
 

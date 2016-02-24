@@ -69,8 +69,10 @@ export class Graph {
             if (node === testNode) {
                 return;
             }
-            let testPoint = node.edgePointInDirection(x, y);
-            if (testNode.containsPoint(testPoint.x, testPoint.y)) {
+            let nodePoint = node.edgePointInDirection(x, y);
+            let testPoint = testNode.edgePointInDirection(node.x, node.y);
+            if (testNode.containsPoint(nodePoint.x, nodePoint.y)
+                    || node.containsPoint(testPoint.x, testPoint.y)) {
                 collision = true;
                 return false;
             }
