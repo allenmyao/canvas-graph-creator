@@ -66,8 +66,11 @@ export class Graph {
     isNodeCollision(testNode, x, y) {
         let collision = false;
         this.forEachNode((node) => {
+            if (node === testNode) {
+                return;
+            }
             let testPoint = node.edgePointInDirection(x, y);
-            if (node !== testNode && testNode.containsPoint(testPoint.x, testPoint.y)) {
+            if (testNode.containsPoint(testPoint.x, testPoint.y)) {
                 collision = true;
                 return false;
             }
