@@ -5,6 +5,7 @@ module.exports = {
     cache: true,
     entry: {
         app: [
+            'babel-polyfill',
             './src/app.js'
         ]
     },
