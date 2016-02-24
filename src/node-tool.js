@@ -1,12 +1,20 @@
 import { Tool } from './tool';
 import { Node } from './node';
+import { CircleNode } from './circle-node';
+import { SquareNode } from './square-node';
 
 export class NodeTool extends Tool {
 
     name = 'Node Tool';
 
-    constructor(icon) {
-        super(icon);
+    currentMode = 'circle';
+    static modes = {
+        circle: CircleNode,
+        square: SquareNode
+    };
+
+    hasModes() {
+        return true;
     }
 
     selectObject(graph, obj, x, y) {
@@ -16,17 +24,9 @@ export class NodeTool extends Tool {
     }
 
     selectNone(graph, x, y) {
-        let isTooClose = false;
-        graph.forEachNode((node) => {
-            if (node.distanceToPoint(x, y) < 2 * Node.radius + 10) {
-                console.log('Too close to node ' + node.id);
-                isTooClose = true;
-                return false;
-            }
-        });
-
-        if (!isTooClose) {
-            let node = new Node(x, y);
+        let nodeClass = NodeTool.modes[this.currentMode];
+        let node = new nodeClass(x, y);
+        if (!graph.isNodeCollision(node, x, y)) {
             graph.addNode(node);
         }
     }

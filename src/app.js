@@ -28,6 +28,7 @@ function init() {
 
     initMouseHandler();
     initToolbar();
+    showModes();
 
     window.requestAnimationFrame(draw);
 }
@@ -72,18 +73,52 @@ function initToolbar() {
     let tools = document.getElementsByClassName('tool');
     for (let i = 0; i < tools.length; i++) {
         tools[i].addEventListener('click', (event) => {
+            // currentTool.cancel();
+
             let toolName = event.target.getAttribute('data-tool');
             currentTool = toolMap[toolName];
 
-            let tools = document.getElementsByClassName('tool');
-            for (let i = 0; i < tools.length; i++) {
-                if (tools[i] === event.target) {
-                    tools[i].classList.add('selected');
-                } else {
-                    tools[i].classList.remove('selected');
-                }
-            }
+            selectItem('tool');
+
+            showModes();
         });
+    }
+
+    // add event listener for mode clicks
+    document.getElementById('tool-modes').addEventListener('click', (event) => {
+        if (event.target.classList.contains('mode')) {
+            console.log(`changing to ${event.target.getAttribute('data-mode')}`);
+            currentTool.currentMode = event.target.getAttribute('data-mode');
+            selectItem('mode');
+        }
+    });
+}
+
+function selectItem(className) {
+    let elements = document.getElementsByClassName(className);
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i] === event.target) {
+            elements[i].classList.add('selected');
+        } else {
+            elements[i].classList.remove('selected');
+        }
+    }
+}
+
+function showModes() {
+    let modeList = document.getElementById('tool-modes');
+    if (currentTool.hasModes()) {
+        // populate modes list
+        let html = '';
+        for (let mode of Object.keys(currentTool.constructor.modes)) {
+            let selected = mode === currentTool.currentMode ? ' selected' : '';;
+            html += `<li class="tool-mode"><div class="mode vcenter-wrapper${selected}" data-mode="${mode}"><span class="vcenter">${mode}</span></div></li>`;
+        }
+
+        modeList.innerHTML = `<ul class="tool-mode-list">${html}</ul>`;
+    } else {
+        // clear the modes
+        modeList.innerHTML = '';
     }
 }
 

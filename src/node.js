@@ -1,12 +1,29 @@
 export class Node {
     static numNodes = 0;
 
-    static radius = 30;
-    edgeList = [];
     id = Node.numNodes++;
+    edgeList = [];
     isSelected = false;
 
     constructor(x, y) {
+        // new.target not supported by Babel
+        // if (new.target === Node) {
+        //     throw TypeError('Node class is abstract; cannot construct Node instances directly');
+        // }
+
+        let methods = [
+            'containsPoint',
+            'distanceToPoint',
+            'edgePointInDirection',
+            'draw'
+        ];
+
+        for (let method of methods) {
+            if (this[method] === undefined || typeof this[method] !== 'function') {
+                throw TypeError('Must override method: ' + method);
+            }
+        }
+
         if (arguments.length < 2) {
             throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
         }
@@ -15,48 +32,21 @@ export class Node {
     }
 
     containsPoint(x, y) {
-        return this.distanceToPoint(x, y) <= Node.radius;
+        throw Error('Can\'t call methods from abstract Node class.');
     }
 
     distanceToPoint(x, y) {
-        let dx = x - this.x;
-        let dy = y - this.y;
-        return Math.sqrt(dx * dx + dy * dy);
+        throw Error('Can\'t call methods from abstract Node class.');
     }
 
-    // ISSSUE: if (x, y) is equal to the node's position, this function will divide by zero
     // rename to closestPointTo
     // modify to find closest point to another node
     edgePointInDirection(x, y) {
-        if (x === this.x && y === this.y) {
-            throw new Error('Point is at origin of Node');
-        }
-        let dx = x - this.x;
-        let dy = y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        return {
-            x: this.x + dx * Node.radius / distance,
-            y: this.y + dy * Node.radius / distance
-        };
+        throw Error('Can\'t call methods from abstract Node class.');
     }
 
     draw(context) {
-        context.fillStyle = 'white';
-        context.strokeStyle = this.isSelected ? 'red' : 'black';
-
-        this.arc(context);
-    }
-
-    arc(context) {
-        // Create a new path
-        context.beginPath();
-
-        // Create an arc with center at (x, y)
-        context.arc(this.x, this.y, Node.radius, 0, 2 * Math.PI);
-
-        // Draw to the canvas
-        // context.fill();
-        context.stroke();
+        throw Error('Can\'t call methods from abstract Node class.');
     }
 
 }

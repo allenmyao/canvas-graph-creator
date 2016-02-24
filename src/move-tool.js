@@ -5,10 +5,6 @@ export class MoveTool extends Tool {
 
     name = 'Move Tool';
 
-    constructor(icon) {
-        super(icon);
-    }
-
     dragObject(graph, obj, x, y) {
         if (obj instanceof Node) {
             obj.x = x;
@@ -30,20 +26,14 @@ export class MoveTool extends Tool {
     dropOnNone(graph, droppedObj, startX, startY, x, y) {
         console.log('drop on none');
         // check for overlap
-        let canDrop = true;
-        graph.forEachNode((node) => {
-            if (node !== droppedObj && node.distanceToPoint(x, y) < 2 * Node.radius + 10) {
-                canDrop = false;
-                return false;
+        if (droppedObj instanceof Node) {
+            if (!graph.isNodeCollision(droppedObj, x, y)) {
+                droppedObj.x = x;
+                droppedObj.y = y;
+            } else {
+                droppedObj.x = startX;
+                droppedObj.y = startY;
             }
-        });
-
-        if (canDrop) {
-            droppedObj.x = x;
-            droppedObj.y = y;
-        } else {
-            droppedObj.x = startX;
-            droppedObj.y = startY;
         }
     }
 

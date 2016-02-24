@@ -63,6 +63,18 @@ export class Graph {
         return component;
     }
 
+    isNodeCollision(testNode, x, y) {
+        let collision = false;
+        this.forEachNode((node) => {
+            let testPoint = node.edgePointInDirection(x, y);
+            if (node !== testNode && testNode.containsPoint(testPoint.x, testPoint.y)) {
+                collision = true;
+                return false;
+            }
+        });
+        return collision;
+    }
+
     forEachNode(callback) {
         for (let node of this.nodes) {
             if (callback(node) === false) {

@@ -9,10 +9,6 @@ export class EdgeTool extends Tool {
     start = null;
     dest = null;
 
-    constructor(icon) {
-        super(icon);
-    }
-
     selectNode(graph, node) {
         if (this.start === null) {
             this.start = node;

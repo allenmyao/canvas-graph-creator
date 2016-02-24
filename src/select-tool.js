@@ -5,10 +5,6 @@ export class SelectTool extends Tool {
 
     name = 'Select Tool';
 
-    constructor(icon) {
-        super(icon);
-    }
-
     selectObject(graph, obj, x, y) {
         // select
     }

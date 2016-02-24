@@ -7,6 +7,14 @@ export class Tool {
         this.icon = icon;
     }
 
+    hasModes() {
+        return false;
+    }
+
+    // this is called when changing tools
+    // undo any incomplete actions
+    cancel() {}
+
     // mouse events on graph components
     selectObject(graph, obj, x, y) {}
     dragObject(graph, srcObj, x, y) {}
