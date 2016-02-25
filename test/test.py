@@ -6,7 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from PIL import Image
 from io import BytesIO
 import base64
-import ImageChops
+from PIL import ImageChops
 
 def main(robot):
 
@@ -23,8 +23,8 @@ def main(robot):
 def test(robot):
 	node1 = robot.createNode(33, 33)
 
-	robot.save_screenshot('1_expected.png')
-	#robot.assertScreenshot('1_expected.png')
+	#robot.save_screenshot('1_expected.png')
+	robot.assertScreenshot('1_expected.png')
 	node2 = robot.createNode(84, 84)
 
 	robot.edge(node1, node2)
@@ -36,8 +36,8 @@ def test(robot):
 	#node3 = robot.createNode(180, 180)
 
 
-	robot.save_screenshot('2_expected.png')
-	#robot.assertScreenshot('2_expected.png')
+	#robot.save_screenshot('2_expected.png')
+	robot.assertScreenshot('2_expected.png')
 
 	#robot.assertNode(node2)
 
@@ -46,8 +46,8 @@ def test(robot):
 
 
 
-	robot.save_screenshot('3_expected.png')
-	#robot.assertScreenshot('3_expected.png')
+	#robot.save_screenshot('3_expected.png')
+	robot.assertScreenshot('3_expected.png')
 	return
 
 
@@ -114,6 +114,7 @@ class CGC(CanvasDriver):
 		img.save('surrounding.png')
 		#TODO use opencv to see if node actually exists
 
+
 	def assertScreenshot(self, name):
 		img1 = self.screenshot()
 		img2 = Image.open(self.browser + '_' + name)
@@ -143,5 +144,5 @@ class CGC(CanvasDriver):
 
 if __name__ == "__main__":
 	main(CGC(webdriver.Firefox(), "Firefox"))
-	main(CGC(webdriver.Chrome(), "Chrome"))
+	#main(CGC(webdriver.Chrome(), "Chrome"))
 
