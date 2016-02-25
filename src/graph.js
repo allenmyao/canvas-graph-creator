@@ -35,10 +35,62 @@ export class Graph {
         return false;
     }
 
+    hasComponent(x, y, ignore) {
+        let component = this.getComponent(x, y);
+        return component !== ignore && component !== null;
+    }
+
+    getComponent(x, y) {
+        let component = null;
+        this.forEachNode((node) => {
+            if (node.containsPoint(x, y)) {
+                component = node;
+                return false;
+            }
+        });
+
+        if (component !== null) {
+            return component;
+        }
+
+        this.forEachEdge((edge) => {
+            if (edge.containsPoint(x, y)) {
+                component = edge;
+                return false;
+            }
+        });
+
+        return component;
+    }
+
+    isNodeCollision(testNode, x, y) {
+        let collision = false;
+        this.forEachNode((node) => {
+            if (node === testNode) {
+                return;
+            }
+            let nodePoint = node.edgePointInDirection(x, y);
+            let testPoint = testNode.edgePointInDirection(node.x, node.y);
+            if (testNode.containsPoint(nodePoint.x, nodePoint.y)
+                    || node.containsPoint(testPoint.x, testPoint.y)) {
+                collision = true;
+                return false;
+            }
+        });
+        return collision;
+    }
+
     forEachNode(callback) {
         for (let node of this.nodes) {
-            // console.log('node ' + node.id);
             if (callback(node) === false) {
+                break;
+            }
+        }
+    }
+
+    forEachEdge(callback) {
+        for (let edge of this.edges) {
+            if (callback(edge) === false) {
                 break;
             }
         }

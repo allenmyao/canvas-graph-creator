@@ -11,6 +11,34 @@
     <div class="container">
         <h1 class="title">Canvas Graph Creator</h1>
 
+        <div id="toolbar">
+            <div id="tools-container">
+                <ul class="tool-list">
+                    <li class="tool-listitem">
+                        <div class="tool vcenter-wrapper selected" data-tool="node">
+                            <span class="vcenter">Add Node</span>
+                        </div>
+                    </li>
+                    <li class="tool-listitem">
+                        <div class="tool vcenter-wrapper" data-tool="edge">
+                            <span class="vcenter">Add Edge</span>
+                        </div>
+                    </li>
+                    <li class="tool-listitem">
+                        <div class="tool vcenter-wrapper" data-tool="move">
+                            <span class="vcenter">Move Object</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tool-modes">
+            <ul class="tool-mode-list">
+                <li class="tool-mode"></li>
+            </ul>
+        </div>
+
         <canvas id="canvas" width="1024" height="600"></canvas>
 
         <div id="canvas-info">
