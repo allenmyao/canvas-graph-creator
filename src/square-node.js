@@ -99,7 +99,7 @@ export class SquareNode extends Node {
                 }
             } else {
                 // y is equal
-                point.x = this.x + this.halfwidth;
+                point.x = this.x - this.halfwidth;
                 point.y = y;
             }
         } else {
