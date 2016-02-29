@@ -3,6 +3,7 @@ node_modules/
 
 # output files
 dist/js/
+eslint-output.xml
 
 # test output
 coverage/

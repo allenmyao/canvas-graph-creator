@@ -27,7 +27,21 @@ gulp.task('test', ['lint'], (cb) => {
         .on('finish', () => {
             gulp.src([TEST_FILES])
                 .pipe(mocha())
-                .pipe(istanbul.writeReports())
+                .pipe(istanbul.writeReports({
+                    dir: './coverage',
+                    includeUntested: true,
+                    reporters: [ 'clover', 'lcov', 'text', 'text-summary' ],
+                    reportOpts: {
+                        clover: {
+                            dir: './coverage/tap',
+                            file: 'clover.tap'
+                        },
+                        lcov: {
+                            dir: './coverage/lcov',
+                            file: 'lcov.info'
+                        }
+                    }
+                }))
                 .pipe(istanbul.enforceThresholds({ thresholds: { global: COVERAGE_THRESHOLD } }))
                 .on('error', (err) => {
                     gutil.log('[test]', gutil.colors.red(`Coverage not meeting threshold of ${COVERAGE_THRESHOLD}%`));
@@ -38,16 +52,19 @@ gulp.task('test', ['lint'], (cb) => {
 });
 
 gulp.task('lint', () => {
-    return gulp.src(SRC_FILES)
+    gulp.src(SRC_FILES)
         .pipe(eslint())
         .pipe(eslint.format())
+        .pipe(eslint.format('checkstyle', function (results) {
+            require('fs').writeFileSync(require('path').join(__dirname, 'eslint-output.xml'), results);
+        }))
         .pipe(eslint.results((results) => {
             // Called once for all ESLint results.
             console.log('Total Results: ' + results.length);
             console.log('Total Warnings: ' + results.warningCount);
             console.log('Total Errors: ' + results.errorCount);
-        }))
-        .pipe(eslint.failAfterError());
+        }));
+        // .pipe(eslint.failAfterError());
 });
 
 gulp.task('prep', ['test']);
