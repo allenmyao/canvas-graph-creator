@@ -1,3 +1,4 @@
+package driver;
 import java.awt.Image;
 import org.springframework.util.ResourceUtils;
 import java.awt.image.BufferedImage;
@@ -27,6 +28,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Driver {
@@ -56,7 +58,8 @@ public class Driver {
 	}
 	public void selectCanvas(String xPath)
 	{
-		canvas = driver.findElement(By.xpath(xPath));
+
+		canvas = (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
 	}
 	public void click(int x, int y)
 	{
@@ -96,7 +99,7 @@ public class Driver {
 	//http://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
 	public void waitUntilLoaded()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 90);
 
 	    wait.until(new ExpectedCondition<Boolean>() {
 	        public Boolean apply(WebDriver wdriver) {

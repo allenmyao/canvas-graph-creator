@@ -1,3 +1,4 @@
+package driver;
 import org.openqa.selenium.WebElement;
 
 public class Canvas {

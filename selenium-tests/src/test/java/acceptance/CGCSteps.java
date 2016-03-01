@@ -1,3 +1,4 @@
+package acceptance;
 import java.util.HashMap;
 
 import cucumber.api.java.Before;
@@ -11,6 +12,8 @@ import cucumber.api.Format;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import driver.CGC;
+import model.Node;
 
 public class CGCSteps {
 	public static String IFRAME_NAME = "iframe";

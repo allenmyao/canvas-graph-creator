@@ -13,6 +13,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import driver.CGC;
+import model.Node;
+
 public class ChromeTest {
 	private static CGC driver;
 	@BeforeClass
