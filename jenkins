@@ -7,11 +7,17 @@ function stop {
 function start {
 	stop
 	npm install > /dev/null
-	gulp &
+	daemonize -E BUILD_ID=dontKillMe /usr/bin/gulp
 }
 
 if [[ "$1" = "start" ]]; then
 	start
 elif [[ "$1" = "stop" ]]; then
+	stop
+else
+	start
+	cd selenium-tests
+	mvn test
+	cd ..
 	stop
 fi
