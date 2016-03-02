@@ -28,7 +28,7 @@ export class Graph {
         }
 
         for (let edge of this.edges) {
-            if (edge.start === start && edge.dest === dest) {
+            if (edge.startNode === start && edge.destNode === dest) {
                 return true;
             }
         }
