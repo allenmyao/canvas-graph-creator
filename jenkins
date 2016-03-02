@@ -7,7 +7,7 @@ function stop {
 function start {
 	stop
 	npm install > /dev/null
-	daemonize -E BUILD_ID=dontKillMe /usr/bin/gulp
+	gulp &
 }
 
 if [[ "$1" = "start" ]]; then
