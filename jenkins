@@ -14,10 +14,4 @@ if [[ "$1" = "start" ]]; then
 	start
 elif [[ "$1" = "stop" ]]; then
 	stop
-else
-	start
-	cd selenium-tests
-	mvn test
-	cd ..
-	stop
 fi
