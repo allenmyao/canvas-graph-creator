@@ -1,3 +1,4 @@
+package acceptance;
 import org.junit.runner.RunWith;
 import cucumber.api.junit.Cucumber;
 
