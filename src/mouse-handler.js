@@ -1,3 +1,5 @@
+import * as UI from 'ui/ui';
+
 export class MouseHandler {
 
     // distance the mouse needs to move to start a drag
@@ -55,6 +57,8 @@ export class MouseHandler {
     }
 
     moveListener(event, currentTool, x, y) {
+        UI.updateMouse(x, y);
+
         if (!this.isDragging) {
             // check for dragging
             if (this.mousePressed) {

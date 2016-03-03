@@ -1,14 +1,22 @@
 import * as Toolbar from 'ui/toolbar';
+import * as StatusBar from 'ui/status-bar';
 
 function init() {
     Toolbar.init();
+    StatusBar.init();
 }
 
-// function updateZoom(scale) {
-//     // 1 / scale * 100
-// }
+function updateZoom(scale) {
+    StatusBar.updateZoom(scale);
+}
 
-// function updateMouse(x, y) {}
+function updateMouse(x, y) {
+    StatusBar.updateMouse(x, y);
+}
+
+function updateCanvasPosition(dx, dy) {
+    StatusBar.updateCanvasPosition(dx, dy);
+}
 
 // function changeTool(tool) {}
 
@@ -19,4 +27,4 @@ function init() {
 
 // function updateObject(object) {}
 
-export { init };
+export { init, updateZoom, updateMouse, updateCanvasPosition };

@@ -1,5 +1,6 @@
 import { MouseHandler } from 'mouse-handler';
 import * as Toolbar from 'ui/toolbar';
+import * as UI from 'ui/ui';
 
 let canvas;
 let context;
@@ -86,6 +87,9 @@ function initMouseHandler(graph) {
         // context.setTransform(); does the translate first then scale
         context.scale(scale, scale);
         context.translate(-dx, -dy);
+
+        UI.updateZoom(scale);
+        UI.updateCanvasPosition(dx, dy);
     }, false);
 }
 

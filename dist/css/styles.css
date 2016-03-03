@@ -13,10 +13,6 @@ body {
     margin: auto;
 }
 
-#canvas-info {
-    margin: 0 30px;
-}
-
 #canvas {
     /*width: 800px;
     height: 600px;*/
@@ -77,4 +73,8 @@ body {
 .tool-list > .tool-listitem > .tool.selected,
 .tool-mode-list > .tool-mode > .mode.selected {
     background: #616161;
+}
+
+#status-bar {
+    margin: 30px 0;
 }

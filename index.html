@@ -41,10 +41,19 @@
 
         <canvas id="canvas" width="1024" height="600"></canvas>
 
-        <div id="canvas-info">
-            <div>Click on empty space in the box above to add a node.</div>
-            <div>Click on a node to select it. Selected nodes have a red border.</div>
-            <div>Select a second node to add an edge.</div>
+        <div id="status-bar">
+            <div id="mouse-pos">
+                <span>x: <span id="mouse-x">0</span></span>
+                <span>y: <span id="mouse-y">0</span></span>
+            </div>
+            <div id="canvas-pos">
+                <span>dx: <span id="canvas-dx">0</span></span>
+                <span>dy: <span id="canvas-dy">0</span></span>
+            </div>
+            <div id="zoom">
+                <label>Zoom: </label>
+                <input type="text" id="zoom-input" value="100%"/>
+            </div>
         </div>
     </div>
 
