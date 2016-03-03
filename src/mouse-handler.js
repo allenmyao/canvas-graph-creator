@@ -1,7 +1,3 @@
-import { Graph } from './graph';
-import { Node } from './node';
-import { Edge } from './edge';
-
 export class MouseHandler {
 
     // distance the mouse needs to move to start a drag
