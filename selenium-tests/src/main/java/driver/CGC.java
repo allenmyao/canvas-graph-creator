@@ -2,6 +2,18 @@ package driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.awt.image.BufferedImage;
+
+import org.bytedeco.javacv.*;
+import org.bytedeco.javacpp.*;
+
+import static org.bytedeco.javacpp.opencv_core.*;
+import static org.bytedeco.javacpp.opencv_imgproc.*;
+import static org.bytedeco.javacpp.opencv_highgui.*;
+import static org.bytedeco.javacpp.opencv_imgcodecs.*;
+import static org.bytedeco.javacpp.opencv_calib3d.*;
+import static org.bytedeco.javacpp.opencv_objdetect.*;
+
 import model.Node;
 
 public class CGC extends Driver{
@@ -80,5 +92,31 @@ public class CGC extends Driver{
 		return driver;
 	}
 
-	
+	public boolean match(BufferedImage template, BufferedImage screenshot)
+    {
+        Java2DFrameConverter javaConverter = new Java2DFrameConverter();
+        OpenCVFrameConverter.ToIplImage cvConverter = new OpenCVFrameConverter.ToIplImage();
+        
+        Frame tmp_f = javaConverter.getFrame(template);
+        Frame src_f = javaConverter.getFrame(screenshot);
+        
+        IplImage tmp = cvConverter.convert(tmp_f);
+        IplImage src = cvConverter.convert(src_f);
+        
+        IplImage result = cvCreateImage(cvSize(src.width() - tmp.width() - 1, src.height() - tmp.height() -1), IPL_DEPTH_32F, src.nChannels());
+        
+        cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
+        
+        cvThreshold(result, result, 0.8, 1.0, 0);
+        
+        DoublePointer min_v = new DoublePointer();
+        DoublePointer max_v = new DoublePointer();
+        
+        CvPoint min_p = new CvPoint();
+        CvPoint max_p = new CvPoint();
+        
+        cvMinMaxLoc(result,min_v, max_v, min_p, max_p,null);
+        
+        return max_v.get() == 1.0;
+	}
 }
