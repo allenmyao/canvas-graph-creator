@@ -21,6 +21,13 @@ export class Graph {
         this.edges.add(edge);
     }
 
+    removeNode(node) {
+        console.log('Removing node ' + node.id);
+    }
+
+    removeEdge(edge) {
+        console.log('Removing edge ' + edge.id);
+    }
 
     hasEdge(start, dest) {
         if (!this.nodes.has(start) || !this.nodes.has(dest)) {

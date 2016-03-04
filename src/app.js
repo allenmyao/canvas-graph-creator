@@ -5,6 +5,7 @@ import { MouseHandler } from './mouse-handler';
 import { NodeTool } from './node-tool';
 import { EdgeTool } from './edge-tool';
 import { MoveTool } from './move-tool';
+import { EraseTool } from './erase-tool';
 
 var canvas;
 var context;
@@ -15,7 +16,8 @@ var toolbar;
 var toolMap = {
     node: new NodeTool(),
     edge: new EdgeTool(),
-    move: new MoveTool()
+    move: new MoveTool(),
+    erase: new EraseTool()
 };
 
 function init() {
