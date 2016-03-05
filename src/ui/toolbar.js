@@ -25,7 +25,7 @@ function init() {
             let toolName = event.target.getAttribute('data-tool');
             currentTool = toolMap[toolName];
 
-            selectItem('tool');
+            selectItem('tool', event.target);
 
             showModes();
         }
@@ -37,7 +37,7 @@ function init() {
     document.getElementById('tool-modes').addEventListener('click', (event) => {
         if (event.target.classList.contains('mode')) {
             currentTool.currentMode = event.target.getAttribute('data-mode');
-            selectItem('mode');
+            selectItem('mode', event.target);
         }
     });
 }
@@ -46,10 +46,10 @@ function getCurrentTool() {
     return currentTool;
 }
 
-function selectItem(className) {
+function selectItem(className, selectedElement) {
     let elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; i++) {
-        if (elements[i] === event.target) {
+        if (elements[i] === selectedElement) {
             elements[i].classList.add('selected');
         } else {
             elements[i].classList.remove('selected');
