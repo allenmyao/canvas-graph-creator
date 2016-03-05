@@ -2,7 +2,7 @@ export class Node {
     static numNodes = 0;
 
     id = Node.numNodes++;
-    edgeList = [];
+    edges = new Set();
     isSelected = false;
 
     constructor(x, y) {

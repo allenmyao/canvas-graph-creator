@@ -13,11 +13,11 @@ export class Graph {
     }
 
     addEdge(edge) {
-        if (!this.nodes.has(edge.start) || !this.nodes.has(edge.dest)) {
+        if (!this.nodes.has(edge.startNode) || !this.nodes.has(edge.destNode)) {
             throw new Error('Edge nodes are not in the graph');
         }
 
-        console.log('Adding edge between ' + edge.start.id + ' and ' + edge.dest.id);
+        console.log('Adding edge between ' + edge.startNode.id + ' and ' + edge.destNode.id);
         this.edges.add(edge);
     }
 
@@ -28,7 +28,7 @@ export class Graph {
         }
 
         for (let edge of this.edges) {
-            if (edge.start === start && edge.dest === dest) {
+            if (edge.startNode === start && edge.destNode === dest) {
                 return true;
             }
         }
