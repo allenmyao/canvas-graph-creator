@@ -16,9 +16,18 @@ export class Tool {
     cancel() {}
 
     // mouse events on graph components
+    preSelectObject(graph, obj, x, y) {
+        return true;
+    }
+    preDragObject(graph, srcObj, x, y) {
+        return true;
+    }
     selectObject(graph, obj, x, y) {}
     dragObject(graph, srcObj, x, y) {}
     dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {}
+    dragOverObject(graph, obj, x, y) {
+        return this.dragNone(graph, x, y);
+    }
 
     // mouse events on empty space
     selectNone(graph, x, y) {}

@@ -5,9 +5,11 @@ import { MouseHandler } from './mouse-handler';
 import { NodeTool } from './node-tool';
 import { EdgeTool } from './edge-tool';
 import { MoveTool } from './move-tool';
+import { EraseTool } from './erase-tool';
+import { initCurved } from './curvedEdge';
 
-var canvas;
-var context;
+export var canvas;
+export var context;
 var graph;
 var mouseHandler;
 var currentTool = new NodeTool();
@@ -15,12 +17,14 @@ var toolbar;
 var toolMap = {
     node: new NodeTool(),
     edge: new EdgeTool(),
-    move: new MoveTool()
+    move: new MoveTool(),
+    erase: new EraseTool()
 };
 
 function init() {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
+    initCurved(canvas, context);
 
     graph = new Graph();
 
