@@ -1,3 +1,6 @@
+import { calcBezierDistance } from './curvedEdge';
+import { EDGE_DISTANCE_THRESHOLD } from './curvedEdge';
+
 /*
 * Edge Class
 *   Represents an edge in the graph, and is also responsible for supplying draw functionality
@@ -52,7 +55,7 @@ export class Edge {
     }
 
     if(bezierPoint === null) {
-      bezierPoint = {
+      this.bezierPoint = {
           x: (this.startPoint.x + this.destPoint.x)/2,
           y: (this.startPoint.y + this.destPoint.y)/2
         };
@@ -63,6 +66,13 @@ export class Edge {
     } else if(typeof cost === 'number') {
       costType = true;
     }
+  }
+
+  detach() {
+    this.startNode.edges.delete(this);
+    this.destNode.edges.delete(this);
+    this.startNode = null;
+    this.destNode = null;
   }
 
   getCostType() {
@@ -114,14 +124,17 @@ export class Edge {
     try {
       this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
       this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
+      this.bezierPoint = {
+          x: (this.startPoint.x + this.destPoint.x)/2,
+          y: (this.startPoint.y + this.destPoint.y)/2
+        };
     } catch (e) {
       return;
     }
   }
 
   containsPoint(x, y) {
-    // TODO: implement this
-    return false;
+    return EDGE_DISTANCE_THRESHOLD > calcBezierDistance(x, y, this.startPoint.x, this.startPoint.y, this.bezierPoint.x, this.bezierPoint.y, this.destPoint.x, this.destPoint.y);
   }
 
   draw(context) {

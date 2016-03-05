@@ -23,10 +23,21 @@ export class Graph {
 
     removeNode(node) {
         console.log('Removing node ' + node.id);
+        // Temp copy of edges to work on while we remove them
+        let tempEdges = new Set();
+        for (let edge of node.edges) {
+            tempEdges.add(edge);
+        }
+        for (let edge of tempEdges) {
+            this.removeEdge(edge);
+        }
+        this.nodes.delete(node);
     }
 
     removeEdge(edge) {
-        console.log('Removing edge ' + edge.id);
+        console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
+        this.edges.delete(edge);
+        edge.detach();
     }
 
     hasEdge(start, dest) {
