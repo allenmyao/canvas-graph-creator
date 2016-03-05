@@ -1,11 +1,14 @@
 #!/bin/bash
 
 function stop {
+	killall Xvfb
 	fuser -k 8080/tcp > /dev/null
 }
 
 function start {
 	stop
+	Xvfb :99 &
+	export DISPLAY=:99
 	npm install > /dev/null
 	gulp &
 }
@@ -17,6 +20,7 @@ elif [[ "$1" = "stop" ]]; then
 else
 	start
 	cd selenium-tests
+	sleep 10
 	mvn test
 	cd ..
 	stop
