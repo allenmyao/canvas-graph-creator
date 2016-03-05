@@ -76,7 +76,7 @@ function initToolbar() {
             let toolName = event.target.getAttribute('data-tool');
             currentTool = toolMap[toolName];
 
-            selectItem('tool');
+            selectItem('tool', event);
 
             showModes();
         });
@@ -87,12 +87,12 @@ function initToolbar() {
         if (event.target.classList.contains('mode')) {
             console.log(`changing to ${event.target.getAttribute('data-mode')}`);
             currentTool.currentMode = event.target.getAttribute('data-mode');
-            selectItem('mode');
+            selectItem('mode', event);
         }
     });
 }
 
-function selectItem(className) {
+function selectItem(className, event) {
     let elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; i++) {
         if (elements[i] === event.target) {
