@@ -3,6 +3,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.bytedeco.javacv.*;
 import org.bytedeco.javacpp.*;
@@ -19,7 +23,7 @@ import static org.bytedeco.javacpp.opencv_calib3d.*;
 import static org.bytedeco.javacpp.opencv_objdetect.*;
 
 import model.Node;
-
+import static org.junit.Assert.*;
 public class CGC extends Driver{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
@@ -70,7 +74,6 @@ public class CGC extends Driver{
 	}
 
 	public void clickNode(Node node) {
-		// TODO Auto-generated method stub
 		click(node.x, node.y);
 	}
 
@@ -95,7 +98,13 @@ public class CGC extends Driver{
 		
 		return driver;
 	}
-
+	public void assertNodes(int nodes) throws IOException
+	{
+		BufferedImage template = ImageIO.read(new File("src/test/resources/UnselectedNode.png"));
+		BufferedImage screenshot = this.getScreenshot();
+		assertEquals(nodes, matchNumber(template, screenshot));
+	}
+	
 	public boolean match(BufferedImage template, BufferedImage screenshot)
     {
         Java2DFrameConverter javaConverter = new Java2DFrameConverter();
