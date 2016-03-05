@@ -19,7 +19,7 @@
 *   TODO:  implement better directed functionality, move in curvedEdge functionality
 */
 export class Edge {
-  
+
   constructor(startNode, destNode, bezierPoint = null, cost = null, isDirected = false) {
     let methods = [
       'draw'
@@ -40,28 +40,31 @@ export class Edge {
     this.bezierPoint = bezierPoint;
     this.cost = cost;
     this.isDirected = isDirected;
-    
+
+    startNode.edges.add(this);
+    destNode.edges.add(this);
+
     try {
       this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
       this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
     } catch (e) {
       return;
     }
-  
+
     if(bezierPoint === null) {
       bezierPoint = {
           x: (this.startPoint.x + this.destPoint.x)/2,
           y: (this.startPoint.y + this.destPoint.y)/2
         };
     }
-    
+
     if(typeof cost === 'string' || cost instanceof String) {
       costType = false;
     } else if(typeof cost === 'number') {
       costType = true;
     }
   }
-  
+
   getCostType() {
     if(this.costType === false) {
       return "Grammar";
@@ -71,7 +74,7 @@ export class Edge {
       return "None";
     }
   }
-  
+
   set weight(cost) {
     if(typeof cost === 'string' || cost instanceof String) {
       this.costType = false;
@@ -86,11 +89,11 @@ export class Edge {
       throw Error('cost must be a s(S)tring or number');
     }
   }
-  
+
   get weight() {
     return cost;
   }
-  
+
   getEndpoints(reference) {
     if(reference === this.startNode || reference === 1) {
       return this.startPoint;
@@ -98,7 +101,7 @@ export class Edge {
       return this.destPoint;
     }
   }
-  
+
   setEndpoints(reference, endpoint) {
     if(reference === this.startNode || reference === 1) {
       this.startPoint = endpoint;
@@ -107,11 +110,20 @@ export class Edge {
     }
   }
 
+  updateEndpoints() {
+    try {
+      this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
+      this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
+    } catch (e) {
+      return;
+    }
+  }
+
   containsPoint(x, y) {
     // TODO: implement this
     return false;
   }
-  
+
   draw(context) {
     throw Error('Can\'t call draw from abstract Edge class.');
   }
