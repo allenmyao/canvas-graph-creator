@@ -133,4 +133,43 @@ public class CGC extends Driver{
         
         return point.get() == 1.0;
 	}
+	
+	public int matchNumber(BufferedImage template, BufferedImage screenshot)
+    {
+        Java2DFrameConverter javaConverter = new Java2DFrameConverter();
+        OpenCVFrameConverter.ToIplImage cvConverter = new OpenCVFrameConverter.ToIplImage();
+        OpenCVFrameConverter.ToMat cvConverter2 = new OpenCVFrameConverter.ToMat();
+        
+        Frame tmp_f = javaConverter.getFrame(template);
+        Frame src_f = javaConverter.getFrame(screenshot);
+        
+        Mat src_m = cvConverter2.convert(src_f);
+        Mat tmp_m = cvConverter2.convert(tmp_f);
+        cvtColor(src_m, src_m, CV_32F);
+        cvtColor(tmp_m, tmp_m, CV_32F);
+        src_f = cvConverter2.convert(src_m);
+        tmp_f = cvConverter2.convert(tmp_m);
+        
+        IplImage tmp = cvConverter.convert(tmp_f);
+        IplImage src = cvConverter.convert(src_f);
+        
+        IplImage result = cvCreateImage(cvSize(src.width() - tmp.width() + 1, src.height() - tmp.height() + 1), IPL_DEPTH_32F,0);
+        
+        cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
+        
+        cvThreshold(result, result, 0.5, 1.0, 0);
+        
+        int count = 0;
+        
+        for(int i=0; i<result.height(); i++){
+        	for(int j =0; j<result.width(); j++){
+        		CvScalar point = cvGet2D(result, i,j);
+        		if (point.get() == 1.0){
+        			count++;
+        		}
+        	}
+        }
+        
+        return count;
+	}
 }
