@@ -56,6 +56,48 @@ describe('Graph', () => {
 
     }); // #addNode(node)
 
+    describe('removeNode(node)', () => {
+
+        it ('should remove from nodes', () => {
+            let graph = new Graph();
+            let node = new Node(0, 0);
+            graph.nodes.size.should.equal(0);
+            graph.addNode(node);
+            graph.nodes.size.should.equal(1);
+            graph.removeNode(node);
+            graph.nodes.size.should.equal(0);
+        });
+
+        it ('should remove from nodes and edges', () => {
+            let graph = new Graph();
+            let node1 = new Node(0, 0);
+            let node2 = new Node(128, 128);
+            graph.nodes.size.should.equal(0);
+            graph.addNode(node1);
+            graph.addNode(node2);
+            graph.nodes.size.should.equal(2);
+            graph.edges.size.should.equal(0);
+            let edge = new Edge(node1, node2);
+            graph.addEdge(edge);
+            graph.edges.size.should.equal(1);
+            graph.removeNode(node2);
+            graph.nodes.size.should.equal(1);
+            graph.edges.size.should.equal(0);
+        });
+
+        it ('should not remove bogus node', () => {
+            let graph = new Graph();
+            let node = new Node(0, 0);
+            let badNode = new Node(128, 128);
+            graph.nodes.size.should.equal(0);
+            graph.addNode(node);
+            graph.nodes.size.should.equal(1);
+            graph.removeNode(badNode);
+            graph.nodes.size.should.equal(1);
+        });
+
+    }); // #removeNode(node)
+
     describe('#addEdge(edge)', () => {
 
         it('should throw error when edge nodes are not in graph', () => {
@@ -94,6 +136,25 @@ describe('Graph', () => {
         });
 
     }); // #addEdge(edge)
+
+    describe('removeEdge(edge)', () => {
+        it ('should remove from edges', () => {
+            let graph = new Graph();
+            let node1 = new Node(0, 0);
+            let node2 = new Node(128, 128);
+            graph.nodes.size.should.equal(0);
+            graph.addNode(node1);
+            graph.addNode(node2);
+            graph.nodes.size.should.equal(2);
+            graph.edges.size.should.equal(0);
+            let edge = new Edge(node1, node2);
+            graph.addEdge(edge);
+            graph.edges.size.should.equal(1);
+            graph.removeEdge(edge);
+            graph.nodes.size.should.equal(2);
+            graph.edges.size.should.equal(0);
+        });
+    }); // #removeEdge(edge)
 
     describe('#hasEdge(start, dest)', () => {
 
