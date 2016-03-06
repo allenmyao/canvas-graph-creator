@@ -218,8 +218,8 @@ export function calcBezierDistance(pointX, pointY, startX, startY, controlX, con
             //smallestY = curvePointY;
         }
     }
-    ctx.lineWidth = 1;
-    ctx.strokeStyle="#000000";
+    // ctx.lineWidth = 1;
+    // ctx.strokeStyle="#000000";
 
     //diagnostic drawings
     /*ctx.beginPath();

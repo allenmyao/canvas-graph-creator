@@ -1,7 +1,7 @@
-import { Tool } from './tool';
-import { Node } from './node';
-import { CircleNode } from './circle-node';
-import { SquareNode } from './square-node';
+import { Tool } from 'tool';
+import { Node } from 'node';
+import { CircleNode } from 'circle-node';
+import { SquareNode } from 'square-node';
 
 export class NodeTool extends Tool {
 

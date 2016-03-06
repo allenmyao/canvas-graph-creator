@@ -1,7 +1,7 @@
-import { Tool } from './tool';
-import { Graph } from './graph';
-import { Node } from './node';
-import { Edge } from './edge';
+import { Tool } from 'tool';
+import { Graph } from 'graph';
+import { Node } from 'node';
+import { Edge } from 'edge';
 
 export class EraseTool extends Tool {
 

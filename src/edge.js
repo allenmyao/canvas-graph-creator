@@ -1,5 +1,4 @@
-import { calcBezierDistance } from './curvedEdge';
-import { EDGE_DISTANCE_THRESHOLD } from './curvedEdge';
+import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from './curvedEdge';
 
 /*
 * Edge Class

@@ -1,19 +1,19 @@
-import { Tool } from './tool';
-import { Node } from './node';
-import { Edge } from './edge';
-import { SolidEdge } from './solid-edge';
-import { DashedEdge } from './dashed-edge';
+import { Tool } from 'tool';
+import { Node } from 'node';
+import { Edge } from 'edge';
+import { SolidEdge } from 'solid-edge';
+import { DashedEdge } from 'dashed-edge';
 
 export class EdgeTool extends Tool {
 
     name = 'Edge Tool';
-    
+
     currentMode = 'solid';
     static modes = {
         solid: SolidEdge,
         dashed: DashedEdge
     };
-    
+
     hasModes() {
         return true;
     }
