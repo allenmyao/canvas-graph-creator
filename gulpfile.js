@@ -113,7 +113,7 @@ gulp.task('webpack:build', ['prep'], (callback) => {
 
 // modify some webpack config options
 var myDevConfig = Object.create(webpackConfig);
-myDevConfig.devtool = 'sourcemap';
+myDevConfig.devtool = 'source-map';
 myDevConfig.debug = true;
 
 // create a single instance of the compiler to allow caching
@@ -136,7 +136,7 @@ gulp.task('webpack-dev-server', ['prep'], (callback) => {
     // modify some webpack config options
     var myConfig = Object.create(webpackConfig);
     myConfig.debug = true;
-    myConfig.devtool = 'eval';
+    myConfig.devtool = 'eval-source-map';
     myConfig.entry.app.unshift('webpack-dev-server/client?http://' + serverHost + ':8080', 'webpack/hot/dev-server');
     myConfig.plugins = myConfig.plugins.concat(new webpack.HotModuleReplacementPlugin());
 
