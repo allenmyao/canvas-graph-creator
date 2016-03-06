@@ -21,13 +21,13 @@ export class EdgeTool extends Tool {
   dest = null;
 
   selectNode(graph, node) {
-    let edgeClass = EdgeTool.modes[this.currentMode];
+    let EdgeClass = EdgeTool.modes[this.currentMode];
     if (this.start === null) {
       this.start = node;
       this.start.isSelected = true;
     } else if (this.dest === null) {
       this.dest = node;
-      graph.addEdge(new edgeClass(this.start, this.dest));
+      graph.addEdge(new EdgeClass(this.start, this.dest));
       this.start.isSelected = false;
       this.start = null;
       this.dest = null;

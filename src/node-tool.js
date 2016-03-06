@@ -24,8 +24,8 @@ export class NodeTool extends Tool {
   }
 
   selectNone(graph, x, y) {
-    let nodeClass = NodeTool.modes[this.currentMode];
-    let node = new nodeClass(x, y);
+    let NodeClass = NodeTool.modes[this.currentMode];
+    let node = new NodeClass(x, y);
     if (!graph.isNodeCollision(node, x, y)) {
       graph.addNode(node);
     }

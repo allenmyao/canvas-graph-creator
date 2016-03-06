@@ -120,6 +120,5 @@ export class Graph {
     this.nodes.forEach((node) => {
       node.draw(context);
     });
-
   }
 }
