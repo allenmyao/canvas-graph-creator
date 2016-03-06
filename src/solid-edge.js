@@ -17,4 +17,5 @@ export class SolidEdge extends Edge {
     // Draw to the canvas
     context.stroke();
   }
+
 }

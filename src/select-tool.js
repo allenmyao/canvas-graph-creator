@@ -2,16 +2,16 @@ import { Tool } from 'tool';
 
 export class SelectTool extends Tool {
 
-    name = 'Select Tool';
+  name = 'Select Tool';
 
-    selectObject(graph, obj, x, y) {
-        // select
-    }
+  selectObject(graph, obj, x, y) {
+    // select
+  }
 
-    // drag: multiselect?
+  // drag: multiselect?
 
-    selectNone(graph, x, y) {
-        // deselect
-    }
+  selectNone(graph, x, y) {
+    // deselect
+  }
 
 }

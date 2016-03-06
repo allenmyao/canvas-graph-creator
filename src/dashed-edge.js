@@ -4,7 +4,7 @@ export class DashedEdge extends Edge {
 
   draw(context) {
     context.strokeStyle = 'black';
-    context.setLineDash([5, 5]);
+    context.setLineDash([ 5, 5 ]);
 
     // Create a new path
     context.beginPath();
