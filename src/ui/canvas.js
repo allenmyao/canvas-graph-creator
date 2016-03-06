@@ -1,6 +1,7 @@
 import { MouseHandler } from 'mouse-handler';
 import * as Toolbar from 'ui/toolbar';
 import * as UI from 'ui/ui';
+import { initCurved } from 'curvedEdge';
 
 let canvas;
 let context;
@@ -15,6 +16,8 @@ let dy = 0;
 function init(graph) {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
+
+    initCurved(canvas, context);
 
     initMouseHandler(graph);
 }
