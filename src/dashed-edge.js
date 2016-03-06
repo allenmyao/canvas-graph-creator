@@ -1,4 +1,6 @@
 import { Edge } from './edge';
+import { bezierDerivative } from './curvedEdge';
+import { drawArrows } from './curvedEdge';
 
 export class DashedEdge extends Edge {
 
@@ -18,5 +20,8 @@ export class DashedEdge extends Edge {
     // Draw to the canvas
     context.stroke();
     context.setLineDash([]);
+    if(this.isDirected){
+        drawArrows(this, false, true);
+    }
   }
 }

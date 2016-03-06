@@ -245,14 +245,14 @@ export function calcBezierDistance(pointX, pointY, startX, startY, controlX, con
 
 
 
-function bezierDerivative(t, startX, startY, controlX, controlY, endX, endY) {
+export function bezierDerivative(t, startX, startY, controlX, controlY, endX, endY) {
     return {
         x: (2*t-2)*startX + (2-4*t)*controlX + 2*t*endX,
         y: (2*t-2)*startY + (2-4*t)*controlY + 2*t*endY
     };
 }
 
-function bezierPoint(t, startX, startY, controlX, controlY, endX, endY) {
+export function bezierPoint(t, startX, startY, controlX, controlY, endX, endY) {
     return {
         x: (1-t)*(1-t)*startX + 2*(1-t)*t*controlX + t*t*endX,
         y: (1-t)*(1-t)*startY + 2*(1-t)*t*controlY + t*t*endY
