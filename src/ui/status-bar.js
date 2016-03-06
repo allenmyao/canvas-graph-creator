@@ -5,7 +5,7 @@ function init() {
 }
 
 function updateZoom(scale) {
-    document.getElementById('zoom-input').value = `${1 / scale * 100}%`;
+    document.getElementById('zoom-input').value = `${scale * 100}%`;
 }
 
 function updateMouse(x, y) {

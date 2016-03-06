@@ -1,6 +1,7 @@
 import { NodeTool } from 'node-tool';
 import { EdgeTool } from 'edge-tool';
 import { MoveTool } from 'move-tool';
+import { PanTool } from 'pan-tool';
 
 // const TOOL_CLASS = 'tool';
 // const TOOL_NAME_ATTR = 'data-tool';
@@ -9,6 +10,7 @@ import { MoveTool } from 'move-tool';
 
 let toolbar;
 let toolMap = {
+    'pan': new PanTool(),
     'node': new NodeTool(),
     'edge': new EdgeTool(),
     'move': new MoveTool()

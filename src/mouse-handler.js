@@ -77,9 +77,9 @@ export class MouseHandler {
         } else {
             // handle dragging
             if (this.draggedObject) {
-                currentTool.dragObject(this.graph, this.draggedObject, x, y);
+                currentTool.dragObject(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
             } else {
-                currentTool.dragNone(this.graph, x, y);
+                currentTool.dragNone(this.graph, this.clickStartX, this.clickStartY, x, y);
             }
         }
     }

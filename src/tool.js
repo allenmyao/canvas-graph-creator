@@ -17,12 +17,12 @@ export class Tool {
 
     // mouse events on graph components
     selectObject(graph, obj, x, y) {}
-    dragObject(graph, srcObj, x, y) {}
+    dragObject(graph, srcObj, startX, startY, x, y) {}
     dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {}
 
     // mouse events on empty space
     selectNone(graph, x, y) {}
-    dragNone(graph, x, y) {}
+    dragNone(graph, startX, startY, x, y) {}
     dropOnNone(graph, droppedObj, startX, startY, x, y) {}
 
 }

@@ -5,7 +5,7 @@ export class MoveTool extends Tool {
 
     name = 'Move Tool';
 
-    dragObject(graph, obj, x, y) {
+    dragObject(graph, obj, startX, startY, x, y) {
         if (obj instanceof Node) {
             obj.x = x;
             obj.y = y;

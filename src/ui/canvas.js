@@ -19,6 +19,21 @@ function init(graph) {
     initMouseHandler(graph);
 }
 
+function getDx() {
+    return dx;
+}
+
+function getDy() {
+    return dy;
+}
+
+function setPosition(newDx, newDy) {
+    dx = newDx;
+    dy = newDy;
+
+    UI.updateCanvasPosition(dx, dy);
+}
+
 function getCanvasX(event) {
         let canvasX = event.offsetX;
         let x = canvasX / scale + dx;
@@ -37,6 +52,25 @@ function getContext() {
 
 function clear() {
     context.clearRect(dx, dy, canvas.width / scale, canvas.height / scale);
+}
+
+function update() {
+    // reset the transformations done to the canvas
+    context.resetTransform();
+
+    // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies
+    // the translation before the scale.
+    // This is not what we want, since the scale is done relative to (0,0)
+    // and the position displayed at the top-left corner will no longer
+    // be (dx,dy), which means the coordinates under the mouse will change.
+
+    // scale both x- and y-axis
+    context.scale(scale, scale);
+
+    // context.translate(a, b) translates the canvas origin by (a,b).
+    // Since (dx,dy) are the coordinates calculated for the new origin, the
+    // canvas needs to be translated by (-dx,-dy).
+    context.translate(-dx, -dy);
 }
 
 function initMouseHandler(graph) {
@@ -112,26 +146,11 @@ function initMouseHandler(graph) {
         dx += mouseX / oldScale - mouseX / scale;
         dy += mouseY / oldScale - mouseY / scale;
 
-        // reset the transformations done to the canvas
-        context.resetTransform();
-
-        // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies
-        // the translation before the scale.
-        // This is not what we want, since the scale is done relative to (0,0)
-        // and the position displayed at the top-left corner will no longer
-        // be (dx,dy), which means the coordinates under the mouse will change.
-
-        // scale both x- and y-axis
-        context.scale(scale, scale);
-
-        // context.translate(a, b) translates the canvas origin by (a,b).
-        // Since (dx,dy) are the coordinates calculated for the new origin, the
-        // canvas needs to be translated by (-dx,-dy).
-        context.translate(-dx, -dy);
+        update();
 
         UI.updateZoom(scale);
         UI.updateCanvasPosition(dx, dy);
     }, false);
 }
 
-export { init, getContext, clear };
+export { init, getContext, clear, setPosition, getDx, getDy, update };
