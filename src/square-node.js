@@ -128,10 +128,23 @@ export class SquareNode extends Node {
         // context.fill();
         context.stroke();
 
-        if(this.isStartingState){
+        if(this.isAcceptingState){
             context.moveTo(this.x - this.halfwidth*.75, this.y - this.halfwidth*.75);
             context.rect(this.x - this.halfwidth*.75, this.y - this.halfwidth*.75, this.width*.75, this.width*.75);
             context.stroke();
+        }
+        if(this.isStartingState){
+            context.fillStyle = this.isSelected ? 'red' : 'black';
+            context.moveTo(this.x - 60, this.y - 60);
+            context.lineTo(this.x - 30, this.y - 30);
+            context.stroke();
+            context.beginPath();
+            context.moveTo(this.x - 30, this.y - 30);
+            context.lineTo(this.x - 30 - 6 - 3, this.y - 30 - 6 + 3);
+            context.lineTo(this.x - 30 - 6, this.y - 30 - 6);
+            context.lineTo(this.x - 30 - 6 + 3, this.y - 30 - 6 - 3);
+            context.closePath();
+            context.fill();
         }
     }
 

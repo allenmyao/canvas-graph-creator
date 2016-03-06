@@ -5,8 +5,9 @@ export class EditNodeTool extends Tool {
 
     name = 'Edit Node Tool';
 
-    currentMode = 'startState';
+    currentMode = 'acceptingState';
     static modes = {
+        acceptingState: 'isAcceptingState',
         startState: 'isStartingState'
     };
 
