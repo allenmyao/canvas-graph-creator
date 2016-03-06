@@ -1,4 +1,5 @@
 import { Edge } from './edge';
+import { drawArrows } from './curvedEdge';
 
 export class SolidEdge extends Edge {
 
@@ -16,6 +17,10 @@ export class SolidEdge extends Edge {
 
     // Draw to the canvas
     context.stroke();
+
+    if (this.isDirected) {
+      drawArrows(this, false, true);
+    }
   }
 
 }

@@ -39,7 +39,12 @@ public class CGCSteps {
 	{		
 		driver = CGC.create();
 	}
-	@When("^.*node named (.+) at (\\d+), (\\d+)$")
+	@When("^.*do nothing$")
+	public void doNothing()
+	{
+		
+	}
+	@When("^.*node (?:named (.+) |)at (\\d+), (\\d+)$")
 	public void createNode(String name, int x, int y)
 	{
 		Node node = driver.createNode(x, y);
@@ -55,6 +60,7 @@ public class CGCSteps {
 	public void clickNode(String node) throws Throwable {
 		driver.clickNode(nodes.get(node));
 	}
+
 	@When("^.*I select the (.+) tool$")
 	public void selectTool(String name) throws Throwable
 	{
@@ -65,7 +71,11 @@ public class CGCSteps {
 	{
 	    driver.assertScreenshot("src/test/resources/" + path);
 	}
-
+	@Then("^.*there (?:is|are|should be) (.+) nodes?$")
+	public void checkNodes(String nodes) throws Throwable
+	{
+		driver.assertNodes(Utils.inNumerals(nodes));
+	}
 
  /**
   * 	node1 = robot.createNode(33, 33)

@@ -4,6 +4,15 @@ export class Node {
   id = Node.numNodes++;
   edges = new Set();
   isSelected = false;
+  name = ''; // string the label of the node
+  outline = '#000000'; // string Format as hex Color
+  fill = '#FFFFFF'; // string Format as hex Color
+  lineWidth = 1; // numerical value for thickenss of line
+  isAcceptingState = false;  // boolean for DFA/NFA purposes, indicated by double circle
+  isStartingState = false;  // boolean for DFA/NFA purposes, idicated by incoming arrow
+  value = 0; // numerical value for algorithms
+  visited = false; // boolean used for algorithms e.x traversals.
+  color=''; // string value defines the color for chromatic algorithms
 
   constructor(x, y) {
     // new.target not supported by Babel
