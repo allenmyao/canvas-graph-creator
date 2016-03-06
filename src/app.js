@@ -6,6 +6,7 @@ import { NodeTool } from './node-tool';
 import { EdgeTool } from './edge-tool';
 import { MoveTool } from './move-tool';
 import { EraseTool } from './erase-tool';
+import { EditNodeTool } from './editnode-tool';
 import { initCurved } from './curvedEdge';
 
 export var canvas;
@@ -18,7 +19,8 @@ var toolMap = {
     node: new NodeTool(),
     edge: new EdgeTool(),
     move: new MoveTool(),
-    erase: new EraseTool()
+    erase: new EraseTool(),
+    editnode: new EditNodeTool()
 };
 
 function init() {

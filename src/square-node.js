@@ -127,6 +127,12 @@ export class SquareNode extends Node {
         // Draw to the canvas
         // context.fill();
         context.stroke();
+
+        if(this.isStartingState){
+            context.moveTo(this.x - this.halfwidth*.75, this.y - this.halfwidth*.75);
+            context.rect(this.x - this.halfwidth*.75, this.y - this.halfwidth*.75, this.width*.75, this.width*.75);
+            context.stroke();
+        }
     }
 
 }

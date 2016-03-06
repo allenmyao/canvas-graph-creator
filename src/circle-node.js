@@ -41,10 +41,15 @@ export class CircleNode extends Node {
 
         // Create an arc with center at (x, y)
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-
         // Draw to the canvas
         // context.fill();
         context.stroke();
+
+        if(this.isStartingState){
+            context.moveTo(this.x + this.radius*0.75, this.y);
+            context.arc(this.x, this.y, this.radius*0.75, 0, 2 * Math.PI);
+            context.stroke();
+        }
     }
 
 }
