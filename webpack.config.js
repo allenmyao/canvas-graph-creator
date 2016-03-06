@@ -9,6 +9,11 @@ module.exports = {
             './src/app.js'
         ]
     },
+    resolve: {
+        root: path.resolve('src'),
+        modulesDirectories: [ 'node_modules' ],
+        extensions: [ '', '.js' ]
+    },
     output: {
         path: path.join(__dirname, 'dist', 'js'),
         publicPath: '/dist/js/',

@@ -23,15 +23,15 @@ export class Tool {
         return true;
     }
     selectObject(graph, obj, x, y) {}
-    dragObject(graph, srcObj, x, y) {}
+    dragObject(graph, srcObj, startX, startY, x, y) {}
     dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {}
-    dragOverObject(graph, obj, x, y) {
-        return this.dragNone(graph, x, y);
+    dragOverObject(graph, obj, startX, startY, x, y) {
+        return this.dragNone(graph, startX, startY, x, y);
     }
 
     // mouse events on empty space
     selectNone(graph, x, y) {}
-    dragNone(graph, x, y) {}
+    dragNone(graph, startX, startY, x, y) {}
     dropOnNone(graph, droppedObj, startX, startY, x, y) {}
 
 }

@@ -3,7 +3,7 @@ import { bezierDerivative } from './curvedEdge';
 import { drawArrows } from './curvedEdge';
 
 export class SolidEdge extends Edge {
-  
+
   draw(context) {
     context.strokeStyle = 'black';
 

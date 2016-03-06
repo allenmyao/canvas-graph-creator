@@ -1,6 +1,4 @@
-import { Graph } from './graph';
-import { Node } from './node';
-import { Edge } from './edge';
+import * as UI from 'ui/ui';
 
 export class MouseHandler {
 
@@ -72,6 +70,8 @@ export class MouseHandler {
     }
 
     moveListener(event, currentTool, x, y) {
+        UI.updateMouse(x, y);
+
         if (!this.isDragging) {
             // check for dragging
             if (this.mousePressed) {
@@ -95,12 +95,12 @@ export class MouseHandler {
         } else {
             // handle dragging
             if (this.draggedObject) {
-                currentTool.dragObject(this.graph, this.draggedObject, x, y);
+                currentTool.dragObject(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
             } else {
                 if (this.graph.hasComponent(x, y)) {
-                    currentTool.dragOverObject(this.graph, this.graph.getComponent(x, y), x, y);
+                    currentTool.dragOverObject(this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
                 } else {
-                    currentTool.dragNone(this.graph, x, y);
+                    currentTool.dragNone(this.graph, this.clickStartX, this.clickStartY, x, y);
                 }
             }
         }

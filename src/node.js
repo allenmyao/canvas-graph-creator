@@ -12,7 +12,7 @@ export class Node {
     isStartingState = false;  //boolean for DFA/NFA purposes, idicated by incoming arrow
     value = 0; // numerical value for algorithms
     visited = false; //boolean used for algorithms e.x traversals.
-    color=""// string value defines the color for chromatic algorithms
+    color=""; // string value defines the color for chromatic algorithms
 
     constructor(x, y) {
         // new.target not supported by Babel
@@ -28,7 +28,7 @@ export class Node {
         ];
 
         for (let method of methods) {
-            if (this[method] === undefined || typeof this[method] !== 'function') {
+            if (typeof this[method] === 'undefined' || typeof this[method] !== 'function') {
                 throw TypeError('Must override method: ' + method);
             }
         }

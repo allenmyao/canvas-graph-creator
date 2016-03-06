@@ -1,6 +1,3 @@
-import {Node} from './node';
-import {Edge} from './edge';
-
 export class Graph {
     constructor(nodes, edges) {
         this.nodes = new Set(nodes);
@@ -85,7 +82,7 @@ export class Graph {
         let collision = false;
         this.forEachNode((node) => {
             if (node === testNode) {
-                return;
+                return true;
             }
             let nodePoint = node.edgePointInDirection(x, y);
             let testPoint = testNode.edgePointInDirection(node.x, node.y);
@@ -94,6 +91,7 @@ export class Graph {
                 collision = true;
                 return false;
             }
+            return true;
         });
         return collision;
     }
