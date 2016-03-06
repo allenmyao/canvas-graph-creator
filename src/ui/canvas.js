@@ -13,7 +13,7 @@ let scale = 1;
 let dx = 0;
 let dy = 0;
 
-function init(graph) {
+export function init(graph) {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
 
@@ -22,15 +22,15 @@ function init(graph) {
     initMouseHandler(graph);
 }
 
-function getDx() {
+export function getDx() {
     return dx;
 }
 
-function getDy() {
+export function getDy() {
     return dy;
 }
 
-function setPosition(newDx, newDy) {
+export function setPosition(newDx, newDy) {
     dx = newDx;
     dy = newDy;
 
@@ -49,15 +49,15 @@ function getCanvasY(event) {
         return y;
 }
 
-function getContext() {
+export function getContext() {
     return context;
 }
 
-function clear() {
+export function clear() {
     context.clearRect(dx, dy, canvas.width / scale, canvas.height / scale);
 }
 
-function update() {
+export function update() {
     // reset the transformations done to the canvas
     context.resetTransform();
 
@@ -155,5 +155,3 @@ function initMouseHandler(graph) {
         UI.updateCanvasPosition(dx, dy);
     }, false);
 }
-
-export { init, getContext, clear, setPosition, getDx, getDy, update };

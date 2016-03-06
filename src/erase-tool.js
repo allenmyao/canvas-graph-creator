@@ -1,11 +1,10 @@
 import { Tool } from 'tool';
-import { Graph } from 'graph';
 import { Node } from 'node';
 import { Edge } from 'edge';
 
 export class EraseTool extends Tool {
 
-    name = "Erase Tool";
+    name = 'Erase Tool';
 
     preSelectObject(graph, obj, x, y) {
         return true;

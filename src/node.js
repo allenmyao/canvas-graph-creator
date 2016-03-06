@@ -19,7 +19,7 @@ export class Node {
         ];
 
         for (let method of methods) {
-            if (this[method] === undefined || typeof this[method] !== 'function') {
+            if (typeof this[method] === 'undefined' || typeof this[method] !== 'function') {
                 throw TypeError('Must override method: ' + method);
             }
         }

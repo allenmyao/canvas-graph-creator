@@ -11,15 +11,15 @@ import { PanTool } from 'pan-tool';
 
 let toolbar;
 let toolMap = {
-    'node': new NodeTool(),
-    'edge': new EdgeTool(),
-    'move': new MoveTool(),
-    'erase': new EraseTool(),
-    'pan': new PanTool()
+    node: new NodeTool(),
+    edge: new EdgeTool(),
+    move: new MoveTool(),
+    erase: new EraseTool(),
+    pan: new PanTool()
 };
 let currentTool = toolMap.node;
 
-function init() {
+export function init() {
     toolbar = document.getElementById('toolbar');
 
     toolbar.addEventListener('click', (event) => {
@@ -46,7 +46,7 @@ function init() {
     });
 }
 
-function getCurrentTool() {
+export function getCurrentTool() {
     return currentTool;
 }
 
@@ -77,5 +77,3 @@ function showModes() {
         modeList.innerHTML = '';
     }
 }
-
-export { init, getCurrentTool };

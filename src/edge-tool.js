@@ -1,6 +1,5 @@
 import { Tool } from 'tool';
 import { Node } from 'node';
-import { Edge } from 'edge';
 import { SolidEdge } from 'solid-edge';
 import { DashedEdge } from 'dashed-edge';
 

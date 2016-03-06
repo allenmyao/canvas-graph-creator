@@ -28,7 +28,7 @@ export class Edge {
     ];
 
     for (let method of methods) {
-      if (this[method] === undefined || typeof this[method] !== 'function') {
+      if (typeof this[method] === 'undefined' || typeof this[method] !== 'function') {
         throw TypeError('Must override method: ' + method);
       }
     }
@@ -53,17 +53,17 @@ export class Edge {
       return;
     }
 
-    if(bezierPoint === null) {
+    if (bezierPoint === null) {
       this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x)/2,
-          y: (this.startPoint.y + this.destPoint.y)/2
-        };
+        x: (this.startPoint.x + this.destPoint.x) / 2,
+        y: (this.startPoint.y + this.destPoint.y) / 2
+      };
     }
 
-    if(typeof cost === 'string' || cost instanceof String) {
-      costType = false;
+    if (typeof cost === 'string' || cost instanceof String) {
+      this.costType = false;
     } else if(typeof cost === 'number') {
-      costType = true;
+      this.costType = true;
     }
   }
 
@@ -75,23 +75,22 @@ export class Edge {
   }
 
   getCostType() {
-    if(this.costType === false) {
-      return "Grammar";
-    } else if(this.costType === true) {
-      return "Distance";
-    } else {
-      return "None";
+    if (this.costType === false) {
+      return 'Grammar';
+    } else if (this.costType === true) {
+      return 'Distance';
     }
+    return 'None';
   }
 
   set weight(cost) {
-    if(typeof cost === 'string' || cost instanceof String) {
+    if (typeof cost === 'string' || cost instanceof String) {
       this.costType = false;
       this.cost = cost;
-    } else if(typeof cost === 'number') {
+    } else if (typeof cost === 'number') {
       this.costType = true;
       this.cost = cost;
-    } else if(cost === null) {
+    } else if (cost === null) {
       this.costType = null;
       this.cost = null;
     } else {
@@ -100,21 +99,21 @@ export class Edge {
   }
 
   get weight() {
-    return cost;
+    return this.cost;
   }
 
   getEndpoints(reference) {
-    if(reference === this.startNode || reference === 1) {
+    if (reference === this.startNode || reference === 1) {
       return this.startPoint;
-    } else if(reference === this.endNode || reference === 2) {
+    } else if (reference === this.endNode || reference === 2) {
       return this.destPoint;
     }
   }
 
   setEndpoints(reference, endpoint) {
-    if(reference === this.startNode || reference === 1) {
+    if (reference === this.startNode || reference === 1) {
       this.startPoint = endpoint;
-    } else if(reference === this.endNode || reference === 2) {
+    } else if (reference === this.endNode || reference === 2) {
       this.destPoint = endpoint;
     }
   }
@@ -124,8 +123,8 @@ export class Edge {
       this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
       this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
       this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x)/2,
-          y: (this.startPoint.y + this.destPoint.y)/2
+          x: (this.startPoint.x + this.destPoint.x) / 2,
+          y: (this.startPoint.y + this.destPoint.y) / 2
         };
     } catch (e) {
       return;

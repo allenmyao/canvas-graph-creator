@@ -1,21 +1,23 @@
 let statusBar;
 
-function init() {
+export function init() {
     statusBar = document.getElementById('status-bar');
 }
 
-function updateZoom(scale) {
+export function getStatusBar() {
+    return statusBar;
+}
+
+export function updateZoom(scale) {
     document.getElementById('zoom-input').value = `${scale * 100}%`;
 }
 
-function updateMouse(x, y) {
+export function updateMouse(x, y) {
     document.getElementById('mouse-x').textContent = x;
     document.getElementById('mouse-y').textContent = y;
 }
 
-function updateCanvasPosition(dx, dy) {
+export function updateCanvasPosition(dx, dy) {
     document.getElementById('canvas-dx').textContent = dx;
     document.getElementById('canvas-dy').textContent = dy;
 }
-
-export { init, updateZoom, updateMouse, updateCanvasPosition };
