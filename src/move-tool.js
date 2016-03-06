@@ -9,6 +9,10 @@ export class MoveTool extends Tool {
         if (obj instanceof Node) {
             obj.x = x;
             obj.y = y;
+
+            for (let edge of obj.edges) {
+                edge.updateEndpoints();
+            }
         }
     }
 

@@ -24,9 +24,16 @@ export class MouseHandler {
         this.clickStartY = y;
 
         if (this.graph.hasComponent(x, y)) {
-            this.selectedObject = this.graph.getComponent(x, y);
-            this.clickStartX = this.selectedObject.x;
-            this.clickStartY = this.selectedObject.y;
+            let component = this.graph.getComponent(x, y);
+            if (currentTool.preSelectObject(this.graph, component, x, y)) {
+                this.selectedObject = component;
+                this.clickStartX = this.selectedObject.x;
+                this.clickStartY = this.selectedObject.y;
+            } else {
+                this.selectedObject = null;
+            }
+        } else {
+            this.selectedObject = null;
         }
     }
 
@@ -46,10 +53,16 @@ export class MouseHandler {
             this.draggedObject = null;
         } else {
             // click
+            let component = null;
             if (this.graph.hasComponent(x, y)) {
-                currentTool.selectObject(this.graph, this.graph.getComponent(x, y), x, y);
-            } else {
-                currentTool.selectNone(this.graph, x, y);
+                component = this.graph.getComponent(x, y);
+            }
+            if (component === this.selectedObject) {
+                if (component) {
+                    currentTool.selectObject(this.graph, component, x, y);
+                } else {
+                    currentTool.selectNone(this.graph, x, y);
+                }
             }
         }
         this.mousePressed = false;
@@ -68,7 +81,12 @@ export class MouseHandler {
 
                 if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
                     this.isDragging = true;
-                    this.draggedObject = this.selectedObject;
+                    if (this.selectedObject !== null && !currentTool.preDragObject(this.graph, this.selectedObject, x, y)) {
+                        this.selectedObject = null;
+                        this.draggedObject = null;
+                    } else {
+                        this.draggedObject = this.selectedObject;
+                    }
                 }
             } else {
                 // regular move
@@ -79,7 +97,11 @@ export class MouseHandler {
             if (this.draggedObject) {
                 currentTool.dragObject(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
             } else {
-                currentTool.dragNone(this.graph, this.clickStartX, this.clickStartY, x, y);
+                if (this.graph.hasComponent(x, y)) {
+                    currentTool.dragOverObject(this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
+                } else {
+                    currentTool.dragNone(this.graph, this.clickStartX, this.clickStartY, x, y);
+                }
             }
         }
     }

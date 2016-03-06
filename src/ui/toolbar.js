@@ -1,6 +1,7 @@
 import { NodeTool } from 'node-tool';
 import { EdgeTool } from 'edge-tool';
 import { MoveTool } from 'move-tool';
+import { EraseTool } from 'erase-tool';
 import { PanTool } from 'pan-tool';
 
 // const TOOL_CLASS = 'tool';
@@ -10,10 +11,11 @@ import { PanTool } from 'pan-tool';
 
 let toolbar;
 let toolMap = {
-    'pan': new PanTool(),
     'node': new NodeTool(),
     'edge': new EdgeTool(),
-    'move': new MoveTool()
+    'move': new MoveTool(),
+    'erase': new EraseTool(),
+    'pan': new PanTool()
 };
 let currentTool = toolMap.node;
 

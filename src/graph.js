@@ -10,14 +10,32 @@ export class Graph {
     }
 
     addEdge(edge) {
-        if (!this.nodes.has(edge.start) || !this.nodes.has(edge.dest)) {
+        if (!this.nodes.has(edge.startNode) || !this.nodes.has(edge.destNode)) {
             throw new Error('Edge nodes are not in the graph');
         }
 
-        console.log('Adding edge between ' + edge.start.id + ' and ' + edge.dest.id);
+        console.log('Adding edge between ' + edge.startNode.id + ' and ' + edge.destNode.id);
         this.edges.add(edge);
     }
 
+    removeNode(node) {
+        console.log('Removing node ' + node.id);
+        // Temp copy of edges to work on while we remove them
+        let tempEdges = new Set();
+        for (let edge of node.edges) {
+            tempEdges.add(edge);
+        }
+        for (let edge of tempEdges) {
+            this.removeEdge(edge);
+        }
+        this.nodes.delete(node);
+    }
+
+    removeEdge(edge) {
+        console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
+        this.edges.delete(edge);
+        edge.detach();
+    }
 
     hasEdge(start, dest) {
         if (!this.nodes.has(start) || !this.nodes.has(dest)) {
@@ -25,7 +43,7 @@ export class Graph {
         }
 
         for (let edge of this.edges) {
-            if (edge.start === start && edge.dest === dest) {
+            if (edge.startNode === start && edge.destNode === dest) {
                 return true;
             }
         }

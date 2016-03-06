@@ -1,39 +1,44 @@
 import { Edge } from './edge';
 
-var EDGE_DISTANCE_THRESHOLD = 10;
-var DEFAULT_RADIUS = 30;
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
+export var EDGE_DISTANCE_THRESHOLD = 10;
+export var DEFAULT_RADIUS = 30;
+var cvs = null;
+var ctx = null;
+
+export function initCurved(canvas, context) {
+    cvs = canvas;
+    ctx = context;
+}
 
 //cleanvs the canvas
 function resetCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
 }
 
 //sets style. call prior to drawEdge or drawNode
 //lineColor: hex string that defines color (ex: "#FF0000")
 //width: width of line
 function setStyle(lineColor, width){
-    context.strokeStyle = "#FF0000";
-    context.lineWidth = width;
+    ctx.strokeStyle = "#FF0000";
+    ctx.lineWidth = width;
 }
 
 //drawing function, draws edges
 //edge: edge Object to be drawn
 function drawEdge(edge){
-    context.beginPath();
-    context.moveTo(edge.startX, edge.startY);
-    context.quadraticCurveTo(edge.controlX, edge.controlY, edge.endX, edge.endY);
-    context.stroke();
+    ctx.beginPath();
+    ctx.moveTo(edge.startPoint.x, edge.startPoint.y);
+    ctx.quadraticCurveTo(edge.bezierPoint.x, edge.bezierPoint.y, edge.destPoint.x, edge.destPoint.y);
+    ctx.stroke();
 }
 
 
 //drawing function, draws nodes
 //node: node Object to be drawn
 function drawNode(node){
-    context.beginPath();
-    context.arc(node.x, node.y, DEFAULT_RADIUS, 0, 2*Math.PI);
-    context.stroke();
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, DEFAULT_RADIUS, 0, 2*Math.PI);
+    ctx.stroke();
 }
 
 //generates generic canvas drawing data for a given number of edges between two nodes
@@ -89,13 +94,13 @@ function calculateEdges(startNode, endNode, edgeNum, type) {
 //edges: an array of Edge objects to be examined
 //pointX, pointY: numerical values that represent the location of the point
 //returns false if edges is empty or if the edge is not within the standard threshold
-function findClosestEdge(edges, pointX, pointY){
+export function findClosestEdge(edges, pointX, pointY){
     if(edges.length > 0){
-        var shortestDist = canvas.width + canvas.height;
+        var shortestDist = cvs.width + cvs.height;
         var shortestIndex = 0;
         for(var i = 0; i < edges.length ; i++){
             //calls the helper function to find the distance
-            var tempDist = calcBezierDistance(pointX, pointY, edges[i].startX, edges[i].startY, edges[i].controlX, edges[i].controlY, edges[i].endX, edges[i].endY);
+            var tempDist = calcBezierDistance(pointX, pointY, edges[i].startPoint.x, edges[i].startPoint.y, edges[i].bezierPoint.x, edges[i].bezierPoint.y, edges[i].destPoint.x, edges[i].destPoint.y);
             if(shortestDist > tempDist){
                 shortestDist = tempDist;
                 shortestIndex = i;
@@ -170,7 +175,7 @@ function solveCubic(a, b, c, d) {
 
 
 //helper function that calculates the distance between a specified point and a quadratic bezier
-function calcBezierDistance(pointX, pointY, startX, startY, controlX, controlY, endX, endY) {
+export function calcBezierDistance(pointX, pointY, startX, startY, controlX, controlY, endX, endY) {
     //preliminary, commonly used values
     var aX = controlX - startX;
     var aY = controlY - startY;
@@ -196,7 +201,7 @@ function calcBezierDistance(pointX, pointY, startX, startY, controlX, controlY, 
     ans[ans.length] = 1; //edge cases
 
     //minimize dist
-    var smallestDist = canvas.width + canvas.height;
+    var smallestDist = cvs.width + cvs.height;
     //diagnostic values
     //var smallestX;
     //var smallestY;
@@ -213,17 +218,17 @@ function calcBezierDistance(pointX, pointY, startX, startY, controlX, controlY, 
             //smallestY = curvePointY;
         }
     }
-    context.lineWidth = 1;
-    context.strokeStyle="#000000";
+    ctx.lineWidth = 1;
+    ctx.strokeStyle="#000000";
 
     //diagnostic drawings
-    /*context.beginPath();
-    context.arc(smallestX, smallestY, 5, 0, 2*Math.PI);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(pointX,pointY);
-    context.lineTo(smallestX,smallestY);
-    context.stroke();*/
+    /*ctx.beginPath();
+    ctx.arc(smallestX, smallestY, 5, 0, 2*Math.PI);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(pointX,pointY);
+    ctx.lineTo(smallestX,smallestY);
+    ctx.stroke();*/
 
     return smallestDist;
 }
@@ -249,51 +254,51 @@ function bezierPoint(t, startX, startY, controlX, controlY, endX, endY) {
 function drawArrows(edge, start, end){
     var slope, length;
     if(start) {
-        slope = bezierDerivative(0, edge.startX, edge.startY, edge.controlX,
-                                    edge.controlY, edge.endX, edge.endY);
+        slope = bezierDerivative(0, edge.startPoint.x, edge.startPoint.y, edge.bezierPoint.x,
+                                    edge.bezierPoint.y, edge.destPoint.x, edge.destPoint.y);
         length = Math.sqrt(slope.x*slope.x + slope.y*slope.y);
         //normalize slope
         slope = { x: slope.x/length, y: slope.y/length };
         //perpendicular:
-        context.fillStyle = '#000000';
-        context.beginPath();
-        context.moveTo(edge.startX, edge.startY);
-        context.lineTo(edge.startX + 15*slope.x - 5*slope.y,
-                       edge.startY + 15*slope.y + 5*slope.x);
-        context.lineTo(edge.startX + 9*slope.x, edge.startY + 9*slope.y);
-        context.lineTo(edge.startX + 15*slope.x + 5*slope.y,
-                       edge.startY + 15*slope.y - 5*slope.x);
-        context.closePath();
-        context.fill();
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.moveTo(edge.startPoint.x, edge.startPoint.y);
+        ctx.lineTo(edge.startPoint.x + 15*slope.x - 5*slope.y,
+                       edge.startPoint.y + 15*slope.y + 5*slope.x);
+        ctx.lineTo(edge.startPoint.x + 9*slope.x, edge.startPoint.y + 9*slope.y);
+        ctx.lineTo(edge.startPoint.x + 15*slope.x + 5*slope.y,
+                       edge.startPoint.y + 15*slope.y - 5*slope.x);
+        ctx.closePath();
+        ctx.fill();
     }
     if(end) {
-        slope = bezierDerivative(1, edge.startX, edge.startY, edge.controlX,
-                                    edge.controlY, edge.endX, edge.endY);
+        slope = bezierDerivative(1, edge.startPoint.x, edge.startPoint.y, edge.bezierPoint.x,
+                                    edge.bezierPoint.y, edge.destPoint.x, edge.destPoint.y);
         length = Math.sqrt(slope.x*slope.x + slope.y*slope.y);
         //normalize slope
         slope = { x: slope.x/length, y: slope.y/length };
         //perpendicular:
-        context.fillStyle = '#000000';
-        context.beginPath();
-        context.moveTo(edge.endX, edge.endY);
-        context.lineTo(edge.endX - 15*slope.x - 5*slope.y,
-                       edge.endY - 15*slope.y + 5*slope.x);
-        context.lineTo(edge.endX - 9*slope.x, edge.endY - 9*slope.y);
-        context.lineTo(edge.endX - 15*slope.x + 5*slope.y,
-                       edge.endY - 15*slope.y - 5*slope.x);
-        context.fill();
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.moveTo(edge.destPoint.x, edge.destPoint.y);
+        ctx.lineTo(edge.destPoint.x - 15*slope.x - 5*slope.y,
+                       edge.destPoint.y - 15*slope.y + 5*slope.x);
+        ctx.lineTo(edge.destPoint.x - 9*slope.x, edge.destPoint.y - 9*slope.y);
+        ctx.lineTo(edge.destPoint.x - 15*slope.x + 5*slope.y,
+                       edge.destPoint.y - 15*slope.y - 5*slope.x);
+        ctx.fill();
     }
 }
 
 function drawLabel(edge, label){
-    var slope = bezierDerivative(0.5, edge.startX, edge.startY, edge.controlX,
-                                    edge.controlY, edge.endX, edge.endY);
+    var slope = bezierDerivative(0.5, edge.startPoint.x, edge.startPoint.y, edge.bezierPoint.x,
+                                    edge.bezierPoint.y, edge.destPoint.x, edge.destPoint.y);
     var length = Math.sqrt(slope.x*slope.x + slope.y*slope.y);
     slope = { x: slope.x/length, y: slope.y/length };
-    var point = bezierPoint(0.5, edge.startX, edge.startY, edge.controlX,
-                               edge.controlY, edge.endX, edge.endY);
-    context.font = "12px Arial";
-    context.fillText(label, point.x + 12*slope.y, point.y - 12*slope.x);
+    var point = bezierPoint(0.5, edge.startPoint.x, edge.startPoint.y, edge.bezierPoint.x,
+                               edge.bezierPoint.y, edge.destPoint.x, edge.destPoint.y);
+    ctx.font = "12px Arial";
+    ctx.fillText(label, point.x + 12*slope.y, point.y - 12*slope.x);
 }
 
 function calculateLoop(node, angle) {
