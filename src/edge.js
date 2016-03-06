@@ -62,7 +62,7 @@ export class Edge {
 
     if (typeof cost === 'string' || cost instanceof String) {
       this.costType = false;
-    } else if(typeof cost === 'number') {
+    } else if (typeof cost === 'number') {
       this.costType = true;
     }
   }
@@ -123,9 +123,9 @@ export class Edge {
       this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
       this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
       this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x) / 2,
-          y: (this.startPoint.y + this.destPoint.y) / 2
-        };
+        x: (this.startPoint.x + this.destPoint.x) / 2,
+        y: (this.startPoint.y + this.destPoint.y) / 2
+      };
     } catch (e) {
       return;
     }
