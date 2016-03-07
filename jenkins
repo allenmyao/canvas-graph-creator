@@ -9,7 +9,7 @@ function start {
 	stop
 	Xvfb :99 &
 	export DISPLAY=:99
-	npm install > /dev/null
+	npm install --no-bin-links > /dev/null
 	gulp &
 }
 
