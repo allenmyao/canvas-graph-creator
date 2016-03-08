@@ -1,5 +1,5 @@
 import { Edge } from './edge';
-import { drawArrows } from './curvedEdge';
+import { drawArrows } from '../../util/curvedEdge';
 
 export class SolidEdge extends Edge {
 

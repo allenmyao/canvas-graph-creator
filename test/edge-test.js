@@ -1,10 +1,10 @@
 import chai from 'chai';
 chai.should();
 
-import { Edge } from '../src/edge';
-import { Node } from '../src/node';
-import { SolidEdge } from '../src/solid-edge';
-import { DashedEdge } from '../src/dashed-edge';
+import { Edge } from '../src/data/edge/edge';
+import { Node } from '../src/data/node/node';
+import { SolidEdge } from '../src/data/edge/solid-edge';
+import { DashedEdge } from '../src/data/edge/dashed-edge';
 
 describe('SolidEdge', () => {
     describe('#constructor', () => {

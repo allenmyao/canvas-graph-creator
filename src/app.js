@@ -1,4 +1,4 @@
-import { Graph } from 'graph';
+import { Graph } from 'data/graph';
 import * as Canvas from 'ui/canvas';
 import * as UI from 'ui/ui';
 

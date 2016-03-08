@@ -1,7 +1,7 @@
 import chai from 'chai';
 chai.should();
 
-import { CircleNode } from '../src/circle-node';
+import { CircleNode } from '../src/data/node/circle-node';
 
 describe('CircleNode', () => {
 

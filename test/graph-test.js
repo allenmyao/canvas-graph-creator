@@ -1,9 +1,9 @@
 import chai from 'chai';
 chai.should();
 
-import { Graph } from '../src/graph';
-import { Node } from '../src/node';
-import { Edge } from '../src/edge';
+import { Graph } from '../src/data/graph';
+import { Node } from '../src/data/node/node';
+import { Edge } from '../src/data/edge/edge';
 
 describe('Graph', () => {
 

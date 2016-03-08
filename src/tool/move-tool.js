@@ -1,5 +1,5 @@
-import { Tool } from 'tool';
-import { Node } from 'node';
+import { Tool } from 'tool/tool';
+import { Node } from 'data/node/node';
 
 export class MoveTool extends Tool {
 

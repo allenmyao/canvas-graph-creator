@@ -1,4 +1,4 @@
-import { Tool } from 'tool';
+import { Tool } from 'tool/tool';
 
 export class SelectTool extends Tool {
 
