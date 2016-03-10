@@ -1,3 +1,5 @@
+require('../scss/styles.scss');
+
 import { Graph } from 'data/graph';
 import * as Canvas from 'ui/canvas';
 import * as UI from 'ui/ui';
