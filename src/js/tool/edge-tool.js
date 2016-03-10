@@ -1,7 +1,7 @@
-import { Tool } from 'tool';
-import { Node } from 'node';
-import { SolidEdge } from 'solid-edge';
-import { DashedEdge } from 'dashed-edge';
+import { Tool } from 'tool/tool';
+import { Node } from 'data/node/node';
+import { SolidEdge } from 'data/edge/solid-edge';
+import { DashedEdge } from 'data/edge/dashed-edge';
 
 export class EdgeTool extends Tool {
 

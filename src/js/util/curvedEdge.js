@@ -1,4 +1,4 @@
-import { Edge } from './edge';
+import { Edge } from '../data/edge/edge';
 
 export const EDGE_DISTANCE_THRESHOLD = 10;
 export const DEFAULT_RADIUS = 30;

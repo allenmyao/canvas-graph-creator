@@ -1,7 +1,7 @@
-import { MouseHandler } from 'mouse-handler';
+import { MouseHandler } from 'util/mouse-handler';
 import * as Toolbar from 'ui/toolbar';
 import * as UI from 'ui/ui';
-import { initCurved } from 'curvedEdge';
+import { initCurved } from 'util/curvedEdge';
 
 let canvas;
 let context;
