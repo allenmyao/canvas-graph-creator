@@ -1,9 +1,11 @@
 import * as Toolbar from 'ui/toolbar';
 import * as StatusBar from 'ui/status-bar';
+import * as Sidebar from 'ui/sidebar';
 
 export function init() {
   Toolbar.init();
   StatusBar.init();
+  Sidebar.init();
 }
 
 export function updateZoom(scale) {

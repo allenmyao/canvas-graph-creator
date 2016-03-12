@@ -2,10 +2,13 @@
 @import 'mixins';
 @import 'base';
 
+html {
+  font-family: $font-family-sans-serif;
+  font-size: 16px;
+}
+
 body {
   margin-top: 70px;
-  font-family: $font-family-sans-serif;
-  font-size: 14px;
 }
 
 input,
@@ -23,23 +26,63 @@ textarea {
 }
 
 .container {
-  width: 1024px;
+  width: 1200px;
   margin: auto;
+
+  .row {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+    font-size: 0;
+  }
 }
 
-#canvas {
-  display: block;
-  margin: 20px auto;
-  border: 1px solid black;
+#canvas-container {
+  display: inline-block;
+  width: 800px;
+  vertical-align: top;
+
+  #canvas {
+    display: block;
+    border: 1px solid black;
+  }
+}
+
+#sidebar-container {
+  display: inline-block;
+  width: 380px;
+  margin-left: 20px;
+  vertical-align: top;
+
+  #sidebar {
+    height: 600px;
+    border: 1px solid black;
+
+    .tabs-container {
+      .tab-list {
+        .tab {
+
+        }
+      }
+
+      .tab-content {
+
+      }
+    }
+  }
+}
+
+#status-container {
+  #status-bar {
+    font-size: 1rem;
+  }
 }
 
 #toolbar {
   width: 100%;
-  margin: 30px 0;
 
   #tool-modes {
     width: 100%;
-    margin: 20px 0;
   }
 
   .tool-list,
@@ -74,15 +117,11 @@ textarea {
         }
 
         >span {
-          font-size: 0.8rem;
+          font-size: 1rem;
           color: white;
           pointer-events: none;
         }
       }
     }
   }
-}
-
-#status-bar {
-  margin: 30px 0;
 }
