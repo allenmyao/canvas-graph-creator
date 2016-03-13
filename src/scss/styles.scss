@@ -37,10 +37,13 @@ textarea {
   }
 }
 
-#canvas-container {
+.col-container {
   display: inline-block;
-  width: 800px;
   vertical-align: top;
+}
+
+#canvas-container {
+  width: 800px;
 
   #canvas {
     display: block;
@@ -48,20 +51,64 @@ textarea {
   }
 }
 
+.tabs-container {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+
+  .tab-list {
+    display: block;
+    width: 100%;
+    flex: 0;
+
+    .tab {
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+
+      &.active {
+
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+    width: 100%;
+    flex: 1;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
 #sidebar-container {
-  display: inline-block;
   width: 380px;
   margin-left: 20px;
-  vertical-align: top;
 
   #sidebar {
     height: 600px;
     border: 1px solid black;
+    font-size: 1rem;
 
     .tabs-container {
-      .tab-list {
-        .tab {
+      height: 100%;
 
+      .tab-list {
+        height: 50px;
+        font-size: 0;
+        border-bottom: 1px solid black;
+
+        .tab {
+          margin-left: -1px;
+          padding: 10px 20px;
+          border: 1px solid black;
+          font-size: 1rem;
+
+          &.active {
+            border-bottom: 1px solid white;
+          }
         }
       }
 

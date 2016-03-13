@@ -62,21 +62,21 @@
     </div>
 
     <div class="row">
-      <div id="canvas-container">
+      <div id="canvas-container" class="col-container">
         <canvas id="canvas" width="800" height="598"></canvas>
       </div>
-      <div id="sidebar-container">
+      <div id="sidebar-container" class="col-container">
         <div id="sidebar">
           <div class="tabs-container">
-            <ul class="tabs">
-              <li class="tab" data-tab="data">Data</li>
+            <ul class="tab-list">
+              <li class="tab active" data-tab="data">Data</li>
               <li class="tab" data-tab="other">Other</li>
             </ul>
-            <div class="tab-content" data-tab="data">
-              <!-- stuff -->
+            <div class="tab-content active" data-tab="data">
+              <div><span>data</span></div>
             </div>
             <div class="tab-content" data-tab="other">
-              <!-- other stuff -->
+              <div><span>other</span></div>
             </div>
           </div>
         </div>
