@@ -29,9 +29,9 @@ public class CGC extends Driver{
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
 	public static String HOME_PAGE = "http://localhost:8080/webpack-dev-server/index.html";
 	public static final String IFRAME = "iframe";
-	
+
 	private Node selected;
-	
+
 	public CGC(){
 		super();
 		selected = null;
@@ -41,7 +41,7 @@ public class CGC extends Driver{
 		super(name);
 		selected = null;
 	}
-	
+
 	public Node createNode(int x, int y) {
 		deselect();
 		click(x, y);
@@ -84,18 +84,18 @@ public class CGC extends Driver{
 		driver.loadSite(HOME_PAGE);
 		driver.switchToFrame(IFRAME);
 		driver.selectCanvas(CANVAS_XPATH);
-		
-		return driver;	
+
+		return driver;
 	}
 	public static CGC create(String website, String browser)
 	{
 		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\ndlu2\\Desktop\\CS 428\\selenium-2.52.0\\chromedriver.exe");
-		
+
 		CGC driver = new CGC(browser);
 		driver.loadSite(website);
 		driver.switchToFrame(IFRAME);
 		driver.selectCanvas(CANVAS_XPATH);
-		
+
 		return driver;
 	}
 	public void assertNodes(int nodes) throws IOException
@@ -104,72 +104,72 @@ public class CGC extends Driver{
 		BufferedImage screenshot = this.getScreenshot();
 		assertEquals(nodes, matchNumber(template, screenshot));
 	}
-	
+
 	public boolean match(BufferedImage template, BufferedImage screenshot)
     {
         Java2DFrameConverter javaConverter = new Java2DFrameConverter();
         OpenCVFrameConverter.ToIplImage cvConverter = new OpenCVFrameConverter.ToIplImage();
         OpenCVFrameConverter.ToMat cvConverter2 = new OpenCVFrameConverter.ToMat();
-        
+
         Frame tmp_f = javaConverter.getFrame(template);
         Frame src_f = javaConverter.getFrame(screenshot);
-        
+
         Mat src_m = cvConverter2.convert(src_f);
         Mat tmp_m = cvConverter2.convert(tmp_f);
         cvtColor(src_m, src_m, CV_32F);
         cvtColor(tmp_m, tmp_m, CV_32F);
         src_f = cvConverter2.convert(src_m);
         tmp_f = cvConverter2.convert(tmp_m);
-        
+
         IplImage tmp = cvConverter.convert(tmp_f);
         IplImage src = cvConverter.convert(src_f);
-        
+
         IplImage result = cvCreateImage(cvSize(src.width() - tmp.width() + 1, src.height() - tmp.height() + 1), IPL_DEPTH_32F,0);
-        
+
         cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
-        
+
         cvThreshold(result, result, 0.5, 1.0, 0);
-        
+
         DoublePointer min_v = new DoublePointer();
         DoublePointer max_v = new DoublePointer();
-        
+
         CvPoint min_p = new CvPoint();
         CvPoint max_p = new CvPoint();
-        
+
         cvMinMaxLoc(result,min_v, max_v, min_p, max_p,null);
-        
+
         CvScalar point = cvGet2D(result, max_p.y(), max_p.x());
-        
+
         return point.get() == 1.0;
 	}
-	
+
 	public int matchNumber(BufferedImage template, BufferedImage screenshot)
     {
         Java2DFrameConverter javaConverter = new Java2DFrameConverter();
         OpenCVFrameConverter.ToIplImage cvConverter = new OpenCVFrameConverter.ToIplImage();
         OpenCVFrameConverter.ToMat cvConverter2 = new OpenCVFrameConverter.ToMat();
-        
+
         Frame tmp_f = javaConverter.getFrame(template);
         Frame src_f = javaConverter.getFrame(screenshot);
-        
+
         Mat src_m = cvConverter2.convert(src_f);
         Mat tmp_m = cvConverter2.convert(tmp_f);
         cvtColor(src_m, src_m, CV_32F);
         cvtColor(tmp_m, tmp_m, CV_32F);
         src_f = cvConverter2.convert(src_m);
         tmp_f = cvConverter2.convert(tmp_m);
-        
+
         IplImage tmp = cvConverter.convert(tmp_f);
         IplImage src = cvConverter.convert(src_f);
-        
+
         IplImage result = cvCreateImage(cvSize(src.width() - tmp.width() + 1, src.height() - tmp.height() + 1), IPL_DEPTH_32F,0);
-        
+
         cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
-        
+
         cvThreshold(result, result, 0.5, 1.0, 0);
-        
+
         int count = 0;
-        
+
         for(int i=0; i<result.height(); i++){
         	for(int j =0; j<result.width(); j++){
         		CvScalar point = cvGet2D(result, i,j);
@@ -178,7 +178,41 @@ public class CGC extends Driver{
         		}
         	}
         }
-        
+
         return count;
 	}
+}
+public class ChromeConsoleLogging {
+    private WebDriver driver;
+
+
+    @BeforeMethod
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "c:\\path\\to\\chromedriver.exe");        
+        DesiredCapabilities caps = DesiredCapabilities.chrome();
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.BROWSER, Level.ALL);
+        caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        driver = new ChromeDriver(caps);
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
+
+    public void analyzeLog() {
+        LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
+        for (LogEntry entry : logEntries) {
+            System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
+            //do something useful with the data
+        }
+    }
+
+    @Test
+    public void testMethod() {
+        driver.get("http://mypage.com");
+        //do something on page
+        analyzeLog();
+    }
 }
