@@ -34,13 +34,13 @@ export class EdgeTool extends Tool {
     }
   }
 
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
       this.selectNode(graph, obj);
     }
   }
 
-  selectNone(graph, x, y) {
+  selectNone(event, graph, x, y) {
     // deselect?
   }
 

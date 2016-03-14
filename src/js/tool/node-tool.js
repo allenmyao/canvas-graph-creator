@@ -17,13 +17,13 @@ export class NodeTool extends Tool {
     return true;
   }
 
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     if (!(obj instanceof Node)) {
       this.selectNone(graph, x, y);
     }
   }
 
-  selectNone(graph, x, y) {
+  selectNone(event, graph, x, y) {
     let NodeClass = NodeTool.modes[this.currentMode];
     let node = new NodeClass(x, y);
     if (!graph.isNodeCollision(node, x, y)) {
@@ -31,7 +31,7 @@ export class NodeTool extends Tool {
     }
   }
 
-  dropOnNone(graph, droppedObj, startX, startY, x, y) {
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
     this.selectNone(graph, x, y);
   }
 

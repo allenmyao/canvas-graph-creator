@@ -6,15 +6,15 @@ export class EraseTool extends Tool {
 
   name = 'Erase Tool';
 
-  preSelectObject(graph, obj, x, y) {
+  preSelectObject(event, graph, obj, x, y) {
     return true;
   }
 
-  preDragObject(graph, srcObj, x, y) {
+  preDragObject(event, graph, srcObj, x, y) {
     return false;
   }
 
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
       graph.removeNode(obj);
     } else if (obj instanceof Edge) {
@@ -22,7 +22,7 @@ export class EraseTool extends Tool {
     }
   }
 
-  dragOverObject(graph, obj, x, y) {
+  dragOverObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
       graph.removeNode(obj);
     } else if (obj instanceof Edge) {

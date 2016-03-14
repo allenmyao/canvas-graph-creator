@@ -8,15 +8,15 @@ export class PanTool extends Tool {
   isPanning = false;
   startPosition = {};
 
-  dragObject(graph, srcObj, startX, startY, x, y) {
+  dragObject(event, graph, srcObj, startX, startY, x, y) {
     this.dragNone(graph, startX, startY, x, y);
   }
 
-  dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {
+  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
     this.dropOnNone(graph, droppedObj, startX, startY, x, y);
   }
 
-  dragNone(graph, startX, startY, x, y) {
+  dragNone(event, graph, startX, startY, x, y) {
     if (!this.isPanning) {
       this.isPanning = true;
 
@@ -33,7 +33,7 @@ export class PanTool extends Tool {
     Canvas.update();
   }
 
-  dropOnNone(graph, droppedObj, startX, startY, x, y) {
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
     if (this.isPanning) {
       this.isPanning = false;
     }

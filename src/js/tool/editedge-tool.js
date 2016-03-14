@@ -14,7 +14,7 @@ export class EditEdgeTool extends Tool {
     return true;
   }
 
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     if (obj instanceof Edge) {
       this.selectNone(graph, x, y);
       let edgeAttribute = EditEdgeTool.modes[this.currentMode];
@@ -22,7 +22,7 @@ export class EditEdgeTool extends Tool {
     }
   }
 
-  dragOverObject(graph, obj, x, y) {
+  dragOverObject(event, graph, obj, x, y) {
     if (obj instanceof Edge) {
       this.selectNone(graph, x, y);
       let edgeAttribute = EditEdgeTool.modes[this.currentMode];

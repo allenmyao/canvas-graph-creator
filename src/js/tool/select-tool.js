@@ -5,13 +5,13 @@ export class SelectTool extends Tool {
 
   name = 'Select Tool';
 
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     UI.selectObject(obj);
   }
 
   // drag: multiselect?
 
-  selectNone(graph, x, y) {
+  selectNone(event, graph, x, y) {
     UI.selectObject(graph);
   }
 

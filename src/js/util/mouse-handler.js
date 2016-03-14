@@ -25,7 +25,7 @@ export class MouseHandler {
 
     if (this.graph.hasComponent(x, y)) {
       let component = this.graph.getComponent(x, y);
-      if (currentTool.preSelectObject(this.graph, component, x, y)) {
+      if (currentTool.preSelectObject(event, this.graph, component, x, y)) {
         this.selectedObject = component;
         this.clickStartX = this.selectedObject.x;
         this.clickStartY = this.selectedObject.y;
@@ -45,9 +45,9 @@ export class MouseHandler {
       // drop object
       // ISSUE: dragged object cannot detect itself (when using tool that doesn't move the object)
       if (this.graph.hasComponent(x, y, this.draggedObject)) {
-        currentTool.dropOnObject(this.graph, this.draggedObject, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
+        currentTool.dropOnObject(event, this.graph, this.draggedObject, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
       } else {
-        currentTool.dropOnNone(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
+        currentTool.dropOnNone(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       }
 
       this.draggedObject = null;
@@ -59,9 +59,9 @@ export class MouseHandler {
       }
       if (component === this.selectedObject) {
         if (component) {
-          currentTool.selectObject(this.graph, component, x, y);
+          currentTool.selectObject(event, this.graph, component, x, y);
         } else {
-          currentTool.selectNone(this.graph, x, y);
+          currentTool.selectNone(event, this.graph, x, y);
         }
       }
     }
@@ -81,7 +81,7 @@ export class MouseHandler {
 
         if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
           this.isDragging = true;
-          if (this.selectedObject !== null && !currentTool.preDragObject(this.graph, this.selectedObject, x, y)) {
+          if (this.selectedObject !== null && !currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {
             this.selectedObject = null;
             this.draggedObject = null;
           } else {
@@ -95,11 +95,11 @@ export class MouseHandler {
     } else {
       // handle dragging
       if (this.draggedObject) {
-        currentTool.dragObject(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
+        currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       } else if (this.graph.hasComponent(x, y)) {
-        currentTool.dragOverObject(this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
+        currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
       } else {
-        currentTool.dragNone(this.graph, this.clickStartX, this.clickStartY, x, y);
+        currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
       }
     }
   }
