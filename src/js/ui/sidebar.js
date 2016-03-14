@@ -8,6 +8,12 @@ let content;
 let UIgraph;
 
 /*
+
+tools now have a sidebarType, a string, to refer to their associated sidebar sidebar-content subclass
+
+This class manages the container for sidebar-content subclasses, and is responsible
+for managing those subclasses as well.
+
 TODO:
 changeSidebar should account for if type is not changing
 change this into class?
@@ -37,6 +43,7 @@ export function getSidebar() {
   return sidebar;
 }
 
+//Call the current sidebar-content class's update function
 export function updateSidebar() {
   content.update();
 }
