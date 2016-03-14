@@ -10,6 +10,7 @@ function init() {
   graph = new Graph();
   Canvas.init(graph);
   UI.init();
+  UI.selectObject(graph);
   window.requestAnimationFrame(draw);
 }
 
