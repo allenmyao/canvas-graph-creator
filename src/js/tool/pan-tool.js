@@ -22,20 +22,22 @@ export class PanTool extends Tool {
 
       this.startPosition.dx = Canvas.getDx();
       this.startPosition.dy = Canvas.getDy();
+      this.startPosition.x = event.offsetX;
+      this.startPosition.y = event.offsetY;
     }
 
-    console.log(`${Canvas.getDx()}, ${Canvas.getDy()}`);
-    Canvas.setPosition(this.startPosition.dx - (x - startX), this.startPosition.dy - (y - startY));
+    let scale = Canvas.getScale();
 
-    console.log(`${Canvas.getDx()}, ${Canvas.getDy()}`);
-    // console.log(`${startX}, ${startY}`);
-    // console.log(`${x}, ${y}`);
+    Canvas.setPosition(this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale, this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale);
     Canvas.update();
   }
 
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
     if (this.isPanning) {
       this.isPanning = false;
+      let scale = Canvas.getScale();
+      Canvas.setPosition(this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale, this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale);
+      Canvas.update();
     }
   }
 

@@ -30,6 +30,10 @@ export function getDy() {
   return dy;
 }
 
+export function getScale() {
+  return scale;
+}
+
 export function setPosition(newDx, newDy) {
   dx = newDx;
   dy = newDy;
