@@ -2,6 +2,7 @@ export class Tool {
 
   name; // displayed name
   icon; // icon to display
+  sidebarType = "node";
 
   constructor(icon) {
     this.icon = icon;

@@ -1,4 +1,5 @@
 import * as UI from 'ui/ui';
+import * as Sidebar from 'ui/sidebar';
 
 export class MouseHandler {
 
@@ -67,6 +68,7 @@ export class MouseHandler {
     }
     this.mousePressed = false;
     this.selectedObject = null;
+    Sidebar.updateSidebar();//placed on intution:  graph is only ever updated outside of sidebar when mouse is let up
   }
 
   moveListener(event, currentTool, x, y) {
