@@ -5,6 +5,7 @@ import { EraseTool } from 'tool/erase-tool';
 import { EditNodeTool } from 'tool/editnode-tool';
 import { EditEdgeTool } from 'tool/editedge-tool';
 import { PanTool } from 'tool/pan-tool';
+import { SelectTool } from 'tool/select-tool';
 
 // const TOOL_CLASS = 'tool';
 // const TOOL_NAME_ATTR = 'data-tool';
@@ -19,7 +20,8 @@ let toolMap = {
   erase: new EraseTool(),
   editnode: new EditNodeTool(),
   editedge: new EditEdgeTool(),
-  pan: new PanTool()
+  pan: new PanTool(),
+  select: new SelectTool()
 };
 let currentTool = toolMap.node;
 
