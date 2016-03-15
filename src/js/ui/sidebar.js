@@ -1,4 +1,3 @@
-import { Tabs } from 'ui/tabs';
 import { SidebarNode } from 'ui/sidebar-node';
 import { SidebarEdge } from 'ui/sidebar-edge';
 
@@ -33,18 +32,18 @@ export function init(graph) {
 }
 
 export function changeSidebar(type) {
-  if(type == "node") {
-    content = new SidebarNode(UIgraph); 
-  } else if(type == "edge") {
-    content = new SidebarEdge(UIgraph); 
-  } 
+  if (type === 'node') {
+    content = new SidebarNode(UIgraph);
+  } else if (type === 'edge') {
+    content = new SidebarEdge(UIgraph);
+  }
 }
 
 export function getSidebar() {
   return sidebar;
 }
 
-//Call the current sidebar-content class's update function
+// Call the current sidebar-content class's update function
 export function updateSidebar() {
   content.update();
 }

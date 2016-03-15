@@ -17,7 +17,6 @@ export class MoveTool extends Tool {
   }
 
   dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {
-    console.log('drop on object');
     if (destObj instanceof Node) {
       // stop dragging, and reset to starting position
       droppedObj.x = startX;
@@ -28,7 +27,6 @@ export class MoveTool extends Tool {
   }
 
   dropOnNone(graph, droppedObj, startX, startY, x, y) {
-    console.log('drop on none');
     // check for overlap
     if (droppedObj instanceof Node) {
       if (!graph.isNodeCollision(droppedObj, x, y)) {

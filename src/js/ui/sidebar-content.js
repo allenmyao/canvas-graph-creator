@@ -1,6 +1,3 @@
-import { Tabs } from 'ui/tabs';
-
-
 /*
 *  SidebarContent is a super class
 *  This class ensures the proper methods are overloaded, takes in a graph to store so it can use it to access
@@ -20,11 +17,11 @@ export class SidebarContent {
         throw TypeError('Must override method: ' + method);
       }
     }
-    
+
     this.graph = graph;
     this.tabContainer = document.getElementById('sidebar').children[0];
   }
-  
+
   update() {
     throw Error('Can\'t call draw from abstract SideContent class.');
   }
