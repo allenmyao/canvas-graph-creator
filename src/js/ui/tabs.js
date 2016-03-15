@@ -36,6 +36,49 @@ export class Tabs {
     tabContentElement.innerHTML = content;
   }
 
+  addTab(name) {
+    let tabs = this.tablist.children;
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {
+        throw Error('Tab with that name already exists');
+      }
+    }
+
+    let tab = document.createElement('li');
+    tab.classList.add(TAB_CLASS);
+    tab.setAttribute(TAB_ATTRIBUTE_NAME, name);
+
+    let tabContent = document.createElement('div');
+    tabContent.classList.add(TAB_CONTENT_CLASS);
+    tabContent.setAttribute(TAB_ATTRIBUTE_NAME, name);
+
+    this.tabList.appendChild(tab);
+    this.tabContent.appendChild(tabContent);
+  }
+
+  removeTab(name) {
+    let tabs = this.tabList.children;
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {
+        tabs[i].remove();
+        this.getTabContentElement(name).remove();
+        return;
+      }
+    }
+    throw Error('Tab does not exists');
+  }
+
+  replaceTabs(names) {
+    while (this.tabList.firstChild) {
+      let tab = this.tabList.removeChild(this.tabList.firstChild);
+      this.getTabContentElement(tab).remove();
+    }
+
+    for (let name of names) {
+      this.addTab(name);
+    }
+  }
+
   getTabContentElement(tab) {
     let name;
     if (typeof tab === 'string') {

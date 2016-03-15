@@ -6,6 +6,7 @@ import { DashedEdge } from 'data/edge/dashed-edge';
 export class EdgeTool extends Tool {
 
   name = 'Edge Tool';
+  sidebarType = "edge";
 
   currentMode = 'solid';
   static modes = {

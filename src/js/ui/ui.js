@@ -4,10 +4,10 @@ import * as Toolbar from 'ui/toolbar';
 import * as StatusBar from 'ui/status-bar';
 import * as Sidebar from 'ui/sidebar';
 
-export function init() {
+export function init(graph) {
   Toolbar.init();
   StatusBar.init();
-  Sidebar.init();
+  Sidebar.init(graph);
 }
 
 export function updateZoom(scale) {

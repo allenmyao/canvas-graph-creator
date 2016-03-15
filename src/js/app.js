@@ -9,8 +9,7 @@ let graph;
 function init() {
   graph = new Graph();
   Canvas.init(graph);
-  UI.init();
-  UI.selectObject(graph);
+  UI.init(graph);
   window.requestAnimationFrame(draw);
 }
 
