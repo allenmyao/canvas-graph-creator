@@ -89,7 +89,6 @@ textarea {
 
   #sidebar {
     height: 600px;
-    border: 1px solid black;
     font-size: 1rem;
 
     .tabs-container {
@@ -101,10 +100,13 @@ textarea {
         border-bottom: 1px solid black;
 
         .tab {
-          margin-left: -1px;
           padding: 10px 20px;
           border: 1px solid black;
           font-size: 1rem;
+
+          &:not(:first-child) {
+            margin-left: -1px;
+          }
 
           &.active {
             border-bottom: 1px solid white;
@@ -113,7 +115,23 @@ textarea {
       }
 
       .tab-content {
+        border: 1px solid black;
+        border-top: 0;
 
+        .data-container {
+          width: 100%;
+          height: 100%;
+
+          .data-list {
+            display: block;
+            width: 100%;
+            margin: 10px;
+
+            .data-item {
+              display: block;
+            }
+          }
+        }
       }
     }
   }
