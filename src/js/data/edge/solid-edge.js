@@ -21,6 +21,13 @@ export class SolidEdge extends Edge {
     if (this.isDirected) {
       drawArrows(this, false, true);
     }
+
+    if(this.edgeLabel != ''){
+      if(this.isSelected){
+        context.font = "14px Arial"
+        context.fillText("edgeLabel", xText, yText);
+      }
+    }
   }
 
 }

@@ -130,8 +130,10 @@ export class SquareNode extends Node {
 
 
     if(this.nodeLabel != ''){
+      if(this.isSelected){
         context.font = "14px Arial"
         context.fillText("nodeLabel", xText, yText);
+      }
     }
 
     if (this.isAcceptingState) {

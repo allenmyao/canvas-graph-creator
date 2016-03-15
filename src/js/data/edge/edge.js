@@ -27,6 +27,8 @@ export class Edge {
 
   static numEdges = 0;
   id = Node.numEdges++;
+  isSelected = false;
+  edgeLabel = '';
 
   constructor(startNode, destNode, bezierPoint = null, cost = null, isDirected = false) {
     let methods = [
@@ -217,6 +219,17 @@ export class Edge {
 
   draw(context) {
     throw Error('Can\'t call draw from abstract Edge class.');
+  }
+
+  //find the starting point of our text box
+  setTextLocation(xText, yText, edgeLabel){
+
+    var xOffSet = context.measureText(edgeLabel)/2;
+    var yOffSet = 1; //assuming an edge is just 1 pixel
+
+    xText =  ((this.startPoint.x + this.destPoint.x) / 2) - xOffSet;
+    yText =  ((this.startPoint.y + this.destPoint.y) / 2) + yOffSet;
+
   }
 
 }
