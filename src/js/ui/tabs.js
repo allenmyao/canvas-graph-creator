@@ -36,8 +36,8 @@ export class Tabs {
     tabContentElement.innerHTML = content;
   }
 
-  addTab(name) {
-    let tabs = this.tablist.children;
+  addTab(name, displayName) {
+    let tabs = this.tabList.children;
     for (let i = 0; i < tabs.length; i++) {
       if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {
         throw Error('Tab with that name already exists');
@@ -46,6 +46,7 @@ export class Tabs {
 
     let tab = document.createElement('li');
     tab.classList.add(TAB_CLASS);
+    tab.textContent = displayName;
     tab.setAttribute(TAB_ATTRIBUTE_NAME, name);
 
     let tabContent = document.createElement('div');
@@ -53,7 +54,7 @@ export class Tabs {
     tabContent.setAttribute(TAB_ATTRIBUTE_NAME, name);
 
     this.tabList.appendChild(tab);
-    this.tabContent.appendChild(tabContent);
+    this.tabContainer.appendChild(tabContent);
   }
 
   removeTab(name) {
@@ -70,12 +71,15 @@ export class Tabs {
 
   replaceTabs(names) {
     while (this.tabList.firstChild) {
-      let tab = this.tabList.removeChild(this.tabList.firstChild);
-      this.getTabContentElement(tab).remove();
+      let tab = this.tabList.firstChild;
+      this.tabList.removeChild(tab);
+      if (tab.nodeType === Node.ELEMENT_NODE) {
+        this.getTabContentElement(tab).remove();
+      }
     }
 
-    for (let name of names) {
-      this.addTab(name);
+    for (let name of Object.keys(names)) {
+      this.addTab(name, names[name]);
     }
   }
 
