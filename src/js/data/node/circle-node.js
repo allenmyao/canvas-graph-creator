@@ -1,4 +1,6 @@
 import { Node } from './node';
+import { MetadataTool } from 'tool/metadata-tool';
+
 
 export class CircleNode extends Node {
 
@@ -44,6 +46,13 @@ export class CircleNode extends Node {
     // Draw to the canvas
     // context.fill();
     context.stroke();
+
+    if(this.nodeLabel != ''){
+      if(this.isSelected){
+        context.font = "14px Arial"
+        context.fillText("nodeLabel", xText, yText);
+      }
+    }
 
     if (this.isAcceptingState) {
       context.moveTo(this.x + this.radius * 0.75, this.y);

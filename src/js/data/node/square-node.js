@@ -128,6 +128,12 @@ export class SquareNode extends Node {
     // context.fill();
     context.stroke();
 
+
+    if(this.nodeLabel != ''){
+        context.font = "14px Arial"
+        context.fillText("nodeLabel", xText, yText);
+    }
+
     if (this.isAcceptingState) {
       context.moveTo(this.x - this.halfwidth * 0.75, this.y - this.halfwidth * 0.75);
       context.rect(this.x - this.halfwidth * 0.75, this.y - this.halfwidth * 0.75, this.width * 0.75, this.width * 0.75);

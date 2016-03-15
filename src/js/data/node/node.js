@@ -4,7 +4,7 @@ export class Node {
   id = Node.numNodes++;
   edges = new Set();
   isSelected = false;
-  name = ''; // string the label of the node
+  nodeLabel = ''; // string the label of the node; changed name to nodeLabel - Athanasios 3/15/16
   outline = '#000000'; // string Format as hex Color
   fill = '#FFFFFF'; // string Format as hex Color
   lineWidth = 1; // numerical value for thickenss of line
@@ -56,6 +56,14 @@ export class Node {
 
   draw(context) {
     throw Error('Can\'t call methods from abstract Node class.');
+  }
+
+
+  //find the starting point of our text box
+  setTextLocation(xText, yText){
+
+
+
   }
 
 }
