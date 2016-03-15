@@ -9,11 +9,11 @@ export class PanTool extends Tool {
   startPosition = {};
 
   dragObject(event, graph, srcObj, startX, startY, x, y) {
-    this.dragNone(graph, startX, startY, x, y);
+    this.dragNone(event, graph, startX, startY, x, y);
   }
 
   dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
-    this.dropOnNone(graph, droppedObj, startX, startY, x, y);
+    this.dropOnNone(event, graph, droppedObj, startX, startY, x, y);
   }
 
   dragNone(event, graph, startX, startY, x, y) {

@@ -22,7 +22,7 @@ export class MoveTool extends Tool {
       droppedObj.x = startX;
       droppedObj.y = startY;
     } else {
-      this.dropOnNone(graph, droppedObj, startX, startY, x, y);
+      this.dropOnNone(event, graph, droppedObj, startX, startY, x, y);
     }
   }
 

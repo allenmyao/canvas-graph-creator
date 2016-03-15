@@ -17,7 +17,7 @@ export class EditNodeTool extends Tool {
 
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
-      this.selectNone(graph, x, y);
+      this.selectNone(event, graph, x, y);
       let nodeAttribute = EditNodeTool.modes[this.currentMode];
       obj[nodeAttribute] = !obj[nodeAttribute];
     }
@@ -25,7 +25,7 @@ export class EditNodeTool extends Tool {
 
   dragOverObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
-      this.selectNone(graph, x, y);
+      this.selectNone(event, graph, x, y);
       let nodeAttribute = EditNodeTool.modes[this.currentMode];
       obj[nodeAttribute] = !obj[nodeAttribute];
     }

@@ -19,7 +19,7 @@ export class NodeTool extends Tool {
 
   selectObject(event, graph, obj, x, y) {
     if (!(obj instanceof Node)) {
-      this.selectNone(graph, x, y);
+      this.selectNone(event, graph, x, y);
     }
   }
 
@@ -32,7 +32,7 @@ export class NodeTool extends Tool {
   }
 
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
-    this.selectNone(graph, x, y);
+    this.selectNone(event, graph, x, y);
   }
 
 }
