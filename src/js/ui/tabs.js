@@ -70,11 +70,12 @@ export class Tabs {
   }
 
   replaceTabs(names) {
-    let tabs = this.tabList.children;
-    for (let i = 0; i < tabs.length; i++) {
-      let tab = tabs[i];
-      this.getTabContentElement(tab).remove();
+    while (this.tabList.firstChild) {
+      let tab = this.tabList.firstChild;
       this.tabList.removeChild(tab);
+      if (tab.nodeType === Node.ELEMENT_NODE) {
+        this.getTabContentElement(tab).remove();
+      }
     }
 
     for (let name of Object.keys(names)) {
