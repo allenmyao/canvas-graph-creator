@@ -30,15 +30,26 @@ export function getDy() {
   return dy;
 }
 
-export function getScale() {
-  return scale;
-}
-
 export function setPosition(newDx, newDy) {
   dx = newDx;
   dy = newDy;
 
   UI.updateCanvasPosition(dx, dy);
+}
+
+export function getScale() {
+  return scale;
+}
+
+export function setScale(newScale) {
+  scale = newScale;
+  UI.updateZoom(scale);
+}
+
+export function reset() {
+  setPosition(0, 0);
+  setScale(1);
+  update();
 }
 
 function getCanvasX(event) {
