@@ -1,3 +1,5 @@
+import { Tabs } from 'ui/tabs';
+
 /*
 *  SidebarContent is a super class
 *  This class ensures the proper methods are overloaded, takes in a graph to store so it can use it to access
@@ -19,7 +21,10 @@ export class SidebarContent {
     }
 
     this.graph = graph;
-    this.tabContainer = document.getElementById('sidebar').children[0];
+    let tabContainer = document.getElementById('sidebar').children[0];
+    let tabList = tabContainer.children[0];
+    this.tabs = new Tabs(tabContainer, tabList);
+    this.tabs.init();
   }
 
   update() {
