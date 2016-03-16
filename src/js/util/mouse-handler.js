@@ -27,12 +27,11 @@ export class MouseHandler {
       let component = this.graph.getComponent(x, y);
       if (currentTool.preSelectObject(this.graph, component, x, y)) {
         this.selectedObject = component;
-        this.clickStartX = this.selectedObject.x;
-        this.clickStartY = this.selectedObject.y;
       } else {
         this.selectedObject = null;
       }
     } else {
+      currentTool.preSelectNone(this.graph, x, y);
       this.selectedObject = null;
     }
   }
@@ -63,6 +62,8 @@ export class MouseHandler {
         } else {
           currentTool.selectNone(this.graph, x, y);
         }
+      } else {
+        currentTool.abortSelect(this.graph, x, y);
       }
     }
     this.mousePressed = false;
@@ -81,10 +82,15 @@ export class MouseHandler {
 
         if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
           this.isDragging = true;
-          if (this.selectedObject !== null && !currentTool.preDragObject(this.graph, this.selectedObject, x, y)) {
-            this.selectedObject = null;
-            this.draggedObject = null;
+          if (this.selectedObject !== null) {
+            if (currentTool.preDragObject(this.graph, this.selectedObject, x, y)) {
+              this.draggedObject = this.selectedObject;
+            } else {
+              this.selectedObject = null;
+              this.draggedObject = null;
+            }
           } else {
+            currentTool.preDragNone(this.graph, x, y);
             this.draggedObject = this.selectedObject;
           }
         }

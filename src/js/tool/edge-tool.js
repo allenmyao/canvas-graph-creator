@@ -20,17 +20,33 @@ export class EdgeTool extends Tool {
   start = null;
   dest = null;
 
+  cancel() {
+    this.deselect();
+  }
+
+  deselect() {
+    if (this.start) {
+      this.start.isSelected = false;
+    }
+    this.start = null;
+    this.dest = null;
+  }
+
   selectNode(graph, node) {
     let EdgeClass = EdgeTool.modes[this.currentMode];
     if (this.start === null) {
       this.start = node;
       this.start.isSelected = true;
     } else if (this.dest === null) {
-      this.dest = node;
-      graph.addEdge(new EdgeClass(this.start, this.dest));
-      this.start.isSelected = false;
-      this.start = null;
-      this.dest = null;
+      //if (node != this.start) {
+        this.dest = node;
+        graph.addEdge(new EdgeClass(this.start, this.dest));
+        this.start.isSelected = false;
+        this.start = null;
+        this.dest = null;
+      //} else {
+      //  this.deselect();
+      //}
     }
   }
 
@@ -41,10 +57,7 @@ export class EdgeTool extends Tool {
   }
 
   selectNone(graph, x, y) {
-    if(this.start != null){
-      this.start.isSelected = false;
-      this.start = null;
-    }
+    this.deselect();
   }
 
 }

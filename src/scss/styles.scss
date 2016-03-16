@@ -9,7 +9,7 @@ body {
 }
 
 input,
-textarea,
+button,
 select,
 textarea {
   border: 1px solid gray;
@@ -72,6 +72,33 @@ textarea {
         &.selected {
           background: #616161;
         }
+
+        >span {
+          font-size: 0.8rem;
+          color: white;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .tool-input-list {
+    display: block;
+    border: 1px solid black;
+    height: 120px;
+    font-size: 0;
+
+    >.tool-listitem,
+    >.tool-input {
+      display: inline-block;
+
+      >.tool,
+      >.tinput {
+        vertical-align: top;
+        display: inline-block;
+        margin: 10px 0 10px 10px;
+        text-align: center;
+        word-break: break-all;
+        cursor: pointer;
 
         >span {
           font-size: 0.8rem;
