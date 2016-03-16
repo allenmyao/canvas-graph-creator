@@ -1,4 +1,4 @@
-package acceptance;
+package utils;
 
 public class Utils {
 	//http://stackoverflow.com/questions/4062022/how-to-convert-words-to-a-number

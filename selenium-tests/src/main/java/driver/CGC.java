@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 
@@ -23,13 +24,25 @@ import static org.bytedeco.javacpp.opencv_calib3d.*;
 import static org.bytedeco.javacpp.opencv_objdetect.*;
 
 import model.Node;
+import utils.ImageUtils;
+
 import static org.junit.Assert.*;
 public class CGC extends Driver{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
 	public static String HOME_PAGE = "http://localhost:8080/webpack-dev-server/index.html";
 	public static final String IFRAME = "iframe";
-
+	public static BufferedImage NODE_IMAGE;
+	public static BufferedImage EDGE_TOOL;
+	
+	static{
+	    try{
+	        NODE_IMAGE = ImageIO.read(new File("src/test/resources/UnselectedNode.png"));
+	        EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
+	    }catch(final Exception ex){
+	        throw new RuntimeException("Failed to load resources", ex);
+	    }  
+	}
 	private Node selected;
 
 	public CGC(){
@@ -44,7 +57,7 @@ public class CGC extends Driver{
 
 	public Node createNode(int x, int y) {
 		deselect();
-		click(x, y);
+		clickCanvas(x, y);
 		Node node = new Node(x, y);
 		return node;
 	}
@@ -52,17 +65,20 @@ public class CGC extends Driver{
 	{
 		if(selected != null)
 		{
-			click(selected.x, selected.y);
+			clickCanvas(selected.x, selected.y);
 			selected = null;
 		}
 	}
 	public void selectTool(String xPath)
 	{
-		click(xPath, 20, 20);
+		clickCanvas(xPath, 20, 20);
 	}
+	
+
 	public void drawEdge(Node source, Node destination) {
 		//
-		selectTool("//*[@id=\"tools-container\"]/ul/li[2]/div");
+		//selectTool("//*[@id=\"tools-container\"]/ul/li[2]/div");
+		clickElement("edge tool");
 		if (source != selected)
 		{
 			deselect();
@@ -74,114 +90,42 @@ public class CGC extends Driver{
 	}
 
 	public void clickNode(Node node) {
-		click(node.x, node.y);
+		clickCanvas(node.x, node.y);
 	}
 
 
-	public static CGC create()
+	public static CGC create() throws IOException
 	{
 		CGC driver = new CGC();
 		driver.loadSite(HOME_PAGE);
 		driver.switchToFrame(IFRAME);
 		driver.selectCanvas(CANVAS_XPATH);
-
+		driver.takeInitialScreenshot();
+		driver.addElement(EDGE_TOOL, "edge tool");
+		
 		return driver;
 	}
-	public static CGC create(String website, String browser)
+	public static CGC create(String website, String browser) throws IOException
 	{
-		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\ndlu2\\Desktop\\CS 428\\selenium-2.52.0\\chromedriver.exe");
-
 		CGC driver = new CGC(browser);
 		driver.loadSite(website);
 		driver.switchToFrame(IFRAME);
 		driver.selectCanvas(CANVAS_XPATH);
+		driver.takeInitialScreenshot();
+		driver.addElement(EDGE_TOOL, "edge tool");
 
 		return driver;
 	}
-	public void assertNodes(int nodes) throws IOException
-	{
-		BufferedImage template = ImageIO.read(new File("src/test/resources/UnselectedNode.png"));
-		BufferedImage screenshot = this.getScreenshot();
-		assertEquals(nodes, matchNumber(template, screenshot));
-	}
 
-	public boolean match(BufferedImage template, BufferedImage screenshot)
-    {
-        Java2DFrameConverter javaConverter = new Java2DFrameConverter();
-        OpenCVFrameConverter.ToIplImage cvConverter = new OpenCVFrameConverter.ToIplImage();
-        OpenCVFrameConverter.ToMat cvConverter2 = new OpenCVFrameConverter.ToMat();
 
-        Frame tmp_f = javaConverter.getFrame(template);
-        Frame src_f = javaConverter.getFrame(screenshot);
 
-        Mat src_m = cvConverter2.convert(src_f);
-        Mat tmp_m = cvConverter2.convert(tmp_f);
-        cvtColor(src_m, src_m, CV_32F);
-        cvtColor(tmp_m, tmp_m, CV_32F);
-        src_f = cvConverter2.convert(src_m);
-        tmp_f = cvConverter2.convert(tmp_m);
 
-        IplImage tmp = cvConverter.convert(tmp_f);
-        IplImage src = cvConverter.convert(src_f);
 
-        IplImage result = cvCreateImage(cvSize(src.width() - tmp.width() + 1, src.height() - tmp.height() + 1), IPL_DEPTH_32F,0);
 
-        cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
 
-        cvThreshold(result, result, 0.5, 1.0, 0);
 
-        DoublePointer min_v = new DoublePointer();
-        DoublePointer max_v = new DoublePointer();
-
-        CvPoint min_p = new CvPoint();
-        CvPoint max_p = new CvPoint();
-
-        cvMinMaxLoc(result,min_v, max_v, min_p, max_p,null);
-
-        CvScalar point = cvGet2D(result, max_p.y(), max_p.x());
-
-        return point.get() == 1.0;
-	}
-
-	public int matchNumber(BufferedImage template, BufferedImage screenshot)
-    {
-        Java2DFrameConverter javaConverter = new Java2DFrameConverter();
-        OpenCVFrameConverter.ToIplImage cvConverter = new OpenCVFrameConverter.ToIplImage();
-        OpenCVFrameConverter.ToMat cvConverter2 = new OpenCVFrameConverter.ToMat();
-
-        Frame tmp_f = javaConverter.getFrame(template);
-        Frame src_f = javaConverter.getFrame(screenshot);
-
-        Mat src_m = cvConverter2.convert(src_f);
-        Mat tmp_m = cvConverter2.convert(tmp_f);
-        cvtColor(src_m, src_m, CV_32F);
-        cvtColor(tmp_m, tmp_m, CV_32F);
-        src_f = cvConverter2.convert(src_m);
-        tmp_f = cvConverter2.convert(tmp_m);
-
-        IplImage tmp = cvConverter.convert(tmp_f);
-        IplImage src = cvConverter.convert(src_f);
-
-        IplImage result = cvCreateImage(cvSize(src.width() - tmp.width() + 1, src.height() - tmp.height() + 1), IPL_DEPTH_32F,0);
-
-        cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
-
-        cvThreshold(result, result, 0.5, 1.0, 0);
-
-        int count = 0;
-
-        for(int i=0; i<result.height(); i++){
-        	for(int j =0; j<result.width(); j++){
-        		CvScalar point = cvGet2D(result, i,j);
-        		if (point.get() == 1.0){
-        			count++;
-        		}
-        	}
-        }
-
-        return count;
-	}
 }
+/*
 public class ChromeConsoleLogging {
     private WebDriver driver;
 
@@ -216,3 +160,4 @@ public class ChromeConsoleLogging {
         analyzeLog();
     }
 }
+*/
