@@ -163,15 +163,51 @@ export class Edge {
   }
 
   updateEndpoints() {
-    try {
-      this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
-      this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
-      this.bezierPoint = {
-        x: (this.startPoint.x + this.destPoint.x) / 2,
-        y: (this.startPoint.y + this.destPoint.y) / 2
-      };
-    } catch (e) {
-      return;
+    if (this.startNode.id === this.destNode.id) {
+      if(this.startNode instanceof CircleNode) {
+        let angle = 247.5;
+        let theta = Math.PI * angle / 180;
+        let r = CircleNode.radius;
+        this.startPoint = {
+          x: r*Math.cos(theta) + this.startNode.x,
+          y: r*Math.sin(theta) + this.startNode.y
+        };
+        this.bezierPoint = {
+          x: 4*r*Math.cos(theta + Math.PI / 8) + this.startNode.x,
+          y: 4*r*Math.sin(theta + Math.PI / 8) + this.startNode.y
+        };
+        this.destPoint = {
+          x: r*Math.cos(theta + Math.PI / 4) + this.startNode.x,
+          y: r*Math.sin(theta + Math.PI / 4) + this.startNode.y
+        };
+      } else if(this.startNode instanceof SquareNode){
+        let w = SquareNode.width;
+        let hw = w/2;
+        this.startPoint = {
+          x: this.startNode.x - hw/2,
+          y: this.startNode.y - hw
+        };
+        this.bezierPoint = {
+          x: this.startNode.x,
+          y: this.startNode.y - 2*w
+        };
+       this.destPoint = {
+         x: this.startNode.x + hw/2,
+         y: this.startNode.y - hw
+       }
+      }
+      this.isDirected = true;
+    } else {
+      try {
+        this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
+        this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
+        this.bezierPoint = {
+          x: (this.startPoint.x + this.destPoint.x) / 2,
+          y: (this.startPoint.y + this.destPoint.y) / 2
+        };
+      } catch (e) {
+        return;
+      }
     }
   }
 
