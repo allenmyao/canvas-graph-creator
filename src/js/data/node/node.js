@@ -13,6 +13,8 @@ export class Node {
   value = 0; // numerical value for algorithms
   visited = false; // boolean used for algorithms e.x traversals.
   color=''; // string value defines the color for chromatic algorithms
+  xText = 0;
+  yText = 0;
 
 
   constructor(x, y) {
@@ -39,6 +41,7 @@ export class Node {
     }
     this.x = x;
     this.y = y;
+    setTextLocation(0,0);
   }
 
   containsPoint(x, y) {
@@ -61,13 +64,13 @@ export class Node {
 
 
   //find the starting point of our text box
-  setTextLocation(xText, yText, nodeLabel){
+  setTextLocation(xText, yText){
 
-    var xOffSet = context.measureText(nodeLabel)/2;
+    var xOffSet = context.measureText(this.nodeLabel)/2;
     var yOffSet =  0;
 
-    xText = this.x + radius + 4 + xOffset;
-    yText = this.y; 
+    this.xText = this.x + radius + 4 + xOffset;
+    this.yText = this.y; 
   }
 
 }

@@ -50,7 +50,7 @@ export class CircleNode extends Node {
     if(this.nodeLabel != ''){
       if(this.isSelected){
         context.font = "14px Arial"
-        context.fillText("nodeLabel", xText, yText);
+        context.fillText("nodeLabel", this.xText, this.yText);
       }
     }
 
