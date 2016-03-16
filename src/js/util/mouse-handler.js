@@ -1,5 +1,4 @@
 import * as UI from 'ui/ui';
-import * as Sidebar from 'ui/sidebar';
 
 export class MouseHandler {
 
@@ -50,7 +49,6 @@ export class MouseHandler {
       } else {
         currentTool.dropOnNone(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       }
-
       this.draggedObject = null;
     } else {
       // click
@@ -68,9 +66,6 @@ export class MouseHandler {
     }
     this.mousePressed = false;
     this.selectedObject = null;
-
-    // placed on intuition:  graph is only ever updated outside of sidebar when mouse is let up
-    Sidebar.updateSidebar();
   }
 
   moveListener(event, currentTool, x, y) {
@@ -107,4 +102,5 @@ export class MouseHandler {
       }
     }
   }
+
 }

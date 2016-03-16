@@ -1,9 +1,11 @@
 import { Tool } from 'tool/tool';
 import { Node } from 'data/node/node';
+import * as Sidebar from 'ui/sidebar';
 
 export class MoveTool extends Tool {
 
   name = 'Move Tool';
+  sidebarType = 'select';
 
   dragObject(graph, obj, startX, startY, x, y) {
     if (obj instanceof Node) {
@@ -14,6 +16,7 @@ export class MoveTool extends Tool {
         edge.updateEndpoints();
       }
     }
+    Sidebar.updateSidebar(obj);
   }
 
   dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {

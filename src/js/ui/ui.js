@@ -1,5 +1,3 @@
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
 import * as Toolbar from 'ui/toolbar';
 import * as StatusBar from 'ui/status-bar';
 import * as Sidebar from 'ui/sidebar';
@@ -23,13 +21,7 @@ export function updateCanvasPosition(dx, dy) {
 }
 
 export function selectObject(obj) {
-  if (obj instanceof Node) {
-    Sidebar.displayNode(obj);
-  } else if (obj instanceof Edge) {
-    Sidebar.displayEdge(obj);
-  } else {
-    Sidebar.displayGraph(obj);
-  }
+  // Sidebar.updateSidebar(obj);
 }
 
 // function changeTool(tool) {}
