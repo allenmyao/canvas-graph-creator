@@ -36,6 +36,9 @@ export class Tool {
   }
 
   // mouse events on empty space
+  abortSelect(graph, x, y) {}
+  preSelectNone(graph, x, y) {}
+  preDragNone(graph, x, y) {}
   selectNone(graph, x, y) {}
   dragNone(graph, startX, startY, x, y) {}
   dropOnNone(graph, droppedObj, startX, startY, x, y) {}

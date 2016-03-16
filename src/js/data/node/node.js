@@ -15,6 +15,7 @@ export class Node {
   color=''; // string value defines the color for chromatic algorithms
   xText = 0;
   yText = 0;
+  showTextCtrl = false;
 
 
   constructor(x, y) {

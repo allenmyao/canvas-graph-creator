@@ -115,6 +115,7 @@ export class Edge {
     }
 
     this.generateDefaultTextLocation();
+    this.showTextCtrl = false;
   }
 
   detach() {
@@ -228,7 +229,7 @@ export class Edge {
   }
 
   //find the starting point of our text box
-  generateDefaultTextLocation(){
+  generateDefaultTextLocation() {
 
     //var xOffSet = context.measureText(this.edgeLabel)/2;
     //var yOffSet = 1; //assuming an edge is just 1 pixel
