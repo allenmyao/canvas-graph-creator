@@ -89,6 +89,56 @@ export class CircleNode extends Node {
       context.fill();
     }
   }
+  generateTextLocation(){
+
+    if(){//default (to the right)
+      this.xText = this.x + this.radius + 4;
+      this.yText = this.y; 
+    } 
+    else if(){
+    //place to the left
+      this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
+      this.yText = this.y;
+    }
+    else if(){
+    //place on top
+      this.xText = this.x - (context.measureText(this.nodeLabel)/2);
+      this.yText = this.y + this.radius + 4; 
+    }
+    else if(){
+    //place on the bottom
+      this.xText = this.x - (context.measureText(this.nodeLabel)/2);
+      this.yText = this.y -(this.radius + 4);
+    }
+    else if(){
+    //place at top-right
+      this.xText = this.x + this.radius + 4;
+      this.yText = this.y + this.radius + 4;
+    }
+    else if(){
+    //place at bottom-right
+      this.xText = this.x + this.radius + 4;
+      this.yText = this.y -(this.radius + 4);
+    }
+    else if(){
+    //place at bottom-left
+      this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
+      this.yText = this.y -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
+    }
+    else if(){
+    //place at top-left
+      this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
+      this.yText = this.y + this.radius + 4 + (context.measureText(this.nodeLabel)/2);
+    }
+    else{
+    //just go back to default
+      this.xText = this.x + this.radius + 4;
+      this.yText = this.y; 
+
+    }
+  }
+
+
 
 
   //find the starting point of our text box
