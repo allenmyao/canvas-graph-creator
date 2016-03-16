@@ -4,7 +4,7 @@ import { drawArrows } from '../../util/curvedEdge';
 export class DashedEdge extends Edge {
 
   draw(context) {
-    context.strokeStyle = 'black';
+    context.strokeStyle = this.isSelected ? 'red' : 'black';
     context.setLineDash([ 5, 5 ]);
 
     // Create a new path

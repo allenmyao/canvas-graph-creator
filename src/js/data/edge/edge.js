@@ -50,6 +50,7 @@ export class Edge {
     this.bezierPoint = bezierPoint;
     this.cost = cost;
     this.isDirected = isDirected;
+    this.isSelected = false;
 
 
     startNode.edges.add(this);
