@@ -25,7 +25,7 @@ export class SolidEdge extends Edge {
     if(this.edgeLabel != ''){
       if(this.isSelected){
         context.font = "14px Arial"
-        context.fillText("edgeLabel", xText, yText);
+        context.fillText("edgeLabel", this.xText, this.yText);
       }
     }
   }

@@ -35,6 +35,8 @@ export class CircleNode extends Node {
   }
 
   draw(context) {
+    let xOffSet = 0;
+    let yOffset = 0;
     context.fillStyle = 'white';
     context.strokeStyle = this.isSelected ? 'red' : 'black';
 
@@ -49,6 +51,7 @@ export class CircleNode extends Node {
 
     if(this.nodeLabel != ''){
       if(this.isSelected){
+        //xOffSet = context.measureText(this.nodeLabel)/2;
         context.font = "14px Arial"
         context.fillText("nodeLabel", this.xText, this.yText);
       }

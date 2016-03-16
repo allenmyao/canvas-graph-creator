@@ -55,6 +55,7 @@ export class Edge {
 
     startNode.edges.add(this);
     destNode.edges.add(this);
+    this.setTextLocation(0,0);
 
     if (this.startNode.id === this.destNode.id) {
       if(this.startNode instanceof CircleNode) {
@@ -223,13 +224,13 @@ export class Edge {
   }
 
   //find the starting point of our text box
-  setTextLocation(xText, yText, edgeLabel){
+  setTextLocation(xText, yText){
 
-    var xOffSet = context.measureText(edgeLabel)/2;
+    var xOffSet = context.measureText(this.edgeLabel)/2;
     var yOffSet = 1; //assuming an edge is just 1 pixel
 
-    xText =  ((this.startPoint.x + this.destPoint.x) / 2) - xOffSet;
-    yText =  ((this.startPoint.y + this.destPoint.y) / 2) + yOffSet;
+    this.xText =  ((this.startPoint.x + this.destPoint.x) / 2) - xOffSet;
+    this.yText =  ((this.startPoint.y + this.destPoint.y) / 2) + yOffSet;
 
   }
 

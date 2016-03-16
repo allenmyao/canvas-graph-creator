@@ -115,6 +115,8 @@ export class SquareNode extends Node {
   }
 
   draw(context) {
+    let xOffSet = 0;
+    let yOffSet = 0;
     context.fillStyle = 'white';
     context.strokeStyle = this.isSelected ? 'red' : 'black';
 

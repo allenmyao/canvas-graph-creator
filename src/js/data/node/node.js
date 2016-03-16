@@ -41,7 +41,7 @@ export class Node {
     }
     this.x = x;
     this.y = y;
-    setTextLocation(0,0);
+    generateDefaultTextLocation();
   }
 
   containsPoint(x, y) {
@@ -64,12 +64,11 @@ export class Node {
 
 
   //find the starting point of our text box
-  setTextLocation(xText, yText){
+  generateDefaultTextLocation(){
 
-    var xOffSet = context.measureText(this.nodeLabel)/2;
-    var yOffSet =  0;
 
-    this.xText = this.x + radius + 4 + xOffset;
+
+    this.xText = this.x + radius + 4;
     this.yText = this.y; 
   }
 
