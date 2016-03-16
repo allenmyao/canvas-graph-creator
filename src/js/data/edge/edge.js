@@ -55,7 +55,7 @@ export class Edge {
 
     startNode.edges.add(this);
     destNode.edges.add(this);
-    this.generateDefaultTextLocation();
+    
 
     if (this.startNode.id === this.destNode.id) {
       if(this.startNode instanceof CircleNode) {
@@ -113,6 +113,8 @@ export class Edge {
     } else if (typeof cost === 'number') {
       this.costType = true;
     }
+
+    this.generateDefaultTextLocation();
   }
 
   detach() {
