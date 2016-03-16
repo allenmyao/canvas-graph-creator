@@ -14,6 +14,7 @@ export class Node {
   visited = false; // boolean used for algorithms e.x traversals.
   color=''; // string value defines the color for chromatic algorithms
 
+
   constructor(x, y) {
     // new.target not supported by Babel
     // if (new.target === Node) {
@@ -60,10 +61,13 @@ export class Node {
 
 
   //find the starting point of our text box
-  setTextLocation(xText, yText){
+  setTextLocation(xText, yText, nodeLabel){
 
+    var xOffSet = context.measureText(nodeLabel)/2;
+    var yOffSet =  0;
 
-
+    xText = this.x + radius + 4 + xOffset;
+    yText = this.y; 
   }
 
 }
