@@ -38,15 +38,15 @@ export class EdgeTool extends Tool {
       this.start = node;
       this.start.isSelected = true;
     } else if (this.dest === null) {
-      if (node != this.start) {
+      //if (node != this.start) {
         this.dest = node;
         graph.addEdge(new EdgeClass(this.start, this.dest));
         this.start.isSelected = false;
         this.start = null;
         this.dest = null;
-      } else {
-        this.deselect();
-      }
+      //} else {
+      //  this.deselect();
+      //}
     }
   }
 

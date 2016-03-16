@@ -67,15 +67,16 @@ export class MetadataTool extends Tool {
   }
 
   apply(type) {
-    if (this.target === null)
+    if (this.target === null) {
       return;
+    }
     this.onCtrl = false;
     this.dragging = false;
-    if (type == 'label') {
+    if (type === 'label') {
       if (this.target instanceof Node) {
         this.target.nodeLabel = this.labelBox.value;
         let oldCtrl = this.target.showTextCtrl;
-        this.target.showTextCtrl = (this.target.nodeLabel != '');
+        this.target.showTextCtrl = (this.target.nodeLabel !== '');
         if (!oldCtrl && this.target.showTextCtrl) {
           // First time showing the label? Position it.
           this.target.generateDefaultTextLocation();
@@ -84,7 +85,7 @@ export class MetadataTool extends Tool {
       } else if (this.target instanceof Edge) {
         this.target.edgeLabel = this.labelBox.value;
         let oldCtrl = this.target.showTextCtrl;
-        this.target.showTextCtrl = (this.target.edgeLabel != '');
+        this.target.showTextCtrl = (this.target.edgeLabel !== '');
         if (!oldCtrl && this.target.showTextCtrl) {
           // First time showing the label? Position it.
           this.target.generateDefaultTextLocation();
@@ -95,7 +96,7 @@ export class MetadataTool extends Tool {
   }
 
   selectNode(graph, node) {
-    if (node != this.target) {
+    if (node !== this.target) {
       this.deselect();
       this.target = node;
       this.target.isSelected = true;
@@ -108,7 +109,7 @@ export class MetadataTool extends Tool {
   }
 
   selectEdge(graph, edge) {
-    if (edge != this.target) {
+    if (edge !== this.target) {
       this.deselect();
       this.target = edge;
       this.target.isSelected = true;
@@ -127,7 +128,7 @@ export class MetadataTool extends Tool {
 
   // Anticipate Dragging
   preSelectNone(graph, x, y) {
-    if (this.target !== null && this.target.showTextCtrl == true && this.onCtrl == false) {
+    if (this.target !== null && this.target.showTextCtrl === true && this.onCtrl === false) {
       let xd = this.target.xText - x;
       let yd = this.target.yText - y;
       let ds = (xd * xd + yd * yd);
@@ -145,7 +146,7 @@ export class MetadataTool extends Tool {
 
   // Start Dragging
   preDragNone(graph, x, y) {
-    if (this.target !== null && this.target.showTextCtrl == true && this.onCtrl == true) {
+    if (this.target !== null && this.target.showTextCtrl === true && this.onCtrl === true) {
       this.dragging = true;
       console.log("Dragging Label Control Point");
     }
@@ -182,7 +183,7 @@ export class MetadataTool extends Tool {
 
   // Drag the target object's label control point
   dragNone(graph, startX, startY, x, y) {
-    if (this.target !== null && this.dragging == true) {
+    if (this.target !== null && this.dragging === true) {
       this.target.xText = x;
       this.target.yText = y;
     }

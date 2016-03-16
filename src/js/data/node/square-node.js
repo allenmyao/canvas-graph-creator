@@ -8,6 +8,9 @@ export class SquareNode extends Node {
   halfwidth = SquareNode.width / 2;
 
   constructor(x, y) {
+    if (arguments.length < 2) {
+      throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
+    }
     super(x, y);
     //console.log("Square Node Ctor");
     this.generateDefaultTextLocation();

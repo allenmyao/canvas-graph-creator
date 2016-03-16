@@ -1,5 +1,4 @@
 import { Node } from './node';
-import { MetadataTool } from 'tool/metadata-tool';
 
 
 export class CircleNode extends Node {
@@ -9,6 +8,9 @@ export class CircleNode extends Node {
   radius = CircleNode.radius;
 
   constructor(x, y) {
+    if (arguments.length < 2) {
+      throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
+    }
     super(x, y);
     //console.log("Circle Node Ctor");
     this.generateDefaultTextLocation();
@@ -89,7 +91,7 @@ export class CircleNode extends Node {
       context.fill();
     }
   }
-  generateTextLocation(){
+  /*generateTextLocation(){
 
     if(){//default (to the right)
       this.xText = this.x + this.radius + 4;
@@ -136,7 +138,7 @@ export class CircleNode extends Node {
       this.yText = this.y; 
 
     }
-  }
+  }*/
 
 
 
