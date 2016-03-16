@@ -13,7 +13,7 @@ export class SolidEdge extends Edge {
     context.moveTo(this.startPoint.x, this.startPoint.y);
 
     // Draw line to given point
-    context.lineTo(this.destPoint.x, this.destPoint.y);
+    context.quadraticCurveTo(this.bezierPoint.x, this.bezierPoint.y, this.destPoint.x, this.destPoint.y);
 
     // Draw to the canvas
     context.stroke();

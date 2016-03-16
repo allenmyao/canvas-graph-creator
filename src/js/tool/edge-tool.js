@@ -44,7 +44,10 @@ export class EdgeTool extends Tool {
   }
 
   selectNone(graph, x, y) {
-    // deselect?
+    if(this.start != null){
+      this.start.isSelected = false;
+      this.start = null;
+    }
   }
 
 }
