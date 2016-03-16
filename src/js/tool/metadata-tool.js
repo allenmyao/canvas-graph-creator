@@ -29,6 +29,12 @@ export class MetadataTool extends Tool {
     this.deselect();
     this.labelBox = document.getElementById('metadata-label-text');
     this.labelBtn = document.getElementById('metadata-label-btn');
+    this.labelBox.addEventListener('keypress', (event) => {
+      let key = event.which || event.keyCode;
+      if (key === 13) {
+        this.apply('label');
+      }
+    }, false);
     this.labelBtn.addEventListener('click', (event) => {
       this.apply('label');
     }, false);
