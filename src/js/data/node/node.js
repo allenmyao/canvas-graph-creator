@@ -68,8 +68,6 @@ export class Node {
 
 
 
-    this.xText = this.x + this.radius + 4;
-    this.yText = this.y; 
   }
 
 }

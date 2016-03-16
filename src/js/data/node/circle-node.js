@@ -78,4 +78,16 @@ export class CircleNode extends Node {
     }
   }
 
+
+  //find the starting point of our text box
+  generateDefaultTextLocation(){
+
+
+
+    this.xText = this.x + this.radius + 4;
+    this.yText = this.y; 
+  }
+
+
+
 }

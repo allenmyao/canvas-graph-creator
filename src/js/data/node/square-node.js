@@ -159,4 +159,14 @@ export class SquareNode extends Node {
     }
   }
 
+    //find the starting point of our text box
+  generateDefaultTextLocation(){
+
+
+
+    this.xText = this.x + this.halfwidth + 4;
+    this.yText = this.y; 
+  }
+
+
 }
