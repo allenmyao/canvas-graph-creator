@@ -58,9 +58,15 @@ export class MetadataTool extends Tool {
   }
 
   apply(type) {
+    if (this.target === null)
+      return;
     console.log('Applying type: ' + type);
     if (type == 'label') {
-
+      if (this.target instanceof Node) {
+        this.target.nodeLabel = this.labelBox.value;
+      } else if (this.target instanceof Edge) {
+        this.target.edgeLabel = this.labelBox.value;
+      }
     }
   }
 
@@ -71,7 +77,7 @@ export class MetadataTool extends Tool {
       this.target.isSelected = true;
       this.labelBox.removeAttribute('disabled');
       this.labelBox.placeholder = 'Node Label';
-      this.labelBox.value = '';
+      this.labelBox.value = node.nodeLabel;
       this.labelBtn.removeAttribute('disabled');
     }
   }
@@ -83,7 +89,7 @@ export class MetadataTool extends Tool {
       this.target.isSelected = true;
       this.labelBox.removeAttribute('disabled');
       this.labelBox.placeholder = 'Edge Label';
-      this.labelBox.value = '';
+      this.labelBox.value = edge.edgeLabel;
       this.labelBtn.removeAttribute('disabled');
     }
   }
