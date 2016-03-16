@@ -1,10 +1,11 @@
 import { Edge } from './edge';
-import { drawArrows } from './curvedEdge';
+import { drawArrows } from '../../util/curvedEdge';
 
-export class SolidEdge extends Edge {
+export class DashedEdge extends Edge {
 
   draw(context) {
     context.strokeStyle = 'black';
+    context.setLineDash([ 5, 5 ]);
 
     // Create a new path
     context.beginPath();
@@ -17,10 +18,10 @@ export class SolidEdge extends Edge {
 
     // Draw to the canvas
     context.stroke();
+    context.setLineDash([]);
 
     if (this.isDirected) {
       drawArrows(this, false, true);
     }
   }
-
 }

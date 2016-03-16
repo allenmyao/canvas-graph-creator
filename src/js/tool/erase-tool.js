@@ -1,6 +1,6 @@
-import { Tool } from 'tool';
-import { Node } from 'node';
-import { Edge } from 'edge';
+import { Tool } from 'tool/tool';
+import { Node } from 'data/node/node';
+import { Edge } from 'data/edge/edge';
 
 export class EraseTool extends Tool {
 
