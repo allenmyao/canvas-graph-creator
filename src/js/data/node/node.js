@@ -41,7 +41,7 @@ export class Node {
     }
     this.x = x;
     this.y = y;
-    generateDefaultTextLocation();
+    this.generateDefaultTextLocation();
   }
 
   containsPoint(x, y) {
@@ -68,7 +68,7 @@ export class Node {
 
 
 
-    this.xText = this.x + radius + 4;
+    this.xText = this.x + this.radius + 4;
     this.yText = this.y; 
   }
 
