@@ -211,6 +211,8 @@ export class Edge {
           x: (this.startPoint.x + this.destPoint.x) / 2,
           y: (this.startPoint.y + this.destPoint.y) / 2
         };
+        this.xText += (this.bezierPoint.x - oldBezier.x);
+        this.yText += (this.bezierPoint.y - oldBezier.y);
       } catch (e) {
         return;
       }
@@ -231,8 +233,9 @@ export class Edge {
     //var xOffSet = context.measureText(this.edgeLabel)/2;
     //var yOffSet = 1; //assuming an edge is just 1 pixel
 
-    this.xText =  ((this.startPoint.x + this.destPoint.x) / 2) ;
-    this.yText =  ((this.startPoint.y + this.destPoint.y) / 2) ;
+    this.xText = this.bezierPoint.x;
+    this.yText = this.bezierPoint.y;
+    //console.log("Line xText: " + this.xText + ", yText: " + this.yText);
   }
 
 }

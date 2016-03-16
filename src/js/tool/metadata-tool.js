@@ -60,11 +60,10 @@ export class MetadataTool extends Tool {
   apply(type) {
     if (this.target === null)
       return;
-    console.log('Applying metadata type: ' + type);
     if (type == 'label') {
       if (this.target instanceof Node) {
         this.target.nodeLabel = this.labelBox.value;
-        console.log("Node Label at (" + this.target.xText + "," + this.target.yText + ")");
+        console.log("Editing Node Label at (" + this.target.xText + "," + this.target.yText + ")");
       } else if (this.target instanceof Edge) {
         this.target.edgeLabel = this.labelBox.value;
       }

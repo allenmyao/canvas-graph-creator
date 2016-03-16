@@ -8,6 +8,12 @@ export class CircleNode extends Node {
 
   radius = CircleNode.radius;
 
+  constructor(x, y) {
+    super(x, y);
+    //console.log("Circle Node Ctor");
+    this.generateDefaultTextLocation();
+  }
+
   containsPoint(x, y) {
     return this.distanceToPoint(x, y) <= this.radius;
   }
@@ -50,10 +56,12 @@ export class CircleNode extends Node {
     context.stroke();
 
     if(this.nodeLabel != ''){
-      if(this.isSelected){
-        //xOffSet = context.measureText(this.nodeLabel)/2;
-        context.font = "14px Arial"
-        context.fillText("nodeLabel", this.xText, this.yText);
+      //xOffSet = context.measureText(this.nodeLabel)/2;
+      context.font = "14px Arial"
+      context.fillStyle = "black";
+      context.fillText(this.nodeLabel, this.xText, this.yText);
+      if(this.isSelected) {
+
       }
     }
 
@@ -80,10 +88,7 @@ export class CircleNode extends Node {
 
 
   //find the starting point of our text box
-  generateDefaultTextLocation(){
-
-
-
+  generateDefaultTextLocation() {
     this.xText = this.x + this.radius + 4;
     this.yText = this.y; 
   }

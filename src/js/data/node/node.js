@@ -18,6 +18,7 @@ export class Node {
 
 
   constructor(x, y) {
+    //console.log("Node Ctor");
     // new.target not supported by Babel
     // if (new.target === Node) {
     //     throw TypeError('Node class is abstract; cannot construct Node instances directly');
@@ -41,7 +42,16 @@ export class Node {
     }
     this.x = x;
     this.y = y;
-    this.generateDefaultTextLocation();
+  }
+
+  setPos(x, y) {
+    this.xText += (x - this.x);
+    this.yText += (y - this.y);
+    this.x = x;
+    this.y = y;
+    for (let edge of this.edges) {
+      edge.updateEndpoints();
+    }
   }
 
   containsPoint(x, y) {
@@ -64,10 +74,6 @@ export class Node {
 
 
   //find the starting point of our text box
-  generateDefaultTextLocation(){
-
-
-
-  }
+  generateDefaultTextLocation() {}
 
 }

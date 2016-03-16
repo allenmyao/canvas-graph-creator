@@ -25,9 +25,11 @@ export class DashedEdge extends Edge {
     }
 
     if(this.edgeLabel != ''){
-      if(this.isSelected){
-        context.font = "14px Arial"
-        context.fillText("edgeLabel", xText, yText);
+      context.font = "14px Arial"
+      context.fillStyle = "black";
+      context.fillText(this.edgeLabel, xText, yText);
+      if(this.isSelected) {
+
       }
     }
   }

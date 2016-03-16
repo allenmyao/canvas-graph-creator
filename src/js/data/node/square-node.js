@@ -7,6 +7,12 @@ export class SquareNode extends Node {
   width = SquareNode.width;
   halfwidth = SquareNode.width / 2;
 
+  constructor(x, y) {
+    super(x, y);
+    //console.log("Square Node Ctor");
+    this.generateDefaultTextLocation();
+  }
+
   containsPoint(x, y) {
     return Math.abs(this.x - x) < this.halfwidth && Math.abs(this.y - y) < this.halfwidth;
   }
@@ -132,9 +138,11 @@ export class SquareNode extends Node {
 
 
     if(this.nodeLabel != ''){
-      if(this.isSelected){
-        context.font = "14px Arial"
-        context.fillText("nodeLabel", this.xText, this.yText);
+      context.font = "14px Arial"
+      context.fillStyle = "black";
+      context.fillText(this.nodeLabel, this.xText, this.yText);
+      if(this.isSelected) {
+
       }
     }
 
@@ -159,13 +167,11 @@ export class SquareNode extends Node {
     }
   }
 
-    //find the starting point of our text box
-  generateDefaultTextLocation(){
-
-
-
+  //find the starting point of our text box
+  generateDefaultTextLocation() {
     this.xText = this.x + this.halfwidth + 4;
-    this.yText = this.y; 
+    this.yText = this.y;
+    //console.log("Half: " + this.halfwidth + ", xText: " + this.xText + ", yText: " + this.yText);
   }
 
 
