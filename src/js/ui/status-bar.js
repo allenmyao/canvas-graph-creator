@@ -1,7 +1,13 @@
+import * as Canvas from 'ui/canvas';
+
 let statusBar;
 
 export function init() {
   statusBar = document.getElementById('status-bar');
+
+  document.getElementById('reset-transform').addEventListener('click', (event) => {
+    Canvas.reset();
+  });
 }
 
 export function getStatusBar() {

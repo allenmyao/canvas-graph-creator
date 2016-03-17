@@ -121,13 +121,13 @@ export class MetadataTool extends Tool {
     }
   }
 
-  preSelectObject(graph, obj, x, y) {
-    this.preSelectNone(graph, x, y);
+  preSelectObject(event, graph, obj, x, y) {
+    this.preSelectNone(event, graph, x, y);
     return true;
   }
 
   // Anticipate Dragging
-  preSelectNone(graph, x, y) {
+  preSelectNone(event, graph, x, y) {
     if (this.target !== null && this.target.showTextCtrl === true && this.onCtrl === false) {
       let xd = this.target.xText - x;
       let yd = this.target.yText - y;
@@ -139,13 +139,13 @@ export class MetadataTool extends Tool {
     }
   }
 
-  preDragObject(graph, srcObj, x, y) {
-    this.preDragNone(graph, x, y);
+  preDragObject(event, graph, srcObj, x, y) {
+    this.preDragNone(event, graph, x, y);
     return false;
   }
 
   // Start Dragging
-  preDragNone(graph, x, y) {
+  preDragNone(event, graph, x, y) {
     if (this.target !== null && this.target.showTextCtrl === true && this.onCtrl === true) {
       this.dragging = true;
       console.log("Dragging Label Control Point");
@@ -153,21 +153,21 @@ export class MetadataTool extends Tool {
   }
 
   // All of the Mouse-Up functions need to disable our non-standard dragging.
-  dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {
-    this.abortSelect(graph, x, y);
+  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
+    this.abortSelect(event, graph, x, y);
   }
 
   dropOnNone(graph, droppedObj, startX, startY, x, y) {
-    this.abortSelect(graph, x, y);
+    this.abortSelect(event, graph, x, y);
   }
 
-  abortSelect(graph, x, y) {
+  abortSelect(event, graph, x, y) {
     this.onCtrl = false;
     this.dragging = false;
   }
 
   // This tool can select both nodes and edges.
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     this.onCtrl = false;
     this.dragging = false;
     if (obj instanceof Node) {
@@ -177,12 +177,12 @@ export class MetadataTool extends Tool {
     }
   }
 
-  selectNone(graph, x, y) {
+  selectNone(event, graph, x, y) {
     this.deselect();
   }
 
   // Drag the target object's label control point
-  dragNone(graph, startX, startY, x, y) {
+  dragNone(event, graph, startX, startY, x, y) {
     if (this.target !== null && this.dragging === true) {
       this.target.xText = x;
       this.target.yText = y;

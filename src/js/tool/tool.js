@@ -23,25 +23,25 @@ export class Tool {
   cancel() {}
 
   // mouse events on graph components
-  preSelectObject(graph, obj, x, y) {
+  preSelectObject(event, graph, obj, x, y) {
     return true;
   }
-  preDragObject(graph, srcObj, x, y) {
+  preDragObject(event, graph, srcObj, x, y) {
     return true;
   }
-  selectObject(graph, obj, x, y) {}
-  dragObject(graph, srcObj, startX, startY, x, y) {}
-  dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {}
-  dragOverObject(graph, obj, startX, startY, x, y) {
-    return this.dragNone(graph, startX, startY, x, y);
+  selectObject(event, graph, obj, x, y) {}
+  dragObject(event, graph, srcObj, startX, startY, x, y) {}
+  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {}
+  dragOverObject(event, graph, obj, startX, startY, x, y) {
+    return this.dragNone(event, graph, startX, startY, x, y);
   }
 
   // mouse events on empty space
-  abortSelect(graph, x, y) {}
-  preSelectNone(graph, x, y) {}
-  preDragNone(graph, x, y) {}
-  selectNone(graph, x, y) {}
-  dragNone(graph, startX, startY, x, y) {}
-  dropOnNone(graph, droppedObj, startX, startY, x, y) {}
+  abortSelect(event, graph, x, y) {}
+  preSelectNone(event, graph, x, y) {}
+  preDragNone(event, graph, x, y) {}
+  selectNone(event, graph, x, y) {}
+  dragNone(event, graph, startX, startY, x, y) {}
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {}
 
 }

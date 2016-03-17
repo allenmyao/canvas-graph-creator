@@ -7,14 +7,14 @@ export class SelectTool extends Tool {
   name = 'Select Tool';
   sidebarType = 'select';
 
-  selectObject(graph, obj, x, y) {
+  selectObject(event, graph, obj, x, y) {
     // UI.selectObject(obj);
     Sidebar.updateSidebar(obj);
   }
 
   // drag: multiselect?
 
-  selectNone(graph, x, y) {
+  selectNone(event, graph, x, y) {
     // UI.selectObject(graph);
     Sidebar.updateSidebar(graph);
   }
