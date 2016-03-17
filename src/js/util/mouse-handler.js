@@ -48,7 +48,6 @@ export class MouseHandler {
       } else {
         currentTool.dropOnNone(this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       }
-
       this.draggedObject = null;
     } else {
       // click
@@ -109,4 +108,5 @@ export class MouseHandler {
       }
     }
   }
+
 }

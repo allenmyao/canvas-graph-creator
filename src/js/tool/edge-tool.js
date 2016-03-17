@@ -2,10 +2,12 @@ import { Tool } from 'tool/tool';
 import { Node } from 'data/node/node';
 import { SolidEdge } from 'data/edge/solid-edge';
 import { DashedEdge } from 'data/edge/dashed-edge';
+import * as Sidebar from 'ui/sidebar';
 
 export class EdgeTool extends Tool {
 
   name = 'Edge Tool';
+  sidebarType = 'edge';
 
   currentMode = 'solid';
   static modes = {
@@ -48,6 +50,7 @@ export class EdgeTool extends Tool {
       //  this.deselect();
       //}
     }
+    Sidebar.updateSidebar();
   }
 
   selectObject(graph, obj, x, y) {

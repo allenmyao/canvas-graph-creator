@@ -9,7 +9,7 @@ let graph;
 function init() {
   graph = new Graph();
   Canvas.init(graph);
-  UI.init();
+  UI.init(graph);
   window.requestAnimationFrame(draw);
 }
 

@@ -6,6 +6,8 @@ import { EditNodeTool } from 'tool/editnode-tool';
 import { EditEdgeTool } from 'tool/editedge-tool';
 import { MetadataTool } from 'tool/metadata-tool';
 import { PanTool } from 'tool/pan-tool';
+import { SelectTool } from 'tool/select-tool';
+import * as Sidebar from 'ui/sidebar';
 
 // const TOOL_CLASS = 'tool';
 // const TOOL_NAME_ATTR = 'data-tool';
@@ -20,6 +22,7 @@ let toolMap = {
   erase: new EraseTool(),
   editnode: new EditNodeTool(),
   editedge: new EditEdgeTool(),
+  select: new SelectTool(),
   metadata: new MetadataTool(),
   pan: new PanTool()
 };
@@ -34,6 +37,7 @@ export function init() {
 
       let toolName = event.target.getAttribute('data-tool');
       currentTool = toolMap[toolName];
+      Sidebar.changeSidebar(currentTool.sidebarType);
 
       selectItem('tool', event.target);
 
