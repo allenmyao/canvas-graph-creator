@@ -1,28 +1,24 @@
 package driver;
-import java.awt.Image;
-import org.springframework.util.ResourceUtils;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.DataBufferInt;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.Arrays;
-
+import java.util.HashMap;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import static org.junit.Assert.*;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -31,19 +27,26 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.ImageUtils;
+
 public class Driver {
 	public static final String DEFAULT_BROWSER = "firefox";
 	
 	protected WebDriver driver;
 	protected String name;
 	protected WebElement canvas;
-
+	protected BufferedImage initialImage;
+	protected BufferedImage initialScreenshot;
+	protected HashMap<String, Point> elements;
+	
 	public Driver(){
 		this(System.getProperty("browser", DEFAULT_BROWSER));
 	}
 	
 	public Driver(String name) {
 		this.name = name;
+		
+		elements = new HashMap<String, Point>();
 
 		if(name.equals("firefox"))
 			driver = new FirefoxDriver();
@@ -52,6 +55,29 @@ public class Driver {
 		else
 			throw new RuntimeException("Unsupported browser " + name);
 	}
+	public void clickElement(String element)
+	{
+		Point coordinate = elements.get(element);
+		this.clickCanvas(coordinate.x, coordinate.y);
+	}
+	public void addElement(BufferedImage element, String name)
+	{
+		Point best = ImageUtils.bestMatch(element, initialScreenshot);
+		best.x += element.getWidth()/2;
+		best.y += element.getHeight()/2;
+		elements.put(name, best);
+	}
+	public void takeInitialScreenshot() throws IOException
+	{
+		initialImage = getCanvas();
+		initialScreenshot = getScreenshot();
+	}
+	public void assertScreenshot(String path) throws IOException, URISyntaxException {
+		BufferedImage diff = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+		BufferedImage expected = getResource(path);
+		assertTrue(ImageUtils.imageEquals(diff, expected));
+	}
+	
 	public void switchToFrame(String name)
 	{
 		driver.switchTo().frame(name);
@@ -61,35 +87,26 @@ public class Driver {
 
 		canvas = (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
 	}
-	public void click(int x, int y)
+	public void clickCanvas(int x, int y)
 	{
+		
 		new Actions(driver).moveToElement(canvas, x, y).click().build().perform();   
 	}
-	public void click(String xPath, int x, int y)
+	public void clickCanvas(String xPath, int x, int y)
 	{
 		new Actions(driver).moveToElement(driver.findElement(By.xpath(xPath)), x, y).click().build().perform();
 	}
+	
 	public BufferedImage getResource(String path) throws URISyntaxException, IOException
 	{
-		
 		File file = new File(path);
 		if(!file.exists())
 		{
 			System.err.println(path + " does not exist, creating file from screenshot");
-			FileUtils.copyFile(getScreenshotAsFile(), file);
+			BufferedImage difference = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+			ImageIO.write(difference, "png", file);
 		}
 		return ImageIO.read(file);
-	}
-	public void assertScreenshot(String path) throws IOException, URISyntaxException {		
-		DataBufferByte dbActual = (DataBufferByte)getScreenshot().getRaster().getDataBuffer();
-		DataBufferByte dbExpected = (DataBufferByte)getResource(path).getRaster().getDataBuffer();
-		
-		for (int bank = 0; bank < dbActual.getNumBanks(); bank++) {
-		   byte[] actual = dbActual.getData(bank);
-		   byte[] expected = dbExpected.getData(bank);
-
-		   assertTrue(Arrays.equals(actual, expected));
-		}
 	}
 
 	public void close() 
@@ -109,20 +126,37 @@ public class Driver {
 	        }
 	    });
 	}
+
+	public void assertContains(BufferedImage template, int count) throws IOException
+	{
+		BufferedImage screenshot = this.getScreenshot();
+		assertEquals(count, ImageUtils.templateMatch(template, screenshot).size());
+	}
+	
 	public void loadSite(String website) {
 		waitUntilLoaded();
 		driver.get(website);
+		driver.manage().window().maximize();
 	}
-	public String getScreenshotAsString()
+	private BufferedImage getScreenshot() throws IOException
 	{
-		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+		TakesScreenshot screenshot=(TakesScreenshot)driver; 
+        byte[] arrScreen = screenshot.getScreenshotAs(OutputType.BYTES);
+        return ImageIO.read(new ByteArrayInputStream(arrScreen));
 	}
-	public BufferedImage getScreenshot() throws IOException
+	public BufferedImage cropCanvas(int x1, int y1, int x2, int y2) throws IOException
 	{
-		return ImageIO.read(getScreenshotAsFile());
+        BufferedImage image = getScreenshot();
+        
+        Point location = canvas.getLocation();
+        return image.getSubimage(location.x + x1, location.y + y1, location.x + x2, location.y + y2);
 	}
-	public File getScreenshotAsFile()
+	public BufferedImage getCanvas() throws IOException
 	{
-		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		BufferedImage image = getScreenshot();
+		
+		Dimension dimension = canvas.getRect().getDimension();
+		Point location = canvas.getLocation();
+		return image.getSubimage(location.x, location.y, location.x + dimension.width, location.y + dimension.height);
 	}
 }

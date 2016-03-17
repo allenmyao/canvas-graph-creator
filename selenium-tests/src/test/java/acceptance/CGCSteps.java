@@ -1,4 +1,5 @@
 package acceptance;
+import java.io.IOException;
 import java.util.HashMap;
 
 import cucumber.api.java.Before;
@@ -14,6 +15,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.CGC;
 import model.Node;
+import utils.Utils;
 
 public class CGCSteps {
 	public static String IFRAME_NAME = "iframe";
@@ -35,7 +37,7 @@ public class CGCSteps {
 	}
 	//and, bug, given, when
 	@Given("I navigate to the home page")
-	public void navigateTo()
+	public void navigateTo() throws IOException
 	{		
 		driver = CGC.create();
 	}
@@ -74,7 +76,7 @@ public class CGCSteps {
 	@Then("^.*there (?:is|are|should be) (.+) nodes?$")
 	public void checkNodes(String nodes) throws Throwable
 	{
-		driver.assertNodes(Utils.inNumerals(nodes));
+		driver.assertContains(CGC.NODE_IMAGE, Utils.inNumerals(nodes));
 	}
 
  /**
