@@ -1,5 +1,4 @@
 import * as UI from 'ui/ui';
-import * as Sidebar from 'ui/sidebar';
 
 export class MouseHandler {
 
@@ -28,12 +27,11 @@ export class MouseHandler {
       let component = this.graph.getComponent(x, y);
       if (currentTool.preSelectObject(event, this.graph, component, x, y)) {
         this.selectedObject = component;
-        this.clickStartX = this.selectedObject.x;
-        this.clickStartY = this.selectedObject.y;
       } else {
         this.selectedObject = null;
       }
     } else {
+      currentTool.preSelectNone(this.graph, x, y);
       this.selectedObject = null;
     }
   }
@@ -50,7 +48,6 @@ export class MouseHandler {
       } else {
         currentTool.dropOnNone(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       }
-
       this.draggedObject = null;
     } else {
       // click
@@ -64,13 +61,12 @@ export class MouseHandler {
         } else {
           currentTool.selectNone(event, this.graph, x, y);
         }
+      } else {
+        currentTool.abortSelect(this.graph, x, y);
       }
     }
     this.mousePressed = false;
     this.selectedObject = null;
-
-    // placed on intuition:  graph is only ever updated outside of sidebar when mouse is let up
-    Sidebar.updateSidebar();
   }
 
   moveListener(event, currentTool, x, y) {
@@ -85,10 +81,15 @@ export class MouseHandler {
 
         if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
           this.isDragging = true;
-          if (this.selectedObject !== null && !currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {
-            this.selectedObject = null;
-            this.draggedObject = null;
+          if (this.selectedObject !== null) {
+            if (currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {
+              this.draggedObject = this.selectedObject;
+            } else {
+              this.selectedObject = null;
+              this.draggedObject = null;
+            }
           } else {
+            currentTool.preDragNone(this.graph, x, y);
             this.draggedObject = this.selectedObject;
           }
         }
@@ -107,4 +108,5 @@ export class MouseHandler {
       }
     }
   }
+
 }

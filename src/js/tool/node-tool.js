@@ -2,10 +2,12 @@ import { Tool } from 'tool/tool';
 import { Node } from 'data/node/node';
 import { CircleNode } from 'data/node/circle-node';
 import { SquareNode } from 'data/node/square-node';
+import * as Sidebar from 'ui/sidebar';
 
 export class NodeTool extends Tool {
 
   name = 'Node Tool';
+  sidebarType = 'node';
 
   currentMode = 'circle';
   static modes = {
@@ -29,6 +31,7 @@ export class NodeTool extends Tool {
     if (!graph.isNodeCollision(node, x, y)) {
       graph.addNode(node);
     }
+    Sidebar.updateSidebar();
   }
 
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
