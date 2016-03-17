@@ -76,9 +76,8 @@ public class CGC extends Driver{
 	
 
 	public void drawEdge(Node source, Node destination) {
-		//
-		//selectTool("//*[@id=\"tools-container\"]/ul/li[2]/div");
-		clickElement("edge tool");
+		selectTool("//*[@id=\"tools-container\"]/ul/li[2]/div");
+		//clickElement("edge tool");
 		if (source != selected)
 		{
 			deselect();

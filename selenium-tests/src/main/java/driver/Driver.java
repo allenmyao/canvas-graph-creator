@@ -136,6 +136,7 @@ public class Driver {
 	public void loadSite(String website) {
 		waitUntilLoaded();
 		driver.get(website);
+		driver.manage().window().maximize();
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
@@ -156,6 +157,6 @@ public class Driver {
 		
 		Dimension dimension = canvas.getRect().getDimension();
 		Point location = canvas.getLocation();
-		return image.getSubimage(location.x, location.y, dimension.width, dimension.height);
+		return image.getSubimage(location.x, location.y, location.x + dimension.width, location.y + dimension.height);
 	}
 }
