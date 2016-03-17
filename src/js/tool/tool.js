@@ -12,8 +12,14 @@ export class Tool {
     return false;
   }
 
-  // this is called when changing tools
-  // undo any incomplete actions
+  hasInputs() {
+    return false;
+  }
+
+  // These is called when changing tools
+  // Set up the interface
+  activate() {}
+  // Undo any incomplete actions
   cancel() {}
 
   // mouse events on graph components
@@ -31,6 +37,9 @@ export class Tool {
   }
 
   // mouse events on empty space
+  abortSelect(graph, x, y) {}
+  preSelectNone(graph, x, y) {}
+  preDragNone(graph, x, y) {}
   selectNone(graph, x, y) {}
   dragNone(graph, startX, startY, x, y) {}
   dropOnNone(graph, droppedObj, startX, startY, x, y) {}

@@ -4,6 +4,7 @@ import { MoveTool } from 'tool/move-tool';
 import { EraseTool } from 'tool/erase-tool';
 import { EditNodeTool } from 'tool/editnode-tool';
 import { EditEdgeTool } from 'tool/editedge-tool';
+import { MetadataTool } from 'tool/metadata-tool';
 import { PanTool } from 'tool/pan-tool';
 import { SelectTool } from 'tool/select-tool';
 import * as Sidebar from 'ui/sidebar';
@@ -21,8 +22,9 @@ let toolMap = {
   erase: new EraseTool(),
   editnode: new EditNodeTool(),
   editedge: new EditEdgeTool(),
-  pan: new PanTool(),
-  select: new SelectTool()
+  select: new SelectTool(),
+  metadata: new MetadataTool(),
+  pan: new PanTool()
 };
 let currentTool = toolMap.node;
 
@@ -31,7 +33,7 @@ export function init() {
 
   toolbar.addEventListener('click', (event) => {
     if (event.target.classList.contains('tool')) {
-      // currentTool.cancel();
+      currentTool.cancel();
 
       let toolName = event.target.getAttribute('data-tool');
       currentTool = toolMap[toolName];
@@ -40,6 +42,7 @@ export function init() {
       selectItem('tool', event.target);
 
       showModes();
+      currentTool.activate();
     }
   });
 
@@ -83,5 +86,16 @@ function showModes() {
   } else {
     // clear the modes
     modeList.innerHTML = '';
+  }
+
+  let inputList = document.getElementById('tool-inputs');
+  if (currentTool.hasInputs()) {
+    // populate inputs list
+    let html = currentTool.getInputHtml();
+    //console.log('Input HTML is '+html)
+    modeList.innerHTML = `<ul class="tool-input-list">${html}</ul>`;
+  } else {
+    // clear the inputs
+    inputList.innerHTML = '';
   }
 }
