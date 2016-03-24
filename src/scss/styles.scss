@@ -11,20 +11,20 @@ body {
   margin-top: 70px;
 }
 
-input:not([type="color"]),
+input,
 button,
 select,
 textarea {
+  max-width: 100%;
   border: 1px solid gray;
   padding: 5px;
+  font-size: 1rem;
   font-family: $font-family-sans-serif;
   @include border-radius($default-border-radius);
 }
 
 input[type="color"] {
-  border: 1px solid gray;
-  font-family: $font-family-sans-serif;
-  @include border-radius($default-border-radius);
+  padding: 0;
 }
 
 .col-2 {
