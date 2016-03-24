@@ -7,6 +7,15 @@ export class SquareNode extends Node {
   width = SquareNode.width;
   halfwidth = SquareNode.width / 2;
 
+  constructor(x, y) {
+    if (arguments.length < 2) {
+      throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
+    }
+    super(x, y);
+    //console.log("Square Node Ctor");
+    this.generateDefaultTextLocation();
+  }
+
   containsPoint(x, y) {
     return Math.abs(this.x - x) < this.halfwidth && Math.abs(this.y - y) < this.halfwidth;
   }
@@ -115,6 +124,8 @@ export class SquareNode extends Node {
   }
 
   draw(context) {
+    let xOffSet = 0;
+    let yOffSet = 0;
     context.fillStyle = 'white';
     context.strokeStyle = this.isSelected ? 'red' : 'black';
 
@@ -127,6 +138,20 @@ export class SquareNode extends Node {
     // Draw to the canvas
     // context.fill();
     context.stroke();
+
+
+    if(this.nodeLabel != ''){
+      context.font = "14px Arial"
+      context.fillStyle = "black";
+      context.fillText(this.nodeLabel, this.xText, this.yText);
+      if(this.showTextCtrl) {
+        context.fillStyle = "red";
+        context.beginPath();
+        context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
+        context.lineTo(this.xText, this.yText);
+        context.fill();
+      }
+    }
 
     if (this.isAcceptingState) {
       context.moveTo(this.x - this.halfwidth * 0.75, this.y - this.halfwidth * 0.75);
@@ -148,5 +173,13 @@ export class SquareNode extends Node {
       context.fill();
     }
   }
+
+  //find the starting point of our text box
+  generateDefaultTextLocation() {
+    this.xText = this.x + this.halfwidth + 4;
+    this.yText = this.y;
+    //console.log("Half: " + this.halfwidth + ", xText: " + this.xText + ", yText: " + this.yText);
+  }
+
 
 }

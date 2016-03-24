@@ -1,11 +1,9 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.io.File;
-import java.util.HashMap;
+import java.io.IOException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -19,7 +17,7 @@ import model.Node;
 public class ChromeTest {
 	private static CGC driver;
 	@BeforeClass
-	public static void setUp()
+	public static void setUp() throws IOException
 	{
 		driver = CGC.create(CGC.HOME_PAGE, "chrome");
 

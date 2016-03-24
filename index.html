@@ -51,6 +51,11 @@
               </div>
             </li>
             <li class="tool-listitem">
+                <div class="tool vcenter-wrapper" data-tool="metadata">
+                    <span class="vcenter">Edit Label</span>
+                </div>
+            </li>
+            <li class="tool-listitem">
               <div class="tool vcenter-wrapper" data-tool="pan">
                 <span class="vcenter">Pan</span>
               </div>
@@ -62,6 +67,9 @@
           <ul class="tool-mode-list">
             <li class="tool-mode"></li>
           </ul>
+        </div>
+
+        <div id="tool-inputs">
         </div>
       </div>
     </div>
@@ -103,6 +111,7 @@
             <label>Zoom: </label>
             <input type="text" id="zoom-input" value="100%" />
           </div>
+          <button type="button" id="reset-transform">Reset</button>
         </div>
       </div>
     </div>

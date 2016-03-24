@@ -37,6 +37,21 @@ export function setPosition(newDx, newDy) {
   UI.updateCanvasPosition(dx, dy);
 }
 
+export function getScale() {
+  return scale;
+}
+
+export function setScale(newScale) {
+  scale = newScale;
+  UI.updateZoom(scale);
+}
+
+export function reset() {
+  setPosition(0, 0);
+  setScale(1);
+  update();
+}
+
 function getCanvasX(event) {
   let canvasX = event.offsetX;
   let x = canvasX / scale + dx;

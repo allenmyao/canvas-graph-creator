@@ -7,16 +7,23 @@ function stop {
 
 function start {
 	stop
-	Xvfb :99 &
+	Xvfb :99 -screen 0 1600x2400x16 &
 	export DISPLAY=:99
-	npm install --no-bin-links > /dev/null
+	npm install
 	gulp &
+}
+function remove {
+	rm selenium-tests/src/test/resources/edge.png
+	rm selenium-tests/src/test/resources/integration.png
+	rm selenium-tests/src/test/resources/no_edge.png
 }
 
 if [[ "$1" = "start" ]]; then
 	start
 elif [[ "$1" = "stop" ]]; then
 	stop
+elif [[ "$1" = "remove" ]]; then
+	remove
 else
 	start
 	cd selenium-tests

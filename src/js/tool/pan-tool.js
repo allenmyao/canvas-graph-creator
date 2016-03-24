@@ -8,34 +8,36 @@ export class PanTool extends Tool {
   isPanning = false;
   startPosition = {};
 
-  dragObject(graph, srcObj, startX, startY, x, y) {
-    this.dragNone(graph, startX, startY, x, y);
+  dragObject(event, graph, srcObj, startX, startY, x, y) {
+    this.dragNone(event, graph, startX, startY, x, y);
   }
 
-  dropOnObject(graph, droppedObj, destObj, startX, startY, x, y) {
-    this.dropOnNone(graph, droppedObj, startX, startY, x, y);
+  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
+    this.dropOnNone(event, graph, droppedObj, startX, startY, x, y);
   }
 
-  dragNone(graph, startX, startY, x, y) {
+  dragNone(event, graph, startX, startY, x, y) {
     if (!this.isPanning) {
       this.isPanning = true;
 
       this.startPosition.dx = Canvas.getDx();
       this.startPosition.dy = Canvas.getDy();
+      this.startPosition.x = event.offsetX;
+      this.startPosition.y = event.offsetY;
     }
 
-    console.log(`${Canvas.getDx()}, ${Canvas.getDy()}`);
-    Canvas.setPosition(this.startPosition.dx - (x - startX), this.startPosition.dy - (y - startY));
+    let scale = Canvas.getScale();
 
-    console.log(`${Canvas.getDx()}, ${Canvas.getDy()}`);
-    // console.log(`${startX}, ${startY}`);
-    // console.log(`${x}, ${y}`);
+    Canvas.setPosition(this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale, this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale);
     Canvas.update();
   }
 
-  dropOnNone(graph, droppedObj, startX, startY, x, y) {
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
     if (this.isPanning) {
       this.isPanning = false;
+      let scale = Canvas.getScale();
+      Canvas.setPosition(this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale, this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale);
+      Canvas.update();
     }
   }
 
