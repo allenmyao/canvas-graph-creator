@@ -7,24 +7,28 @@ export class SidebarSelect extends SidebarContent {
   constructor(graph) {
     super(graph);
 
-    this.tabs.replaceTabs({
-      data: 'Data'
-    });
-
-    this.update();
-    this.tabs.selectTab('data');
-
     this.selectedObject = null;
 
     document.getElementById('sidebar').addEventListener('click', (event) => {
       if (event.target.classList.contains('save-data')) {
         let form = event.target.parentNode;
         let data = Form.getData(form);
+        console.log(this.selectedObject);
+        console.log(data);
         for (let name of Object.keys(data)) {
           this.selectedObject[name] = data[name];
         }
       }
     });
+  }
+
+  display() {
+    this.tabs.replaceTabs({
+      data: 'Data'
+    });
+
+    this.update();
+    this.tabs.selectTab('data');
   }
 
   update(obj) {
