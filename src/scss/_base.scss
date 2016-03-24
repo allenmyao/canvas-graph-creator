@@ -28,6 +28,14 @@ li {
   list-style: none;
 }
 
+fieldset {
+  display: block;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  min-width: min-content;
+}
+
 a,
 a:hover,
 a:visited {

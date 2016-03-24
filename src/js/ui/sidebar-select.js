@@ -29,94 +29,138 @@ export class SidebarSelect extends SidebarContent {
   displayGraph(graph) {
     return `
       <div class="data-container">
-        <ul class="data-list">
-          <li class="data-item">
-            <span class="label">Nodes</span>
-            <span class="value">${graph.nodes.size}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Edges</span>
-            <span class="value">${graph.edges.size}</span>
-          </li>
-        </ul>
+        <form class="data-list">
+          <fieldset class="data-item">
+            <span class="label col-2">Nodes</span>
+            <span class="value col-2">${graph.nodes.size}</span>
+          </fieldset>
+          <fieldset class="data-item">
+            <span class="label col-2">Edges</span>
+            <span class="value col-2">${graph.edges.size}</span>
+          </fieldset>
+        </form>
       </div>
     `;
   }
 
   displayNode(node) {
-    return `
-      <div class="data-container">
-        <ul class="data-list">
-          <li class="data-item">
-            <span class="label">ID</span>
-            <span class="value">${node.id}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Name</span>
-            <span class="value">${node.name}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">x</span>
-            <span class="value">${node.x}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">y</span>
-            <span class="value">${node.y}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Value</span>
-            <span class="value">${node.value}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Accepting state?</span>
-            <span class="value">${node.isAcceptingState}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Starting state?</span>
-            <span class="value">${node.isStartingState}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Outline</span>
-            <span class="value">${node.outline}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Fill</span>
-            <span class="value">${node.fill}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Line width</span>
-            <span class="value">${node.lineWidth}</span>
-          </li>
-        </ul>
-      </div>
-    `;
+    return this.createForm(node, [
+      {
+        type: 'id',
+        value: node.id,
+        displayName: 'ID'
+      },
+      {
+        type: 'string',
+        value: node.name,
+        displayName: 'Name'
+      },
+      {
+        type: 'number',
+        value: node.x,
+        displayName: 'x'
+      },
+      {
+        type: 'number',
+        value: node.y,
+        displayName: 'y'
+      },
+      {
+        type: 'number',
+        value: node.value,
+        displayName: 'Value'
+      },
+      {
+        type: 'boolean',
+        value: node.isAcceptingState,
+        displayName: 'Accepting State'
+      },
+      {
+        type: 'boolean',
+        value: node.isStartingState,
+        displayName: 'Starting State'
+      },
+      {
+        type: 'color',
+        value: node.outline,
+        displayName: 'Line Color'
+      },
+      {
+        type: 'color',
+        value: node.fill,
+        displayName: 'Fill Color'
+      },
+      {
+        type: 'color',
+        value: node.lineWidth,
+        displayName: 'Line Width'
+      }
+    ]);
   }
 
   displayEdge(edge) {
+    return this.createForm(edge, [
+      {
+        type: 'node',
+        value: `#${edge.startNode.id}: (${edge.startNode.x},${edge.startNode.y})`,
+        displayName: 'Start'
+      },
+      {
+        type: 'node',
+        value: `#${edge.destNode.id}: (${edge.destNode.x},${edge.destNode.y})`,
+        displayName: 'End'
+      },
+      {
+        type: 'number',
+        value: edge.cost,
+        displayName: 'Cost'
+      },
+      {
+        type: 'point',
+        value: `(${edge.bezierPoint.x}, ${edge.bezierPoint.y})`,
+        displayName: 'Bezier Point'
+      },
+      {
+        type: 'boolean',
+        value: edge.isDirected,
+        displayName: 'Directed'
+      }
+    ]);
+  }
+
+  createForm(object, fields) {
+    let html = '';
+
+    for (let field of fields) {
+      let fieldHtml;
+
+      let type = field.type;
+      let value = field.value;
+      if (type === 'number') {
+        fieldHtml = `<input type="number" name="${field}" value="${value}">`;
+      } else if (type === 'boolean') {
+        fieldHtml = `<input type="checkbox" name="${field}" ${value ? 'checked="true"' : ''}>`;
+      } else if (type === 'string') {
+        fieldHtml = `<input type="text" name="${field}" value="${value}">`;
+      } else if (type === 'color') {
+        fieldHtml = `<input type="color" name="${field}" value="${value}">`;
+      } else {
+        fieldHtml = `${value}`;
+      }
+
+      let displayName = field.displayName || field;
+      html += `
+        <fieldset class="data-item">
+          <span class="label col-2">${displayName}</span>
+          <span class="value col-2">${fieldHtml}</span>
+        </fieldset>`;
+    }
+
     return `
       <div class="data-container">
-        <ul class="data-list">
-          <li class="data-item">
-            <span class="label">Start node</span>
-            <span class="value">#${edge.startNode.id}: (${edge.startNode.x},${edge.startNode.y})</span>
-          </li>
-          <li class="data-item">
-            <span class="label">End node</span>
-            <span class="value">#${edge.destNode.id}: (${edge.destNode.x},${edge.destNode.y})</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Cost</span>
-            <span class="value">${edge.cost}</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Bezier Point</span>
-            <span class="value">(${edge.bezierPoint.x}, ${edge.bezierPoint.y})</span>
-          </li>
-          <li class="data-item">
-            <span class="label">Directed?</span>
-            <span class="value">${edge.isDirected}</span>
-          </li>
-        </ul>
+        <form class="data-list">
+          ${html}
+        </form>
       </div>
     `;
   }
