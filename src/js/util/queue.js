@@ -14,57 +14,68 @@ http://creativecommons.org/publicdomain/zero/1.0/legalcode
 /* Creates a new queue. A queue is a first-in-first-out (FIFO) data structure -
  * items are added to the end of the queue and removed from the front.
  */
-export default function Queue(){
+export default class Queue {
 
-  // initialise the queue and offset
-  var queue  = [];
-  var offset = 0;
+  constructor() {
+    // initialise the queue and offset
+    this.queue = [];
+    this.offset = 0;
+  }
 
-  // Returns the length of the queue.
-  this.getLength = function(){
-    return (queue.length - offset);
+  // Getter for size, allows access as a property)
+  get size() {
+    return this.queue.length - this.offset;
+  }
+
+  // Clear the queue
+  clear() {
+    this.queue = [];
+    this.offset = 0;
   }
 
   // Returns true if the queue is empty, and false otherwise.
-  this.isEmpty = function(){
-    return (queue.length == 0);
+  isEmpty() {
+    return this.queue.length === 0;
   }
 
   /* Enqueues the specified item. The parameter is:
    *
    * item - the item to enqueue
    */
-  this.enqueue = function(item){
-    queue.push(item);
+  enqueue(item) {
+    if (typeof item === 'undefined' || item === null) {
+      throw Error('Item must be defined and non-null');
+    }
+    this.queue.push(item);
   }
 
   /* Dequeues an item and returns it. If the queue is empty, the value
-   * 'undefined' is returned.
+   * 'null' is returned.
    */
-  this.dequeue = function(){
-
+  dequeue() {
     // if the queue is empty, return immediately
-    if (queue.length == 0) return undefined;
+    if (this.queue.length === 0) {
+      return null;
+    }
 
     // store the item at the front of the queue
-    var item = queue[offset];
+    let item = this.queue[this.offset];
 
     // increment the offset and remove the free space if necessary
-    if (++ offset * 2 >= queue.length){
-      queue  = queue.slice(offset);
-      offset = 0;
+    if (++this.offset * 2 >= this.queue.length) {
+      this.queue = this.queue.slice(this.offset);
+      this.offset = 0;
     }
 
     // return the dequeued item
     return item;
-
   }
 
   /* Returns the item at the front of the queue (without dequeuing it). If the
-   * queue is empty then undefined is returned.
+   * queue is empty then null is returned.
    */
-  this.peek = function(){
-    return (queue.length > 0 ? queue[offset] : undefined);
+  peek() {
+    return this.queue.length > 0 ? this.queue[this.offset] : null;
   }
 
 }
