@@ -1,3 +1,5 @@
+/* eslint no-unused-expressions: 0 */
+
 import chai from 'chai';
 chai.should();
 
@@ -6,9 +8,7 @@ import { Node } from '../src/js/data/node/node';
 import { Edge } from '../src/js/data/edge/edge';
 
 describe('Graph', () => {
-
   describe('#constructor(x, y)', () => {
-
     it('should accept iterable arguments', () => {
       let node1 = new Node(0, 0);
       let node2 = new Node(1, 0);
@@ -31,11 +31,9 @@ describe('Graph', () => {
       graph.nodes.size.should.equal(0);
       graph.edges.size.should.equal(0);
     });
-
   }); // #constructor(x, y)
 
   describe('#addNode(node)', () => {
-
     it('should add to nodes', () => {
       let graph = new Graph();
       let node = new Node(0, 0);
@@ -53,11 +51,9 @@ describe('Graph', () => {
       graph.addNode(node);
       graph.nodes.size.should.equal(1);
     });
-
   }); // #addNode(node)
 
   describe('removeNode(node)', () => {
-
     it('should remove from nodes', () => {
       let graph = new Graph();
       let node = new Node(0, 0);
@@ -95,16 +91,14 @@ describe('Graph', () => {
       graph.removeNode(badNode);
       graph.nodes.size.should.equal(1);
     });
-
   }); // #removeNode(node)
 
   describe('#addEdge(edge)', () => {
-
     it('should throw error when edge nodes are not in graph', () => {
       let graph = new Graph();
       let edge = new Edge(new Node(0, 0), new Node(1, 0));
       graph.edges.size.should.equal(0);
-      (function() {
+      (function () {
         graph.addEdge(edge);
       }).should.throw(Error);
     });
@@ -134,11 +128,9 @@ describe('Graph', () => {
       graph.addEdge(edge);
       graph.edges.size.should.equal(1);
     });
-
   }); // #addEdge(edge)
 
   describe('removeEdge(edge)', () => {
-
     it('should remove from edges', () => {
       let graph = new Graph();
       let node1 = new Node(0, 0);
@@ -158,13 +150,12 @@ describe('Graph', () => {
   }); // #removeEdge(edge)
 
   describe('#hasEdge(start, dest)', () => {
-
     it('should throw error if nodes are not in graph', () => {
       let graph = new Graph();
       let start = new Node(0, 0);
       let dest = new Node(100, 0);
       graph.addNode(start);
-      (function() {
+      (function () {
         graph.hasEdge(start, dest);
       }).should.throw(Error);
     });
@@ -172,7 +163,7 @@ describe('Graph', () => {
     it('should return true if has edge', () => {
       let graph = new Graph();
       let start = new Node(0, 0);
-      let dest = new Node(100, 0)
+      let dest = new Node(100, 0);
       let edge = new Edge(start, dest);
       graph.addNode(start);
       graph.addNode(dest);
@@ -183,18 +174,16 @@ describe('Graph', () => {
     it('should not add duplicate edge', () => {
       let graph = new Graph();
       let start = new Node(0, 0);
-      let dest = new Node(100, 0)
+      let dest = new Node(100, 0);
       let edge = new Edge(start, dest);
       graph.addNode(start);
       graph.addNode(dest);
       graph.addEdge(edge);
       graph.hasEdge(start, start).should.be.false;
     });
-
   }); // #hasEdge(start, dest)
 
   describe('#forEachNode(callback)', () => {
-
     it('should run callback(node) for each node', () => {
       let graph = new Graph();
       let nodeVisited = new Map();
@@ -209,7 +198,7 @@ describe('Graph', () => {
         nodeVisited.set(node, true);
       });
 
-      for (let [key, value] of nodeVisited) {
+      for (let value of nodeVisited.values()) {
         value.should.be.true;
       }
     });
@@ -231,7 +220,7 @@ describe('Graph', () => {
         return false;
       });
 
-      for (let [key, value] of nodeVisited) {
+      for (let [ key, value ] of nodeVisited) {
         if (key === firstNode) {
           value.should.be.true;
         } else {
@@ -239,7 +228,5 @@ describe('Graph', () => {
         }
       }
     });
-
   }); // #forEachNode(callback)
-
 }); // Graph
