@@ -29,7 +29,7 @@ gulp.task('build', [ 'webpack:build' ]);
 
 
 gulp.task('lint', () => {
-  gulp.src(SRC_FILES)
+  gulp.src([ SRC_FILES, TEST_FILES ])
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.format('checkstyle', function (results) {
