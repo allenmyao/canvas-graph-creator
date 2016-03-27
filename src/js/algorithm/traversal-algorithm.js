@@ -1,9 +1,9 @@
-import Queue from '/src/js/util/queue';
-import Stack from '/src/js/util/stack';
-import Node from '/src/js/data/node/node';
-import Edge from '/src/js/data/edge/edge';
+import Queue from 'util/queue';
+import Stack from 'util/stack';
+import Node from 'data/node/node';
+import Edge from 'data/edge/edge';
 
-export class TraversalAlgorithm {
+export default class TraversalAlgorithm {
 
   // starting point for the algorithm
   source = null;
@@ -21,6 +21,14 @@ export class TraversalAlgorithm {
   graphState = new WeakMap();
   // completion flag
   isComplete = false;
+
+  input = {
+    source: {
+      type: Node,
+      test: (node) => node instanceof Node,
+      required: true
+    }
+  };
 
   constructor(graph) {
     this.graph = graph;
