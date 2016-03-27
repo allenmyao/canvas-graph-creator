@@ -2,18 +2,55 @@
 // how does timekeeping work in javascript?
 
 export class Stepper {
-  constructor() {
 
+  algorithm;
+  speed = 1000;
+  interval;
+  isComplete = false;
+
+  constructor() {
   }
 
-  stepBack() {}
+  reset() {
+    this.pause();
+    this.isComplete = false;
+    this.algorithm = null;
+  }
 
-  stepForward() {}
+  setAlgorithm(algorithm) {
+    this.reset();
+    this.algorithm = algorithm;
+  }
 
-  pause() {}
+  stepBack() {
+    this.algorithm.previous();
+  }
 
-  play() {}
+  stepForward() {
+    this.algorithm.next();
+  }
 
-  setSpeed(speed) {}
+  pause() {
+    clearInterval(this.interval);
+  }
+
+  play() {
+    let hasNext = true;
+
+    this.interval = setInterval(() => {
+      if (!this.algorithm.isComplete) {
+        hasNext = this.algorithm.next();
+        if (!hasNext) {
+          this.pause();
+        }
+      } else {
+        this.pause();
+      }
+    }, this.speed);
+  }
+
+  setSpeed(speed) {
+    this.speed = speed;
+  }
 
 }
