@@ -1,15 +1,35 @@
 import { Tool } from 'tool/tool';
 import { Node } from 'data/node/node';
-import * as Sidebar from 'ui/sidebar';
+import TraversalAlgorithm from 'algorithm/traversal-algorithm';
+import * as AlgorithmInterface from 'ui/algorithm';
 
 export class AlgorithmTool extends Tool {
 
   name = 'Algorithm Tool';
-  sidebarType = 'select';
+  sidebarType = 'algorithm';
+
+  currentMode = 'traversal';
+  static modes = {
+    traversal: TraversalAlgorithm
+  };
+
+  constructor(icon) {
+    super(icon);
+    this.changeMode(this.currentMode);
+  }
+
+  hasModes() {
+    return true;
+  }
+
+  changeMode(mode) {
+    this.currentMode = mode;
+    AlgorithmInterface.setAlgorithm(AlgorithmTool.modes[mode]);
+  }
 
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
-      Sidebar.updateSidebar(obj);
+      AlgorithmInterface.selectObject(obj);
     }
   }
 

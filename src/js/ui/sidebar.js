@@ -1,6 +1,7 @@
 import { SidebarNode } from 'ui/sidebar-node';
 import { SidebarEdge } from 'ui/sidebar-edge';
 import { SidebarSelect } from 'ui/sidebar-select';
+import { SidebarAlgorithm } from 'ui/sidebar-algorithm';
 
 let sidebar;
 let content;
@@ -31,7 +32,8 @@ export function init(graph) {
   sidebarContent = {
     node: new SidebarNode(graph),
     edge: new SidebarEdge(graph),
-    select: new SidebarSelect(graph)
+    select: new SidebarSelect(graph),
+    algorithm: new SidebarAlgorithm(graph)
   };
   changeSidebar('select');
 }
@@ -43,6 +45,10 @@ export function changeSidebar(type) {
 
 export function getSidebar() {
   return sidebar;
+}
+
+export function getContent() {
+  return content;
 }
 
 // Call the current sidebar-content class's update function
