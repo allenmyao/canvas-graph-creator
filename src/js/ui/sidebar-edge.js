@@ -3,7 +3,9 @@ import { SidebarContent } from 'ui/sidebar-content';
 export class SidebarEdge extends SidebarContent {
   constructor(graph) {
     super(graph);
+  }
 
+  display() {
     this.tabs.replaceTabs({
       edge: 'Edge'
     });
