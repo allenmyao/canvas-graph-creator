@@ -44,15 +44,6 @@ describe('Queue', () => {
     });
   });
 
-  describe('#isEmpty', () => {
-    it('should return true if queue is empty', () => {
-      let queue = new Queue();
-      (queue.isEmpty()).should.be.true;
-      queue.enqueue('test');
-      (queue.isEmpty()).should.be.false;
-    });
-  });
-
   describe('#enqueue', () => {
     it('should add item to queue', () => {
       let queue = new Queue();
@@ -148,6 +139,34 @@ describe('Queue', () => {
       queue.enqueue(item2);
       queue.peek();
       (queue.size).should.be.equal(2);
+    });
+  });
+
+  describe('#has', () => {
+    it('should throw error when checking null', () => {
+      let queue = new Queue();
+      (function () {
+        queue.has(null);
+      }).should.throw(Error);
+    });
+
+    it('should throw error when checking undefined', () => {
+      let queue = new Queue();
+      (function () {
+        queue.has();
+      }).should.throw(Error);
+    });
+
+    it('should return true if item is in queue', () => {
+      let queue = new Queue();
+      queue.enqueue('test');
+      (queue.has('test')).should.be.true;
+    });
+
+    it('should return false if item is not in queue', () => {
+      let queue = new Queue();
+      queue.enqueue('test');
+      (queue.has('testtest')).should.be.false;
     });
   });
 });

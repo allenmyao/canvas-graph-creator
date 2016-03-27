@@ -1,15 +1,6 @@
 /*
-
-Queue.js
-
-A function to represent a queue
-
-Created by Stephen Morley - http://code.stephenmorley.org/ - and released under
-the terms of the CC0 1.0 Universal legal code:
-
-http://creativecommons.org/publicdomain/zero/1.0/legalcode
-
-*/
+ * Based on Queue.js by Stephen Morley - http://code.stephenmorley.org/
+ */
 
 /* Creates a new queue. A queue is a first-in-first-out (FIFO) data structure -
  * items are added to the end of the queue and removed from the front.
@@ -31,11 +22,6 @@ export default class Queue {
   clear() {
     this.queue = [];
     this.offset = 0;
-  }
-
-  // Returns true if the queue is empty, and false otherwise.
-  isEmpty() {
-    return this.queue.length === 0;
   }
 
   /* Enqueues the specified item. The parameter is:
@@ -76,6 +62,18 @@ export default class Queue {
    */
   peek() {
     return this.queue.length > 0 ? this.queue[this.offset] : null;
+  }
+
+  has(item) {
+    if (typeof item === 'undefined' || item === null) {
+      throw Error('Item must be defined and non-null');
+    }
+    for (let i = this.offset; i < this.queue.length; i++) {
+      if (this.queue[i] === item) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

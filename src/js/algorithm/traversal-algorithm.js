@@ -33,7 +33,7 @@ export class TraversalAlgorithm {
     // add adjacent edges to the queue
     let edges = node.edges;
     for (let edge of edges) {
-      if (this.hasVisited(edge)) {
+      if (this.hasVisited(edge) || this.queue.has(edge)) {
         continue;
       }
       if (edge.isDirected && edge.srcNode === node) {
@@ -50,9 +50,9 @@ export class TraversalAlgorithm {
     this.graphState.put(edge, true);
 
     // add adjacent node to the queue
-    if (!this.hasVisited(edge.destNode)) {
+    if (!this.hasVisited(edge.destNode) && !this.queue.has(edge.destNode)) {
       this.queue.enqueue(edge.destNode);
-    } else if (!this.hasVisited(edge.srcNode) && !edge.isDirected) {
+    } else if (!this.hasVisited(edge.srcNode) && !edge.isDirected && !this.queue.has(edge.srcNode)) {
       this.queue.enqueue(edge.srcNode);
     }
   }
@@ -69,7 +69,7 @@ export class TraversalAlgorithm {
 
   // run the next step of the algorithm
   next() {
-    if (this.queue.isEmpty()) {
+    if (this.queue.size === 0) {
       console.log('Traversal has finished');
       this.isComplete = true;
       return false;
