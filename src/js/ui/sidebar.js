@@ -4,7 +4,8 @@ import { SidebarSelect } from 'ui/sidebar-select';
 
 let sidebar;
 let content;
-let UIgraph;
+
+let sidebarContent;
 
 /*
 
@@ -26,19 +27,18 @@ tools must have an associated sidebar type
 */
 
 export function init(graph) {
-  UIgraph = graph;
   sidebar = document.getElementById('sidebar');
-  content = new SidebarNode(graph);
+  sidebarContent = {
+    node: new SidebarNode(graph),
+    edge: new SidebarEdge(graph),
+    select: new SidebarSelect(graph)
+  };
+  changeSidebar('select');
 }
 
 export function changeSidebar(type) {
-  if (type === 'node') {
-    content = new SidebarNode(UIgraph);
-  } else if (type === 'edge') {
-    content = new SidebarEdge(UIgraph);
-  } else if (type === 'select') {
-    content = new SidebarSelect(UIgraph);
-  }
+  content = sidebarContent[type];
+  content.display();
 }
 
 export function getSidebar() {

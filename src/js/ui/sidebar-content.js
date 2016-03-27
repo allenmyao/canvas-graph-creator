@@ -11,6 +11,7 @@ import { Tabs } from 'ui/tabs';
 export class SidebarContent {
   constructor(graph) {
     let methods = [
+      'display',
       'update'
     ];
 
