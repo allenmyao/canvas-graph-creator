@@ -1,9 +1,11 @@
 import Queue from 'util/queue';
 import Stack from 'util/stack';
-import Node from 'data/node/node';
-import Edge from 'data/edge/edge';
+import { Node } from 'data/node/node';
+import { Edge } from 'data/edge/edge';
 
 export default class TraversalAlgorithm {
+
+  name = 'Traversal';
 
   // starting point for the algorithm
   source = null;
@@ -22,10 +24,15 @@ export default class TraversalAlgorithm {
   // completion flag
   isComplete = false;
 
-  input = {
+  hasStarted = false;
+
+  inputs = {
     source: {
-      type: Node,
-      test: (node) => node instanceof Node,
+      type: 'node',
+      name: 'Source',
+      test: (node) => {
+        return node instanceof Node;
+      },
       required: true
     }
   };
@@ -41,7 +48,7 @@ export default class TraversalAlgorithm {
   // visit the specified node
   visitNode(node) {
     // mark node as visited
-    this.graphState.put(node, true);
+    this.graphState.set(node, true);
 
     // add adjacent edges to the queue
     let edges = node.edges;
@@ -60,7 +67,7 @@ export default class TraversalAlgorithm {
   // visit the specified edge
   visitEdge(edge) {
     // mark edge as visited
-    this.graphState.put(edge, true);
+    this.graphState.set(edge, true);
 
     // add adjacent node to the queue
     if (!this.hasVisited(edge.destNode) && !this.queue.has(edge.destNode)) {
@@ -77,28 +84,37 @@ export default class TraversalAlgorithm {
 
   // undo visit of the specified node
   unVisitNode(node) {
-    this.graphState.put(node, false);
+    this.graphState.set(node, false);
   }
   // undo visit of the specified edge
   unVisitEdge(edge) {
-    this.graphState.put(edge, false);
+    this.graphState.set(edge, false);
   }
 
   // run the next step of the algorithm
   next() {
-    if (this.queue.size === 0) {
+    if (this.hasStarted && this.queue.size === 0) {
       console.log('Traversal has finished');
       this.isComplete = true;
       return false;
     }
 
     let nextItem;
-    if (this.nextStack.size === 0) {
-      nextItem = this.queue.dequeue();
+
+    if (this.hasStarted) {
+      if (this.nextStack.size === 0) {
+        nextItem = this.queue.dequeue();
+      } else {
+        nextItem = this.nextStack.pop();
+      }
+      this.stack.push(nextItem);
     } else {
-      nextItem = this.nextStack.pop();
+      this.hasStarted = true;
+      nextItem = this.source;
     }
-    this.stack.push(nextItem);
+
+    console.log(nextItem);
+
     if (nextItem instanceof Node) {
       this.visitNode(nextItem);
     } else if (nextItem instanceof Edge) {
