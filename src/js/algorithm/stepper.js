@@ -4,11 +4,15 @@
 export default class Stepper {
 
   algorithm;
-  speed = 1000;
+  speed = 100;
   interval;
   isComplete = false;
 
   constructor() {
+  }
+
+  getAlgorithm() {
+    return this.algorithm;
   }
 
   reset() {
@@ -31,6 +35,7 @@ export default class Stepper {
   }
 
   pause() {
+    console.log('paused');
     clearInterval(this.interval);
   }
 
@@ -38,8 +43,14 @@ export default class Stepper {
     let hasNext = true;
 
     this.interval = setInterval(() => {
+      console.log('step');
       if (!this.algorithm.isComplete) {
-        hasNext = this.algorithm.next();
+        try {
+          hasNext = this.algorithm.next();
+        } catch (e) {
+          console.error(e.stack);
+          this.pause();
+        }
         if (!hasNext) {
           this.pause();
         }

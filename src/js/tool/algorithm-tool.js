@@ -8,14 +8,13 @@ export class AlgorithmTool extends Tool {
   name = 'Algorithm Tool';
   sidebarType = 'algorithm';
 
-  currentMode = 'traversal';
+  currentMode = '';
   static modes = {
     traversal: TraversalAlgorithm
   };
 
-  constructor(icon) {
-    super(icon);
-    this.changeMode(this.currentMode);
+  activate() {
+    this.currentMode = '';
   }
 
   hasModes() {
