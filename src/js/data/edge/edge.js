@@ -26,7 +26,7 @@ import { Node } from '../node/node';
 export class Edge {
 
   static numEdges = 0;
-  id = Node.numEdges++;
+  id = Edge.numEdges++;
   isSelected = false;
   edgeLabel = '';
 
@@ -55,7 +55,7 @@ export class Edge {
 
     startNode.edges.add(this);
     destNode.edges.add(this);
-    
+
 
     if (this.startNode.id === this.destNode.id) {
       if(this.startNode instanceof CircleNode) {
