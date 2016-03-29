@@ -9,6 +9,7 @@ before_install:
 before_script:
   - npm install -g gulp
   - npm install -g codeclimate-test-reporter
+  - npm install
 
 script: 
   - gulp &
