@@ -161,7 +161,9 @@ public class Driver {
 	public void loadSite(String website) {
 		waitUntilLoaded();
 		driver.get(website);
-		//driver.manage().window().maximize();
+		driver.manage().window().maximize();
+		driver.manage().window().setPosition(new Point(0,0));
+		driver.manage().window().setSize(new Dimension(1600,2400));
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
