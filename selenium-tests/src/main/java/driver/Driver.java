@@ -65,7 +65,7 @@ public class Driver {
 	}
 	private WebDriver createRemoteDriver(String name) {
 		name = name.replaceFirst("remote-", "");
-		DesiredCapabilities caps = DesiredCapabilities.firefox();
+		DesiredCapabilities caps = DesiredCapabilities.chrome();
 	    caps.setCapability("platform", "Windows XP");
 	    caps.setCapability("version", "43.0");
 	    caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
