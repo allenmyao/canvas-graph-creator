@@ -1,17 +1,36 @@
-language: node_js
+language: java
 
 node_js:
-  - "5"
+  - node
+
+before_install:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x2400x16"
 
 before_script:
   - npm install -g gulp
   - npm install -g codeclimate-test-reporter
 
-script: gulp test
+script: 
+  - gulp &
+  - cd selenium-tests
+  - mvn test
+  - cd ..
 
 after_script:
+  - fuser -k 8080/tcp > /dev/null
   - codeclimate-test-reporter < coverage/lcov/lcov.info
 
+notifications:
+  email:
+    recipients:
+      - ndlu2@illinois.edu
+
+    on_success: [change]
+    on_failure: [change]
+
 addons:
-    code_climate:
-        repo_token: f5f805b760659243b4a91da98dbd6f2da835a96bf80cc8f1d534ab153e355b76
+  code_climate:
+      repo_token: f5f805b760659243b4a91da98dbd6f2da835a96bf80cc8f1d534ab153e355b76
+  apt:
+    packages:
+    - libopencv-dev
