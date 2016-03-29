@@ -1,6 +1,17 @@
 language: node_js
+
 node_js:
   - "5"
+
 before_script:
   - npm install -g gulp
-script: gulp
+  - npm install -g codeclimate-test-reporter
+
+script: gulp test
+
+after_script:
+  - codeclimate-test-reporter < lcov.info
+
+addons:
+    code_climate:
+        repo_token: f5f805b760659243b4a91da98dbd6f2da835a96bf80cc8f1d534ab153e355b76
