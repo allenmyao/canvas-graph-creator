@@ -36,7 +36,7 @@ public class Driver {
 	//#TODO load from file
 	public static final String USERNAME = "ndlu2";
 	public static final String ACCESS_KEY = "33c20a60-7ce1-4f75-964a-86f2f651f118";
-	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:4445/wd/hub";
 	
 	protected WebDriver driver;
 	protected String name;
