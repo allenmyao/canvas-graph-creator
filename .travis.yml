@@ -1,7 +1,7 @@
-language: java
+language: node_js
 
 node_js:
-  - "node"
+  - "5"
 
 before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x2400x16"
@@ -35,6 +35,7 @@ addons:
   apt:
     packages:
     - libopencv-dev
+    - maven
   sauce_connect:
     username: "ndlu2"
     access_key: "33c20a60-7ce1-4f75-964a-86f2f651f118"
