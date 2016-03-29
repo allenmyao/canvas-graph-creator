@@ -7,6 +7,8 @@ export default class TraversalAlgorithm {
 
   name = 'Traversal';
 
+  // store reference to the graph
+  graph;
   // starting point for the algorithm
   source = null;
   // history of changes to the graphState
@@ -45,6 +47,14 @@ export default class TraversalAlgorithm {
     this.source = source;
   }
 
+  getHistory() {
+    return this.stack;
+  }
+
+  getQueue() {
+    return this.queue;
+  }
+
   // visit the specified node
   visitNode(node) {
     // mark node as visited
@@ -56,7 +66,7 @@ export default class TraversalAlgorithm {
       if (this.hasVisited(edge) || this.queue.has(edge)) {
         continue;
       }
-      if (edge.isDirected && edge.srcNode === node) {
+      if (edge.isDirected && edge.startNode === node) {
         this.queue.enqueue(edge);
       } else {
         this.queue.enqueue(edge);
@@ -72,8 +82,8 @@ export default class TraversalAlgorithm {
     // add adjacent node to the queue
     if (!this.hasVisited(edge.destNode) && !this.queue.has(edge.destNode)) {
       this.queue.enqueue(edge.destNode);
-    } else if (!this.hasVisited(edge.srcNode) && !edge.isDirected && !this.queue.has(edge.srcNode)) {
-      this.queue.enqueue(edge.srcNode);
+    } else if (!this.hasVisited(edge.startNode) && !edge.isDirected && !this.queue.has(edge.startNode)) {
+      this.queue.enqueue(edge.startNode);
     }
   }
 
@@ -106,12 +116,13 @@ export default class TraversalAlgorithm {
         nextItem = this.queue.dequeue();
       } else {
         nextItem = this.nextStack.pop();
+        // TODO: check for revisit in visitNode and visitEdge; don't want to re-add adjacent items to queue
       }
-      this.stack.push(nextItem);
     } else {
       this.hasStarted = true;
       nextItem = this.source;
     }
+    this.stack.push(nextItem);
 
     console.log(nextItem);
 

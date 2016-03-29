@@ -27,10 +27,18 @@ export function setAlgorithm(AlgorithmClass) {
   sidebarContent.updateAlgorithm(algorithm);
 }
 
+export function updateAlgorithm(algorithm) {
+  let sidebarContent = Sidebar.getContent();
+  sidebarContent.updateHistory(algorithm.getHistory());
+  sidebarContent.updateQueue(algorithm.getQueue());
+}
+
 export function setInputs(inputData) {
   for (let name of Object.keys(inputData)) {
-    let value = inputData[name];
-    stepper.getAlgorithm()[name] = value;
+    if (name in inputs) {
+      let value = inputData[name];
+      stepper.getAlgorithm()[name] = value;
+    }
   }
 }
 
