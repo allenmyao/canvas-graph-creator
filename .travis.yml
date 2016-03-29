@@ -10,7 +10,7 @@ before_script:
 script: gulp test
 
 after_script:
-  - codeclimate-test-reporter < lcov.info
+  - codeclimate-test-reporter < coverage/lcov/lcov.info
 
 addons:
     code_climate:
