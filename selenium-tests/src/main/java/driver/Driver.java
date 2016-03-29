@@ -68,6 +68,9 @@ public class Driver {
 		DesiredCapabilities caps = DesiredCapabilities.firefox();
 	    caps.setCapability("platform", "Windows XP");
 	    caps.setCapability("version", "43.0");
+	    caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
+	    caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
+	    
 	    try{
 	    	return driver = new RemoteWebDriver(new URL(URL), caps);
 	    }catch(Exception e)
