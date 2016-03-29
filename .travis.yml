@@ -3,9 +3,6 @@ language: node_js
 node_js:
   - "5"
 
-before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x2400x16"
-
 before_script:
   - npm install -g gulp
   - npm install -g codeclimate-test-reporter
@@ -13,6 +10,7 @@ before_script:
 
 script: 
   - gulp &
+  - sleep 30
   - cd selenium-tests
   - mvn test
   - cd ..
