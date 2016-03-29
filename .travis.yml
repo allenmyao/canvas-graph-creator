@@ -4,15 +4,13 @@ node_js:
   - "5"
 
 before_script:
-  - npm install -g gulp
-  - npm install -g codeclimate-test-reporter
-  - npm install
+  - npm install -g gulp codeclimate-test-reporter
 
 script: 
   - gulp &
   - sleep 30
   - cd selenium-tests
-  - mvn test
+  - mvn -q test
   - cd ..
 
 after_script:
@@ -33,7 +31,4 @@ addons:
   apt:
     packages:
     - libopencv-dev
-    - maven
-  sauce_connect:
-    username: "ndlu2"
-    access_key: "33c20a60-7ce1-4f75-964a-86f2f651f118"
+  sauce_connect: true
