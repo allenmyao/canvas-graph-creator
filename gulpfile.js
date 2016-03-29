@@ -48,7 +48,9 @@ gulp.task('lint', () => {
 gulp.task('test', [ 'lint' ], (cb) => {
   mergeStream(
     gulp.src([ SRC_FILES ])
-      .pipe(istanbul()),
+      .pipe(istanbul({
+        includeUntested: true
+      })),
     gulp.src([ TEST_FILES ])
       .pipe(babel())
   ).pipe(istanbul.hookRequire())
@@ -57,7 +59,6 @@ gulp.task('test', [ 'lint' ], (cb) => {
           .pipe(mocha())
           .pipe(istanbul.writeReports({
             dir: './coverage',
-            includeUntested: true,
             reporters: [ 'clover', 'lcov', 'text', 'text-summary' ],
             reportOpts: {
               clover: {
