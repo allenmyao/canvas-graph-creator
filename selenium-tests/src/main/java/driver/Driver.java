@@ -7,8 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -23,6 +23,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,7 +32,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ImageUtils;
 
 public class Driver {
-	public static final String DEFAULT_BROWSER = "firefox";
+	public static final String DEFAULT_BROWSER = "remote-firefox";
+	//#TODO load from file
+	public static final String USERNAME = "ndlu2";
+	public static final String ACCESS_KEY = "33c20a60-7ce1-4f75-964a-86f2f651f118";
+	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 	
 	protected WebDriver driver;
 	protected String name;
@@ -48,13 +54,29 @@ public class Driver {
 		
 		elements = new HashMap<String, Point>();
 
-		if(name.equals("firefox"))
+		if(name.contains("remote"))
+			driver = createRemoteDriver(name);
+		else if(name.equals("firefox"))
 			driver = new FirefoxDriver();
 		else if(name.equals("chrome"))
 			driver = new ChromeDriver();
 		else
 			throw new RuntimeException("Unsupported browser " + name);
 	}
+	private WebDriver createRemoteDriver(String name) {
+		name = name.replaceFirst("remote-", "");
+		DesiredCapabilities caps = DesiredCapabilities.firefox();
+	    caps.setCapability("platform", "Windows XP");
+	    caps.setCapability("version", "43.0");
+	    try{
+	    	return driver = new RemoteWebDriver(new URL(URL), caps);
+	    }catch(Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
+		return null;
+	}
+
 	public void clickElement(String element)
 	{
 		Point coordinate = elements.get(element);
