@@ -1,5 +1,5 @@
 # Canvas Graphs Creator
-[![Test Coverage](https://codeclimate.com/github/ndlu2/canvas-graph-creator/badges/coverage.svg)](https://codeclimate.com/github/ndlu2/canvas-graph-creator/coverage) [![Issue Count](https://codeclimate.com/github/ndlu2/canvas-graph-creator/badges/issue_count.svg)](https://codeclimate.com/github/ndlu2/canvas-graph-creator)
+[![Build Status](https://travis-ci.org/ndlu2/canvas-graph-creator.svg?branch=master)](https://travis-ci.org/ndlu2/canvas-graph-creator) [![Test Coverage](https://codeclimate.com/github/ndlu2/canvas-graph-creator/badges/coverage.svg)](https://codeclimate.com/github/ndlu2/canvas-graph-creator/coverage) [![Issue Count](https://codeclimate.com/github/ndlu2/canvas-graph-creator/badges/issue_count.svg)](https://codeclimate.com/github/ndlu2/canvas-graph-creator)
 
 ## Building
 
