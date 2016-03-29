@@ -76,4 +76,12 @@ export default class Queue {
     return false;
   }
 
+  forEach(callback) {
+    for (let i = this.offset; i < this.queue.length; i++) {
+      if (callback(this.queue[i]) === false) {
+        break;
+      }
+    }
+  }
+
 }
