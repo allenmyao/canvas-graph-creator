@@ -41,7 +41,7 @@ public class Driver {
 	protected WebDriver driver;
 	protected String name;
 	protected WebElement canvas;
-	protected BufferedImage initialImage;
+	//protected BufferedImage initialImage;
 	protected BufferedImage initialScreenshot;
 	protected HashMap<String, Point> elements;
 	
@@ -94,11 +94,12 @@ public class Driver {
 	}
 	public void takeInitialScreenshot() throws IOException
 	{
-		initialImage = getCanvas();
+		//initialImage = getCanvas();
 		initialScreenshot = getScreenshot();
 	}
 	public void assertScreenshot(String path) throws IOException, URISyntaxException {
-		BufferedImage diff = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+		//BufferedImage diff = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+		BufferedImage diff = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());
 		BufferedImage expected = getResource(path);
 		assertTrue(ImageUtils.imageEquals(diff, expected));
 	}
@@ -128,7 +129,7 @@ public class Driver {
 		if(!file.exists())
 		{
 			System.err.println(path + " does not exist, creating file from screenshot");
-			BufferedImage difference = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+			BufferedImage difference = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());
 			ImageIO.write(difference, "png", file);
 		}
 		return ImageIO.read(file);
@@ -171,6 +172,7 @@ public class Driver {
         byte[] arrScreen = screenshot.getScreenshotAs(OutputType.BYTES);
         return ImageIO.read(new ByteArrayInputStream(arrScreen));
 	}
+	/*
 	public BufferedImage cropCanvas(int x1, int y1, int x2, int y2) throws IOException
 	{
         BufferedImage image = getScreenshot();
@@ -186,4 +188,5 @@ public class Driver {
 		Point location = canvas.getLocation();
 		return image.getSubimage(location.x, location.y, location.x + dimension.width, location.y + dimension.height);
 	}
+	*/
 }
