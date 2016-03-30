@@ -32,7 +32,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ImageUtils;
 
 public class Driver {
-	public static final String DEFAULT_BROWSER = "remote-firefox";
+	public static final String DEFAULT_BROWSER = "firefox";
 	//#TODO load from file
 	public static final String USERNAME = System.getenv("SAUCE_USERNAME");
 	public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -138,6 +138,7 @@ public class Driver {
 	public void close() 
 	{
 		driver.close();
+		driver.quit();
 	}
 	//http://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
 	public void waitUntilLoaded()

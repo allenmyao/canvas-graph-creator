@@ -10,7 +10,7 @@ script:
   - gulp &
   - sleep 30
   - cd selenium-tests
-  - mvn -q test
+  - mvn -q test -Dbrowser=remote-firefox
   - cd ..
 
 after_script:
