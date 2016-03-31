@@ -1,0 +1,41 @@
+language: node_js
+
+node_js:
+  - "5"
+
+env:
+  - CXX=g++-4.8
+
+before_script:
+  - npm install -g gulp codeclimate-test-reporter
+
+script: 
+  - gulp &
+  - sleep 30
+  - cd selenium-tests
+  - mvn -q test -Dbrowser=remote-firefox
+  - cd ..
+
+after_script:
+  - fuser -k 8080/tcp > /dev/null
+  - codeclimate-test-reporter < coverage/lcov/lcov.info
+
+notifications:
+  email:
+    recipients:
+      - ndlu2@illinois.edu
+
+    on_success: [change]
+    on_failure: [change]
+
+addons:
+  code_climate:
+      repo_token: f5f805b760659243b4a91da98dbd6f2da835a96bf80cc8f1d534ab153e355b76
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libopencv-dev
+      - g++-4.8
+
+  sauce_connect: true
