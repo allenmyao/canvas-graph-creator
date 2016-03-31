@@ -1,7 +1,6 @@
 import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from '../../util/curvedEdge';
 import { CircleNode } from '../node/circle-node';
 import { SquareNode } from '../node/square-node';
-import { Node } from '../node/node';
 
 /*
 * Edge Class
