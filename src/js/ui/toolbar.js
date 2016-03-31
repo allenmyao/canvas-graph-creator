@@ -94,7 +94,6 @@ function showModes() {
   if (currentTool.hasInputs()) {
     // populate inputs list
     let html = currentTool.getInputHtml();
-    //console.log('Input HTML is '+html)
     modeList.innerHTML = `<ul class="tool-input-list">${html}</ul>`;
   } else {
     // clear the inputs

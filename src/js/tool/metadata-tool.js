@@ -81,7 +81,7 @@ export class MetadataTool extends Tool {
           // First time showing the label? Position it.
           this.target.generateDefaultTextLocation();
         }
-        console.log("Editing Node Label at (" + this.target.xText + "," + this.target.yText + ")");
+        // console.log('Editing Node Label at (' + this.target.xText + ',' + this.target.yText + ')');
       } else if (this.target instanceof Edge) {
         this.target.edgeLabel = this.labelBox.value;
         let oldCtrl = this.target.showTextCtrl;
@@ -90,7 +90,7 @@ export class MetadataTool extends Tool {
           // First time showing the label? Position it.
           this.target.generateDefaultTextLocation();
         }
-        console.log("Editing Edge Label at (" + this.target.xText + "," + this.target.yText + ")");
+        // console.log('Editing Edge Label at (' + this.target.xText + ',' + this.target.yText + ')');
       }
     }
   }
@@ -100,7 +100,7 @@ export class MetadataTool extends Tool {
       this.deselect();
       this.target = node;
       this.target.isSelected = true;
-      node.showTextCtrl = (node.nodeLabel != '');
+      node.showTextCtrl = (node.nodeLabel !== '');
       this.labelBox.removeAttribute('disabled');
       this.labelBox.placeholder = 'Node Label';
       this.labelBox.value = node.nodeLabel;
@@ -113,7 +113,7 @@ export class MetadataTool extends Tool {
       this.deselect();
       this.target = edge;
       this.target.isSelected = true;
-      edge.showTextCtrl = (edge.edgeLabel != '');
+      edge.showTextCtrl = (edge.edgeLabel !== '');
       this.labelBox.removeAttribute('disabled');
       this.labelBox.placeholder = 'Edge Label';
       this.labelBox.value = edge.edgeLabel;
@@ -133,7 +133,7 @@ export class MetadataTool extends Tool {
       let yd = this.target.yText - y;
       let ds = (xd * xd + yd * yd);
       if (ds < 9) {
-        console.log("Pre-Selecting Label Control Point");
+        // console.log('Pre-Selecting Label Control Point');
         this.onCtrl = true;
       }
     }
@@ -148,7 +148,7 @@ export class MetadataTool extends Tool {
   preDragNone(event, graph, x, y) {
     if (this.target !== null && this.target.showTextCtrl === true && this.onCtrl === true) {
       this.dragging = true;
-      console.log("Dragging Label Control Point");
+      // console.log('Dragging Label Control Point');
     }
   }
 

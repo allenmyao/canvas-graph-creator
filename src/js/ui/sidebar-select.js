@@ -13,8 +13,6 @@ export class SidebarSelect extends SidebarContent {
       if (event.target.classList.contains('save-data')) {
         let form = event.target.parentNode;
         let data = Form.getData(form);
-        console.log(this.selectedObject);
-        console.log(data);
         for (let name of Object.keys(data)) {
           this.selectedObject[name] = data[name];
         }
