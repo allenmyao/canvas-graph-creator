@@ -24,13 +24,14 @@ notifications:
   email:
     recipients:
       - ndlu2@illinois.edu
+      - alleyao@gmail.com
 
     on_success: [change]
     on_failure: [change]
 
 addons:
   code_climate:
-      repo_token: f5f805b760659243b4a91da98dbd6f2da835a96bf80cc8f1d534ab153e355b76
+      repo_token: 871bafd173f6287c809f1460eca1b32082f5ed973b1ea9f8a00d044efc165d0a
   apt:
     sources:
       - ubuntu-toolchain-r-test
