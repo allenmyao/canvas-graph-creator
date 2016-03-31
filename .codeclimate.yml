@@ -1,0 +1,21 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 40
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "src/**.js"
+exclude_paths:
+- "*.*"
+- ".*"
+- test/
+- selenium-tests/
+- node_modules/
+- dist/
