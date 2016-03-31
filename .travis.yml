@@ -1,3 +1,4 @@
+sudo: false
 language: node_js
 
 node_js:
@@ -19,6 +20,10 @@ script:
 after_script:
   - fuser -k 8080/tcp > /dev/null
   - codeclimate-test-reporter < coverage/lcov/lcov.info
+
+cache:
+  directories:
+    - node_modules
 
 notifications:
   email:
