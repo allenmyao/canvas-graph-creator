@@ -19,7 +19,6 @@ export class Node {
 
 
   constructor(x, y) {
-    //console.log("Node Ctor");
     // new.target not supported by Babel
     // if (new.target === Node) {
     //     throw TypeError('Node class is abstract; cannot construct Node instances directly');
@@ -38,7 +37,7 @@ export class Node {
       }
     }
 
-    if (arguments.length < 2) {
+    if (typeof x === 'undefined' || typeof y === 'undefined') {
       throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
     }
     this.x = x;
@@ -73,8 +72,7 @@ export class Node {
     throw Error('Can\'t call methods from abstract Node class.');
   }
 
-
-  //find the starting point of our text box
+  // find the starting point of our text box
   generateDefaultTextLocation() {}
 
 }

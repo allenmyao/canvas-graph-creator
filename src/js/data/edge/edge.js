@@ -55,44 +55,43 @@ export class Edge {
 
     startNode.edges.add(this);
     destNode.edges.add(this);
-    
+
 
     if (this.startNode.id === this.destNode.id) {
-      if(this.startNode instanceof CircleNode) {
+      if (this.startNode instanceof CircleNode) {
         let angle = 247.5;
         let theta = Math.PI * angle / 180;
         let r = CircleNode.radius;
         this.startPoint = {
-          x: r*Math.cos(theta) + this.startNode.x,
-          y: r*Math.sin(theta) + this.startNode.y
+          x: r * Math.cos(theta) + this.startNode.x,
+          y: r * Math.sin(theta) + this.startNode.y
         };
         this.bezierPoint = {
-          x: 4*r*Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4*r*Math.sin(theta + Math.PI / 8) + this.startNode.y
+          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
+          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
         };
         this.destPoint = {
-          x: r*Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r*Math.sin(theta + Math.PI / 4) + this.startNode.y
+          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
+          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
         };
-      } else if(this.startNode instanceof SquareNode){
+      } else if (this.startNode instanceof SquareNode) {
         let w = SquareNode.width;
-        let hw = w/2;
+        let hw = w / 2;
         this.startPoint = {
-          x: this.startNode.x - hw/2,
+          x: this.startNode.x - hw / 2,
           y: this.startNode.y - hw
         };
         this.bezierPoint = {
           x: this.startNode.x,
-          y: this.startNode.y - 2*w
+          y: this.startNode.y - 2 * w
         };
-       this.destPoint = {
-         x: this.startNode.x + hw/2,
-         y: this.startNode.y - hw
-       }
+        this.destPoint = {
+          x: this.startNode.x + hw / 2,
+          y: this.startNode.y - hw
+        };
       }
       this.isDirected = true;
     } else {
-
       try {
         this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
         this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
@@ -171,43 +170,43 @@ export class Edge {
 
   updateEndpoints() {
     if (this.startNode.id === this.destNode.id) {
-      if(this.startNode instanceof CircleNode) {
+      if (this.startNode instanceof CircleNode) {
         let angle = 247.5;
         let theta = Math.PI * angle / 180;
         let r = CircleNode.radius;
         this.startPoint = {
-          x: r*Math.cos(theta) + this.startNode.x,
-          y: r*Math.sin(theta) + this.startNode.y
+          x: r * Math.cos(theta) + this.startNode.x,
+          y: r * Math.sin(theta) + this.startNode.y
         };
         let oldBezier = this.bezierPoint;
         this.bezierPoint = {
-          x: 4*r*Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4*r*Math.sin(theta + Math.PI / 8) + this.startNode.y
+          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
+          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
         };
         this.xText += (this.bezierPoint.x - oldBezier.x);
         this.yText += (this.bezierPoint.y - oldBezier.y);
         this.destPoint = {
-          x: r*Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r*Math.sin(theta + Math.PI / 4) + this.startNode.y
+          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
+          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
         };
-      } else if(this.startNode instanceof SquareNode){
+      } else if (this.startNode instanceof SquareNode) {
         let w = SquareNode.width;
-        let hw = w/2;
+        let hw = w / 2;
         this.startPoint = {
-          x: this.startNode.x - hw/2,
+          x: this.startNode.x - hw / 2,
           y: this.startNode.y - hw
         };
         let oldBezier = this.bezierPoint;
         this.bezierPoint = {
           x: this.startNode.x,
-          y: this.startNode.y - 2*w
+          y: this.startNode.y - 2 * w
         };
         this.xText += (this.bezierPoint.x - oldBezier.x);
         this.yText += (this.bezierPoint.y - oldBezier.y);
         this.destPoint = {
-          x: this.startNode.x + hw/2,
+          x: this.startNode.x + hw / 2,
           y: this.startNode.y - hw
-        }
+        };
       }
       this.isDirected = true;
     } else {
@@ -235,14 +234,14 @@ export class Edge {
     throw Error('Can\'t call draw from abstract Edge class.');
   }
 
-  //find the starting point of our text box
+  // find the starting point of our text box
   generateDefaultTextLocation() {
-    //var xOffSet = context.measureText(this.edgeLabel)/2;
-    //var yOffSet = 1; //assuming an edge is just 1 pixel
+    // var xOffSet = context.measureText(this.edgeLabel)/2;
+    // var yOffSet = 1; //assuming an edge is just 1 pixel
 
     this.xText = this.bezierPoint.x;
     this.yText = this.bezierPoint.y;
-    //console.log("Line xText: " + this.xText + ", yText: " + this.yText);
+    // console.log("Line xText: " + this.xText + ", yText: " + this.yText);
   }
 
 }

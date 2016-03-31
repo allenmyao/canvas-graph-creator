@@ -5,7 +5,7 @@ export class Graph {
   }
 
   addNode(node) {
-    console.log('Adding node at (' + node.x + ',' + node.y + ')');
+    // console.log('Adding node at (' + node.x + ',' + node.y + ')');
     this.nodes.add(node);
   }
 
@@ -14,12 +14,12 @@ export class Graph {
       throw new Error('Edge nodes are not in the graph');
     }
 
-    console.log('Adding edge between ' + edge.startNode.id + ' and ' + edge.destNode.id);
+    // console.log('Adding edge between ' + edge.startNode.id + ' and ' + edge.destNode.id);
     this.edges.add(edge);
   }
 
   removeNode(node) {
-    console.log('Removing node ' + node.id);
+    // console.log('Removing node ' + node.id);
     // Temp copy of edges to work on while we remove them
     let tempEdges = new Set();
     for (let edge of node.edges) {
@@ -32,7 +32,7 @@ export class Graph {
   }
 
   removeEdge(edge) {
-    console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
+    // console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
     this.edges.delete(edge);
     edge.detach();
   }

@@ -8,11 +8,7 @@ export class CircleNode extends Node {
   radius = CircleNode.radius;
 
   constructor(x, y) {
-    if (arguments.length < 2) {
-      throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
-    }
     super(x, y);
-    //console.log("Circle Node Ctor");
     this.generateDefaultTextLocation();
   }
 
@@ -43,8 +39,8 @@ export class CircleNode extends Node {
   }
 
   draw(context) {
-    let xOffSet = 0;
-    let yOffset = 0;
+    // let xOffSet = 0;
+    // let yOffset = 0;
     context.fillStyle = 'white';
     context.strokeStyle = this.isSelected ? 'red' : 'black';
 
@@ -57,13 +53,13 @@ export class CircleNode extends Node {
     // context.fill();
     context.stroke();
 
-    if(this.nodeLabel != ''){
-      //xOffSet = context.measureText(this.nodeLabel)/2;
-      context.font = "14px Arial"
-      context.fillStyle = "black";
+    if (this.nodeLabel !== '') {
+      // xOffSet = context.measureText(this.nodeLabel)/2;
+      context.font = '14px Arial';
+      context.fillStyle = 'black';
       context.fillText(this.nodeLabel, this.xText, this.yText);
-      if(this.showTextCtrl) {
-        context.fillStyle = "red";
+      if (this.showTextCtrl) {
+        context.fillStyle = 'red';
         context.beginPath();
         context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
         context.lineTo(this.xText, this.yText);
@@ -91,64 +87,54 @@ export class CircleNode extends Node {
       context.fill();
     }
   }
-  /*generateTextLocation(){
 
-    if(){//default (to the right)
+  /*
+  generateTextLocation(){
+
+    if () {
+      // default (to the right)
       this.xText = this.x + this.radius + 4;
-      this.yText = this.y; 
-    } 
-    else if(){
-    //place to the left
+      this.yText = this.y;
+    } else if () {
+      // place to the left
       this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
       this.yText = this.y;
-    }
-    else if(){
-    //place on top
+    } else if () {
+      // place on top
       this.xText = this.x - (context.measureText(this.nodeLabel)/2);
-      this.yText = this.y + this.radius + 4; 
-    }
-    else if(){
-    //place on the bottom
+      this.yText = this.y + this.radius + 4;
+    } else if () {
+      // place on the bottom
       this.xText = this.x - (context.measureText(this.nodeLabel)/2);
       this.yText = this.y -(this.radius + 4);
-    }
-    else if(){
-    //place at top-right
+    } else if () {
+      // place at top-right
       this.xText = this.x + this.radius + 4;
       this.yText = this.y + this.radius + 4;
-    }
-    else if(){
-    //place at bottom-right
+    } else if () {
+      // place at bottom-right
       this.xText = this.x + this.radius + 4;
       this.yText = this.y -(this.radius + 4);
-    }
-    else if(){
-    //place at bottom-left
+    } else if() {
+      // place at bottom-left
       this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
       this.yText = this.y -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
-    }
-    else if(){
-    //place at top-left
+    } else if() {
+      // place at top-left
       this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
       this.yText = this.y + this.radius + 4 + (context.measureText(this.nodeLabel)/2);
-    }
-    else{
-    //just go back to default
+    } else {
+      // just go back to default
       this.xText = this.x + this.radius + 4;
-      this.yText = this.y; 
-
+      this.yText = this.y;
     }
-  }*/
+  }
+*/
 
-
-
-
-  //find the starting point of our text box
+  // find the starting point of our text box
   generateDefaultTextLocation() {
     this.xText = this.x + this.radius + 4;
-    this.yText = this.y; 
+    this.yText = this.y;
   }
-
-
 
 }
