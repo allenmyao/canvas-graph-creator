@@ -97,15 +97,15 @@ export class MouseHandler {
         // regular move
         // hover effect?
       }
+    } else if (this.draggedObject) {
+      // handle dragging object
+      currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
+    } else if (this.graph.hasComponent(x, y)) {
+      // handle dragging over object
+      currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
     } else {
-      // handle dragging
-      if (this.draggedObject) {
-        currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
-      } else if (this.graph.hasComponent(x, y)) {
-        currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
-      } else {
-        currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
-      }
+      // handle dragging empty space
+      currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
     }
   }
 
