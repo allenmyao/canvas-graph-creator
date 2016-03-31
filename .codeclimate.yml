@@ -11,8 +11,9 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.js"
+  - "src/**.js"
 exclude_paths:
+- "*.*"
 - test/
 - selenium-tests/
 - node_modules/
