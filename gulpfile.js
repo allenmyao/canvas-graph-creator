@@ -164,7 +164,7 @@ gulp.task('webpack-dev-server', [ 'prep' ], (callback) => {
   new WebpackDevServer(webpack(myConfig), {
     hot: true,
     quiet: false,
-    // noInfo: true,
+    noInfo: true,
     lazy: false,
     watchOptions: {
       aggregateTimeout: 300,
