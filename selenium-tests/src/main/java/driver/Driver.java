@@ -7,8 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -23,6 +23,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,11 +33,15 @@ import utils.ImageUtils;
 
 public class Driver {
 	public static final String DEFAULT_BROWSER = "firefox";
+	//#TODO load from file
+	public static final String USERNAME = System.getenv("SAUCE_USERNAME");
+	public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 	
 	protected WebDriver driver;
 	protected String name;
 	protected WebElement canvas;
-	protected BufferedImage initialImage;
+	//protected BufferedImage initialImage;
 	protected BufferedImage initialScreenshot;
 	protected HashMap<String, Point> elements;
 	
@@ -48,13 +54,32 @@ public class Driver {
 		
 		elements = new HashMap<String, Point>();
 
-		if(name.equals("firefox"))
+		if(name.contains("remote"))
+			driver = createRemoteDriver(name);
+		else if(name.equals("firefox"))
 			driver = new FirefoxDriver();
 		else if(name.equals("chrome"))
 			driver = new ChromeDriver();
 		else
 			throw new RuntimeException("Unsupported browser " + name);
 	}
+	private WebDriver createRemoteDriver(String name) {
+		name = name.replaceFirst("remote-", "");
+		DesiredCapabilities caps = DesiredCapabilities.firefox();
+	    caps.setCapability("platform", "Windows 10");
+	    caps.setCapability("version", "39.0");
+	    caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
+	    caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
+	    
+	    try{
+	    	return driver = new RemoteWebDriver(new URL(URL), caps);
+	    }catch(Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
+		return null;
+	}
+
 	public void clickElement(String element)
 	{
 		Point coordinate = elements.get(element);
@@ -69,11 +94,12 @@ public class Driver {
 	}
 	public void takeInitialScreenshot() throws IOException
 	{
-		initialImage = getCanvas();
+		//initialImage = getCanvas();
 		initialScreenshot = getScreenshot();
 	}
 	public void assertScreenshot(String path) throws IOException, URISyntaxException {
-		BufferedImage diff = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+		//BufferedImage diff = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+		BufferedImage diff = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());
 		BufferedImage expected = getResource(path);
 		assertTrue(ImageUtils.imageEquals(diff, expected));
 	}
@@ -103,7 +129,7 @@ public class Driver {
 		if(!file.exists())
 		{
 			System.err.println(path + " does not exist, creating file from screenshot");
-			BufferedImage difference = ImageUtils.getDifferenceImage(initialImage, getCanvas());
+			BufferedImage difference = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());
 			ImageIO.write(difference, "png", file);
 		}
 		return ImageIO.read(file);
@@ -112,6 +138,7 @@ public class Driver {
 	public void close() 
 	{
 		driver.close();
+		driver.quit();
 	}
 	//http://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
 	public void waitUntilLoaded()
@@ -137,6 +164,8 @@ public class Driver {
 		waitUntilLoaded();
 		driver.get(website);
 		driver.manage().window().maximize();
+		driver.manage().window().setPosition(new Point(0,0));
+		driver.manage().window().setSize(new Dimension(1600,2400));
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
@@ -144,6 +173,7 @@ public class Driver {
         byte[] arrScreen = screenshot.getScreenshotAs(OutputType.BYTES);
         return ImageIO.read(new ByteArrayInputStream(arrScreen));
 	}
+	/*
 	public BufferedImage cropCanvas(int x1, int y1, int x2, int y2) throws IOException
 	{
         BufferedImage image = getScreenshot();
@@ -159,4 +189,5 @@ public class Driver {
 		Point location = canvas.getLocation();
 		return image.getSubimage(location.x, location.y, location.x + dimension.width, location.y + dimension.height);
 	}
+	*/
 }

@@ -1,4 +1,5 @@
 # Canvas Graphs Creator
+[![Build Status](https://travis-ci.org/allenmyao/canvas-graph-creator.svg?branch=master)](https://travis-ci.org/allenmyao/canvas-graph-creator) [![Test Coverage](https://codeclimate.com/github/allenmyao/canvas-graph-creator/badges/coverage.svg)](https://codeclimate.com/github/allenmyao/canvas-graph-creator/coverage) [![Issue Count](https://codeclimate.com/github/allenmyao/canvas-graph-creator/badges/issue_count.svg)](https://codeclimate.com/github/allenmyao/canvas-graph-creator)
 
 ## Building
 

@@ -30,7 +30,7 @@ import static org.junit.Assert.*;
 public class CGC extends Driver{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
-	public static String HOME_PAGE = "http://localhost:8080/webpack-dev-server/index.html";
+	public static String HOME_PAGE = "http://0.0.0.0:8080/webpack-dev-server/index.html";
 	public static final String IFRAME = "iframe";
 	public static BufferedImage NODE_IMAGE;
 	public static BufferedImage EDGE_TOOL;
