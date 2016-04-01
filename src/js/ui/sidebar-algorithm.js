@@ -172,10 +172,11 @@ export class SidebarAlgorithm extends SidebarContent {
     let list = '';
     container.forEach((item) => {
       let link = this.createLinkElement(item);
-      list += `
+      list = `
         <li class="data-item">
           ${link}
         </li>
+        ${list}
       `;
     });
 
