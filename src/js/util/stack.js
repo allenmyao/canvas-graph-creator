@@ -45,8 +45,8 @@ export default class Stack {
   }
 
   forEach(callback) {
-    // for (let i = this.stack.length - 1; i >= 0; i--) {
-    for (let i = 0; i < this.stack.length; i++) {
+    for (let i = this.stack.length - 1; i >= 0; i--) {
+    // for (let i = 0; i < this.stack.length; i++) {
       if (callback(this.stack[i]) === false) {
         break;
       }

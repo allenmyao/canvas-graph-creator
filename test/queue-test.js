@@ -47,15 +47,15 @@ describe('Queue', () => {
   describe('#enqueue', () => {
     it('should add item to queue', () => {
       let queue = new Queue();
-      let item = Math.random();
+      let item = 'test';
       queue.enqueue(item);
       (queue.dequeue()).should.be.equal(item);
     });
 
     it('should add item to back of queue', () => {
       let queue = new Queue();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       queue.enqueue(item1);
       queue.enqueue(item2);
       (queue.dequeue()).should.be.equal(item1);
@@ -85,8 +85,8 @@ describe('Queue', () => {
 
     it('should return the first item in queue', () => {
       let queue = new Queue();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       queue.enqueue(item1);
       queue.enqueue(item2);
       (queue.dequeue()).should.be.equal(item1);
@@ -94,8 +94,8 @@ describe('Queue', () => {
 
     it('should remove the first item in queue', () => {
       let queue = new Queue();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       queue.enqueue(item1);
       queue.enqueue(item2);
       queue.dequeue();
@@ -104,9 +104,9 @@ describe('Queue', () => {
 
     it('should handle offset when more than half empty', () => {
       let queue = new Queue();
-      let item1 = Math.random();
-      let item2 = Math.random();
-      let item3 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
       queue.enqueue(item1);
       queue.enqueue(item2);
       queue.enqueue(item3);
@@ -124,8 +124,8 @@ describe('Queue', () => {
 
     it('should return the first item in queue', () => {
       let queue = new Queue();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       queue.enqueue(item1);
       queue.enqueue(item2);
       (queue.peek()).should.be.equal(item1);
@@ -133,8 +133,8 @@ describe('Queue', () => {
 
     it('should not remove item from queue', () => {
       let queue = new Queue();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       queue.enqueue(item1);
       queue.enqueue(item2);
       queue.peek();
@@ -167,6 +167,66 @@ describe('Queue', () => {
       let queue = new Queue();
       queue.enqueue('test');
       (queue.has('testtest')).should.be.false;
+    });
+  });
+
+  describe('#forEach', () => {
+    it('should iterate through all items', () => {
+      let queue = new Queue();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
+      queue.enqueue(item1);
+      queue.enqueue(item2);
+      queue.enqueue(item3);
+
+      let order = [];
+      queue.forEach((item) => {
+        order.push(item);
+      });
+
+      (order.indexOf(item1)).should.be.at.least(0);
+      (order.indexOf(item1)).should.be.at.least(0);
+      (order.indexOf(item1)).should.be.at.least(0);
+    });
+
+    it('should stop if callback returns false', () => {
+      let queue = new Queue();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
+      queue.enqueue(item1);
+      queue.enqueue(item2);
+      queue.enqueue(item3);
+
+      let order = [];
+      queue.forEach((item) => {
+        if (item === item2) {
+          return false;
+        }
+        order.push(item);
+      });
+
+      (order.length).should.be.equal(1);
+    });
+
+    it('should iterate in order starting from the front of the queue', () => {
+      let queue = new Queue();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
+      queue.enqueue(item1);
+      queue.enqueue(item2);
+      queue.enqueue(item3);
+
+      let order = [];
+      queue.forEach((item) => {
+        order.push(item);
+      });
+
+      (order[0]).should.be.equal(item1);
+      (order[1]).should.be.equal(item2);
+      (order[2]).should.be.equal(item3);
     });
   });
 });
