@@ -1,4 +1,4 @@
-import { SidebarContent } from 'ui/sidebar-content';
+import { SidebarContent } from '../ui/sidebar-content';
 
 export class SidebarEdge extends SidebarContent {
   constructor(graph) {

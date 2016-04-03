@@ -38,7 +38,7 @@ export class Node {
     }
 
     if (typeof x === 'undefined' || typeof y === 'undefined') {
-      throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
+      throw Error(`Node constructor requires two arguments: x, y. Actually passed in: ${x}, ${y}`);
     }
     this.x = x;
     this.y = y;

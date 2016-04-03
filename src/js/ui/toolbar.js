@@ -1,13 +1,13 @@
-import { NodeTool } from 'tool/node-tool';
-import { EdgeTool } from 'tool/edge-tool';
-import { MoveTool } from 'tool/move-tool';
-import { EraseTool } from 'tool/erase-tool';
-import { EditNodeTool } from 'tool/editnode-tool';
-import { EditEdgeTool } from 'tool/editedge-tool';
-import { MetadataTool } from 'tool/metadata-tool';
-import { PanTool } from 'tool/pan-tool';
-import { SelectTool } from 'tool/select-tool';
-import * as Sidebar from 'ui/sidebar';
+import { NodeTool } from '../tool/node-tool';
+import { EdgeTool } from '../tool/edge-tool';
+import { MoveTool } from '../tool/move-tool';
+import { EraseTool } from '../tool/erase-tool';
+import { EditNodeTool } from '../tool/editnode-tool';
+import { EditEdgeTool } from '../tool/editedge-tool';
+import { MetadataTool } from '../tool/metadata-tool';
+import { PanTool } from '../tool/pan-tool';
+import { SelectTool } from '../tool/select-tool';
+import * as Sidebar from '../ui/sidebar';
 
 // const TOOL_CLASS = 'tool';
 // const TOOL_NAME_ATTR = 'data-tool';

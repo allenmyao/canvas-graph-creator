@@ -1,6 +1,6 @@
-import { SidebarNode } from 'ui/sidebar-node';
-import { SidebarEdge } from 'ui/sidebar-edge';
-import { SidebarSelect } from 'ui/sidebar-select';
+import { SidebarNode } from '../ui/sidebar-node';
+import { SidebarEdge } from '../ui/sidebar-edge';
+import { SidebarSelect } from '../ui/sidebar-select';
 
 let sidebar;
 let content;
