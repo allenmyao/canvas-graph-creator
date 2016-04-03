@@ -1,5 +1,5 @@
-import { Tool } from 'tool/tool';
-import { Node } from 'data/node/node';
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
 
 export class EditNodeTool extends Tool {
 

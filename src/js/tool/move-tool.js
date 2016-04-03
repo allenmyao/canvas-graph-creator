@@ -1,6 +1,5 @@
-import { Tool } from 'tool/tool';
-import { Node } from 'data/node/node';
-import * as Sidebar from 'ui/sidebar';
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
 
 export class MoveTool extends Tool {
 
@@ -11,11 +10,10 @@ export class MoveTool extends Tool {
     if (obj instanceof Node) {
       obj.setPos(x, y);
     }
-    Sidebar.updateSidebar(obj);
   }
 
   dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
-    if (destObj instanceof Node) {
+    if (destObj instanceof Node && droppedObj instanceof Node) {
       // stop dragging, and reset to starting position
       droppedObj.setPos(startX, startY);
     } else {

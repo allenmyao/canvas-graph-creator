@@ -1,7 +1,7 @@
-import { SidebarContent } from 'ui/sidebar-content';
-import * as Form from 'ui/form';
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
+import { SidebarContent } from '../ui/sidebar-content';
+import * as Form from '../ui/form';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
 
 export class SidebarSelect extends SidebarContent {
   constructor(graph) {

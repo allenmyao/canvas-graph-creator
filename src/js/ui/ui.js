@@ -1,7 +1,7 @@
-import * as Toolbar from 'ui/toolbar';
-import * as StatusBar from 'ui/status-bar';
-import * as Sidebar from 'ui/sidebar';
-import * as AlgorithmInterface from 'ui/algorithm';
+import * as Toolbar from '../ui/toolbar';
+import * as StatusBar from '../ui/status-bar';
+import * as Sidebar from '../ui/sidebar';
+import * as AlgorithmInterface from '../ui/algorithm';
 
 export function init(graph) {
   Toolbar.init();

@@ -1,6 +1,6 @@
-import { Tool } from 'tool/tool';
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
 
 export class MetadataTool extends Tool {
 
@@ -154,14 +154,14 @@ export class MetadataTool extends Tool {
 
   // All of the Mouse-Up functions need to disable our non-standard dragging.
   dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
-    this.abortSelect(event, graph, x, y);
+    this.abortSelect(graph, x, y);
   }
 
-  dropOnNone(graph, droppedObj, startX, startY, x, y) {
-    this.abortSelect(event, graph, x, y);
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
+    this.abortSelect(graph, x, y);
   }
 
-  abortSelect(event, graph, x, y) {
+  abortSelect(graph, x, y) {
     this.onCtrl = false;
     this.dragging = false;
   }
