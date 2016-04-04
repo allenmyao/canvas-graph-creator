@@ -63,37 +63,37 @@ export class Abstract {
   }
 
   nextStep() {
-    if(curStep.equals(timeline.length - 1)) {
+    if(this.curStep.equals(this.timeline.length - 1)) {
       return "Out of bounds";
     }
     let tmp = this.timeline[this.curStep+1];
     for(let piece in tmp.nodePieces) {
-      graph.nodes.delete(piece.original);
-      graph.nodes.add(piece.newer);
+      this.graph.nodes.delete(piece.original);
+      this.graph.nodes.add(piece.newer);
     }
     for(let piece in tmp.edgePieces) {
-      graph.edges.delete(piece.original);
-      graph.edges.add(piece.newer);      
+      this.graph.edges.delete(piece.original);
+      this.graph.edges.add(piece.newer);      
     }
-    curStep = curStep + 1;
+    this.curStep = this.curStep + 1;
     return tmp.descriptor;
   }
 
   backStep() {
-    if(curStep.equals(-1)) {
+    if(this.curStep.equals(-1)) {
       return "Out of bounds";
     }
     let tmp = this.timeline[this.curStep];
     for(let piece in tmp.nodePieces) {
-      graph.nodes.delete(piece.newer);
-      graph.nodes.add(piece.original);
+      this.graph.nodes.delete(piece.newer);
+      this.graph.nodes.add(piece.original);
     }
     for(let piece in tmp.edgePieces) {
-      graph.edges.delete(piece.newer);
-      graph.edges.add(piece.original);      
+      this.graph.edges.delete(piece.newer);
+      this.graph.edges.add(piece.original);      
     }
-    curStep = curStep - 1;
-    if(curStep == -1) {
+    this.curStep = this.curStep - 1;
+    if(this.curStep == -1) {
       return "Algorithm ready to start!"
     } else {
       return this.timeline[this.curStep].descriptor; 
@@ -102,16 +102,16 @@ export class Abstract {
   
   defineStep(descriptor) {
     this.tmpStep.descriptor = descriptor;
-    timeline.add(tmpStep);
-    tmpStep = new Step();
+    this.timeline.add(this.tmpStep);
+    this.tmpStep = new Step();
   }
   
   nodePiece(originalNode, color, label) {
-    tmpStep.addNodePiece(new Piece(originalNode,originalNode));//TODO:  find way to clone objects?
+    this.tmpStep.addNodePiece(new Piece(originalNode,originalNode));//TODO:  find way to clone objects?
   }
   
   edgePiece(originalEdge, color, label) {
-    tmpStep.addEdgePiece(new Piece(originalEdge,originalNode));//TODO:  find way to clone objects?
+    this.tmpStep.addEdgePiece(new Piece(originalEdge,originalNode));//TODO:  find way to clone objects?
   }
   
   computeTimeline() {
