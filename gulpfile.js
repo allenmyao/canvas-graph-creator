@@ -12,6 +12,7 @@ const istanbul = require('gulp-babel-istanbul');
 const mocha = require('gulp-mocha');
 const babel = require('gulp-babel');
 const mergeStream = require('merge-stream');
+const serialize = require('node-serialize');
 
 const COVERAGE_THRESHOLD = 90; // percentage
 const SRC_FILES = 'src/js/**/*.js';
