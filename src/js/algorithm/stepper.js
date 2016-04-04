@@ -1,6 +1,6 @@
 // NOTES:  make this responsible for GUI elements as well, move to UI folder?  should draw knowing little to nothing about container, difficult to not make assumptions though
 // how does timekeeping work in javascript?
-import * as AlgorithmInterface from 'ui/algorithm';
+// import * as AlgorithmInterface from 'ui/algorithm';
 
 export default class Stepper {
 
@@ -28,11 +28,11 @@ export default class Stepper {
   }
 
   stepBack() {
-    this.algorithm.previous();
+    // this.algorithm.previous();
   }
 
   stepForward() {
-    this.algorithm.next();
+    // this.algorithm.next();
   }
 
   pause() {
@@ -46,7 +46,7 @@ export default class Stepper {
       if (!this.algorithm.isComplete) {
         try {
           hasNext = this.algorithm.next();
-          AlgorithmInterface.updateAlgorithm(this.algorithm);
+          // AlgorithmInterface.updateAlgorithm(this.algorithm);
         } catch (e) {
           this.pause();
           throw e;

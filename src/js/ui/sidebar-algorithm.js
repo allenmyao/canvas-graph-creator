@@ -168,69 +168,68 @@ export class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
-  updateHistory(container) {
-    let list = '';
-    container.forEach((item) => {
-      let link = this.createLinkElement(item);
-      list = `
-        <li class="data-item">
-          ${link}
-        </li>
-        ${list}
-      `;
-    });
-
-    let html = `
-      <div class="data-container">
-        <ul class="data-list">
-          ${list}
-        </ul>
-      </div>
-    `;
-
-    this.tabs.setTabContent('history', html);
-  }
-
-  resetSelected() {
-    let tabContent = this.tabs.getTabContentElement('queue');
-    let links = tabContent.querySelectorAll('.graph-link');
-
-    for (let i = 0; i < links.length; i++) {
-      let link = links[i];
-      let type = link.getAttribute('data-type');
-      let id = link.getAttribute('data-id');
-
-      console.log(type, id);
-      this.toggleHover(type, parseInt(id, 10), false);
-    }
-  }
-
-  updateQueue(container) {
-    this.resetSelected();
-
-    let list = '';
-    container.forEach((item) => {
-      // TODO: display in 'history' tab
-      let link = this.createLinkElement(item);
-      list += `
-        <li class="data-item">
-          ${link}
-        </li>
-      `;
-    });
-
-    let html = `
-      <div class="data-container">
-        <ul class="data-list">
-          ${list}
-        </ul>
-      </div>
-    `;
-
-    this.tabs.setTabContent('queue', html);
-  }
+  // updateHistory(container) {
+  //   let list = '';
+  //   container.forEach((item) => {
+  //     let link = this.createLinkElement(item);
+  //     list = `
+  //       <li class="data-item">
+  //         ${link}
+  //       </li>
+  //       ${list}
+  //     `;
+  //   });
+  //
+  //   let html = `
+  //     <div class="data-container">
+  //       <ul class="data-list">
+  //         ${list}
+  //       </ul>
+  //     </div>
+  //   `;
+  //
+  //   this.tabs.setTabContent('history', html);
+  // }
+  //
+  // resetSelected() {
+  //   let tabContent = this.tabs.getTabContentElement('queue');
+  //   let links = tabContent.querySelectorAll('.graph-link');
+  //
+  //   for (let i = 0; i < links.length; i++) {
+  //     let link = links[i];
+  //     let type = link.getAttribute('data-type');
+  //     let id = link.getAttribute('data-id');
+  //
+  //     console.log(type, id);
+  //     this.toggleHover(type, parseInt(id, 10), false);
+  //   }
+  // }
+  //
+  // updateQueue(container) {
+  //   this.resetSelected();
+  //
+  //   let list = '';
+  //   container.forEach((item) => {
+  //     // TODO: display in 'history' tab
+  //     let link = this.createLinkElement(item);
+  //     list += `
+  //       <li class="data-item">
+  //         ${link}
+  //       </li>
+  //     `;
+  //   });
+  //
+  //   let html = `
+  //     <div class="data-container">
+  //       <ul class="data-list">
+  //         ${list}
+  //       </ul>
+  //     </div>
+  //   `;
+  //
+  //   this.tabs.setTabContent('queue', html);
+  // }
 
   update(obj) {
-    // set start node
   }
 }

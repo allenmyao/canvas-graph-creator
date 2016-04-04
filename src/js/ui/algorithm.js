@@ -27,11 +27,11 @@ export function setAlgorithm(AlgorithmClass) {
   sidebarContent.updateAlgorithm(algorithm);
 }
 
-export function updateAlgorithm(algorithm) {
-  let sidebarContent = Sidebar.getContent();
-  sidebarContent.updateHistory(algorithm.getHistory());
-  sidebarContent.updateQueue(algorithm.getQueue());
-}
+// export function updateAlgorithm(algorithm) {
+//   let sidebarContent = Sidebar.getContent();
+//   sidebarContent.updateHistory(algorithm.getHistory());
+//   sidebarContent.updateQueue(algorithm.getQueue());
+// }
 
 export function setInputs(inputData) {
   for (let name of Object.keys(inputData)) {
@@ -44,5 +44,5 @@ export function setInputs(inputData) {
 
 export function run() {
   console.log('run');
-  stepper.play();
+  // stepper.play();
 }
