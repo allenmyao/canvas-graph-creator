@@ -8,9 +8,7 @@ export function init() {
   document.getElementById('reset-transform').addEventListener('click', (event) => {
     Canvas.reset();
   });
-  document.getElementById('exportGraph').addEventListener('click', (event) => {
-    alert("adding export functionality");
-  });
+  
 }
 
 export function getStatusBar() {
