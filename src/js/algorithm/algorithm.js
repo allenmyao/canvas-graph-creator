@@ -1,7 +1,7 @@
 /**
  * Algorithm Class
  *    This superclass is intended to provide a common base interface for classes to implement visual emulation of algorithms.
- *    
+ *
  *    The algorithm that is being emulated runs once and precomputes all the graphical changes it will make, storing them in a timeline of Steps.
  *    Each Step is a bundle of visual changes that will occur together, with a descriptor describing what is happening in the step.
  *
@@ -9,7 +9,7 @@
  *
  *    graph - reference to the core graph structure of the application
  *    input - user defined input for the algorithm to run on
- * 
+ *
  *    nodePiece(originalNode, color, label) - requires originalNode, a reference to the node that is being changed visually, and optionally accepts the color and label you want it to change to
  *    edgePiece(originalEdge, color, label) - requires originalEdge, a reference to the edge that is being changed visually, and optionally accepts the color and label you want it to change to
  *    defineStep(descriptor) - takes all the calls to nodePiece and edgePiece since the construction of the class or the last defineStep call
@@ -23,14 +23,14 @@
  */
 
 class Step {
-  this.nodePieces = new Set();
-  this.edgePieces = new Set();
-  this.descriptor = "";
-  
+  nodePieces = new Set();
+  edgePieces = new Set();
+  descriptor = '';
+
   addNodePiece(nodePiece) {
     this.nodePieces.add(nodePiece);
   }
-  
+
   addEdgePiece(edgePiece) {
     this.edgePieces.add(edgePiece);
   }
@@ -54,7 +54,7 @@ export class Abstract {
         throw TypeError('Must override method: ' + method);
       }
     }
-    
+
     this.graph = graph;
     this.input = input;
     this.timeline = [];
@@ -63,57 +63,58 @@ export class Abstract {
   }
 
   nextStep() {
-    if(this.curStep.equals(this.timeline.length - 1)) {
-      return "Out of bounds";
+    if (this.curStep.equals(this.timeline.length - 1)) {
+      return 'Out of bound';
     }
-    let tmp = this.timeline[this.curStep+1];
-    for(let piece in tmp.nodePieces) {
+    let tmp = this.timeline[this.curStep + 1];
+    for (let piece of tmp.nodePieces) {
       this.graph.nodes.delete(piece.original);
       this.graph.nodes.add(piece.newer);
     }
-    for(let piece in tmp.edgePieces) {
+    for (let piece of tmp.edgePieces) {
       this.graph.edges.delete(piece.original);
-      this.graph.edges.add(piece.newer);      
+      this.graph.edges.add(piece.newer);
     }
     this.curStep = this.curStep + 1;
     return tmp.descriptor;
   }
 
   backStep() {
-    if(this.curStep.equals(-1)) {
-      return "Out of bounds";
+    if (this.curStep.equals(-1)) {
+      return 'Out of bounds';
     }
     let tmp = this.timeline[this.curStep];
-    for(let piece in tmp.nodePieces) {
+    for (let piece of tmp.nodePieces) {
       this.graph.nodes.delete(piece.newer);
       this.graph.nodes.add(piece.original);
     }
-    for(let piece in tmp.edgePieces) {
+    for (let piece of tmp.edgePieces) {
       this.graph.edges.delete(piece.newer);
-      this.graph.edges.add(piece.original);      
+      this.graph.edges.add(piece.original);
     }
     this.curStep = this.curStep - 1;
-    if(this.curStep == -1) {
-      return "Algorithm ready to start!"
-    } else {
-      return this.timeline[this.curStep].descriptor; 
+    if (this.curStep === -1) {
+      return 'Algorithm ready to start!';
     }
+    return this.timeline[this.curStep].descriptor;
   }
-  
+
   defineStep(descriptor) {
     this.tmpStep.descriptor = descriptor;
     this.timeline.add(this.tmpStep);
     this.tmpStep = new Step();
   }
-  
+
   nodePiece(originalNode, color, label) {
-    this.tmpStep.addNodePiece(new Piece(originalNode,originalNode));//TODO:  find way to clone objects?
+    // TODO:  find way to clone objects?
+    this.tmpStep.addNodePiece(new Piece(originalNode, originalNode));
   }
-  
+
   edgePiece(originalEdge, color, label) {
-    this.tmpStep.addEdgePiece(new Piece(originalEdge,originalNode));//TODO:  find way to clone objects?
+    // TODO:  find way to clone objects?
+    this.tmpStep.addEdgePiece(new Piece(originalEdge, originalEdge));
   }
-  
+
   computeTimeline() {
     throw Error('Can\'t call computeTimeline from abstract Algorithm class.');
   }
