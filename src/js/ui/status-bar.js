@@ -1,4 +1,4 @@
-import * as Canvas from 'ui/canvas';
+import * as Canvas from '../ui/canvas';
 
 let statusBar;
 

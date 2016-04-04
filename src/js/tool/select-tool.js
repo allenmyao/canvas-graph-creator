@@ -1,6 +1,6 @@
-import { Tool } from 'tool/tool';
+import { Tool } from '../tool/tool';
 // import * as UI from 'ui/ui';
-import * as Sidebar from 'ui/sidebar';
+// import * as Sidebar from '../ui/sidebar';
 
 export class SelectTool extends Tool {
 
@@ -16,7 +16,7 @@ export class SelectTool extends Tool {
     }
     obj.isSelected = true;
     this.selectedObject = obj;
-    Sidebar.updateSidebar(obj);
+    // Sidebar.updateSidebar(obj);
   }
 
   // drag: multiselect?
@@ -27,7 +27,7 @@ export class SelectTool extends Tool {
       this.selectedObject.isSelected = false;
       this.selectedObject = null;
     }
-    Sidebar.updateSidebar(graph);
+    // Sidebar.updateSidebar(graph);
   }
 
 }

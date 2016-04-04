@@ -47,15 +47,15 @@ describe('Stack', () => {
   describe('#push', () => {
     it('should add item to stack', () => {
       let stack = new Stack();
-      let item = Math.random();
+      let item = 'test';
       stack.push(item);
       (stack.pop()).should.be.equal(item);
     });
 
     it('should add item to top of stack', () => {
       let stack = new Stack();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       stack.push(item1);
       stack.push(item2);
       (stack.pop()).should.be.equal(item2);
@@ -85,8 +85,8 @@ describe('Stack', () => {
 
     it('should return the item on top of stack', () => {
       let stack = new Stack();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       stack.push(item1);
       stack.push(item2);
       (stack.pop()).should.be.equal(item2);
@@ -94,8 +94,8 @@ describe('Stack', () => {
 
     it('should remove the top item in stack', () => {
       let stack = new Stack();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       stack.push(item1);
       stack.push(item2);
       stack.pop();
@@ -111,8 +111,8 @@ describe('Stack', () => {
 
     it('should return the item on top of stack', () => {
       let stack = new Stack();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       stack.push(item1);
       stack.push(item2);
       (stack.peek()).should.be.equal(item2);
@@ -120,8 +120,8 @@ describe('Stack', () => {
 
     it('should not remove item from stack', () => {
       let stack = new Stack();
-      let item1 = Math.random();
-      let item2 = Math.random();
+      let item1 = 1;
+      let item2 = 2;
       stack.push(item1);
       stack.push(item2);
       stack.peek();
@@ -154,6 +154,66 @@ describe('Stack', () => {
       let stack = new Stack();
       stack.push('test');
       (stack.has('testtest')).should.be.false;
+    });
+  });
+
+  describe('#forEach', () => {
+    it('should iterate through all items', () => {
+      let stack = new Stack();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
+      stack.push(item1);
+      stack.push(item2);
+      stack.push(item3);
+
+      let order = [];
+      stack.forEach((item) => {
+        order.push(item);
+      });
+
+      (order.indexOf(item1)).should.be.at.least(0);
+      (order.indexOf(item1)).should.be.at.least(0);
+      (order.indexOf(item1)).should.be.at.least(0);
+    });
+
+    it('should stop if callback returns false', () => {
+      let stack = new Stack();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
+      stack.push(item1);
+      stack.push(item2);
+      stack.push(item3);
+
+      let order = [];
+      stack.forEach((item) => {
+        if (item === item2) {
+          return false;
+        }
+        order.push(item);
+      });
+
+      (order.length).should.be.equal(1);
+    });
+
+    it('should iterate in order starting from the top of the stack', () => {
+      let stack = new Stack();
+      let item1 = 1;
+      let item2 = 2;
+      let item3 = 3;
+      stack.push(item1);
+      stack.push(item2);
+      stack.push(item3);
+
+      let order = [];
+      stack.forEach((item) => {
+        order.push(item);
+      });
+
+      (order[0]).should.be.equal(item3);
+      (order[1]).should.be.equal(item2);
+      (order[2]).should.be.equal(item1);
     });
   });
 });

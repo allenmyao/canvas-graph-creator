@@ -1,5 +1,5 @@
-import { Tool } from 'tool/tool';
-import { Edge } from 'data/edge/edge';
+import { Tool } from '../tool/tool';
+import { Edge } from '../data/edge/edge';
 
 export class EditEdgeTool extends Tool {
 

@@ -1,4 +1,5 @@
-import * as UI from 'ui/ui';
+import * as UI from '../ui/ui';
+import * as Sidebar from '../ui/sidebar';
 
 export class MouseHandler {
 
@@ -27,6 +28,8 @@ export class MouseHandler {
       let component = this.graph.getComponent(x, y);
       if (currentTool.preSelectObject(event, this.graph, component, x, y)) {
         this.selectedObject = component;
+        this.clickStartX = this.selectedObject.x;
+        this.clickStartY = this.selectedObject.y;
       } else {
         this.selectedObject = null;
       }
@@ -58,8 +61,10 @@ export class MouseHandler {
       if (component === this.selectedObject) {
         if (component) {
           currentTool.selectObject(event, this.graph, component, x, y);
+          Sidebar.updateSidebar(component);
         } else {
           currentTool.selectNone(event, this.graph, x, y);
+          Sidebar.updateSidebar();
         }
       } else {
         currentTool.abortSelect(this.graph, x, y);
@@ -100,9 +105,11 @@ export class MouseHandler {
     } else if (this.draggedObject) {
       // handle dragging object
       currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
+      Sidebar.updateSidebar(this.draggedObject);
     } else if (this.graph.hasComponent(x, y)) {
       // handle dragging over object
       currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
+      Sidebar.updateSidebar();
     } else {
       // handle dragging empty space
       currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);

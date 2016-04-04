@@ -1,7 +1,6 @@
-import { Tool } from 'tool/tool';
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
-import * as Sidebar from 'ui/sidebar';
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
 
 export class EraseTool extends Tool {
 
@@ -21,7 +20,6 @@ export class EraseTool extends Tool {
     } else if (obj instanceof Edge) {
       graph.removeEdge(obj);
     }
-    Sidebar.updateSidebar();
   }
 
   dragOverObject(event, graph, obj, x, y) {
@@ -30,7 +28,6 @@ export class EraseTool extends Tool {
     } else if (obj instanceof Edge) {
       graph.removeEdge(obj);
     }
-    Sidebar.updateSidebar();
   }
 
 }
