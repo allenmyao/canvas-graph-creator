@@ -1,7 +1,7 @@
-import { Tool } from 'tool/tool';
-import { Node } from 'data/node/node';
-import TraversalAlgorithm from 'algorithm/traversal-algorithm';
-import * as AlgorithmInterface from 'ui/algorithm';
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
+import TraversalAlgorithm from '../algorithm/traversal-algorithm';
+import * as AlgorithmInterface from '../ui/algorithm';
 
 export class AlgorithmTool extends Tool {
 

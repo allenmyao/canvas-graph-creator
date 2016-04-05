@@ -1,6 +1,6 @@
-import Stepper from 'algorithm/stepper';
+import Stepper from '../algorithm/stepper';
 import AlgorithmRunner from '../algorithm/algorithm-runner';
-import * as Sidebar from 'ui/sidebar';
+import * as Sidebar from '../ui/sidebar';
 
 let stepper = new Stepper();
 let graph = null;
