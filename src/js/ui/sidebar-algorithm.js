@@ -25,6 +25,10 @@ export class SidebarAlgorithm extends SidebarContent {
 
         let inputName = input.name;
         this.currentInput = inputName;
+      } else if (event.target.classList.contains('algorithm-next-btn')) {
+        AlgorithmInterface.viewNext();
+      } else if (event.target.classList.contains('algorithm-prev-btn')) {
+        AlgorithmInterface.viewPrevious();
       }
     });
 
@@ -128,6 +132,10 @@ export class SidebarAlgorithm extends SidebarContent {
           ${html}
           <button type="button" class="run-algorithm-btn">Run</button>
         </form>
+        <div>
+          <button type="button" class="algorithm-prev-btn">Previous</button>
+          <button type="button" class="algorithm-next-btn">Next</button>
+        </div>
       </div>
     `;
   }

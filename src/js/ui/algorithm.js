@@ -1,9 +1,11 @@
 import Stepper from 'algorithm/stepper';
+import AlgorithmRunner from '../algorithm/algorithm-runner';
 import * as Sidebar from 'ui/sidebar';
 
 let stepper = new Stepper();
 let graph = null;
 let inputs;
+let algorithmRunner;
 
 export function init(g) {
   graph = g;
@@ -22,6 +24,8 @@ export function setAlgorithm(AlgorithmClass) {
   let algorithm = new AlgorithmClass(graph);
   stepper.setAlgorithm(algorithm);
   inputs = algorithm.inputs;
+
+  algorithmRunner = new AlgorithmRunner(algorithm);
 
   let sidebarContent = Sidebar.getContent();
   sidebarContent.updateAlgorithm(algorithm);
@@ -44,5 +48,17 @@ export function setInputs(inputData) {
 
 export function run() {
   console.log('run');
+  algorithmRunner.run();
+  console.log(algorithmRunner.getResult());
   // stepper.play();
+}
+
+export function viewNext() {
+  let algorithmResult = algorithmRunner.getResult();
+  algorithmResult.stepForward();
+}
+
+export function viewPrevious() {
+  let algorithmResult = algorithmRunner.getResult();
+  algorithmResult.stepBackward();
 }
