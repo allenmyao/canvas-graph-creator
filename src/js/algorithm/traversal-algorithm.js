@@ -1,32 +1,19 @@
-import Queue from 'util/queue';
-import Stack from 'util/stack';
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
+import Queue from '../util/queue';
+// import Stack from '../util/stack';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
+import AlgorithmResult from '../algorithm/algorithm-result';
+import AbstractAlgorithm from '../algorithm/abstract-algorithm';
+import StepBuilder from '../algorithm/step-builder';
 
-export default class TraversalAlgorithm {
+class TraversalAlgorithm extends AbstractAlgorithm {
 
   name = 'Traversal';
+  // data structure that determines order of traversal
+  next = new Queue();
 
-  // store reference to the graph
-  graph;
   // starting point for the algorithm
   source = null;
-  // history of changes to the graphState
-  history = [];
-  // current object
-  current = null;
-  // data structure that determines order of traversal (queue or stack)
-  queue = new Queue();
-  // data strcuture that stores previously visited items
-  stack = new Stack();
-  // data structure to handle next() calls after previous()
-  nextStack = new Stack();
-  // updates and temporary values/counters, maybe using es6 Map class and map between nodes/edges and values
-  graphState = new WeakMap();
-  // completion flag
-  isComplete = false;
-
-  hasStarted = false;
 
   inputs = {
     source: {
@@ -39,20 +26,18 @@ export default class TraversalAlgorithm {
     }
   };
 
+  result;
+  nodeFields = [
+    'isSelected'
+  ];
+  edgeFields = [
+    'isSelected'
+  ];
+
   constructor(graph) {
-    this.graph = graph;
-  }
-
-  setSource(source) {
-    this.source = source;
-  }
-
-  getHistory() {
-    return this.stack;
-  }
-
-  getQueue() {
-    return this.queue;
+    super(graph);
+    this.result = new AlgorithmResult();
+    this.stepBuilder = new StepBuilder(this.nodeFields, this.edgeFields);
   }
 
   // visit the specified node
@@ -63,13 +48,13 @@ export default class TraversalAlgorithm {
     // add adjacent edges to the queue
     let edges = node.edges;
     for (let edge of edges) {
-      if (this.hasVisited(edge) || this.queue.has(edge)) {
+      if (this.hasVisited(edge) || this.next.has(edge)) {
         continue;
       }
       if (edge.isDirected && edge.startNode === node) {
-        this.queue.enqueue(edge);
+        this.next.enqueue(edge);
       } else {
-        this.queue.enqueue(edge);
+        this.next.enqueue(edge);
       }
     }
   }
@@ -80,10 +65,10 @@ export default class TraversalAlgorithm {
     this.graphState.set(edge, true);
 
     // add adjacent node to the queue
-    if (!this.hasVisited(edge.destNode) && !this.queue.has(edge.destNode)) {
-      this.queue.enqueue(edge.destNode);
-    } else if (!this.hasVisited(edge.startNode) && !edge.isDirected && !this.queue.has(edge.startNode)) {
-      this.queue.enqueue(edge.startNode);
+    if (!this.hasVisited(edge.destNode) && !this.next.has(edge.destNode)) {
+      this.next.enqueue(edge.destNode);
+    } else if (!this.hasVisited(edge.startNode) && !edge.isDirected && !this.next.has(edge.startNode)) {
+      this.next.enqueue(edge.startNode);
     }
   }
 
@@ -92,19 +77,10 @@ export default class TraversalAlgorithm {
     return this.graphState.has(object) && this.graphState.get(object);
   }
 
-  // undo visit of the specified node
-  unVisitNode(node) {
-    this.graphState.set(node, false);
-  }
-  // undo visit of the specified edge
-  unVisitEdge(edge) {
-    this.graphState.set(edge, false);
-  }
-
   // run the next step of the algorithm
-  next() {
-    if (this.hasStarted && this.queue.size === 0) {
-      console.log('Traversal has finished');
+  step() {
+    if (this.hasStarted && this.next.size === 0) {
+      console.log('Algorithm has finished');
       this.isComplete = true;
       return false;
     }
@@ -112,19 +88,11 @@ export default class TraversalAlgorithm {
     let nextItem;
 
     if (this.hasStarted) {
-      if (this.nextStack.size === 0) {
-        nextItem = this.queue.dequeue();
-      } else {
-        nextItem = this.nextStack.pop();
-        // TODO: check for revisit in visitNode and visitEdge; don't want to re-add adjacent items to queue
-      }
+      nextItem = this.next.dequeue();
     } else {
       this.hasStarted = true;
       nextItem = this.source;
     }
-    this.stack.push(nextItem);
-
-    console.log(nextItem);
 
     if (nextItem instanceof Node) {
       this.visitNode(nextItem);
@@ -133,27 +101,22 @@ export default class TraversalAlgorithm {
     } else {
       throw Error('Non-graph object in algorithm queue');
     }
+
+    this.stepBuilder.newStep(`Visiting ${nextItem.constructor.name} ${nextItem.id}`);
+    this.stepBuilder.addChange(nextItem, {
+      isSelected: false
+    }, {
+      isSelected: true
+    }, {
+      isSelected: false
+    });
+    let step = this.stepBuilder.completeStep();
+    this.result.addStep(step);
+
     return true;
   }
 
-  // return to the previous step of the algorithm
-  previous() {
-    if (this.stack.size === 0) {
-      console.log('Reached initial state');
-      return false;
-    }
-
-    let previousItem = this.stack.pop();
-    this.nextStack.push(previousItem);
-    if (previousItem instanceof Node) {
-      this.unVisitNode(previousItem);
-    } else if (previousItem instanceof Edge) {
-      this.unVisitEdge(previousItem);
-    } else {
-      throw Error('Non-graph object in algorithm queue');
-    }
-
-    return false;
-  }
-
 }
+
+export { TraversalAlgorithm };
+export default TraversalAlgorithm;
