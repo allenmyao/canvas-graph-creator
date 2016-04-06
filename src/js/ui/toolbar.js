@@ -45,6 +45,7 @@ export function init() {
 
       showModes();
       currentTool.activate();
+      currentTool.changeMode(currentTool.currentMode);
     }
   });
 
