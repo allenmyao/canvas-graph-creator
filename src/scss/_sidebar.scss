@@ -1,3 +1,5 @@
+@import 'variables';
+
 #sidebar-container {
   width: 380px;
   margin-left: 20px;
@@ -30,10 +32,20 @@
       }
 
       .tab-content {
+        padding: 10px;
         border: 1px solid black;
         border-top: 0;
       }
     }
+  }
+
+  output {
+    display: block;
+    height: 34px;
+  }
+
+  button {
+    margin-top: 5px;
   }
 }
 
@@ -44,7 +56,6 @@
   .data-list {
     display: block;
     width: 100%;
-    padding: 10px;
 
     .data-item {
       display: block;

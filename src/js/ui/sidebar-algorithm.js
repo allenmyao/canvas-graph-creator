@@ -17,6 +17,20 @@ export class SidebarAlgorithm extends SidebarContent {
         let data = Form.getData(form, this.graph);
         console.log(data);
 
+        let hasError = false;
+        let inputs = AlgorithmInterface.getAlgorithmInputs();
+        for (let inputName of Object.keys(inputs)) {
+          let showError = !inputs[inputName].test(data[inputName]);
+          Form.displayError(form, inputName, showError);
+
+          if (showError && !hasError) {
+            hasError = true;
+          }
+        }
+
+        if (hasError) {
+          return;
+        }
         AlgorithmInterface.setInputs(data);
         AlgorithmInterface.run();
       } else if (event.target.classList.contains('data-select-btn')) {
@@ -67,12 +81,8 @@ export class SidebarAlgorithm extends SidebarContent {
 
   display() {
     this.tabs.replaceTabs({
-      algorithm: 'Algorithm',
-      history: 'History',
-      queue: 'Queue'
+      algorithm: 'Algorithm'
     });
-
-    this.tabs.setTabContent('algorithm', '');
 
     this.update();
     this.tabs.selectTab('algorithm');
@@ -119,7 +129,7 @@ export class SidebarAlgorithm extends SidebarContent {
 
       let displayName = input.name;
       html += `
-        <fieldset class="data-item">
+        <fieldset class="data-item ${isRequired ? 'required' : ''}" name="${name}">
           <span class="label col-2">${displayName}</span>
           <span class="value col-2">${fieldHtml}</span>
         </fieldset>
@@ -175,68 +185,6 @@ export class SidebarAlgorithm extends SidebarContent {
       <div class="graph-link" data-type="${type}" data-id="${id}">${name}</div>
     `;
   }
-
-  // updateHistory(container) {
-  //   let list = '';
-  //   container.forEach((item) => {
-  //     let link = this.createLinkElement(item);
-  //     list = `
-  //       <li class="data-item">
-  //         ${link}
-  //       </li>
-  //       ${list}
-  //     `;
-  //   });
-  //
-  //   let html = `
-  //     <div class="data-container">
-  //       <ul class="data-list">
-  //         ${list}
-  //       </ul>
-  //     </div>
-  //   `;
-  //
-  //   this.tabs.setTabContent('history', html);
-  // }
-  //
-  // resetSelected() {
-  //   let tabContent = this.tabs.getTabContentElement('queue');
-  //   let links = tabContent.querySelectorAll('.graph-link');
-  //
-  //   for (let i = 0; i < links.length; i++) {
-  //     let link = links[i];
-  //     let type = link.getAttribute('data-type');
-  //     let id = link.getAttribute('data-id');
-  //
-  //     console.log(type, id);
-  //     this.toggleHover(type, parseInt(id, 10), false);
-  //   }
-  // }
-  //
-  // updateQueue(container) {
-  //   this.resetSelected();
-  //
-  //   let list = '';
-  //   container.forEach((item) => {
-  //     // TODO: display in 'history' tab
-  //     let link = this.createLinkElement(item);
-  //     list += `
-  //       <li class="data-item">
-  //         ${link}
-  //       </li>
-  //     `;
-  //   });
-  //
-  //   let html = `
-  //     <div class="data-container">
-  //       <ul class="data-list">
-  //         ${list}
-  //       </ul>
-  //     </div>
-  //   `;
-  //
-  //   this.tabs.setTabContent('queue', html);
-  // }
 
   update(obj) {
   }

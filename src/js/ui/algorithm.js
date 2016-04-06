@@ -31,11 +31,9 @@ export function setAlgorithm(AlgorithmClass) {
   sidebarContent.updateAlgorithm(algorithm);
 }
 
-// export function updateAlgorithm(algorithm) {
-//   let sidebarContent = Sidebar.getContent();
-//   sidebarContent.updateHistory(algorithm.getHistory());
-//   sidebarContent.updateQueue(algorithm.getQueue());
-// }
+export function getAlgorithmInputs() {
+  return inputs;
+}
 
 export function setInputs(inputData) {
   for (let name of Object.keys(inputData)) {
