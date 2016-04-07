@@ -38,7 +38,17 @@ export class SidebarAlgorithm extends SidebarContent {
         let input = output.previousElementSibling;
 
         let inputName = input.name;
-        this.currentInput = inputName;
+        if (this.currentInput === inputName) {
+          this.currentInput = null;
+          if (input.value) {
+            event.target.textContent = `Change ${input.getAttribute('data-type')}`;
+          } else {
+            event.target.textContent = `Select ${input.getAttribute('data-type')}`;
+          }
+        } else {
+          this.currentInput = inputName;
+          event.target.textContent = 'Cancel';
+        }
       } else if (event.target.classList.contains('algorithm-next-btn')) {
         AlgorithmInterface.viewNext();
       } else if (event.target.classList.contains('algorithm-prev-btn')) {
@@ -123,7 +133,7 @@ export class SidebarAlgorithm extends SidebarContent {
         fieldHtml = `
           <input type="hidden" name="${name}" data-type="${type}" class="${isRequired ? 'required' : ''}">
           <output name="${name}"></output>
-          <button type="button" class="data-select-btn">Select Item</button>
+          <button type="button" class="data-select-btn">Choose ${type}</button>
         `;
       }
 
@@ -140,11 +150,11 @@ export class SidebarAlgorithm extends SidebarContent {
       <div class="data-container">
         <form class="data-list">
           ${html}
-          <button type="button" class="run-algorithm-btn">Run</button>
+          <button type="button" class="run-algorithm-btn">Generate results</button>
         </form>
         <div>
-          <button type="button" class="algorithm-prev-btn">Previous</button>
-          <button type="button" class="algorithm-next-btn">Next</button>
+          <button type="button" class="algorithm-prev-btn">Previous step</button>
+          <button type="button" class="algorithm-next-btn">Next step</button>
         </div>
       </div>
     `;
@@ -165,6 +175,11 @@ export class SidebarAlgorithm extends SidebarContent {
 
       let output = sidebar.querySelector(`output[name="${name}"]`);
       output.value = `Node ${id}`;
+
+      let button = output.nextElementSibling;
+      button.textContent = `Change ${input.getAttribute('data-type')}`;
+
+      this.currentInput = null;
     }
   }
 

@@ -42,6 +42,10 @@
   output {
     display: block;
     height: 34px;
+
+    &:empty {
+      display: none;
+    }
   }
 
   button {
