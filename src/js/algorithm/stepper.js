@@ -4,10 +4,9 @@
 
 export default class Stepper {
 
-  algorithm;
-  speed = 1000;
+  result;
+  speed = 500;
   interval;
-  isComplete = false;
 
   constructor() {
   }
@@ -18,21 +17,20 @@ export default class Stepper {
 
   reset() {
     this.pause();
-    this.isComplete = false;
-    this.algorithm = null;
+    this.result = null;
   }
 
-  setAlgorithm(algorithm) {
+  setResult(result) {
     this.reset();
-    this.algorithm = algorithm;
+    this.result = result;
   }
 
-  stepBack() {
-    // this.algorithm.previous();
+  stepBackward() {
+    this.result.stepBackward();
   }
 
   stepForward() {
-    // this.algorithm.next();
+    this.result.stepForward();
   }
 
   pause() {
@@ -40,28 +38,18 @@ export default class Stepper {
   }
 
   play() {
-    let hasNext = true;
-
     this.interval = setInterval(() => {
-      if (!this.algorithm.isComplete) {
+      if (this.result.stepIndex < this.result.timeline.length) {
         try {
-          hasNext = this.algorithm.next();
-          // AlgorithmInterface.updateAlgorithm(this.algorithm);
+          this.stepForward();
         } catch (e) {
           this.pause();
           throw e;
-        }
-        if (!hasNext) {
-          this.pause();
         }
       } else {
         this.pause();
       }
     }, this.speed);
-  }
-
-  setSpeed(speed) {
-    this.speed = speed;
   }
 
 }

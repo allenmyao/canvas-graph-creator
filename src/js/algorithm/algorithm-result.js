@@ -39,7 +39,6 @@ class AlgorithmResult {
     if (this.stepIndex > -1) {
       let currentStep = this.timeline[this.stepIndex];
       currentStep.applyPost();
-      console.log(currentStep.description);
     }
     if (this.stepIndex < this.timeline.length - 1) {
       let nextStep = this.timeline[this.stepIndex + 1];
@@ -58,7 +57,6 @@ class AlgorithmResult {
     if (this.stepIndex < this.timeline.length) {
       let currentStep = this.timeline[this.stepIndex];
       currentStep.applyPre();
-      console.log(currentStep.description);
     }
     if (this.stepIndex > 0) {
       let previousStep = this.timeline[this.stepIndex - 1];

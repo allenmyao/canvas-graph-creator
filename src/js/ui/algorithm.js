@@ -22,8 +22,9 @@ export function selectObject(obj) {
 
 export function setAlgorithm(AlgorithmClass) {
   let algorithm = new AlgorithmClass(graph);
-  stepper.setAlgorithm(algorithm);
   inputs = algorithm.inputs;
+
+  stepper.reset();
 
   algorithmRunner = new AlgorithmRunner(algorithm);
 
@@ -35,28 +36,36 @@ export function getAlgorithmInputs() {
   return inputs;
 }
 
-export function setInputs(inputData) {
+export function setInputValues(inputData) {
   for (let name of Object.keys(inputData)) {
     if (name in inputs) {
       let value = inputData[name];
-      stepper.getAlgorithm()[name] = value;
+      algorithmRunner.algorithm[name] = value;
     }
   }
 }
 
 export function run() {
-  console.log('run');
   algorithmRunner.run();
   console.log(algorithmRunner.getResult());
-  // stepper.play();
+  stepper.setResult(algorithmRunner.getResult());
+}
+
+export function play() {
+  if (stepper.result === null) {
+    return;
+  }
+  stepper.play();
+}
+
+export function pause() {
+  stepper.pause();
 }
 
 export function viewNext() {
-  let algorithmResult = algorithmRunner.getResult();
-  algorithmResult.stepForward();
+  stepper.stepForward();
 }
 
 export function viewPrevious() {
-  let algorithmResult = algorithmRunner.getResult();
-  algorithmResult.stepBackward();
+  stepper.stepBackward();
 }
