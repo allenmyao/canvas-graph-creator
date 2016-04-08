@@ -21,6 +21,7 @@ export class Serializer {
       this.exportGraph();
     });
     this.importBtn = document.getElementById('import-graph-button');
+    this.textBox = document.getElementById('export-import-text')
     this.importBtn.addEventListener('click', (event) => {
       this.importGraph();
     });
@@ -143,8 +144,7 @@ export class Serializer {
         }
       }
     }
-
-    console.log('Serial Graph: ' + JSON.stringify(outputObj));
+		this.textBox.value = JSON.stringify(outputObj);
   }
 
   importGraph() {
