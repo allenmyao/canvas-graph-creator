@@ -12,7 +12,7 @@ export class Node {
   isStartingState = false;  // boolean for DFA/NFA purposes, idicated by incoming arrow
   value = 0; // numerical value for algorithms
   visited = false; // boolean used for algorithms e.x traversals.
-  color=''; // string value defines the color for chromatic algorithms
+  color='black'; // string value defines the color for chromatic algorithms
   xText = 0;
   yText = 0;
   showTextCtrl = false;

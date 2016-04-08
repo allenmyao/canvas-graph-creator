@@ -28,6 +28,7 @@ export class Edge {
   id = Edge.numEdges++;
   isSelected = false;
   edgeLabel = '';
+  color = 'black';
 
   constructor(startNode, destNode, bezierPoint = null, cost = null, isDirected = false) {
     let methods = [

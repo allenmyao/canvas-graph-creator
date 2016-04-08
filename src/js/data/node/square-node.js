@@ -123,7 +123,7 @@ export class SquareNode extends Node {
     // let xOffSet = 0;
     // let yOffSet = 0;
     context.fillStyle = 'white';
-    context.strokeStyle = this.isSelected ? 'red' : 'black';
+    context.strokeStyle = this.isSelected ? 'red' : this.color;
 
     // Create a new path
     context.beginPath();

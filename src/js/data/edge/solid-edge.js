@@ -4,7 +4,7 @@ import { drawArrows } from '../../util/curvedEdge';
 export class SolidEdge extends Edge {
 
   draw(context) {
-    context.strokeStyle = this.isSelected ? 'red' : 'black';
+    context.strokeStyle = this.isSelected ? 'red' : this.color;
 
     // Create a new path
     context.beginPath();

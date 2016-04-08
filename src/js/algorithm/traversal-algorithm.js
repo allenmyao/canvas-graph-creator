@@ -28,10 +28,10 @@ class TraversalAlgorithm extends AbstractAlgorithm {
 
   result;
   nodeFields = [
-    'isSelected'
+    'color'
   ];
   edgeFields = [
-    'isSelected'
+    'color'
   ];
 
   constructor(graph) {
@@ -104,11 +104,11 @@ class TraversalAlgorithm extends AbstractAlgorithm {
 
     this.stepBuilder.newStep(`Visiting ${nextItem.constructor.name} ${nextItem.id}`);
     this.stepBuilder.addChange(nextItem, {
-      isSelected: false
+      color: "black"
     }, {
-      isSelected: true
+      color: "red"
     }, {
-      isSelected: false
+      color: "green"
     });
     this.stepBuilder.completeStep();
 
