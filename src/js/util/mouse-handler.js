@@ -1,5 +1,8 @@
 import * as UI from '../ui/ui';
 import * as Sidebar from '../ui/sidebar';
+import { Node } from '../data/node/node';
+import { CircleNode } from '../data/node/circle-node';
+import { SquareNode } from '../data/node/square-node';
 
 export class MouseHandler {
 
@@ -115,5 +118,52 @@ export class MouseHandler {
       currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
     }
   }
-
-}
+  
+  contextComponent(event, x, y){
+      let component = null;
+      if(this.graph.hasComponent(x, y)) {
+          component = this.graph.getComponent(x, y);
+      }
+      
+      return component;
+  }
+  
+  contextWorker(event, x, y){
+      let task = event.srcElement.innerText;
+      let component = null;
+      if(this.graph.hasComponent(x, y)) {
+        component = this.graph.getComponent(x, y);
+      }
+      if (task == "Add Circle Node"){
+        let NodeClass = CircleNode;
+        let node = new NodeClass(x,y);
+    
+        if (!this.graph.isNodeCollision(node, x, y)) {
+          this.graph.addNode(node);
+        }
+      }
+      else if (task == "Add Square Node"){
+        let NodeClass = SquareNode;
+        let node = new NodeClass(x,y);
+    
+        if (!this.graph.isNodeCollision(node, x, y)) {
+          this.graph.addNode(node);
+        }
+      }
+      else if (task == "Toggle Accepting State"){
+        component['isAcceptingState'] = !component['isAcceptingState'];
+      }
+      else if (task == "Toggle Start State"){
+        component['isStartState'] = !component['isStartState'];
+      }
+      else if (task == "Toggle Start State"){
+        component['isDirected'] = !component['isDirected'];
+      }
+      else if (task == "Delete Node"){
+        this.graph.removeNode(component);
+      }
+      else if (task == "Delete Edge"){
+        this.graph.removeEdge(component);
+      }
+    }
+  }

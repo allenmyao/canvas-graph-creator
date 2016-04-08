@@ -1,10 +1,13 @@
 import { MouseHandler } from '../util/mouse-handler';
 import * as Toolbar from '../ui/toolbar';
 import * as UI from '../ui/ui';
+import { Node } from 'data/node/node';
+import { Edge } from 'data/edge/edge';
 import { initCurved } from '../util/curvedEdge';
 
 let canvas;
 let context;
+let menu;
 let mouseHandler;
 
 const SCALE_MODIFIER = 0.9;
@@ -13,8 +16,15 @@ let scale = 1;
 let dx = 0;
 let dy = 0;
 
+var menuState = 0; 
+var menuPosX;
+var menuPosY;
+var component;
+var active = 'context-menu--active';
+
 export function init(graph) {
   canvas = document.getElementById('canvas');
+  menu = document.getElementById('context-menu');
   context = canvas.getContext('2d');
 
   initCurved(canvas, context);
@@ -91,21 +101,79 @@ export function update() {
   context.translate(-dx, -dy);
 }
 
+function classDisplayChange(className, displayType){
+  var items = document.getElementsByClassName(className);
+  for (var i = 0; i < items.length; ++i){
+    items[i].style.display = displayType;    
+  }
+}
+
+function toggleContextMenu(){
+  if (menuState !== 1){
+    document.getElementById('context-menu').style.display = 'block';
+    menuState = 1;
+  }
+  else{
+    menuState = 0;
+    document.getElementById('context-menu').style.display = 'none';
+    classDisplayChange('component-node', 'none');
+    classDisplayChange('component-edge', 'none');
+    classDisplayChange('blank', 'none');
+  }
+}
+
+function repositionMenu(event){
+  
+  let xpos = event.pageX;
+  let ypos = event.pageY;
+  
+  document.getElementById('context-menu').style.left = xpos + 'px';
+  document.getElementById('context-menu').style.top = ypos + 'px';
+}
+
+function inClass(event, className){
+    var elem = event.target; 
+    
+    if(elem.classList.contains(className)){
+      return elem
+    }
+    else{
+      while(elem = elem.parentNode ){
+        if(elem.classList && elem.classList.contains(className)){
+          return elem
+        }
+      }
+    }
+    return false;
+}
+
 function initMouseHandler(graph) {
   mouseHandler = new MouseHandler(graph);
 
   canvas.addEventListener('mousedown', (event) => {
     let x = getCanvasX(event);
     let y = getCanvasY(event);
-
-    mouseHandler.downListener(event, Toolbar.getCurrentTool(), x, y);
+    
+    if (menuState == 0 && event.button !== 2) {
+      mouseHandler.downListener(event, Toolbar.getCurrentTool(), x, y);
+    }
+  }, false);
+  
+  menu.addEventListener('mouseup', (event) => {
+    mouseHandler.contextWorker(event, menuPosX, menuPosY);
+    toggleContextMenu();
   }, false);
 
   canvas.addEventListener('mouseup', (event) => {
     let x = getCanvasX(event);
     let y = getCanvasY(event);
-
-    mouseHandler.upListener(event, Toolbar.getCurrentTool(), x, y);
+    
+    if(menuState == 1 && !inClass(event, 'context-menu')){
+      toggleContextMenu();
+    }
+    else if(menuState == 0 && event.button !== 2) {
+      mouseHandler.upListener(event, Toolbar.getCurrentTool(), x, y);
+    }
   }, false);
 
   canvas.addEventListener('mousemove', (event) => {
@@ -113,6 +181,31 @@ function initMouseHandler(graph) {
     let y = getCanvasY(event);
 
     mouseHandler.moveListener(event, Toolbar.getCurrentTool(), x, y);
+  }, false);
+  
+  canvas.addEventListener('contextmenu', (event) => {
+    menuPosX = getCanvasX(event);
+    menuPosY = getCanvasY(event);
+      
+    component = mouseHandler.contextComponent(event, menuPosX, menuPosY);
+    event.preventDefault();
+  
+    toggleContextMenu();
+  
+    repositionMenu(event);
+  
+    if (component !== null){
+      if (component instanceof Node){
+        classDisplayChange('component-node', 'block');
+      }
+      else if (component instanceof Edge){
+        classDisplayChange('component-edge', 'block');
+      }
+    }  
+    else{
+      classDisplayChange('blank', 'block');
+    }
+  
   }, false);
 
   canvas.addEventListener('wheel', (event) => {

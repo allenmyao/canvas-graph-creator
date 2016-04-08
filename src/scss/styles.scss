@@ -240,3 +240,26 @@ input[type="color"] {
     }
   }
 }
+
+#context-menu {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  border: 1px solid black;
+  background: #aaa;
+}
+
+#context-menu .component-node{
+  display: none;
+  padding: 5px;
+}
+
+#context-menu .component-edge{
+  display: none;
+  padding: 5px;
+}
+
+#context-menu .blank {
+  display: none;
+  padding: 5px;
+}
