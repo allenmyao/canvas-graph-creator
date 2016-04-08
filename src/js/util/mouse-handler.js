@@ -153,4 +153,8 @@ export class MouseHandler {
       this.graph.removeEdge(component);
     }
   }
+  
+  contextSelect(event, currentTool, component, x, y){
+    currentTool.selectObject(event, this.graph, component, x, y);
+  }
 }

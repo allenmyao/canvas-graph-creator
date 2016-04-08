@@ -16,7 +16,8 @@ let scale = 1;
 let dx = 0;
 let dy = 0;
 
-let menuState = 0; 
+let menuState = 0;
+let inputState = 0;
 let menuPosX;
 let menuPosY;
 let component;
@@ -126,6 +127,7 @@ function toggleContextMenu(){
   else{
     menuState = 0;
     document.getElementById('context-menu').style.display = 'none';
+    classDisplayChange('component', 'none');
     classDisplayChange('component-node', 'none');
     classDisplayChange('component-edge', 'none');
     classDisplayChange('blank', 'none');
@@ -182,6 +184,12 @@ function initMouseHandler(graph) {
     else if (type === 'Delete'){
       mouseHandler.contextDelete(taskArg[task],component);
     }
+    else if (type === 'Edit'){
+      console.log('hello');
+      Toolbar.toMetadata();
+      mouseHandler.contextSelect(event, Toolbar.getCurrentTool(), component, menuPosX, menuPosY);
+    }
+    
     toggleContextMenu();
   }, false);
 
@@ -216,6 +224,7 @@ function initMouseHandler(graph) {
     repositionMenu(event);
   
     if (component !== null){
+      classDisplayChange('component', 'block');
       if (component instanceof Node){
         classDisplayChange('component-node', 'block');
       }

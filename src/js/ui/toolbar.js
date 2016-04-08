@@ -61,6 +61,14 @@ export function getCurrentTool() {
   return currentTool;
 }
 
+export function toMetadata() {
+  currentTool.cancel();
+  currentTool = toolMap['metadata'];
+  selectItem('tool', 'metadata');
+  showModes();
+  currentTool.activate();
+}
+
 function selectItem(className, selectedElement) {
   let elements = document.getElementsByClassName(className);
   for (let i = 0; i < elements.length; i++) {
