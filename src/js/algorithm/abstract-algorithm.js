@@ -74,12 +74,6 @@ class AbstractAlgorithm {
     return this.result;
   }
 
-  // visit the specified node
-  visitNode(node) {}
-
-  // visit the specified edge
-  visitEdge(edge) {}
-
   // run the next step of the algorithm
   step() {}
 
