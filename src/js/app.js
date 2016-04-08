@@ -26,6 +26,7 @@ function resetGraph(newGraph) {
   graph = newGraph;
   Canvas.resetGraph(newGraph);
   UI.resetGraph(newGraph);
+  serializer.resetGraph(newGraph);
 }
 
 window.addEventListener('load', init, false);
