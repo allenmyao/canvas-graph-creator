@@ -15,7 +15,7 @@ class TraversalAlgorithm extends AbstractAlgorithm {
   // starting point for the algorithm
   source = null;
 
-  //things that the GUI needs to supply for the algorithm to run
+  // things that the GUI needs to supply for the algorithm to run
   inputs = {
     source: {
       type: 'node',
@@ -28,8 +28,8 @@ class TraversalAlgorithm extends AbstractAlgorithm {
   };
 
   result;
-  
-  //the members of the nodes and edges that the algorithm will edit
+
+  // the members of the nodes and edges that the algorithm will edit
   nodeFields = [
     'color'
   ];
@@ -83,7 +83,6 @@ class TraversalAlgorithm extends AbstractAlgorithm {
   // run the next step of the algorithm
   step() {
     if (this.hasStarted && this.next.size === 0) {
-      console.log('Algorithm has finished');
       this.isComplete = true;
       return false;
     }
@@ -104,14 +103,14 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     } else {
       throw Error('Non-graph object in algorithm queue');
     }
-    //represent the visual aspects of this step by creating a new step, adding a change for the current object, and completing the step
+    // represent the visual aspects of this step by creating a new step, adding a change for the current object, and completing the step
     this.stepBuilder.newStep(`Visiting ${nextItem.constructor.name} ${nextItem.id}`);
     this.stepBuilder.addChange(nextItem, {
-      color: "black"
+      color: 'black'
     }, {
-      color: "red"
+      color: 'red'
     }, {
-      color: "green"
+      color: 'green'
     });
     this.stepBuilder.completeStep();
 

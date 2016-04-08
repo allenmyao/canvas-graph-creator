@@ -33,42 +33,38 @@ class AlgorithmResult {
 
   stepForward() {
     if (this.stepIndex === this.timeline.length) {
-      console.log('Already at final step');
-      return "Algorithm finished!";
+      return 'Algorithm finished!';
     }
     if (this.stepIndex > -1) {
       let finishingStep = this.timeline[this.stepIndex];
       finishingStep.applyPost();
     }
-    if(this.stepIndex < this.timeline.length - 1) {
+    if (this.stepIndex < this.timeline.length - 1) {
       let nextStep = this.timeline[this.stepIndex + 1];
       nextStep.applyDuring();
-      console.log(nextStep.description);
       this.stepIndex++;
       return nextStep.description;
     }
     this.stepIndex++;
-    return "Done!";
+    return 'Done!';
   }
 
   stepBackward() {
     if (this.stepIndex === -1) {
-      console.log('Already at initial step');
-      return "Algorithm ready to begin!";
+      return 'Algorithm ready to begin!';
     }
     if (this.stepIndex < this.timeline.length) {
       let redactingStep = this.timeline[this.stepIndex];
       redactingStep.applyPre();
     }
-    if(this.stepIndex > 0) {
+    if (this.stepIndex > 0) {
       let previousStep = this.timeline[this.stepIndex - 1];
       previousStep.applyDuring();
-      console.log(previousStep.description);
       this.stepIndex--;
       return previousStep.description;
     }
     this.stepIndex--;
-    return "Ready!";
+    return 'Ready!';
   }
 
   /**

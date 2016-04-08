@@ -15,7 +15,6 @@ export class SidebarAlgorithm extends SidebarContent {
       if (event.target.classList.contains('run-algorithm-btn')) {
         let form = event.target.parentNode;
         let data = Form.getData(form, this.graph);
-        console.log(data);
 
         let hasError = false;
         let inputs = AlgorithmInterface.getAlgorithmInputs();

@@ -43,11 +43,10 @@ export function setInputValues(inputData) {
 }
 
 export function run() {
-    let hasNextStep = true;
-    while (hasNextStep) {
-      hasNextStep = curAlgorithm.step();
-    }
-  console.log(curAlgorithm.getResult());
+  let hasNextStep = true;
+  while (hasNextStep) {
+    hasNextStep = curAlgorithm.step();
+  }
   stepper.setResult(curAlgorithm.getResult());
 }
 

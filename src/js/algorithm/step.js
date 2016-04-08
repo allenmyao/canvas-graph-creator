@@ -22,8 +22,8 @@ class Step {
    */
   constructor(description) {
     this.description = description;
-    if(!this.description) {
-      this.description = " ";
+    if (!this.description) {
+      this.description = ' ';
     }
   }
 
