@@ -1,11 +1,10 @@
 import Stepper from '../algorithm/stepper';
-import AlgorithmRunner from '../algorithm/algorithm-runner';
 import * as Sidebar from '../ui/sidebar';
 
 let stepper = new Stepper();
 let graph = null;
 let inputs;
-let algorithmRunner;
+let curAlgorithm;
 
 export function init(g) {
   graph = g;
@@ -21,15 +20,13 @@ export function selectObject(obj) {
 }
 
 export function setAlgorithm(AlgorithmClass) {
-  let algorithm = new AlgorithmClass(graph);
-  inputs = algorithm.inputs;
+  curAlgorithm = new AlgorithmClass(graph);
+  inputs = curAlgorithm.inputs;
 
   stepper.reset();
 
-  algorithmRunner = new AlgorithmRunner(algorithm);
-
   let sidebarContent = Sidebar.getContent();
-  sidebarContent.updateAlgorithm(algorithm);
+  sidebarContent.updateAlgorithm(curAlgorithm);
 }
 
 export function getAlgorithmInputs() {
@@ -40,15 +37,18 @@ export function setInputValues(inputData) {
   for (let name of Object.keys(inputData)) {
     if (name in inputs) {
       let value = inputData[name];
-      algorithmRunner.algorithm[name] = value;
+      curAlgorithm[name] = value;
     }
   }
 }
 
 export function run() {
-  algorithmRunner.run();
-  console.log(algorithmRunner.getResult());
-  stepper.setResult(algorithmRunner.getResult());
+    let hasNextStep = true;
+    while (hasNextStep) {
+      hasNextStep = curAlgorithm.step();
+    }
+  console.log(curAlgorithm.getResult());
+  stepper.setResult(curAlgorithm.getResult());
 }
 
 export function play() {
