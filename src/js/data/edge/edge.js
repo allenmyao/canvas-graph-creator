@@ -1,7 +1,6 @@
 import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from '../../util/curvedEdge';
 import { CircleNode } from '../node/circle-node';
 import { SquareNode } from '../node/square-node';
-import { Node } from '../node/node';
 
 /*
 * Edge Class
@@ -26,7 +25,7 @@ import { Node } from '../node/node';
 export class Edge {
 
   static numEdges = 0;
-  id = Node.numEdges++;
+  id = Edge.numEdges++;
   isSelected = false;
   edgeLabel = '';
 
