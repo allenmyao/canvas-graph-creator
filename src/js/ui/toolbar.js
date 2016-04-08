@@ -63,7 +63,7 @@ export function getCurrentTool() {
 
 export function toMetadata() {
   currentTool.cancel();
-  currentTool = toolMap['metadata'];
+  currentTool = toolMap.metadata;
   selectItem('tool', 'metadata');
   showModes();
   currentTool.activate();

@@ -117,44 +117,43 @@ export class MouseHandler {
       currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
     }
   }
-  
-  contextComponent(event, x, y){
-      let component = null;
-      if(this.graph.hasComponent(x, y)) {
-          component = this.graph.getComponent(x, y);
-      }
-      
-      return component;
+
+  contextComponent(event, x, y) {
+    let component = null;
+    if (this.graph.hasComponent(x, y)) {
+      component = this.graph.getComponent(x, y);
+    }
+
+    return component;
   }
-  
-  contextAdd(arg, x, y){
+
+  contextAdd(arg, x, y) {
     let modes = {
-      'circle': CircleNode,
-      'square': SquareNode
+      circle: CircleNode,
+      square: SquareNode
     };
-    
+
     let NodeClass = modes[arg];
-    let node = new NodeClass(x,y);
-    
+    let node = new NodeClass(x, y);
+
     if (!this.graph.isNodeCollision(node, x, y)) {
       this.graph.addNode(node);
     }
   }
-  
-  contextToggle(arg, component){
+
+  contextToggle(arg, component) {
     component[arg] = !component[arg];
   }
-  
-  contextDelete(arg, component){
-    if (arg === 'node'){
+
+  contextDelete(arg, component) {
+    if (arg === 'node') {
       this.graph.removeNode(component);
-    }
-    else if (arg === 'edge'){
+    } else if (arg === 'edge') {
       this.graph.removeEdge(component);
     }
   }
-  
-  contextSelect(event, currentTool, component, x, y){
+
+  contextSelect(event, currentTool, component, x, y) {
     currentTool.selectObject(event, this.graph, component, x, y);
   }
 }
