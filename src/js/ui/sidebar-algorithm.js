@@ -164,6 +164,10 @@ export class SidebarAlgorithm extends SidebarContent {
           <button type="button" class="algorithm-play-btn">Play</button>
           <button type="button" class="algorithm-pause-btn">Pause</button>
         <div>
+        <div>
+          <p class="algorithm-step-num">Step #</p>
+          <p class="algorithm-step-des">This step is...</p>
+        </div>
       </div>
     `;
   }

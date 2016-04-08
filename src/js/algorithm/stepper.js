@@ -1,5 +1,4 @@
 // NOTES:  make this responsible for GUI elements as well, move to UI folder?  should draw knowing little to nothing about container, difficult to not make assumptions though
-// how does timekeeping work in javascript?
 // import * as AlgorithmInterface from 'ui/algorithm';
 
 export default class Stepper {
@@ -25,12 +24,23 @@ export default class Stepper {
     this.result = result;
   }
 
-  stepBackward() {
-    this.result.stepBackward();
+  updateStepGUI(description, stepNum, stepTotal) {
+    let des = document.getElementsByClassName("algorithm-step-des");
+    let num = document.getElementsByClassName("algorithm-step-num");
+    
+    if(des.length === 1 && num.length === 1) {
+      des[0].innerHTML = "Description:  " + description;
+      num[0].innerHTML = "Step " + stepNum + " of " + stepTotal;
+    }
   }
+  
+  stepBackward() {
+    this.updateStepGUI(this.result.stepBackward(),this.result.stepIndex,this.result.timeline.length);
+  }
+  
 
   stepForward() {
-    this.result.stepForward();
+    this.updateStepGUI(this.result.stepForward(),this.result.stepIndex,this.result.timeline.length);
   }
 
   pause() {
