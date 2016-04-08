@@ -37,7 +37,7 @@ class TraversalAlgorithm extends AbstractAlgorithm {
   constructor(graph) {
     super(graph);
     this.result = new AlgorithmResult();
-    this.stepBuilder = new StepBuilder(this.nodeFields, this.edgeFields);
+    this.stepBuilder = new StepBuilder(this.nodeFields, this.edgeFields, this.result);
   }
 
   // visit the specified node
@@ -110,8 +110,7 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     }, {
       isSelected: false
     });
-    let step = this.stepBuilder.completeStep();
-    this.result.addStep(step);
+    this.stepBuilder.completeStep();
 
     return true;
   }
