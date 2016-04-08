@@ -9,9 +9,18 @@
 
 <body>
   <div class="container">
-    <h1 class="title">Canvas Graph Creator</h1>
+    <div id="top-bar">
+      <div id="tool-modes">
+        <ul class="tool-mode-list">
+          <li class="tool-mode"></li>
+        </ul>
+      </div>
+    </div>
 
-    <div class="row">
+    <div id="tool-inputs">
+    </div>
+
+    <div>
       <div id="toolbar">
         <div id="tools-container">
           <ul class="tool-list">
@@ -62,15 +71,6 @@
             </li>
           </ul>
         </div>
-
-        <div id="tool-modes">
-          <ul class="tool-mode-list">
-            <li class="tool-mode"></li>
-          </ul>
-        </div>
-
-        <div id="tool-inputs">
-        </div>
       </div>
     </div>
 
@@ -96,22 +96,18 @@
       </div>
     </div>
 
-    <div class="row">
+    <div>
       <div id="status-container">
         <div id="status-bar">
-          <div id="mouse-pos">
+          <div id="zoom" class="status-bar-item">
+            <label>Zoom: </label>
+            <input type="text" id="zoom-input" value="100%" />
+            <button type="button" id="reset-transform">Reset</button>
+          </div>
+          <div id="mouse-pos" class="status-bar-item">
             <span>x: <span id="mouse-x">0</span></span>
             <span>y: <span id="mouse-y">0</span></span>
           </div>
-          <div id="canvas-pos">
-            <span>dx: <span id="canvas-dx">0</span></span>
-            <span>dy: <span id="canvas-dy">0</span></span>
-          </div>
-          <div id="zoom">
-            <label>Zoom: </label>
-            <input type="text" id="zoom-input" value="100%" />
-          </div>
-          <button type="button" id="reset-transform">Reset</button>
         </div>
       </div>
     </div>

@@ -22,6 +22,11 @@ export function init(graph) {
   initMouseHandler(graph);
 }
 
+export function resize(event) {
+  context.canvas.width = window.innerWidth;
+  context.canvas.height = window.innerHeight;
+}
+
 export function getDx() {
   return dx;
 }
