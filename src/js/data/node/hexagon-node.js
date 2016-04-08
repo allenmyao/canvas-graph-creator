@@ -1,14 +1,14 @@
 import { Node } from './node';
 
-export class SquareNode extends Node {
+export class HexagonNode extends Node {
 
   radius = 30;
 
   constructor(x, y) {
     super(x, y);
     this.generateDefaultTextLocation();
-    this.inscribed = [ 45, 135, 225, 315 ];
-    this.separation = 90;
+    this.inscribed = [ 0, 60, 120, 180, 240, 300 ];
+    this.separation = 60;
   }
 
   containsPoint(x, y) {
