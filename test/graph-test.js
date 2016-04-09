@@ -3,6 +3,7 @@ chai.should();
 
 import { Graph } from '../src/js/data/graph';
 import { Node } from '../src/js/data/node/node';
+import { CircleNode } from '../src/js/data/node/circle-node';
 import { Edge } from '../src/js/data/edge/edge';
 
 describe('Graph', () => {
@@ -56,7 +57,7 @@ describe('Graph', () => {
 
   }); // #addNode(node)
 
-  describe('removeNode(node)', () => {
+  describe('#removeNode(node)', () => {
 
     it('should remove from nodes', () => {
       let graph = new Graph();
@@ -137,7 +138,7 @@ describe('Graph', () => {
 
   }); // #addEdge(edge)
 
-  describe('removeEdge(edge)', () => {
+  describe('#removeEdge(edge)', () => {
 
     it('should remove from edges', () => {
       let graph = new Graph();
@@ -172,7 +173,7 @@ describe('Graph', () => {
     it('should return true if has edge', () => {
       let graph = new Graph();
       let start = new Node(0, 0);
-      let dest = new Node(100, 0)
+      let dest = new Node(100, 0);
       let edge = new Edge(start, dest);
       graph.addNode(start);
       graph.addNode(dest);
@@ -183,15 +184,62 @@ describe('Graph', () => {
     it('should not add duplicate edge', () => {
       let graph = new Graph();
       let start = new Node(0, 0);
-      let dest = new Node(100, 0)
+      let dest = new Node(100, 0);
       let edge = new Edge(start, dest);
       graph.addNode(start);
       graph.addNode(dest);
       graph.addEdge(edge);
       graph.hasEdge(start, start).should.be.false;
     });
-
   }); // #hasEdge(start, dest)
+  
+  describe('#hasComponent(x, y, ignore)', () => {
+
+    it('should return false for empty graph', () => {
+      let graph = new Graph();
+      let node1 = new CircleNode(1,1);
+
+      graph.hasComponent(2,2,node1).should.be.false;
+    });
+  });
+
+  describe('#getComponent(x, y)', () => {
+
+    it('should return null for empty graph', () => {
+      let graph = new Graph();
+
+      (graph.getComponent(4, 4) == null).should.be.true;
+    });
+
+    it('should return non-null when clicking on a node', () => {
+      let graph = new Graph();
+      let node1 = new CircleNode(1, 1);
+      graph.addNode(node1);
+
+      (graph.getComponent(1, 1) == null).should.be.false;
+    });
+  }); // #getComponent(x, y)
+  
+  describe('#isNodeCollision(testNode, x, y)', () => {
+
+    it('should return true if within 60', () => {
+      let graph = new Graph();
+      let node1 = new CircleNode(1, 1);
+      let node2 = new CircleNode(20,20);
+      graph.addNode(node1);
+
+      graph.isNodeCollision(node2, 20, 20).should.be.true;
+    });
+
+    it('should return false if farther than 60', () => {
+      let graph = new Graph();
+      let node1 = new CircleNode(1, 1);
+      let node2 = new CircleNode(90,90);
+      graph.addNode(node1);
+
+      graph.isNodeCollision(node2, 90, 90).should.be.false;
+    });
+  }); // #isNodeCollision(testNode, x, y)
 
   describe('#forEachNode(callback)', () => {
 
