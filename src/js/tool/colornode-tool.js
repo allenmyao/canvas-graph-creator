@@ -1,0 +1,32 @@
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
+
+
+//current functionality:
+//selecting a node with the color tool will change the node to red
+export class ColorNodeTool extends Tool {
+
+  name = 'Color Node Tool';
+
+
+  // currentMode = '';
+  // static modes = {
+    
+  // };
+
+  hasModes() {
+    return true;
+  }
+
+
+
+  selectObject(event, graph, obj, x, y) {
+    if (obj instanceof Node) {
+      this.selectNone(event, graph, x, y);
+      let nodeAttribute = ColorNodeTool.modes[this.currentMode];
+      obj[nodeAttribute] = !obj[nodeAttribute];
+    }
+  }
+
+}

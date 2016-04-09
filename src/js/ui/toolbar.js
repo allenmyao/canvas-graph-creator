@@ -7,6 +7,8 @@ import { EditEdgeTool } from '../tool/editedge-tool';
 import { MetadataTool } from '../tool/metadata-tool';
 import { PanTool } from '../tool/pan-tool';
 import { SelectTool } from '../tool/select-tool';
+import { ColorTool } from '../tool/colornode-tool';
+import { ColorTool } from '../tool/coloredge-tool';
 import * as Sidebar from '../ui/sidebar';
 
 // const TOOL_CLASS = 'tool';
@@ -24,7 +26,10 @@ let toolMap = {
   editedge: new EditEdgeTool(),
   select: new SelectTool(),
   metadata: new MetadataTool(),
-  pan: new PanTool()
+  pan: new PanTool(),
+  colornode: new ColorNodeTool(),
+  coloredge: new ColorEdgeTool()
+
 };
 let currentTool = toolMap.node;
 
