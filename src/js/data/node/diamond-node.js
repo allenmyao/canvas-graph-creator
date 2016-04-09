@@ -1,13 +1,13 @@
 import { Node } from './node';
 
-export class SquareNode extends Node {
+export class DiamondNode extends Node {
 
   radius = 30;
 
   constructor(x, y) {
     super(x, y);
     this.generateDefaultTextLocation();
-    this.inscribed = [ 45, 135, 225, 315 ];
+    this.inscribed = [ 0, 90, 180, 270 ];
     this.separation = 90;
   }
 
@@ -38,7 +38,7 @@ export class SquareNode extends Node {
     // let xOffSet = 0;
     // let yOffSet = 0;
     context.fillStyle = 'white';
-    context.strokeStyle = this.isSelected ? 'red' : this.color;
+    context.strokeStyle = this.isSelected ? 'red' : 'black';
 
     // Create a new path
     context.beginPath();

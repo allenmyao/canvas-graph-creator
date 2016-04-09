@@ -16,6 +16,10 @@ export class Tool {
     return false;
   }
 
+  changeMode(mode) {
+    this.currentMode = mode;
+  }
+
   // These is called when changing tools
   // Set up the interface
   activate() {}

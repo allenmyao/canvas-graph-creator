@@ -2,6 +2,11 @@ import { Tool } from '../tool/tool';
 import { Node } from '../data/node/node';
 import { CircleNode } from '../data/node/circle-node';
 import { SquareNode } from '../data/node/square-node';
+import { TriangleNode } from '../data/node/triangle-node';
+import { DiamondNode } from '../data/node/diamond-node';
+import { PentagonNode } from '../data/node/pentagon-node';
+import { HexagonNode } from '../data/node/hexagon-node';
+import { OctagonNode } from '../data/node/octagon-node';
 
 export class NodeTool extends Tool {
 
@@ -11,7 +16,12 @@ export class NodeTool extends Tool {
   currentMode = 'circle';
   static modes = {
     circle: CircleNode,
-    square: SquareNode
+    triangle: TriangleNode,
+    square: SquareNode,
+    diamond: DiamondNode,
+    pentagon: PentagonNode,
+    hexagon: HexagonNode,
+    octagon: OctagonNode
   };
 
   hasModes() {

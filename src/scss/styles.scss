@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'base';
+@import 'sidebar';
 
 $status-bar-height: 30px;
 $sidebar-width: 380px;
@@ -16,6 +17,7 @@ body {
 }
 
 input,
+output,
 button,
 select,
 textarea {
@@ -29,6 +31,14 @@ textarea {
 
 input[type="color"] {
   padding: 0;
+}
+
+fieldset.error {
+  color: red;
+
+  input, select, textarea, output {
+    border-color: red;
+  }
 }
 
 .col-2 {
@@ -89,71 +99,6 @@ input[type="color"] {
 
     &.active {
       display: block;
-    }
-  }
-}
-
-#sidebar-container {
-  width: 380px;
-  margin-left: 20px;
-
-  #sidebar {
-    height: 600px;
-    font-size: 1rem;
-
-    .tabs-container {
-      height: 100%;
-
-      .tab-list {
-        height: 50px;
-        font-size: 0;
-        border-bottom: 1px solid black;
-
-        .tab {
-          padding: 10px 20px;
-          border: 1px solid black;
-          font-size: 1rem;
-
-          &:not(:first-child) {
-            margin-left: -1px;
-          }
-
-          &.active {
-            border-bottom: 1px solid white;
-          }
-        }
-      }
-
-      .tab-content {
-        border: 1px solid black;
-        border-top: 0;
-
-        .data-container {
-          width: 100%;
-          height: 100%;
-
-          .data-list {
-            display: block;
-            width: 100%;
-            padding: 10px;
-
-            .data-item {
-              display: block;
-              font-size: 0;
-
-              &:not(:first-child) {
-                margin: 5px 0;
-                padding-top: 5px;
-                border-top: 1px solid #ccc;
-              }
-
-              span {
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }
