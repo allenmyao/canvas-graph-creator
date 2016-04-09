@@ -18,10 +18,6 @@ export function updateMouse(x, y) {
   StatusBar.updateMouse(x, y);
 }
 
-export function updateCanvasPosition(dx, dy) {
-  StatusBar.updateCanvasPosition(dx, dy);
-}
-
 export function selectObject(obj) {
   // Sidebar.updateSidebar(obj);
 }

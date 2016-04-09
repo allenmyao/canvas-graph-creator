@@ -56,8 +56,6 @@ export function getDy() {
 export function setPosition(newDx, newDy) {
   dx = newDx;
   dy = newDy;
-
-  UI.updateCanvasPosition(dx, dy);
 }
 
 export function getScale() {
