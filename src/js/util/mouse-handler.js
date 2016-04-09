@@ -1,5 +1,7 @@
 import * as UI from '../ui/ui';
 import * as Sidebar from '../ui/sidebar';
+import { CircleNode } from '../data/node/circle-node';
+import { SquareNode } from '../data/node/square-node';
 
 export class MouseHandler {
 
@@ -116,4 +118,42 @@ export class MouseHandler {
     }
   }
 
+  contextComponent(event, x, y) {
+    let component = null;
+    if (this.graph.hasComponent(x, y)) {
+      component = this.graph.getComponent(x, y);
+    }
+
+    return component;
+  }
+
+  contextAdd(arg, x, y) {
+    let modes = {
+      circle: CircleNode,
+      square: SquareNode
+    };
+
+    let NodeClass = modes[arg];
+    let node = new NodeClass(x, y);
+
+    if (!this.graph.isNodeCollision(node, x, y)) {
+      this.graph.addNode(node);
+    }
+  }
+
+  contextToggle(arg, component) {
+    component[arg] = !component[arg];
+  }
+
+  contextDelete(arg, component) {
+    if (arg === 'node') {
+      this.graph.removeNode(component);
+    } else if (arg === 'edge') {
+      this.graph.removeEdge(component);
+    }
+  }
+
+  contextSelect(event, currentTool, component, x, y) {
+    currentTool.selectObject(event, this.graph, component, x, y);
+  }
 }
