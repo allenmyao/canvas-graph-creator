@@ -16,7 +16,8 @@ export class Node {
   xText = 0;
   yText = 0;
   showTextCtrl = false;
-
+  inscribed = []; // angles corresponding to the inscribed shape
+  separation = 0; // distance between vertices by angle
 
   constructor(x, y) {
     // new.target not supported by Babel
@@ -28,7 +29,8 @@ export class Node {
       'containsPoint',
       'distanceToPoint',
       'edgePointInDirection',
-      'draw'
+      'draw',
+      'getAnglePoint'
     ];
 
     for (let method of methods) {
@@ -69,6 +71,11 @@ export class Node {
   }
 
   draw(context) {
+    throw Error('Can\'t call methods from abstract Node class.');
+  }
+
+  // get corresponding point based on angle
+  getAnglePoint(angle) {
     throw Error('Can\'t call methods from abstract Node class.');
   }
 

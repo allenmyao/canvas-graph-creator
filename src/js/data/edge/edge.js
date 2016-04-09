@@ -1,6 +1,5 @@
 import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from '../../util/curvedEdge';
 import { CircleNode } from '../node/circle-node';
-import { SquareNode } from '../node/square-node';
 
 /*
 * Edge Class
@@ -71,58 +70,63 @@ export class Edge {
     this.cost = cost;
     this.isDirected = isDirected;
     this.isSelected = false;
-
+    this.partners = null;
+    for (let edge of this.startNode.edges) {
+      if (edge.startNode.id === this.startNode.id && edge.destNode.id === this.destNode.id) {
+        this.partners = edge.partners.slice(0);
+        break;
+      } else if (edge.destNode.id === this.startNode.id && edge.startNode.id === this.destNode.id) {
+        this.partners = edge.partners.slice(0);
+        break;
+      }
+    }
+    if (this.partners === null) {
+      this.partners = [ this ];
+    } else {
+      for (let i = 0; i < this.partners.length; i++) {
+        this.partners[i].partners[this.partners[i].partners.length] = this;
+      }
+      this.partners[this.partners.length] = this;
+    }
 
     startNode.edges.add(this);
     destNode.edges.add(this);
 
 
     if (this.startNode.id === this.destNode.id) {
-      if (this.startNode instanceof CircleNode) {
-        let angle = 247.5;
-        let theta = Math.PI * angle / 180;
-        let r = CircleNode.radius;
-        this.startPoint = {
-          x: r * Math.cos(theta) + this.startNode.x,
-          y: r * Math.sin(theta) + this.startNode.y
-        };
-        this.bezierPoint = {
-          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
-        };
-        this.destPoint = {
-          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
-        };
-      } else if (this.startNode instanceof SquareNode) {
-        let w = SquareNode.width;
-        let hw = w / 2;
-        this.startPoint = {
-          x: this.startNode.x - hw / 2,
-          y: this.startNode.y - hw
-        };
-        this.bezierPoint = {
-          x: this.startNode.x,
-          y: this.startNode.y - 2 * w
-        };
-        this.destPoint = {
-          x: this.startNode.x + hw / 2,
-          y: this.startNode.y - hw
-        };
-      }
+      let r = CircleNode.radius;
+      this.startPoint = this.startNode.getAnglePoint(240);
+      this.destPoint = this.startNode.getAnglePoint(300);
+      this.bezierPoint = {
+        x: (this.startPoint.x + this.destPoint.x) / 2,
+        y: this.startPoint.y - 2 * r
+      };
       this.isDirected = true;
     } else {
-      try {
-        this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
-        this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
-      } catch (e) {
-        return;
+      let incline = Math.asin((this.destNode.y - this.startNode.y) / Math.sqrt((this.destNode.x - this.startNode.x) * (this.destNode.x - this.startNode.x) + (this.destNode.y - this.startNode.y) * (this.destNode.y - this.startNode.y)));
+      incline = incline * 180 / Math.PI;
+      if (this.startNode.x >= this.destNode.x) {
+        incline = 180 - incline;
       }
-
-      if (bezierPoint === null) {
-        this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x) / 2,
-          y: (this.startPoint.y + this.destPoint.y) / 2
+      incline = (incline + 360) % 360;
+      let numPartners = this.partners.length + 1;
+      for (let i = 0; i < this.partners.length; i++) {
+        let startAngle = incline + 90 * (i + 1) / numPartners - 45;
+        let destAngle = incline + 225 - 90 * (i + 1) / numPartners;
+        try {
+          this.partners[i].startPoint = this.startNode.getAnglePoint(startAngle);
+          this.partners[i].destPoint = this.destNode.getAnglePoint(destAngle);
+        } catch (e) {
+          return;
+        }
+        let orient = (i + 1) / numPartners - 0.5;
+        let diff = {
+          x: this.partners[i].destPoint.x - this.partners[i].startPoint.x,
+          y: this.partners[i].destPoint.y - this.partners[i].startPoint.y
+        };
+        this.partners[i].bezierPoint = {
+          x: (this.partners[i].startPoint.x + this.partners[i].destPoint.x) / 2 - orient * diff.y,
+          y: (this.partners[i].startPoint.y + this.partners[i].destPoint.y) / 2 + orient * diff.x
         };
       }
     }
@@ -190,59 +194,46 @@ export class Edge {
 
   updateEndpoints() {
     if (this.startNode.id === this.destNode.id) {
-      if (this.startNode instanceof CircleNode) {
-        let angle = 247.5;
-        let theta = Math.PI * angle / 180;
-        let r = CircleNode.radius;
-        this.startPoint = {
-          x: r * Math.cos(theta) + this.startNode.x,
-          y: r * Math.sin(theta) + this.startNode.y
-        };
-        let oldBezier = this.bezierPoint;
-        this.bezierPoint = {
-          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
-        };
-        this.xText += (this.bezierPoint.x - oldBezier.x);
-        this.yText += (this.bezierPoint.y - oldBezier.y);
-        this.destPoint = {
-          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
-        };
-      } else if (this.startNode instanceof SquareNode) {
-        let w = SquareNode.width;
-        let hw = w / 2;
-        this.startPoint = {
-          x: this.startNode.x - hw / 2,
-          y: this.startNode.y - hw
-        };
-        let oldBezier = this.bezierPoint;
-        this.bezierPoint = {
-          x: this.startNode.x,
-          y: this.startNode.y - 2 * w
-        };
-        this.xText += (this.bezierPoint.x - oldBezier.x);
-        this.yText += (this.bezierPoint.y - oldBezier.y);
-        this.destPoint = {
-          x: this.startNode.x + hw / 2,
-          y: this.startNode.y - hw
-        };
-      }
+      let r = CircleNode.radius;
+      this.startPoint = this.startNode.getAnglePoint(240);
+      this.destPoint = this.startNode.getAnglePoint(300);
+      this.bezierPoint = {
+        x: (this.startPoint.x + this.destPoint.x) / 2,
+        y: this.startPoint.y - 2 * r
+      };
       this.isDirected = true;
     } else {
+      let incline = Math.asin((this.destNode.y - this.startNode.y) / Math.sqrt((this.destNode.x - this.startNode.x) * (this.destNode.x - this.startNode.x) + (this.destNode.y - this.startNode.y) * (this.destNode.y - this.startNode.y)));
+      incline = incline * 180 / Math.PI;
+      if (this.startNode.x >= this.destNode.x) {
+        incline = 180 - incline;
+      }
+      incline = (incline + 360) % 360;
+      let numPartners = this.partners.length + 1;
+      let multiIndex = -1;
+      for (let i = 0; i < this.partners.length; i++) {
+        if (this.partners[i].id === this.id) {
+          multiIndex = i + 1;
+          break;
+        }
+      }
+      let startAngle = incline + 90 * multiIndex / numPartners - 45;
+      let destAngle = incline + 225 - 90 * multiIndex / numPartners;
       try {
-        this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
-        this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
-        let oldBezier = this.bezierPoint;
-        this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x) / 2,
-          y: (this.startPoint.y + this.destPoint.y) / 2
-        };
-        this.xText += (this.bezierPoint.x - oldBezier.x);
-        this.yText += (this.bezierPoint.y - oldBezier.y);
+        this.startPoint = this.startNode.getAnglePoint(startAngle);
+        this.destPoint = this.destNode.getAnglePoint(destAngle);
       } catch (e) {
         return;
       }
+      let orient = multiIndex / numPartners - 0.5;
+      let diff = {
+        x: this.destPoint.x - this.startPoint.x,
+        y: this.destPoint.y - this.startPoint.y
+      };
+      this.bezierPoint = {
+        x: (this.startPoint.x + this.destPoint.x) / 2 - orient * diff.y,
+        y: (this.startPoint.y + this.destPoint.y) / 2 + orient * diff.x
+      };
     }
   }
 
