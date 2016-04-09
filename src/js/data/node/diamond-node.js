@@ -1,13 +1,13 @@
 import { Node } from './node';
 
-export class SquareNode extends Node {
+export class DiamondNode extends Node {
 
   radius = 30;
 
   constructor(x, y) {
     super(x, y);
     this.generateDefaultTextLocation();
-    this.inscribed = [ 45, 135, 225, 315 ];
+    this.inscribed = [ 0, 90, 180, 270 ];
     this.separation = 90;
   }
 
