@@ -1,3 +1,5 @@
+/* eslint no-unused-expressions: 0 */
+
 import chai from 'chai';
 chai.should();
 
@@ -7,9 +9,7 @@ import { CircleNode } from '../src/js/data/node/circle-node';
 import { Edge } from '../src/js/data/edge/edge';
 
 describe('Graph', () => {
-
   describe('#constructor(x, y)', () => {
-
     it('should accept iterable arguments', () => {
       let node1 = new Node(0, 0);
       let node2 = new Node(1, 0);
@@ -32,11 +32,9 @@ describe('Graph', () => {
       graph.nodes.size.should.equal(0);
       graph.edges.size.should.equal(0);
     });
-
   }); // #constructor(x, y)
 
   describe('#addNode(node)', () => {
-
     it('should add to nodes', () => {
       let graph = new Graph();
       let node = new Node(0, 0);
@@ -54,11 +52,9 @@ describe('Graph', () => {
       graph.addNode(node);
       graph.nodes.size.should.equal(1);
     });
-
   }); // #addNode(node)
 
   describe('#removeNode(node)', () => {
-
     it('should remove from nodes', () => {
       let graph = new Graph();
       let node = new Node(0, 0);
@@ -96,16 +92,14 @@ describe('Graph', () => {
       graph.removeNode(badNode);
       graph.nodes.size.should.equal(1);
     });
-
   }); // #removeNode(node)
 
   describe('#addEdge(edge)', () => {
-
     it('should throw error when edge nodes are not in graph', () => {
       let graph = new Graph();
       let edge = new Edge(new Node(0, 0), new Node(1, 0));
       graph.edges.size.should.equal(0);
-      (function() {
+      (function () {
         graph.addEdge(edge);
       }).should.throw(Error);
     });
@@ -135,11 +129,9 @@ describe('Graph', () => {
       graph.addEdge(edge);
       graph.edges.size.should.equal(1);
     });
-
   }); // #addEdge(edge)
 
   describe('#removeEdge(edge)', () => {
-
     it('should remove from edges', () => {
       let graph = new Graph();
       let node1 = new Node(0, 0);
@@ -159,13 +151,12 @@ describe('Graph', () => {
   }); // #removeEdge(edge)
 
   describe('#hasEdge(start, dest)', () => {
-
     it('should throw error if nodes are not in graph', () => {
       let graph = new Graph();
       let start = new Node(0, 0);
       let dest = new Node(100, 0);
       graph.addNode(start);
-      (function() {
+      (function () {
         graph.hasEdge(start, dest);
       }).should.throw(Error);
     });
@@ -192,23 +183,21 @@ describe('Graph', () => {
       graph.hasEdge(start, start).should.be.false;
     });
   }); // #hasEdge(start, dest)
-  
-  describe('#hasComponent(x, y, ignore)', () => {
 
+  describe('#hasComponent(x, y, ignore)', () => {
     it('should return false for empty graph', () => {
       let graph = new Graph();
-      let node1 = new CircleNode(1,1);
+      let node1 = new CircleNode(1, 1);
 
-      graph.hasComponent(2,2,node1).should.be.false;
+      graph.hasComponent(2, 2, node1).should.be.false;
     });
   });
 
   describe('#getComponent(x, y)', () => {
-
     it('should return null for empty graph', () => {
       let graph = new Graph();
 
-      (graph.getComponent(4, 4) == null).should.be.true;
+      (graph.getComponent(4, 4) === null).should.be.true;
     });
 
     it('should return non-null when clicking on a node', () => {
@@ -216,16 +205,15 @@ describe('Graph', () => {
       let node1 = new CircleNode(1, 1);
       graph.addNode(node1);
 
-      (graph.getComponent(1, 1) == null).should.be.false;
+      (graph.getComponent(1, 1) === null).should.be.false;
     });
   }); // #getComponent(x, y)
-  
-  describe('#isNodeCollision(testNode, x, y)', () => {
 
+  describe('#isNodeCollision(testNode, x, y)', () => {
     it('should return true if within 60', () => {
       let graph = new Graph();
       let node1 = new CircleNode(1, 1);
-      let node2 = new CircleNode(20,20);
+      let node2 = new CircleNode(20, 20);
       graph.addNode(node1);
 
       graph.isNodeCollision(node2, 20, 20).should.be.true;
@@ -234,7 +222,7 @@ describe('Graph', () => {
     it('should return false if farther than 60', () => {
       let graph = new Graph();
       let node1 = new CircleNode(1, 1);
-      let node2 = new CircleNode(90,90);
+      let node2 = new CircleNode(90, 90);
       graph.addNode(node1);
 
       graph.isNodeCollision(node2, 90, 90).should.be.false;
@@ -242,7 +230,6 @@ describe('Graph', () => {
   }); // #isNodeCollision(testNode, x, y)
 
   describe('#forEachNode(callback)', () => {
-
     it('should run callback(node) for each node', () => {
       let graph = new Graph();
       let nodeVisited = new Map();
@@ -257,7 +244,7 @@ describe('Graph', () => {
         nodeVisited.set(node, true);
       });
 
-      for (let [key, value] of nodeVisited) {
+      for (let value of nodeVisited.values()) {
         value.should.be.true;
       }
     });
@@ -279,7 +266,7 @@ describe('Graph', () => {
         return false;
       });
 
-      for (let [key, value] of nodeVisited) {
+      for (let [ key, value ] of nodeVisited) {
         if (key === firstNode) {
           value.should.be.true;
         } else {
@@ -287,7 +274,5 @@ describe('Graph', () => {
         }
       }
     });
-
   }); // #forEachNode(callback)
-
 }); // Graph

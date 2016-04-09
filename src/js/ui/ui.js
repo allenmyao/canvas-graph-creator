@@ -1,11 +1,13 @@
 import * as Toolbar from '../ui/toolbar';
 import * as StatusBar from '../ui/status-bar';
 import * as Sidebar from '../ui/sidebar';
+import * as AlgorithmInterface from '../ui/algorithm';
 
 export function init(graph) {
   Toolbar.init();
   StatusBar.init();
   Sidebar.init(graph);
+  AlgorithmInterface.init(graph);
 }
 
 export function updateZoom(scale) {

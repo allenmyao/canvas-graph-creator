@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions: 0 */
 
 import chai from 'chai';
-let should = chai.should();
+chai.should();
 
 import { MoveTool } from '../../src/js/tool/move-tool';
 import { Graph } from '../../src/js/data/graph';

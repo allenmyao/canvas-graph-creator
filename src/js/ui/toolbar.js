@@ -7,6 +7,7 @@ import { EditEdgeTool } from '../tool/editedge-tool';
 import { MetadataTool } from '../tool/metadata-tool';
 import { PanTool } from '../tool/pan-tool';
 import { SelectTool } from '../tool/select-tool';
+import { AlgorithmTool } from 'tool/algorithm-tool';
 import * as Sidebar from '../ui/sidebar';
 
 // const TOOL_CLASS = 'tool';
@@ -24,7 +25,8 @@ let toolMap = {
   editedge: new EditEdgeTool(),
   select: new SelectTool(),
   metadata: new MetadataTool(),
-  pan: new PanTool()
+  pan: new PanTool(),
+  algorithm: new AlgorithmTool()
 };
 let currentTool = toolMap.node;
 
@@ -43,6 +45,7 @@ export function init() {
 
       showModes();
       currentTool.activate();
+      currentTool.changeMode(currentTool.currentMode);
     }
   });
 
@@ -51,7 +54,7 @@ export function init() {
   // add event listener for mode clicks
   document.getElementById('tool-modes').addEventListener('click', (event) => {
     if (event.target.classList.contains('mode')) {
-      currentTool.currentMode = event.target.getAttribute('data-mode');
+      currentTool.changeMode(event.target.getAttribute('data-mode'));
       selectItem('mode', event.target);
     }
   });

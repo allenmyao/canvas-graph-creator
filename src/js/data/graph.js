@@ -36,7 +36,7 @@ export class Graph {
     let id = edge.id;
     for (let i = 0; i < edge.partners.length; i++) {
       for (let j = 0; j < edge.partners[i].length; j++) {
-        if(edge.partners[i].partners[j].id === id) {
+        if (edge.partners[i].partners[j].id === id) {
           edge.partners[i].partners.splice(j, 1);
           edge.partners[i].updateEndpoints();
           break;

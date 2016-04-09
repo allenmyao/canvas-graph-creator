@@ -25,8 +25,29 @@ export class Edge {
 
   static numEdges = 0;
   id = Edge.numEdges++;
+
+  // graph data
+  startNode;
+  destNode;
+  isDirected;
+
+  // status
   isSelected = false;
+
+  // label
+  xText;
+  yText;
   edgeLabel = '';
+  labelFont = '14px Arial';
+  labelColor = 'black';
+  showTextCtrl = false;
+  cost;
+  costType;
+
+  // appearance
+  color = 'black';
+  selectedColor = 'red';
+  lineWidth = 1;
 
   constructor(startNode, destNode, bezierPoint = null, cost = null, isDirected = false) {
     let methods = [
@@ -222,6 +243,19 @@ export class Edge {
 
   draw(context) {
     throw Error('Can\'t call draw from abstract Edge class.');
+  }
+
+  drawLabel(context) {
+    context.font = this.labelFont;
+    context.fillStyle = this.labelColor;
+    context.fillText(this.edgeLabel, this.xText, this.yText);
+    if (this.showTextCtrl) {
+      context.fillStyle = 'red';
+      context.beginPath();
+      context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
+      context.lineTo(this.xText, this.yText);
+      context.fill();
+    }
   }
 
   // find the starting point of our text box
