@@ -1,13 +1,11 @@
 // NOTES:  make this responsible for GUI elements as well, move to UI folder?  should draw knowing little to nothing about container, difficult to not make assumptions though
-// how does timekeeping work in javascript?
 // import * as AlgorithmInterface from 'ui/algorithm';
 
 export default class Stepper {
 
-  algorithm;
-  speed = 1000;
+  result;
+  speed = 500;
   interval;
-  isComplete = false;
 
   constructor() {
   }
@@ -18,21 +16,31 @@ export default class Stepper {
 
   reset() {
     this.pause();
-    this.isComplete = false;
-    this.algorithm = null;
+    this.result = null;
   }
 
-  setAlgorithm(algorithm) {
+  setResult(result) {
     this.reset();
-    this.algorithm = algorithm;
+    this.result = result;
   }
 
-  stepBack() {
-    // this.algorithm.previous();
+  updateStepGUI(description, stepNum, stepTotal) {
+    let des = document.getElementsByClassName('algorithm-step-des');
+    let num = document.getElementsByClassName('algorithm-step-num');
+
+    if (des.length === 1 && num.length === 1) {
+      des[0].innerHTML = 'Description:  ' + description;
+      num[0].innerHTML = 'Step ' + stepNum + ' of ' + stepTotal;
+    }
   }
+
+  stepBackward() {
+    this.updateStepGUI(this.result.stepBackward(), this.result.stepIndex, this.result.timeline.length);
+  }
+
 
   stepForward() {
-    // this.algorithm.next();
+    this.updateStepGUI(this.result.stepForward(), this.result.stepIndex, this.result.timeline.length);
   }
 
   pause() {
@@ -40,28 +48,18 @@ export default class Stepper {
   }
 
   play() {
-    let hasNext = true;
-
     this.interval = setInterval(() => {
-      if (!this.algorithm.isComplete) {
+      if (this.result.stepIndex < this.result.timeline.length) {
         try {
-          hasNext = this.algorithm.next();
-          // AlgorithmInterface.updateAlgorithm(this.algorithm);
+          this.stepForward();
         } catch (e) {
           this.pause();
           throw e;
-        }
-        if (!hasNext) {
-          this.pause();
         }
       } else {
         this.pause();
       }
     }, this.speed);
-  }
-
-  setSpeed(speed) {
-    this.speed = speed;
   }
 
 }

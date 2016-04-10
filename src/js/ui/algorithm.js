@@ -1,11 +1,10 @@
 import Stepper from '../algorithm/stepper';
-import AlgorithmRunner from '../algorithm/algorithm-runner';
 import * as Sidebar from '../ui/sidebar';
 
 let stepper = new Stepper();
 let graph = null;
 let inputs;
-let algorithmRunner;
+let curAlgorithm;
 
 export function init(g) {
   graph = g;
@@ -21,42 +20,51 @@ export function selectObject(obj) {
 }
 
 export function setAlgorithm(AlgorithmClass) {
-  let algorithm = new AlgorithmClass(graph);
-  stepper.setAlgorithm(algorithm);
-  inputs = algorithm.inputs;
+  curAlgorithm = new AlgorithmClass(graph);
+  inputs = curAlgorithm.inputs;
 
-  algorithmRunner = new AlgorithmRunner(algorithm);
+  stepper.reset();
 
   let sidebarContent = Sidebar.getContent();
-  sidebarContent.updateAlgorithm(algorithm);
+  sidebarContent.updateAlgorithm(curAlgorithm);
 }
 
 export function getAlgorithmInputs() {
   return inputs;
 }
 
-export function setInputs(inputData) {
+export function setInputValues(inputData) {
   for (let name of Object.keys(inputData)) {
     if (name in inputs) {
       let value = inputData[name];
-      stepper.getAlgorithm()[name] = value;
+      curAlgorithm[name] = value;
     }
   }
 }
 
 export function run() {
-  console.log('run');
-  algorithmRunner.run();
-  console.log(algorithmRunner.getResult());
-  // stepper.play();
+  let hasNextStep = true;
+  while (hasNextStep) {
+    hasNextStep = curAlgorithm.step();
+  }
+  stepper.setResult(curAlgorithm.getResult());
+}
+
+export function play() {
+  if (stepper.result === null) {
+    return;
+  }
+  stepper.play();
+}
+
+export function pause() {
+  stepper.pause();
 }
 
 export function viewNext() {
-  let algorithmResult = algorithmRunner.getResult();
-  algorithmResult.stepForward();
+  stepper.stepForward();
 }
 
 export function viewPrevious() {
-  let algorithmResult = algorithmRunner.getResult();
-  algorithmResult.stepBackward();
+  stepper.stepBackward();
 }

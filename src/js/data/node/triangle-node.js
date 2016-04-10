@@ -1,14 +1,14 @@
 import { Node } from './node';
 
-export class SquareNode extends Node {
+export class TriangleNode extends Node {
 
   radius = 30;
 
   constructor(x, y) {
     super(x, y);
     this.generateDefaultTextLocation();
-    this.inscribed = [ 45, 135, 225, 315 ];
-    this.separation = 90;
+    this.inscribed = [ 30, 150, 270 ];
+    this.separation = 120;
   }
 
   containsPoint(x, y) {
@@ -38,7 +38,7 @@ export class SquareNode extends Node {
     // let xOffSet = 0;
     // let yOffSet = 0;
     context.fillStyle = 'white';
-    context.strokeStyle = this.isSelected ? 'red' : this.color;
+    context.strokeStyle = this.isSelected ? 'red' : 'black';
 
     // Create a new path
     context.beginPath();

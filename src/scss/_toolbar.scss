@@ -1,0 +1,68 @@
+#toolbar {
+  position: fixed;
+  top: $top-bar-height;
+  bottom: $status-bar-height;
+  left: 0;
+  width: $toolbar-width;
+  overflow-y: auto;
+  border-right: 1px solid black;
+  background: white;
+}
+
+.tool-list,
+.tool-mode-list {
+  display: block;
+  font-size: 0;
+
+  >.tool-listitem,
+  >.tool-mode {
+    display: inline-block;
+
+    >.tool,
+    >.mode {
+      vertical-align: top;
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      margin: 10px 0 0 10px;
+      background: #aaa;
+      text-align: center;
+      word-break: break-all;
+      cursor: pointer;
+
+      &:not(.selected):hover {
+        background: #bbb;
+      }
+
+      &.selected {
+        background: #616161;
+      }
+
+      >span {
+        font-size: 1rem;
+        color: white;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.tool-input-list {
+  display: block;
+  border: 1px solid black;
+  height: 120px;
+  font-size: 0;
+
+  >.tool-input {
+    display: inline-block;
+
+    >.tinput {
+      vertical-align: top;
+      display: inline-block;
+      margin: 10px 0 10px 10px;
+      text-align: center;
+      word-break: break-all;
+      cursor: pointer;
+    }
+  }
+}

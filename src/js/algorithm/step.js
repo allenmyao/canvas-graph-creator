@@ -16,12 +16,15 @@ class Step {
   changes = new Set();
 
   /**
-   * Constructs a Step.
+   * Constructs a Step.  Ensures description is not null or the empty string
    * @param  {string} description - A string describing the step of the algorithm.
    * @constructs Step
    */
   constructor(description) {
     this.description = description;
+    if (!this.description) {
+      this.description = ' ';
+    }
   }
 
   /**

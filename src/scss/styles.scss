@@ -2,7 +2,13 @@
 @import 'mixins';
 @import 'base';
 
+@import 'tabs';
+
 @import 'sidebar';
+@import 'status-bar';
+@import 'toolbar';
+@import 'top-bar';
+@import 'canvas';
 
 html {
   font-family: $font-family-sans-serif;
@@ -10,7 +16,6 @@ html {
 }
 
 body {
-  margin-top: 70px;
 }
 
 input,
@@ -44,145 +49,43 @@ fieldset.error {
   width: 50%;
 }
 
-.title {
-  text-align: center;
-}
-
 .container {
-  width: 1200px;
+  width: 100%;
+  height: 100%;
   margin: auto;
 
   .row {
     display: block;
     width: 100%;
-    margin: 20px auto;
+    height: 100%;
     font-size: 0;
   }
 }
 
-.col-container {
-  display: inline-block;
-  vertical-align: top;
+#context-menu {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  border: 1px solid black;
+  background: #aaa;
 }
 
-#canvas-container {
-  width: 800px;
-
-  #canvas {
-    display: block;
-    border: 1px solid black;
-  }
+#context-menu .component-node{
+  display: none;
+  padding: 5px;
 }
 
-.tabs-container {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-
-  .tab-list {
-    display: block;
-    width: 100%;
-    flex: 0;
-
-    .tab {
-      display: inline-block;
-      vertical-align: top;
-      cursor: pointer;
-
-      &.active {
-
-      }
-    }
-  }
-
-  .tab-content {
-    display: none;
-    width: 100%;
-    flex: 1;
-
-    &.active {
-      display: block;
-    }
-  }
+#context-menu .component-edge{
+  display: none;
+  padding: 5px;
 }
 
-#status-container {
-  #status-bar {
-    font-size: 1rem;
-  }
+#context-menu .blank {
+  display: none;
+  padding: 5px;
 }
 
-#toolbar {
-  width: 100%;
-
-  #tool-modes {
-    width: 100%;
-  }
-
-  .tool-list,
-  .tool-mode-list {
-    display: block;
-    border: 1px solid black;
-    height: 120px;
-    font-size: 0;
-
-    >.tool-listitem,
-    >.tool-mode {
-      display: inline-block;
-
-      >.tool,
-      >.mode {
-        vertical-align: top;
-        display: inline-block;
-        width: 100px;
-        height: 100px;
-        margin: 10px 0 10px 10px;
-        background: #aaa;
-        text-align: center;
-        word-break: break-all;
-        cursor: pointer;
-
-        &:not(.selected):hover {
-          background: #bbb;
-        }
-
-        &.selected {
-          background: #616161;
-        }
-
-        >span {
-          font-size: 1rem;
-          color: white;
-          pointer-events: none;
-        }
-      }
-    }
-  }
-  .tool-input-list {
-    display: block;
-    border: 1px solid black;
-    height: 120px;
-    font-size: 0;
-
-    >.tool-listitem,
-    >.tool-input {
-      display: inline-block;
-
-      >.tool,
-      >.tinput {
-        vertical-align: top;
-        display: inline-block;
-        margin: 10px 0 10px 10px;
-        text-align: center;
-        word-break: break-all;
-        cursor: pointer;
-
-        >span {
-          font-size: 0.8rem;
-          color: white;
-          pointer-events: none;
-        }
-      }
-    }
-  }
+#context-menu .component {
+  display: none;
+  padding: 5px;
 }

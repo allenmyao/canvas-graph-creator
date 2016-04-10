@@ -23,9 +23,10 @@ class StepBuilder {
    */
   edgeFields;
 
-  constructor(nodeFields, edgeFields) {
+  constructor(nodeFields, edgeFields, timeline) {
     this.nodeFields = nodeFields;
     this.edgeFields = edgeFields;
+    this.timeline = timeline;
   }
 
   newStep(description) {
@@ -56,7 +57,7 @@ class StepBuilder {
   completeStep() {
     let step = this.step;
     this.step = null;
-    return step;
+    this.timeline.addStep(step);
   }
 }
 

@@ -42,7 +42,7 @@ export class CircleNode extends Node {
     // let xOffSet = 0;
     // let yOffset = 0;
     context.fillStyle = 'white';
-    context.strokeStyle = this.isSelected ? 'red' : 'black';
+    context.strokeStyle = this.isSelected ? 'red' : this.color;
 
     // Create a new path
     context.beginPath();
@@ -130,6 +130,13 @@ export class CircleNode extends Node {
     }
   }
 */
+
+  getAnglePoint(angle) {
+    return {
+      x: this.x + this.radius * Math.cos(angle * Math.PI / 180),
+      y: this.y + this.radius * Math.sin(angle * Math.PI / 180)
+    };
+  }
 
   // find the starting point of our text box
   generateDefaultTextLocation() {

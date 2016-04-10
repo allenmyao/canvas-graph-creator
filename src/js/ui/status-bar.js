@@ -22,8 +22,3 @@ export function updateMouse(x, y) {
   document.getElementById('mouse-x').textContent = x;
   document.getElementById('mouse-y').textContent = y;
 }
-
-export function updateCanvasPosition(dx, dy) {
-  document.getElementById('canvas-dx').textContent = dx;
-  document.getElementById('canvas-dy').textContent = dy;
-}
