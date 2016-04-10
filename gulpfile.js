@@ -68,7 +68,7 @@ gulp.task('test', [ 'lint' ], (cb) => {
     .on('finish', () => {
       gulp.src([ TEST_FILES ])
           .pipe(mocha({
-            reporter: 'nyan'
+            reporter: 'min'
           }))
           .pipe(istanbul.writeReports({
             dir: './coverage',
