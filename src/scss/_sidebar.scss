@@ -1,6 +1,6 @@
 #sidebar {
   position: fixed;
-  top: $top-bar-height;
+  top: $navbar-height + $top-bar-height;
   right: 0;
   bottom: $status-bar-height;
   width: $sidebar-width;

@@ -1,0 +1,55 @@
+#navbar {
+  width: 100%;
+  height: $navbar-height;
+  background: white;
+  border-bottom: 1px solid #bbb;
+  padding: 0 10px;
+
+  >div {
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    margin-right: 5px;
+  }
+
+  .logo {
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+    line-height: 30px;
+    font-size: 1.5rem;
+    color: #555;
+  }
+
+  a {
+    color: #777;
+    text-decoration: none;
+
+    &:hover {
+      color: #555;
+    }
+  }
+
+  ul.nav-list {
+    display: inline-block;
+    height: 100%;
+    font-size: 0;
+
+    li {
+      display: inline-block;
+      height: 100%;
+
+      a {
+        display: block;
+        height: 100%;
+        padding: 15px;
+        line-height: 20px;
+        font-size: 1rem;
+
+        &:hover {
+          background: #ddd;
+        }
+      }
+    }
+  }
+}
