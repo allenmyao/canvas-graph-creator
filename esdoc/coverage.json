@@ -1,0 +1,712 @@
+{
+  "coverage": "3.69%",
+  "expectCount": 433,
+  "actualCount": 16,
+  "files": {
+    "src/js/algorithm/abstract-algorithm.js": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        69,
+        73,
+        70,
+        78
+      ]
+    },
+    "src/js/algorithm/algorithm-result.js": {
+      "expectCount": 7,
+      "actualCount": 3,
+      "undocumentLines": [
+        52,
+        34,
+        31,
+        30
+      ]
+    },
+    "src/js/tool/algorithm-tool.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        20,
+        21,
+        16,
+        25
+      ]
+    },
+    "src/js/algorithm/change.js": {
+      "expectCount": 9,
+      "actualCount": 5,
+      "undocumentLines": [
+        43,
+        41,
+        44,
+        42
+      ]
+    },
+    "src/js/data/node/circle-node.js": {
+      "expectCount": 10,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        10,
+        15,
+        19,
+        41,
+        28,
+        142,
+        134,
+        143,
+        144
+      ]
+    },
+    "src/js/util/curvedEdge.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        3,
+        131,
+        138,
+        87,
+        194,
+        145,
+        183,
+        8
+      ]
+    },
+    "src/js/data/edge/dashed-edge.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        6
+      ]
+    },
+    "src/js/data/node/diamond-node.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        14,
+        18,
+        37,
+        24,
+        136,
+        102,
+        10,
+        11,
+        137,
+        138
+      ]
+    },
+    "src/js/data/edge/edge.js": {
+      "expectCount": 26,
+      "actualCount": 0,
+      "undocumentLines": [
+        24,
+        69,
+        52,
+        240,
+        70,
+        66,
+        68,
+        99,
+        144,
+        244,
+        248,
+        262,
+        151,
+        179,
+        71,
+        72,
+        73,
+        187,
+        141,
+        67,
+        98,
+        195,
+        160,
+        175,
+        266,
+        267
+      ]
+    },
+    "src/js/tool/edge-tool.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        24,
+        28,
+        33,
+        17,
+        36,
+        56,
+        50,
+        32
+      ]
+    },
+    "src/js/tool/editedge-tool.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        25,
+        13,
+        17
+      ]
+    },
+    "src/js/tool/editnode-tool.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        26,
+        14,
+        18
+      ]
+    },
+    "src/js/tool/erase-tool.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        25,
+        13,
+        9,
+        17
+      ]
+    },
+    "src/js/data/graph.js": {
+      "expectCount": 15,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        12,
+        7,
+        2,
+        125,
+        4,
+        117,
+        109,
+        68,
+        63,
+        50,
+        91,
+        3,
+        34,
+        21
+      ]
+    },
+    "src/js/data/node/hexagon-node.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        14,
+        18,
+        37,
+        24,
+        136,
+        102,
+        10,
+        11,
+        137,
+        138
+      ]
+    },
+    "src/js/tool/metadata-tool.js": {
+      "expectCount": 25,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        164,
+        28,
+        41,
+        69,
+        44,
+        51,
+        185,
+        53,
+        160,
+        156,
+        9,
+        17,
+        30,
+        31,
+        52,
+        148,
+        142,
+        130,
+        124,
+        111,
+        98,
+        180,
+        170,
+        59
+      ]
+    },
+    "src/js/util/mouse-handler.js": {
+      "expectCount": 17,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        26,
+        27,
+        20,
+        127,
+        118,
+        145,
+        153,
+        141,
+        24,
+        53,
+        21,
+        45,
+        25,
+        76,
+        32,
+        42
+      ]
+    },
+    "src/js/tool/move-tool.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        18,
+        33,
+        24,
+        13,
+        14,
+        12,
+        44
+      ]
+    },
+    "src/js/data/node/node.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        22,
+        59,
+        63,
+        73,
+        69,
+        83,
+        78,
+        49,
+        45,
+        50,
+        46,
+        51
+      ]
+    },
+    "src/js/tool/node-tool.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        45,
+        27,
+        37,
+        31
+      ]
+    },
+    "src/js/data/node/octagon-node.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        14,
+        18,
+        37,
+        24,
+        136,
+        102,
+        10,
+        11,
+        137,
+        138
+      ]
+    },
+    "src/js/tool/pan-tool.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        19,
+        11,
+        35,
+        15,
+        21
+      ]
+    },
+    "src/js/data/node/pentagon-node.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        14,
+        18,
+        37,
+        24,
+        136,
+        102,
+        10,
+        11,
+        137,
+        138
+      ]
+    },
+    "src/js/util/queue.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        8,
+        22,
+        10,
+        41,
+        31,
+        79,
+        67,
+        13,
+        63,
+        12,
+        17
+      ]
+    },
+    "src/js/tool/select-tool.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        10,
+        24,
+        14,
+        19
+      ]
+    },
+    "src/js/ui/sidebar-algorithm.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        11,
+        115,
+        197,
+        41,
+        95,
+        174,
+        79,
+        215,
+        104,
+        178
+      ]
+    },
+    "src/js/ui/sidebar-content.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        12,
+        24,
+        27,
+        31
+      ]
+    },
+    "src/js/ui/sidebar-edge.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        8,
+        17
+      ]
+    },
+    "src/js/ui/sidebar-node.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        8,
+        17
+      ]
+    },
+    "src/js/ui/sidebar-select.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        7,
+        203,
+        23,
+        129,
+        47,
+        64,
+        10,
+        32
+      ]
+    },
+    "src/js/data/edge/solid-edge.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        6
+      ]
+    },
+    "src/js/data/node/square-node.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        14,
+        18,
+        37,
+        24,
+        136,
+        102,
+        10,
+        11,
+        137,
+        138
+      ]
+    },
+    "src/js/util/stack.js": {
+      "expectCount": 10,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        12,
+        3,
+        47,
+        35,
+        31,
+        23,
+        16,
+        8,
+        4
+      ]
+    },
+    "src/js/algorithm/step.js": {
+      "expectCount": 7,
+      "actualCount": 6,
+      "undocumentLines": [
+        24
+      ]
+    },
+    "src/js/algorithm/step-builder.js": {
+      "expectCount": 9,
+      "actualCount": 1,
+      "undocumentLines": [
+        6,
+        57,
+        26,
+        28,
+        32,
+        27,
+        33,
+        29
+      ]
+    },
+    "src/js/algorithm/stepper.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        10,
+        13,
+        51,
+        46,
+        50,
+        17,
+        19,
+        22,
+        37,
+        42,
+        27
+      ]
+    },
+    "src/js/ui/tabs.js": {
+      "expectCount": 17,
+      "actualCount": 0,
+      "undocumentLines": [
+        9,
+        39,
+        11,
+        141,
+        86,
+        16,
+        60,
+        72,
+        115,
+        127,
+        121,
+        24,
+        101,
+        106,
+        34,
+        12,
+        13
+      ]
+    },
+    "src/js/tool/tool.js": {
+      "expectCount": 21,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        44,
+        25,
+        27,
+        19,
+        7,
+        20,
+        48,
+        37,
+        39,
+        49,
+        38,
+        15,
+        11,
+        8,
+        46,
+        33,
+        45,
+        30,
+        47,
+        36
+      ]
+    },
+    "src/js/algorithm/traversal-algorithm.js": {
+      "expectCount": 10,
+      "actualCount": 0,
+      "undocumentLines": [
+        9,
+        40,
+        95,
+        79,
+        86,
+        42,
+        84,
+        43,
+        66,
+        47
+      ]
+    },
+    "src/js/data/node/triangle-node.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        14,
+        18,
+        37,
+        24,
+        136,
+        102,
+        10,
+        11,
+        137,
+        138
+      ]
+    },
+    "src/js/ui/sidebar.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        41,
+        50,
+        46,
+        30,
+        55
+      ]
+    },
+    "src/js/ui/canvas.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        92,
+        88,
+        48,
+        52,
+        61,
+        33,
+        70,
+        43,
+        56,
+        65,
+        96
+      ]
+    },
+    "src/js/ui/form.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        15,
+        1
+      ]
+    },
+    "src/js/util/drawCurvedEdge.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/js/ui/algorithm.js": {
+      "expectCount": 10,
+      "actualCount": 0,
+      "undocumentLines": [
+        32,
+        9,
+        60,
+        53,
+        45,
+        13,
+        22,
+        36,
+        64,
+        68
+      ]
+    },
+    "src/js/ui/toolbar.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        63,
+        33,
+        67
+      ]
+    },
+    "src/js/ui/status-bar.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        13,
+        5,
+        21,
+        17
+      ]
+    },
+    "src/js/ui/ui.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        21,
+        17,
+        13
+      ]
+    }
+  }
+}

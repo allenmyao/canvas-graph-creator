@@ -1,0 +1,2839 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1640,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 84,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "Identifier",
+      "start": 246,
+      "end": 1570,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 80,
+          "column": 1
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 252,
+        "end": 269,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 6
+          },
+          "end": {
+            "line": 10,
+            "column": 23
+          }
+        },
+        "name": "AbstractAlgorithm",
+        "leadingComments": null
+      },
+      "superClass": null,
+      "body": {
+        "type": "ClassBody",
+        "start": 270,
+        "end": 1570,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 24
+          },
+          "end": {
+            "line": 80,
+            "column": 1
+          }
+        },
+        "body": [
+          {
+            "type": "Identifier",
+            "start": 341,
+            "end": 346,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 2
+              },
+              "end": {
+                "line": 16,
+                "column": 7
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 341,
+              "end": 345,
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 6
+                }
+              },
+              "name": "name",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": null,
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Name of the algorithm.\r\n   * @type {string}\r\n   ",
+                "start": 277,
+                "end": 337,
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  277,
+                  337
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Reference to the graph the algorithm is running on.\r\n   * @type {Graph}\r\n   ",
+                "start": 350,
+                "end": 438,
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 20,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  350,
+                  438
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 442,
+            "end": 448,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 2
+              },
+              "end": {
+                "line": 21,
+                "column": 8
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 442,
+              "end": 447,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 7
+                }
+              },
+              "name": "graph",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": null,
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Reference to the graph the algorithm is running on.\r\n   * @type {Graph}\r\n   ",
+                "start": 350,
+                "end": 438,
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 20,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  350,
+                  438
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Data structure that determines order of traversal.\r\n   * @type {Stack|Queue}\r\n   ",
+                "start": 454,
+                "end": 547,
+                "loc": {
+                  "start": {
+                    "line": 23,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  454,
+                  547
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 551,
+            "end": 556,
+            "loc": {
+              "start": {
+                "line": 27,
+                "column": 2
+              },
+              "end": {
+                "line": 27,
+                "column": 7
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 551,
+              "end": 555,
+              "loc": {
+                "start": {
+                  "line": 27,
+                  "column": 2
+                },
+                "end": {
+                  "line": 27,
+                  "column": 6
+                }
+              },
+              "name": "next",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": null,
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Data structure that determines order of traversal.\r\n   * @type {Stack|Queue}\r\n   ",
+                "start": 454,
+                "end": 547,
+                "loc": {
+                  "start": {
+                    "line": 23,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  454,
+                  547
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Map that stores algorithm values.\r\n   * @type {WeakMap}\r\n   ",
+                "start": 562,
+                "end": 634,
+                "loc": {
+                  "start": {
+                    "line": 29,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 32,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  562,
+                  634
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 638,
+            "end": 665,
+            "loc": {
+              "start": {
+                "line": 33,
+                "column": 2
+              },
+              "end": {
+                "line": 33,
+                "column": 29
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 638,
+              "end": 648,
+              "loc": {
+                "start": {
+                  "line": 33,
+                  "column": 2
+                },
+                "end": {
+                  "line": 33,
+                  "column": 12
+                }
+              },
+              "name": "graphState",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": {
+              "type": "NewExpression",
+              "start": 651,
+              "end": 664,
+              "loc": {
+                "start": {
+                  "line": 33,
+                  "column": 15
+                },
+                "end": {
+                  "line": 33,
+                  "column": 28
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 655,
+                "end": 662,
+                "loc": {
+                  "start": {
+                    "line": 33,
+                    "column": 19
+                  },
+                  "end": {
+                    "line": 33,
+                    "column": 26
+                  }
+                },
+                "name": "WeakMap"
+              },
+              "arguments": []
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Map that stores algorithm values.\r\n   * @type {WeakMap}\r\n   ",
+                "start": 562,
+                "end": 634,
+                "loc": {
+                  "start": {
+                    "line": 29,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 32,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  562,
+                  634
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Whether the algorithm is complete or not.\r\n   * @type {boolean}\r\n   ",
+                "start": 671,
+                "end": 751,
+                "loc": {
+                  "start": {
+                    "line": 35,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  671,
+                  751
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 755,
+            "end": 774,
+            "loc": {
+              "start": {
+                "line": 39,
+                "column": 2
+              },
+              "end": {
+                "line": 39,
+                "column": 21
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 755,
+              "end": 765,
+              "loc": {
+                "start": {
+                  "line": 39,
+                  "column": 2
+                },
+                "end": {
+                  "line": 39,
+                  "column": 12
+                }
+              },
+              "name": "isComplete",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": {
+              "type": "Literal",
+              "start": 768,
+              "end": 773,
+              "loc": {
+                "start": {
+                  "line": 39,
+                  "column": 15
+                },
+                "end": {
+                  "line": 39,
+                  "column": 20
+                }
+              },
+              "value": false,
+              "rawValue": false,
+              "raw": "false"
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Whether the algorithm is complete or not.\r\n   * @type {boolean}\r\n   ",
+                "start": 671,
+                "end": 751,
+                "loc": {
+                  "start": {
+                    "line": 35,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  671,
+                  751
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Whether the algorithm has started or not.\r\n   * @type {boolean}\r\n   ",
+                "start": 780,
+                "end": 860,
+                "loc": {
+                  "start": {
+                    "line": 41,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 44,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  780,
+                  860
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 864,
+            "end": 883,
+            "loc": {
+              "start": {
+                "line": 45,
+                "column": 2
+              },
+              "end": {
+                "line": 45,
+                "column": 21
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 864,
+              "end": 874,
+              "loc": {
+                "start": {
+                  "line": 45,
+                  "column": 2
+                },
+                "end": {
+                  "line": 45,
+                  "column": 12
+                }
+              },
+              "name": "hasStarted",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": {
+              "type": "Literal",
+              "start": 877,
+              "end": 882,
+              "loc": {
+                "start": {
+                  "line": 45,
+                  "column": 15
+                },
+                "end": {
+                  "line": 45,
+                  "column": 20
+                }
+              },
+              "value": false,
+              "rawValue": false,
+              "raw": "false"
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * Whether the algorithm has started or not.\r\n   * @type {boolean}\r\n   ",
+                "start": 780,
+                "end": 860,
+                "loc": {
+                  "start": {
+                    "line": 41,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 44,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  780,
+                  860
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                "start": 889,
+                "end": 1205,
+                "loc": {
+                  "start": {
+                    "line": 47,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 54,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  889,
+                  1205
+                ]
+              },
+              {
+                "type": "Block",
+                "value": "*\r\n   * Object that defines the algorithm input types.\r\n   * @type {Object.<string, InputType>}\r\n   ",
+                "start": 1211,
+                "end": 1315,
+                "loc": {
+                  "start": {
+                    "line": 56,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 59,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  1211,
+                  1315
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 1319,
+            "end": 1331,
+            "loc": {
+              "start": {
+                "line": 60,
+                "column": 2
+              },
+              "end": {
+                "line": 60,
+                "column": 14
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1319,
+              "end": 1325,
+              "loc": {
+                "start": {
+                  "line": 60,
+                  "column": 2
+                },
+                "end": {
+                  "line": 60,
+                  "column": 8
+                }
+              },
+              "name": "inputs",
+              "leadingComments": null
+            },
+            "static": false,
+            "value": {
+              "type": "ObjectExpression",
+              "start": 1328,
+              "end": 1330,
+              "loc": {
+                "start": {
+                  "line": 60,
+                  "column": 11
+                },
+                "end": {
+                  "line": 60,
+                  "column": 13
+                }
+              },
+              "properties": []
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                "start": 889,
+                "end": 1205,
+                "loc": {
+                  "start": {
+                    "line": 47,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 54,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  889,
+                  1205
+                ]
+              },
+              {
+                "type": "Block",
+                "value": "*\r\n   * Object that defines the algorithm input types.\r\n   * @type {Object.<string, InputType>}\r\n   ",
+                "start": 1211,
+                "end": 1315,
+                "loc": {
+                  "start": {
+                    "line": 56,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 59,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  1211,
+                  1315
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Identifier",
+            "start": 1337,
+            "end": 1344,
+            "loc": {
+              "start": {
+                "line": 62,
+                "column": 2
+              },
+              "end": {
+                "line": 62,
+                "column": 9
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1337,
+              "end": 1343,
+              "loc": {
+                "start": {
+                  "line": 62,
+                  "column": 2
+                },
+                "end": {
+                  "line": 62,
+                  "column": 8
+                }
+              },
+              "name": "result"
+            },
+            "static": false,
+            "value": null
+          },
+          {
+            "type": "Identifier",
+            "start": 1350,
+            "end": 1366,
+            "loc": {
+              "start": {
+                "line": 64,
+                "column": 2
+              },
+              "end": {
+                "line": 64,
+                "column": 18
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1350,
+              "end": 1360,
+              "loc": {
+                "start": {
+                  "line": 64,
+                  "column": 2
+                },
+                "end": {
+                  "line": 64,
+                  "column": 12
+                }
+              },
+              "name": "nodeFields"
+            },
+            "static": false,
+            "value": {
+              "type": "ArrayExpression",
+              "start": 1363,
+              "end": 1365,
+              "loc": {
+                "start": {
+                  "line": 64,
+                  "column": 15
+                },
+                "end": {
+                  "line": 64,
+                  "column": 17
+                }
+              },
+              "elements": []
+            }
+          },
+          {
+            "type": "Identifier",
+            "start": 1370,
+            "end": 1386,
+            "loc": {
+              "start": {
+                "line": 65,
+                "column": 2
+              },
+              "end": {
+                "line": 65,
+                "column": 18
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1370,
+              "end": 1380,
+              "loc": {
+                "start": {
+                  "line": 65,
+                  "column": 2
+                },
+                "end": {
+                  "line": 65,
+                  "column": 12
+                }
+              },
+              "name": "edgeFields"
+            },
+            "static": false,
+            "value": {
+              "type": "ArrayExpression",
+              "start": 1383,
+              "end": 1385,
+              "loc": {
+                "start": {
+                  "line": 65,
+                  "column": 15
+                },
+                "end": {
+                  "line": 65,
+                  "column": 17
+                }
+              },
+              "elements": []
+            }
+          },
+          {
+            "type": "Identifier",
+            "start": 1392,
+            "end": 1404,
+            "loc": {
+              "start": {
+                "line": 67,
+                "column": 2
+              },
+              "end": {
+                "line": 67,
+                "column": 14
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1392,
+              "end": 1403,
+              "loc": {
+                "start": {
+                  "line": 67,
+                  "column": 2
+                },
+                "end": {
+                  "line": 67,
+                  "column": 13
+                }
+              },
+              "name": "stepBuilder"
+            },
+            "static": false,
+            "value": null
+          },
+          {
+            "type": "MethodDefinition",
+            "start": 1410,
+            "end": 1460,
+            "loc": {
+              "start": {
+                "line": 69,
+                "column": 2
+              },
+              "end": {
+                "line": 71,
+                "column": 3
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1410,
+              "end": 1421,
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 2
+                },
+                "end": {
+                  "line": 69,
+                  "column": 13
+                }
+              },
+              "name": "constructor"
+            },
+            "static": false,
+            "kind": "constructor",
+            "value": {
+              "type": "FunctionExpression",
+              "start": 1421,
+              "end": 1460,
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 13
+                },
+                "end": {
+                  "line": 71,
+                  "column": 3
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 1422,
+                  "end": 1427,
+                  "loc": {
+                    "start": {
+                      "line": 69,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 69,
+                      "column": 19
+                    }
+                  },
+                  "name": "graph"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "start": 1429,
+                "end": 1460,
+                "loc": {
+                  "start": {
+                    "line": 69,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 71,
+                    "column": 3
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "start": 1436,
+                    "end": 1455,
+                    "loc": {
+                      "start": {
+                        "line": 70,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 70,
+                        "column": 23
+                      }
+                    },
+                    "expression": {
+                      "type": "AssignmentExpression",
+                      "start": 1436,
+                      "end": 1454,
+                      "loc": {
+                        "start": {
+                          "line": 70,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 70,
+                          "column": 22
+                        }
+                      },
+                      "operator": "=",
+                      "left": {
+                        "type": "MemberExpression",
+                        "start": 1436,
+                        "end": 1446,
+                        "loc": {
+                          "start": {
+                            "line": 70,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 70,
+                            "column": 14
+                          }
+                        },
+                        "object": {
+                          "type": "ThisExpression",
+                          "start": 1436,
+                          "end": 1440,
+                          "loc": {
+                            "start": {
+                              "line": 70,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 70,
+                              "column": 8
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 1441,
+                          "end": 1446,
+                          "loc": {
+                            "start": {
+                              "line": 70,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 70,
+                              "column": 14
+                            }
+                          },
+                          "name": "graph"
+                        },
+                        "computed": false
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "start": 1449,
+                        "end": 1454,
+                        "loc": {
+                          "start": {
+                            "line": 70,
+                            "column": 17
+                          },
+                          "end": {
+                            "line": 70,
+                            "column": 22
+                          }
+                        },
+                        "name": "graph"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "type": "MethodDefinition",
+            "start": 1466,
+            "end": 1509,
+            "loc": {
+              "start": {
+                "line": 73,
+                "column": 2
+              },
+              "end": {
+                "line": 75,
+                "column": 3
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1466,
+              "end": 1475,
+              "loc": {
+                "start": {
+                  "line": 73,
+                  "column": 2
+                },
+                "end": {
+                  "line": 73,
+                  "column": 11
+                }
+              },
+              "name": "getResult"
+            },
+            "static": false,
+            "kind": "method",
+            "value": {
+              "type": "FunctionExpression",
+              "start": 1475,
+              "end": 1509,
+              "loc": {
+                "start": {
+                  "line": 73,
+                  "column": 11
+                },
+                "end": {
+                  "line": 75,
+                  "column": 3
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "start": 1478,
+                "end": 1509,
+                "loc": {
+                  "start": {
+                    "line": 73,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 75,
+                    "column": 3
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "start": 1485,
+                    "end": 1504,
+                    "loc": {
+                      "start": {
+                        "line": 74,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 74,
+                        "column": 23
+                      }
+                    },
+                    "argument": {
+                      "type": "MemberExpression",
+                      "start": 1492,
+                      "end": 1503,
+                      "loc": {
+                        "start": {
+                          "line": 74,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 74,
+                          "column": 22
+                        }
+                      },
+                      "object": {
+                        "type": "ThisExpression",
+                        "start": 1492,
+                        "end": 1496,
+                        "loc": {
+                          "start": {
+                            "line": 74,
+                            "column": 11
+                          },
+                          "end": {
+                            "line": 74,
+                            "column": 15
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 1497,
+                        "end": 1503,
+                        "loc": {
+                          "start": {
+                            "line": 74,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 74,
+                            "column": 22
+                          }
+                        },
+                        "name": "result"
+                      },
+                      "computed": false
+                    }
+                  }
+                ],
+                "trailingComments": null
+              },
+              "trailingComments": null
+            },
+            "trailingComments": [
+              {
+                "type": "CommentLine",
+                "value": " run the next step of the algorithm",
+                "start": 1515,
+                "end": 1552,
+                "loc": {
+                  "start": {
+                    "line": 77,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 77,
+                    "column": 39
+                  }
+                },
+                "range": [
+                  1515,
+                  1552
+                ]
+              }
+            ]
+          },
+          {
+            "type": "MethodDefinition",
+            "start": 1556,
+            "end": 1565,
+            "loc": {
+              "start": {
+                "line": 78,
+                "column": 2
+              },
+              "end": {
+                "line": 78,
+                "column": 11
+              }
+            },
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 1556,
+              "end": 1560,
+              "loc": {
+                "start": {
+                  "line": 78,
+                  "column": 2
+                },
+                "end": {
+                  "line": 78,
+                  "column": 6
+                }
+              },
+              "name": "step",
+              "leadingComments": null
+            },
+            "static": false,
+            "kind": "method",
+            "value": {
+              "type": "FunctionExpression",
+              "start": 1560,
+              "end": 1565,
+              "loc": {
+                "start": {
+                  "line": 78,
+                  "column": 6
+                },
+                "end": {
+                  "line": 78,
+                  "column": 11
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "start": 1563,
+                "end": 1565,
+                "loc": {
+                  "start": {
+                    "line": 78,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 78,
+                    "column": 11
+                  }
+                },
+                "body": []
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "CommentLine",
+                "value": " run the next step of the algorithm",
+                "start": 1515,
+                "end": 1552,
+                "loc": {
+                  "start": {
+                    "line": 77,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 77,
+                    "column": 39
+                  }
+                },
+                "range": [
+                  1515,
+                  1552
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1574,
+      "end": 1603,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 0
+        },
+        "end": {
+          "line": 82,
+          "column": 29
+        }
+      },
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "start": 1583,
+          "end": 1600,
+          "loc": {
+            "start": {
+              "line": 82,
+              "column": 9
+            },
+            "end": {
+              "line": 82,
+              "column": 26
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 1583,
+            "end": 1600,
+            "loc": {
+              "start": {
+                "line": 82,
+                "column": 9
+              },
+              "end": {
+                "line": 82,
+                "column": 26
+              }
+            },
+            "name": "AbstractAlgorithm"
+          },
+          "exported": {
+            "type": "Identifier",
+            "start": 1583,
+            "end": 1600,
+            "loc": {
+              "start": {
+                "line": 82,
+                "column": 9
+              },
+              "end": {
+                "line": 82,
+                "column": 26
+              }
+            },
+            "name": "AbstractAlgorithm"
+          }
+        }
+      ],
+      "source": null
+    },
+    {
+      "type": "Identifier",
+      "start": 1605,
+      "end": 1638,
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 0
+        },
+        "end": {
+          "line": 83,
+          "column": 33
+        }
+      },
+      "declaration": {
+        "type": "Identifier",
+        "start": 1620,
+        "end": 1637,
+        "loc": {
+          "start": {
+            "line": 83,
+            "column": 15
+          },
+          "end": {
+            "line": 83,
+            "column": 32
+          }
+        },
+        "name": "AbstractAlgorithm"
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 1605,
+      "end": 1638,
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 0
+        },
+        "end": {
+          "line": 83,
+          "column": 33
+        }
+      },
+      "declaration": {
+        "type": "ClassDeclaration",
+        "start": 246,
+        "end": 1570,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 0
+          },
+          "end": {
+            "line": 80,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 252,
+          "end": 269,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 6
+            },
+            "end": {
+              "line": 10,
+              "column": 23
+            }
+          },
+          "name": "AbstractAlgorithm",
+          "leadingComments": null
+        },
+        "superClass": null,
+        "body": {
+          "type": "ClassBody",
+          "start": 270,
+          "end": 1570,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 24
+            },
+            "end": {
+              "line": 80,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "Identifier",
+              "start": 341,
+              "end": 346,
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 7
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 341,
+                "end": 345,
+                "loc": {
+                  "start": {
+                    "line": 16,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 16,
+                    "column": 6
+                  }
+                },
+                "name": "name",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": null,
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Name of the algorithm.\r\n   * @type {string}\r\n   ",
+                  "start": 277,
+                  "end": 337,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    277,
+                    337
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Reference to the graph the algorithm is running on.\r\n   * @type {Graph}\r\n   ",
+                  "start": 350,
+                  "end": 438,
+                  "loc": {
+                    "start": {
+                      "line": 17,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    350,
+                    438
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 442,
+              "end": 448,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 8
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 442,
+                "end": 447,
+                "loc": {
+                  "start": {
+                    "line": 21,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 21,
+                    "column": 7
+                  }
+                },
+                "name": "graph",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": null,
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Reference to the graph the algorithm is running on.\r\n   * @type {Graph}\r\n   ",
+                  "start": 350,
+                  "end": 438,
+                  "loc": {
+                    "start": {
+                      "line": 17,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    350,
+                    438
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Data structure that determines order of traversal.\r\n   * @type {Stack|Queue}\r\n   ",
+                  "start": 454,
+                  "end": 547,
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    454,
+                    547
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 551,
+              "end": 556,
+              "loc": {
+                "start": {
+                  "line": 27,
+                  "column": 2
+                },
+                "end": {
+                  "line": 27,
+                  "column": 7
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 551,
+                "end": 555,
+                "loc": {
+                  "start": {
+                    "line": 27,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 27,
+                    "column": 6
+                  }
+                },
+                "name": "next",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": null,
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Data structure that determines order of traversal.\r\n   * @type {Stack|Queue}\r\n   ",
+                  "start": 454,
+                  "end": 547,
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    454,
+                    547
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Map that stores algorithm values.\r\n   * @type {WeakMap}\r\n   ",
+                  "start": 562,
+                  "end": 634,
+                  "loc": {
+                    "start": {
+                      "line": 29,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    562,
+                    634
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 638,
+              "end": 665,
+              "loc": {
+                "start": {
+                  "line": 33,
+                  "column": 2
+                },
+                "end": {
+                  "line": 33,
+                  "column": 29
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 638,
+                "end": 648,
+                "loc": {
+                  "start": {
+                    "line": 33,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 33,
+                    "column": 12
+                  }
+                },
+                "name": "graphState",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": {
+                "type": "NewExpression",
+                "start": 651,
+                "end": 664,
+                "loc": {
+                  "start": {
+                    "line": 33,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 33,
+                    "column": 28
+                  }
+                },
+                "callee": {
+                  "type": "Identifier",
+                  "start": 655,
+                  "end": 662,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 19
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 26
+                    }
+                  },
+                  "name": "WeakMap"
+                },
+                "arguments": []
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Map that stores algorithm values.\r\n   * @type {WeakMap}\r\n   ",
+                  "start": 562,
+                  "end": 634,
+                  "loc": {
+                    "start": {
+                      "line": 29,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    562,
+                    634
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Whether the algorithm is complete or not.\r\n   * @type {boolean}\r\n   ",
+                  "start": 671,
+                  "end": 751,
+                  "loc": {
+                    "start": {
+                      "line": 35,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 38,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    671,
+                    751
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 755,
+              "end": 774,
+              "loc": {
+                "start": {
+                  "line": 39,
+                  "column": 2
+                },
+                "end": {
+                  "line": 39,
+                  "column": 21
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 755,
+                "end": 765,
+                "loc": {
+                  "start": {
+                    "line": 39,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 39,
+                    "column": 12
+                  }
+                },
+                "name": "isComplete",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": {
+                "type": "Literal",
+                "start": 768,
+                "end": 773,
+                "loc": {
+                  "start": {
+                    "line": 39,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 39,
+                    "column": 20
+                  }
+                },
+                "value": false,
+                "rawValue": false,
+                "raw": "false"
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Whether the algorithm is complete or not.\r\n   * @type {boolean}\r\n   ",
+                  "start": 671,
+                  "end": 751,
+                  "loc": {
+                    "start": {
+                      "line": 35,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 38,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    671,
+                    751
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Whether the algorithm has started or not.\r\n   * @type {boolean}\r\n   ",
+                  "start": 780,
+                  "end": 860,
+                  "loc": {
+                    "start": {
+                      "line": 41,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 44,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    780,
+                    860
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 864,
+              "end": 883,
+              "loc": {
+                "start": {
+                  "line": 45,
+                  "column": 2
+                },
+                "end": {
+                  "line": 45,
+                  "column": 21
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 864,
+                "end": 874,
+                "loc": {
+                  "start": {
+                    "line": 45,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 45,
+                    "column": 12
+                  }
+                },
+                "name": "hasStarted",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": {
+                "type": "Literal",
+                "start": 877,
+                "end": 882,
+                "loc": {
+                  "start": {
+                    "line": 45,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 45,
+                    "column": 20
+                  }
+                },
+                "value": false,
+                "rawValue": false,
+                "raw": "false"
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Whether the algorithm has started or not.\r\n   * @type {boolean}\r\n   ",
+                  "start": 780,
+                  "end": 860,
+                  "loc": {
+                    "start": {
+                      "line": 41,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 44,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    780,
+                    860
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                  "start": 889,
+                  "end": 1205,
+                  "loc": {
+                    "start": {
+                      "line": 47,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 54,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    889,
+                    1205
+                  ]
+                },
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Object that defines the algorithm input types.\r\n   * @type {Object.<string, InputType>}\r\n   ",
+                  "start": 1211,
+                  "end": 1315,
+                  "loc": {
+                    "start": {
+                      "line": 56,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 59,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    1211,
+                    1315
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 1319,
+              "end": 1331,
+              "loc": {
+                "start": {
+                  "line": 60,
+                  "column": 2
+                },
+                "end": {
+                  "line": 60,
+                  "column": 14
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1319,
+                "end": 1325,
+                "loc": {
+                  "start": {
+                    "line": 60,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 60,
+                    "column": 8
+                  }
+                },
+                "name": "inputs",
+                "leadingComments": null
+              },
+              "static": false,
+              "value": {
+                "type": "ObjectExpression",
+                "start": 1328,
+                "end": 1330,
+                "loc": {
+                  "start": {
+                    "line": 60,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 60,
+                    "column": 13
+                  }
+                },
+                "properties": []
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                  "start": 889,
+                  "end": 1205,
+                  "loc": {
+                    "start": {
+                      "line": 47,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 54,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    889,
+                    1205
+                  ]
+                },
+                {
+                  "type": "Block",
+                  "value": "*\r\n   * Object that defines the algorithm input types.\r\n   * @type {Object.<string, InputType>}\r\n   ",
+                  "start": 1211,
+                  "end": 1315,
+                  "loc": {
+                    "start": {
+                      "line": 56,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 59,
+                      "column": 5
+                    }
+                  },
+                  "range": [
+                    1211,
+                    1315
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Identifier",
+              "start": 1337,
+              "end": 1344,
+              "loc": {
+                "start": {
+                  "line": 62,
+                  "column": 2
+                },
+                "end": {
+                  "line": 62,
+                  "column": 9
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1337,
+                "end": 1343,
+                "loc": {
+                  "start": {
+                    "line": 62,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 62,
+                    "column": 8
+                  }
+                },
+                "name": "result"
+              },
+              "static": false,
+              "value": null
+            },
+            {
+              "type": "Identifier",
+              "start": 1350,
+              "end": 1366,
+              "loc": {
+                "start": {
+                  "line": 64,
+                  "column": 2
+                },
+                "end": {
+                  "line": 64,
+                  "column": 18
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1350,
+                "end": 1360,
+                "loc": {
+                  "start": {
+                    "line": 64,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 64,
+                    "column": 12
+                  }
+                },
+                "name": "nodeFields"
+              },
+              "static": false,
+              "value": {
+                "type": "ArrayExpression",
+                "start": 1363,
+                "end": 1365,
+                "loc": {
+                  "start": {
+                    "line": 64,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 64,
+                    "column": 17
+                  }
+                },
+                "elements": []
+              }
+            },
+            {
+              "type": "Identifier",
+              "start": 1370,
+              "end": 1386,
+              "loc": {
+                "start": {
+                  "line": 65,
+                  "column": 2
+                },
+                "end": {
+                  "line": 65,
+                  "column": 18
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1370,
+                "end": 1380,
+                "loc": {
+                  "start": {
+                    "line": 65,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 65,
+                    "column": 12
+                  }
+                },
+                "name": "edgeFields"
+              },
+              "static": false,
+              "value": {
+                "type": "ArrayExpression",
+                "start": 1383,
+                "end": 1385,
+                "loc": {
+                  "start": {
+                    "line": 65,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 65,
+                    "column": 17
+                  }
+                },
+                "elements": []
+              }
+            },
+            {
+              "type": "Identifier",
+              "start": 1392,
+              "end": 1404,
+              "loc": {
+                "start": {
+                  "line": 67,
+                  "column": 2
+                },
+                "end": {
+                  "line": 67,
+                  "column": 14
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1392,
+                "end": 1403,
+                "loc": {
+                  "start": {
+                    "line": 67,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 67,
+                    "column": 13
+                  }
+                },
+                "name": "stepBuilder"
+              },
+              "static": false,
+              "value": null
+            },
+            {
+              "type": "MethodDefinition",
+              "start": 1410,
+              "end": 1460,
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 2
+                },
+                "end": {
+                  "line": 71,
+                  "column": 3
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1410,
+                "end": 1421,
+                "loc": {
+                  "start": {
+                    "line": 69,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 69,
+                    "column": 13
+                  }
+                },
+                "name": "constructor"
+              },
+              "static": false,
+              "kind": "constructor",
+              "value": {
+                "type": "FunctionExpression",
+                "start": 1421,
+                "end": 1460,
+                "loc": {
+                  "start": {
+                    "line": 69,
+                    "column": 13
+                  },
+                  "end": {
+                    "line": 71,
+                    "column": 3
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 1422,
+                    "end": 1427,
+                    "loc": {
+                      "start": {
+                        "line": 69,
+                        "column": 14
+                      },
+                      "end": {
+                        "line": 69,
+                        "column": 19
+                      }
+                    },
+                    "name": "graph"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1429,
+                  "end": 1460,
+                  "loc": {
+                    "start": {
+                      "line": 69,
+                      "column": 21
+                    },
+                    "end": {
+                      "line": 71,
+                      "column": 3
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 1436,
+                      "end": 1455,
+                      "loc": {
+                        "start": {
+                          "line": 70,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 70,
+                          "column": 23
+                        }
+                      },
+                      "expression": {
+                        "type": "AssignmentExpression",
+                        "start": 1436,
+                        "end": 1454,
+                        "loc": {
+                          "start": {
+                            "line": 70,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 70,
+                            "column": 22
+                          }
+                        },
+                        "operator": "=",
+                        "left": {
+                          "type": "MemberExpression",
+                          "start": 1436,
+                          "end": 1446,
+                          "loc": {
+                            "start": {
+                              "line": 70,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 70,
+                              "column": 14
+                            }
+                          },
+                          "object": {
+                            "type": "ThisExpression",
+                            "start": 1436,
+                            "end": 1440,
+                            "loc": {
+                              "start": {
+                                "line": 70,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 70,
+                                "column": 8
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1441,
+                            "end": 1446,
+                            "loc": {
+                              "start": {
+                                "line": 70,
+                                "column": 9
+                              },
+                              "end": {
+                                "line": 70,
+                                "column": 14
+                              }
+                            },
+                            "name": "graph"
+                          },
+                          "computed": false
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "start": 1449,
+                          "end": 1454,
+                          "loc": {
+                            "start": {
+                              "line": 70,
+                              "column": 17
+                            },
+                            "end": {
+                              "line": 70,
+                              "column": 22
+                            }
+                          },
+                          "name": "graph"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "MethodDefinition",
+              "start": 1466,
+              "end": 1509,
+              "loc": {
+                "start": {
+                  "line": 73,
+                  "column": 2
+                },
+                "end": {
+                  "line": 75,
+                  "column": 3
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1466,
+                "end": 1475,
+                "loc": {
+                  "start": {
+                    "line": 73,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 73,
+                    "column": 11
+                  }
+                },
+                "name": "getResult"
+              },
+              "static": false,
+              "kind": "method",
+              "value": {
+                "type": "FunctionExpression",
+                "start": 1475,
+                "end": 1509,
+                "loc": {
+                  "start": {
+                    "line": 73,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 75,
+                    "column": 3
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1478,
+                  "end": 1509,
+                  "loc": {
+                    "start": {
+                      "line": 73,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 75,
+                      "column": 3
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 1485,
+                      "end": 1504,
+                      "loc": {
+                        "start": {
+                          "line": 74,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 74,
+                          "column": 23
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 1492,
+                        "end": 1503,
+                        "loc": {
+                          "start": {
+                            "line": 74,
+                            "column": 11
+                          },
+                          "end": {
+                            "line": 74,
+                            "column": 22
+                          }
+                        },
+                        "object": {
+                          "type": "ThisExpression",
+                          "start": 1492,
+                          "end": 1496,
+                          "loc": {
+                            "start": {
+                              "line": 74,
+                              "column": 11
+                            },
+                            "end": {
+                              "line": 74,
+                              "column": 15
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 1497,
+                          "end": 1503,
+                          "loc": {
+                            "start": {
+                              "line": 74,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 74,
+                              "column": 22
+                            }
+                          },
+                          "name": "result"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "trailingComments": null
+                },
+                "trailingComments": null
+              },
+              "trailingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " run the next step of the algorithm",
+                  "start": 1515,
+                  "end": 1552,
+                  "loc": {
+                    "start": {
+                      "line": 77,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 77,
+                      "column": 39
+                    }
+                  },
+                  "range": [
+                    1515,
+                    1552
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "MethodDefinition",
+              "start": 1556,
+              "end": 1565,
+              "loc": {
+                "start": {
+                  "line": 78,
+                  "column": 2
+                },
+                "end": {
+                  "line": 78,
+                  "column": 11
+                }
+              },
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 1556,
+                "end": 1560,
+                "loc": {
+                  "start": {
+                    "line": 78,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 78,
+                    "column": 6
+                  }
+                },
+                "name": "step",
+                "leadingComments": null
+              },
+              "static": false,
+              "kind": "method",
+              "value": {
+                "type": "FunctionExpression",
+                "start": 1560,
+                "end": 1565,
+                "loc": {
+                  "start": {
+                    "line": 78,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 78,
+                    "column": 11
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1563,
+                  "end": 1565,
+                  "loc": {
+                    "start": {
+                      "line": 78,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 78,
+                      "column": 11
+                    }
+                  },
+                  "body": []
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " run the next step of the algorithm",
+                  "start": 1515,
+                  "end": 1552,
+                  "loc": {
+                    "start": {
+                      "line": 77,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 77,
+                      "column": 39
+                    }
+                  },
+                  "range": [
+                    1515,
+                    1552
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "CommentLine",
+            "value": " import Queue from '../util/queue';",
+            "start": 0,
+            "end": 37,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 37
+              }
+            },
+            "range": [
+              0,
+              37
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " import Stack from '../util/stack';",
+            "start": 39,
+            "end": 76,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 37
+              }
+            },
+            "range": [
+              39,
+              76
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " import { Node } from '../data/node/node';",
+            "start": 78,
+            "end": 122,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 44
+              }
+            },
+            "range": [
+              78,
+              122
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " import { Edge } from '../data/edge/edge';",
+            "start": 124,
+            "end": 168,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 44
+              }
+            },
+            "range": [
+              124,
+              168
+            ]
+          },
+          {
+            "type": "Block",
+            "value": "*\r\n * Abstract class for algorithms.\r\n * @class AbstractAlgorithm\r\n ",
+            "start": 172,
+            "end": 244,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 3
+              }
+            },
+            "range": [
+              172,
+              244
+            ]
+          }
+        ],
+        "__esdoc__pseudo_export": false,
+        "trailingComments": []
+      },
+      "leadingComments": null
+    }
+  ]
+}

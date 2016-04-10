@@ -1,0 +1,1988 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1534,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 58,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 49,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 9,
+          "end": 20,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 9
+            },
+            "end": {
+              "line": 1,
+              "column": 20
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 20,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "name": "SidebarNode"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 20,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "name": "SidebarNode"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 28,
+        "end": 48,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 28
+          },
+          "end": {
+            "line": 1,
+            "column": 48
+          }
+        },
+        "value": "../ui/sidebar-node",
+        "rawValue": "../ui/sidebar-node",
+        "raw": "'../ui/sidebar-node'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 50,
+      "end": 99,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 59,
+          "end": 70,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 9
+            },
+            "end": {
+              "line": 2,
+              "column": 20
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 59,
+            "end": 70,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 20
+              }
+            },
+            "name": "SidebarEdge"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 59,
+            "end": 70,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 20
+              }
+            },
+            "name": "SidebarEdge"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 78,
+        "end": 98,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 28
+          },
+          "end": {
+            "line": 2,
+            "column": 48
+          }
+        },
+        "value": "../ui/sidebar-edge",
+        "rawValue": "../ui/sidebar-edge",
+        "raw": "'../ui/sidebar-edge'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 100,
+      "end": 153,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 53
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 109,
+          "end": 122,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 9
+            },
+            "end": {
+              "line": 3,
+              "column": 22
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 109,
+            "end": 122,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 9
+              },
+              "end": {
+                "line": 3,
+                "column": 22
+              }
+            },
+            "name": "SidebarSelect"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 109,
+            "end": 122,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 9
+              },
+              "end": {
+                "line": 3,
+                "column": 22
+              }
+            },
+            "name": "SidebarSelect"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 130,
+        "end": 152,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 30
+          },
+          "end": {
+            "line": 3,
+            "column": 52
+          }
+        },
+        "value": "../ui/sidebar-select",
+        "rawValue": "../ui/sidebar-select",
+        "raw": "'../ui/sidebar-select'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 154,
+      "end": 210,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 56
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 163,
+          "end": 179,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 9
+            },
+            "end": {
+              "line": 4,
+              "column": 25
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 163,
+            "end": 179,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 9
+              },
+              "end": {
+                "line": 4,
+                "column": 25
+              }
+            },
+            "name": "SidebarAlgorithm"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 163,
+            "end": 179,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 9
+              },
+              "end": {
+                "line": 4,
+                "column": 25
+              }
+            },
+            "name": "SidebarAlgorithm"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 187,
+        "end": 209,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 33
+          },
+          "end": {
+            "line": 4,
+            "column": 55
+          }
+        },
+        "value": "ui/sidebar-algorithm",
+        "rawValue": "ui/sidebar-algorithm",
+        "raw": "'ui/sidebar-algorithm'"
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "start": 214,
+      "end": 226,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 12
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 218,
+          "end": 225,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 4
+            },
+            "end": {
+              "line": 6,
+              "column": 11
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 218,
+            "end": 225,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 4
+              },
+              "end": {
+                "line": 6,
+                "column": 11
+              }
+            },
+            "name": "sidebar"
+          },
+          "init": null
+        }
+      ],
+      "kind": "let"
+    },
+    {
+      "type": "VariableDeclaration",
+      "start": 228,
+      "end": 240,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 12
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 232,
+          "end": 239,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 4
+            },
+            "end": {
+              "line": 7,
+              "column": 11
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 232,
+            "end": 239,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 4
+              },
+              "end": {
+                "line": 7,
+                "column": 11
+              }
+            },
+            "name": "content"
+          },
+          "init": null
+        }
+      ],
+      "kind": "let"
+    },
+    {
+      "type": "VariableDeclaration",
+      "start": 244,
+      "end": 263,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 19
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 248,
+          "end": 262,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 4
+            },
+            "end": {
+              "line": 9,
+              "column": 18
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 248,
+            "end": 262,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 4
+              },
+              "end": {
+                "line": 9,
+                "column": 18
+              }
+            },
+            "name": "sidebarContent"
+          },
+          "init": null
+        }
+      ],
+      "kind": "let",
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "\r\n\r\ntools now have a sidebarType, a string, to refer to their associated sidebar sidebar-content subclass\r\n\r\nThis class manages the container for sidebar-content subclasses, and is responsible\r\nfor managing those subclasses as well.\r\n\r\nTODO:\r\nchangeSidebar should account for if type is not changing\r\nchange this into class?\r\nthis should have ability to move, minimize, or shrink sidebar\r\nflesh out sidebar-content classes with non placeholder stuff\r\nselect tool needs reference to selected object\r\n\r\nNOTE:\r\ncurrently updateSidebar is called only from the mouse-handler up listener\r\ntools must have an associated sidebar type\r\n",
+          "start": 267,
+          "end": 898,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 28,
+              "column": 2
+            }
+          },
+          "range": [
+            267,
+            898
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 902,
+      "end": 1192,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 909,
+        "end": 1192,
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 7
+          },
+          "end": {
+            "line": 39,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 918,
+          "end": 922,
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 16
+            },
+            "end": {
+              "line": 30,
+              "column": 20
+            }
+          },
+          "name": "init",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 923,
+            "end": 928,
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 21
+              },
+              "end": {
+                "line": 30,
+                "column": 26
+              }
+            },
+            "name": "graph"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 930,
+          "end": 1192,
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 28
+            },
+            "end": {
+              "line": 39,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 935,
+              "end": 980,
+              "loc": {
+                "start": {
+                  "line": 31,
+                  "column": 2
+                },
+                "end": {
+                  "line": 31,
+                  "column": 47
+                }
+              },
+              "expression": {
+                "type": "AssignmentExpression",
+                "start": 935,
+                "end": 979,
+                "loc": {
+                  "start": {
+                    "line": 31,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 31,
+                    "column": 46
+                  }
+                },
+                "operator": "=",
+                "left": {
+                  "type": "Identifier",
+                  "start": 935,
+                  "end": 942,
+                  "loc": {
+                    "start": {
+                      "line": 31,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 9
+                    }
+                  },
+                  "name": "sidebar"
+                },
+                "right": {
+                  "type": "CallExpression",
+                  "start": 945,
+                  "end": 979,
+                  "loc": {
+                    "start": {
+                      "line": 31,
+                      "column": 12
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 46
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 945,
+                    "end": 968,
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 31,
+                        "column": 35
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 945,
+                      "end": 953,
+                      "loc": {
+                        "start": {
+                          "line": 31,
+                          "column": 12
+                        },
+                        "end": {
+                          "line": 31,
+                          "column": 20
+                        }
+                      },
+                      "name": "document"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 954,
+                      "end": 968,
+                      "loc": {
+                        "start": {
+                          "line": 31,
+                          "column": 21
+                        },
+                        "end": {
+                          "line": 31,
+                          "column": 35
+                        }
+                      },
+                      "name": "getElementById"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 969,
+                      "end": 978,
+                      "loc": {
+                        "start": {
+                          "line": 31,
+                          "column": 36
+                        },
+                        "end": {
+                          "line": 31,
+                          "column": 45
+                        }
+                      },
+                      "value": "sidebar",
+                      "rawValue": "sidebar",
+                      "raw": "'sidebar'"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "start": 984,
+              "end": 1161,
+              "loc": {
+                "start": {
+                  "line": 32,
+                  "column": 2
+                },
+                "end": {
+                  "line": 37,
+                  "column": 4
+                }
+              },
+              "expression": {
+                "type": "AssignmentExpression",
+                "start": 984,
+                "end": 1160,
+                "loc": {
+                  "start": {
+                    "line": 32,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 37,
+                    "column": 3
+                  }
+                },
+                "operator": "=",
+                "left": {
+                  "type": "Identifier",
+                  "start": 984,
+                  "end": 998,
+                  "loc": {
+                    "start": {
+                      "line": 32,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 16
+                    }
+                  },
+                  "name": "sidebarContent"
+                },
+                "right": {
+                  "type": "ObjectExpression",
+                  "start": 1001,
+                  "end": 1160,
+                  "loc": {
+                    "start": {
+                      "line": 32,
+                      "column": 19
+                    },
+                    "end": {
+                      "line": 37,
+                      "column": 3
+                    }
+                  },
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "start": 1008,
+                      "end": 1036,
+                      "loc": {
+                        "start": {
+                          "line": 33,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 33,
+                          "column": 32
+                        }
+                      },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1008,
+                        "end": 1012,
+                        "loc": {
+                          "start": {
+                            "line": 33,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 33,
+                            "column": 8
+                          }
+                        },
+                        "name": "node"
+                      },
+                      "value": {
+                        "type": "NewExpression",
+                        "start": 1014,
+                        "end": 1036,
+                        "loc": {
+                          "start": {
+                            "line": 33,
+                            "column": 10
+                          },
+                          "end": {
+                            "line": 33,
+                            "column": 32
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1018,
+                          "end": 1029,
+                          "loc": {
+                            "start": {
+                              "line": 33,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 33,
+                              "column": 25
+                            }
+                          },
+                          "name": "SidebarNode"
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1030,
+                            "end": 1035,
+                            "loc": {
+                              "start": {
+                                "line": 33,
+                                "column": 26
+                              },
+                              "end": {
+                                "line": 33,
+                                "column": 31
+                              }
+                            },
+                            "name": "graph"
+                          }
+                        ]
+                      },
+                      "kind": "init"
+                    },
+                    {
+                      "type": "Property",
+                      "start": 1043,
+                      "end": 1071,
+                      "loc": {
+                        "start": {
+                          "line": 34,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 34,
+                          "column": 32
+                        }
+                      },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1043,
+                        "end": 1047,
+                        "loc": {
+                          "start": {
+                            "line": 34,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 34,
+                            "column": 8
+                          }
+                        },
+                        "name": "edge"
+                      },
+                      "value": {
+                        "type": "NewExpression",
+                        "start": 1049,
+                        "end": 1071,
+                        "loc": {
+                          "start": {
+                            "line": 34,
+                            "column": 10
+                          },
+                          "end": {
+                            "line": 34,
+                            "column": 32
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1053,
+                          "end": 1064,
+                          "loc": {
+                            "start": {
+                              "line": 34,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 34,
+                              "column": 25
+                            }
+                          },
+                          "name": "SidebarEdge"
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1065,
+                            "end": 1070,
+                            "loc": {
+                              "start": {
+                                "line": 34,
+                                "column": 26
+                              },
+                              "end": {
+                                "line": 34,
+                                "column": 31
+                              }
+                            },
+                            "name": "graph"
+                          }
+                        ]
+                      },
+                      "kind": "init"
+                    },
+                    {
+                      "type": "Property",
+                      "start": 1078,
+                      "end": 1110,
+                      "loc": {
+                        "start": {
+                          "line": 35,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 35,
+                          "column": 36
+                        }
+                      },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1078,
+                        "end": 1084,
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 10
+                          }
+                        },
+                        "name": "select"
+                      },
+                      "value": {
+                        "type": "NewExpression",
+                        "start": 1086,
+                        "end": 1110,
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 36
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1090,
+                          "end": 1103,
+                          "loc": {
+                            "start": {
+                              "line": 35,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 35,
+                              "column": 29
+                            }
+                          },
+                          "name": "SidebarSelect"
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1104,
+                            "end": 1109,
+                            "loc": {
+                              "start": {
+                                "line": 35,
+                                "column": 30
+                              },
+                              "end": {
+                                "line": 35,
+                                "column": 35
+                              }
+                            },
+                            "name": "graph"
+                          }
+                        ]
+                      },
+                      "kind": "init"
+                    },
+                    {
+                      "type": "Property",
+                      "start": 1117,
+                      "end": 1155,
+                      "loc": {
+                        "start": {
+                          "line": 36,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 36,
+                          "column": 42
+                        }
+                      },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1117,
+                        "end": 1126,
+                        "loc": {
+                          "start": {
+                            "line": 36,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 36,
+                            "column": 13
+                          }
+                        },
+                        "name": "algorithm"
+                      },
+                      "value": {
+                        "type": "NewExpression",
+                        "start": 1128,
+                        "end": 1155,
+                        "loc": {
+                          "start": {
+                            "line": 36,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 36,
+                            "column": 42
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1132,
+                          "end": 1148,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 35
+                            }
+                          },
+                          "name": "SidebarAlgorithm"
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1149,
+                            "end": 1154,
+                            "loc": {
+                              "start": {
+                                "line": 36,
+                                "column": 36
+                              },
+                              "end": {
+                                "line": 36,
+                                "column": 41
+                              }
+                            },
+                            "name": "graph"
+                          }
+                        ]
+                      },
+                      "kind": "init"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "start": 1165,
+              "end": 1189,
+              "loc": {
+                "start": {
+                  "line": 38,
+                  "column": 2
+                },
+                "end": {
+                  "line": 38,
+                  "column": 26
+                }
+              },
+              "expression": {
+                "type": "CallExpression",
+                "start": 1165,
+                "end": 1188,
+                "loc": {
+                  "start": {
+                    "line": 38,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 25
+                  }
+                },
+                "callee": {
+                  "type": "Identifier",
+                  "start": 1165,
+                  "end": 1178,
+                  "loc": {
+                    "start": {
+                      "line": 38,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 38,
+                      "column": 15
+                    }
+                  },
+                  "name": "changeSidebar"
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "start": 1179,
+                    "end": 1187,
+                    "loc": {
+                      "start": {
+                        "line": 38,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 38,
+                        "column": 24
+                      }
+                    },
+                    "value": "select",
+                    "rawValue": "select",
+                    "raw": "'select'"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "\r\n\r\ntools now have a sidebarType, a string, to refer to their associated sidebar sidebar-content subclass\r\n\r\nThis class manages the container for sidebar-content subclasses, and is responsible\r\nfor managing those subclasses as well.\r\n\r\nTODO:\r\nchangeSidebar should account for if type is not changing\r\nchange this into class?\r\nthis should have ability to move, minimize, or shrink sidebar\r\nflesh out sidebar-content classes with non placeholder stuff\r\nselect tool needs reference to selected object\r\n\r\nNOTE:\r\ncurrently updateSidebar is called only from the mouse-handler up listener\r\ntools must have an associated sidebar type\r\n",
+            "start": 267,
+            "end": 898,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 0
+              },
+              "end": {
+                "line": 28,
+                "column": 2
+              }
+            },
+            "range": [
+              267,
+              898
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\r\n\r\ntools now have a sidebarType, a string, to refer to their associated sidebar sidebar-content subclass\r\n\r\nThis class manages the container for sidebar-content subclasses, and is responsible\r\nfor managing those subclasses as well.\r\n\r\nTODO:\r\nchangeSidebar should account for if type is not changing\r\nchange this into class?\r\nthis should have ability to move, minimize, or shrink sidebar\r\nflesh out sidebar-content classes with non placeholder stuff\r\nselect tool needs reference to selected object\r\n\r\nNOTE:\r\ncurrently updateSidebar is called only from the mouse-handler up listener\r\ntools must have an associated sidebar type\r\n",
+          "start": 267,
+          "end": 898,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 28,
+              "column": 2
+            }
+          },
+          "range": [
+            267,
+            898
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1196,
+      "end": 1293,
+      "loc": {
+        "start": {
+          "line": 41,
+          "column": 0
+        },
+        "end": {
+          "line": 44,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 1203,
+        "end": 1293,
+        "loc": {
+          "start": {
+            "line": 41,
+            "column": 7
+          },
+          "end": {
+            "line": 44,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 1212,
+          "end": 1225,
+          "loc": {
+            "start": {
+              "line": 41,
+              "column": 16
+            },
+            "end": {
+              "line": 41,
+              "column": 29
+            }
+          },
+          "name": "changeSidebar"
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 1226,
+            "end": 1230,
+            "loc": {
+              "start": {
+                "line": 41,
+                "column": 30
+              },
+              "end": {
+                "line": 41,
+                "column": 34
+              }
+            },
+            "name": "type"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 1232,
+          "end": 1293,
+          "loc": {
+            "start": {
+              "line": 41,
+              "column": 36
+            },
+            "end": {
+              "line": 44,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 1237,
+              "end": 1268,
+              "loc": {
+                "start": {
+                  "line": 42,
+                  "column": 2
+                },
+                "end": {
+                  "line": 42,
+                  "column": 33
+                }
+              },
+              "expression": {
+                "type": "AssignmentExpression",
+                "start": 1237,
+                "end": 1267,
+                "loc": {
+                  "start": {
+                    "line": 42,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 42,
+                    "column": 32
+                  }
+                },
+                "operator": "=",
+                "left": {
+                  "type": "Identifier",
+                  "start": 1237,
+                  "end": 1244,
+                  "loc": {
+                    "start": {
+                      "line": 42,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 42,
+                      "column": 9
+                    }
+                  },
+                  "name": "content"
+                },
+                "right": {
+                  "type": "MemberExpression",
+                  "start": 1247,
+                  "end": 1267,
+                  "loc": {
+                    "start": {
+                      "line": 42,
+                      "column": 12
+                    },
+                    "end": {
+                      "line": 42,
+                      "column": 32
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 1247,
+                    "end": 1261,
+                    "loc": {
+                      "start": {
+                        "line": 42,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 42,
+                        "column": 26
+                      }
+                    },
+                    "name": "sidebarContent"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 1262,
+                    "end": 1266,
+                    "loc": {
+                      "start": {
+                        "line": 42,
+                        "column": 27
+                      },
+                      "end": {
+                        "line": 42,
+                        "column": 31
+                      }
+                    },
+                    "name": "type"
+                  },
+                  "computed": true
+                }
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "start": 1272,
+              "end": 1290,
+              "loc": {
+                "start": {
+                  "line": 43,
+                  "column": 2
+                },
+                "end": {
+                  "line": 43,
+                  "column": 20
+                }
+              },
+              "expression": {
+                "type": "CallExpression",
+                "start": 1272,
+                "end": 1289,
+                "loc": {
+                  "start": {
+                    "line": 43,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 43,
+                    "column": 19
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 1272,
+                  "end": 1287,
+                  "loc": {
+                    "start": {
+                      "line": 43,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 43,
+                      "column": 17
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 1272,
+                    "end": 1279,
+                    "loc": {
+                      "start": {
+                        "line": 43,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 43,
+                        "column": 9
+                      }
+                    },
+                    "name": "content"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 1280,
+                    "end": 1287,
+                    "loc": {
+                      "start": {
+                        "line": 43,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 43,
+                        "column": 17
+                      }
+                    },
+                    "name": "display"
+                  },
+                  "computed": false
+                },
+                "arguments": []
+              }
+            }
+          ]
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1297,
+      "end": 1349,
+      "loc": {
+        "start": {
+          "line": 46,
+          "column": 0
+        },
+        "end": {
+          "line": 48,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 1304,
+        "end": 1349,
+        "loc": {
+          "start": {
+            "line": 46,
+            "column": 7
+          },
+          "end": {
+            "line": 48,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 1313,
+          "end": 1323,
+          "loc": {
+            "start": {
+              "line": 46,
+              "column": 16
+            },
+            "end": {
+              "line": 46,
+              "column": 26
+            }
+          },
+          "name": "getSidebar"
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [],
+        "body": {
+          "type": "BlockStatement",
+          "start": 1326,
+          "end": 1349,
+          "loc": {
+            "start": {
+              "line": 46,
+              "column": 29
+            },
+            "end": {
+              "line": 48,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "start": 1331,
+              "end": 1346,
+              "loc": {
+                "start": {
+                  "line": 47,
+                  "column": 2
+                },
+                "end": {
+                  "line": 47,
+                  "column": 17
+                }
+              },
+              "argument": {
+                "type": "Identifier",
+                "start": 1338,
+                "end": 1345,
+                "loc": {
+                  "start": {
+                    "line": 47,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 47,
+                    "column": 16
+                  }
+                },
+                "name": "sidebar"
+              }
+            }
+          ]
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1353,
+      "end": 1405,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 0
+        },
+        "end": {
+          "line": 52,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 1360,
+        "end": 1405,
+        "loc": {
+          "start": {
+            "line": 50,
+            "column": 7
+          },
+          "end": {
+            "line": 52,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 1369,
+          "end": 1379,
+          "loc": {
+            "start": {
+              "line": 50,
+              "column": 16
+            },
+            "end": {
+              "line": 50,
+              "column": 26
+            }
+          },
+          "name": "getContent"
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [],
+        "body": {
+          "type": "BlockStatement",
+          "start": 1382,
+          "end": 1405,
+          "loc": {
+            "start": {
+              "line": 50,
+              "column": 29
+            },
+            "end": {
+              "line": 52,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "start": 1387,
+              "end": 1402,
+              "loc": {
+                "start": {
+                  "line": 51,
+                  "column": 2
+                },
+                "end": {
+                  "line": 51,
+                  "column": 17
+                }
+              },
+              "argument": {
+                "type": "Identifier",
+                "start": 1394,
+                "end": 1401,
+                "loc": {
+                  "start": {
+                    "line": 51,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 51,
+                    "column": 16
+                  }
+                },
+                "name": "content"
+              }
+            }
+          ],
+          "trailingComments": null
+        },
+        "trailingComments": [
+          {
+            "type": "CommentLine",
+            "value": " Call the current sidebar-content class's update function",
+            "start": 1408,
+            "end": 1467,
+            "loc": {
+              "start": {
+                "line": 54,
+                "column": 0
+              },
+              "end": {
+                "line": 54,
+                "column": 59
+              }
+            },
+            "range": [
+              1408,
+              1467
+            ]
+          }
+        ],
+        "leadingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Call the current sidebar-content class's update function",
+          "start": 1408,
+          "end": 1467,
+          "loc": {
+            "start": {
+              "line": 54,
+              "column": 0
+            },
+            "end": {
+              "line": 54,
+              "column": 59
+            }
+          },
+          "range": [
+            1408,
+            1467
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1469,
+      "end": 1532,
+      "loc": {
+        "start": {
+          "line": 55,
+          "column": 0
+        },
+        "end": {
+          "line": 57,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 1476,
+        "end": 1532,
+        "loc": {
+          "start": {
+            "line": 55,
+            "column": 7
+          },
+          "end": {
+            "line": 57,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 1485,
+          "end": 1498,
+          "loc": {
+            "start": {
+              "line": 55,
+              "column": 16
+            },
+            "end": {
+              "line": 55,
+              "column": 29
+            }
+          },
+          "name": "updateSidebar",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 1499,
+            "end": 1502,
+            "loc": {
+              "start": {
+                "line": 55,
+                "column": 30
+              },
+              "end": {
+                "line": 55,
+                "column": 33
+              }
+            },
+            "name": "obj"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 1504,
+          "end": 1532,
+          "loc": {
+            "start": {
+              "line": 55,
+              "column": 35
+            },
+            "end": {
+              "line": 57,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 1509,
+              "end": 1529,
+              "loc": {
+                "start": {
+                  "line": 56,
+                  "column": 2
+                },
+                "end": {
+                  "line": 56,
+                  "column": 22
+                }
+              },
+              "expression": {
+                "type": "CallExpression",
+                "start": 1509,
+                "end": 1528,
+                "loc": {
+                  "start": {
+                    "line": 56,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 56,
+                    "column": 21
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 1509,
+                  "end": 1523,
+                  "loc": {
+                    "start": {
+                      "line": 56,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 56,
+                      "column": 16
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 1509,
+                    "end": 1516,
+                    "loc": {
+                      "start": {
+                        "line": 56,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 56,
+                        "column": 9
+                      }
+                    },
+                    "name": "content"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 1517,
+                    "end": 1523,
+                    "loc": {
+                      "start": {
+                        "line": 56,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 56,
+                        "column": 16
+                      }
+                    },
+                    "name": "update"
+                  },
+                  "computed": false
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "start": 1524,
+                    "end": 1527,
+                    "loc": {
+                      "start": {
+                        "line": 56,
+                        "column": 17
+                      },
+                      "end": {
+                        "line": 56,
+                        "column": 20
+                      }
+                    },
+                    "name": "obj"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "CommentLine",
+            "value": " Call the current sidebar-content class's update function",
+            "start": 1408,
+            "end": 1467,
+            "loc": {
+              "start": {
+                "line": 54,
+                "column": 0
+              },
+              "end": {
+                "line": 54,
+                "column": 59
+              }
+            },
+            "range": [
+              1408,
+              1467
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Call the current sidebar-content class's update function",
+          "start": 1408,
+          "end": 1467,
+          "loc": {
+            "start": {
+              "line": 54,
+              "column": 0
+            },
+            "end": {
+              "line": 54,
+              "column": 59
+            }
+          },
+          "range": [
+            1408,
+            1467
+          ]
+        }
+      ]
+    }
+  ]
+}

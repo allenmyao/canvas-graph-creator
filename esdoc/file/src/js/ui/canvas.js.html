@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/js/ui/canvas.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/allenmyao/canvas-graph-creator.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/algorithm</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html">AbstractAlgorithm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/change.js~Change.html">Change</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html">StepBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/step.js~Step.html">Step</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/solid-edge.js~SolidEdge.html">SolidEdge</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/node</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/circle-node.js~CircleNode.html">CircleNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/diamond-node.js~DiamondNode.html">DiamondNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/hexagon-node.js~HexagonNode.html">HexagonNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/octagon-node.js~OctagonNode.html">OctagonNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/pentagon-node.js~PentagonNode.html">PentagonNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/square-node.js~SquareNode.html">SquareNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/node/triangle-node.js~TriangleNode.html">TriangleNode</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/tool</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/algorithm-tool.js~AlgorithmTool.html">AlgorithmTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/edge-tool.js~EdgeTool.html">EdgeTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/editedge-tool.js~EditEdgeTool.html">EditEdgeTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/editnode-tool.js~EditNodeTool.html">EditNodeTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html">EraseTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/metadata-tool.js~MetadataTool.html">MetadataTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/move-tool.js~MoveTool.html">MoveTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/node-tool.js~NodeTool.html">NodeTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/pan-tool.js~PanTool.html">PanTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/select-tool.js~SelectTool.html">SelectTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/tool.js~Tool.html">Tool</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/ui</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/tabs.js~Tabs.html">Tabs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getAlgorithmInputs">getAlgorithmInputs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pause">pause</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-play">play</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-selectObject">selectObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setAlgorithm">setAlgorithm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clear">clear</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getDx">getDx</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getDy">getDy</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getScale">getScale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reset">reset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resize">resize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setPosition">setPosition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setScale">setScale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-update">update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-changeSidebar">changeSidebar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContent">getContent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getSidebar">getSidebar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateSidebar">updateSidebar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getStatusBar">getStatusBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateMouse">updateMouse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateZoom">updateZoom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentTool">getCurrentTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toMetadata">toMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-selectObject">selectObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateMouse">updateMouse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateZoom">updateZoom</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/stack.js~Stack.html">Stack</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierPoint">bezierPoint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calculateLoop">calculateLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawArrows">drawArrows</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawLabel">drawLabel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initCurved">initCurved</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawCurvedEdge">drawCurvedEdge</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_RADIUS">DEFAULT_RADIUS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EDGE_DISTANCE_THRESHOLD">EDGE_DISTANCE_THRESHOLD</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/canvas.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { MouseHandler } from &apos;../util/mouse-handler&apos;;
+import * as Toolbar from &apos;../ui/toolbar&apos;;
+import * as UI from &apos;../ui/ui&apos;;
+import { Node } from &apos;data/node/node&apos;;
+import { Edge } from &apos;data/edge/edge&apos;;
+import { initCurved } from &apos;../util/curvedEdge&apos;;
+
+let canvas;
+let context;
+let menu;
+let mouseHandler;
+
+const SCALE_MODIFIER = 0.9;
+// scale of 0.5 means drawing at half size (0.5 pixels for each original pixel)
+let scale = 1;
+let dx = 0;
+let dy = 0;
+
+let menuState = 0;
+let menuPosX;
+let menuPosY;
+let component;
+let taskArg = {
+  &apos;Add Circle Node&apos;: &apos;circle&apos;,
+  &apos;Add Square Node&apos;: &apos;square&apos;,
+  &apos;Toggle Accepting State&apos;: &apos;isAcceptingState&apos;,
+  &apos;Toggle Start State&apos;: &apos;isStartingState&apos;,
+  &apos;Toggle Directed Edge&apos;: &apos;isDirected&apos;,
+  &apos;Delete Node&apos;: &apos;node&apos;,
+  &apos;Delete Edge&apos;: &apos;edge&apos;
+};
+
+export function init(graph) {
+  canvas = document.getElementById(&apos;canvas&apos;);
+  menu = document.getElementById(&apos;context-menu&apos;);
+  context = canvas.getContext(&apos;2d&apos;);
+
+  initCurved(canvas, context);
+
+  initMouseHandler(graph);
+}
+
+export function resize(event) {
+  context.canvas.width = window.innerWidth;
+  context.canvas.height = window.innerHeight;
+}
+
+export function getDx() {
+  return dx;
+}
+
+export function getDy() {
+  return dy;
+}
+
+export function setPosition(newDx, newDy) {
+  dx = newDx;
+  dy = newDy;
+}
+
+export function getScale() {
+  return scale;
+}
+
+export function setScale(newScale) {
+  scale = newScale;
+  UI.updateZoom(scale);
+}
+
+export function reset() {
+  setPosition(0, 0);
+  setScale(1);
+  update();
+}
+
+function getCanvasX(event) {
+  let canvasX = event.offsetX;
+  let x = canvasX / scale + dx;
+  return x;
+}
+
+function getCanvasY(event) {
+  let canvasY = event.offsetY;
+  let y = canvasY / scale + dy;
+  return y;
+}
+
+export function getContext() {
+  return context;
+}
+
+export function clear() {
+  context.clearRect(dx, dy, canvas.width / scale, canvas.height / scale);
+}
+
+export function update() {
+  // reset the transformations done to the canvas
+  context.resetTransform();
+
+  // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies
+  // the translation before the scale.
+  // This is not what we want, since the scale is done relative to (0,0)
+  // and the position displayed at the top-left corner will no longer
+  // be (dx,dy), which means the coordinates under the mouse will change.
+
+  // scale both x- and y-axis
+  context.scale(scale, scale);
+
+  // context.translate(a, b) translates the canvas origin by (a,b).
+  // Since (dx,dy) are the coordinates calculated for the new origin, the
+  // canvas needs to be translated by (-dx,-dy).
+  context.translate(-dx, -dy);
+}
+
+function classDisplayChange(className, displayType) {
+  let items = document.getElementsByClassName(className);
+  for (let i = 0; i &lt; items.length; ++i) {
+    items[i].style.display = displayType;
+  }
+}
+
+function toggleContextMenu() {
+  if (menuState !== 1) {
+    document.getElementById(&apos;context-menu&apos;).style.display = &apos;block&apos;;
+    menuState = 1;
+  } else {
+    menuState = 0;
+    document.getElementById(&apos;context-menu&apos;).style.display = &apos;none&apos;;
+    classDisplayChange(&apos;component&apos;, &apos;none&apos;);
+    classDisplayChange(&apos;component-node&apos;, &apos;none&apos;);
+    classDisplayChange(&apos;component-edge&apos;, &apos;none&apos;);
+    classDisplayChange(&apos;blank&apos;, &apos;none&apos;);
+  }
+}
+
+function repositionMenu(event) {
+  let xpos = event.pageX;
+  let ypos = event.pageY;
+
+  document.getElementById(&apos;context-menu&apos;).style.left = xpos + &apos;px&apos;;
+  document.getElementById(&apos;context-menu&apos;).style.top = ypos + &apos;px&apos;;
+}
+
+function initMouseHandler(graph) {
+  mouseHandler = new MouseHandler(graph);
+
+  canvas.addEventListener(&apos;mousedown&apos;, (event) =&gt; {
+    let x = getCanvasX(event);
+    let y = getCanvasY(event);
+
+    if (menuState === 0 &amp;&amp; event.button !== 2) {
+      mouseHandler.downListener(event, Toolbar.getCurrentTool(), x, y);
+    }
+  }, false);
+
+  menu.addEventListener(&apos;mouseup&apos;, (event) =&gt; {
+    let task = event.srcElement.innerText;
+    let type = task.split(&apos; &apos;)[0];
+
+    if (type === &apos;Add&apos;) {
+      mouseHandler.contextAdd(taskArg[task], menuPosX, menuPosY);
+    } else if (type === &apos;Toggle&apos;) {
+      mouseHandler.contextToggle(taskArg[task], component);
+    } else if (type === &apos;Delete&apos;) {
+      mouseHandler.contextDelete(taskArg[task], component);
+    } else if (type === &apos;Edit&apos;) {
+      Toolbar.toMetadata();
+      mouseHandler.contextSelect(event, Toolbar.getCurrentTool(), component, menuPosX, menuPosY);
+    }
+
+    toggleContextMenu();
+  }, false);
+
+  canvas.addEventListener(&apos;mouseup&apos;, (event) =&gt; {
+    let x = getCanvasX(event);
+    let y = getCanvasY(event);
+
+    if (menuState === 1) {
+      toggleContextMenu();
+    } else if (menuState === 0 &amp;&amp; event.button !== 2) {
+      mouseHandler.upListener(event, Toolbar.getCurrentTool(), x, y);
+    }
+  }, false);
+
+  canvas.addEventListener(&apos;mousemove&apos;, (event) =&gt; {
+    let x = getCanvasX(event);
+    let y = getCanvasY(event);
+
+    mouseHandler.moveListener(event, Toolbar.getCurrentTool(), x, y);
+  }, false);
+
+  canvas.addEventListener(&apos;contextmenu&apos;, (event) =&gt; {
+    menuPosX = getCanvasX(event);
+    menuPosY = getCanvasY(event);
+
+    component = mouseHandler.contextComponent(event, menuPosX, menuPosY);
+    event.preventDefault();
+
+    toggleContextMenu();
+
+    repositionMenu(event);
+
+    if (component !== null) {
+      classDisplayChange(&apos;component&apos;, &apos;block&apos;);
+      if (component instanceof Node) {
+        classDisplayChange(&apos;component-node&apos;, &apos;block&apos;);
+      } else if (component instanceof Edge) {
+        classDisplayChange(&apos;component-edge&apos;, &apos;block&apos;);
+      }
+    } else {
+      classDisplayChange(&apos;blank&apos;, &apos;block&apos;);
+    }
+  }, false);
+
+  canvas.addEventListener(&apos;wheel&apos;, (event) =&gt; {
+    // prevent page scrolling (the default scroll behavior)
+    event.preventDefault();
+
+    // store the current scale value
+    let oldScale = scale;
+
+    // get the amount the mousewheel was scrolled
+    let delta = event.deltaY;
+    if (delta &gt; 0) {
+      // scroll down
+      scale = Math.max(scale * SCALE_MODIFIER, 0.1);
+    } else if (delta &lt; 0) {
+      // scroll up
+      scale = Math.min(scale / SCALE_MODIFIER, 10);
+    }
+
+    // get the mouse position (relative to the canvas element)
+    let mouseX = event.offsetX;
+    let mouseY = event.offsetY;
+
+    // Calculate the new position of the displayed origin (top left corner).
+    // (dx,dy) are the coordinates of the top-left corner.
+    // (x1,y1) and (x2,y2) are the coordinates at the mouse position before
+    // and after changing the scale, respectively.
+    //
+    // With the old scale value:
+    //     dx1 = dx
+    //     dy1 = dy
+    //     x1 = dx + mouseX / oldScale
+    //     y1 = dy + mouseY / oldScale
+    //
+    // With new scale:
+    //     dx2 = dx + mouseX / oldScale - mouseX / scale
+    //     dy2 = dy + mouseY / oldScale - mouseY / scale
+    //     x2 = dx2 + mouseX / scale
+    //        = dx + mouseX / oldScale - mouseX / scale + mouseX / scale
+    //        = dx + mouseX / oldScale
+    //        = x1
+    //     y2 = dy2 + mouseY / scale
+    //        = dy + mouseY / oldScale - mouseY / scale + mouseY / scale
+    //        = dy + mouseY / oldScale
+    //        = y1
+    //
+    // Note that (x1,y1) = (x2,y2) which means the coordinates under
+    // the mouse stays the same.
+    dx += mouseX / oldScale - mouseX / scale;
+    dy += mouseY / oldScale - mouseY / scale;
+
+    update();
+
+    UI.updateZoom(scale);
+  }, false);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
