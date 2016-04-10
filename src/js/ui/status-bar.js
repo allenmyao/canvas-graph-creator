@@ -15,10 +15,10 @@ export function getStatusBar() {
 }
 
 export function updateZoom(scale) {
-  document.getElementById('zoom-input').value = `${scale * 100}%`;
+  document.getElementById('zoom-input').value = `${scale.toFixed(2) * 100}%`;
 }
 
 export function updateMouse(x, y) {
-  document.getElementById('mouse-x').textContent = x;
-  document.getElementById('mouse-y').textContent = y;
+  document.getElementById('mouse-x').textContent = x.toFixed(2);
+  document.getElementById('mouse-y').textContent = y.toFixed(2);
 }
