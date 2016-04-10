@@ -264,6 +264,5 @@ function initMouseHandler(graph) {
     update();
 
     UI.updateZoom(scale);
-    UI.updateCanvasPosition(dx, dy);
   }, false);
 }
