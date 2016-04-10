@@ -20,104 +20,85 @@
     <div id="tool-inputs">
     </div>
 
-    <div>
-      <div id="toolbar">
-        <div id="tools-container">
-          <ul class="tool-list">
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper selected" data-tool="node">
-                <span class="vcenter">Add Node</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="edge">
-                <span class="vcenter">Add Edge</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="select">
-                <span class="vcenter">Select Object</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="move">
-                <span class="vcenter">Move Object</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="editnode">
-                <span class="vcenter">Edit Node</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="editedge">
-                <span class="vcenter">Edit Edge</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="erase">
-                <span class="vcenter">Erase Object</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-                <div class="tool vcenter-wrapper" data-tool="metadata">
-                    <span class="vcenter">Edit Label</span>
-                </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="pan">
-                <span class="vcenter">Pan</span>
-              </div>
-            </li>
-            <li class="tool-listitem">
-              <div class="tool vcenter-wrapper" data-tool="algorithm">
-                <span class="vcenter">Algorithm</span>
-              </div>
-            </li>
-          </ul>
-        </div>
+    <div id="toolbar">
+      <ul class="tool-list">
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper selected" data-tool="node">
+            <span class="vcenter">Add Node</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="edge">
+            <span class="vcenter">Add Edge</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="select">
+            <span class="vcenter">Select Object</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="move">
+            <span class="vcenter">Move Object</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="editnode">
+            <span class="vcenter">Edit Node</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="editedge">
+            <span class="vcenter">Edit Edge</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="erase">
+            <span class="vcenter">Erase Object</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+            <div class="tool vcenter-wrapper" data-tool="metadata">
+                <span class="vcenter">Edit Label</span>
+            </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="pan">
+            <span class="vcenter">Pan</span>
+          </div>
+        </li>
+        <li class="tool-listitem">
+          <div class="tool vcenter-wrapper" data-tool="algorithm">
+            <span class="vcenter">Algorithm</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div id="canvas-container" class="col-container">
+      <canvas id="canvas" width="800" height="598"></canvas>
+    </div>
+
+    <div id="sidebar">
+      <div class="tabs-container">
+        <ul class="tab-list">
+        </ul>
       </div>
     </div>
 
-    <div class="row">
-      <div id="canvas-container" class="col-container">
-        <canvas id="canvas" width="800" height="598"></canvas>
+    <div id="status-bar">
+      <div id="zoom" class="status-bar-item">
+        <label>Zoom: </label>
+        <input type="text" id="zoom-input" value="100%" />
+        <button type="button" id="reset-transform">Reset</button>
       </div>
-      <div id="sidebar-container" class="col-container">
-        <div id="sidebar">
-          <div class="tabs-container">
-            <ul class="tab-list">
-              <li class="tab active" data-tab="data">Data</li>
-              <li class="tab" data-tab="other">Other</li>
-            </ul>
-            <div class="tab-content active" data-tab="data">
-              <div><span>data</span></div>
-            </div>
-            <div class="tab-content" data-tab="other">
-              <div><span>other</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div id="status-container">
-        <div id="status-bar">
-          <div id="zoom" class="status-bar-item">
-            <label>Zoom: </label>
-            <input type="text" id="zoom-input" value="100%" />
-            <button type="button" id="reset-transform">Reset</button>
-          </div>
-          <div id="mouse-pos" class="status-bar-item">
-            <span>x: <span id="mouse-x">0</span></span>
-            <span>y: <span id="mouse-y">0</span></span>
-          </div>
-        </div>
+      <div id="mouse-pos" class="status-bar-item">
+        <span>x: <span id="mouse-x">0</span></span>
+        <span>y: <span id="mouse-y">0</span></span>
       </div>
     </div>
   </div>
-  
+
   <div id="context-menu" class="context-menu">
     <ul class="component-node">
       <li class="context-menu__item">
@@ -168,7 +149,7 @@
       </li>
     </ul>
   </div>
-  
+
 
   <script src="./dist/js/app.js"></script>
 </body>

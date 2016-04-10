@@ -1,12 +1,14 @@
 @import 'variables';
 @import 'mixins';
 @import 'base';
-@import 'sidebar';
 
-$status-bar-height: 30px;
-$sidebar-width: 380px;
-$toolbar-width: 246px;
-$top-bar-height: 120px;
+@import 'tabs';
+
+@import 'sidebar';
+@import 'status-bar';
+@import 'toolbar';
+@import 'top-bar';
+@import 'canvas';
 
 html {
   font-family: $font-family-sans-serif;
@@ -23,7 +25,7 @@ select,
 textarea {
   max-width: 100%;
   border: 1px solid gray;
-  padding: 0 3px;
+  padding: 5px;
   font-size: 1rem;
   font-family: $font-family-sans-serif;
   @include border-radius($default-border-radius);
@@ -57,180 +59,6 @@ fieldset.error {
     width: 100%;
     height: 100%;
     font-size: 0;
-  }
-}
-
-#canvas-container {
-  width: 100%;
-  height: 100%;
-
-  #canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.tabs-container {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-
-  .tab-list {
-    display: block;
-    width: 100%;
-    flex: 0;
-
-    .tab {
-      display: inline-block;
-      vertical-align: top;
-      cursor: pointer;
-
-      &.active {
-
-      }
-    }
-  }
-
-  .tab-content {
-    display: none;
-    width: 100%;
-    flex: 1;
-
-    &.active {
-      display: block;
-    }
-  }
-}
-
-#status-container {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  #status-bar {
-    height: $status-bar-height;
-    border-top: 1px solid black;
-    background: gray;
-    font-size: 1rem;
-
-    >.status-bar-item {
-      display: inline-block;
-      vertical-align: top;
-      height: 100%;
-      float: right;
-      padding: 3px 7px;
-      border-left: 1px solid black;
-
-      * {
-        display: inline-block;
-        vertical-align: top;
-      }
-    }
-
-    input, button {
-      height: 100%;
-      font-size: 0.75rem;
-    }
-  }
-}
-
-#sidebar-container {
-  position: fixed;
-  top: $top-bar-height;
-  right: 0;
-  bottom: $status-bar-height;
-  width: $sidebar-width;
-  background: white;
-
-  #sidebar {
-    height: 100%;
-  }
-}
-
-#top-bar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: $top-bar-height;
-  background: white;
-  border-bottom: 1px solid black;
-
-  #tool-modes {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-#toolbar {
-  position: fixed;
-  top: $top-bar-height;
-  bottom: $status-bar-height;
-  left: 0;
-  width: $toolbar-width;
-  overflow-y: auto;
-  border-right: 1px solid black;
-  background: white;
-}
-
-.tool-list,
-.tool-mode-list {
-  display: block;
-  font-size: 0;
-
-  >.tool-listitem,
-  >.tool-mode {
-    display: inline-block;
-
-    >.tool,
-    >.mode {
-      vertical-align: top;
-      display: inline-block;
-      width: 100px;
-      height: 100px;
-      margin: 10px 0 0 10px;
-      background: #aaa;
-      text-align: center;
-      word-break: break-all;
-      cursor: pointer;
-
-      &:not(.selected):hover {
-        background: #bbb;
-      }
-
-      &.selected {
-        background: #616161;
-      }
-
-      >span {
-        font-size: 1rem;
-        color: white;
-        pointer-events: none;
-      }
-    }
-  }
-}
-
-.tool-input-list {
-  display: block;
-  border: 1px solid black;
-  height: 120px;
-  font-size: 0;
-
-  >.tool-input {
-    display: inline-block;
-
-    >.tinput {
-      vertical-align: top;
-      display: inline-block;
-      margin: 10px 0 10px 10px;
-      text-align: center;
-      word-break: break-all;
-      cursor: pointer;
-    }
   }
 }
 
