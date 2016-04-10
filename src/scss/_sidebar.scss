@@ -1,41 +1,40 @@
-@import 'variables';
+#sidebar {
+  position: fixed;
+  top: $top-bar-height;
+  right: 0;
+  bottom: $status-bar-height;
+  width: $sidebar-width;
+  height: 100%;
+  background: white;
+  font-size: 1rem;
 
-#sidebar-container {
-  width: 380px;
-  margin-left: 20px;
+  .tabs-container {
+    height: 100%;
 
-  #sidebar {
-    height: 600px;
-    font-size: 1rem;
+    .tab-list {
+      height: 50px;
+      font-size: 0;
+      border-bottom: 1px solid black;
 
-    .tabs-container {
-      height: 100%;
+      .tab {
+        padding: 10px 20px;
+        border: 1px solid black;
+        font-size: 1rem;
 
-      .tab-list {
-        height: 50px;
-        font-size: 0;
-        border-bottom: 1px solid black;
+        &:not(:first-child) {
+          margin-left: -1px;
+        }
 
-        .tab {
-          padding: 10px 20px;
-          border: 1px solid black;
-          font-size: 1rem;
-
-          &:not(:first-child) {
-            margin-left: -1px;
-          }
-
-          &.active {
-            border-bottom: 1px solid white;
-          }
+        &.active {
+          border-bottom: 1px solid white;
         }
       }
+    }
 
-      .tab-content {
-        padding: 10px;
-        border: 1px solid black;
-        border-top: 0;
-      }
+    .tab-content {
+      padding: 10px;
+      border: 1px solid black;
+      border-top: 0;
     }
   }
 
@@ -51,6 +50,7 @@
   button {
     margin-top: 5px;
   }
+
 }
 
 .data-container {

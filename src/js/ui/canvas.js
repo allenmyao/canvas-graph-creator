@@ -40,6 +40,11 @@ export function init(graph) {
   initMouseHandler(graph);
 }
 
+export function resize(event) {
+  context.canvas.width = window.innerWidth;
+  context.canvas.height = window.innerHeight;
+}
+
 export function getDx() {
   return dx;
 }
@@ -51,8 +56,6 @@ export function getDy() {
 export function setPosition(newDx, newDy) {
   dx = newDx;
   dy = newDy;
-
-  UI.updateCanvasPosition(dx, dy);
 }
 
 export function getScale() {
@@ -261,6 +264,5 @@ function initMouseHandler(graph) {
     update();
 
     UI.updateZoom(scale);
-    UI.updateCanvasPosition(dx, dy);
   }, false);
 }
