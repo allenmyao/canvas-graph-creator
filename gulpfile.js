@@ -67,7 +67,9 @@ gulp.task('test', [ 'lint' ], (cb) => {
   ).pipe(istanbul.hookRequire())
     .on('finish', () => {
       gulp.src([ TEST_FILES ])
-          .pipe(mocha())
+          .pipe(mocha({
+            reporter: 'nyan'
+          }))
           .pipe(istanbul.writeReports({
             dir: './coverage',
             reporters: [ 'clover', 'lcov', 'text', 'text-summary' ],
