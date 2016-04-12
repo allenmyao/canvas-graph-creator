@@ -29,7 +29,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.saucelabs.common.SauceOnDemandAuthentication;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
@@ -46,8 +45,6 @@ public class Driver {
 	public static final String USERNAME = System.getenv("SAUCE_USERNAME");
 	public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
 	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
-	
-	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
 	
 	
 	protected WebDriver driver;
