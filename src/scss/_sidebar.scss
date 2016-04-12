@@ -1,10 +1,9 @@
 #sidebar {
   position: fixed;
-  top: $top-bar-height;
+  top: $navbar-height + $top-bar-height;
   right: 0;
   bottom: $status-bar-height;
   width: $sidebar-width;
-  height: 100%;
   background: white;
   font-size: 1rem;
 
@@ -35,6 +34,7 @@
       padding: 10px;
       border: 1px solid black;
       border-top: 0;
+      overflow-y: auto;
     }
   }
 

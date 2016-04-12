@@ -1,10 +1,10 @@
 {
-  "name": "canvas-graphs-prototype",
+  "name": "canvas-graph-creator",
   "description": "JavaScript library for creating graphs on an HTML5 canvas",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/allenmyao/canvas-graphs-prototype.git"
+    "url": "https://github.com/allenmyao/canvas-graph-creator.git"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
@@ -16,10 +16,12 @@
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "del": "^2.2.0",
+    "esdoc-es7-plugin": "0.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
     "gulp-babel-istanbul": "^0.11.0",
+    "gulp-esdoc": "^0.2.0",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.2.0",
     "gulp-util": "^3.0.7",
