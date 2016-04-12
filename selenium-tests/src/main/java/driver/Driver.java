@@ -29,19 +29,31 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.saucelabs.common.SauceOnDemandAuthentication;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 import utils.ImageUtils;
 
 public class Driver {
+	public static final String DEFAULT_PLATFORM = "Windows 10";
 	public static final String DEFAULT_BROWSER = "firefox";
+	public static final String DEFAULT_VERSION = "39.0";
+
+
 	//#TODO load from file
 	public static final String USERNAME = System.getenv("SAUCE_USERNAME");
 	public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
 	public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 	
+	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
+	
+	
 	protected WebDriver driver;
 	protected String name;
 	protected WebElement canvas;
-	//protected BufferedImage initialImage;
+
 	protected BufferedImage initialScreenshot;
 	protected HashMap<String, Point> elements;
 	
@@ -54,7 +66,7 @@ public class Driver {
 		
 		elements = new HashMap<String, Point>();
 
-		if(name.contains("remote"))
+		if(name.startsWith("remote"))
 			driver = createRemoteDriver(name);
 		else if(name.equals("firefox"))
 			driver = new FirefoxDriver();
@@ -63,27 +75,40 @@ public class Driver {
 		else
 			throw new RuntimeException("Unsupported browser " + name);
 	}
-	private WebDriver createRemoteDriver(String name) {
-		name = name.replaceFirst("remote-", "");
-		DesiredCapabilities caps = DesiredCapabilities.firefox();
-	    caps.setCapability("platform", "Windows 10");
-	    caps.setCapability("version", "39.0");
+	private DesiredCapabilities getCapabilities(String browserName)
+	{
+		DesiredCapabilities caps;
+		
+		if(browserName.equals("firefox"))
+			caps = DesiredCapabilities.firefox();
+		else if(browserName.equals("chrome"))
+			caps = DesiredCapabilities.chrome();
+		else
+			throw new RuntimeException("Unsupported browser " + name);
+		
+	    caps.setCapability("platform", System.getProperty("platform", DEFAULT_PLATFORM));
+	    caps.setCapability("version", System.getProperty("version", DEFAULT_VERSION));
 	    caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 	    caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
 	    
+		return caps;	
+	}
+	private WebDriver createRemoteDriver(String name) {
+		name = name.replaceFirst("remote-", "");
+	    
 	    try{
-	    	return driver = new RemoteWebDriver(new URL(URL), caps);
+	    	return new RemoteWebDriver(new URL(URL), getCapabilities(name));
 	    }catch(Exception e)
 	    {
 	    	e.printStackTrace();
+	    	return null;
 	    }
-		return null;
 	}
 
 	public void clickElement(String element)
 	{
 		Point coordinate = elements.get(element);
-		this.clickCanvas(coordinate.x, coordinate.y);
+		clickCanvas(coordinate.x, coordinate.y);
 	}
 	public void addElement(BufferedImage element, String name)
 	{
@@ -143,7 +168,7 @@ public class Driver {
 	//http://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
 	public void waitUntilLoaded()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 900);
 
 	    wait.until(new ExpectedCondition<Boolean>() {
 	        public Boolean apply(WebDriver wdriver) {
@@ -169,9 +194,15 @@ public class Driver {
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
+	    /*
 		TakesScreenshot screenshot=(TakesScreenshot)driver; 
         byte[] arrScreen = screenshot.getScreenshotAs(OutputType.BYTES);
+        
         return ImageIO.read(new ByteArrayInputStream(arrScreen));
+        */
+		return new AShot().coordsProvider(new WebDriverCoordsProvider())
+		  .takeScreenshot(driver, canvas).getImage();
+		//return new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver).getImage();
 	}
 	/*
 	public BufferedImage cropCanvas(int x1, int y1, int x2, int y2) throws IOException
