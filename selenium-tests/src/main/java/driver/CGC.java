@@ -91,15 +91,18 @@ public class CGC extends Driver{
 	public void clickNode(Node node) {
 		clickCanvas(node.x, node.y);
 	}
-
-
+	public void load() throws IOException
+	{
+		loadSite(HOME_PAGE);
+		switchToFrame(IFRAME);
+		selectCanvas(CANVAS_XPATH);
+		takeInitialScreenshot();
+	}
+/*
 	public static CGC create() throws IOException
 	{
 		CGC driver = new CGC();
-		driver.loadSite(HOME_PAGE);
-		driver.switchToFrame(IFRAME);
-		driver.selectCanvas(CANVAS_XPATH);
-		driver.takeInitialScreenshot();
+		driver.reload();
 
 		//driver.addElement(EDGE_TOOL, "edge tool");
 	
@@ -108,15 +111,12 @@ public class CGC extends Driver{
 	public static CGC create(String website, String browser) throws IOException
 	{
 		CGC driver = new CGC(browser);
-		driver.loadSite(website);
-		driver.switchToFrame(IFRAME);
-		driver.selectCanvas(CANVAS_XPATH);
-		driver.takeInitialScreenshot();
+		driver.reload();
 		//driver.addElement(EDGE_TOOL, "edge tool");
 
 		return driver;
 	}
-
+*/
 
 
 
