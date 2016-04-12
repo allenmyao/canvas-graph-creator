@@ -63,6 +63,7 @@ function getNodeById(graph, id) {
       value = node;
       return false;
     }
+    return true;
   });
   return value;
 }
@@ -74,6 +75,7 @@ function getEdgeById(graph, id) {
       value = edge;
       return false;
     }
+    return true;
   });
   return value;
 }
