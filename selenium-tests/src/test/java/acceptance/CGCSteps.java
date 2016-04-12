@@ -1,6 +1,10 @@
 package acceptance;
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
@@ -71,7 +75,7 @@ public class CGCSteps {
 	@Then("^*the screen should match '(.+)'$")
 	public void checkScreenshot(String path) throws Throwable
 	{
-	    driver.assertScreenshot("src/test/resources/" + path);
+	    driver.assertContains(ImageIO.read(new File("src/test/resources/" + path)), 1);
 	}
 	@Then("^.*there (?:is|are|should be) (.+) nodes?$")
 	public void checkNodes(String nodes) throws Throwable

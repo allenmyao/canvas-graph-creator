@@ -22,7 +22,7 @@ Feature: Add Edge
   Scenario: Integration
   	When I create a node named Node 1 at 500, 500
   		And another node named Node 2 at 550, 550
-  		And finally another node named Node 3 at 500, 550
+  		And finally another node named Node 3 at 320, 550
   		And add an edge between Node 1 and Node 2
   		And add an edge between Node 1 and Node 3
 	Then the screen should match 'integration.png'
