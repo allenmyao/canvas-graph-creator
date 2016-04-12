@@ -197,9 +197,9 @@ public class Driver {
         
         return ImageIO.read(new ByteArrayInputStream(arrScreen));
         */
-		return new AShot().coordsProvider(new WebDriverCoordsProvider())
-		  .takeScreenshot(driver, canvas).getImage();
-		//return new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver).getImage();
+		//return new AShot().coordsProvider(new WebDriverCoordsProvider())
+		  //.takeScreenshot(driver, canvas).getImage();
+		return new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver).getImage();
 	}
 	/*
 	public BufferedImage cropCanvas(int x1, int y1, int x2, int y2) throws IOException

@@ -1,7 +1,7 @@
-import { SidebarContent } from 'ui/sidebar-content';
-import * as Form from 'ui/form';
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
+import { SidebarContent } from '../ui/sidebar-content';
+import * as Form from '../ui/form';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
 
 export class SidebarSelect extends SidebarContent {
   constructor(graph) {
@@ -145,18 +145,6 @@ export class SidebarSelect extends SidebarContent {
         displayName: 'End'
       },
       {
-        type: 'string',
-        name: 'edgeLabel',
-        value: edge.edgeLabel,
-        displayName: 'Label'
-      },
-      {
-        type: 'number',
-        name: 'cost',
-        value: edge.cost,
-        displayName: 'Cost'
-      },
-      {
         type: 'point',
         value: `(${edge.bezierPoint.x}, ${edge.bezierPoint.y})`,
         displayName: 'Bezier Point'
@@ -166,6 +154,48 @@ export class SidebarSelect extends SidebarContent {
         name: 'isDirected',
         value: edge.isDirected,
         displayName: 'Directed'
+      },
+      {
+        type: 'color',
+        name: 'color',
+        value: edge.color,
+        displayName: 'Color'
+      },
+      {
+        type: 'number',
+        name: 'lineWidth',
+        value: edge.lineWidth,
+        displayName: 'Width'
+      },
+      {
+        type: 'number',
+        name: 'xText',
+        value: edge.xText,
+        displayName: 'Label x'
+      },
+      {
+        type: 'number',
+        name: 'yText',
+        value: edge.yText,
+        displayName: 'Label y'
+      },
+      {
+        type: 'string',
+        name: 'edgeLabel',
+        value: edge.edgeLabel,
+        displayName: 'Label'
+      },
+      {
+        type: 'string',
+        name: 'labelFont',
+        value: edge.labelFont,
+        displayName: 'Label font'
+      },
+      {
+        type: 'color',
+        name: 'labelColor',
+        value: edge.labelColor,
+        displayName: 'Label color'
       }
     ]);
   }

@@ -1,13 +1,14 @@
-import { NodeTool } from 'tool/node-tool';
-import { EdgeTool } from 'tool/edge-tool';
-import { MoveTool } from 'tool/move-tool';
-import { EraseTool } from 'tool/erase-tool';
-import { EditNodeTool } from 'tool/editnode-tool';
-import { EditEdgeTool } from 'tool/editedge-tool';
-import { MetadataTool } from 'tool/metadata-tool';
-import { PanTool } from 'tool/pan-tool';
-import { SelectTool } from 'tool/select-tool';
-import * as Sidebar from 'ui/sidebar';
+import { NodeTool } from '../tool/node-tool';
+import { EdgeTool } from '../tool/edge-tool';
+import { MoveTool } from '../tool/move-tool';
+import { EraseTool } from '../tool/erase-tool';
+import { EditNodeTool } from '../tool/editnode-tool';
+import { EditEdgeTool } from '../tool/editedge-tool';
+import { MetadataTool } from '../tool/metadata-tool';
+import { PanTool } from '../tool/pan-tool';
+import { SelectTool } from '../tool/select-tool';
+import { AlgorithmTool } from 'tool/algorithm-tool';
+import * as Sidebar from '../ui/sidebar';
 
 // const TOOL_CLASS = 'tool';
 // const TOOL_NAME_ATTR = 'data-tool';
@@ -24,7 +25,8 @@ let toolMap = {
   editedge: new EditEdgeTool(),
   select: new SelectTool(),
   metadata: new MetadataTool(),
-  pan: new PanTool()
+  pan: new PanTool(),
+  algorithm: new AlgorithmTool()
 };
 let currentTool = toolMap.node;
 
@@ -43,6 +45,7 @@ export function init() {
 
       showModes();
       currentTool.activate();
+      currentTool.changeMode(currentTool.currentMode);
     }
   });
 
@@ -51,7 +54,7 @@ export function init() {
   // add event listener for mode clicks
   document.getElementById('tool-modes').addEventListener('click', (event) => {
     if (event.target.classList.contains('mode')) {
-      currentTool.currentMode = event.target.getAttribute('data-mode');
+      currentTool.changeMode(event.target.getAttribute('data-mode'));
       selectItem('mode', event.target);
     }
   });
@@ -59,6 +62,14 @@ export function init() {
 
 export function getCurrentTool() {
   return currentTool;
+}
+
+export function toMetadata() {
+  currentTool.cancel();
+  currentTool = toolMap.metadata;
+  selectItem('tool', 'metadata');
+  showModes();
+  currentTool.activate();
 }
 
 function selectItem(className, selectedElement) {

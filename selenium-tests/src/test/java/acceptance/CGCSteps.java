@@ -25,10 +25,10 @@ public class CGCSteps {
 	private CGC driver;
 	@Before
 	public void setUp()
-	{	
+	{
 		shortcuts = new HashMap<String, String>();
 		nodes = new HashMap<String, Node>();
-		shortcuts.put("Edge", "//*[@id=\"tools-container\"]/ul/li[2]/div");
+		shortcuts.put("Edge", "//*[@id=\"toolbar\"]/ul/li[2]/div");
 	}
 	@After
 	public void tearDown()
@@ -38,13 +38,13 @@ public class CGCSteps {
 	//and, bug, given, when
 	@Given("I navigate to the home page")
 	public void navigateTo() throws IOException
-	{		
+	{
 		driver = CGC.create();
 	}
 	@When("^.*do nothing$")
 	public void doNothing()
 	{
-		
+
 	}
 	@When("^.*node (?:named (.+) |)at (\\d+), (\\d+)$")
 	public void createNode(String name, int x, int y)
@@ -69,7 +69,7 @@ public class CGCSteps {
 		driver.selectTool(shortcuts.get(name));
 	}
 	@Then("^*the screen should match '(.+)'$")
-	public void checkScreenshot(String path) throws Throwable 
+	public void checkScreenshot(String path) throws Throwable
 	{
 	    driver.assertScreenshot("src/test/resources/" + path);
 	}

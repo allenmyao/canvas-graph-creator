@@ -10,117 +10,6 @@ export function initCurved(canvas, context) {
   ctx = context;
 }
 
-// cleanvs the canvas
-export function resetCanvas() {
-  ctx.clearRect(0, 0, cvs.width, cvs.height);
-}
-
-// sets style. call prior to drawEdge or drawNode
-// lineColor: hex string that defines color (ex: '#FF0000')
-// width: width of line
-export function setStyle(lineColor, width) {
-  ctx.strokeStyle = '#FF0000';
-  ctx.lineWidth = width;
-}
-
-// drawing function, draws edges
-// edge: edge Object to be drawn
-export function drawEdge(edge) {
-  ctx.beginPath();
-  ctx.moveTo(edge.startPoint.x, edge.startPoint.y);
-  ctx.quadraticCurveTo(edge.bezierPoint.x, edge.bezierPoint.y, edge.destPoint.x, edge.destPoint.y);
-  ctx.stroke();
-}
-
-
-// drawing function, draws nodes
-// node: node Object to be drawn
-export function drawNode(node) {
-  ctx.beginPath();
-  ctx.arc(node.x, node.y, DEFAULT_RADIUS, 0, 2 * Math.PI);
-  ctx.stroke();
-}
-
-// generates generic canvas drawing data for a given number of edges between two nodes
-// arguments:
-// startNode: starting Node object
-// endNode: ending Node object
-// edgeNum: number of edges between the nodes
-// type: (currently unused) specifies type of edge (directed? self-loop?)
-// returns:
-// an array of Edge objects
-export function calculateEdges(startNode, endNode, edgeNum, type) {
-  let c1x = startNode.x;
-  let c1y = startNode.y;
-  let c2x = endNode.x;
-  let c2y = endNode.y;
-  let r = DEFAULT_RADIUS;
-
-  // auxiliary letiables for conceptual understanding
-  // will be refactored if needed
-  let c2xtrans = c2x - c1x;
-  let c2ytrans = c2y - c1y;
-  // let c1xtrans = 0;
-  // let c1ytrans = 0;
-  let theta = Math.asin(c2ytrans / Math.sqrt(c2xtrans * c2xtrans + c2ytrans * c2ytrans));
-  // let c1xrot = 0;
-  // let c1yrot = 0;
-  let c2xrot = c2xtrans * Math.cos(-theta) - c2ytrans * Math.sin(-theta);
-  // let c2yrot = 0;
-
-  let edges = [];
-  for (let i = 0; i < edgeNum; i++) {
-    let currTheta = (Math.PI * (i + 1) / (edgeNum + 1) - Math.PI / 2);
-    let edgedata = [
-      r * Math.cos(currTheta),
-      r * Math.sin(currTheta),
-      c2xrot / 2,
-      c2xrot * (2 * currTheta / Math.PI),
-      c2xrot - r * Math.cos(currTheta),
-      r * Math.sin(currTheta)
-    ];
-    // rotate and translate back
-    for (let j = 0; j < 3; j++) {
-      let tempX = edgedata[2 * j] * Math.cos(theta) - edgedata[2 * j + 1] * Math.sin(theta) + c1x;
-      let tempY = edgedata[2 * j] * Math.sin(theta) + edgedata[2 * j + 1] * Math.cos(theta) + c1y;
-      edgedata[2 * j] = tempX;
-      edgedata[2 * j + 1] = tempY;
-    }
-
-
-    edges[edges.length] = new Edge(startNode, endNode, edgedata[0], edgedata[1], edgedata[2],
-                     edgedata[3], edgedata[4], edgedata[5]);
-  }
-  return edges;
-}
-
-// returns the closest edge in the array to the specified point, or false if it's not within the default threshold or if the array is empty
-// arguments:
-// edges: an array of Edge objects to be examined
-// pointX, pointY: numerical values that represent the location of the point
-// returns false if edges is empty or if the edge is not within the standard threshold
-export function findClosestEdge(edges, pointX, pointY) {
-  if (edges.length > 0) {
-    let shortestDist = cvs.width + cvs.height;
-    let shortestIndex = 0;
-    for (let i = 0; i < edges.length; i++) {
-      // calls the helper function to find the distance
-      let tempDist = calcBezierDistance(pointX, pointY, edges[i].startPoint.x, edges[i].startPoint.y, edges[i].bezierPoint.x, edges[i].bezierPoint.y, edges[i].destPoint.x, edges[i].destPoint.y);
-      if (shortestDist > tempDist) {
-        shortestDist = tempDist;
-        shortestIndex = i;
-      }
-    }
-
-    if (shortestDist < EDGE_DISTANCE_THRESHOLD) {
-      return edges[shortestIndex];
-    }
-    return false;
-    // highlight the edge
-  }
-  return false;
-}
-
 // the following two functions adapted from: http:// stackoverflow.com / questions / 27176423 / function-to-solve-cubic-equation-analytically
 // calculates cube root
 // self-explanatory
@@ -222,9 +111,6 @@ export function calcBezierDistance(pointX, pointY, startX, startY, controlX, con
 
   // minimize dist
   let smallestDist = cvs.width + cvs.height;
-  // diagnostic values
-  // let smallestX;
-  // let smallestY;
 
   // curves are parametrized as:  P(t) = (1-t)²P0 + 2t(1-t)P1 +t²P2.
   for (let j = 0; j < ans.length; j++) {
@@ -238,19 +124,6 @@ export function calcBezierDistance(pointX, pointY, startX, startY, controlX, con
       // smallestY = curvePointY;
     }
   }
-  // ctx.lineWidth = 1;
-  // ctx.strokeStyle='#000000';
-
-  // diagnostic drawings
-  /*
-  ctx.beginPath();
-  ctx.arc(smallestX, smallestY, 5, 0, 2 * Math.PI);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(pointX,pointY);
-  ctx.lineTo(smallestX,smallestY);
-  ctx.stroke();
-  */
 
   return smallestDist;
 }
@@ -279,7 +152,6 @@ export function drawArrows(edge, start, end) {
     // normalize slope
     slope = { x: slope.x / length, y: slope.y / length };
     // perpendicular:
-    ctx.fillStyle = '#000000';
     ctx.beginPath();
     ctx.moveTo(edge.startPoint.x, edge.startPoint.y);
     ctx.lineTo(edge.startPoint.x + 15 * slope.x - 5 * slope.y,
@@ -297,7 +169,6 @@ export function drawArrows(edge, start, end) {
     // normalize slope
     slope = { x: slope.x / length, y: slope.y / length };
     // perpendicular:
-    ctx.fillStyle = '#000000';
     ctx.beginPath();
     ctx.moveTo(edge.destPoint.x, edge.destPoint.y);
     ctx.lineTo(edge.destPoint.x - 15 * slope.x - 5 * slope.y,

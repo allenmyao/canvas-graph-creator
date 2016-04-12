@@ -1,8 +1,7 @@
-import { Tool } from 'tool/tool';
-import { Node } from 'data/node/node';
-import { SolidEdge } from 'data/edge/solid-edge';
-import { DashedEdge } from 'data/edge/dashed-edge';
-import * as Sidebar from 'ui/sidebar';
+import { Tool } from '../tool/tool';
+import { Node } from '../data/node/node';
+import { SolidEdge } from '../data/edge/solid-edge';
+import { DashedEdge } from '../data/edge/dashed-edge';
 
 export class EdgeTool extends Tool {
 
@@ -39,18 +38,13 @@ export class EdgeTool extends Tool {
     if (this.start === null) {
       this.start = node;
       this.start.isSelected = true;
-    } else if (this.dest === null) {
-      // if (node != this.start) {
+    } else {
       this.dest = node;
       graph.addEdge(new EdgeClass(this.start, this.dest));
       this.start.isSelected = false;
       this.start = null;
       this.dest = null;
-      // } else {
-      //   this.deselect();
-      // }
     }
-    Sidebar.updateSidebar();
   }
 
   selectObject(event, graph, obj, x, y) {

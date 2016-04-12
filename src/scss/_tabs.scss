@@ -1,0 +1,31 @@
+.tabs-container {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+
+  .tab-list {
+    display: block;
+    width: 100%;
+    flex: 0;
+
+    .tab {
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+
+      &.active {
+
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+    width: 100%;
+    flex: 1;
+
+    &.active {
+      display: block;
+    }
+  }
+}

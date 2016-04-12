@@ -34,14 +34,14 @@ public class CGC extends Driver{
 	public static final String IFRAME = "iframe";
 	public static BufferedImage NODE_IMAGE;
 	public static BufferedImage EDGE_TOOL;
-	
+
 	static{
 	    try{
 	        NODE_IMAGE = ImageIO.read(new File("src/test/resources/UnselectedNode.png"));
 	        EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
 	    }catch(final Exception ex){
 	        throw new RuntimeException("Failed to load resources", ex);
-	    }  
+	    }
 	}
 	private Node selected;
 
@@ -73,10 +73,10 @@ public class CGC extends Driver{
 	{
 		clickCanvas(xPath, 20, 20);
 	}
-	
+
 
 	public void drawEdge(Node source, Node destination) {
-		selectTool("//*[@id=\"tools-container\"]/ul/li[2]/div");
+		selectTool("//*[@id=\"toolbar\"]/ul/li[2]/div");
 		//clickElement("edge tool");
 		if (source != selected)
 		{
@@ -100,8 +100,9 @@ public class CGC extends Driver{
 		driver.switchToFrame(IFRAME);
 		driver.selectCanvas(CANVAS_XPATH);
 		driver.takeInitialScreenshot();
+
 		//driver.addElement(EDGE_TOOL, "edge tool");
-		
+	
 		return driver;
 	}
 	public static CGC create(String website, String browser) throws IOException
@@ -131,7 +132,7 @@ public class ChromeConsoleLogging {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "c:\\path\\to\\chromedriver.exe");        
+        System.setProperty("webdriver.chrome.driver", "c:\\path\\to\\chromedriver.exe");
         DesiredCapabilities caps = DesiredCapabilities.chrome();
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);

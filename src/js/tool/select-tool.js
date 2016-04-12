@@ -1,22 +1,31 @@
-import { Tool } from 'tool/tool';
-// import * as UI from 'ui/ui';
-import * as Sidebar from 'ui/sidebar';
+import { Tool } from '../tool/tool';
 
 export class SelectTool extends Tool {
 
   name = 'Select Tool';
   sidebarType = 'select';
 
+  selectedObject = null;
+
+  cancel() {
+    this.selectNone();
+  }
+
   selectObject(event, graph, obj, x, y) {
-    // UI.selectObject(obj);
-    Sidebar.updateSidebar(obj);
+    if (this.selectedObject) {
+      this.selectedObject.isSelected = false;
+    }
+    obj.isSelected = true;
+    this.selectedObject = obj;
   }
 
   // drag: multiselect?
 
   selectNone(event, graph, x, y) {
-    // UI.selectObject(graph);
-    Sidebar.updateSidebar(graph);
+    if (this.selectedObject) {
+      this.selectedObject.isSelected = false;
+      this.selectedObject = null;
+    }
   }
 
 }

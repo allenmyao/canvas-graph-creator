@@ -1,0 +1,84 @@
+#sidebar {
+  position: fixed;
+  top: $top-bar-height;
+  right: 0;
+  bottom: $status-bar-height;
+  width: $sidebar-width;
+  height: 100%;
+  background: white;
+  font-size: 1rem;
+
+  .tabs-container {
+    height: 100%;
+
+    .tab-list {
+      height: 50px;
+      font-size: 0;
+      border-bottom: 1px solid black;
+
+      .tab {
+        padding: 10px 20px;
+        border: 1px solid black;
+        font-size: 1rem;
+
+        &:not(:first-child) {
+          margin-left: -1px;
+        }
+
+        &.active {
+          border-bottom: 1px solid white;
+        }
+      }
+    }
+
+    .tab-content {
+      padding: 10px;
+      border: 1px solid black;
+      border-top: 0;
+    }
+  }
+
+  output {
+    display: block;
+    height: 34px;
+
+    // &:empty {
+    //   display: none;
+    // }
+  }
+
+  button {
+    margin-top: 5px;
+  }
+
+}
+
+.data-container {
+  width: 100%;
+  height: 100%;
+
+  .data-list {
+    display: block;
+    width: 100%;
+
+    .data-item {
+      display: block;
+      font-size: 0;
+
+      &:not(:first-child) {
+        margin: 5px 0;
+        padding-top: 5px;
+        border-top: 1px solid #ccc;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.graph-link {
+  font-size: 1rem;
+  cursor: pointer;
+}

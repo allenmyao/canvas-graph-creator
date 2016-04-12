@@ -29,7 +29,7 @@ gulp.task('build', [ 'webpack:build' ]);
 
 
 gulp.task('lint', () => {
-  return gulp.src(SRC_FILES)
+  return gulp.src([ SRC_FILES, TEST_FILES ])
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.format('checkstyle', function (results) {
@@ -48,7 +48,9 @@ gulp.task('lint', () => {
 gulp.task('test', [ 'lint' ], (cb) => {
   mergeStream(
     gulp.src([ SRC_FILES ])
-      .pipe(istanbul()),
+      .pipe(istanbul({
+        includeUntested: true
+      })),
     gulp.src([ TEST_FILES ])
       .pipe(babel())
   ).pipe(istanbul.hookRequire())
@@ -57,7 +59,6 @@ gulp.task('test', [ 'lint' ], (cb) => {
           .pipe(mocha())
           .pipe(istanbul.writeReports({
             dir: './coverage',
-            includeUntested: true,
             reporters: [ 'clover', 'lcov', 'text', 'text-summary' ],
             reportOpts: {
               clover: {
@@ -163,7 +164,7 @@ gulp.task('webpack-dev-server', [ 'prep' ], (callback) => {
   new WebpackDevServer(webpack(myConfig), {
     hot: true,
     quiet: false,
-    // noInfo: true,
+    noInfo: true,
     lazy: false,
     watchOptions: {
       aggregateTimeout: 300,

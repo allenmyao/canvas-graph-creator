@@ -12,11 +12,12 @@ export class Node {
   isStartingState = false;  // boolean for DFA/NFA purposes, idicated by incoming arrow
   value = 0; // numerical value for algorithms
   visited = false; // boolean used for algorithms e.x traversals.
-  color=''; // string value defines the color for chromatic algorithms
+  color='black'; // string value defines the color for chromatic algorithms
   xText = 0;
   yText = 0;
   showTextCtrl = false;
-
+  inscribed = []; // angles corresponding to the inscribed shape
+  separation = 0; // distance between vertices by angle
 
   constructor(x, y) {
     // new.target not supported by Babel
@@ -28,7 +29,8 @@ export class Node {
       'containsPoint',
       'distanceToPoint',
       'edgePointInDirection',
-      'draw'
+      'draw',
+      'getAnglePoint'
     ];
 
     for (let method of methods) {
@@ -38,7 +40,7 @@ export class Node {
     }
 
     if (typeof x === 'undefined' || typeof y === 'undefined') {
-      throw Error(`Node constructor requires two arguments: x, y. Actually passed in ${arguments}`);
+      throw Error(`Node constructor requires two arguments: x, y. Actually passed in: ${x}, ${y}`);
     }
     this.x = x;
     this.y = y;
@@ -69,6 +71,11 @@ export class Node {
   }
 
   draw(context) {
+    throw Error('Can\'t call methods from abstract Node class.');
+  }
+
+  // get corresponding point based on angle
+  getAnglePoint(angle) {
     throw Error('Can\'t call methods from abstract Node class.');
   }
 

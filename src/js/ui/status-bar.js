@@ -1,4 +1,4 @@
-import * as Canvas from 'ui/canvas';
+import * as Canvas from '../ui/canvas';
 
 let statusBar;
 
@@ -21,9 +21,4 @@ export function updateZoom(scale) {
 export function updateMouse(x, y) {
   document.getElementById('mouse-x').textContent = x;
   document.getElementById('mouse-y').textContent = y;
-}
-
-export function updateCanvasPosition(dx, dy) {
-  document.getElementById('canvas-dx').textContent = dx;
-  document.getElementById('canvas-dy').textContent = dy;
 }
