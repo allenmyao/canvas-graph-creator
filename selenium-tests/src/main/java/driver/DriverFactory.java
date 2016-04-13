@@ -42,6 +42,7 @@ public class DriverFactory {
 		if(remote.equals("none")){
 			return createDriver(browser);
 		}else if(remote.equals("sauce")){
+			System.out.println("setting up the sauce");
 			return createSauceDriver(browser);
 		}else{
 			throw new RuntimeException("Unsupported remote driver type " + remote);
