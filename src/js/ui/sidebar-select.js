@@ -70,12 +70,6 @@ export class SidebarSelect extends SidebarContent {
         displayName: 'ID'
       },
       {
-        type: 'string',
-        name: 'nodeLabel',
-        value: node.nodeLabel,
-        displayName: 'Label'
-      },
-      {
         type: 'number',
         name: 'x',
         value: node.x,
@@ -86,12 +80,6 @@ export class SidebarSelect extends SidebarContent {
         name: 'y',
         value: node.y,
         displayName: 'y'
-      },
-      {
-        type: 'number',
-        name: 'value',
-        value: node.value,
-        displayName: 'Value'
       },
       {
         type: 'boolean',
@@ -107,14 +95,14 @@ export class SidebarSelect extends SidebarContent {
       },
       {
         type: 'color',
-        name: 'outline',
-        value: node.outline,
+        name: 'color',
+        value: node.color,
         displayName: 'Line Color'
       },
       {
         type: 'color',
-        name: 'fill',
-        value: node.fill,
+        name: 'fillColor',
+        value: node.fillColor,
         displayName: 'Fill Color'
       },
       {
@@ -122,6 +110,36 @@ export class SidebarSelect extends SidebarContent {
         name: 'lineWidth',
         value: node.lineWidth,
         displayName: 'Line Width'
+      },
+      {
+        type: 'number',
+        name: 'xText',
+        value: node.xText,
+        displayName: 'Label x'
+      },
+      {
+        type: 'number',
+        name: 'yText',
+        value: node.yText,
+        displayName: 'Label y'
+      },
+      {
+        type: 'string',
+        name: 'nodeLabel',
+        value: node.nodeLabel,
+        displayName: 'Label'
+      },
+      {
+        type: 'string',
+        name: 'labelFont',
+        value: node.labelFont,
+        displayName: 'Label font'
+      },
+      {
+        type: 'color',
+        name: 'labelColor',
+        value: node.labelColor,
+        displayName: 'Label color'
       }
     ]);
   }
