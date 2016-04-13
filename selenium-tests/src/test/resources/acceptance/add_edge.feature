@@ -8,7 +8,6 @@ Feature: Add Edge
   		And another node named Node 2 at 550, 550
   		And I click on Node 1
   		And I click on Node 2
-  	Then there should be two nodes
   	And the screen should match 'no_edge.png'
 
   Scenario: Edge should be created when Edge tool is used

@@ -27,17 +27,16 @@ import model.Node;
 import utils.ImageUtils;
 
 import static org.junit.Assert.*;
-public class CGC extends Driver{
+public class CGCPage extends CanvasPage{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
 	public static String HOME_PAGE = "http://127.0.0.1:8080/webpack-dev-server/index.html";
 	public static final String IFRAME = "iframe";
-	public static BufferedImage NODE_IMAGE;
+	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
 
 	static{
 	    try{
-	        NODE_IMAGE = ImageIO.read(new File("src/test/resources/UnselectedNode.png"));
 	        EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
 	    }catch(final Exception ex){
 	        throw new RuntimeException("Failed to load resources", ex);
@@ -45,15 +44,11 @@ public class CGC extends Driver{
 	}
 	private Node selected;
 
-	public CGC(){
-		super();
+	public CGCPage(WebDriver driver) throws IOException{
+		super(driver, HOME_PAGE);
 		selected = null;
 	}
 
-	public CGC(String name) {
-		super(name);
-		selected = null;
-	}
 
 	public Node createNode(int x, int y) {
 		deselect();
@@ -91,12 +86,12 @@ public class CGC extends Driver{
 	public void clickNode(Node node) {
 		clickCanvas(node.x, node.y);
 	}
-	public void load() throws IOException
+	@Override
+	public void initialize(String website)
 	{
-		loadSite(HOME_PAGE);
+		super.initialize(website);
 		switchToFrame(IFRAME);
 		selectCanvas(CANVAS_XPATH);
-		takeInitialScreenshot();
 	}
 /*
 	public static CGC create() throws IOException
@@ -117,6 +112,7 @@ public class CGC extends Driver{
 		return driver;
 	}
 */
+
 
 
 
