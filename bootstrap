@@ -1,0 +1,40 @@
+#!/bin/bash
+
+function install_chrome {
+  sudo apt-get install -y wget curl libxss1 libappindicator1 libindicator7
+  
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo dpkg -i google-chrome*.deb
+  sudo apt-get install -fy
+
+  wget -N http://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
+  unzip chromedriver_linux64.zip
+  chmod +x chromedriver
+
+  sudo mv -f chromedriver /usr/local/share/chromedriver
+  sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+}
+
+function install_ccg {
+
+  curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+  sudo apt-get install -y nodejs  libopencv-dev python-opencv
+
+  sudo npm install -g gulp
+}
+
+function install_utils {
+  sudo apt-get install -y wget curl unzip git firefox xvfb
+  install_chrome
+}
+
+function install_java {
+  sudo apt-get install -y openjdk-7-jdk maven
+}
+
+sudo apt-get upgrade
+install_utils
+install_java
+install_ccg
+
