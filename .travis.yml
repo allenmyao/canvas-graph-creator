@@ -14,7 +14,7 @@ script:
   - gulp &
   - sleep 30
   - cd selenium-tests
-  - mvn -q test -Dbrowser=remote-chrome
+  - mvn -q test -Dremote=sauce
   - cd ..
 
 after_script:

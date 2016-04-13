@@ -22,6 +22,7 @@ public class DriverFactory {
 	public static WebDriver createDriver(String name)
 	{
 		WebDriver driver;
+		
 		if(name.equals("firefox"))
 			driver = new FirefoxDriver();
 		else if(name.equals("chrome"))
@@ -34,15 +35,29 @@ public class DriverFactory {
 		return driver;
 	}
 	
-	public static WebDriver createDriver() {
-		return createDriver(System.getProperty("browser", DEFAULT_BROWSER));
+	public static WebDriver createDriver() throws MalformedURLException {
+		String browser = System.getProperty("browser", DEFAULT_BROWSER);
+		String remote = System.getProperty("remote", "none");
+		
+		if(remote.equals("none")){
+			return createDriver(browser);
+		}else if(remote.equals("sauce")){
+			return createSauceDriver(browser);
+		}else{
+			throw new RuntimeException("Unsupported remote driver type " + remote);
+		}
 	}
 	
-	public static WebDriver createRemoteDriver(String name, String url) throws MalformedURLException
-	{
-		DesiredCapabilities caps;
-		WebDriver driver;
+	public static WebDriver createSauceDriver(String name) throws MalformedURLException{
+		String username = System.getenv("SAUCE_USERNAME");
+		String key = System.getenv("SAUCE_ACCESS_KEY");
+		String url = "http://" + username + ":" + key + "@ondemand.saucelabs.com:80/wd/hub";
 		
+		return createRemoteDriver(url, getSauceCapabilities(name));
+	}
+	private static DesiredCapabilities getSauceCapabilities(String name){
+		DesiredCapabilities caps;
+
 		if(name.equals("firefox"))
 			caps = DesiredCapabilities.firefox();
 		else if(name.equals("chrome"))
@@ -54,8 +69,11 @@ public class DriverFactory {
 	    caps.setCapability("version", System.getProperty("version", DEFAULT_VERSION));
 	    caps.setCapability("tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER"));
 	    caps.setCapability("build", System.getenv("TRAVIS_BUILD_NUMBER"));
-		
-	    driver = new RemoteWebDriver(new URL(url), caps);
+	    
+	    return caps;
+	}
+	public static WebDriver createRemoteDriver(String url, DesiredCapabilities caps) throws MalformedURLException{
+		WebDriver driver = new RemoteWebDriver(new URL(url), caps);
 	    initialize(driver);
 	    
 		return driver;

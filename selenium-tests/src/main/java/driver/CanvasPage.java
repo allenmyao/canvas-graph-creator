@@ -27,6 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ImageUtils;
 
 public abstract class CanvasPage {
+	protected WebElement html;
 	protected WebElement canvas;
 
 	protected BufferedImage initialScreenshot;
@@ -121,6 +122,8 @@ public abstract class CanvasPage {
 	public void initialize(String website) {
 		waitUntilLoaded();
 		driver.get(website);
+
+		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
