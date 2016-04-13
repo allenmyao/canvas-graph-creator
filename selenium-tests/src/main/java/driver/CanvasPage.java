@@ -89,8 +89,9 @@ public abstract class CanvasPage {
 		if(!file.exists())
 		{
 			System.err.println(path + " does not exist, creating file from screenshot");
-			BufferedImage difference = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());
-			ImageIO.write(difference, "png", file);
+			//BufferedImage difference = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());
+			BufferedImage image = getScreenshot();
+			ImageIO.write(image, "png", file);
 		}
 		return ImageIO.read(file);
 	}
@@ -114,8 +115,8 @@ public abstract class CanvasPage {
 	public void assertContains(String path, int count) throws IOException, URISyntaxException
 	{
 		BufferedImage template = getResource(path);
-		BufferedImage screenshot = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());;
-		
+		//BufferedImage screenshot = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());;
+		BufferedImage screenshot = getScreenshot();
 		assertEquals(count, ImageUtils.templateMatch(template, screenshot).size());
 	}
 	

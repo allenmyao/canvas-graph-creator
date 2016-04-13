@@ -95,6 +95,7 @@ public class CGCSteps {
 	@Then("^*the screen should match '(.+)'$")
 	public void checkScreenshot(String path) throws Throwable
 	{
+		Thread.sleep(420);
 		cgc.assertContains("src/test/resources/" + path);
 	    //cgc.assertContains(ImageIO.read(new File("src/test/resources/" + path)), 1);
 	}
