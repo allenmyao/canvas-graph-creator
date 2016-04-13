@@ -14,8 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverFactory {
 	public static final String DEFAULT_PLATFORM = "Windows 10";
-	public static final String DEFAULT_BROWSER = "chrome";
-	public static final String DEFAULT_VERSION = "49.0";
+	public static final String DEFAULT_BROWSER = "firefox";
+	public static final String DEFAULT_VERSION = "39.0";
 	
 	
 	
