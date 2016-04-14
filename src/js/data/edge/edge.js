@@ -179,17 +179,19 @@ export class Edge {
   getEndpoints(reference) {
     if (reference === this.startNode || reference === 1) {
       return this.startPoint;
-    } else if (reference === this.endNode || reference === 2) {
+    } else if (reference === this.destNode || reference === 2) {
       return this.destPoint;
     }
+    return null;
   }
 
   setEndpoints(reference, endpoint) {
     if (reference === this.startNode || reference === 1) {
       this.startPoint = endpoint;
-    } else if (reference === this.endNode || reference === 2) {
+    } else if (reference === this.destNode || reference === 2) {
       this.destPoint = endpoint;
     }
+    return null;
   }
 
   updateEndpoints() {

@@ -192,6 +192,7 @@ describe('Stack', () => {
           return false;
         }
         order.push(item);
+        return true;
       });
 
       (order.length).should.be.equal(1);

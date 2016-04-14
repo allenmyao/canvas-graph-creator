@@ -72,6 +72,7 @@ export class Graph {
         component = node;
         return false;
       }
+      return true;
     });
 
     if (component !== null) {
@@ -83,6 +84,7 @@ export class Graph {
         component = edge;
         return false;
       }
+      return true;
     });
 
     return component;

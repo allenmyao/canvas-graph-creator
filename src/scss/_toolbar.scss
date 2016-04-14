@@ -1,6 +1,6 @@
 #toolbar {
   position: fixed;
-  top: $top-bar-height;
+  top: $navbar-height + $top-bar-height;
   bottom: $status-bar-height;
   left: 0;
   width: $toolbar-width;
