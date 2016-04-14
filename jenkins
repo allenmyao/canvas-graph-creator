@@ -7,7 +7,7 @@ function stop {
 
 function start {
 	stop
-	Xvfb :99 -screen 0 1600x2400x16 &
+	Xvfb :99 -screen 0 1024x768x16 &
 	export DISPLAY=:99
 	npm install
 	gulp &
