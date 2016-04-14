@@ -49,20 +49,13 @@
 
 .tool-input-list {
   display: block;
-  border: 1px solid black;
-  height: 120px;
   font-size: 0;
 
   >.tool-input {
     display: inline-block;
 
     >.tinput {
-      vertical-align: top;
-      display: inline-block;
       margin: 10px 0 10px 10px;
-      text-align: center;
-      word-break: break-all;
-      cursor: pointer;
     }
   }
 }

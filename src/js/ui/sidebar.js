@@ -3,55 +3,44 @@ import { SidebarEdge } from '../ui/sidebar-edge';
 import { SidebarSelect } from '../ui/sidebar-select';
 import { SidebarAlgorithm } from 'ui/sidebar-algorithm';
 
-let sidebar;
-let content;
+/**
+ * This class manages the container for sidebar-content subclasses, and is responsible
+ * for managing those subclasses as well.
+ */
+class Sidebar {
 
-let sidebarContent;
+  ui;
 
-/*
+  sidebar;
+  sidebarContent;
+  content;
 
-tools now have a sidebarType, a string, to refer to their associated sidebar sidebar-content subclass
+  constructor(ui) {
+    this.ui = ui;
+    this.sidebar = document.getElementById('sidebar');
+  }
 
-This class manages the container for sidebar-content subclasses, and is responsible
-for managing those subclasses as well.
+  init(graph) {
+    this.sidebarContent = {
+      node: new SidebarNode(graph),
+      edge: new SidebarEdge(graph),
+      select: new SidebarSelect(graph),
+      algorithm: new SidebarAlgorithm(graph)
+    };
+    this.setSidebar('select');
+  }
 
-TODO:
-changeSidebar should account for if type is not changing
-change this into class?
-this should have ability to move, minimize, or shrink sidebar
-flesh out sidebar-content classes with non placeholder stuff
-select tool needs reference to selected object
+  setSidebar(sidebarType) {
+    this.content = this.sidebarContent[sidebarType];
+    this.content.display();
+  }
 
-NOTE:
-currently updateSidebar is called only from the mouse-handler up listener
-tools must have an associated sidebar type
-*/
-
-export function init(graph) {
-  sidebar = document.getElementById('sidebar');
-  sidebarContent = {
-    node: new SidebarNode(graph),
-    edge: new SidebarEdge(graph),
-    select: new SidebarSelect(graph),
-    algorithm: new SidebarAlgorithm(graph)
-  };
-  changeSidebar('select');
+  // Call the current sidebar-content class's update function.
+  // Currently, updateSidebar is called only from the mouse-handler.
+  updateSidebar(obj) {
+    this.content.update(obj);
+  }
 }
 
-export function changeSidebar(type) {
-  content = sidebarContent[type];
-  content.display();
-}
-
-export function getSidebar() {
-  return sidebar;
-}
-
-export function getContent() {
-  return content;
-}
-
-// Call the current sidebar-content class's update function
-export function updateSidebar(obj) {
-  content.update(obj);
-}
+export { Sidebar };
+export default Sidebar;

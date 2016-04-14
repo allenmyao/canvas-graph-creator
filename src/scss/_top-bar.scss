@@ -8,8 +8,10 @@
   background: white;
   border-bottom: 1px solid black;
 
-  #tool-modes {
-    width: 100%;
+  #tool-modes,
+  #tool-inputs {
+    vertical-align: top;
+    display: inline-block;
     height: 100%;
   }
 }

@@ -1,5 +1,5 @@
 import { Tool } from '../tool/tool';
-import * as Canvas from '../ui/canvas';
+import ui from '../ui/ui';
 
 export class PanTool extends Tool {
 
@@ -20,24 +20,21 @@ export class PanTool extends Tool {
     if (!this.isPanning) {
       this.isPanning = true;
 
-      this.startPosition.dx = Canvas.getDx();
-      this.startPosition.dy = Canvas.getDy();
+      this.startPosition.dx = ui.canvas.dx;
+      this.startPosition.dy = ui.canvas.dy;
       this.startPosition.x = event.offsetX;
       this.startPosition.y = event.offsetY;
     }
 
-    let scale = Canvas.getScale();
-
-    Canvas.setPosition(this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale, this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale);
-    Canvas.update();
+    let scale = ui.canvas.scale;
+    ui.canvas.dx = this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale;
+    ui.canvas.dy = this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale;
+    ui.canvas.update();
   }
 
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
     if (this.isPanning) {
       this.isPanning = false;
-      let scale = Canvas.getScale();
-      Canvas.setPosition(this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale, this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale);
-      Canvas.update();
     }
   }
 

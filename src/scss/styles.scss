@@ -3,6 +3,7 @@
 @import 'base';
 
 @import 'tabs';
+@import 'dropdown';
 
 @import 'navbar';
 @import 'top-bar';
@@ -29,7 +30,7 @@ textarea {
   padding: 5px;
   font-size: 1rem;
   font-family: $font-family-sans-serif;
-  @include border-radius($default-border-radius);
+  border-radius: $default-border-radius;
 }
 
 input[type="color"] {
