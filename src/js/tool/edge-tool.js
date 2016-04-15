@@ -14,9 +14,14 @@ export class EdgeTool extends Tool {
     dashed: DashedEdge
   };
 
-  hasModes() {
-    return true;
-  }
+  optionMap = {
+    solid: {
+      label: 'Solid'
+    },
+    dashed: {
+      label: 'Dashed'
+    }
+  };
 
   start = null;
   dest = null;

@@ -9,7 +9,7 @@ export class Tool {
   }
 
   hasModes() {
-    return false;
+    return this.currentMode && this.constructor.modes && this.optionMap;
   }
 
   hasInputs() {

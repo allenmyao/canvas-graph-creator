@@ -7,11 +7,19 @@
   height: $top-bar-height;
   background: white;
   border-bottom: 1px solid black;
+  overflow: visible;
+  z-index: index($zindexes, top-bar);
 
   #tool-modes,
   #tool-inputs {
     vertical-align: top;
     display: inline-block;
     height: 100%;
+  }
+
+  #tool-modes {
+    .dropdown-select {
+      display: none;
+    }
   }
 }

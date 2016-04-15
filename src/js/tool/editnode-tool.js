@@ -11,10 +11,6 @@ export class EditNodeTool extends Tool {
     startState: 'isStartingState'
   };
 
-  hasModes() {
-    return true;
-  }
-
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
       this.selectNone(event, graph, x, y);

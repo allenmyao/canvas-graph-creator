@@ -24,9 +24,29 @@ export class NodeTool extends Tool {
     octagon: OctagonNode
   };
 
-  hasModes() {
-    return true;
-  }
+  optionMap = {
+    circle: {
+      label: 'Circle'
+    },
+    triangle: {
+      label: 'Triangle'
+    },
+    square: {
+      label: 'Square'
+    },
+    diamond: {
+      label: 'Diamond'
+    },
+    pentagon: {
+      label: 'Pentagon'
+    },
+    hexagon: {
+      label: 'Hexagon'
+    },
+    octagon: {
+      label: 'Octagon'
+    }
+  };
 
   selectObject(event, graph, obj, x, y) {
     if (!(obj instanceof Node)) {

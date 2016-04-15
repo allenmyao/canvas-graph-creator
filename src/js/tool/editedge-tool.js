@@ -10,10 +10,6 @@ export class EditEdgeTool extends Tool {
     directed: 'isDirected'
   };
 
-  hasModes() {
-    return true;
-  }
-
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Edge) {
       this.selectNone(event, graph, x, y);

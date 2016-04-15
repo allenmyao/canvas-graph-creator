@@ -7,19 +7,17 @@
   overflow-y: auto;
   border-right: 1px solid black;
   background: white;
+  z-index: index($zindexes, toolbar);
 }
 
-.tool-list,
-.tool-mode-list {
+.tool-list {
   display: block;
   font-size: 0;
 
-  >.tool-listitem,
-  >.tool-mode {
+  >.tool-listitem {
     display: inline-block;
 
-    >.tool,
-    >.mode {
+    >.tool {
       vertical-align: top;
       display: inline-block;
       width: 100px;
