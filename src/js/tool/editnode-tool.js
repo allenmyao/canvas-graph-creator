@@ -11,6 +11,23 @@ export class EditNodeTool extends Tool {
     startState: 'isStartingState'
   };
 
+  optionMap = {
+    acceptingState: {
+      label: 'isAcceptingState'
+    },
+    startState: {
+      label: 'isStartingState'
+    }
+  };
+
+  optionContent = {
+    html: '<span class="content"></span>',
+    init: (optionElement, mode) => {
+      let content = optionElement.querySelector('.content');
+      content.textContent = this.optionMap[mode].label;
+    }
+  };
+
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
       this.selectNone(event, graph, x, y);

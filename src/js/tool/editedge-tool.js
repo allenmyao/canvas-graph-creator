@@ -10,6 +10,20 @@ export class EditEdgeTool extends Tool {
     directed: 'isDirected'
   };
 
+  optionMap = {
+    directed: {
+      label: 'isDirected'
+    }
+  };
+
+  optionContent = {
+    html: '<span class="content"></span>',
+    init: (optionElement, mode) => {
+      let content = optionElement.querySelector('.content');
+      content.textContent = this.optionMap[mode].label;
+    }
+  };
+
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Edge) {
       this.selectNone(event, graph, x, y);

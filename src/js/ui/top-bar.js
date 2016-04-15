@@ -26,22 +26,10 @@ class TopBar {
   }
 
   initListeners() {
-    // document.getElementById('tool-modes').addEventListener('click', (event) => {
-    //   if (event.target.classList.contains(TOOL_MODE_CLASS)) {
-    //     this.selectMode(event.target);
-    //   }
-    // });
+    this.modeSelect.addEventListener('change', (event) => {
+      this.ui.toolbar.currentTool.changeMode(event.target.value);
+    });
   }
-
-  // selectMode(modeElement) {
-  //   this.ui.toolbar.currentTool.changeMode(modeElement.getAttribute(TOOL_MODE_NAME_ATTR));
-  //
-  //   if (this.currentModeElement) {
-  //     this.currentModeElement.classList.remove(TOOL_MODE_SELECTED_CLASS);
-  //   }
-  //   this.currentModeElement = modeElement;
-  //   this.currentModeElement.classList.add(TOOL_MODE_SELECTED_CLASS);
-  // }
 
   showModes() {
     let currentTool = this.ui.toolbar.currentTool;
@@ -54,6 +42,7 @@ class TopBar {
       }
 
       this.dropdown.optionMap = currentTool.optionMap;
+      this.dropdown.optionContent = currentTool.optionContent;
       this.modeSelect.innerHTML = html;
     } else {
       // clear the modes

@@ -48,6 +48,18 @@ export class NodeTool extends Tool {
     }
   };
 
+  optionContent = {
+    html: '<canvas  class="canvas-preview" width="50" height="50"></canvas>',
+    init: (optionElement, mode) => {
+      let canvas = optionElement.querySelector('canvas');
+      let context = canvas.getContext('2d');
+      let node = new NodeTool.modes[mode](25, 25);
+      node.radius = 15;
+      // TODO: get other input values for default node properties
+      node.draw(context);
+    }
+  };
+
   selectObject(event, graph, obj, x, y) {
     if (!(obj instanceof Node)) {
       this.selectNone(event, graph, x, y);

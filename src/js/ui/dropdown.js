@@ -15,23 +15,25 @@ const DROPDOWN_OPTION_CLASS = 'dropdown__menu__list__item';
 const DROPDOWN_OPTION_SELECTED_CLASS = 'dropdown__menu__list__item--selected';
 const DROPDOWN_OPTION_INDEX_ATTRIBUTE = 'data-index';
 const DROPDOWN_OPTION_VALUE_ATTRIBUTE = 'data-value';
+const DROPDOWN_OPTION_LABEL_ATTRIBUTE = 'data-label';
 
 class Dropdown {
 
-  // width of options
-  width;
-
-  // height of options
-  height;
-
-  // number of elements to display in a row in the dropdown menu
-  numCols;
-
-  // number of rows to display in the dropdown menu (before needing a scrollbar)
-  numRows;
+  // // width of options
+  // width;
+  //
+  // // height of options
+  // height;
+  //
+  // // number of elements to display in a row in the dropdown menu
+  // numCols;
+  //
+  // // number of rows to display in the dropdown menu (before needing a scrollbar)
+  // numRows;
 
   selectElement;
   optionMap;
+  optionContent;
 
   // container element that is a common ancestor for all other dropdown elements
   container;
@@ -58,23 +60,8 @@ class Dropdown {
     if (!this.selectOption) {
       throw Error('No option is selected');
     }
-    // return this.selectOption.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE);
     return this.selectElement.options[this.selectOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE)];
   }
-
-  // set value(value) {
-  //   if (this.selectedOption) {
-  //     this.selectedOption.classList.remove(DROPDOWN_OPTION_SELECTED_CLASS);
-  //   }
-  //
-  //   let optionElement = this.optionlist.querySelector(`.${DROPDOWN_OPTION_CLASS}[${DROPDOWN_OPTION_VALUE_ATTRIBUTE}="${value}"]`);
-  //   this.selectedOption = optionElement;
-  //   this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);
-  //
-  //   this.selectElement.selectedIndex = this.selectedOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE);
-  //
-  //   this.displaySelectedOption();
-  // }
 
   getOptionsHtml() {
     let options = this.selectElement.children;
@@ -84,8 +71,9 @@ class Dropdown {
       optionsHtml += `
         <li class="${DROPDOWN_OPTION_CLASS} ${this.selectElement.value === option.value ? DROPDOWN_OPTION_SELECTED_CLASS : ''}"
             ${DROPDOWN_OPTION_INDEX_ATTRIBUTE}="${option.index}"
-            ${DROPDOWN_OPTION_VALUE_ATTRIBUTE}="${option.value}">
-          ${this.optionMap[option.text].label}
+            ${DROPDOWN_OPTION_VALUE_ATTRIBUTE}="${option.value}"
+            ${DROPDOWN_OPTION_LABEL_ATTRIBUTE}="${this.optionMap[option.text].label}">
+          ${this.optionContent.html}
         </li>`;
     }
     return optionsHtml;
@@ -97,8 +85,8 @@ class Dropdown {
       <div class="${DROPDOWN_CLASS}">
         <div class="${DROPDOWN_SELECT_CLASS}">
           <div class="${DROPDOWN_DISPLAY_CLASS}"></div>
-          <div class="dropdown__select__arrow vcenter-wrapper">
-            <span class="vcenter"></span>
+          <div class="dropdown__select__arrow">
+            <span></span>
           </div>
         </div>
         <div class="${DROPDOWN_MENU_CLASS}">
@@ -120,7 +108,20 @@ class Dropdown {
     this.menu = ancestor.querySelector(`.${DROPDOWN_MENU_CLASS}`);
     this.optionlist = ancestor.querySelector(`.${DROPDOWN_OPTIONLIST_CLASS}`);
 
+    this.updateOptionContent();
+
     this.initListeners();
+  }
+
+  updateOptionContent() {
+    let options = this.optionlist.querySelectorAll(`.${DROPDOWN_OPTION_CLASS}`);
+    for (let i = 0; i < options.length; i++) {
+      let option = options[i];
+      if (option === this.selectedOption) {
+        this.optionContent.init(this.display, this.selectedOption.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE));
+      }
+      this.optionContent.init(option, option.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE));
+    }
   }
 
   initListeners() {
@@ -173,6 +174,7 @@ class Dropdown {
       this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);
     }
     this.displaySelectedOption();
+    this.updateOptionContent();
   }
 
   toggleMenu() {
@@ -196,16 +198,20 @@ class Dropdown {
   }
 
   selectOption(optionElement) {
-    // this.value = this.selectedOption.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE);
     if (this.selectedOption) {
       this.selectedOption.classList.remove(DROPDOWN_OPTION_SELECTED_CLASS);
     }
 
-    // let optionElement = this.optionlist.querySelector(`.${DROPDOWN_OPTION_CLASS}[${DROPDOWN_OPTION_VALUE_ATTRIBUTE}="${value}"]`);
     this.selectedOption = optionElement;
     this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);
 
+    this.selectElement.options[this.selectElement.selectedIndex].selected = false;
     this.selectElement.selectedIndex = this.selectedOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE);
+    this.selectElement.options[this.selectElement.selectedIndex].selected = true;
+
+    // Dispatch the 'change' event since modifying selectedIndex doesn't do it automatically
+    let event = new Event('change');
+    this.selectElement.dispatchEvent(event);
 
     this.displaySelectedOption();
   }
@@ -214,8 +220,6 @@ class Dropdown {
     if (this.selectedOption) {
       this.display.innerHTML = this.selectedOption.innerHTML;
 
-      // TODO: add functions for canvas calls when drawn object is updated
-      // and call that function instead
       let srcCanvas = this.selectedOption.querySelector('canvas');
       let destCanvas = this.display.querySelector('canvas');
       if (srcCanvas && destCanvas) {

@@ -10,8 +10,9 @@ export class Tool {
 
   hasModes() {
     return typeof this.currentMode !== 'undefined'
-        || typeof this.constructor.modes !== 'undefined'
-        || typeof this.optionMap !== 'undefined';
+        && typeof this.constructor.modes !== 'undefined'
+        && typeof this.optionMap !== 'undefined'
+        && typeof this.optionContent !== 'undefined';
   }
 
   hasInputs() {

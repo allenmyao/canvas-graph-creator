@@ -5,6 +5,7 @@
   border: 1px solid #777;
   border-radius: 3px;
   background: white;
+  font-size: 0;
 
   &--hidden {
     display: none;
@@ -20,12 +21,19 @@
     &__display {
       vertical-align: top;
       display: inline-block;
+      font-size: 1rem;
+      margin-right: 15px;
     }
 
     &__arrow {
-      vertical-align: top;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
       float: right;
       display: inline-block;
+      margin: 0 5px;
+      text-align: center;
 
       >span {
         right: 0;
@@ -67,6 +75,16 @@
         &--selected {
           margin: 0px;
           background: #8DB1BF;
+        }
+
+        * {
+          pointer-events: none;
+        }
+
+        >span {
+          display: inline-block;
+          padding: 3px;
+          font-size: 1rem;
         }
       }
     }
