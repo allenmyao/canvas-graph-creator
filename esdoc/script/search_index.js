@@ -18,6 +18,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "canvas-graph-creator/src/js/ui/canvas.js~canvas",
+    "class/src/js/ui/canvas.js~Canvas.html",
+    "<span>Canvas</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
+    "class"
+  ],
+  [
     "canvas-graph-creator/src/js/algorithm/change.js~change",
     "class/src/js/algorithm/change.js~Change.html",
     "<span>Change</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/algorithm/change.js</span>",
@@ -27,6 +33,12 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/data/node/circle-node.js~circlenode",
     "class/src/js/data/node/circle-node.js~CircleNode.html",
     "<span>CircleNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/node/circle-node.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/ui/context-menu.js~contextmenu",
+    "class/src/js/ui/context-menu.js~ContextMenu.html",
+    "<span>ContextMenu</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/context-menu.js</span>",
     "class"
   ],
   [
@@ -45,6 +57,12 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/data/node/diamond-node.js~diamondnode",
     "class/src/js/data/node/diamond-node.js~DiamondNode.html",
     "<span>DiamondNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/node/diamond-node.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/ui/dropdown.js~dropdown",
+    "class/src/js/ui/dropdown.js~Dropdown.html",
+    "<span>Dropdown</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/dropdown.js</span>",
     "class"
   ],
   [
@@ -144,6 +162,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "canvas-graph-creator/src/js/data/node/polygon-node.js~polygonnode",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html",
+    "<span>PolygonNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/node/polygon-node.js</span>",
+    "class"
+  ],
+  [
     "canvas-graph-creator/src/js/util/queue.js~queue",
     "class/src/js/util/queue.js~Queue.html",
     "<span>Queue</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/queue.js</span>",
@@ -153,6 +177,12 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/tool/select-tool.js~selecttool",
     "class/src/js/tool/select-tool.js~SelectTool.html",
     "<span>SelectTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/select-tool.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/ui/sidebar.js~sidebar",
+    "class/src/js/ui/sidebar.js~Sidebar.html",
+    "<span>Sidebar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar.js</span>",
     "class"
   ],
   [
@@ -204,6 +234,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "canvas-graph-creator/src/js/ui/status-bar.js~statusbar",
+    "class/src/js/ui/status-bar.js~StatusBar.html",
+    "<span>StatusBar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/status-bar.js</span>",
+    "class"
+  ],
+  [
     "canvas-graph-creator/src/js/algorithm/step.js~step",
     "class/src/js/algorithm/step.js~Step.html",
     "<span>Step</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/algorithm/step.js</span>",
@@ -234,6 +270,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "canvas-graph-creator/src/js/ui/toolbar.js~toolbar",
+    "class/src/js/ui/toolbar.js~Toolbar.html",
+    "<span>Toolbar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/toolbar.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/ui/top-bar.js~topbar",
+    "class/src/js/ui/top-bar.js~TopBar.html",
+    "<span>TopBar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/top-bar.js</span>",
+    "class"
+  ],
+  [
     "canvas-graph-creator/src/js/algorithm/traversal-algorithm.js~traversalalgorithm",
     "class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html",
     "<span>TraversalAlgorithm</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/algorithm/traversal-algorithm.js</span>",
@@ -243,6 +291,12 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/data/node/triangle-node.js~trianglenode",
     "class/src/js/data/node/triangle-node.js~TriangleNode.html",
     "<span>TriangleNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/node/triangle-node.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/ui/ui.js~ui",
+    "class/src/js/ui/ui.js~UI.html",
+    "<span>UI</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
     "class"
   ],
   [
@@ -267,18 +321,6 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/util/curvededge.js~calculateloop",
     "function/index.html#static-function-calculateLoop",
     "<span>calculateLoop</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/sidebar.js~changesidebar",
-    "function/index.html#static-function-changeSidebar",
-    "<span>changeSidebar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~clear",
-    "function/index.html#static-function-clear",
-    "<span>clear</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
     "function"
   ],
   [
@@ -312,93 +354,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/sidebar.js~getcontent",
-    "function/index.html#static-function-getContent",
-    "<span>getContent</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~getcontext",
-    "function/index.html#static-function-getContext",
-    "<span>getContext</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/toolbar.js~getcurrenttool",
-    "function/index.html#static-function-getCurrentTool",
-    "<span>getCurrentTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/toolbar.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/ui/form.js~getdata",
     "function/index.html#static-function-getData",
     "<span>getData</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/canvas.js~getdx",
-    "function/index.html#static-function-getDx",
-    "<span>getDx</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~getdy",
-    "function/index.html#static-function-getDy",
-    "<span>getDy</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~getscale",
-    "function/index.html#static-function-getScale",
-    "<span>getScale</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/sidebar.js~getsidebar",
-    "function/index.html#static-function-getSidebar",
-    "<span>getSidebar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/status-bar.js~getstatusbar",
-    "function/index.html#static-function-getStatusBar",
-    "<span>getStatusBar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/status-bar.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/ui/algorithm.js~init",
     "function/index.html#static-function-init",
     "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/sidebar.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/status-bar.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/status-bar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/toolbar.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/toolbar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/ui.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
     "function"
   ],
   [
@@ -420,18 +384,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/canvas.js~reset",
-    "function/index.html#static-function-reset",
-    "<span>reset</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~resize",
-    "function/index.html#static-function-resize",
-    "<span>resize</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/ui/algorithm.js~run",
     "function/index.html#static-function-run",
     "<span>run</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
@@ -441,12 +393,6 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/ui/algorithm.js~selectobject",
     "function/index.html#static-function-selectObject",
     "<span>selectObject</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/ui.js~selectobject",
-    "function/index.html#static-function-selectObject",
-    "<span>selectObject</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
     "function"
   ],
   [
@@ -462,58 +408,10 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/canvas.js~setposition",
-    "function/index.html#static-function-setPosition",
-    "<span>setPosition</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~setscale",
-    "function/index.html#static-function-setScale",
-    "<span>setScale</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/toolbar.js~tometadata",
-    "function/index.html#static-function-toMetadata",
-    "<span>toMetadata</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/toolbar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/canvas.js~update",
-    "function/index.html#static-function-update",
-    "<span>update</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/canvas.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/status-bar.js~updatemouse",
-    "function/index.html#static-function-updateMouse",
-    "<span>updateMouse</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/status-bar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/ui.js~updatemouse",
-    "function/index.html#static-function-updateMouse",
-    "<span>updateMouse</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/sidebar.js~updatesidebar",
-    "function/index.html#static-function-updateSidebar",
-    "<span>updateSidebar</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/status-bar.js~updatezoom",
-    "function/index.html#static-function-updateZoom",
-    "<span>updateZoom</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/status-bar.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/ui.js~updatezoom",
-    "function/index.html#static-function-updateZoom",
-    "<span>updateZoom</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
-    "function"
+    "canvas-graph-creator/src/js/ui/ui.js~ui",
+    "variable/index.html#static-variable-ui",
+    "<span>ui</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
+    "variable"
   ],
   [
     "canvas-graph-creator/src/js/ui/algorithm.js~viewnext",
@@ -1669,7 +1567,7 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber213",
+    "test-file/test/queue-test.js.html#lineNumber214",
     "Queue #forEach should iterate in order starting from the front of the queue",
     "test"
   ],
@@ -1819,7 +1717,7 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber200",
+    "test-file/test/stack-test.js.html#lineNumber201",
     "Stack #forEach should iterate in order starting from the top of the stack",
     "test"
   ],
@@ -2833,13 +2731,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/js/data/edge/edge.js~edge#weight",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-set-weight",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-get-weight",
     "src/js/data/edge/edge.js~Edge#weight",
     "member"
   ],
   [
     "src/js/data/edge/edge.js~edge#weight",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-get-weight",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-set-weight",
     "src/js/data/edge/edge.js~Edge#weight",
     "member"
   ],
@@ -2988,15 +2886,27 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/circle-node.js~circlenode#edgepointindirection",
-    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/circle-node.js~CircleNode#edgePointInDirection",
+    "src/js/data/node/circle-node.js~circlenode#drawacceptingstate",
+    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-drawAcceptingState",
+    "src/js/data/node/circle-node.js~CircleNode#drawAcceptingState",
     "method"
   ],
   [
-    "src/js/data/node/circle-node.js~circlenode#generatedefaulttextlocation",
-    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/circle-node.js~CircleNode#generateDefaultTextLocation",
+    "src/js/data/node/circle-node.js~circlenode#drawlabel",
+    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-drawLabel",
+    "src/js/data/node/circle-node.js~CircleNode#drawLabel",
+    "method"
+  ],
+  [
+    "src/js/data/node/circle-node.js~circlenode#drawstartingstate",
+    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-drawStartingState",
+    "src/js/data/node/circle-node.js~CircleNode#drawStartingState",
+    "method"
+  ],
+  [
+    "src/js/data/node/circle-node.js~circlenode#edgepointindirection",
+    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-edgePointInDirection",
+    "src/js/data/node/circle-node.js~CircleNode#edgePointInDirection",
     "method"
   ],
   [
@@ -3004,18 +2914,6 @@ window.esdocSearchIndex = [
     "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-getAnglePoint",
     "src/js/data/node/circle-node.js~CircleNode#getAnglePoint",
     "method"
-  ],
-  [
-    "src/js/data/node/circle-node.js~circlenode#xtext",
-    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-member-xText",
-    "src/js/data/node/circle-node.js~CircleNode#xText",
-    "member"
-  ],
-  [
-    "src/js/data/node/circle-node.js~circlenode#ytext",
-    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-member-yText",
-    "src/js/data/node/circle-node.js~CircleNode#yText",
-    "member"
   ],
   [
     "src/js/data/node/diamond-node.js",
@@ -3027,42 +2925,6 @@ window.esdocSearchIndex = [
     "src/js/data/node/diamond-node.js~diamondnode#constructor",
     "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-constructor-constructor",
     "src/js/data/node/diamond-node.js~DiamondNode#constructor",
-    "method"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#containspoint",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-method-containsPoint",
-    "src/js/data/node/diamond-node.js~DiamondNode#containsPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#distancetopoint",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-method-distanceToPoint",
-    "src/js/data/node/diamond-node.js~DiamondNode#distanceToPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#draw",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-method-draw",
-    "src/js/data/node/diamond-node.js~DiamondNode#draw",
-    "method"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#edgepointindirection",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/diamond-node.js~DiamondNode#edgePointInDirection",
-    "method"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#generatedefaulttextlocation",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/diamond-node.js~DiamondNode#generateDefaultTextLocation",
-    "method"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#getanglepoint",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-method-getAnglePoint",
-    "src/js/data/node/diamond-node.js~DiamondNode#getAnglePoint",
     "method"
   ],
   [
@@ -3078,18 +2940,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/data/node/diamond-node.js~diamondnode#xtext",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-member-xText",
-    "src/js/data/node/diamond-node.js~DiamondNode#xText",
-    "member"
-  ],
-  [
-    "src/js/data/node/diamond-node.js~diamondnode#ytext",
-    "class/src/js/data/node/diamond-node.js~DiamondNode.html#instance-member-yText",
-    "src/js/data/node/diamond-node.js~DiamondNode#yText",
-    "member"
-  ],
-  [
     "src/js/data/node/hexagon-node.js",
     "file/src/js/data/node/hexagon-node.js.html",
     "src/js/data/node/hexagon-node.js",
@@ -3102,42 +2952,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/hexagon-node.js~hexagonnode#containspoint",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-method-containsPoint",
-    "src/js/data/node/hexagon-node.js~HexagonNode#containsPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#distancetopoint",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-method-distanceToPoint",
-    "src/js/data/node/hexagon-node.js~HexagonNode#distanceToPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#draw",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-method-draw",
-    "src/js/data/node/hexagon-node.js~HexagonNode#draw",
-    "method"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#edgepointindirection",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/hexagon-node.js~HexagonNode#edgePointInDirection",
-    "method"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#generatedefaulttextlocation",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/hexagon-node.js~HexagonNode#generateDefaultTextLocation",
-    "method"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#getanglepoint",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-method-getAnglePoint",
-    "src/js/data/node/hexagon-node.js~HexagonNode#getAnglePoint",
-    "method"
-  ],
-  [
     "src/js/data/node/hexagon-node.js~hexagonnode#inscribed",
     "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-member-inscribed",
     "src/js/data/node/hexagon-node.js~HexagonNode#inscribed",
@@ -3147,18 +2961,6 @@ window.esdocSearchIndex = [
     "src/js/data/node/hexagon-node.js~hexagonnode#separation",
     "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-member-separation",
     "src/js/data/node/hexagon-node.js~HexagonNode#separation",
-    "member"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#xtext",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-member-xText",
-    "src/js/data/node/hexagon-node.js~HexagonNode#xText",
-    "member"
-  ],
-  [
-    "src/js/data/node/hexagon-node.js~hexagonnode#ytext",
-    "class/src/js/data/node/hexagon-node.js~HexagonNode.html#instance-member-yText",
-    "src/js/data/node/hexagon-node.js~HexagonNode#yText",
     "member"
   ],
   [
@@ -3252,42 +3054,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/octagon-node.js~octagonnode#containspoint",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-method-containsPoint",
-    "src/js/data/node/octagon-node.js~OctagonNode#containsPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#distancetopoint",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-method-distanceToPoint",
-    "src/js/data/node/octagon-node.js~OctagonNode#distanceToPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#draw",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-method-draw",
-    "src/js/data/node/octagon-node.js~OctagonNode#draw",
-    "method"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#edgepointindirection",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/octagon-node.js~OctagonNode#edgePointInDirection",
-    "method"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#generatedefaulttextlocation",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/octagon-node.js~OctagonNode#generateDefaultTextLocation",
-    "method"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#getanglepoint",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-method-getAnglePoint",
-    "src/js/data/node/octagon-node.js~OctagonNode#getAnglePoint",
-    "method"
-  ],
-  [
     "src/js/data/node/octagon-node.js~octagonnode#inscribed",
     "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-member-inscribed",
     "src/js/data/node/octagon-node.js~OctagonNode#inscribed",
@@ -3297,18 +3063,6 @@ window.esdocSearchIndex = [
     "src/js/data/node/octagon-node.js~octagonnode#separation",
     "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-member-separation",
     "src/js/data/node/octagon-node.js~OctagonNode#separation",
-    "member"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#xtext",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-member-xText",
-    "src/js/data/node/octagon-node.js~OctagonNode#xText",
-    "member"
-  ],
-  [
-    "src/js/data/node/octagon-node.js~octagonnode#ytext",
-    "class/src/js/data/node/octagon-node.js~OctagonNode.html#instance-member-yText",
-    "src/js/data/node/octagon-node.js~OctagonNode#yText",
     "member"
   ],
   [
@@ -3324,42 +3078,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/pentagon-node.js~pentagonnode#containspoint",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-method-containsPoint",
-    "src/js/data/node/pentagon-node.js~PentagonNode#containsPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/pentagon-node.js~pentagonnode#distancetopoint",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-method-distanceToPoint",
-    "src/js/data/node/pentagon-node.js~PentagonNode#distanceToPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/pentagon-node.js~pentagonnode#draw",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-method-draw",
-    "src/js/data/node/pentagon-node.js~PentagonNode#draw",
-    "method"
-  ],
-  [
-    "src/js/data/node/pentagon-node.js~pentagonnode#edgepointindirection",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/pentagon-node.js~PentagonNode#edgePointInDirection",
-    "method"
-  ],
-  [
-    "src/js/data/node/pentagon-node.js~pentagonnode#generatedefaulttextlocation",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/pentagon-node.js~PentagonNode#generateDefaultTextLocation",
-    "method"
-  ],
-  [
-    "src/js/data/node/pentagon-node.js~pentagonnode#getanglepoint",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-method-getAnglePoint",
-    "src/js/data/node/pentagon-node.js~PentagonNode#getAnglePoint",
-    "method"
-  ],
-  [
     "src/js/data/node/pentagon-node.js~pentagonnode#inscribed",
     "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-member-inscribed",
     "src/js/data/node/pentagon-node.js~PentagonNode#inscribed",
@@ -3372,16 +3090,64 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/data/node/pentagon-node.js~pentagonnode#xtext",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-member-xText",
-    "src/js/data/node/pentagon-node.js~PentagonNode#xText",
-    "member"
+    "src/js/data/node/polygon-node.js",
+    "file/src/js/data/node/polygon-node.js.html",
+    "src/js/data/node/polygon-node.js",
+    "file"
   ],
   [
-    "src/js/data/node/pentagon-node.js~pentagonnode#ytext",
-    "class/src/js/data/node/pentagon-node.js~PentagonNode.html#instance-member-yText",
-    "src/js/data/node/pentagon-node.js~PentagonNode#yText",
-    "member"
+    "src/js/data/node/polygon-node.js~polygonnode#constructor",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-constructor-constructor",
+    "src/js/data/node/polygon-node.js~PolygonNode#constructor",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#containspoint",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-containsPoint",
+    "src/js/data/node/polygon-node.js~PolygonNode#containsPoint",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#distancetopoint",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-distanceToPoint",
+    "src/js/data/node/polygon-node.js~PolygonNode#distanceToPoint",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#draw",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-draw",
+    "src/js/data/node/polygon-node.js~PolygonNode#draw",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#drawacceptingstate",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawAcceptingState",
+    "src/js/data/node/polygon-node.js~PolygonNode#drawAcceptingState",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#drawlabel",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawLabel",
+    "src/js/data/node/polygon-node.js~PolygonNode#drawLabel",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#drawstartingstate",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawStartingState",
+    "src/js/data/node/polygon-node.js~PolygonNode#drawStartingState",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#edgepointindirection",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-edgePointInDirection",
+    "src/js/data/node/polygon-node.js~PolygonNode#edgePointInDirection",
+    "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#getanglepoint",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-getAnglePoint",
+    "src/js/data/node/polygon-node.js~PolygonNode#getAnglePoint",
+    "method"
   ],
   [
     "src/js/data/node/square-node.js",
@@ -3393,42 +3159,6 @@ window.esdocSearchIndex = [
     "src/js/data/node/square-node.js~squarenode#constructor",
     "class/src/js/data/node/square-node.js~SquareNode.html#instance-constructor-constructor",
     "src/js/data/node/square-node.js~SquareNode#constructor",
-    "method"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#containspoint",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-method-containsPoint",
-    "src/js/data/node/square-node.js~SquareNode#containsPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#distancetopoint",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-method-distanceToPoint",
-    "src/js/data/node/square-node.js~SquareNode#distanceToPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#draw",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-method-draw",
-    "src/js/data/node/square-node.js~SquareNode#draw",
-    "method"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#edgepointindirection",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/square-node.js~SquareNode#edgePointInDirection",
-    "method"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#generatedefaulttextlocation",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/square-node.js~SquareNode#generateDefaultTextLocation",
-    "method"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#getanglepoint",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-method-getAnglePoint",
-    "src/js/data/node/square-node.js~SquareNode#getAnglePoint",
     "method"
   ],
   [
@@ -3444,18 +3174,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/data/node/square-node.js~squarenode#xtext",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-member-xText",
-    "src/js/data/node/square-node.js~SquareNode#xText",
-    "member"
-  ],
-  [
-    "src/js/data/node/square-node.js~squarenode#ytext",
-    "class/src/js/data/node/square-node.js~SquareNode.html#instance-member-yText",
-    "src/js/data/node/square-node.js~SquareNode#yText",
-    "member"
-  ],
-  [
     "src/js/data/node/triangle-node.js",
     "file/src/js/data/node/triangle-node.js.html",
     "src/js/data/node/triangle-node.js",
@@ -3468,42 +3186,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/triangle-node.js~trianglenode#containspoint",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-method-containsPoint",
-    "src/js/data/node/triangle-node.js~TriangleNode#containsPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#distancetopoint",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-method-distanceToPoint",
-    "src/js/data/node/triangle-node.js~TriangleNode#distanceToPoint",
-    "method"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#draw",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-method-draw",
-    "src/js/data/node/triangle-node.js~TriangleNode#draw",
-    "method"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#edgepointindirection",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-method-edgePointInDirection",
-    "src/js/data/node/triangle-node.js~TriangleNode#edgePointInDirection",
-    "method"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#generatedefaulttextlocation",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/triangle-node.js~TriangleNode#generateDefaultTextLocation",
-    "method"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#getanglepoint",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-method-getAnglePoint",
-    "src/js/data/node/triangle-node.js~TriangleNode#getAnglePoint",
-    "method"
-  ],
-  [
     "src/js/data/node/triangle-node.js~trianglenode#inscribed",
     "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-member-inscribed",
     "src/js/data/node/triangle-node.js~TriangleNode#inscribed",
@@ -3513,18 +3195,6 @@ window.esdocSearchIndex = [
     "src/js/data/node/triangle-node.js~trianglenode#separation",
     "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-member-separation",
     "src/js/data/node/triangle-node.js~TriangleNode#separation",
-    "member"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#xtext",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-member-xText",
-    "src/js/data/node/triangle-node.js~TriangleNode#xText",
-    "member"
-  ],
-  [
-    "src/js/data/node/triangle-node.js~trianglenode#ytext",
-    "class/src/js/data/node/triangle-node.js~TriangleNode.html#instance-member-yText",
-    "src/js/data/node/triangle-node.js~TriangleNode#yText",
     "member"
   ],
   [
@@ -3544,12 +3214,6 @@ window.esdocSearchIndex = [
     "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-member-currentMode",
     "src/js/tool/algorithm-tool.js~AlgorithmTool#currentMode",
     "member"
-  ],
-  [
-    "src/js/tool/algorithm-tool.js~algorithmtool#hasmodes",
-    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-hasModes",
-    "src/js/tool/algorithm-tool.js~AlgorithmTool#hasModes",
-    "method"
   ],
   [
     "src/js/tool/algorithm-tool.js~algorithmtool#selectobject",
@@ -3580,12 +3244,6 @@ window.esdocSearchIndex = [
     "class/src/js/tool/edge-tool.js~EdgeTool.html#instance-member-dest",
     "src/js/tool/edge-tool.js~EdgeTool#dest",
     "member"
-  ],
-  [
-    "src/js/tool/edge-tool.js~edgetool#hasmodes",
-    "class/src/js/tool/edge-tool.js~EdgeTool.html#instance-method-hasModes",
-    "src/js/tool/edge-tool.js~EdgeTool#hasModes",
-    "method"
   ],
   [
     "src/js/tool/edge-tool.js~edgetool#selectnode",
@@ -3624,12 +3282,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/tool/editedge-tool.js~editedgetool#hasmodes",
-    "class/src/js/tool/editedge-tool.js~EditEdgeTool.html#instance-method-hasModes",
-    "src/js/tool/editedge-tool.js~EditEdgeTool#hasModes",
-    "method"
-  ],
-  [
     "src/js/tool/editedge-tool.js~editedgetool#selectobject",
     "class/src/js/tool/editedge-tool.js~EditEdgeTool.html#instance-method-selectObject",
     "src/js/tool/editedge-tool.js~EditEdgeTool#selectObject",
@@ -3645,12 +3297,6 @@ window.esdocSearchIndex = [
     "src/js/tool/editnode-tool.js~editnodetool#dragoverobject",
     "class/src/js/tool/editnode-tool.js~EditNodeTool.html#instance-method-dragOverObject",
     "src/js/tool/editnode-tool.js~EditNodeTool#dragOverObject",
-    "method"
-  ],
-  [
-    "src/js/tool/editnode-tool.js~editnodetool#hasmodes",
-    "class/src/js/tool/editnode-tool.js~EditNodeTool.html#instance-method-hasModes",
-    "src/js/tool/editnode-tool.js~EditNodeTool#hasModes",
     "method"
   ],
   [
@@ -3900,12 +3546,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/tool/node-tool.js~nodetool#hasmodes",
-    "class/src/js/tool/node-tool.js~NodeTool.html#instance-method-hasModes",
-    "src/js/tool/node-tool.js~NodeTool#hasModes",
-    "method"
-  ],
-  [
     "src/js/tool/node-tool.js~nodetool#selectnone",
     "class/src/js/tool/node-tool.js~NodeTool.html#instance-method-selectNone",
     "src/js/tool/node-tool.js~NodeTool#selectNone",
@@ -4122,6 +3762,324 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/js/ui/canvas.js~canvas#canvas",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-canvas",
+    "src/js/ui/canvas.js~Canvas#canvas",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#clear",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-clear",
+    "src/js/ui/canvas.js~Canvas#clear",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#constructor",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-constructor-constructor",
+    "src/js/ui/canvas.js~Canvas#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#context",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-context",
+    "src/js/ui/canvas.js~Canvas#context",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#contextmenu",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-contextMenu",
+    "src/js/ui/canvas.js~Canvas#contextMenu",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#dx",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-dx",
+    "src/js/ui/canvas.js~Canvas#dx",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#dy",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-dy",
+    "src/js/ui/canvas.js~Canvas#dy",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#getcanvasx",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-getCanvasX",
+    "src/js/ui/canvas.js~Canvas#getCanvasX",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#getcanvasy",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-getCanvasY",
+    "src/js/ui/canvas.js~Canvas#getCanvasY",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#init",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-init",
+    "src/js/ui/canvas.js~Canvas#init",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#initlisteners",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-initListeners",
+    "src/js/ui/canvas.js~Canvas#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#mousehandler",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-mouseHandler",
+    "src/js/ui/canvas.js~Canvas#mouseHandler",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#reset",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-reset",
+    "src/js/ui/canvas.js~Canvas#reset",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#resize",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-resize",
+    "src/js/ui/canvas.js~Canvas#resize",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
+    "src/js/ui/canvas.js~Canvas#scale",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
+    "src/js/ui/canvas.js~Canvas#scale",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#scalevalue",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-scaleValue",
+    "src/js/ui/canvas.js~Canvas#scaleValue",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#ui",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-member-ui",
+    "src/js/ui/canvas.js~Canvas#ui",
+    "member"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#update",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-update",
+    "src/js/ui/canvas.js~Canvas#update",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js",
+    "file/src/js/ui/context-menu.js.html",
+    "src/js/ui/context-menu.js",
+    "file"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#classdisplaychange",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-method-classDisplayChange",
+    "src/js/ui/context-menu.js~ContextMenu#classDisplayChange",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#component",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-component",
+    "src/js/ui/context-menu.js~ContextMenu#component",
+    "member"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#constructor",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-constructor-constructor",
+    "src/js/ui/context-menu.js~ContextMenu#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#contextmenu",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-contextMenu",
+    "src/js/ui/context-menu.js~ContextMenu#contextMenu",
+    "member"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#contextmenueventlistener",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-method-contextmenuEventListener",
+    "src/js/ui/context-menu.js~ContextMenu#contextmenuEventListener",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#initlisteners",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-method-initListeners",
+    "src/js/ui/context-menu.js~ContextMenu#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#menuposx",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-menuPosX",
+    "src/js/ui/context-menu.js~ContextMenu#menuPosX",
+    "member"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#menuposy",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-menuPosY",
+    "src/js/ui/context-menu.js~ContextMenu#menuPosY",
+    "member"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#menustate",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-menuState",
+    "src/js/ui/context-menu.js~ContextMenu#menuState",
+    "member"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#mousehandler",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-mouseHandler",
+    "src/js/ui/context-menu.js~ContextMenu#mouseHandler",
+    "member"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#repositionmenu",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-method-repositionMenu",
+    "src/js/ui/context-menu.js~ContextMenu#repositionMenu",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#togglecontextmenu",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-method-toggleContextMenu",
+    "src/js/ui/context-menu.js~ContextMenu#toggleContextMenu",
+    "method"
+  ],
+  [
+    "src/js/ui/context-menu.js~contextmenu#ui",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-ui",
+    "src/js/ui/context-menu.js~ContextMenu#ui",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js",
+    "file/src/js/ui/dropdown.js.html",
+    "src/js/ui/dropdown.js",
+    "file"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#constructor",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-constructor-constructor",
+    "src/js/ui/dropdown.js~Dropdown#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#container",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-container",
+    "src/js/ui/dropdown.js~Dropdown#container",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#createdropdown",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-createDropdown",
+    "src/js/ui/dropdown.js~Dropdown#createDropdown",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#display",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-display",
+    "src/js/ui/dropdown.js~Dropdown#display",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#displayselectedoption",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-displaySelectedOption",
+    "src/js/ui/dropdown.js~Dropdown#displaySelectedOption",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#getoptionshtml",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-getOptionsHtml",
+    "src/js/ui/dropdown.js~Dropdown#getOptionsHtml",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#hidemenu",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-hideMenu",
+    "src/js/ui/dropdown.js~Dropdown#hideMenu",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#initlisteners",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-initListeners",
+    "src/js/ui/dropdown.js~Dropdown#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#isdisplayingmenu",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-isDisplayingMenu",
+    "src/js/ui/dropdown.js~Dropdown#isDisplayingMenu",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#menu",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-menu",
+    "src/js/ui/dropdown.js~Dropdown#menu",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#optionlist",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-optionlist",
+    "src/js/ui/dropdown.js~Dropdown#optionlist",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#selectelement",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-selectElement",
+    "src/js/ui/dropdown.js~Dropdown#selectElement",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#selectoption",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-selectOption",
+    "src/js/ui/dropdown.js~Dropdown#selectOption",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#selectedoption",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-member-selectedOption",
+    "src/js/ui/dropdown.js~Dropdown#selectedOption",
+    "member"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#showmenu",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-showMenu",
+    "src/js/ui/dropdown.js~Dropdown#showMenu",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#togglemenu",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-toggleMenu",
+    "src/js/ui/dropdown.js~Dropdown#toggleMenu",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#updateoptioncontent",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-updateOptionContent",
+    "src/js/ui/dropdown.js~Dropdown#updateOptionContent",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#updateoptions",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-method-updateOptions",
+    "src/js/ui/dropdown.js~Dropdown#updateOptions",
+    "method"
+  ],
+  [
+    "src/js/ui/dropdown.js~dropdown#value",
+    "class/src/js/ui/dropdown.js~Dropdown.html#instance-get-value",
+    "src/js/ui/dropdown.js~Dropdown#value",
+    "member"
+  ],
+  [
     "src/js/ui/form.js",
     "file/src/js/ui/form.js.html",
     "src/js/ui/form.js",
@@ -4332,10 +4290,94 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/js/ui/sidebar.js~sidebar#constructor",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-constructor-constructor",
+    "src/js/ui/sidebar.js~Sidebar#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#content",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-content",
+    "src/js/ui/sidebar.js~Sidebar#content",
+    "member"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#init",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-method-init",
+    "src/js/ui/sidebar.js~Sidebar#init",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#setsidebar",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-method-setSidebar",
+    "src/js/ui/sidebar.js~Sidebar#setSidebar",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#sidebar",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebar",
+    "src/js/ui/sidebar.js~Sidebar#sidebar",
+    "member"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#sidebarcontent",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebarContent",
+    "src/js/ui/sidebar.js~Sidebar#sidebarContent",
+    "member"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#ui",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-ui",
+    "src/js/ui/sidebar.js~Sidebar#ui",
+    "member"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#updatesidebar",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-method-updateSidebar",
+    "src/js/ui/sidebar.js~Sidebar#updateSidebar",
+    "method"
+  ],
+  [
     "src/js/ui/status-bar.js",
     "file/src/js/ui/status-bar.js.html",
     "src/js/ui/status-bar.js",
     "file"
+  ],
+  [
+    "src/js/ui/status-bar.js~statusbar#constructor",
+    "class/src/js/ui/status-bar.js~StatusBar.html#instance-constructor-constructor",
+    "src/js/ui/status-bar.js~StatusBar#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/status-bar.js~statusbar#initlisteners",
+    "class/src/js/ui/status-bar.js~StatusBar.html#instance-method-initListeners",
+    "src/js/ui/status-bar.js~StatusBar#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/status-bar.js~statusbar#statusbar",
+    "class/src/js/ui/status-bar.js~StatusBar.html#instance-member-statusBar",
+    "src/js/ui/status-bar.js~StatusBar#statusBar",
+    "member"
+  ],
+  [
+    "src/js/ui/status-bar.js~statusbar#ui",
+    "class/src/js/ui/status-bar.js~StatusBar.html#instance-member-ui",
+    "src/js/ui/status-bar.js~StatusBar#ui",
+    "member"
+  ],
+  [
+    "src/js/ui/status-bar.js~statusbar#updatemouse",
+    "class/src/js/ui/status-bar.js~StatusBar.html#instance-method-updateMouse",
+    "src/js/ui/status-bar.js~StatusBar#updateMouse",
+    "method"
+  ],
+  [
+    "src/js/ui/status-bar.js~statusbar#updatezoom",
+    "class/src/js/ui/status-bar.js~StatusBar.html#instance-method-updateZoom",
+    "src/js/ui/status-bar.js~StatusBar#updateZoom",
+    "method"
   ],
   [
     "src/js/ui/tabs.js",
@@ -4446,10 +4488,172 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/js/ui/toolbar.js~toolbar#constructor",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-constructor-constructor",
+    "src/js/ui/toolbar.js~Toolbar#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#currenttool",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-member-currentTool",
+    "src/js/ui/toolbar.js~Toolbar#currentTool",
+    "member"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#currenttoolelement",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-member-currentToolElement",
+    "src/js/ui/toolbar.js~Toolbar#currentToolElement",
+    "member"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#initlisteners",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-initListeners",
+    "src/js/ui/toolbar.js~Toolbar#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#selecttool",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-selectTool",
+    "src/js/ui/toolbar.js~Toolbar#selectTool",
+    "method"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#selecttoolbyname",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-selectToolByName",
+    "src/js/ui/toolbar.js~Toolbar#selectToolByName",
+    "method"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#showinputs",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-showInputs",
+    "src/js/ui/toolbar.js~Toolbar#showInputs",
+    "method"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#toolbar",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-member-toolbar",
+    "src/js/ui/toolbar.js~Toolbar#toolbar",
+    "member"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#ui",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-member-ui",
+    "src/js/ui/toolbar.js~Toolbar#ui",
+    "member"
+  ],
+  [
+    "src/js/ui/top-bar.js",
+    "file/src/js/ui/top-bar.js.html",
+    "src/js/ui/top-bar.js",
+    "file"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#constructor",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-constructor-constructor",
+    "src/js/ui/top-bar.js~TopBar#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#createform",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-createForm",
+    "src/js/ui/top-bar.js~TopBar#createForm",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#dropdown",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-member-dropdown",
+    "src/js/ui/top-bar.js~TopBar#dropdown",
+    "member"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#initlisteners",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-initListeners",
+    "src/js/ui/top-bar.js~TopBar#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#inputform",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-member-inputForm",
+    "src/js/ui/top-bar.js~TopBar#inputForm",
+    "member"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#modeselect",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-member-modeSelect",
+    "src/js/ui/top-bar.js~TopBar#modeSelect",
+    "member"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#showinputs",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-showInputs",
+    "src/js/ui/top-bar.js~TopBar#showInputs",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#showmodes",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-showModes",
+    "src/js/ui/top-bar.js~TopBar#showModes",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#topbar",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-member-topBar",
+    "src/js/ui/top-bar.js~TopBar#topBar",
+    "member"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#ui",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-member-ui",
+    "src/js/ui/top-bar.js~TopBar#ui",
+    "member"
+  ],
+  [
     "src/js/ui/ui.js",
     "file/src/js/ui/ui.js.html",
     "src/js/ui/ui.js",
     "file"
+  ],
+  [
+    "src/js/ui/ui.js~ui#canvas",
+    "class/src/js/ui/ui.js~UI.html#instance-member-canvas",
+    "src/js/ui/ui.js~UI#canvas",
+    "member"
+  ],
+  [
+    "src/js/ui/ui.js~ui#constructor",
+    "class/src/js/ui/ui.js~UI.html#instance-constructor-constructor",
+    "src/js/ui/ui.js~UI#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/ui.js~ui#init",
+    "class/src/js/ui/ui.js~UI.html#instance-method-init",
+    "src/js/ui/ui.js~UI#init",
+    "method"
+  ],
+  [
+    "src/js/ui/ui.js~ui#sidebar",
+    "class/src/js/ui/ui.js~UI.html#instance-member-sidebar",
+    "src/js/ui/ui.js~UI#sidebar",
+    "member"
+  ],
+  [
+    "src/js/ui/ui.js~ui#statusbar",
+    "class/src/js/ui/ui.js~UI.html#instance-member-statusBar",
+    "src/js/ui/ui.js~UI#statusBar",
+    "member"
+  ],
+  [
+    "src/js/ui/ui.js~ui#toolbar",
+    "class/src/js/ui/ui.js~UI.html#instance-member-toolbar",
+    "src/js/ui/ui.js~UI#toolbar",
+    "member"
+  ],
+  [
+    "src/js/ui/ui.js~ui#topbar",
+    "class/src/js/ui/ui.js~UI.html#instance-member-topBar",
+    "src/js/ui/ui.js~UI#topBar",
+    "member"
   ],
   [
     "src/js/util/curvededge.js",
