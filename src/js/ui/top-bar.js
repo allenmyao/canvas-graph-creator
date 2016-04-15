@@ -32,8 +32,9 @@ class TopBar {
     this.inputForm.addEventListener('change', (event) => {
       let input = event.target;
       let name = input.name;
-      let value = input.value;
+      let value = input.type === 'checkbox' ? input.checked : input.value;
       this.ui.toolbar.currentTool.inputs[name] = value;
+      this.dropdown.updateOptionContent();
     });
   }
 
