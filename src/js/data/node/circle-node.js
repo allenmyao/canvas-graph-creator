@@ -1,7 +1,6 @@
 import { Node } from './node';
 
-
-export class CircleNode extends Node {
+class CircleNode extends Node {
 
   static radius = 30;
 
@@ -22,9 +21,6 @@ export class CircleNode extends Node {
     return Math.sqrt(dx * dx + dy * dy);
   }
 
-  // ISSSUE: if (x, y) is equal to the node's position, this function will divide by zero
-  // rename to closestPointTo
-  // modify to find closest point to another node
   edgePointInDirection(x, y) {
     if (x === this.x && y === this.y) {
       throw new Error('Point is at origin of Node');
@@ -41,8 +37,9 @@ export class CircleNode extends Node {
   draw(context) {
     // let xOffSet = 0;
     // let yOffset = 0;
-    context.fillStyle = 'white';
-    context.strokeStyle = this.isSelected ? 'red' : this.color;
+    context.fillStyle = this.fillColor;
+    context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
+    context.lineWidth = this.lineWidth;
 
     // Create a new path
     context.beginPath();
@@ -54,38 +51,53 @@ export class CircleNode extends Node {
     context.stroke();
 
     if (this.nodeLabel !== '') {
-      // xOffSet = context.measureText(this.nodeLabel)/2;
-      context.font = '14px Arial';
-      context.fillStyle = 'black';
-      context.fillText(this.nodeLabel, this.xText, this.yText);
-      if (this.showTextCtrl) {
-        context.fillStyle = 'red';
-        context.beginPath();
-        context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
-        context.lineTo(this.xText, this.yText);
-        context.fill();
-      }
+      this.drawLabel(context);
     }
 
     if (this.isAcceptingState) {
-      context.moveTo(this.x + this.radius * 0.75, this.y);
-      context.arc(this.x, this.y, this.radius * 0.75, 0, 2 * Math.PI);
-      context.stroke();
+      this.drawAcceptingState(context);
     }
 
     if (this.isStartingState) {
-      context.fillStyle = this.isSelected ? 'red' : 'black';
-      context.moveTo(this.x - 55, this.y - 55);
-      context.lineTo(this.x - 25, this.y - 25);
-      context.stroke();
+      this.drawStartingState(context);
+    }
+  }
+
+  drawLabel(context) {
+    // xOffSet = context.measureText(this.nodeLabel)/2;
+    context.font = this.labelFont;
+    context.fillStyle = this.labelColor;
+    context.fillText(this.nodeLabel, this.xText, this.yText);
+    if (this.showTextCtrl) {
+      context.fillStyle = 'red';
       context.beginPath();
-      context.moveTo(this.x - 25, this.y - 25);
-      context.lineTo(this.x - 25 - 6 - 3, this.y - 25 - 6 + 3);
-      context.lineTo(this.x - 25 - 6, this.y - 25 - 6);
-      context.lineTo(this.x - 25 - 6 + 3, this.y - 25 - 6 - 3);
-      context.closePath();
+      context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
+      context.lineTo(this.xText, this.yText);
       context.fill();
     }
+  }
+
+  drawAcceptingState(context) {
+    context.fillStyle = this.fillColor;
+    context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
+    context.moveTo(this.x + this.radius * 0.75, this.y);
+    context.arc(this.x, this.y, this.radius * 0.75, 0, 2 * Math.PI);
+    context.stroke();
+  }
+
+  drawStartingState(context) {
+    context.fillStyle = this.isSelected ? this.selectedColor : this.color;
+    context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
+    context.moveTo(this.x - 55, this.y - 55);
+    context.lineTo(this.x - 25, this.y - 25);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(this.x - 25, this.y - 25);
+    context.lineTo(this.x - 25 - 6 - 3, this.y - 25 - 6 + 3);
+    context.lineTo(this.x - 25 - 6, this.y - 25 - 6);
+    context.lineTo(this.x - 25 - 6 + 3, this.y - 25 - 6 - 3);
+    context.closePath();
+    context.fill();
   }
 
   /*
@@ -138,10 +150,7 @@ export class CircleNode extends Node {
     };
   }
 
-  // find the starting point of our text box
-  generateDefaultTextLocation() {
-    this.xText = this.x + this.radius + 4;
-    this.yText = this.y;
-  }
-
 }
+
+export { CircleNode };
+export default CircleNode;
