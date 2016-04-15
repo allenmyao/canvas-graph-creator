@@ -87,16 +87,17 @@ class CircleNode extends Node {
   }
 
   drawStartingState(context) {
+    let endpoint = this.getAnglePoint(225);
     context.fillStyle = this.isSelected ? this.selectedColor : this.color;
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
-    context.moveTo(this.x - 55, this.y - 55);
-    context.lineTo(this.x - 25, this.y - 25);
+    context.moveTo(endpoint.x - 30, endpoint.y - 30);
+    context.lineTo(endpoint.x, endpoint.y);
     context.stroke();
     context.beginPath();
-    context.moveTo(this.x - 25, this.y - 25);
-    context.lineTo(this.x - 25 - 6 - 3, this.y - 25 - 6 + 3);
-    context.lineTo(this.x - 25 - 6, this.y - 25 - 6);
-    context.lineTo(this.x - 25 - 6 + 3, this.y - 25 - 6 - 3);
+    context.moveTo(endpoint.x, endpoint.y);
+    context.lineTo(endpoint.x - 6 - 3, endpoint.y - 6 + 3);
+    context.lineTo(endpoint.x - 6, endpoint.y - 6);
+    context.lineTo(endpoint.x - 6 + 3, endpoint.y - 6 - 3);
     context.closePath();
     context.fill();
   }
