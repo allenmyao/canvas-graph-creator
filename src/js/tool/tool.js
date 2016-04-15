@@ -9,7 +9,9 @@ export class Tool {
   }
 
   hasModes() {
-    return this.currentMode && this.constructor.modes && this.optionMap;
+    return typeof this.currentMode !== 'undefined'
+        || typeof this.constructor.modes !== 'undefined'
+        || typeof this.optionMap !== 'undefined';
   }
 
   hasInputs() {
