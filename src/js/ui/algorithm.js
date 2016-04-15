@@ -1,5 +1,5 @@
 import Stepper from '../algorithm/stepper';
-import * as Sidebar from '../ui/sidebar';
+import ui from '../ui/ui';
 
 let stepper = new Stepper();
 let graph = null;
@@ -11,7 +11,7 @@ export function init(g) {
 }
 
 export function selectObject(obj) {
-  let sidebarContent = Sidebar.getContent();
+  let sidebarContent = ui.sidebar.content;
   let currentInput = sidebarContent.getCurrentInput();
 
   if (currentInput && inputs && inputs[currentInput].test(obj)) {
@@ -25,7 +25,7 @@ export function setAlgorithm(AlgorithmClass) {
 
   stepper.reset();
 
-  let sidebarContent = Sidebar.getContent();
+  let sidebarContent = ui.sidebar.content;
   sidebarContent.updateAlgorithm(curAlgorithm);
 }
 

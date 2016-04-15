@@ -1,9 +1,8 @@
-import * as UI from '../ui/ui';
-import * as Sidebar from '../ui/sidebar';
+import ui from '../ui/ui';
 import { CircleNode } from '../data/node/circle-node';
 import { SquareNode } from '../data/node/square-node';
 
-export class MouseHandler {
+class MouseHandler {
 
   // distance the mouse needs to move to start a drag
   // this prevents accidentally dragging a few pixels when actually trying to click
@@ -60,10 +59,10 @@ export class MouseHandler {
       if (component === this.selectedObject) {
         if (component) {
           currentTool.selectObject(event, this.graph, component, x, y);
-          Sidebar.updateSidebar(component);
+          ui.sidebar.updateSidebar(component);
         } else {
           currentTool.selectNone(event, this.graph, x, y);
-          Sidebar.updateSidebar();
+          ui.sidebar.updateSidebar();
         }
       } else {
         currentTool.abortSelect(this.graph, x, y);
@@ -74,7 +73,7 @@ export class MouseHandler {
   }
 
   moveListener(event, currentTool, x, y) {
-    UI.updateMouse(x, y);
+    ui.statusBar.updateMouse(x, y);
 
     if (!this.isDragging) {
       // check for dragging
@@ -104,11 +103,11 @@ export class MouseHandler {
     } else if (this.draggedObject) {
       // handle dragging object
       currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
-      Sidebar.updateSidebar(this.draggedObject);
+      ui.sidebar.updateSidebar(this.draggedObject);
     } else if (this.graph.hasComponent(x, y)) {
       // handle dragging over object
       currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
-      Sidebar.updateSidebar();
+      ui.sidebar.updateSidebar();
     } else {
       // handle dragging empty space
       currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
@@ -154,3 +153,6 @@ export class MouseHandler {
     currentTool.selectObject(event, this.graph, component, x, y);
   }
 }
+
+export { MouseHandler };
+export default MouseHandler;

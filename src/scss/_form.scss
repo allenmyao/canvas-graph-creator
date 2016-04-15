@@ -1,0 +1,28 @@
+form {
+  font-size: 0;
+
+  fieldset {
+    display: block;
+    margin-bottom: 5px;
+
+    &.error {
+      color: red;
+
+      input, select, textarea, output {
+        border-color: red;
+      }
+    }
+
+    span {
+      font-size: 1rem;
+    }
+
+    .label {
+      padding: 5px;
+    }
+
+    .value {
+
+    }
+  }
+}
