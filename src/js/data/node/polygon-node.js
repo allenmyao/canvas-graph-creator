@@ -56,7 +56,7 @@ export class PolygonNode extends Node {
     context.closePath();
 
     // Draw to the canvas
-    // context.fill();
+    context.fill();
     context.stroke();
 
 
@@ -97,6 +97,7 @@ export class PolygonNode extends Node {
                      this.y + 0.75 * this.radius * Math.sin(this.inscribed[j] * Math.PI / 180));
     }
     context.closePath();
+    context.fill();
     context.stroke();
   }
 
