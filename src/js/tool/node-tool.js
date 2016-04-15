@@ -54,11 +54,55 @@ export class NodeTool extends Tool {
       let canvas = optionElement.querySelector('canvas');
       let context = canvas.getContext('2d');
       let node = new NodeTool.modes[mode](25, 25);
+      for (let field of Object.keys(this.inputs)) {
+        node[field] = this.inputs[field];
+      }
       node.radius = 15;
-      // TODO: get other input values for default node properties
       node.draw(context);
     }
   };
+
+  inputs = {
+    isAcceptingState: false,
+    isStartingState: false,
+    radius: 30,
+    color: '#000000',
+    fillColor: '#ffffff',
+    lineWidth: 1
+  };
+
+  inputTypes = [
+    {
+      type: 'boolean',
+      name: 'isAcceptingState',
+      displayName: 'Accepting State'
+    },
+    {
+      type: 'boolean',
+      name: 'isStartingState',
+      displayName: 'Starting State'
+    },
+    {
+      type: 'number',
+      name: 'radius',
+      displayName: 'Radius'
+    },
+    {
+      type: 'color',
+      name: 'color',
+      displayName: 'Line Color'
+    },
+    {
+      type: 'color',
+      name: 'fillColor',
+      displayName: 'Fill Color'
+    },
+    {
+      type: 'number',
+      name: 'lineWidth',
+      displayName: 'Line Width'
+    }
+  ];
 
   selectObject(event, graph, obj, x, y) {
     if (!(obj instanceof Node)) {
@@ -69,6 +113,9 @@ export class NodeTool extends Tool {
   selectNone(event, graph, x, y) {
     let NodeClass = NodeTool.modes[this.currentMode];
     let node = new NodeClass(x, y);
+    for (let field of Object.keys(this.inputs)) {
+      node[field] = this.inputs[field];
+    }
     if (!graph.isNodeCollision(node, x, y)) {
       graph.addNode(node);
     }

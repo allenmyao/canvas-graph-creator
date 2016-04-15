@@ -36,6 +36,17 @@
   }
 
   #tool-inputs {
-    
+    form {
+      fieldset {
+        vertical-align: top;
+        display: inline-block;
+        height: 40px;
+        margin: 0 10px;
+
+        span {
+          display: inline-block;
+        }
+      }
+    }
   }
 }
