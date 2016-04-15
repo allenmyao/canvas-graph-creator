@@ -25,10 +25,11 @@ export class EdgeTool extends Tool {
   };
 
   optionContent = {
-    html: '<canvas  class="canvas-preview" width="50" height="50"></canvas>',
+    html: '<canvas class="canvas-preview" width="50" height="50"></canvas>',
     init: (optionElement, mode) => {
       let canvas = optionElement.querySelector('canvas');
       let context = canvas.getContext('2d');
+      context.clearRect(0, 0, canvas.width, canvas.height);
       let node1 = new CircleNode(12.5, 37.5);
       let node2 = new CircleNode(37.5, 12.5);
       let edge = new EdgeTool.modes[mode](node1, node2);

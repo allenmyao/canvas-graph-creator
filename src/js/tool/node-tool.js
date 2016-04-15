@@ -49,10 +49,11 @@ export class NodeTool extends Tool {
   };
 
   optionContent = {
-    html: '<canvas  class="canvas-preview" width="50" height="50"></canvas>',
+    html: '<canvas class="canvas-preview" width="50" height="50"></canvas>',
     init: (optionElement, mode) => {
       let canvas = optionElement.querySelector('canvas');
       let context = canvas.getContext('2d');
+      context.clearRect(0, 0, canvas.width, canvas.height);
       let node = new NodeTool.modes[mode](25, 25);
       for (let field of Object.keys(this.inputs)) {
         node[field] = this.inputs[field];

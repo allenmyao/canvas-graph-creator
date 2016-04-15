@@ -224,6 +224,7 @@ class Dropdown {
       let destCanvas = this.display.querySelector('canvas');
       if (srcCanvas && destCanvas) {
         let destCtx = destCanvas.getContext('2d');
+        destCtx.clearRect(0, 0, destCanvas.width, destCanvas.height);
         destCtx.drawImage(srcCanvas, 0, 0);
       }
     } else {
