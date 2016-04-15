@@ -16,6 +16,11 @@ export class SidebarSelect extends SidebarContent {
         for (let name of Object.keys(data)) {
           this.selectedObject[name] = data[name];
         }
+        if (this.selectedObject instanceof Node) {
+          for (let edge of this.selectedObject.edges) {
+            edge.updateEndpoints();
+          }
+        }
       }
     });
   }
@@ -92,6 +97,12 @@ export class SidebarSelect extends SidebarContent {
         name: 'isStartingState',
         value: node.isStartingState,
         displayName: 'Starting State'
+      },
+      {
+        type: 'number',
+        name: 'radius',
+        value: node.radius,
+        displayName: 'Radius'
       },
       {
         type: 'color',
