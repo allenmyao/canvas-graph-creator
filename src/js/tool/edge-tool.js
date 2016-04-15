@@ -37,6 +37,30 @@ export class EdgeTool extends Tool {
     }
   };
 
+  inputs = {
+    isDirected: false,
+    color: '#000000',
+    lineWidth: 1
+  };
+
+  inputTypes = [
+    {
+      type: 'boolean',
+      name: 'isDirected',
+      displayName: 'Directed'
+    },
+    {
+      type: 'color',
+      name: 'color',
+      displayName: 'Color'
+    },
+    {
+      type: 'number',
+      name: 'lineWidth',
+      displayName: 'Width'
+    }
+  ];
+
   start = null;
   dest = null;
 
@@ -59,7 +83,11 @@ export class EdgeTool extends Tool {
       this.start.isSelected = true;
     } else {
       this.dest = node;
-      graph.addEdge(new EdgeClass(this.start, this.dest));
+      let edge = new EdgeClass(this.start, this.dest);
+      for (let field of Object.keys(this.inputs)) {
+        edge[field] = this.inputs[field];
+      }
+      graph.addEdge(edge);
       this.start.isSelected = false;
       this.start = null;
       this.dest = null;

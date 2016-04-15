@@ -1,9 +1,5 @@
 import Dropdown from '../ui/dropdown';
 
-// const TOOL_MODE_CLASS = 'mode';
-// const TOOL_MODE_NAME_ATTR = 'data-mode';
-// const TOOL_MODE_SELECTED_CLASS = 'selected';
-
 class TopBar {
 
   ui;
@@ -14,6 +10,8 @@ class TopBar {
 
   dropdown;
 
+  inputForm;
+
   currentMode;
   currentModeElement;
 
@@ -21,6 +19,7 @@ class TopBar {
     this.ui = ui;
     this.topBar = document.getElementById('top-bar');
     this.modeSelect = document.getElementById('mode-select');
+    this.inputForm = document.getElementById('tool-inputs-form');
     this.dropdown = new Dropdown(this.modeSelect);
     this.initListeners();
   }
@@ -28,6 +27,13 @@ class TopBar {
   initListeners() {
     this.modeSelect.addEventListener('change', (event) => {
       this.ui.toolbar.currentTool.changeMode(event.target.value);
+    });
+
+    this.inputForm.addEventListener('change', (event) => {
+      let input = event.target;
+      let name = input.name;
+      let value = input.value;
+      this.ui.toolbar.currentTool.inputs[name] = value;
     });
   }
 
@@ -48,6 +54,50 @@ class TopBar {
       // clear the modes
       this.modeSelect.innerHTML = '';
     }
+  }
+
+  showInputs() {
+    let currentTool = this.ui.toolbar.currentTool;
+    if (currentTool.hasInputs()) {
+      let inputTypes = currentTool.inputTypes;
+      let inputs = currentTool.inputs;
+      let formContent = this.createForm(inputTypes, inputs);
+      this.inputForm.innerHTML = formContent;
+    } else {
+      this.inputForm.innerHTML = '';
+    }
+  }
+
+  createForm(fields, values) {
+    let html = '';
+
+    for (let field of fields) {
+      let fieldHtml;
+
+      let type = field.type;
+      let name = field.name;
+      let value = values[name];
+      if (type === 'number') {
+        fieldHtml = `<input type="number" name="${name}" value="${value}">`;
+      } else if (type === 'boolean') {
+        fieldHtml = `<input type="checkbox" name="${name}" ${value ? 'checked="true"' : ''}>`;
+      } else if (type === 'string') {
+        fieldHtml = `<input type="text" name="${name}" value="${value}">`;
+      } else if (type === 'color') {
+        fieldHtml = `<input type="color" name="${name}" value="${value}">`;
+      } else {
+        fieldHtml = `${value}`;
+      }
+
+      let displayName = field.displayName;
+      html += `
+        <fieldset>
+          <span class="label">${displayName}</span>
+          <span class="value">${fieldHtml}</span>
+        </fieldset>`;
+    }
+
+    return html;
   }
 }
 

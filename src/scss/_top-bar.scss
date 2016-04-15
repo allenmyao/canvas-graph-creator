@@ -15,6 +15,7 @@
     vertical-align: top;
     display: inline-block;
     height: 100%;
+    padding: 10px;
   }
 
   #tool-modes {
@@ -32,5 +33,9 @@
         }
       }
     }
+  }
+
+  #tool-inputs {
+    
   }
 }

@@ -16,7 +16,8 @@ export class Tool {
   }
 
   hasInputs() {
-    return false;
+    return typeof this.inputs !== 'undefined'
+        && typeof this.inputTypes !== 'undefined';
   }
 
   changeMode(mode) {

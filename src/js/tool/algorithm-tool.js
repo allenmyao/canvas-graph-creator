@@ -13,9 +13,19 @@ export class AlgorithmTool extends Tool {
     traversal: TraversalAlgorithm
   };
 
-  hasModes() {
-    return true;
-  }
+  optionMap = {
+    traversal: {
+      label: 'Traversal'
+    }
+  };
+
+  optionContent = {
+    html: '<span class="content"></span>',
+    init: (optionElement, mode) => {
+      let content = optionElement.querySelector('.content');
+      content.textContent = this.optionMap[mode].label;
+    }
+  };
 
   changeMode(mode) {
     this.currentMode = mode;

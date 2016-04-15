@@ -5,6 +5,7 @@
 @import 'zindexes';
 
 @import 'tabs';
+@import 'form';
 @import 'dropdown';
 
 @import 'navbar';
@@ -37,14 +38,6 @@ textarea {
 
 input[type="color"] {
   padding: 0;
-}
-
-fieldset.error {
-  color: red;
-
-  input, select, textarea, output {
-    border-color: red;
-  }
 }
 
 .col-2 {

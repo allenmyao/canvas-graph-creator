@@ -64,6 +64,7 @@ class Toolbar {
     this.currentToolElement.classList.add(TOOL_SELECTED_CLASS);
 
     this.ui.topBar.showModes();
+    this.ui.topBar.showInputs();
     this.showInputs();
     this.currentTool.activate();
     this.currentTool.changeMode(this.currentTool.currentMode);
@@ -76,6 +77,9 @@ class Toolbar {
 
   showInputs() {
     let inputList = document.getElementById('tool-inputs');
+    if (!(this.currentTool instanceof MetadataTool)) {
+      return;
+    }
     if (this.currentTool.hasInputs()) {
       // populate inputs list
       let html = this.currentTool.getInputHtml();
