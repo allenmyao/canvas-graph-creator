@@ -37,11 +37,22 @@
 
   #tool-inputs {
     form {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column wrap;
+      align-content: stretch;
+
       fieldset {
         vertical-align: top;
         display: inline-block;
         height: 40px;
         margin: 0 10px;
+
+        input {
+          max-width: 100px;
+        }
 
         span {
           display: inline-block;
