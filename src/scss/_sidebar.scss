@@ -4,6 +4,7 @@
   right: 0;
   bottom: $status-bar-height;
   width: $sidebar-width;
+  border-left: 1px solid black;
   background: white;
   font-size: 1rem;
 
@@ -17,12 +18,12 @@
 
       .tab {
         padding: 10px 20px;
-        border: 1px solid black;
+        border-right: 1px solid black;
         font-size: 1rem;
 
-        &:not(:first-child) {
-          margin-left: -1px;
-        }
+        // &:not(:first-child) {
+        //   margin-left: -1px;
+        // }
 
         &.active {
           border-bottom: 1px solid white;
@@ -32,8 +33,6 @@
 
     .tab-content {
       padding: 10px;
-      border: 1px solid black;
-      border-top: 0;
       overflow-y: auto;
     }
   }
@@ -51,17 +50,12 @@
     margin-top: 5px;
   }
 
-}
 
-.data-container {
-  width: 100%;
-  height: 100%;
-
-  .data-list {
+  form {
     display: block;
     width: 100%;
 
-    .data-item {
+    fieldset {
       display: block;
       font-size: 0;
 
@@ -76,9 +70,10 @@
       }
     }
   }
-}
 
-.graph-link {
-  font-size: 1rem;
-  cursor: pointer;
+  .graph-link {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
 }
