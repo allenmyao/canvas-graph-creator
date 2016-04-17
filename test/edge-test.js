@@ -1,7 +1,7 @@
 import chai from 'chai';
 chai.should();
 
-import { Node } from '../src/js/data/node/node';
+import { CircleNode as Node } from '../src/js/data/node/circle-node';
 import { SolidEdge } from '../src/js/data/edge/solid-edge';
 
 describe('SolidEdge', () => {

@@ -1,7 +1,6 @@
-import { SidebarNode } from '../ui/sidebar-node';
-import { SidebarEdge } from '../ui/sidebar-edge';
-import { SidebarSelect } from '../ui/sidebar-select';
-import { SidebarAlgorithm } from 'ui/sidebar-algorithm';
+import SidebarDisplay from '../ui/sidebar-display';
+import SidebarSelect from '../ui/sidebar-select';
+import SidebarAlgorithm from 'ui/sidebar-algorithm';
 
 /**
  * This class manages the container for sidebar-content subclasses, and is responsible
@@ -22,8 +21,7 @@ class Sidebar {
 
   init(graph) {
     this.sidebarContent = {
-      node: new SidebarNode(graph),
-      edge: new SidebarEdge(graph),
+      display: new SidebarDisplay(graph),
       select: new SidebarSelect(graph),
       algorithm: new SidebarAlgorithm(graph)
     };

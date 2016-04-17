@@ -7,7 +7,6 @@ import { CircleNode } from '../data/node/circle-node';
 export class EdgeTool extends Tool {
 
   name = 'Edge Tool';
-  sidebarType = 'edge';
 
   currentMode = 'solid';
   static modes = {
@@ -88,6 +87,9 @@ export class EdgeTool extends Tool {
       this.dest = node;
       let edge = new EdgeClass(this.start, this.dest);
       for (let field of Object.keys(this.inputs)) {
+        if (field === 'isDirected' && this.start === this.dest) {
+          continue;
+        }
         edge[field] = this.inputs[field];
       }
       graph.addEdge(edge);
