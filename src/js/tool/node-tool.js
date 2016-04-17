@@ -11,7 +11,6 @@ import { OctagonNode } from '../data/node/octagon-node';
 export class NodeTool extends Tool {
 
   name = 'Node Tool';
-  sidebarType = 'node';
 
   currentMode = 'circle';
   static modes = {

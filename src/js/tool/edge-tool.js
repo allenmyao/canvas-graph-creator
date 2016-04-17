@@ -7,7 +7,6 @@ import { CircleNode } from '../data/node/circle-node';
 export class EdgeTool extends Tool {
 
   name = 'Edge Tool';
-  sidebarType = 'edge';
 
   currentMode = 'solid';
   static modes = {

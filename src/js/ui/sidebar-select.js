@@ -1,8 +1,8 @@
-import { SidebarContent } from '../ui/sidebar-content';
+import SidebarContent from '../ui/sidebar-content';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
 
-export class SidebarSelect extends SidebarContent {
+class SidebarSelect extends SidebarContent {
   constructor(graph) {
     super(graph);
 
@@ -262,3 +262,6 @@ export class SidebarSelect extends SidebarContent {
     return html;
   }
 }
+
+export { SidebarSelect };
+export default SidebarSelect;
