@@ -88,6 +88,9 @@ export class EdgeTool extends Tool {
       this.dest = node;
       let edge = new EdgeClass(this.start, this.dest);
       for (let field of Object.keys(this.inputs)) {
+        if (field === 'isDirected' && this.start === this.dest) {
+          continue;
+        }
         edge[field] = this.inputs[field];
       }
       graph.addEdge(edge);
