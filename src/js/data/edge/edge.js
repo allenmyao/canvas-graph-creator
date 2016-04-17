@@ -104,22 +104,56 @@ export class Edge {
   }
 
   updateNormalEdgeEndpoints() {
-    let incline = Math.asin((this.destNode.y - this.startNode.y) / Math.sqrt((this.destNode.x - this.startNode.x) * (this.destNode.x - this.startNode.x) + (this.destNode.y - this.startNode.y) * (this.destNode.y - this.startNode.y)));
+    let dx = this.destNode.x - this.startNode.x;
+    let dy = this.destNode.y - this.startNode.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    // calculate incline based on dy and distance
+    // this is the angle between x-axis and the line from startNode to destNode
+    let incline = Math.asin(dy / distance);
+    // convert from radians to degrees
     incline = incline * 180 / Math.PI;
+
+    // Note that canvas coordinates increase towards the bottom right
+    // Quadrants are oriented as follows:
+    //       |
+    //   Q3  |  Q4
+    //       |
+    // ------------- +x
+    //       |
+    //   Q2  |  Q1
+    //       |
+    //       +y
+    //
+
+    // if destNode.x < startNode.x, the angle should end:
+    //   in the second quadrant if destNode.y > startNode.y
+    //   in the third quadrant if destNode.y < startNode.y
     if (this.startNode.x >= this.destNode.x) {
-      incline = 180 - incline;
+      if (this.startNode.y >= this.destNode.y) {
+        incline = (540 - incline) % 360;
+      } else {
+        incline = 180 - incline;
+      }
     }
-    incline = (incline + 360) % 360;
 
     let numPartners = this.partners.length + 1;
     let multiIndex = this.partners.indexOf(this) + 1;
 
-    let startAngle = incline + 90 * multiIndex / numPartners - 45;
-    let destAngle = incline + 225 - 90 * multiIndex / numPartners;
+    let ratio = multiIndex / numPartners;
+
+    // if the partner edge with index 0 is going in the opposite direction compared to the current edge
+    // then draw the current edge on the opposite side of the line connecting the two nodes
+    if (this.partners[0].startNode !== this.startNode) {
+      ratio = 1 - ratio;
+    }
+
+    let startAngle = incline + 90 * ratio - 45;
+    let destAngle = incline + 225 - 90 * ratio;
     this.startPoint = this.startNode.getAnglePoint(startAngle);
     this.destPoint = this.destNode.getAnglePoint(destAngle);
 
-    let orient = multiIndex / numPartners - 0.5;
+    let orient = ratio - 0.5;
     let diff = {
       x: this.destPoint.x - this.startPoint.x,
       y: this.destPoint.y - this.startPoint.y
