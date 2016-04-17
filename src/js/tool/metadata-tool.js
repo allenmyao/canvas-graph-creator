@@ -14,6 +14,9 @@ export class MetadataTool extends Tool {
     return html;
   }
 
+  inputs = {};
+  inputTypes = [];
+
   hasInputs() {
     return true;
   }
