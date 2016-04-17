@@ -67,10 +67,10 @@ export class Edge {
 
     if (this.startNode === this.destNode) {
       this.isDirected = true;
-      this.updateSelfLoopEndpoints();
+      this.updateEndpoints();
     } else {
       for (let i = 0; i < this.partners.length; i++) {
-        this.partners[i].updateNormalEdgeEndpoints();
+        this.partners[i].updateEndpoints();
       }
     }
 
@@ -136,6 +136,7 @@ export class Edge {
     } else {
       this.updateNormalEdgeEndpoints();
     }
+    this.updateTextLocation();
   }
 
   containsPoint(x, y) {
@@ -157,6 +158,11 @@ export class Edge {
       context.lineTo(this.xText, this.yText);
       context.fill();
     }
+  }
+
+  updateTextLocation() {
+    this.xText = this.bezierPoint.x;
+    this.yText = this.bezierPoint.y;
   }
 
   // find the starting point of our text box
