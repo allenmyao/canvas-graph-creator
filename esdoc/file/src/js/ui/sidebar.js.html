@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -109,10 +108,9 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/sidebar.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { SidebarNode } from &apos;../ui/sidebar-node&apos;;
-import { SidebarEdge } from &apos;../ui/sidebar-edge&apos;;
-import { SidebarSelect } from &apos;../ui/sidebar-select&apos;;
-import { SidebarAlgorithm } from &apos;ui/sidebar-algorithm&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import SidebarDisplay from &apos;../ui/sidebar-display&apos;;
+import SidebarSelect from &apos;../ui/sidebar-select&apos;;
+import SidebarAlgorithm from &apos;ui/sidebar-algorithm&apos;;
 
 /**
  * This class manages the container for sidebar-content subclasses, and is responsible
@@ -133,8 +131,7 @@ class Sidebar {
 
   init(graph) {
     this.sidebarContent = {
-      node: new SidebarNode(graph),
-      edge: new SidebarEdge(graph),
+      display: new SidebarDisplay(graph),
       select: new SidebarSelect(graph),
       algorithm: new SidebarAlgorithm(graph)
     };

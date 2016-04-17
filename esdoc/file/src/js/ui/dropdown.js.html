@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -335,6 +334,7 @@ class Dropdown {
       let destCanvas = this.display.querySelector(&apos;canvas&apos;);
       if (srcCanvas &amp;&amp; destCanvas) {
         let destCtx = destCanvas.getContext(&apos;2d&apos;);
+        destCtx.clearRect(0, 0, destCanvas.width, destCanvas.height);
         destCtx.drawImage(srcCanvas, 0, 0);
       }
     } else {

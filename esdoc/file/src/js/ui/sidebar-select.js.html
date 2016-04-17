@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -109,31 +108,15 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/sidebar-select.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { SidebarContent } from &apos;../ui/sidebar-content&apos;;
-import * as Form from &apos;../ui/form&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import SidebarContent from &apos;../ui/sidebar-content&apos;;
 import { Node } from &apos;../data/node/node&apos;;
 import { Edge } from &apos;../data/edge/edge&apos;;
 
-export class SidebarSelect extends SidebarContent {
+class SidebarSelect extends SidebarContent {
   constructor(graph) {
     super(graph);
 
     this.selectedObject = null;
-
-    document.getElementById(&apos;sidebar&apos;).addEventListener(&apos;click&apos;, (event) =&gt; {
-      if (event.target.classList.contains(&apos;save-data&apos;)) {
-        let form = event.target.parentNode;
-        let data = Form.getData(form);
-        for (let name of Object.keys(data)) {
-          this.selectedObject[name] = data[name];
-        }
-        if (this.selectedObject instanceof Node) {
-          for (let edge of this.selectedObject.edges) {
-            edge.updateEndpoints();
-          }
-        }
-      }
-    });
   }
 
   display() {
@@ -141,8 +124,29 @@ export class SidebarSelect extends SidebarContent {
       data: &apos;Data&apos;
     });
 
+    this.tabs.setTabContent(&apos;data&apos;, &apos;&lt;form&gt;&lt;/form&gt;&apos;);
+
     this.update();
     this.tabs.selectTab(&apos;data&apos;);
+
+    document.getElementById(&apos;sidebar&apos;).querySelector(&apos;form&apos;).addEventListener(&apos;change&apos;, (event) =&gt; {
+      let input = event.target;
+      let name = input.name;
+      let value;
+      if (input.type === &apos;checkbox&apos;) {
+        value = input.checked;
+      } else if (input.type === &apos;number&apos;) {
+        value = parseInt(input.value, 10);
+      } else {
+        value = input.value;
+      }
+      this.selectedObject[name] = value;
+      if (this.selectedObject instanceof Node) {
+        for (let edge of this.selectedObject.edges) {
+          edge.updateEndpoints();
+        }
+      }
+    });
   }
 
   update(obj) {
@@ -157,28 +161,24 @@ export class SidebarSelect extends SidebarContent {
       html = this.displayGraph(this.graph);
       this.selectedObject = null;
     }
-    this.tabs.setTabContent(&apos;data&apos;, html);
+    this.tabs.getTabContentElement(&apos;data&apos;).querySelector(&apos;form&apos;).innerHTML = html;
   }
 
   displayGraph(graph) {
     return `
-      &lt;div class=&quot;data-container&quot;&gt;
-        &lt;form class=&quot;data-list&quot;&gt;
-          &lt;fieldset class=&quot;data-item&quot;&gt;
-            &lt;span class=&quot;label col-2&quot;&gt;Nodes&lt;/span&gt;
-            &lt;span class=&quot;value col-2&quot;&gt;${graph.nodes.size}&lt;/span&gt;
-          &lt;/fieldset&gt;
-          &lt;fieldset class=&quot;data-item&quot;&gt;
-            &lt;span class=&quot;label col-2&quot;&gt;Edges&lt;/span&gt;
-            &lt;span class=&quot;value col-2&quot;&gt;${graph.edges.size}&lt;/span&gt;
-          &lt;/fieldset&gt;
-        &lt;/form&gt;
-      &lt;/div&gt;
+      &lt;fieldset&gt;
+        &lt;span class=&quot;label col-2&quot;&gt;Nodes&lt;/span&gt;
+        &lt;span class=&quot;value col-2&quot;&gt;${graph.nodes.size}&lt;/span&gt;
+      &lt;/fieldset&gt;
+      &lt;fieldset&gt;
+        &lt;span class=&quot;label col-2&quot;&gt;Edges&lt;/span&gt;
+        &lt;span class=&quot;value col-2&quot;&gt;${graph.edges.size}&lt;/span&gt;
+      &lt;/fieldset&gt;
     `;
   }
 
   displayNode(node) {
-    return this.createForm(node, [
+    return this.createForm([
       {
         type: &apos;id&apos;,
         name: &apos;id&apos;,
@@ -267,7 +267,7 @@ export class SidebarSelect extends SidebarContent {
   }
 
   displayEdge(edge) {
-    return this.createForm(edge, [
+    return this.createForm([
       {
         type: &apos;id&apos;,
         name: &apos;id&apos;,
@@ -340,7 +340,7 @@ export class SidebarSelect extends SidebarContent {
     ]);
   }
 
-  createForm(object, fields) {
+  createForm(fields) {
     let html = &apos;&apos;;
 
     for (let field of fields) {
@@ -363,22 +363,18 @@ export class SidebarSelect extends SidebarContent {
 
       let displayName = field.displayName;
       html += `
-        &lt;fieldset class=&quot;data-item&quot;&gt;
+        &lt;fieldset&gt;
           &lt;span class=&quot;label col-2&quot;&gt;${displayName}&lt;/span&gt;
           &lt;span class=&quot;value col-2&quot;&gt;${fieldHtml}&lt;/span&gt;
         &lt;/fieldset&gt;`;
     }
 
-    return `
-      &lt;div class=&quot;data-container&quot;&gt;
-        &lt;form class=&quot;data-list&quot;&gt;
-          ${html}
-          &lt;button type=&quot;button&quot; class=&quot;save-data&quot;&gt;Save&lt;/button&gt;
-        &lt;/form&gt;
-      &lt;/div&gt;
-    `;
+    return html;
   }
 }
+
+export { SidebarSelect };
+export default SidebarSelect;
 </code></pre>
 
 </div>

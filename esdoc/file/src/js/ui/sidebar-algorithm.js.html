@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -109,13 +108,13 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/sidebar-algorithm.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { SidebarContent } from &apos;../ui/sidebar-content&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import SidebarContent from &apos;../ui/sidebar-content&apos;;
 import { Node } from &apos;../data/node/node&apos;;
 import { Edge } from &apos;../data/edge/edge&apos;;
 import * as Form from &apos;../ui/form&apos;;
 import * as AlgorithmInterface from &apos;../ui/algorithm&apos;;
 
-export class SidebarAlgorithm extends SidebarContent {
+class SidebarAlgorithm extends SidebarContent {
 
   currentInput;
 
@@ -326,6 +325,9 @@ export class SidebarAlgorithm extends SidebarContent {
   update(obj) {
   }
 }
+
+export { SidebarAlgorithm };
+export default SidebarAlgorithm;
 </code></pre>
 
 </div>

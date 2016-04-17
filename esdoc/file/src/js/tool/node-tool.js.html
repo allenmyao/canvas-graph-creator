@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -122,7 +121,6 @@ import { OctagonNode } from &apos;../data/node/octagon-node&apos;;
 export class NodeTool extends Tool {
 
   name = &apos;Node Tool&apos;;
-  sidebarType = &apos;node&apos;;
 
   currentMode = &apos;circle&apos;;
   static modes = {
@@ -160,10 +158,11 @@ export class NodeTool extends Tool {
   };
 
   optionContent = {
-    html: &apos;&lt;canvas  class=&quot;canvas-preview&quot; width=&quot;50&quot; height=&quot;50&quot;&gt;&lt;/canvas&gt;&apos;,
+    html: &apos;&lt;canvas class=&quot;canvas-preview&quot; width=&quot;50&quot; height=&quot;50&quot;&gt;&lt;/canvas&gt;&apos;,
     init: (optionElement, mode) =&gt; {
       let canvas = optionElement.querySelector(&apos;canvas&apos;);
       let context = canvas.getContext(&apos;2d&apos;);
+      context.clearRect(0, 0, canvas.width, canvas.height);
       let node = new NodeTool.modes[mode](25, 25);
       for (let field of Object.keys(this.inputs)) {
         node[field] = this.inputs[field];

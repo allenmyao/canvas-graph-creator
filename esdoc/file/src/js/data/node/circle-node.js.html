@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -158,7 +157,7 @@ class CircleNode extends Node {
     // Create an arc with center at (x, y)
     context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     // Draw to the canvas
-    // context.fill();
+    context.fill();
     context.stroke();
 
     if (this.nodeLabel !== &apos;&apos;) {
@@ -193,20 +192,22 @@ class CircleNode extends Node {
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
     context.moveTo(this.x + this.radius * 0.75, this.y);
     context.arc(this.x, this.y, this.radius * 0.75, 0, 2 * Math.PI);
+    context.fill();
     context.stroke();
   }
 
   drawStartingState(context) {
+    let endpoint = this.getAnglePoint(225);
     context.fillStyle = this.isSelected ? this.selectedColor : this.color;
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
-    context.moveTo(this.x - 55, this.y - 55);
-    context.lineTo(this.x - 25, this.y - 25);
+    context.moveTo(endpoint.x - 30, endpoint.y - 30);
+    context.lineTo(endpoint.x, endpoint.y);
     context.stroke();
     context.beginPath();
-    context.moveTo(this.x - 25, this.y - 25);
-    context.lineTo(this.x - 25 - 6 - 3, this.y - 25 - 6 + 3);
-    context.lineTo(this.x - 25 - 6, this.y - 25 - 6);
-    context.lineTo(this.x - 25 - 6 + 3, this.y - 25 - 6 - 3);
+    context.moveTo(endpoint.x, endpoint.y);
+    context.lineTo(endpoint.x - 6 - 3, endpoint.y - 6 + 3);
+    context.lineTo(endpoint.x - 6, endpoint.y - 6);
+    context.lineTo(endpoint.x - 6 + 3, endpoint.y - 6 - 3);
     context.closePath();
     context.fill();
   }

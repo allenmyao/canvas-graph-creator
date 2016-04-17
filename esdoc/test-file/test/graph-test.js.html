@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -115,8 +114,7 @@ import chai from &apos;chai&apos;;
 chai.should();
 
 import { Graph } from &apos;../src/js/data/graph&apos;;
-import { Node } from &apos;../src/js/data/node/node&apos;;
-import { CircleNode } from &apos;../src/js/data/node/circle-node&apos;;
+import { CircleNode as Node } from &apos;../src/js/data/node/circle-node&apos;;
 import { Edge } from &apos;../src/js/data/edge/edge&apos;;
 
 describe(&apos;Graph&apos;, () =&gt; {
@@ -298,7 +296,7 @@ describe(&apos;Graph&apos;, () =&gt; {
   describe(&apos;#hasComponent(x, y, ignore)&apos;, () =&gt; {
     it(&apos;should return false for empty graph&apos;, () =&gt; {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
+      let node1 = new Node(1, 1);
 
       graph.hasComponent(2, 2, node1).should.be.false;
     });
@@ -313,7 +311,7 @@ describe(&apos;Graph&apos;, () =&gt; {
 
     it(&apos;should return non-null when clicking on a node&apos;, () =&gt; {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
+      let node1 = new Node(1, 1);
       graph.addNode(node1);
 
       (graph.getComponent(1, 1) === null).should.be.false;
@@ -323,8 +321,8 @@ describe(&apos;Graph&apos;, () =&gt; {
   describe(&apos;#isNodeCollision(testNode, x, y)&apos;, () =&gt; {
     it(&apos;should return true if within 60&apos;, () =&gt; {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
-      let node2 = new CircleNode(20, 20);
+      let node1 = new Node(1, 1);
+      let node2 = new Node(20, 20);
       graph.addNode(node1);
 
       graph.isNodeCollision(node2, 20, 20).should.be.true;
@@ -332,8 +330,8 @@ describe(&apos;Graph&apos;, () =&gt; {
 
     it(&apos;should return false if farther than 60&apos;, () =&gt; {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
-      let node2 = new CircleNode(90, 90);
+      let node1 = new Node(1, 1);
+      let node2 = new Node(90, 90);
       graph.addNode(node1);
 
       graph.isNodeCollision(node2, 90, 90).should.be.false;

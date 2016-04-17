@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -109,13 +108,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Edge} from &apos;<span><a href="file/src/js/data/edge/edge.js.html#lineNumber24">canvas-graph-creator/src/js/data/edge/edge.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Edge} from &apos;<span><a href="file/src/js/data/edge/edge.js.html#lineNumber3">canvas-graph-creator/src/js/data/edge/edge.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/data/edge/edge.js.html#lineNumber24">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/data/edge/edge.js.html#lineNumber3">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -163,7 +162,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(startNode: <span>*</span>, destNode: <span>*</span>, bezierPoint: <span>*</span>, cost: <span>*</span>, isDirected: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(startNode: <span>*</span>, destNode: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -196,56 +195,6 @@
       <div>
         <p>
            <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-bezierPoint">bezierPoint</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-cost">cost</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-costType">costType</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -320,32 +269,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-isDirected">isDirected</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-isSelected">isSelected</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-isDirected">isDirected</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -371,31 +295,6 @@
       <div>
         <p>
            <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-partners">partners</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-showTextCtrl">showTextCtrl</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -446,56 +345,6 @@
       <div>
         <p>
            <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-member-startPoint">startPoint</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      <span class="kind" data-ice="kind">set</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-set-weight">weight</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      <span class="kind" data-ice="kind">get</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-get-weight">weight</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -702,82 +551,82 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-getCostType">getCostType</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-getEndpoints">getEndpoints</a></span></span><span data-ice="signature">(reference: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-setEndpoints">setEndpoints</a></span></span><span data-ice="signature">(reference: <span>*</span>, endpoint: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
            <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateEndpoints">updateEndpoints</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateNormalEdgeEndpoints">updateNormalEdgeEndpoints</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateSelfLoopEndpoints">updateSelfLoopEndpoints</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateTextLocation">updateTextLocation</a></span></span><span data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -808,11 +657,11 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(startNode: <span>*</span>, destNode: <span>*</span>, bezierPoint: <span>*</span>, cost: <span>*</span>, isDirected: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(startNode: <span>*</span>, destNode: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber30">source</a></span></span>
     </span>
   </h3>
 
@@ -841,27 +690,6 @@
       <td data-ice="name" data-depth="0">destNode</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">bezierPoint</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: null</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">cost</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: null</li></ul></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">isDirected</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: false</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -898,87 +726,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber69">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-cost">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">cost</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber70">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-costType">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">costType</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber66">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber100">source</a></span></span>
     </span>
   </h3>
 
@@ -1018,7 +766,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber68">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
@@ -1094,51 +842,11 @@
     
     
     
-    <span data-ice="name">isDirected</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">isDirected</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber71">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-isSelected">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">isSelected</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber72">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber69">source</a></span></span>
     </span>
   </h3>
 
@@ -1178,47 +886,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber73">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-showTextCtrl">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">showTextCtrl</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber141">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber54">source</a></span></span>
     </span>
   </h3>
 
@@ -1258,7 +926,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
@@ -1328,86 +996,6 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-set-weight">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">set</span>
-    
-    
-    <span data-ice="name">weight</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber160">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-get-weight">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">get</span>
-    
-    
-    <span data-ice="name">weight</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber175">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-member-xText">
     <span class="access" data-ice="access">public</span>
     
@@ -1418,7 +1006,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber268">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber198">source</a></span></span>
     </span>
   </h3>
 
@@ -1458,7 +1046,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber269">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber199">source</a></span></span>
     </span>
   </h3>
 
@@ -1501,7 +1089,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber242">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber176">source</a></span></span>
     </span>
   </h3>
 
@@ -1573,7 +1161,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber144">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber80">source</a></span></span>
     </span>
   </h3>
 
@@ -1613,7 +1201,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber246">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber180">source</a></span></span>
     </span>
   </h3>
 
@@ -1669,7 +1257,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber250">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber184">source</a></span></span>
     </span>
   </h3>
 
@@ -1725,7 +1313,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber264">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber203">source</a></span></span>
     </span>
   </h3>
 
@@ -1740,194 +1328,6 @@
 </div>
 
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-getCostType">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">getCostType</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber151">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-        
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-getEndpoints">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">getEndpoints</span><span data-ice="signature">(reference: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber179">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">reference</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-setEndpoints">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">setEndpoints</span><span data-ice="signature">(reference: <span>*</span>, endpoint: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber188">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">reference</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">endpoint</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
 
   
 
@@ -1950,6 +1350,126 @@
     
     
     <span data-ice="name">updateEndpoints</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber167">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-updateNormalEdgeEndpoints">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">updateNormalEdgeEndpoints</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber106">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-updateSelfLoopEndpoints">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">updateSelfLoopEndpoints</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber97">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-updateTextLocation">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">updateTextLocation</span><span data-ice="signature">()</span>
     <span class="right-info">
       
       

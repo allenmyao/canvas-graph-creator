@@ -198,15 +198,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "canvas-graph-creator/src/js/ui/sidebar-edge.js~sidebaredge",
-    "class/src/js/ui/sidebar-edge.js~SidebarEdge.html",
-    "<span>SidebarEdge</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar-edge.js</span>",
-    "class"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/sidebar-node.js~sidebarnode",
-    "class/src/js/ui/sidebar-node.js~SidebarNode.html",
-    "<span>SidebarNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar-node.js</span>",
+    "canvas-graph-creator/src/js/ui/sidebar-display.js~sidebardisplay",
+    "class/src/js/ui/sidebar-display.js~SidebarDisplay.html",
+    "<span>SidebarDisplay</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/sidebar-display.js</span>",
     "class"
   ],
   [
@@ -1111,193 +1105,193 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber11",
+    "test-file/test/graph-test.js.html#lineNumber10",
     "Graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber97",
+    "test-file/test/graph-test.js.html#lineNumber96",
     "Graph #addEdge(edge)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber107",
+    "test-file/test/graph-test.js.html#lineNumber106",
     "Graph #addEdge(edge) should add to edges",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber119",
+    "test-file/test/graph-test.js.html#lineNumber118",
     "Graph #addEdge(edge) should not add duplicate edge",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber98",
+    "test-file/test/graph-test.js.html#lineNumber97",
     "Graph #addEdge(edge) should throw error when edge nodes are not in graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber37",
+    "test-file/test/graph-test.js.html#lineNumber36",
     "Graph #addNode(node)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber38",
+    "test-file/test/graph-test.js.html#lineNumber37",
     "Graph #addNode(node) should add to nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber46",
+    "test-file/test/graph-test.js.html#lineNumber45",
     "Graph #addNode(node) should not add duplicate node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber12",
+    "test-file/test/graph-test.js.html#lineNumber11",
     "Graph #constructor(x, y)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber13",
+    "test-file/test/graph-test.js.html#lineNumber12",
     "Graph #constructor(x, y) should accept iterable arguments",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber30",
+    "test-file/test/graph-test.js.html#lineNumber29",
     "Graph #constructor(x, y) should work with no arguments",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber232",
+    "test-file/test/graph-test.js.html#lineNumber231",
     "Graph #forEachNode(callback)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber252",
+    "test-file/test/graph-test.js.html#lineNumber251",
     "Graph #forEachNode(callback) should break if callback(node) returns false",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber233",
+    "test-file/test/graph-test.js.html#lineNumber232",
     "Graph #forEachNode(callback) should run callback(node) for each node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber196",
+    "test-file/test/graph-test.js.html#lineNumber195",
     "Graph #getComponent(x, y)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber203",
+    "test-file/test/graph-test.js.html#lineNumber202",
     "Graph #getComponent(x, y) should return non-null when clicking on a node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber197",
+    "test-file/test/graph-test.js.html#lineNumber196",
     "Graph #getComponent(x, y) should return null for empty graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber187",
+    "test-file/test/graph-test.js.html#lineNumber186",
     "Graph #hasComponent(x, y, ignore)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber188",
+    "test-file/test/graph-test.js.html#lineNumber187",
     "Graph #hasComponent(x, y, ignore) should return false for empty graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber153",
+    "test-file/test/graph-test.js.html#lineNumber152",
     "Graph #hasEdge(start, dest)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber175",
+    "test-file/test/graph-test.js.html#lineNumber174",
     "Graph #hasEdge(start, dest) should not add duplicate edge",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber164",
+    "test-file/test/graph-test.js.html#lineNumber163",
     "Graph #hasEdge(start, dest) should return true if has edge",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber154",
+    "test-file/test/graph-test.js.html#lineNumber153",
     "Graph #hasEdge(start, dest) should throw error if nodes are not in graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber212",
+    "test-file/test/graph-test.js.html#lineNumber211",
     "Graph #isNodeCollision(testNode, x, y)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber222",
+    "test-file/test/graph-test.js.html#lineNumber221",
     "Graph #isNodeCollision(testNode, x, y) should return false if farther than 60",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber213",
+    "test-file/test/graph-test.js.html#lineNumber212",
     "Graph #isNodeCollision(testNode, x, y) should return true if within 60",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber134",
+    "test-file/test/graph-test.js.html#lineNumber133",
     "Graph #removeEdge(edge)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber135",
+    "test-file/test/graph-test.js.html#lineNumber134",
     "Graph #removeEdge(edge) should remove from edges",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber57",
+    "test-file/test/graph-test.js.html#lineNumber56",
     "Graph #removeNode(node)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber85",
+    "test-file/test/graph-test.js.html#lineNumber84",
     "Graph #removeNode(node) should not remove bogus node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber58",
+    "test-file/test/graph-test.js.html#lineNumber57",
     "Graph #removeNode(node) should remove from nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber68",
+    "test-file/test/graph-test.js.html#lineNumber67",
     "Graph #removeNode(node) should remove from nodes and edges",
     "test"
   ],
@@ -2622,18 +2616,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#cost",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-member-cost",
-    "src/js/data/edge/edge.js~Edge#cost",
-    "member"
-  ],
-  [
-    "src/js/data/edge/edge.js~edge#costtype",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-member-costType",
-    "src/js/data/edge/edge.js~Edge#costType",
-    "member"
-  ],
-  [
     "src/js/data/edge/edge.js~edge#destnode",
     "class/src/js/data/edge/edge.js~Edge.html#instance-member-destNode",
     "src/js/data/edge/edge.js~Edge#destNode",
@@ -2670,45 +2652,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#getcosttype",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-method-getCostType",
-    "src/js/data/edge/edge.js~Edge#getCostType",
-    "method"
-  ],
-  [
-    "src/js/data/edge/edge.js~edge#getendpoints",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-method-getEndpoints",
-    "src/js/data/edge/edge.js~Edge#getEndpoints",
-    "method"
-  ],
-  [
     "src/js/data/edge/edge.js~edge#isdirected",
     "class/src/js/data/edge/edge.js~Edge.html#instance-member-isDirected",
     "src/js/data/edge/edge.js~Edge#isDirected",
     "member"
   ],
   [
-    "src/js/data/edge/edge.js~edge#isselected",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-member-isSelected",
-    "src/js/data/edge/edge.js~Edge#isSelected",
-    "member"
-  ],
-  [
     "src/js/data/edge/edge.js~edge#partners",
     "class/src/js/data/edge/edge.js~Edge.html#instance-member-partners",
     "src/js/data/edge/edge.js~Edge#partners",
-    "member"
-  ],
-  [
-    "src/js/data/edge/edge.js~edge#setendpoints",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-method-setEndpoints",
-    "src/js/data/edge/edge.js~Edge#setEndpoints",
-    "method"
-  ],
-  [
-    "src/js/data/edge/edge.js~edge#showtextctrl",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-member-showTextCtrl",
-    "src/js/data/edge/edge.js~Edge#showTextCtrl",
     "member"
   ],
   [
@@ -2730,16 +2682,22 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#weight",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-get-weight",
-    "src/js/data/edge/edge.js~Edge#weight",
-    "member"
+    "src/js/data/edge/edge.js~edge#updatenormaledgeendpoints",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateNormalEdgeEndpoints",
+    "src/js/data/edge/edge.js~Edge#updateNormalEdgeEndpoints",
+    "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#weight",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-set-weight",
-    "src/js/data/edge/edge.js~Edge#weight",
-    "member"
+    "src/js/data/edge/edge.js~edge#updateselfloopendpoints",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateSelfLoopEndpoints",
+    "src/js/data/edge/edge.js~Edge#updateSelfLoopEndpoints",
+    "method"
+  ],
+  [
+    "src/js/data/edge/edge.js~edge#updatetextlocation",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateTextLocation",
+    "src/js/data/edge/edge.js~Edge#updateTextLocation",
+    "method"
   ],
   [
     "src/js/data/edge/edge.js~edge#xtext",
@@ -3847,13 +3805,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
@@ -4182,51 +4140,33 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/sidebar-edge.js",
-    "file/src/js/ui/sidebar-edge.js.html",
-    "src/js/ui/sidebar-edge.js",
+    "src/js/ui/sidebar-display.js",
+    "file/src/js/ui/sidebar-display.js.html",
+    "src/js/ui/sidebar-display.js",
     "file"
   ],
   [
-    "src/js/ui/sidebar-edge.js~sidebaredge#constructor",
-    "class/src/js/ui/sidebar-edge.js~SidebarEdge.html#instance-constructor-constructor",
-    "src/js/ui/sidebar-edge.js~SidebarEdge#constructor",
+    "src/js/ui/sidebar-display.js~sidebardisplay#constructor",
+    "class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-constructor-constructor",
+    "src/js/ui/sidebar-display.js~SidebarDisplay#constructor",
     "method"
   ],
   [
-    "src/js/ui/sidebar-edge.js~sidebaredge#display",
-    "class/src/js/ui/sidebar-edge.js~SidebarEdge.html#instance-method-display",
-    "src/js/ui/sidebar-edge.js~SidebarEdge#display",
+    "src/js/ui/sidebar-display.js~sidebardisplay#display",
+    "class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-display",
+    "src/js/ui/sidebar-display.js~SidebarDisplay#display",
     "method"
   ],
   [
-    "src/js/ui/sidebar-edge.js~sidebaredge#update",
-    "class/src/js/ui/sidebar-edge.js~SidebarEdge.html#instance-method-update",
-    "src/js/ui/sidebar-edge.js~SidebarEdge#update",
+    "src/js/ui/sidebar-display.js~sidebardisplay#displaygraph",
+    "class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-displayGraph",
+    "src/js/ui/sidebar-display.js~SidebarDisplay#displayGraph",
     "method"
   ],
   [
-    "src/js/ui/sidebar-node.js",
-    "file/src/js/ui/sidebar-node.js.html",
-    "src/js/ui/sidebar-node.js",
-    "file"
-  ],
-  [
-    "src/js/ui/sidebar-node.js~sidebarnode#constructor",
-    "class/src/js/ui/sidebar-node.js~SidebarNode.html#instance-constructor-constructor",
-    "src/js/ui/sidebar-node.js~SidebarNode#constructor",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-node.js~sidebarnode#display",
-    "class/src/js/ui/sidebar-node.js~SidebarNode.html#instance-method-display",
-    "src/js/ui/sidebar-node.js~SidebarNode#display",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-node.js~sidebarnode#update",
-    "class/src/js/ui/sidebar-node.js~SidebarNode.html#instance-method-update",
-    "src/js/ui/sidebar-node.js~SidebarNode#update",
+    "src/js/ui/sidebar-display.js~sidebardisplay#update",
+    "class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-update",
+    "src/js/ui/sidebar-display.js~SidebarDisplay#update",
     "method"
   ],
   [
@@ -4395,6 +4335,12 @@ window.esdocSearchIndex = [
     "src/js/ui/tabs.js~tabs#constructor",
     "class/src/js/ui/tabs.js~Tabs.html#instance-constructor-constructor",
     "src/js/ui/tabs.js~Tabs#constructor",
+    "method"
+  ],
+  [
+    "src/js/ui/tabs.js~tabs#displaytabs",
+    "class/src/js/ui/tabs.js~Tabs.html#instance-method-displayTabs",
+    "src/js/ui/tabs.js~Tabs#displayTabs",
     "method"
   ],
   [

@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -109,13 +108,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {SidebarSelect} from &apos;<span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber6">canvas-graph-creator/src/js/ui/sidebar-select.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SidebarSelect from &apos;<span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber5">canvas-graph-creator/src/js/ui/sidebar-select.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber6">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber5">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -227,7 +226,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-createForm">createForm</a></span></span><span data-ice="signature">(object: <span>*</span>, fields: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-createForm">createForm</a></span></span><span data-ice="signature">(fields: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -468,7 +467,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber6">source</a></span></span>
     </span>
   </h3>
 
@@ -527,7 +526,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber10">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
@@ -566,11 +565,11 @@
     
     
     
-    <span data-ice="name">createForm</span><span data-ice="signature">(object: <span>*</span>, fields: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span data-ice="name">createForm</span><span data-ice="signature">(fields: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber232">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber233">source</a></span></span>
     </span>
   </h3>
 
@@ -590,12 +589,6 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">object</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">fields</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
@@ -610,7 +603,7 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
         
       </tr>
     </table>
@@ -642,7 +635,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber12">source</a></span></span>
     </span>
   </h3>
 
@@ -682,7 +675,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber158">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber159">source</a></span></span>
     </span>
   </h3>
 
@@ -748,7 +741,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
@@ -814,7 +807,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber69">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber70">source</a></span></span>
     </span>
   </h3>
 
@@ -880,7 +873,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-select.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 

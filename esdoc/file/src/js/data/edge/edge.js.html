@@ -69,8 +69,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/dropdown.js~Dropdown.html">Dropdown</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html">SidebarAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html">SidebarContent</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-edge.js~SidebarEdge.html">SidebarEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-node.js~SidebarNode.html">SidebarNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html">SidebarDisplay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar-select.js~SidebarSelect.html">SidebarSelect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html">Sidebar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/status-bar.js~StatusBar.html">StatusBar</a></span></span></li>
@@ -110,28 +109,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/data/edge/edge.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from &apos;../../util/curvedEdge&apos;;
-import { CircleNode } from &apos;../node/circle-node&apos;;
 
-/*
-* Edge Class
-*   Represents an edge in the graph, and is also responsible for supplying draw functionality
-*
-*   Constructor accepts at least two parameters, startNode and destNode are mandatory, all others have default values, bezierPoint just becomes line midpoint
-*
-*   For the sake of organization and simplicity of use, try to only use the following members and functions
-*   Doing so will ensure that this class is used as intended, and also that our code is clean and organized
-*
-*   startNode
-*   destNode
-*   bezierPoint - returns a {x:,y:} object
-*   isDirected
-*   weight - get and set functions have been overloaded to hide confusing internals, can be assigned a number or a grammar string, access as a data member ie edge.weight = blah or blah = edge.weight
-*   getCostType() - returns whether or not this edge has a &quot;Grammar&quot;, &quot;Distance&quot;, or &quot;None&quot; type of cost associated with it
-*   getEndpoints(reference) - reference can be a node or a number(1,2), returns associated endpoint as {x:,y:}
-*   setEndpoints(reference, endpoint) - reference same as getEndpoints, enpoints must be a {x:,y:}
-*
-*   TODO:  implement better directed functionality, move in curvedEdge functionality
-*/
 export class Edge {
 
   static numEdges = 0;
@@ -141,6 +119,7 @@ export class Edge {
   startNode;
   destNode;
   isDirected;
+  partners = [];
 
   // status
   isSelected = false;
@@ -152,21 +131,19 @@ export class Edge {
   labelFont = &apos;14px Arial&apos;;
   labelColor = &apos;black&apos;;
   showTextCtrl = false;
-  cost;
-  costType;
 
   // appearance
   color = &apos;black&apos;;
   selectedColor = &apos;red&apos;;
   lineWidth = 1;
 
-  constructor(startNode, destNode, bezierPoint = null, cost = null, isDirected = false) {
+  constructor(startNode, destNode) {
     let methods = [
       &apos;draw&apos;
     ];
 
     for (let method of methods) {
-      if (typeof this[method] === &apos;undefined&apos; || typeof this[method] !== &apos;function&apos;) {
+      if (typeof this[method] !== &apos;function&apos;) {
         throw TypeError(&apos;Must override method: &apos; + method);
       }
     }
@@ -174,180 +151,136 @@ export class Edge {
     if (arguments.length &lt; 2) {
       throw Error(`Edge constructor requires at least two arguments: startNode and destNode. Actually passed in ${arguments}`);
     }
-    this.costType = null;
+
     this.startNode = startNode;
     this.destNode = destNode;
-    this.bezierPoint = bezierPoint;
-    this.cost = cost;
-    this.isDirected = isDirected;
-    this.isSelected = false;
-    this.partners = null;
-    for (let edge of this.startNode.edges) {
-      if (edge.startNode.id === this.startNode.id &amp;&amp; edge.destNode.id === this.destNode.id) {
-        this.partners = edge.partners.slice(0);
-        break;
-      } else if (edge.destNode.id === this.startNode.id &amp;&amp; edge.startNode.id === this.destNode.id) {
-        this.partners = edge.partners.slice(0);
-        break;
-      }
-    }
-    if (this.partners === null) {
-      this.partners = [ this ];
-    } else {
-      for (let i = 0; i &lt; this.partners.length; i++) {
-        this.partners[i].partners[this.partners[i].partners.length] = this;
-      }
-      this.partners[this.partners.length] = this;
-    }
 
     startNode.edges.add(this);
     destNode.edges.add(this);
 
-
-    if (this.startNode.id === this.destNode.id) {
-      let r = CircleNode.radius;
-      this.startPoint = this.startNode.getAnglePoint(240);
-      this.destPoint = this.startNode.getAnglePoint(300);
-      this.bezierPoint = {
-        x: (this.startPoint.x + this.destPoint.x) / 2,
-        y: this.startPoint.y - 2 * r
-      };
-      this.isDirected = true;
-    } else {
-      let incline = Math.asin((this.destNode.y - this.startNode.y) / Math.sqrt((this.destNode.x - this.startNode.x) * (this.destNode.x - this.startNode.x) + (this.destNode.y - this.startNode.y) * (this.destNode.y - this.startNode.y)));
-      incline = incline * 180 / Math.PI;
-      if (this.startNode.x &gt;= this.destNode.x) {
-        incline = 180 - incline;
-      }
-      incline = (incline + 360) % 360;
-      let numPartners = this.partners.length + 1;
-      for (let i = 0; i &lt; this.partners.length; i++) {
-        let startAngle = incline + 90 * (i + 1) / numPartners - 45;
-        let destAngle = incline + 225 - 90 * (i + 1) / numPartners;
-        try {
-          this.partners[i].startPoint = this.startNode.getAnglePoint(startAngle);
-          this.partners[i].destPoint = this.destNode.getAnglePoint(destAngle);
-        } catch (e) {
-          return;
-        }
-        let orient = (i + 1) / numPartners - 0.5;
-        let diff = {
-          x: this.partners[i].destPoint.x - this.partners[i].startPoint.x,
-          y: this.partners[i].destPoint.y - this.partners[i].startPoint.y
-        };
-        this.partners[i].bezierPoint = {
-          x: (this.partners[i].startPoint.x + this.partners[i].destPoint.x) / 2 - orient * diff.y,
-          y: (this.partners[i].startPoint.y + this.partners[i].destPoint.y) / 2 + orient * diff.x
-        };
+    // copy partners from an existing partner edge
+    for (let edge of this.startNode.edges) {
+      if (edge.startNode === this.startNode &amp;&amp; edge.destNode === this.destNode) {
+        this.partners = edge.partners.slice(0);
+        break;
+      } else if (edge.destNode === this.startNode &amp;&amp; edge.startNode === this.destNode) {
+        this.partners = edge.partners.slice(0);
+        break;
       }
     }
 
-    if (typeof cost === &apos;string&apos; || cost instanceof String) {
-      this.costType = false;
-    } else if (typeof cost === &apos;number&apos;) {
-      this.costType = true;
+    // add this edge to partners field of all partner edges
+    for (let i = 0; i &lt; this.partners.length; i++) {
+      this.partners[i].partners.push(this);
+    }
+    this.partners.push(this);
+
+    if (this.startNode === this.destNode) {
+      this.isDirected = true;
+      this.updateEndpoints();
+    } else {
+      for (let i = 0; i &lt; this.partners.length; i++) {
+        this.partners[i].updateEndpoints();
+      }
     }
 
     this.generateDefaultTextLocation();
-    this.showTextCtrl = false;
   }
 
   detach() {
+    // remove this edge from partners of all partner edges
+    for (let i = 0; i &lt; this.partners.length; i++) {
+      if (this.partners[i] === this) {
+        continue;
+      }
+      let index = this.partners[i].partners.indexOf(this);
+      this.partners[i].partners.splice(index, 1);
+      this.partners[i].updateEndpoints();
+    }
+
     this.startNode.edges.delete(this);
     this.destNode.edges.delete(this);
     this.startNode = null;
     this.destNode = null;
   }
 
-  getCostType() {
-    if (this.costType === false) {
-      return &apos;Grammar&apos;;
-    } else if (this.costType === true) {
-      return &apos;Distance&apos;;
-    }
-    return &apos;None&apos;;
+  updateSelfLoopEndpoints() {
+    this.startPoint = this.startNode.getAnglePoint(240);
+    this.destPoint = this.startNode.getAnglePoint(300);
+    this.bezierPoint = {
+      x: (this.startPoint.x + this.destPoint.x) / 2,
+      y: this.startPoint.y - 2 * this.startNode.radius
+    };
   }
 
-  set weight(cost) {
-    if (typeof cost === &apos;string&apos; || cost instanceof String) {
-      this.costType = false;
-      this.cost = cost;
-    } else if (typeof cost === &apos;number&apos;) {
-      this.costType = true;
-      this.cost = cost;
-    } else if (cost === null) {
-      this.costType = null;
-      this.cost = null;
-    } else {
-      throw Error(&apos;cost must be a s(S)tring or number&apos;);
-    }
-  }
+  updateNormalEdgeEndpoints() {
+    let dx = this.destNode.x - this.startNode.x;
+    let dy = this.destNode.y - this.startNode.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
 
-  get weight() {
-    return this.cost;
-  }
+    // calculate incline based on dy and distance
+    // this is the angle between x-axis and the line from startNode to destNode
+    let incline = Math.asin(dy / distance);
+    // convert from radians to degrees
+    incline = incline * 180 / Math.PI;
 
-  getEndpoints(reference) {
-    if (reference === this.startNode || reference === 1) {
-      return this.startPoint;
-    } else if (reference === this.destNode || reference === 2) {
-      return this.destPoint;
-    }
-    return null;
-  }
+    // Note that canvas coordinates increase towards the bottom right
+    // Quadrants are oriented as follows:
+    //       |
+    //   Q3  |  Q4
+    //       |
+    // ------------- +x
+    //       |
+    //   Q2  |  Q1
+    //       |
+    //       +y
+    //
 
-  setEndpoints(reference, endpoint) {
-    if (reference === this.startNode || reference === 1) {
-      this.startPoint = endpoint;
-    } else if (reference === this.destNode || reference === 2) {
-      this.destPoint = endpoint;
+    // if destNode.x &lt; startNode.x, the angle should end:
+    //   in the second quadrant if destNode.y &gt; startNode.y
+    //   in the third quadrant if destNode.y &lt; startNode.y
+    if (this.startNode.x &gt;= this.destNode.x) {
+      if (this.startNode.y &gt;= this.destNode.y) {
+        incline = (540 - incline) % 360;
+      } else {
+        incline = 180 - incline;
+      }
     }
-    return null;
+
+    let numPartners = this.partners.length + 1;
+    let multiIndex = this.partners.indexOf(this) + 1;
+
+    let ratio = multiIndex / numPartners;
+
+    // if the partner edge with index 0 is going in the opposite direction compared to the current edge
+    // then draw the current edge on the opposite side of the line connecting the two nodes
+    if (this.partners[0].startNode !== this.startNode) {
+      ratio = 1 - ratio;
+    }
+
+    let startAngle = incline + 90 * ratio - 45;
+    let destAngle = incline + 225 - 90 * ratio;
+    this.startPoint = this.startNode.getAnglePoint(startAngle);
+    this.destPoint = this.destNode.getAnglePoint(destAngle);
+
+    let orient = ratio - 0.5;
+    let diff = {
+      x: this.destPoint.x - this.startPoint.x,
+      y: this.destPoint.y - this.startPoint.y
+    };
+    this.bezierPoint = {
+      x: (this.startPoint.x + this.destPoint.x) / 2 - orient * diff.y,
+      y: (this.startPoint.y + this.destPoint.y) / 2 + orient * diff.x
+    };
   }
 
   updateEndpoints() {
-    if (this.startNode.id === this.destNode.id) {
-      let r = CircleNode.radius;
-      this.startPoint = this.startNode.getAnglePoint(240);
-      this.destPoint = this.startNode.getAnglePoint(300);
-      this.bezierPoint = {
-        x: (this.startPoint.x + this.destPoint.x) / 2,
-        y: this.startPoint.y - 2 * r
-      };
-      this.isDirected = true;
+    if (this.startNode === this.destNode) {
+      this.updateSelfLoopEndpoints();
     } else {
-      let incline = Math.asin((this.destNode.y - this.startNode.y) / Math.sqrt((this.destNode.x - this.startNode.x) * (this.destNode.x - this.startNode.x) + (this.destNode.y - this.startNode.y) * (this.destNode.y - this.startNode.y)));
-      incline = incline * 180 / Math.PI;
-      if (this.startNode.x &gt;= this.destNode.x) {
-        incline = 180 - incline;
-      }
-      incline = (incline + 360) % 360;
-      let numPartners = this.partners.length + 1;
-      let multiIndex = -1;
-      for (let i = 0; i &lt; this.partners.length; i++) {
-        if (this.partners[i].id === this.id) {
-          multiIndex = i + 1;
-          break;
-        }
-      }
-      let startAngle = incline + 90 * multiIndex / numPartners - 45;
-      let destAngle = incline + 225 - 90 * multiIndex / numPartners;
-      try {
-        this.startPoint = this.startNode.getAnglePoint(startAngle);
-        this.destPoint = this.destNode.getAnglePoint(destAngle);
-      } catch (e) {
-        return;
-      }
-      let orient = multiIndex / numPartners - 0.5;
-      let diff = {
-        x: this.destPoint.x - this.startPoint.x,
-        y: this.destPoint.y - this.startPoint.y
-      };
-      this.bezierPoint = {
-        x: (this.startPoint.x + this.destPoint.x) / 2 - orient * diff.y,
-        y: (this.startPoint.y + this.destPoint.y) / 2 + orient * diff.x
-      };
+      this.updateNormalEdgeEndpoints();
     }
+    this.updateTextLocation();
   }
 
   containsPoint(x, y) {
@@ -369,6 +302,11 @@ export class Edge {
       context.lineTo(this.xText, this.yText);
       context.fill();
     }
+  }
+
+  updateTextLocation() {
+    this.xText = this.bezierPoint.x;
+    this.yText = this.bezierPoint.y;
   }
 
   // find the starting point of our text box
