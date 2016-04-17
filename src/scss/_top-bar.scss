@@ -10,8 +10,7 @@
   overflow: visible;
   z-index: index($zindexes, top-bar);
 
-  #tool-modes,
-  #tool-inputs {
+  >* {
     vertical-align: top;
     display: inline-block;
     height: 100%;
