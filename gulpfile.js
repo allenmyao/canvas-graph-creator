@@ -103,6 +103,7 @@ gulp.task('webpack:build', [ 'prep' ], (callback) => {
       throw new gutil.PluginError('webpack:build', err);
     }
     gutil.log('[webpack:build]', stats.toString({
+      chunks: false,
       colors: true
     }));
     callback();
