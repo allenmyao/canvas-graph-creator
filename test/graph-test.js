@@ -4,8 +4,7 @@ import chai from 'chai';
 chai.should();
 
 import { Graph } from '../src/js/data/graph';
-import { Node } from '../src/js/data/node/node';
-import { CircleNode } from '../src/js/data/node/circle-node';
+import { CircleNode as Node } from '../src/js/data/node/circle-node';
 import { Edge } from '../src/js/data/edge/edge';
 
 describe('Graph', () => {
@@ -187,7 +186,7 @@ describe('Graph', () => {
   describe('#hasComponent(x, y, ignore)', () => {
     it('should return false for empty graph', () => {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
+      let node1 = new Node(1, 1);
 
       graph.hasComponent(2, 2, node1).should.be.false;
     });
@@ -202,7 +201,7 @@ describe('Graph', () => {
 
     it('should return non-null when clicking on a node', () => {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
+      let node1 = new Node(1, 1);
       graph.addNode(node1);
 
       (graph.getComponent(1, 1) === null).should.be.false;
@@ -212,8 +211,8 @@ describe('Graph', () => {
   describe('#isNodeCollision(testNode, x, y)', () => {
     it('should return true if within 60', () => {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
-      let node2 = new CircleNode(20, 20);
+      let node1 = new Node(1, 1);
+      let node2 = new Node(20, 20);
       graph.addNode(node1);
 
       graph.isNodeCollision(node2, 20, 20).should.be.true;
@@ -221,8 +220,8 @@ describe('Graph', () => {
 
     it('should return false if farther than 60', () => {
       let graph = new Graph();
-      let node1 = new CircleNode(1, 1);
-      let node2 = new CircleNode(90, 90);
+      let node1 = new Node(1, 1);
+      let node2 = new Node(90, 90);
       graph.addNode(node1);
 
       graph.isNodeCollision(node2, 90, 90).should.be.false;
