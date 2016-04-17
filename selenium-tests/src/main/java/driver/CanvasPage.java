@@ -33,16 +33,16 @@ public abstract class CanvasPage {
 	protected BufferedImage initialScreenshot;
 	protected HashMap<String, Point> elements;
 	protected WebDriver driver;
-	
+
 	public CanvasPage(WebDriver driver, String website) throws IOException
 	{
 		this.driver = driver;
 		elements = new HashMap<String, Point>();
-		
+
 		initialize(website);
 		initialScreenshot = getScreenshot();
 	}
-	
+
 	public void clickElement(String element)
 	{
 		Point coordinate = elements.get(element);
@@ -62,27 +62,19 @@ public abstract class CanvasPage {
 		elements.put(name, best);
 	}
 
-
-	
-	public void switchToFrame(String name)
-	{
-		driver.switchTo().frame(name);
-	}
 	public void selectCanvas(String xPath)
 	{
-
 		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
 	}
 	public void clickCanvas(int x, int y)
 	{
-		
-		new Actions(driver).moveToElement(canvas, x, y).click().build().perform();   
+		new Actions(driver).moveToElement(canvas, x, y).click().build().perform();
 	}
 	public void clickCanvas(String xPath, int x, int y)
 	{
 		new Actions(driver).moveToElement(driver.findElement(By.xpath(xPath)), x, y).click().build().perform();
 	}
-	
+
 	public BufferedImage getResource(String path) throws URISyntaxException, IOException
 	{
 		File file = new File(path);
@@ -119,7 +111,7 @@ public abstract class CanvasPage {
 		BufferedImage screenshot = getScreenshot();
 		assertEquals(count, ImageUtils.templateMatch(template, screenshot).size());
 	}
-	
+
 	public void initialize(String website) {
 		waitUntilLoaded();
 		driver.get(website);
@@ -128,12 +120,12 @@ public abstract class CanvasPage {
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
-	    
-		TakesScreenshot screenshot=(TakesScreenshot)driver; 
+
+		TakesScreenshot screenshot=(TakesScreenshot)driver;
         byte[] arrScreen = screenshot.getScreenshotAs(OutputType.BYTES);
-        
+
         return ImageIO.read(new ByteArrayInputStream(arrScreen));
-        
+
 		//return new AShot().coordsProvider(new WebDriverCoordsProvider())
 		  //.takeScreenshot(driver, canvas).getImage();
 		//return new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver).getImage();
