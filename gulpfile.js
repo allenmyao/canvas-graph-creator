@@ -42,12 +42,8 @@ gulp.task('lint', () => {
   return gulp.src([ SRC_FILES, TEST_FILES ])
       .pipe(eslint())
       .pipe(eslint.format())
-      .pipe(eslint.format('checkstyle', function (results) {
-        require('fs').writeFileSync(require('path').join(__dirname, 'eslint-output.xml'), results);
-      }))
       .pipe(eslint.results((results) => {
         // Called once for all ESLint results.
-        gutil.log('[lint]', 'Total Results: ' + results.length);
         gutil.log('[lint]', 'Total Warnings: ' + results.warningCount);
         gutil.log('[lint]', 'Total Errors: ' + results.errorCount);
       }))
