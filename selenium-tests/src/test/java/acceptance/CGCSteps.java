@@ -29,14 +29,13 @@ import model.Node;
 import utils.Utils;
 
 public class CGCSteps {
-	public static String IFRAME_NAME = "iframe";
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
-	
+
 	private HashMap<String, String> shortcuts;
 	private HashMap<String, Node> nodes;
 	private CGCPage cgc;
 	private WebDriver driver;
-	
+
 	@Before
 	public void setUp() throws IOException
 	{
@@ -44,7 +43,7 @@ public class CGCSteps {
 		nodes = new HashMap<String, Node>();
 		driver = DriverFactory.createDriver();
 		cgc = new CGCPage(driver);
-		
+
 		shortcuts.put("Edge", "//*[@id=\"toolbar\"]/ul/li[2]/div");
 	}
 	@After
@@ -55,7 +54,7 @@ public class CGCSteps {
 	@Given("I navigate to the home page")
 	public void navigateTo() throws Throwable
 	{
-		
+
 	}
 	@When("^.*do nothing$")
 	public void doNothing()
@@ -91,7 +90,7 @@ public class CGCSteps {
 		for(Coordinate s:coordinates)
 			System.out.println(s);
 	}
-	
+
 	@Then("^*the screen should match '(.+)'$")
 	public void checkScreenshot(String path) throws Throwable
 	{

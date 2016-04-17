@@ -30,8 +30,7 @@ import static org.junit.Assert.*;
 public class CGCPage extends CanvasPage{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
-	public static String HOME_PAGE = "http://127.0.0.1:8080/webpack-dev-server/index.html";
-	public static final String IFRAME = "iframe";
+	public static String HOME_PAGE = "http://127.0.0.1:8080/";
 	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
 
@@ -90,7 +89,6 @@ public class CGCPage extends CanvasPage{
 	public void initialize(String website)
 	{
 		super.initialize(website);
-		switchToFrame(IFRAME);
 		selectCanvas(CANVAS_XPATH);
 	}
 /*
@@ -100,7 +98,7 @@ public class CGCPage extends CanvasPage{
 		driver.reload();
 
 		//driver.addElement(EDGE_TOOL, "edge tool");
-	
+
 		return driver;
 	}
 	public static CGC create(String website, String browser) throws IOException

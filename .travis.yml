@@ -8,11 +8,11 @@ env:
   - CXX=g++-4.8
 
 before_script:
-  - npm install -g gulp codeclimate-test-reporter
+  - npm install -g gulp http-server codeclimate-test-reporter
 
-script: 
-  - gulp &
-  - sleep 30
+script:
+  - gulp build --silent
+  - http-server --silent -p 8080 -a 0.0.0.0 &
   - cd selenium-tests
   - mvn -q test -Dremote=sauce
   - cd ..
