@@ -1,32 +1,34 @@
-import * as Toolbar from '../ui/toolbar';
-import * as StatusBar from '../ui/status-bar';
-import * as Sidebar from '../ui/sidebar';
+import Toolbar from '../ui/toolbar';
+import StatusBar from '../ui/status-bar';
+import Sidebar from '../ui/sidebar';
+import TopBar from '../ui/top-bar';
+import Canvas from '../ui/canvas';
 import * as AlgorithmInterface from '../ui/algorithm';
 
-export function init(graph) {
-  Toolbar.init();
-  StatusBar.init();
-  Sidebar.init(graph);
-  AlgorithmInterface.init(graph);
+class UI {
+
+  topBar;
+  toolbar;
+  sidebar;
+  statusBar;
+  canvas;
+
+  constructor() {
+    this.topBar = new TopBar(this);
+    this.toolbar = new Toolbar(this);
+    this.sidebar = new Sidebar(this);
+    this.statusBar = new StatusBar(this);
+    this.canvas = new Canvas(this);
+  }
+
+  init(graph) {
+    this.sidebar.init(graph);
+    this.canvas.init(graph);
+    AlgorithmInterface.init(graph);
+  }
 }
 
-export function updateZoom(scale) {
-  StatusBar.updateZoom(scale);
-}
+const ui = new UI();
 
-export function updateMouse(x, y) {
-  StatusBar.updateMouse(x, y);
-}
-
-export function selectObject(obj) {
-  // Sidebar.updateSidebar(obj);
-}
-
-// function changeTool(tool) {}
-
-// function hoverObject(object) {}
-// function clickObject(object) {}
-// function dragObject(object) {}
-// function dropObject(object) {}
-
-// function updateObject(object) {}
+export { ui };
+export default ui;

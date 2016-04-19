@@ -1,268 +1,180 @@
-import { MouseHandler } from '../util/mouse-handler';
-import * as Toolbar from '../ui/toolbar';
-import * as UI from '../ui/ui';
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
 import { initCurved } from '../util/curvedEdge';
-
-let canvas;
-let context;
-let menu;
-let mouseHandler;
+import MouseHandler from '../util/mouse-handler';
+import ContextMenu from '../ui/context-menu';
 
 const SCALE_MODIFIER = 0.9;
-// scale of 0.5 means drawing at half size (0.5 pixels for each original pixel)
-let scale = 1;
-let dx = 0;
-let dy = 0;
 
-let menuState = 0;
-let menuPosX;
-let menuPosY;
-let component;
-let taskArg = {
-  'Add Circle Node': 'circle',
-  'Add Square Node': 'square',
-  'Toggle Accepting State': 'isAcceptingState',
-  'Toggle Start State': 'isStartingState',
-  'Toggle Directed Edge': 'isDirected',
-  'Delete Node': 'node',
-  'Delete Edge': 'edge'
-};
+class Canvas {
 
-export function init(graph) {
-  canvas = document.getElementById('canvas');
-  menu = document.getElementById('context-menu');
-  context = canvas.getContext('2d');
+  ui;
 
-  initCurved(canvas, context);
+  canvas;
+  context;
 
-  initMouseHandler(graph);
-}
+  // scale of 0.5 means drawing at half size (0.5 pixels for each original pixel)
+  scaleValue = 1;
+  dx = 0;
+  dy = 0;
 
-export function resize(event) {
-  context.canvas.width = window.innerWidth;
-  context.canvas.height = window.innerHeight;
-}
+  mouseHandler;
+  contextMenu;
 
-export function getDx() {
-  return dx;
-}
-
-export function getDy() {
-  return dy;
-}
-
-export function setPosition(newDx, newDy) {
-  dx = newDx;
-  dy = newDy;
-}
-
-export function getScale() {
-  return scale;
-}
-
-export function setScale(newScale) {
-  scale = newScale;
-  UI.updateZoom(scale);
-}
-
-export function reset() {
-  setPosition(0, 0);
-  setScale(1);
-  update();
-}
-
-function getCanvasX(event) {
-  let canvasX = event.offsetX;
-  let x = canvasX / scale + dx;
-  return x;
-}
-
-function getCanvasY(event) {
-  let canvasY = event.offsetY;
-  let y = canvasY / scale + dy;
-  return y;
-}
-
-export function getContext() {
-  return context;
-}
-
-export function clear() {
-  context.clearRect(dx, dy, canvas.width / scale, canvas.height / scale);
-}
-
-export function update() {
-  // reset the transformations done to the canvas
-  context.resetTransform();
-
-  // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies
-  // the translation before the scale.
-  // This is not what we want, since the scale is done relative to (0,0)
-  // and the position displayed at the top-left corner will no longer
-  // be (dx,dy), which means the coordinates under the mouse will change.
-
-  // scale both x- and y-axis
-  context.scale(scale, scale);
-
-  // context.translate(a, b) translates the canvas origin by (a,b).
-  // Since (dx,dy) are the coordinates calculated for the new origin, the
-  // canvas needs to be translated by (-dx,-dy).
-  context.translate(-dx, -dy);
-}
-
-function classDisplayChange(className, displayType) {
-  let items = document.getElementsByClassName(className);
-  for (let i = 0; i < items.length; ++i) {
-    items[i].style.display = displayType;
+  constructor(ui) {
+    this.ui = ui;
+    this.canvas = document.getElementById('canvas');
+    this.context = this.canvas.getContext('2d');
+    initCurved(this.canvas, this.context);
   }
-}
 
-function toggleContextMenu() {
-  if (menuState !== 1) {
-    document.getElementById('context-menu').style.display = 'block';
-    menuState = 1;
-  } else {
-    menuState = 0;
-    document.getElementById('context-menu').style.display = 'none';
-    classDisplayChange('component', 'none');
-    classDisplayChange('component-node', 'none');
-    classDisplayChange('component-edge', 'none');
-    classDisplayChange('blank', 'none');
+  init(graph) {
+    this.mouseHandler = new MouseHandler(graph);
+    this.contextMenu = new ContextMenu(this.ui, this.mouseHandler);
+    this.initListeners();
   }
-}
 
-function repositionMenu(event) {
-  let xpos = event.pageX;
-  let ypos = event.pageY;
+  resize(event) {
+    this.context.canvas.width = window.innerWidth;
+    this.context.canvas.height = window.innerHeight;
+  }
 
-  document.getElementById('context-menu').style.left = xpos + 'px';
-  document.getElementById('context-menu').style.top = ypos + 'px';
-}
+  get scale() {
+    return this.scaleValue;
+  }
 
-function initMouseHandler(graph) {
-  mouseHandler = new MouseHandler(graph);
+  set scale(scale) {
+    this.scaleValue = scale;
+    this.ui.statusBar.updateZoom(scale);
+  }
 
-  canvas.addEventListener('mousedown', (event) => {
-    let x = getCanvasX(event);
-    let y = getCanvasY(event);
+  reset() {
+    this.dx = 0;
+    this.dy = 0;
+    this.scale = 1;
+    this.update();
+  }
 
-    if (menuState === 0 && event.button !== 2) {
-      mouseHandler.downListener(event, Toolbar.getCurrentTool(), x, y);
-    }
-  }, false);
+  clear() {
+    this.context.clearRect(this.dx, this.dy, this.canvas.width / this.scale, this.canvas.height / this.scale);
+  }
 
-  menu.addEventListener('mouseup', (event) => {
-    let task = event.srcElement.innerText;
-    let type = task.split(' ')[0];
+  getCanvasX(event) {
+    let canvasX = event.offsetX;
+    let x = canvasX / this.scale + this.dx;
+    return x;
+  }
 
-    if (type === 'Add') {
-      mouseHandler.contextAdd(taskArg[task], menuPosX, menuPosY);
-    } else if (type === 'Toggle') {
-      mouseHandler.contextToggle(taskArg[task], component);
-    } else if (type === 'Delete') {
-      mouseHandler.contextDelete(taskArg[task], component);
-    } else if (type === 'Edit') {
-      Toolbar.toMetadata();
-      mouseHandler.contextSelect(event, Toolbar.getCurrentTool(), component, menuPosX, menuPosY);
-    }
+  getCanvasY(event) {
+    let canvasY = event.offsetY;
+    let y = canvasY / this.scale + this.dy;
+    return y;
+  }
 
-    toggleContextMenu();
-  }, false);
+  update() {
+    // reset the transformations done to the canvas
+    this.context.resetTransform();
 
-  canvas.addEventListener('mouseup', (event) => {
-    let x = getCanvasX(event);
-    let y = getCanvasY(event);
+    // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies
+    // the translation before the scale.
+    // This is not what we want, since the scale is done relative to (0,0)
+    // and the position displayed at the top-left corner will no longer
+    // be (dx,dy), which means the coordinates under the mouse will change.
 
-    if (menuState === 1) {
-      toggleContextMenu();
-    } else if (menuState === 0 && event.button !== 2) {
-      mouseHandler.upListener(event, Toolbar.getCurrentTool(), x, y);
-    }
-  }, false);
+    // scale both x- and y-axis
+    this.context.scale(this.scale, this.scale);
 
-  canvas.addEventListener('mousemove', (event) => {
-    let x = getCanvasX(event);
-    let y = getCanvasY(event);
+    // context.translate(a, b) translates the canvas origin by (a,b).
+    // Since (dx,dy) are the coordinates calculated for the new origin, the
+    // canvas needs to be translated by (-dx,-dy).
+    this.context.translate(-1 * this.dx, -1 * this.dy);
+  }
 
-    mouseHandler.moveListener(event, Toolbar.getCurrentTool(), x, y);
-  }, false);
+  initListeners() {
+    this.canvas.addEventListener('mousedown', (event) => {
+      let x = this.getCanvasX(event);
+      let y = this.getCanvasY(event);
 
-  canvas.addEventListener('contextmenu', (event) => {
-    menuPosX = getCanvasX(event);
-    menuPosY = getCanvasY(event);
-
-    component = mouseHandler.contextComponent(event, menuPosX, menuPosY);
-    event.preventDefault();
-
-    toggleContextMenu();
-
-    repositionMenu(event);
-
-    if (component !== null) {
-      classDisplayChange('component', 'block');
-      if (component instanceof Node) {
-        classDisplayChange('component-node', 'block');
-      } else if (component instanceof Edge) {
-        classDisplayChange('component-edge', 'block');
+      if (this.contextMenu.menuState === 0 && event.button !== 2) {
+        this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);
       }
-    } else {
-      classDisplayChange('blank', 'block');
-    }
-  }, false);
+    }, false);
 
-  canvas.addEventListener('wheel', (event) => {
-    // prevent page scrolling (the default scroll behavior)
-    event.preventDefault();
+    this.canvas.addEventListener('mouseup', (event) => {
+      let x = this.getCanvasX(event);
+      let y = this.getCanvasY(event);
 
-    // store the current scale value
-    let oldScale = scale;
+      if (this.contextMenu.menuState === 1) {
+        this.contextMenu.toggleContextMenu();
+      } else if (this.contextMenu.menuState === 0 && event.button !== 2) {
+        this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);
+      }
+    }, false);
 
-    // get the amount the mousewheel was scrolled
-    let delta = event.deltaY;
-    if (delta > 0) {
-      // scroll down
-      scale = Math.max(scale * SCALE_MODIFIER, 0.1);
-    } else if (delta < 0) {
-      // scroll up
-      scale = Math.min(scale / SCALE_MODIFIER, 10);
-    }
+    this.canvas.addEventListener('mousemove', (event) => {
+      let x = this.getCanvasX(event);
+      let y = this.getCanvasY(event);
 
-    // get the mouse position (relative to the canvas element)
-    let mouseX = event.offsetX;
-    let mouseY = event.offsetY;
+      this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
+    }, false);
 
-    // Calculate the new position of the displayed origin (top left corner).
-    // (dx,dy) are the coordinates of the top-left corner.
-    // (x1,y1) and (x2,y2) are the coordinates at the mouse position before
-    // and after changing the scale, respectively.
-    //
-    // With the old scale value:
-    //     dx1 = dx
-    //     dy1 = dy
-    //     x1 = dx + mouseX / oldScale
-    //     y1 = dy + mouseY / oldScale
-    //
-    // With new scale:
-    //     dx2 = dx + mouseX / oldScale - mouseX / scale
-    //     dy2 = dy + mouseY / oldScale - mouseY / scale
-    //     x2 = dx2 + mouseX / scale
-    //        = dx + mouseX / oldScale - mouseX / scale + mouseX / scale
-    //        = dx + mouseX / oldScale
-    //        = x1
-    //     y2 = dy2 + mouseY / scale
-    //        = dy + mouseY / oldScale - mouseY / scale + mouseY / scale
-    //        = dy + mouseY / oldScale
-    //        = y1
-    //
-    // Note that (x1,y1) = (x2,y2) which means the coordinates under
-    // the mouse stays the same.
-    dx += mouseX / oldScale - mouseX / scale;
-    dy += mouseY / oldScale - mouseY / scale;
+    this.canvas.addEventListener('contextmenu', (event) => {
+      this.contextMenu.contextmenuEventListener(event, this.getCanvasX(event), this.getCanvasY(event));
+    }, false);
 
-    update();
+    this.canvas.addEventListener('wheel', (event) => {
+      // prevent page scrolling (the default scroll behavior)
+      event.preventDefault();
 
-    UI.updateZoom(scale);
-  }, false);
+      // store the current scale value
+      let oldScale = this.scale;
+
+      // get the amount the mousewheel was scrolled
+      let delta = event.deltaY;
+      if (delta > 0) {
+        // scroll down
+        this.scale = Math.max(this.scale * SCALE_MODIFIER, 0.1);
+      } else if (delta < 0) {
+        // scroll up
+        this.scale = Math.min(this.scale / SCALE_MODIFIER, 10);
+      }
+
+      // get the mouse position (relative to the canvas element)
+      let mouseX = event.offsetX;
+      let mouseY = event.offsetY;
+
+      // Calculate the new position of the displayed origin (top left corner).
+      // (dx,dy) are the coordinates of the top-left corner.
+      // (x1,y1) and (x2,y2) are the coordinates at the mouse position before
+      // and after changing the scale, respectively.
+      //
+      // With the old scale value:
+      //     dx1 = dx
+      //     dy1 = dy
+      //     x1 = dx + mouseX / oldScale
+      //     y1 = dy + mouseY / oldScale
+      //
+      // With new scale:
+      //     dx2 = dx + mouseX / oldScale - mouseX / scale
+      //     dy2 = dy + mouseY / oldScale - mouseY / scale
+      //     x2 = dx2 + mouseX / scale
+      //        = dx + mouseX / oldScale - mouseX / scale + mouseX / scale
+      //        = dx + mouseX / oldScale
+      //        = x1
+      //     y2 = dy2 + mouseY / scale
+      //        = dy + mouseY / oldScale - mouseY / scale + mouseY / scale
+      //        = dy + mouseY / oldScale
+      //        = y1
+      //
+      // Note that (x1,y1) = (x2,y2) which means the coordinates under
+      // the mouse stays the same.
+      this.dx += mouseX / oldScale - mouseX / this.scale;
+      this.dy += mouseY / oldScale - mouseY / this.scale;
+
+      this.update();
+
+      this.ui.statusBar.updateZoom(this.scale);
+    }, false);
+  }
 }
+
+export { Canvas };
+export default Canvas;

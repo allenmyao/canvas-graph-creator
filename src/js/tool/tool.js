@@ -9,11 +9,15 @@ export class Tool {
   }
 
   hasModes() {
-    return false;
+    return typeof this.currentMode !== 'undefined'
+        && typeof this.constructor.modes !== 'undefined'
+        && typeof this.optionMap !== 'undefined'
+        && typeof this.optionContent !== 'undefined';
   }
 
   hasInputs() {
-    return false;
+    return typeof this.inputs !== 'undefined'
+        && typeof this.inputTypes !== 'undefined';
   }
 
   changeMode(mode) {

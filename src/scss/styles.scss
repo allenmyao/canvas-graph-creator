@@ -2,7 +2,11 @@
 @import 'mixins';
 @import 'base';
 
+@import 'zindexes';
+
 @import 'tabs';
+@import 'form';
+@import 'dropdown';
 
 @import 'navbar';
 @import 'top-bar';
@@ -29,19 +33,11 @@ textarea {
   padding: 5px;
   font-size: 1rem;
   font-family: $font-family-sans-serif;
-  @include border-radius($default-border-radius);
+  border-radius: $default-border-radius;
 }
 
 input[type="color"] {
   padding: 0;
-}
-
-fieldset.error {
-  color: red;
-
-  input, select, textarea, output {
-    border-color: red;
-  }
 }
 
 .col-2 {

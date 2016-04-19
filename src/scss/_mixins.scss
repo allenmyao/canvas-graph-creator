@@ -1,22 +1,31 @@
-@mixin border-radius($radius: 10px) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+/// Block Element
+/// @access public
+/// @param {String} $element - Element's name
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
 }
 
-@mixin transition($anim: all 300ms) {
-  -webkit-transition: $anim;
-     -moz-transition: $anim;
-      -ms-transition: $anim;
-       -o-transition: $anim;
-          transition: $anim;
+/// Block Modifier
+/// @access public
+/// @param {String} $modifier - Modifier's name
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
 }
 
-@mixin transform($anim) {
-  -webkit-transform: $anim;
-     -moz-transform: $anim;
-      -ms-transform: $anim;
-       -o-transform: $anim;
-          transform: $anim;
+/// @alias element
+@mixin el($element) {
+  @include element($element)  {
+    @content;
+  }
+}
+
+/// @alias modifier
+@mixin mod($modifier) {
+  @include modifier($modifier) {
+    @content;
+  }
 }
