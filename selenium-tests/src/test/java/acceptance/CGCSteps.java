@@ -86,7 +86,6 @@ public class CGCSteps {
 	{
 		Thread.sleep(420);
 		cgc.assertContains("src/test/resources/" + path);
-	    //cgc.assertContains(ImageIO.read(new File("src/test/resources/" + path)), 1);
 	}
 	@Then("^.*there (?:is|are|should be) (.+) nodes?$")
 	public void checkNodes(String nodes) throws Throwable
