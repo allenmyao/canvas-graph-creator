@@ -42,7 +42,7 @@ public class CGCSteps {
 		driver = DriverFactory.createDriver();
 		cgc = new CGCPage(driver);
 
-		shortcuts.put("Edge", "css=[data-tool=\"edge\"]");
+		shortcuts.put("Edge", "css=#toolbar .tool[data-tool=\"edge\"]");
 	}
 	@After
 	public void tearDown()

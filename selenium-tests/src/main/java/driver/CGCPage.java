@@ -70,7 +70,7 @@ public class CGCPage extends CanvasPage{
 
 
 	public void drawEdge(Node source, Node destination) {
-		selectTool("css=[data-tool=\"edge\"]");
+		selectTool("css=#toolbar .tool[data-tool=\"edge\"]");
 		//clickElement("edge tool");
 		if (source != selected)
 		{
