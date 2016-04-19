@@ -38,6 +38,10 @@ export function initListeners() {
   document.addEventListener('input', (event) => {
     checkInputEmpty(event);
   });
+
+  document.addEventListener('click', (event) => {
+    checkLabelClick(event);
+  });
 }
 
 function checkInputEmpty(event) {
@@ -47,6 +51,19 @@ function checkInputEmpty(event) {
       input.classList.add('empty');
     } else {
       input.classList.remove('empty');
+    }
+  }
+}
+
+function checkLabelClick(event) {
+  if (event.target.tagName === 'LABEL') {
+    let input = event.target.parentNode.querySelector('input, select, textarea');
+    let type = input.type;
+
+    if (type === 'checkbox' || type === 'radio' || type === 'color') {
+      input.click();
+    } else {
+      input.focus();
     }
   }
 }
