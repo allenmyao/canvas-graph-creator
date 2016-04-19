@@ -1,4 +1,5 @@
 import SidebarContent from '../ui/sidebar-content';
+import * as Form from '../ui/form';
 
 class SidebarDisplay extends SidebarContent {
   constructor(graph) {
@@ -22,16 +23,18 @@ class SidebarDisplay extends SidebarContent {
   }
 
   displayGraph(graph) {
-    return `
-      <fieldset>
-        <span class="label col-2">Nodes</span>
-        <span class="value col-2">${graph.nodes.size}</span>
-      </fieldset>
-      <fieldset>
-        <span class="label col-2">Edges</span>
-        <span class="value col-2">${graph.edges.size}</span>
-      </fieldset>
-    `;
+    return Form.createForm([
+      {
+        type: 'size',
+        value: graph.nodes.size,
+        displayName: 'Nodes'
+      },
+      {
+        type: 'size',
+        value: graph.edges.size,
+        displayName: 'Edges'
+      }
+    ]);
   }
 }
 

@@ -6,31 +6,30 @@
   width: 100%;
   height: $top-bar-height;
   background: white;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $primary-gray-color;
   overflow: visible;
   z-index: index($zindexes, top-bar);
 
-  >* {
+  >div {
     vertical-align: top;
     display: inline-block;
     height: 100%;
-    padding: 10px;
   }
 
   #tool-modes {
+    padding: 20px;
+    display: inline-flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+
     .dropdown-select {
       display: none;
     }
 
-    .dropdown {
-
-      .dropdown__menu__list__item {
-
-        .canvas-preview {
-          width: 50px;
-          height: 50px;
-        }
-      }
+    .canvas-preview {
+      width: 50px;
+      height: 50px;
     }
   }
 
@@ -38,24 +37,12 @@
     form {
       display: flex;
       height: 100%;
-      align-items: center;
       justify-content: center;
       flex-flow: column wrap;
       align-content: stretch;
 
-      fieldset {
-        vertical-align: top;
-        display: inline-block;
-        height: 40px;
-        margin: 0 10px;
-
-        input {
-          max-width: 100px;
-        }
-
-        span {
-          display: inline-block;
-        }
+      >fieldset {
+        margin-left: 40px;
       }
     }
   }

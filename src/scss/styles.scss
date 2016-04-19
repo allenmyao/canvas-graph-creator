@@ -6,6 +6,7 @@
 
 @import 'tabs';
 @import 'form';
+@import 'button';
 @import 'dropdown';
 
 @import 'navbar';
@@ -18,26 +19,6 @@
 html {
   font-family: $font-family-sans-serif;
   font-size: 16px;
-}
-
-body {
-}
-
-input,
-output,
-button,
-select,
-textarea {
-  max-width: 100%;
-  border: 1px solid gray;
-  padding: 5px;
-  font-size: 1rem;
-  font-family: $font-family-sans-serif;
-  border-radius: $default-border-radius;
-}
-
-input[type="color"] {
-  padding: 0;
 }
 
 .col-2 {

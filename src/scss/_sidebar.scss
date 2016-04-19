@@ -4,7 +4,7 @@
   right: 0;
   bottom: $status-bar-height;
   width: $sidebar-width;
-  border-left: 1px solid black;
+  border-left: 1px solid $primary-gray-color;
   background: white;
   font-size: 1rem;
 
@@ -32,7 +32,6 @@
     }
 
     .tab-content {
-      padding: 10px;
       overflow-y: auto;
     }
   }
@@ -54,20 +53,11 @@
   form {
     display: block;
     width: 100%;
+    padding: 0 20px;
+    font-size: 1rem;
 
     fieldset {
-      display: block;
-      font-size: 0;
-
-      &:not(:first-child) {
-        margin: 5px 0;
-        padding-top: 5px;
-        border-top: 1px solid #ccc;
-      }
-
-      span {
-        font-size: 1rem;
-      }
+      width: 100%;
     }
   }
 
