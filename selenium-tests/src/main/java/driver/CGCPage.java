@@ -1,32 +1,14 @@
 package driver;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 
-import org.bytedeco.javacv.*;
-import org.bytedeco.javacpp.*;
-import org.bytedeco.javacpp.opencv_core.CvPoint;
-import org.bytedeco.javacpp.opencv_core.CvScalar;
-import org.bytedeco.javacpp.opencv_core.IplImage;
-import org.bytedeco.javacpp.opencv_core.Mat;
-
-import static org.bytedeco.javacpp.opencv_core.*;
-import static org.bytedeco.javacpp.opencv_imgproc.*;
-import static org.bytedeco.javacpp.opencv_highgui.*;
-import static org.bytedeco.javacpp.opencv_imgcodecs.*;
-import static org.bytedeco.javacpp.opencv_calib3d.*;
-import static org.bytedeco.javacpp.opencv_objdetect.*;
 
 import model.Node;
-import utils.ImageUtils;
-
-import static org.junit.Assert.*;
 public class CGCPage extends CanvasPage{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
@@ -50,23 +32,23 @@ public class CGCPage extends CanvasPage{
 	}
 
 
-	public Node createNode(int x, int y) {
+	public Node createNode(Point point) {
 		deselect();
-		clickCanvas(x, y);
-		Node node = new Node(x, y);
+		clickCanvas(point);
+		Node node = new Node(point);
 		return node;
 	}
 	public void deselect()
 	{
 		if(selected != null)
 		{
-			clickCanvas(selected.x, selected.y);
+			clickCanvas(selected.point);
 			selected = null;
 		}
 	}
 	public void selectTool(String xPath)
 	{
-		clickCanvas(xPath, 20, 20);
+		clickCanvas(xPath, new Point(20, 20));
 	}
 
 
@@ -84,7 +66,7 @@ public class CGCPage extends CanvasPage{
 	}
 
 	public void clickNode(Node node) {
-		clickCanvas(node.x, node.y);
+		clickCanvas(node.point);
 	}
 	@Override
 	public void initialize(String website)
