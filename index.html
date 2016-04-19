@@ -12,7 +12,7 @@
 
     <nav id="navbar">
       <div>
-        <span class="logo">Canvas Graph Creator</span>
+        <a href="" class="logo">Canvas Graph Creator</a>
       </div>
       <div>
         <ul class="nav-list">
@@ -41,56 +41,36 @@
     <div id="toolbar">
       <ul class="tool-list">
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper selected" data-tool="node">
-            <span class="vcenter">Add Node</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="node">Add Node</button>
         </li>
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="edge">
-            <span class="vcenter">Add Edge</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="edge">Add Edge</button>
         </li>
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="select">
-            <span class="vcenter">Select Object</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="select">Select Object</button>
         </li>
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="move">
-            <span class="vcenter">Move Object</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="move">Move Object</button>
         </li>
         <!--
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="editnode">
-            <span class="vcenter">Edit Node</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="editnode">Edit Node</button>
         </li>
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="editedge">
-            <span class="vcenter">Edit Edge</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="editedge">Edit Edge</button>
         </li>
         -->
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="erase">
-            <span class="vcenter">Erase Object</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="erase">Erase Object</button>
         </li>
         <li class="tool-listitem">
-            <div class="tool vcenter-wrapper" data-tool="metadata">
-                <span class="vcenter">Edit Label</span>
-            </div>
+          <button type="button" class="tool btn-raised" data-tool="metadata">Edit Label</button>
         </li>
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="pan">
-            <span class="vcenter">Pan</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="pan">Pan</button>
         </li>
         <li class="tool-listitem">
-          <div class="tool vcenter-wrapper" data-tool="algorithm">
-            <span class="vcenter">Algorithm</span>
-          </div>
+          <button type="button" class="tool btn-raised" data-tool="algorithm">Algorithm</button>
         </li>
       </ul>
     </div>
@@ -110,7 +90,7 @@
       <div id="zoom" class="status-bar-item">
         <label>Zoom: </label>
         <input type="text" id="zoom-input" value="100%" />
-        <button type="button" id="reset-transform">Reset</button>
+        <button type="button" id="reset-transform" class="btn-flat">Reset</button>
       </div>
       <div id="mouse-pos" class="status-bar-item">
         <span>x: <span id="mouse-x">0</span></span>
