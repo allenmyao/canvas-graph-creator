@@ -12,7 +12,8 @@ import model.Node;
 public class CGCPage extends CanvasPage{
 
 	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
-	public static String HOME_PAGE = "http://127.0.0.1:8080/webpack-dev-server/index.html";
+	public static String HOME_PAGE = "http://127.0.0.1:8080/";
+
 	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
 
