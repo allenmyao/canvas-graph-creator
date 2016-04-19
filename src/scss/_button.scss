@@ -19,8 +19,12 @@ button {
     background: none;
     color: $primary-gray-color;
 
+    &:hover {
+      background: $primary-gray-lightest-color;
+    }
+
     &:active {
-      background: $primary-gray-alt-color;
+      background: $primary-gray-lighter-color;
     }
   }
 

@@ -3,7 +3,7 @@ $dropdown-menu-padding: 10px;
 .dropdown {
   position: relative;
   border-bottom: 1px solid #777;
-  background: white;
+  background: none;
   font-size: 0;
 
   &--hidden {
@@ -52,6 +52,7 @@ $dropdown-menu-padding: 10px;
     left: 0;
     z-index: 9999;
     display: none;
+    width: 100%;
     padding: $dropdown-menu-padding 0;
     background: white;
     box-shadow: 0 0 6px rgba(0, 0, 0, .12), 0 4px 6px rgba(0, 0, 0, .20);
@@ -77,16 +78,6 @@ $dropdown-menu-padding: 10px;
         &--selected {
           margin: 0px;
           // background: $primary-color; //#8DB1BF
-        }
-
-        * {
-          pointer-events: none;
-        }
-
-        >span {
-          display: inline-block;
-          padding: 3px;
-          font-size: 1rem;
         }
       }
     }

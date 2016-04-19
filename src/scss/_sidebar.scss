@@ -3,9 +3,10 @@
   top: $navbar-height + $top-bar-height;
   right: 0;
   bottom: $status-bar-height;
+  z-index: index($zindexes, sidebar);
   width: $sidebar-width;
-  border-left: 1px solid $primary-gray-color;
   background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), -2px 0 8px rgba(0, 0, 0, 0.28);
   font-size: 1rem;
 
   .tabs-container {

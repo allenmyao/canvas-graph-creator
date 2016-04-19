@@ -3,11 +3,11 @@
   top: $navbar-height + $top-bar-height;
   bottom: $status-bar-height;
   left: 0;
+  z-index: index($zindexes, toolbar);
   width: $toolbar-width;
   overflow-y: auto;
-  border-right: 1px solid $primary-gray-color;
   background: white;
-  z-index: index($zindexes, toolbar);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 2px 0 8px rgba(0, 0, 0, 0.28);
 }
 
 .tool-list {

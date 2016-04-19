@@ -51,6 +51,7 @@ class Canvas {
     this.dy = 0;
     this.scale = 1;
     this.update();
+    this.ui.statusBar.updateMouse(0, 0);
   }
 
   clear() {

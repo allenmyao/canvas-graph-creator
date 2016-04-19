@@ -52,6 +52,7 @@ form {
       height: 2em;
       border: none;
       border-bottom: 1px solid $primary-gray-color;
+      background: none;
       line-height: 15px;
       font-size: 1em;
       font-family: $font-family-sans-serif;
@@ -80,6 +81,7 @@ form {
         top: 0px;
         line-height: 15px;
         font-size: 0.9em;
+        pointer-events: none;
       }
 
       ~ label,
@@ -89,6 +91,7 @@ form {
         left: 0px;
         line-height: 2em;
         font-size: 1em;
+        cursor: text;
       }
     }
 
@@ -101,10 +104,11 @@ form {
       display: inline-block;
       width: 1.5em;
       height: 1.5em;
-      border: 2px solid $primary-gray-color;
-      border-radius: 2px;
       margin: 0;
       padding: 5px;
+      border: 2px solid $primary-gray-color;
+      border-radius: 2px;
+      background: none;
       cursor: pointer;
 
       &:focus {
@@ -138,13 +142,17 @@ form {
         margin-left: 10px;
         font-size: 1em;
         color: $primary-gray-color;
+        cursor: pointer;
       }
     }
 
     input[type="color"] {
+      padding: 0;
+      cursor: pointer;
 
       ~ label {
         font-size: 1em;
+        cursor: pointer;
       }
     }
 
@@ -152,7 +160,6 @@ form {
       color: $primary-gray-light-color;
       font-weight: normal;
       transition: all 0.15s ease-out;
-      pointer-events: none;
     }
   }
 }

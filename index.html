@@ -87,15 +87,45 @@
     </div>
 
     <div id="status-bar">
-      <div id="zoom" class="status-bar-item">
-        <label>Zoom: </label>
-        <input type="text" id="zoom-input" value="100%" />
-        <button type="button" id="reset-transform" class="btn-flat">Reset</button>
-      </div>
-      <div id="mouse-pos" class="status-bar-item">
-        <span>x: <span id="mouse-x">0</span></span>
-        <span>y: <span id="mouse-y">0</span></span>
-      </div>
+      <ul class="status-bar__itemlist">
+        <li class="status-bar__itemlist__item">
+          <form id="zoom">
+            <fieldset>
+              <div class="flex">
+                <input type="text" id="zoom-input" value="100%" list="zoom-list">
+                <datalist id="zoom-list">
+                  <option value="10"></option>
+                  <option value="25"></option>
+                  <option value="50"></option>
+                  <option value="75"></option>
+                  <option value="100"></option>
+                  <option value="125"></option>
+                  <option value="150"></option>
+                  <option value="200"></option>
+                  <option value="400"></option>
+                  <option value="600"></option>
+                  <option value="800"></option>
+                  <option value="1000"></option>
+                </datalist>
+                <label>Zoom</label>
+              </div>
+            </fieldset>
+            <button type="button" id="reset-transform" class="btn-flat">Reset</button>
+          </form>
+        </li>
+        <li class="status-bar__itemlist__item">
+          <form id="mouse-pos">
+            <fieldset>
+              <label>x</label>
+              <output id="mouse-x">0</output>
+            </fieldset>
+            <fieldset>
+              <label>y</label>
+              <output id="mouse-y">0</output>
+            </fieldset>
+          </form>
+        </li>
+      </ul>
     </div>
   </div>
 

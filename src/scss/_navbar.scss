@@ -3,10 +3,12 @@
   top: 0;
   right: 0;
   left: 0;
+  z-index: index($zindexes, navigation);
   width: 100%;
   height: $navbar-height;
   padding: 0 10px;
   background: $primary-color;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   font-weight: 600;
 
   >div {
