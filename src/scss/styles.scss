@@ -4,11 +4,12 @@
 
 @import 'zindexes';
 
-@import 'tabs';
-@import 'form';
 @import 'button';
 @import 'dropdown';
+@import 'form';
+@import 'tabs';
 
+@import 'context-menu';
 @import 'navbar';
 @import 'top-bar';
 @import 'toolbar';
@@ -21,42 +22,8 @@ html {
   font-size: 16px;
 }
 
-.col-2 {
-  display: inline-block;
-  vertical-align: top;
-  width: 50%;
-}
-
 .container {
   width: 100%;
   height: 100%;
   margin: auto;
-}
-
-#context-menu {
-  display: none;
-  position: absolute;
-  z-index: 10;
-  border: 1px solid black;
-  background: #aaa;
-}
-
-#context-menu .component-node{
-  display: none;
-  padding: 5px;
-}
-
-#context-menu .component-edge{
-  display: none;
-  padding: 5px;
-}
-
-#context-menu .blank {
-  display: none;
-  padding: 5px;
-}
-
-#context-menu .component {
-  display: none;
-  padding: 5px;
 }
