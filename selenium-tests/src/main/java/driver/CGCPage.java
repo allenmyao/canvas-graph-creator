@@ -29,7 +29,7 @@ import utils.ImageUtils;
 import static org.junit.Assert.*;
 public class CGCPage extends CanvasPage{
 
-	public static String CANVAS_CSS_SELECTOR = "css=#canvas";
+	public static String CANVAS_CSS_SELECTOR = "#canvas";
 	public static String HOME_PAGE = "http://127.0.0.1:8080/";
 	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
@@ -70,7 +70,7 @@ public class CGCPage extends CanvasPage{
 
 
 	public void drawEdge(Node source, Node destination) {
-		selectTool("css=#toolbar .tool[data-tool=\"edge\"]");
+		selectTool("#toolbar .tool[data-tool=\"edge\"]");
 		//clickElement("edge tool");
 		if (source != selected)
 		{
