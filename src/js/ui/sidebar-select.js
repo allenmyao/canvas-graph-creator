@@ -21,22 +21,11 @@ class SidebarSelect extends SidebarContent {
     this.tabs.selectTab('data');
 
     document.getElementById('sidebar').querySelector('form').addEventListener('input', (event) => {
-      let input = event.target;
-      let name = input.name;
-      let value;
-      if (input.type === 'checkbox') {
-        value = input.checked;
-      } else if (input.type === 'number') {
-        value = parseInt(input.value, 10);
-      } else {
-        value = input.value;
-      }
-      this.selectedObject[name] = value;
-      if (this.selectedObject instanceof Node) {
-        for (let edge of this.selectedObject.edges) {
-          edge.updateEndpoints();
-        }
-      }
+      this.updateObjectValues(event);
+    });
+
+    document.getElementById('sidebar').querySelector('form').addEventListener('change', (event) => {
+      this.updateObjectValues(event);
     });
   }
 
@@ -53,6 +42,18 @@ class SidebarSelect extends SidebarContent {
       this.selectedObject = null;
     }
     this.tabs.getTabContentElement('data').querySelector('form').innerHTML = html;
+  }
+
+  updateObjectValues(event) {
+    let input = event.target;
+    let name = input.name;
+    let value = Form.getInputValue(input);
+    this.selectedObject[name] = value;
+    if (this.selectedObject instanceof Node) {
+      for (let edge of this.selectedObject.edges) {
+        edge.updateEndpoints();
+      }
+    }
   }
 
   displayGraph(graph) {

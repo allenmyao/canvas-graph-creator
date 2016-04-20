@@ -71,6 +71,18 @@ function checkLabelClick(event) {
   }
 }
 
+export function getInputValue(input) {
+  let value;
+  if (input.type === 'checkbox') {
+    value = input.checked;
+  } else if (input.type === 'number') {
+    value = parseInt(input.value, 10);
+  } else {
+    value = input.value;
+  }
+  return value;
+}
+
 export function createForm(fields) {
   let html = '';
 
