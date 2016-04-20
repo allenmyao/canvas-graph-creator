@@ -35,6 +35,7 @@ class Canvas {
   resize(event) {
     this.context.canvas.width = window.innerWidth;
     this.context.canvas.height = window.innerHeight;
+    this.update();
   }
 
   get scale() {
