@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -108,13 +111,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SidebarDisplay from &apos;<span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber3">canvas-graph-creator/src/js/ui/sidebar-display.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SidebarDisplay from &apos;<span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber4">canvas-graph-creator/src/js/ui/sidebar-display.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber4">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -220,7 +223,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-displayGraph">displayGraph</a></span></span><span data-ice="signature">(graph: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-displayGraph">displayGraph</a></span></span><span data-ice="signature">(graph: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -361,7 +364,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber5">source</a></span></span>
     </span>
   </h3>
 
@@ -421,7 +424,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
@@ -457,11 +460,11 @@
     
     
     
-    <span data-ice="name">displayGraph</span><span data-ice="signature">(graph: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span data-ice="name">displayGraph</span><span data-ice="signature">(graph: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber24">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -495,7 +498,7 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
         
       </tr>
     </table>
@@ -527,7 +530,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-display.js.html#lineNumber20">source</a></span></span>
     </span>
   </h3>
 

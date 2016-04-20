@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -109,6 +112,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/top-bar.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Dropdown from &apos;../ui/dropdown&apos;;
+import * as Form from &apos;../ui/form&apos;;
 
 class TopBar {
 
@@ -139,20 +143,28 @@ class TopBar {
       this.ui.toolbar.currentTool.changeMode(event.target.value);
     });
 
-    this.inputForm.addEventListener(&apos;change&apos;, (event) =&gt; {
-      let input = event.target;
-      let name = input.name;
-      let value;
-      if (input.type === &apos;checkbox&apos;) {
-        value = input.checked;
-      } else if (input.type === &apos;number&apos;) {
-        value = parseInt(input.value, 10);
-      } else {
-        value = input.value;
-      }
-      this.ui.toolbar.currentTool.inputs[name] = value;
-      this.dropdown.updateOptionContent();
+    this.inputForm.addEventListener(&apos;input&apos;, (event) =&gt; {
+      this.updateInputValues(event);
     });
+
+    this.inputForm.addEventListener(&apos;change&apos;, (event) =&gt; {
+      this.updateInputValues(event);
+    });
+  }
+
+  updateInputValues(event) {
+    let input = event.target;
+    let name = input.name;
+    let value;
+    if (input.type === &apos;checkbox&apos;) {
+      value = input.checked;
+    } else if (input.type === &apos;number&apos;) {
+      value = parseInt(input.value, 10);
+    } else {
+      value = input.value;
+    }
+    this.ui.toolbar.currentTool.inputs[name] = value;
+    this.dropdown.updateOptionContent();
   }
 
   showModes() {
@@ -177,45 +189,17 @@ class TopBar {
   showInputs() {
     let currentTool = this.ui.toolbar.currentTool;
     if (currentTool.hasInputs()) {
-      let inputTypes = currentTool.inputTypes;
+      let inputTypes = Object.create(currentTool.inputTypes);
       let inputs = currentTool.inputs;
-      let formContent = this.createForm(inputTypes, inputs);
+      for (let field of inputTypes) {
+        let name = field.name;
+        field.value = inputs[name];
+      }
+      let formContent = Form.createForm(inputTypes);
       this.inputForm.innerHTML = formContent;
     } else {
       this.inputForm.innerHTML = &apos;&apos;;
     }
-  }
-
-  createForm(fields, values) {
-    let html = &apos;&apos;;
-
-    for (let field of fields) {
-      let fieldHtml;
-
-      let type = field.type;
-      let name = field.name;
-      let value = values[name];
-      if (type === &apos;number&apos;) {
-        fieldHtml = `&lt;input type=&quot;number&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
-      } else if (type === &apos;boolean&apos;) {
-        fieldHtml = `&lt;input type=&quot;checkbox&quot; name=&quot;${name}&quot; ${value ? &apos;checked=&quot;true&quot;&apos; : &apos;&apos;}&gt;`;
-      } else if (type === &apos;string&apos;) {
-        fieldHtml = `&lt;input type=&quot;text&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
-      } else if (type === &apos;color&apos;) {
-        fieldHtml = `&lt;input type=&quot;color&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
-      } else {
-        fieldHtml = `${value}`;
-      }
-
-      let displayName = field.displayName;
-      html += `
-        &lt;fieldset&gt;
-          &lt;span class=&quot;label&quot;&gt;${displayName}&lt;/span&gt;
-          &lt;span class=&quot;value&quot;&gt;${fieldHtml}&lt;/span&gt;
-        &lt;/fieldset&gt;`;
-    }
-
-    return html;
   }
 }
 

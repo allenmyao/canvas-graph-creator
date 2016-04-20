@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -111,6 +114,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import SidebarContent from &apos;../ui/sidebar-content&apos;;
 import { Node } from &apos;../data/node/node&apos;;
 import { Edge } from &apos;../data/edge/edge&apos;;
+import * as Form from &apos;../ui/form&apos;;
 
 class SidebarSelect extends SidebarContent {
   constructor(graph) {
@@ -129,7 +133,7 @@ class SidebarSelect extends SidebarContent {
     this.update();
     this.tabs.selectTab(&apos;data&apos;);
 
-    document.getElementById(&apos;sidebar&apos;).querySelector(&apos;form&apos;).addEventListener(&apos;change&apos;, (event) =&gt; {
+    document.getElementById(&apos;sidebar&apos;).querySelector(&apos;form&apos;).addEventListener(&apos;input&apos;, (event) =&gt; {
       let input = event.target;
       let name = input.name;
       let value;
@@ -165,26 +169,22 @@ class SidebarSelect extends SidebarContent {
   }
 
   displayGraph(graph) {
-    return `
-      &lt;fieldset&gt;
-        &lt;span class=&quot;label col-2&quot;&gt;Nodes&lt;/span&gt;
-        &lt;span class=&quot;value col-2&quot;&gt;${graph.nodes.size}&lt;/span&gt;
-      &lt;/fieldset&gt;
-      &lt;fieldset&gt;
-        &lt;span class=&quot;label col-2&quot;&gt;Edges&lt;/span&gt;
-        &lt;span class=&quot;value col-2&quot;&gt;${graph.edges.size}&lt;/span&gt;
-      &lt;/fieldset&gt;
-    `;
+    return Form.createForm([
+      {
+        type: &apos;size&apos;,
+        value: graph.nodes.size,
+        displayName: &apos;Nodes&apos;
+      },
+      {
+        type: &apos;size&apos;,
+        value: graph.edges.size,
+        displayName: &apos;Edges&apos;
+      }
+    ]);
   }
 
   displayNode(node) {
-    return this.createForm([
-      {
-        type: &apos;id&apos;,
-        name: &apos;id&apos;,
-        value: node.id,
-        displayName: &apos;ID&apos;
-      },
+    return Form.createForm([
       {
         type: &apos;number&apos;,
         name: &apos;x&apos;,
@@ -267,28 +267,7 @@ class SidebarSelect extends SidebarContent {
   }
 
   displayEdge(edge) {
-    return this.createForm([
-      {
-        type: &apos;id&apos;,
-        name: &apos;id&apos;,
-        value: edge.id,
-        displayName: &apos;ID&apos;
-      },
-      {
-        type: &apos;node&apos;,
-        value: `#${edge.startNode.id}: (${edge.startNode.x},${edge.startNode.y})`,
-        displayName: &apos;Start&apos;
-      },
-      {
-        type: &apos;node&apos;,
-        value: `#${edge.destNode.id}: (${edge.destNode.x},${edge.destNode.y})`,
-        displayName: &apos;End&apos;
-      },
-      {
-        type: &apos;point&apos;,
-        value: `(${edge.bezierPoint.x}, ${edge.bezierPoint.y})`,
-        displayName: &apos;Bezier Point&apos;
-      },
+    return Form.createForm([
       {
         type: &apos;boolean&apos;,
         name: &apos;isDirected&apos;,
@@ -338,38 +317,6 @@ class SidebarSelect extends SidebarContent {
         displayName: &apos;Label color&apos;
       }
     ]);
-  }
-
-  createForm(fields) {
-    let html = &apos;&apos;;
-
-    for (let field of fields) {
-      let fieldHtml;
-
-      let type = field.type;
-      let name = field.name;
-      let value = field.value;
-      if (type === &apos;number&apos;) {
-        fieldHtml = `&lt;input type=&quot;number&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
-      } else if (type === &apos;boolean&apos;) {
-        fieldHtml = `&lt;input type=&quot;checkbox&quot; name=&quot;${name}&quot; ${value ? &apos;checked=&quot;true&quot;&apos; : &apos;&apos;}&gt;`;
-      } else if (type === &apos;string&apos;) {
-        fieldHtml = `&lt;input type=&quot;text&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
-      } else if (type === &apos;color&apos;) {
-        fieldHtml = `&lt;input type=&quot;color&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
-      } else {
-        fieldHtml = `${value}`;
-      }
-
-      let displayName = field.displayName;
-      html += `
-        &lt;fieldset&gt;
-          &lt;span class=&quot;label col-2&quot;&gt;${displayName}&lt;/span&gt;
-          &lt;span class=&quot;value col-2&quot;&gt;${fieldHtml}&lt;/span&gt;
-        &lt;/fieldset&gt;`;
-    }
-
-    return html;
   }
 }
 

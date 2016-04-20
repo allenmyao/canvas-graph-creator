@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -108,7 +111,115 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/form.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export function getData(form, graph) {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export function init() {
+  initListeners();
+}
+
+export function initListeners() {
+  // Create MutationObserver to check for changes in selectElement options
+  let obs = new MutationObserver((mutations, observer) =&gt; {
+    for (let mutation of mutations) {
+      if (mutation.addedNodes) {
+        for (let element of mutation.addedNodes) {
+          // Check if input was added
+          if (element.tagName === &apos;FIELDSET&apos;) {
+            let inputs = element.querySelectorAll(&apos;input, textarea&apos;);
+            for (let i = 0; i &lt; inputs.length; i++) {
+              let input = inputs[i];
+              if (input.value === &apos;&apos;) {
+                input.classList.add(&apos;empty&apos;);
+              } else {
+                input.classList.remove(&apos;empty&apos;);
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Observe document for element addition/removal
+  obs.observe(document, {
+    childList: true,
+    subtree: true
+  });
+
+  document.addEventListener(&apos;change&apos;, (event) =&gt; {
+    checkInputEmpty(event);
+  });
+
+  document.addEventListener(&apos;input&apos;, (event) =&gt; {
+    checkInputEmpty(event);
+  });
+
+  document.addEventListener(&apos;click&apos;, (event) =&gt; {
+    checkLabelClick(event);
+  });
+}
+
+function checkInputEmpty(event) {
+  if (event.target.tagName === &apos;INPUT&apos; || event.target.tagName === &apos;TEXTAREA&apos;) {
+    let input = event.target;
+    if (!input.validity.valid) {
+      return;
+    }
+    if (input.value === &apos;&apos;) {
+      input.classList.add(&apos;empty&apos;);
+    } else {
+      input.classList.remove(&apos;empty&apos;);
+    }
+  }
+}
+
+function checkLabelClick(event) {
+  if (event.target.tagName === &apos;LABEL&apos;) {
+    let input = event.target.parentNode.querySelector(&apos;input, select, textarea&apos;);
+    let type = input.type;
+
+    if (type === &apos;checkbox&apos; || type === &apos;radio&apos; || type === &apos;color&apos;) {
+      input.click();
+    } else {
+      input.focus();
+    }
+  }
+}
+
+export function createForm(fields) {
+  let html = &apos;&apos;;
+
+  for (let field of fields) {
+    let fieldHtml;
+
+    let type = field.type;
+    let name = field.name;
+    let value = field.value;
+    if (type === &apos;number&apos;) {
+      if (value !== Math.round(value)) {
+        value = value.toFixed(2);
+      }
+      fieldHtml = `&lt;input type=&quot;number&quot; name=&quot;${name}&quot; value=&quot;${value}&quot; step=&quot;any&quot;&gt;`;
+    } else if (type === &apos;boolean&apos;) {
+      fieldHtml = `&lt;input type=&quot;checkbox&quot; name=&quot;${name}&quot; ${value ? &apos;checked=&quot;true&quot;&apos; : &apos;&apos;}&gt;`;
+    } else if (type === &apos;string&apos;) {
+      fieldHtml = `&lt;input type=&quot;text&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
+    } else if (type === &apos;color&apos;) {
+      fieldHtml = `&lt;input type=&quot;color&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;`;
+    } else {
+      fieldHtml = `&lt;output&gt;${value}&lt;/output&gt;`;
+    }
+
+    let displayName = field.displayName;
+    html += `
+      &lt;fieldset&gt;
+        ${fieldHtml}
+        &lt;label&gt;${displayName}&lt;/label&gt;
+      &lt;/fieldset&gt;`;
+  }
+
+  return html;
+}
+
+export function getData(form, graph) {
   let data = {};
   let fieldsets = form.querySelectorAll(&apos;fieldset&apos;);
 

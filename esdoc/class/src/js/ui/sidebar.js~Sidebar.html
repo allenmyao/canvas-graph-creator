@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -221,6 +224,31 @@ for managing those subclasses as well.</p>
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html#instance-member-currentSidebar">currentSidebar</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebar">sidebar</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
@@ -246,7 +274,7 @@ for managing those subclasses as well.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebarContent">sidebarContent</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebarTypes">sidebarTypes</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -388,7 +416,7 @@ for managing those subclasses as well.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -447,7 +475,47 @@ for managing those subclasses as well.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber35">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-currentSidebar">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">currentSidebar</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
@@ -487,7 +555,7 @@ for managing those subclasses as well.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber20">source</a></span></span>
     </span>
   </h3>
 
@@ -517,17 +585,17 @@ for managing those subclasses as well.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-sidebarContent">
+  <h3 data-ice="anchor" id="instance-member-sidebarTypes">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">sidebarContent</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">sidebarTypes</span><span data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber23">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
@@ -567,7 +635,7 @@ for managing those subclasses as well.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber19">source</a></span></span>
     </span>
   </h3>
 
@@ -610,7 +678,7 @@ for managing those subclasses as well.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber22">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
@@ -722,7 +790,7 @@ for managing those subclasses as well.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber38">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 

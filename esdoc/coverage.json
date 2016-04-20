@@ -1,6 +1,6 @@
 {
-  "coverage": "3.73%",
-  "expectCount": 455,
+  "coverage": "3.71%",
+  "expectCount": 458,
   "actualCount": 17,
   "files": {
     "src/js/algorithm/abstract-algorithm.js": {
@@ -39,24 +39,24 @@
       "undocumentLines": [
         7,
         24,
-        56,
+        58,
         22,
         25,
         31,
-        50,
         51,
-        60,
-        66,
+        52,
+        62,
+        68,
         29,
-        91,
+        93,
         30,
-        49,
+        50,
         35,
-        40,
-        44,
+        41,
         45,
+        46,
         23,
-        72
+        74
       ]
     },
     "src/js/algorithm/change.js": {
@@ -147,20 +147,20 @@
         106,
         82,
         107,
-        219,
+        218,
         66,
-        194,
+        193,
         127,
-        191,
+        190,
         108,
         109,
         55,
-        200,
-        172,
-        188,
-        180,
+        199,
+        171,
+        187,
+        179,
         116,
-        162,
+        161,
         59
       ]
     },
@@ -438,17 +438,18 @@
       ]
     },
     "src/js/ui/sidebar.js": {
-      "expectCount": 9,
+      "expectCount": 10,
       "actualCount": 1,
       "undocumentLines": [
-        17,
-        32,
-        22,
-        31,
-        19,
-        23,
         18,
-        38
+        35,
+        37,
+        23,
+        31,
+        20,
+        24,
+        19,
+        42
       ]
     },
     "src/js/ui/sidebar-algorithm.js": {
@@ -457,15 +458,15 @@
       "undocumentLines": [
         7,
         11,
-        115,
-        197,
+        128,
+        191,
         41,
         95,
-        174,
+        168,
         79,
-        215,
-        104,
-        178
+        209,
+        106,
+        172
       ]
     },
     "src/js/ui/sidebar-content.js": {
@@ -483,26 +484,25 @@
       "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        3,
         4,
-        8,
-        24,
-        19
+        5,
+        9,
+        25,
+        20
       ]
     },
     "src/js/ui/sidebar-select.js": {
-      "expectCount": 9,
+      "expectCount": 8,
       "actualCount": 0,
       "undocumentLines": [
-        5,
         6,
-        233,
-        12,
-        159,
-        57,
-        70,
-        9,
-        42
+        7,
+        13,
+        156,
+        58,
+        73,
+        10,
+        43
       ]
     },
     "src/js/data/edge/solid-edge.js": {
@@ -662,17 +662,17 @@
       "expectCount": 11,
       "actualCount": 0,
       "undocumentLines": [
-        3,
-        18,
-        79,
+        4,
+        19,
+        24,
+        28,
         23,
-        27,
         22,
+        76,
+        57,
         21,
-        67,
-        48,
         20,
-        19
+        42
       ]
     },
     "src/js/algorithm/traversal-algorithm.js": {
@@ -705,23 +705,26 @@
       "expectCount": 9,
       "actualCount": 0,
       "undocumentLines": [
-        8,
-        21,
-        16,
-        24,
-        19,
-        20,
-        18,
+        9,
+        22,
         17,
-        34
+        25,
+        20,
+        21,
+        19,
+        18,
+        36
       ]
     },
     "src/js/ui/form.js": {
-      "expectCount": 2,
+      "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        15,
-        1
+        74,
+        123,
+        109,
+        1,
+        5
       ]
     },
     "src/js/util/drawCurvedEdge.js": {

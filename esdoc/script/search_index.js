@@ -318,6 +318,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "canvas-graph-creator/src/js/ui/form.js~createform",
+    "function/index.html#static-function-createForm",
+    "<span>createForm</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
+    "function"
+  ],
+  [
     "canvas-graph-creator/src/js/ui/form.js~displayerror",
     "function/index.html#static-function-displayError",
     "<span>displayError</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
@@ -360,9 +366,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "canvas-graph-creator/src/js/ui/form.js~init",
+    "function/index.html#static-function-init",
+    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
+    "function"
+  ],
+  [
     "canvas-graph-creator/src/js/util/curvededge.js~initcurved",
     "function/index.html#static-function-initCurved",
     "<span>initCurved</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
+    "function"
+  ],
+  [
+    "canvas-graph-creator/src/js/ui/form.js~initlisteners",
+    "function/index.html#static-function-initListeners",
+    "<span>initListeners</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
     "function"
   ],
   [
@@ -4182,12 +4200,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/sidebar-select.js~sidebarselect#createform",
-    "class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-createForm",
-    "src/js/ui/sidebar-select.js~SidebarSelect#createForm",
-    "method"
-  ],
-  [
     "src/js/ui/sidebar-select.js~sidebarselect#display",
     "class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-display",
     "src/js/ui/sidebar-select.js~SidebarSelect#display",
@@ -4242,6 +4254,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/ui/sidebar.js~sidebar#currentsidebar",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-currentSidebar",
+    "src/js/ui/sidebar.js~Sidebar#currentSidebar",
+    "member"
+  ],
+  [
     "src/js/ui/sidebar.js~sidebar#init",
     "class/src/js/ui/sidebar.js~Sidebar.html#instance-method-init",
     "src/js/ui/sidebar.js~Sidebar#init",
@@ -4260,9 +4278,9 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/ui/sidebar.js~sidebar#sidebarcontent",
-    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebarContent",
-    "src/js/ui/sidebar.js~Sidebar#sidebarContent",
+    "src/js/ui/sidebar.js~sidebar#sidebartypes",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-member-sidebarTypes",
+    "src/js/ui/sidebar.js~Sidebar#sidebarTypes",
     "member"
   ],
   [
@@ -4500,12 +4518,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/top-bar.js~topbar#createform",
-    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-createForm",
-    "src/js/ui/top-bar.js~TopBar#createForm",
-    "method"
-  ],
-  [
     "src/js/ui/top-bar.js~topbar#dropdown",
     "class/src/js/ui/top-bar.js~TopBar.html#instance-member-dropdown",
     "src/js/ui/top-bar.js~TopBar#dropdown",
@@ -4552,6 +4564,12 @@ window.esdocSearchIndex = [
     "class/src/js/ui/top-bar.js~TopBar.html#instance-member-ui",
     "src/js/ui/top-bar.js~TopBar#ui",
     "member"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#updateinputvalues",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-updateInputValues",
+    "src/js/ui/top-bar.js~TopBar#updateInputValues",
+    "method"
   ],
   [
     "src/js/ui/ui.js",

@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -207,6 +210,8 @@ class SidebarAlgorithm extends SidebarContent {
       algorithm: &apos;Algorithm&apos;
     });
 
+    this.tabs.setTabContent(&apos;algorithm&apos;, &apos;&lt;form&gt;&lt;/form&gt;&apos;);
+
     this.update();
     this.tabs.selectTab(&apos;algorithm&apos;);
   }
@@ -214,11 +219,22 @@ class SidebarAlgorithm extends SidebarContent {
   updateAlgorithm(algorithm) {
     let form = this.createForm(algorithm.inputs);
     let html = `
-      &lt;div class=&quot;algorithm-container&quot;&gt;
-        &lt;div class=&quot;section-title&quot;&gt;${algorithm.name}&lt;/div&gt;
-        ${form}
+      ${form}
+      &lt;button type=&quot;button&quot; class=&quot;run-algorithm-btn&quot;&gt;Generate results&lt;/button&gt;
+      &lt;div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;algorithm-prev-btn&quot;&gt;Previous step&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;algorithm-next-btn&quot;&gt;Next step&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;algorithm-play-btn&quot;&gt;Play&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;algorithm-pause-btn&quot;&gt;Pause&lt;/button&gt;
+      &lt;div&gt;
+      &lt;div&gt;
+        &lt;p class=&quot;algorithm-step-num&quot;&gt;Step #&lt;/p&gt;
+        &lt;p class=&quot;algorithm-step-des&quot;&gt;This step is...&lt;/p&gt;
       &lt;/div&gt;
     `;
+    this.tabs.getTabContentElement(&apos;algorithm&apos;).querySelector(&apos;form&apos;).innerHTML = html;
     this.tabs.setTabContent(&apos;algorithm&apos;, html);
   }
 
@@ -252,33 +268,14 @@ class SidebarAlgorithm extends SidebarContent {
 
       let displayName = input.name;
       html += `
-        &lt;fieldset class=&quot;data-item ${isRequired ? &apos;required&apos; : &apos;&apos;}&quot; name=&quot;${name}&quot;&gt;
-          &lt;span class=&quot;label col-2&quot;&gt;${displayName}&lt;/span&gt;
-          &lt;span class=&quot;value col-2&quot;&gt;${fieldHtml}&lt;/span&gt;
+        &lt;fieldset class=&quot;${isRequired ? &apos;required&apos; : &apos;&apos;}&quot; name=&quot;${name}&quot;&gt;
+          &lt;label&gt;${displayName}&lt;/label&gt;
+          ${fieldHtml}
         &lt;/fieldset&gt;
       `;
     }
 
-    return `
-      &lt;div class=&quot;data-container&quot;&gt;
-        &lt;form class=&quot;data-list&quot;&gt;
-          ${html}
-          &lt;button type=&quot;button&quot; class=&quot;run-algorithm-btn&quot;&gt;Generate results&lt;/button&gt;
-        &lt;/form&gt;
-        &lt;div&gt;
-          &lt;button type=&quot;button&quot; class=&quot;algorithm-prev-btn&quot;&gt;Previous step&lt;/button&gt;
-          &lt;button type=&quot;button&quot; class=&quot;algorithm-next-btn&quot;&gt;Next step&lt;/button&gt;
-        &lt;/div&gt;
-        &lt;div&gt;
-          &lt;button type=&quot;button&quot; class=&quot;algorithm-play-btn&quot;&gt;Play&lt;/button&gt;
-          &lt;button type=&quot;button&quot; class=&quot;algorithm-pause-btn&quot;&gt;Pause&lt;/button&gt;
-        &lt;div&gt;
-        &lt;div&gt;
-          &lt;p class=&quot;algorithm-step-num&quot;&gt;Step #&lt;/p&gt;
-          &lt;p class=&quot;algorithm-step-des&quot;&gt;This step is...&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    `;
+    return html;
   }
 
   getCurrentInput() {
@@ -322,8 +319,7 @@ class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
-  update(obj) {
-  }
+  update() {}
 }
 
 export { SidebarAlgorithm };

@@ -87,8 +87,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setInputValues">setInputValues</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewNext">viewNext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-viewPrevious">viewPrevious</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -109,6 +112,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/sidebar-display.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import SidebarContent from &apos;../ui/sidebar-content&apos;;
+import * as Form from &apos;../ui/form&apos;;
 
 class SidebarDisplay extends SidebarContent {
   constructor(graph) {
@@ -132,16 +136,18 @@ class SidebarDisplay extends SidebarContent {
   }
 
   displayGraph(graph) {
-    return `
-      &lt;fieldset&gt;
-        &lt;span class=&quot;label col-2&quot;&gt;Nodes&lt;/span&gt;
-        &lt;span class=&quot;value col-2&quot;&gt;${graph.nodes.size}&lt;/span&gt;
-      &lt;/fieldset&gt;
-      &lt;fieldset&gt;
-        &lt;span class=&quot;label col-2&quot;&gt;Edges&lt;/span&gt;
-        &lt;span class=&quot;value col-2&quot;&gt;${graph.edges.size}&lt;/span&gt;
-      &lt;/fieldset&gt;
-    `;
+    return Form.createForm([
+      {
+        type: &apos;size&apos;,
+        value: graph.nodes.size,
+        displayName: &apos;Nodes&apos;
+      },
+      {
+        type: &apos;size&apos;,
+        value: graph.edges.size,
+        displayName: &apos;Edges&apos;
+      }
+    ]);
   }
 }
 
