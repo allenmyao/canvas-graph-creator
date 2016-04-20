@@ -108,11 +108,7 @@ export function createForm(fields) {
     }
 
     let displayName = field.displayName;
-    html += `
-      <fieldset>
-        ${fieldHtml}
-        <label>${displayName}</label>
-      </fieldset>`;
+    html += `<fieldset>${fieldHtml}<label>${displayName}</label></fieldset>`;
   }
 
   return html;
