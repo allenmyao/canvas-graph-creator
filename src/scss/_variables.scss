@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif:400,600,700');
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+// @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
 
 // Typography
 $font-family-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
-$font-family-serif: 'PT Serif', serif;
-$font-family-mono: 'PT Mono', monospace;
+// $font-family-serif: 'Roboto Slab', 'Times New Roman', serif;
+// $font-family-mono: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+
+$font-weight-buttons: 600;
+$font-weight-nav: 600;
 
 // Default values
 $default-border-radius: 2px;
