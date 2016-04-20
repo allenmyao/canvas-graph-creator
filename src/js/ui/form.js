@@ -78,7 +78,8 @@ export function createForm(fields) {
     let name = field.name;
     let value = field.value;
     if (type === 'number') {
-      fieldHtml = `<input type="number" name="${name}" value="${value}">`;
+      value = value.toFixed(2);
+      fieldHtml = `<input type="number" name="${name}" value="${value}" step="any">`;
     } else if (type === 'boolean') {
       fieldHtml = `<input type="checkbox" name="${name}" ${value ? 'checked="true"' : ''}>`;
     } else if (type === 'string') {
