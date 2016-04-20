@@ -19,12 +19,12 @@ export class Edge {
   yText;
   edgeLabel = '';
   labelFont = '14px Arial';
-  labelColor = 'black';
+  labelColor = '#000000';
   showTextCtrl = false;
 
   // appearance
-  color = 'black';
-  selectedColor = 'red';
+  color = '#000000';
+  selectedColor = '#FF0000';
   lineWidth = 1;
 
   constructor(startNode, destNode) {
