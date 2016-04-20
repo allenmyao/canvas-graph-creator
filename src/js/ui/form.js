@@ -86,7 +86,7 @@ export function createForm(fields) {
     } else if (type === 'color') {
       fieldHtml = `<input type="color" name="${name}" value="${value}">`;
     } else {
-      fieldHtml = `<ouput>${value}</output>`;
+      fieldHtml = `<output>${value}</output>`;
     }
 
     let displayName = field.displayName;
