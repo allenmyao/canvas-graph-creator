@@ -47,6 +47,9 @@ export function initListeners() {
 function checkInputEmpty(event) {
   if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
     let input = event.target;
+    if (!input.validity.valid) {
+      return;
+    }
     if (input.value === '') {
       input.classList.add('empty');
     } else {

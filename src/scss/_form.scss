@@ -77,7 +77,8 @@ form {
       }
 
       &:focus ~ label,
-      &:valid ~ label {
+      &:valid ~ label,
+      &:invalid ~ label {
         top: 0px;
         line-height: 15px;
         font-size: 0.9em;
