@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/allenmyao/canvas-graph-creator.git"
   },
+  "scripts": {
+    "dev": "node build/dev-server.js"
+  },
   "devDependencies": {
     "babel-core": "^6.7.6",
     "babel-eslint": "^6.0.2",
