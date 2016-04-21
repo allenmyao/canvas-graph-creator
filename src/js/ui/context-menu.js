@@ -48,8 +48,15 @@ class ContextMenu {
         this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.component, this.menuPosX, this.menuPosY);
       }
 
+      if (event.button !== 2) {
+        this.toggleContextMenu();
+      }
+    });
+
+    this.contextMenu.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
       this.toggleContextMenu();
-    }, false);
+    });
 
     document.addEventListener('click', (event) => {
       if (!this.contextMenu.contains(event.target)) {
