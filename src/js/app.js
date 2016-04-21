@@ -1,9 +1,8 @@
 require('../scss/styles.scss');
 
-import { Graph } from 'data/graph';
+import { Graph } from './data/graph';
 import { Serializer } from 'util/graph-serialize';
-import * as Canvas from 'ui/canvas';
-import * as UI from 'ui/ui';
+import ui from './ui/ui';
 
 let graph;
 let serializer;
@@ -11,14 +10,15 @@ let serializer;
 function init() {
   graph = new Graph();
   serializer = new Serializer(graph, resetGraph);
-  Canvas.init(graph);
-  UI.init(graph);
+  ui.init(graph);
+  ui.toolbar.selectToolByName('node');
+  ui.canvas.resize();
   window.requestAnimationFrame(draw);
 }
 
 function draw() {
-  Canvas.clear();
-  graph.draw(Canvas.getContext());
+  ui.canvas.clear();
+  graph.draw(ui.canvas.context);
   window.requestAnimationFrame(draw);
 }
 
@@ -30,3 +30,9 @@ function resetGraph(newGraph) {
 }
 
 window.addEventListener('load', init, false);
+
+window.addEventListener('resize', (event) => {
+  if (ui.canvas) {
+    ui.canvas.resize();
+  }
+}, false);

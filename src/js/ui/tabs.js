@@ -55,6 +55,7 @@ export class Tabs {
 
     this.tabList.appendChild(tab);
     this.tabContainer.appendChild(tabContent);
+    this.displayTabs();
   }
 
   removeTab(name) {
@@ -63,6 +64,7 @@ export class Tabs {
       if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {
         tabs[i].remove();
         this.getTabContentElement(name).remove();
+        this.displayTabs();
         return;
       }
     }
@@ -80,6 +82,14 @@ export class Tabs {
 
     for (let name of Object.keys(names)) {
       this.addTab(name, names[name]);
+    }
+
+    this.displayTabs();
+  }
+
+  displayTabs() {
+    if (this.tabList.children.length <= 1) {
+      this.tabList.classList.add('hidden');
     }
   }
 

@@ -8,7 +8,7 @@ import { Tabs } from '../ui/tabs';
 *  Subclasses that extend this superclass must super the constructor and replace the old tabs and content with new tabs
 *  and content relevant to their context.  See the sidebar-node and sidebar-edge example classes.
 */
-export class SidebarContent {
+class SidebarContent {
   constructor(graph) {
     let methods = [
       'display',
@@ -36,3 +36,6 @@ export class SidebarContent {
     throw Error('Can\'t call draw from abstract SideContent class.');
   }
 }
+
+export { SidebarContent };
+export default SidebarContent;

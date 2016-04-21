@@ -1,22 +1,31 @@
-export class Node {
-  static numNodes = 0;
+class Node {
 
+  static numNodes = 0;
   id = Node.numNodes++;
+
+  // graph data
+  x;
+  y;
   edges = new Set();
-  isSelected = false;
-  nodeLabel = ''; // string the label of the node; changed name to nodeLabel - Athanasios 3/15/16
-  outline = '#000000'; // string Format as hex Color
-  fill = '#FFFFFF'; // string Format as hex Color
-  lineWidth = 1; // numerical value for thickenss of line
   isAcceptingState = false;  // boolean for DFA/NFA purposes, indicated by double circle
   isStartingState = false;  // boolean for DFA/NFA purposes, idicated by incoming arrow
-  value = 0; // numerical value for algorithms
-  visited = false; // boolean used for algorithms e.x traversals.
-  color=''; // string value defines the color for chromatic algorithms
+
+  // status
+  isSelected = false;
+
+  // label
   xText = 0;
   yText = 0;
+  nodeLabel = ''; // string the label of the node; changed name to nodeLabel - Athanasios 3/15/16
+  labelFont = '14px Arial';
+  labelColor = '#000000';
   showTextCtrl = false;
 
+  // appearance
+  color = '#000000'; // string Format as hex Color
+  fillColor = '#FFFFFF'; // string Format as hex Color
+  selectedColor = '#FF0000';
+  lineWidth = 1; // numerical value for thickenss of line
 
   constructor(x, y) {
     // new.target not supported by Babel
@@ -28,11 +37,12 @@ export class Node {
       'containsPoint',
       'distanceToPoint',
       'edgePointInDirection',
-      'draw'
+      'draw',
+      'getAnglePoint'
     ];
 
     for (let method of methods) {
-      if (typeof this[method] === 'undefined' || typeof this[method] !== 'function') {
+      if (typeof this[method] !== 'function') {
         throw TypeError('Must override method: ' + method);
       }
     }
@@ -62,8 +72,6 @@ export class Node {
     throw Error('Can\'t call methods from abstract Node class.');
   }
 
-  // rename to closestPointTo
-  // modify to find closest point to another node
   edgePointInDirection(x, y) {
     throw Error('Can\'t call methods from abstract Node class.');
   }
@@ -72,7 +80,17 @@ export class Node {
     throw Error('Can\'t call methods from abstract Node class.');
   }
 
+  getAnglePoint(context) {
+    throw Error('Can\'t call methods from abstract Node class.');
+  }
+
   // find the starting point of our text box
-  generateDefaultTextLocation() {}
+  generateDefaultTextLocation() {
+    this.xText = this.x + this.radius + 4;
+    this.yText = this.y;
+  }
 
 }
+
+export { Node };
+export default Node;

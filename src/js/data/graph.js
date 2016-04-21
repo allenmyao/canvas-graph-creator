@@ -33,6 +33,16 @@ export class Graph {
 
   removeEdge(edge) {
     // console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
+    let id = edge.id;
+    for (let i = 0; i < edge.partners.length; i++) {
+      for (let j = 0; j < edge.partners[i].length; j++) {
+        if (edge.partners[i].partners[j].id === id) {
+          edge.partners[i].partners.splice(j, 1);
+          edge.partners[i].updateEndpoints();
+          break;
+        }
+      }
+    }
     this.edges.delete(edge);
     edge.detach();
   }
@@ -62,6 +72,7 @@ export class Graph {
         component = node;
         return false;
       }
+      return true;
     });
 
     if (component !== null) {
@@ -73,6 +84,7 @@ export class Graph {
         component = edge;
         return false;
       }
+      return true;
     });
 
     return component;

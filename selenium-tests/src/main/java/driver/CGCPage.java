@@ -27,33 +27,27 @@ import model.Node;
 import utils.ImageUtils;
 
 import static org.junit.Assert.*;
-public class CGC extends Driver{
+public class CGCPage extends CanvasPage{
 
-	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
-	public static String HOME_PAGE = "http://0.0.0.0:8080/webpack-dev-server/index.html";
-	public static final String IFRAME = "iframe";
-	public static BufferedImage NODE_IMAGE;
+	public static String CANVAS_CSS_SELECTOR = "#canvas";
+	public static String HOME_PAGE = "http://127.0.0.1:8080/";
+	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
-	
+
 	static{
 	    try{
-	        NODE_IMAGE = ImageIO.read(new File("src/test/resources/UnselectedNode.png"));
 	        EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
 	    }catch(final Exception ex){
 	        throw new RuntimeException("Failed to load resources", ex);
-	    }  
+	    }
 	}
 	private Node selected;
 
-	public CGC(){
-		super();
+	public CGCPage(WebDriver driver) throws IOException{
+		super(driver, HOME_PAGE);
 		selected = null;
 	}
 
-	public CGC(String name) {
-		super(name);
-		selected = null;
-	}
 
 	public Node createNode(int x, int y) {
 		deselect();
@@ -69,14 +63,14 @@ public class CGC extends Driver{
 			selected = null;
 		}
 	}
-	public void selectTool(String xPath)
+	public void selectTool(String cssSelector)
 	{
-		clickCanvas(xPath, 20, 20);
+		clickCanvas(cssSelector, 20, 20);
 	}
-	
+
 
 	public void drawEdge(Node source, Node destination) {
-		selectTool("//*[@id=\"tools-container\"]/ul/li[2]/div");
+		selectTool("#toolbar .tool[data-tool=\"edge\"]");
 		//clickElement("edge tool");
 		if (source != selected)
 		{
@@ -91,30 +85,31 @@ public class CGC extends Driver{
 	public void clickNode(Node node) {
 		clickCanvas(node.x, node.y);
 	}
-
-
+	@Override
+	public void initialize(String website)
+	{
+		super.initialize(website);
+		selectCanvas(CANVAS_CSS_SELECTOR);
+	}
+/*
 	public static CGC create() throws IOException
 	{
 		CGC driver = new CGC();
-		driver.loadSite(HOME_PAGE);
-		driver.switchToFrame(IFRAME);
-		driver.selectCanvas(CANVAS_XPATH);
-		driver.takeInitialScreenshot();
-		driver.addElement(EDGE_TOOL, "edge tool");
-		
+		driver.reload();
+
+		//driver.addElement(EDGE_TOOL, "edge tool");
+
 		return driver;
 	}
 	public static CGC create(String website, String browser) throws IOException
 	{
 		CGC driver = new CGC(browser);
-		driver.loadSite(website);
-		driver.switchToFrame(IFRAME);
-		driver.selectCanvas(CANVAS_XPATH);
-		driver.takeInitialScreenshot();
-		driver.addElement(EDGE_TOOL, "edge tool");
+		driver.reload();
+		//driver.addElement(EDGE_TOOL, "edge tool");
 
 		return driver;
 	}
+*/
 
 
 
@@ -131,7 +126,7 @@ public class ChromeConsoleLogging {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "c:\\path\\to\\chromedriver.exe");        
+        System.setProperty("webdriver.chrome.driver", "c:\\path\\to\\chromedriver.exe");
         DesiredCapabilities caps = DesiredCapabilities.chrome();
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);

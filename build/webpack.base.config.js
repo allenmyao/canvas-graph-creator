@@ -14,7 +14,7 @@ module.exports = {
     extensions: [ '', '.js' ]
   },
   output: {
-    path: path.join(__dirname, 'dist', 'js'),
+    path: path.join(__dirname, '..', 'dist', 'js'),
     publicPath: '/dist/js/',
     filename: '[name].js',
     chunkFilename: '[chunkhash].js'

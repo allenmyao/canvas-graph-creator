@@ -1,7 +1,8 @@
-import * as UI from '../ui/ui';
-import * as Sidebar from '../ui/sidebar';
+import ui from '../ui/ui';
+import { CircleNode } from '../data/node/circle-node';
+import { SquareNode } from '../data/node/square-node';
 
-export class MouseHandler {
+class MouseHandler {
 
   // distance the mouse needs to move to start a drag
   // this prevents accidentally dragging a few pixels when actually trying to click
@@ -40,8 +41,6 @@ export class MouseHandler {
       if (currentTool.preSelectObject(event, this.graph, component, x, y)) {
         // console.log('Preselect Object Ok!');
         this.selectedObject = component;
-        this.clickStartX = this.selectedObject.x;
-        this.clickStartY = this.selectedObject.y;
       } else {
         // console.log('Preselect Object Denied!');
         this.selectedObject = null;
@@ -59,14 +58,13 @@ export class MouseHandler {
       this.isDragging = false;
 
       // drop object
-      // ISSUE: dragged object cannot detect itself (when using tool that doesn't move the object)
       if (this.graph.hasComponent(x, y, this.draggedObject)) {
         currentTool.dropOnObject(event, this.graph, this.draggedObject, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
       } else {
         currentTool.dropOnNone(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       }
       this.draggedObject = null;
-    } else {
+    } else if (this.mousePressed) {
       // click
       let component = null;
       if (this.graph.hasComponent(x, y)) {
@@ -75,10 +73,10 @@ export class MouseHandler {
       if (component === this.selectedObject) {
         if (component) {
           currentTool.selectObject(event, this.graph, component, x, y);
-          Sidebar.updateSidebar(component);
+          ui.sidebar.updateSidebar(component);
         } else {
           currentTool.selectNone(event, this.graph, x, y);
-          Sidebar.updateSidebar();
+          ui.sidebar.updateSidebar();
         }
       } else {
         currentTool.abortSelect(this.graph, x, y);
@@ -89,7 +87,7 @@ export class MouseHandler {
   }
 
   moveListener(event, currentTool, x, y) {
-    UI.updateMouse(x, y);
+    ui.statusBar.updateMouse(x, y);
 
     if (!this.isDragging) {
       // check for dragging
@@ -120,15 +118,56 @@ export class MouseHandler {
     } else if (this.draggedObject) {
       // handle dragging object
       currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
-      Sidebar.updateSidebar(this.draggedObject);
+      ui.sidebar.updateSidebar(this.draggedObject);
     } else if (this.graph.hasComponent(x, y)) {
       // handle dragging over object
       currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
-      Sidebar.updateSidebar();
+      ui.sidebar.updateSidebar();
     } else {
       // handle dragging empty space
       currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
     }
   }
 
+  contextComponent(event, x, y) {
+    let component = null;
+    if (this.graph.hasComponent(x, y)) {
+      component = this.graph.getComponent(x, y);
+    }
+
+    return component;
+  }
+
+  contextAdd(arg, x, y) {
+    let modes = {
+      circle: CircleNode,
+      square: SquareNode
+    };
+
+    let NodeClass = modes[arg];
+    let node = new NodeClass(x, y);
+
+    if (!this.graph.isNodeCollision(node, x, y)) {
+      this.graph.addNode(node);
+    }
+  }
+
+  contextToggle(arg, component) {
+    component[arg] = !component[arg];
+  }
+
+  contextDelete(arg, component) {
+    if (arg === 'node') {
+      this.graph.removeNode(component);
+    } else if (arg === 'edge') {
+      this.graph.removeEdge(component);
+    }
+  }
+
+  contextSelect(event, currentTool, component, x, y) {
+    currentTool.selectObject(event, this.graph, component, x, y);
+  }
 }
+
+export { MouseHandler };
+export default MouseHandler;

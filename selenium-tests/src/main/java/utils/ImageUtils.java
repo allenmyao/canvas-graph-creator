@@ -96,7 +96,7 @@ public class ImageUtils {
 				}
 			}
 		}
-        cvThreshold(result, result, Math.max(0.4, bestMatch * .8), 1.0, 0);
+        cvThreshold(result, result, Math.max(0.3, bestMatch * .8), 1.0, 0);
         
         
         ArrayList<Point> points = new ArrayList<Point>();
@@ -110,6 +110,7 @@ public class ImageUtils {
         }
         return points;
 	}
+	
 	public static boolean imageEquals(BufferedImage image1, BufferedImage image2)
 	{
 		DataBufferByte dbActual = (DataBufferByte)image1.getRaster().getDataBuffer();

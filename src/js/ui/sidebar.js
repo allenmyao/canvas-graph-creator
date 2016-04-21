@@ -1,59 +1,56 @@
-import { SidebarNode } from '../ui/sidebar-node';
-import { SidebarEdge } from '../ui/sidebar-edge';
-import { SidebarSelect } from '../ui/sidebar-select';
+import SidebarDisplay from '../ui/sidebar-display';
+import SidebarSelect from '../ui/sidebar-select';
+import SidebarAlgorithm from 'ui/sidebar-algorithm';
 
-let sidebar;
-let content;
+/**
+ * This class manages the container for sidebar-content subclasses, and is responsible
+ * for managing those subclasses as well.
+ */
+class Sidebar {
 
-let sidebarContent;
+  ui;
 
-/*
+  sidebar;
+  sidebarTypes;
+  currentSidebar;
+  content;
 
-tools now have a sidebarType, a string, to refer to their associated sidebar sidebar-content subclass
+  constructor(ui) {
+    this.ui = ui;
+    this.sidebar = document.getElementById('sidebar');
+  }
 
-This class manages the container for sidebar-content subclasses, and is responsible
-for managing those subclasses as well.
+  init(graph) {
+    this.sidebarTypes = {
+      display: new SidebarDisplay(graph),
+      select: new SidebarSelect(graph),
+      algorithm: new SidebarAlgorithm(graph)
+    };
+  }
 
-TODO:
-changeSidebar should account for if type is not changing
-change this into class?
-this should have ability to move, minimize, or shrink sidebar
-flesh out sidebar-content classes with non placeholder stuff
-select tool needs reference to selected object
+  resetGraph(newGraph) {
+    this.sidebarTypes.node.resetGraph(newGraph);
+    this.sidebarTypes.edge.resetGraph(newGraph);
+    this.sidebarTypes.select.resetGraph(newGraph);
+    this.setSidebar('display');
+    this.updateSidebar(null);
+  }
 
-NOTE:
-currently updateSidebar is called only from the mouse-handler up listener
-tools must have an associated sidebar type
-*/
+  setSidebar(sidebarType) {
+    if (this.currentSidebar === sidebarType) {
+      return;
+    }
+    this.content = this.sidebarTypes[sidebarType];
+    this.content.display();
+    this.currentSidebar = sidebarType;
+  }
 
-export function init(graph) {
-  sidebar = document.getElementById('sidebar');
-  sidebarContent = {
-    node: new SidebarNode(graph),
-    edge: new SidebarEdge(graph),
-    select: new SidebarSelect(graph)
-  };
-  changeSidebar('select');
+  // Call the current sidebar-content class's update function.
+  // Currently, updateSidebar is called only from the mouse-handler.
+  updateSidebar(obj) {
+    this.content.update(obj);
+  }
 }
 
-export function resetGraph(newGraph) {
-  sidebarContent.node.resetGraph(newGraph);
-  sidebarContent.edge.resetGraph(newGraph);
-  sidebarContent.select.resetGraph(newGraph);
-  changeSidebar('select');
-  updateSidebar(null);
-}
-
-export function changeSidebar(type) {
-  content = sidebarContent[type];
-  content.display();
-}
-
-export function getSidebar() {
-  return sidebar;
-}
-
-// Call the current sidebar-content class's update function
-export function updateSidebar(obj) {
-  content.update(obj);
-}
+export { Sidebar };
+export default Sidebar;
