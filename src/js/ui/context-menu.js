@@ -50,6 +50,14 @@ class ContextMenu {
 
       this.toggleContextMenu();
     }, false);
+
+    document.addEventListener('click', (event) => {
+      if (!this.contextMenu.contains(event.target)) {
+        if (this.isDisplayed) {
+          this.toggleContextMenu();
+        }
+      }
+    });
   }
 
   toggleContextMenu() {
