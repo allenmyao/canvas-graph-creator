@@ -7,7 +7,7 @@ import { EditEdgeTool } from '../tool/editedge-tool';
 import { MetadataTool } from '../tool/metadata-tool';
 import { PanTool } from '../tool/pan-tool';
 import { SelectTool } from '../tool/select-tool';
-import { AlgorithmTool } from 'tool/algorithm-tool';
+import { AlgorithmTool } from '../tool/algorithm-tool';
 
 const TOOL_CLASS = 'tool';
 const TOOL_NAME_ATTR = 'data-tool';

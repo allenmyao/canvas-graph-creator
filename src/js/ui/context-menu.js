@@ -1,5 +1,5 @@
-import { Node } from 'data/node/node';
-import { Edge } from 'data/edge/edge';
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
 
 const MENU_TOGGLE_CLASS = 'context-menu--active';
 

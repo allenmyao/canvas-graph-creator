@@ -1,6 +1,6 @@
 import SidebarDisplay from '../ui/sidebar-display';
 import SidebarSelect from '../ui/sidebar-select';
-import SidebarAlgorithm from 'ui/sidebar-algorithm';
+import SidebarAlgorithm from '../ui/sidebar-algorithm';
 
 /**
  * This class manages the container for sidebar-content subclasses, and is responsible
