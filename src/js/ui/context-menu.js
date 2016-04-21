@@ -77,11 +77,21 @@ class ContextMenu {
   }
 
   repositionMenu(event) {
-    let xpos = event.pageX;
-    let ypos = event.pageY;
+    let xpos = event.clientX;
+    let ypos = event.clientY;
 
     this.contextMenu.style.left = xpos + 'px';
     this.contextMenu.style.top = ypos + 'px';
+
+    let distanceRight = document.body.offsetWidth - xpos - this.contextMenu.offsetWidth;
+    let distanceBottom = document.body.offsetHeight - ypos - this.contextMenu.offsetHeight;
+
+    if (distanceRight < 0) {
+      this.contextMenu.style.left = `${xpos + distanceRight}px`;
+    }
+    if (distanceBottom < 0) {
+      this.contextMenu.style.top = `${ypos - this.contextMenu.offsetHeight}px`;
+    }
   }
 
   contextmenuEventListener(event, x, y) {
@@ -94,8 +104,6 @@ class ContextMenu {
     this.component = this.mouseHandler.contextComponent(event, this.menuPosX, this.menuPosY);
 
     this.toggleContextMenu();
-
-    this.repositionMenu(event);
 
     // hide all menu sections
     let sectionElements = this.contextMenu.querySelectorAll(`.${MENU_SECTION_CLASS}`);
@@ -121,6 +129,8 @@ class ContextMenu {
       let sectionElement = this.contextMenu.querySelector(`.${MENU_SECTION_CLASS}[${MENU_SECTION_NAME_ATTRIBUTE}="${section}"]`);
       sectionElement.classList.add(MENU_SECTION_VISIBILITY_CLASS);
     }
+
+    this.repositionMenu(event);
   }
 
 }
