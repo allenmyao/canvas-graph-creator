@@ -20,11 +20,14 @@ module.exports = merge(baseWebpackConfig, {
     new ExtractTextPlugin('../css/[name].css'),
     new webpack.DefinePlugin({
       'process.env': {
-        // This has effect on the react lib size
         NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ]
 });

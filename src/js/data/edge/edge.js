@@ -1,4 +1,6 @@
-import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from '../../util/curvedEdge';
+import { calcBezierDistance, bezierDerivative } from '../../util/bezier';
+
+const EDGE_DISTANCE_THRESHOLD = 10;
 
 export class Edge {
 
@@ -19,12 +21,12 @@ export class Edge {
   yText;
   edgeLabel = '';
   labelFont = '14px Arial';
-  labelColor = 'black';
+  labelColor = '#000000';
   showTextCtrl = false;
 
   // appearance
-  color = 'black';
-  selectedColor = 'red';
+  color = '#000000';
+  selectedColor = '#FF0000';
   lineWidth = 1;
 
   constructor(startNode, destNode) {
@@ -174,7 +176,7 @@ export class Edge {
   }
 
   containsPoint(x, y) {
-    return EDGE_DISTANCE_THRESHOLD > calcBezierDistance(x, y, this.startPoint.x, this.startPoint.y, this.bezierPoint.x, this.bezierPoint.y, this.destPoint.x, this.destPoint.y);
+    return EDGE_DISTANCE_THRESHOLD > calcBezierDistance(x, y, this.startPoint, this.bezierPoint, this.destPoint);
   }
 
   draw(context) {
@@ -192,6 +194,20 @@ export class Edge {
       context.lineTo(this.xText, this.yText);
       context.fill();
     }
+  }
+
+  drawArrow(context) {
+    let slope = bezierDerivative(1, this.startPoint, this.bezierPoint, this.destPoint);
+    let length = Math.sqrt(slope.x * slope.x + slope.y * slope.y);
+    // normalize slope
+    slope = { x: slope.x / length, y: slope.y / length };
+    // perpendicular:
+    context.beginPath();
+    context.moveTo(this.destPoint.x, this.destPoint.y);
+    context.lineTo(this.destPoint.x - 15 * slope.x - 5 * slope.y, this.destPoint.y - 15 * slope.y + 5 * slope.x);
+    context.lineTo(this.destPoint.x - 9 * slope.x, this.destPoint.y - 9 * slope.y);
+    context.lineTo(this.destPoint.x - 15 * slope.x + 5 * slope.y, this.destPoint.y - 15 * slope.y - 5 * slope.x);
+    context.fill();
   }
 
   updateTextLocation() {

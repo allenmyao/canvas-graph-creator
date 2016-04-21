@@ -1,9 +1,9 @@
+$dropdown-menu-padding: 10px;
+
 .dropdown {
   position: relative;
-  padding: 5px;
-  border: 1px solid #777;
-  border-radius: 3px;
-  background: white;
+  border-bottom: 1px solid #777;
+  background: none;
   font-size: 0;
 
   &--hidden {
@@ -20,8 +20,9 @@
     &__display {
       vertical-align: top;
       display: inline-block;
-      font-size: 1rem;
       margin-right: 15px;
+      padding: 0 10px;
+      font-size: 1rem;
     }
 
     &__arrow {
@@ -47,12 +48,14 @@
 
   &__menu {
     position: absolute;
-    top: 100%;
+    top: -$dropdown-menu-padding;
     left: 0;
     z-index: 9999;
     display: none;
-    border: 1px solid #777;
+    width: 100%;
+    padding: $dropdown-menu-padding 0;
     background: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .12), 0 4px 6px rgba(0, 0, 0, .20);
     overflow-y: auto;
 
     &--active {
@@ -65,25 +68,16 @@
       &__item {
         display: inline-block;
         width: 100%;
+        padding: 0 10px;
         cursor: pointer;
 
         &:hover {
-          background: #BCECFF;
+          background: $primary-gray-lightest-color; // #BCECFF
         }
 
         &--selected {
           margin: 0px;
-          background: #8DB1BF;
-        }
-
-        * {
-          pointer-events: none;
-        }
-
-        >span {
-          display: inline-block;
-          padding: 3px;
-          font-size: 1rem;
+          // background: $primary-color; //#8DB1BF
         }
       }
     }

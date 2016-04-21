@@ -1,6 +1,7 @@
 import SidebarContent from '../ui/sidebar-content';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
+import * as Form from '../ui/form';
 
 class SidebarSelect extends SidebarContent {
   constructor(graph) {
@@ -19,23 +20,12 @@ class SidebarSelect extends SidebarContent {
     this.update();
     this.tabs.selectTab('data');
 
+    document.getElementById('sidebar').querySelector('form').addEventListener('input', (event) => {
+      this.updateObjectValues(event);
+    });
+
     document.getElementById('sidebar').querySelector('form').addEventListener('change', (event) => {
-      let input = event.target;
-      let name = input.name;
-      let value;
-      if (input.type === 'checkbox') {
-        value = input.checked;
-      } else if (input.type === 'number') {
-        value = parseInt(input.value, 10);
-      } else {
-        value = input.value;
-      }
-      this.selectedObject[name] = value;
-      if (this.selectedObject instanceof Node) {
-        for (let edge of this.selectedObject.edges) {
-          edge.updateEndpoints();
-        }
-      }
+      this.updateObjectValues(event);
     });
   }
 
@@ -54,27 +44,35 @@ class SidebarSelect extends SidebarContent {
     this.tabs.getTabContentElement('data').querySelector('form').innerHTML = html;
   }
 
+  updateObjectValues(event) {
+    let input = event.target;
+    let name = input.name;
+    let value = Form.getInputValue(input);
+    this.selectedObject[name] = value;
+    if (this.selectedObject instanceof Node) {
+      for (let edge of this.selectedObject.edges) {
+        edge.updateEndpoints();
+      }
+    }
+  }
+
   displayGraph(graph) {
-    return `
-      <fieldset>
-        <span class="label col-2">Nodes</span>
-        <span class="value col-2">${graph.nodes.size}</span>
-      </fieldset>
-      <fieldset>
-        <span class="label col-2">Edges</span>
-        <span class="value col-2">${graph.edges.size}</span>
-      </fieldset>
-    `;
+    return Form.createForm([
+      {
+        type: 'size',
+        value: graph.nodes.size,
+        displayName: 'Nodes'
+      },
+      {
+        type: 'size',
+        value: graph.edges.size,
+        displayName: 'Edges'
+      }
+    ]);
   }
 
   displayNode(node) {
-    return this.createForm([
-      {
-        type: 'id',
-        name: 'id',
-        value: node.id,
-        displayName: 'ID'
-      },
+    return Form.createForm([
       {
         type: 'number',
         name: 'x',
@@ -157,28 +155,7 @@ class SidebarSelect extends SidebarContent {
   }
 
   displayEdge(edge) {
-    return this.createForm([
-      {
-        type: 'id',
-        name: 'id',
-        value: edge.id,
-        displayName: 'ID'
-      },
-      {
-        type: 'node',
-        value: `#${edge.startNode.id}: (${edge.startNode.x},${edge.startNode.y})`,
-        displayName: 'Start'
-      },
-      {
-        type: 'node',
-        value: `#${edge.destNode.id}: (${edge.destNode.x},${edge.destNode.y})`,
-        displayName: 'End'
-      },
-      {
-        type: 'point',
-        value: `(${edge.bezierPoint.x}, ${edge.bezierPoint.y})`,
-        displayName: 'Bezier Point'
-      },
+    return Form.createForm([
       {
         type: 'boolean',
         name: 'isDirected',
@@ -228,38 +205,6 @@ class SidebarSelect extends SidebarContent {
         displayName: 'Label color'
       }
     ]);
-  }
-
-  createForm(fields) {
-    let html = '';
-
-    for (let field of fields) {
-      let fieldHtml;
-
-      let type = field.type;
-      let name = field.name;
-      let value = field.value;
-      if (type === 'number') {
-        fieldHtml = `<input type="number" name="${name}" value="${value}">`;
-      } else if (type === 'boolean') {
-        fieldHtml = `<input type="checkbox" name="${name}" ${value ? 'checked="true"' : ''}>`;
-      } else if (type === 'string') {
-        fieldHtml = `<input type="text" name="${name}" value="${value}">`;
-      } else if (type === 'color') {
-        fieldHtml = `<input type="color" name="${name}" value="${value}">`;
-      } else {
-        fieldHtml = `${value}`;
-      }
-
-      let displayName = field.displayName;
-      html += `
-        <fieldset>
-          <span class="label col-2">${displayName}</span>
-          <span class="value col-2">${fieldHtml}</span>
-        </fieldset>`;
-    }
-
-    return html;
   }
 }
 

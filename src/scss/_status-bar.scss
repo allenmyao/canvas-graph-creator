@@ -3,30 +3,87 @@
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: index($zindexes, status-bar);
   height: $status-bar-height;
-  border-top: 1px solid black;
   background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -2px 8px rgba(0, 0, 0, 0.28);
   font-size: 1rem;
 
-  >.status-bar-item {
-    display: inline-block;
-    vertical-align: top;
+  .status-bar__itemlist {
+    display: block;
     height: 100%;
-    float: right;
-    padding: 5px;
-    border-left: 1px solid black;
-    line-height: 30px;
 
-    * {
+    &__item {
       display: inline-block;
       vertical-align: top;
-    }
-  }
+      height: 100%;
+      float: right;
+      border-left: 1px solid $primary-gray-lighter-color;
+      line-height: 30px;
 
-  input, button {
-    height: 100%;
-    padding: 5px;
-    font-size: 0.75rem;
-    line-height: 20px;
+      form {
+        display: inline-block;
+        height: 100%;
+        padding: 5px;
+
+        fieldset {
+          display: inline-block;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+
+          // flexbox doesn't work with fieldset at the moment
+          // http://stackoverflow.com/a/28078942/1418962
+          .flex {
+            display: inline-flex;
+            align-items: baseline;
+            flex-flow: row-reverse nowrap;
+
+            >label,
+            >input {
+              margin-left: 20px;
+            }
+          }
+
+          label {
+            position: static;
+            height: 2em;
+            font-size: 1em;
+            line-height: normal;
+          }
+
+          input {
+
+            &:valid ~ label,
+            &.empty ~ label {
+              font-size: 1em;
+            }
+          }
+        }
+
+        button {
+          display: inline-block;
+          vertical-align: top;
+          height: 100%;
+          margin: auto 10px;
+          padding: 5px 10px;
+        }
+      }
+
+      #mouse-pos {
+        padding: 0;
+
+        fieldset {
+          padding: 10px;
+
+          label,
+          output {
+            display: inline;
+            height: 100%;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
   }
 }

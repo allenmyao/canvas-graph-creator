@@ -3,11 +3,13 @@
   top: 0;
   right: 0;
   left: 0;
+  z-index: index($zindexes, navigation);
   width: 100%;
   height: $navbar-height;
-  background: white;
-  border-bottom: 1px solid #bbb;
   padding: 0 10px;
+  background: $primary-color;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  font-weight: $font-weight-nav;
 
   >div {
     display: inline-block;
@@ -21,17 +23,13 @@
     height: 100%;
     padding: 10px;
     line-height: 30px;
-    font-size: 1.5rem;
-    color: #555;
+    font-size: 1.3rem;
+    color: white;
   }
 
   a {
-    color: #777;
+    color: white;
     text-decoration: none;
-
-    &:hover {
-      color: #555;
-    }
   }
 
   ul.nav-list {
@@ -51,7 +49,7 @@
         font-size: 1rem;
 
         &:hover {
-          background: #ddd;
+          background: $primary-alt-color;
         }
       }
     }

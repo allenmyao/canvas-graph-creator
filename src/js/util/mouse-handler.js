@@ -50,7 +50,7 @@ class MouseHandler {
         currentTool.dropOnNone(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
       }
       this.draggedObject = null;
-    } else {
+    } else if (this.mousePressed) {
       // click
       let component = null;
       if (this.graph.hasComponent(x, y)) {
