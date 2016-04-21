@@ -1,7 +1,6 @@
 package driver;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -45,8 +44,7 @@ public abstract class CanvasPage {
 
 	public void clickElement(String element)
 	{
-		Point coordinate = elements.get(element);
-		clickCanvas(coordinate.x, coordinate.y);
+		clickCanvas(elements.get(element));
 	}
 	/**
 	 * Finds an element on a page by locating its best match.
@@ -66,13 +64,14 @@ public abstract class CanvasPage {
 	{
 		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
 	}
-	public void clickCanvas(int x, int y)
+	public void clickCanvas(Point point)
 	{
-		new Actions(driver).moveToElement(canvas, x, y).click().build().perform();
+		new Actions(driver).moveToElement(canvas, point.x, point.y).click().build().perform();   
 	}
-	public void clickCanvas(String cssSelector, int x, int y)
+
+	public void clickCanvas(String cssSelector, Point point)
 	{
-		new Actions(driver).moveToElement(driver.findElement(By.cssSelector(cssSelector)), x, y).click().build().perform();
+		new Actions(driver).moveToElement(driver.findElement(By.cssSelector(cssSelector)), point.x, point.y).click().build().perform();
 	}
 
 	public BufferedImage getResource(String path) throws URISyntaxException, IOException

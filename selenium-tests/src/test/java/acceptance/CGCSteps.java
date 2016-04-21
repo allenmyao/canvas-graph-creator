@@ -1,25 +1,14 @@
 package acceptance;
-import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
-import cucumber.api.java.Before;
-import cucumber.api.java.After;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import cucumber.api.Delimiter;
-import cucumber.api.Format;
 import cucumber.api.Transform;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -60,9 +49,9 @@ public class CGCSteps {
 
 	}
 	@When("^.*node (?:named (.+) |)at (.*)$")
-	public void createNode(String name, @Transform(CoordinateTransformer.class) Coordinate coord)
+	public void createNode(String name, @Transform(PointTransformer.class) Point point)
 	{
-		Node node = cgc.createNode(coord.x, coord.y);
+		Node node = cgc.createNode(point);
 		nodes.put(name, node);
 	}
 	@When("^.*add an edge between (.+) and (.+)$")
@@ -82,11 +71,11 @@ public class CGCSteps {
 		cgc.selectTool(shortcuts.get(name));
 	}
 	@When("^.*click and drag from (.*)$")
-	public void clickAndDrag(@Transform(CoordinateListTransformer.class) List<Coordinate> coordinates) throws Throwable
+	public void clickAndDrag(@Transform(PointListTransformer.class) List<Point> points) throws Throwable
 	{
 		//When I click and drag from (0, 1) to (1, 2) to (2, 3)
-		for(Coordinate s:coordinates)
-			System.out.println(s);
+		for(Point p:points)
+			System.out.println(p);
 	}
 
 	@Then("^*the screen should match '(.+)'$")
@@ -94,7 +83,6 @@ public class CGCSteps {
 	{
 		Thread.sleep(420);
 		cgc.assertContains("src/test/resources/" + path);
-	    //cgc.assertContains(ImageIO.read(new File("src/test/resources/" + path)), 1);
 	}
 	@Then("^.*there (?:is|are|should be) (.+) nodes?$")
 	public void checkNodes(String nodes) throws Throwable
