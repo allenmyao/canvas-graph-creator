@@ -1,10 +1,10 @@
-import { SidebarContent } from '../ui/sidebar-content';
+import SidebarContent from '../ui/sidebar-content';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
 import * as Form from '../ui/form';
 import * as AlgorithmInterface from '../ui/algorithm';
 
-export class SidebarAlgorithm extends SidebarContent {
+class SidebarAlgorithm extends SidebarContent {
 
   currentInput;
 
@@ -215,3 +215,6 @@ export class SidebarAlgorithm extends SidebarContent {
   update(obj) {
   }
 }
+
+export { SidebarAlgorithm };
+export default SidebarAlgorithm;

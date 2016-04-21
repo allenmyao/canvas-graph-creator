@@ -76,8 +76,9 @@ class Toolbar {
   }
 
   showInputs() {
-    let inputList = document.getElementById('tool-inputs');
+    let inputList = document.getElementById('metadata-tool-inputs');
     if (!(this.currentTool instanceof MetadataTool)) {
+      inputList.innerHTML = '';
       return;
     }
     if (this.currentTool.hasInputs()) {

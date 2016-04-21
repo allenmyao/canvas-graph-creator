@@ -1,28 +1,12 @@
-import { SidebarContent } from '../ui/sidebar-content';
-import * as Form from '../ui/form';
+import SidebarContent from '../ui/sidebar-content';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
 
-export class SidebarSelect extends SidebarContent {
+class SidebarSelect extends SidebarContent {
   constructor(graph) {
     super(graph);
 
     this.selectedObject = null;
-
-    document.getElementById('sidebar').addEventListener('click', (event) => {
-      if (event.target.classList.contains('save-data')) {
-        let form = event.target.parentNode;
-        let data = Form.getData(form);
-        for (let name of Object.keys(data)) {
-          this.selectedObject[name] = data[name];
-        }
-        if (this.selectedObject instanceof Node) {
-          for (let edge of this.selectedObject.edges) {
-            edge.updateEndpoints();
-          }
-        }
-      }
-    });
   }
 
   display() {
@@ -30,8 +14,29 @@ export class SidebarSelect extends SidebarContent {
       data: 'Data'
     });
 
+    this.tabs.setTabContent('data', '<form></form>');
+
     this.update();
     this.tabs.selectTab('data');
+
+    document.getElementById('sidebar').querySelector('form').addEventListener('change', (event) => {
+      let input = event.target;
+      let name = input.name;
+      let value;
+      if (input.type === 'checkbox') {
+        value = input.checked;
+      } else if (input.type === 'number') {
+        value = parseInt(input.value, 10);
+      } else {
+        value = input.value;
+      }
+      this.selectedObject[name] = value;
+      if (this.selectedObject instanceof Node) {
+        for (let edge of this.selectedObject.edges) {
+          edge.updateEndpoints();
+        }
+      }
+    });
   }
 
   update(obj) {
@@ -46,28 +51,24 @@ export class SidebarSelect extends SidebarContent {
       html = this.displayGraph(this.graph);
       this.selectedObject = null;
     }
-    this.tabs.setTabContent('data', html);
+    this.tabs.getTabContentElement('data').querySelector('form').innerHTML = html;
   }
 
   displayGraph(graph) {
     return `
-      <div class="data-container">
-        <form class="data-list">
-          <fieldset class="data-item">
-            <span class="label col-2">Nodes</span>
-            <span class="value col-2">${graph.nodes.size}</span>
-          </fieldset>
-          <fieldset class="data-item">
-            <span class="label col-2">Edges</span>
-            <span class="value col-2">${graph.edges.size}</span>
-          </fieldset>
-        </form>
-      </div>
+      <fieldset>
+        <span class="label col-2">Nodes</span>
+        <span class="value col-2">${graph.nodes.size}</span>
+      </fieldset>
+      <fieldset>
+        <span class="label col-2">Edges</span>
+        <span class="value col-2">${graph.edges.size}</span>
+      </fieldset>
     `;
   }
 
   displayNode(node) {
-    return this.createForm(node, [
+    return this.createForm([
       {
         type: 'id',
         name: 'id',
@@ -156,7 +157,7 @@ export class SidebarSelect extends SidebarContent {
   }
 
   displayEdge(edge) {
-    return this.createForm(edge, [
+    return this.createForm([
       {
         type: 'id',
         name: 'id',
@@ -229,7 +230,7 @@ export class SidebarSelect extends SidebarContent {
     ]);
   }
 
-  createForm(object, fields) {
+  createForm(fields) {
     let html = '';
 
     for (let field of fields) {
@@ -252,19 +253,15 @@ export class SidebarSelect extends SidebarContent {
 
       let displayName = field.displayName;
       html += `
-        <fieldset class="data-item">
+        <fieldset>
           <span class="label col-2">${displayName}</span>
           <span class="value col-2">${fieldHtml}</span>
         </fieldset>`;
     }
 
-    return `
-      <div class="data-container">
-        <form class="data-list">
-          ${html}
-          <button type="button" class="save-data">Save</button>
-        </form>
-      </div>
-    `;
+    return html;
   }
 }
+
+export { SidebarSelect };
+export default SidebarSelect;

@@ -33,7 +33,7 @@ class MouseHandler {
         this.selectedObject = null;
       }
     } else {
-      currentTool.preSelectNone(this.graph, x, y);
+      currentTool.preSelectNone(event, this.graph, x, y);
       this.selectedObject = null;
     }
   }
