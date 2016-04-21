@@ -1,6 +1,4 @@
 import ui from '../ui/ui';
-import { CircleNode } from '../data/node/circle-node';
-import { SquareNode } from '../data/node/square-node';
 
 class MouseHandler {
 
@@ -124,17 +122,7 @@ class MouseHandler {
   }
 
   contextAdd(arg, x, y) {
-    let modes = {
-      circle: CircleNode,
-      square: SquareNode
-    };
-
-    let NodeClass = modes[arg];
-    let node = new NodeClass(x, y);
-
-    if (!this.graph.isNodeCollision(node, x, y)) {
-      this.graph.addNode(node);
-    }
+    ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);
   }
 
   contextToggle(arg, component) {
