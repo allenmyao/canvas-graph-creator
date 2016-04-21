@@ -29,8 +29,6 @@ import model.Node;
 import utils.Utils;
 
 public class CGCSteps {
-	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
-
 	private HashMap<String, String> shortcuts;
 	private HashMap<String, Node> nodes;
 	private CGCPage cgc;
@@ -44,7 +42,7 @@ public class CGCSteps {
 		driver = DriverFactory.createDriver();
 		cgc = new CGCPage(driver);
 
-		shortcuts.put("Edge", "//*[@id=\"toolbar\"]/ul/li[2]/div");
+		shortcuts.put("Edge", "#toolbar .tool[data-tool=\"edge\"]");
 	}
 	@After
 	public void tearDown()

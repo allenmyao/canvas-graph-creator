@@ -1,4 +1,5 @@
 import Dropdown from '../ui/dropdown';
+import * as Form from '../ui/form';
 
 class TopBar {
 
@@ -29,20 +30,21 @@ class TopBar {
       this.ui.toolbar.currentTool.changeMode(event.target.value);
     });
 
-    this.inputForm.addEventListener('change', (event) => {
-      let input = event.target;
-      let name = input.name;
-      let value;
-      if (input.type === 'checkbox') {
-        value = input.checked;
-      } else if (input.type === 'number') {
-        value = parseInt(input.value, 10);
-      } else {
-        value = input.value;
-      }
-      this.ui.toolbar.currentTool.inputs[name] = value;
-      this.dropdown.updateOptionContent();
+    this.inputForm.addEventListener('input', (event) => {
+      this.updateInputValues(event);
     });
+
+    this.inputForm.addEventListener('change', (event) => {
+      this.updateInputValues(event);
+    });
+  }
+
+  updateInputValues(event) {
+    let input = event.target;
+    let name = input.name;
+    let value = Form.getInputValue(input);
+    this.ui.toolbar.currentTool.inputs[name] = value;
+    this.dropdown.updateOptionContent();
   }
 
   showModes() {
@@ -67,45 +69,17 @@ class TopBar {
   showInputs() {
     let currentTool = this.ui.toolbar.currentTool;
     if (currentTool.hasInputs()) {
-      let inputTypes = currentTool.inputTypes;
+      let inputTypes = Object.create(currentTool.inputTypes);
       let inputs = currentTool.inputs;
-      let formContent = this.createForm(inputTypes, inputs);
+      for (let field of inputTypes) {
+        let name = field.name;
+        field.value = inputs[name];
+      }
+      let formContent = Form.createForm(inputTypes);
       this.inputForm.innerHTML = formContent;
     } else {
       this.inputForm.innerHTML = '';
     }
-  }
-
-  createForm(fields, values) {
-    let html = '';
-
-    for (let field of fields) {
-      let fieldHtml;
-
-      let type = field.type;
-      let name = field.name;
-      let value = values[name];
-      if (type === 'number') {
-        fieldHtml = `<input type="number" name="${name}" value="${value}">`;
-      } else if (type === 'boolean') {
-        fieldHtml = `<input type="checkbox" name="${name}" ${value ? 'checked="true"' : ''}>`;
-      } else if (type === 'string') {
-        fieldHtml = `<input type="text" name="${name}" value="${value}">`;
-      } else if (type === 'color') {
-        fieldHtml = `<input type="color" name="${name}" value="${value}">`;
-      } else {
-        fieldHtml = `${value}`;
-      }
-
-      let displayName = field.displayName;
-      html += `
-        <fieldset>
-          <span class="label">${displayName}</span>
-          <span class="value">${fieldHtml}</span>
-        </fieldset>`;
-    }
-
-    return html;
   }
 }
 

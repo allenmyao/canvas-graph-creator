@@ -3,9 +3,10 @@
   top: $navbar-height + $top-bar-height;
   right: 0;
   bottom: $status-bar-height;
+  z-index: index($zindexes, sidebar);
   width: $sidebar-width;
-  border-left: 1px solid black;
   background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), -2px 0 8px rgba(0, 0, 0, 0.28);
   font-size: 1rem;
 
   .tabs-container {
@@ -32,13 +33,11 @@
     }
 
     .tab-content {
-      padding: 10px;
       overflow-y: auto;
     }
   }
 
   output {
-    display: block;
     height: 34px;
 
     // &:empty {
@@ -54,20 +53,11 @@
   form {
     display: block;
     width: 100%;
+    padding: 0 20px;
+    font-size: 1rem;
 
     fieldset {
-      display: block;
-      font-size: 0;
-
-      &:not(:first-child) {
-        margin: 5px 0;
-        padding-top: 5px;
-        border-top: 1px solid #ccc;
-      }
-
-      span {
-        font-size: 1rem;
-      }
+      width: 100%;
     }
   }
 

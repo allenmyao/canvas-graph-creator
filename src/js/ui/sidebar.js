@@ -11,7 +11,8 @@ class Sidebar {
   ui;
 
   sidebar;
-  sidebarContent;
+  sidebarTypes;
+  currentSidebar;
   content;
 
   constructor(ui) {
@@ -20,17 +21,20 @@ class Sidebar {
   }
 
   init(graph) {
-    this.sidebarContent = {
+    this.sidebarTypes = {
       display: new SidebarDisplay(graph),
       select: new SidebarSelect(graph),
       algorithm: new SidebarAlgorithm(graph)
     };
-    this.setSidebar('select');
   }
 
   setSidebar(sidebarType) {
-    this.content = this.sidebarContent[sidebarType];
+    if (this.currentSidebar === sidebarType) {
+      return;
+    }
+    this.content = this.sidebarTypes[sidebarType];
     this.content.display();
+    this.currentSidebar = sidebarType;
   }
 
   // Call the current sidebar-content class's update function.

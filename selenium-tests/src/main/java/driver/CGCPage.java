@@ -29,7 +29,7 @@ import utils.ImageUtils;
 import static org.junit.Assert.*;
 public class CGCPage extends CanvasPage{
 
-	public static String CANVAS_XPATH = "//*[@id=\"canvas\"]";
+	public static String CANVAS_CSS_SELECTOR = "#canvas";
 	public static String HOME_PAGE = "http://127.0.0.1:8080/";
 	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
@@ -63,14 +63,14 @@ public class CGCPage extends CanvasPage{
 			selected = null;
 		}
 	}
-	public void selectTool(String xPath)
+	public void selectTool(String cssSelector)
 	{
-		clickCanvas(xPath, 20, 20);
+		clickCanvas(cssSelector, 20, 20);
 	}
 
 
 	public void drawEdge(Node source, Node destination) {
-		selectTool("//*[@id=\"toolbar\"]/ul/li[2]/div");
+		selectTool("#toolbar .tool[data-tool=\"edge\"]");
 		//clickElement("edge tool");
 		if (source != selected)
 		{
@@ -89,7 +89,7 @@ public class CGCPage extends CanvasPage{
 	public void initialize(String website)
 	{
 		super.initialize(website);
-		selectCanvas(CANVAS_XPATH);
+		selectCanvas(CANVAS_CSS_SELECTOR);
 	}
 /*
 	public static CGC create() throws IOException

@@ -35,6 +35,7 @@ class Canvas {
   resize(event) {
     this.context.canvas.width = window.innerWidth;
     this.context.canvas.height = window.innerHeight;
+    this.update();
   }
 
   get scale() {
@@ -51,6 +52,7 @@ class Canvas {
     this.dy = 0;
     this.scale = 1;
     this.update();
+    this.ui.statusBar.updateMouse(0, 0);
   }
 
   clear() {

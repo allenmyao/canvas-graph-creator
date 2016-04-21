@@ -11,7 +11,7 @@ import { AlgorithmTool } from 'tool/algorithm-tool';
 
 const TOOL_CLASS = 'tool';
 const TOOL_NAME_ATTR = 'data-tool';
-const TOOL_SELECTED_CLASS = 'selected';
+const TOOL_SELECTED_CLASS = 'btn-primary';
 
 class Toolbar {
 

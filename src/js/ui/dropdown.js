@@ -142,8 +142,7 @@ class Dropdown {
 
     // Create MutationObserver to check for changes in selectElement options
     let obs = new MutationObserver((mutations, observer) => {
-      for (let i = 0; i < mutations.length; i++) {
-        let mutation = mutations[i];
+      for (let mutation of mutations) {
         if (mutation.addedNodes || mutation.removedNodes) {
           this.updateOptions();
           break;

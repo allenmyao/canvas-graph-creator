@@ -97,6 +97,8 @@ class SidebarAlgorithm extends SidebarContent {
       algorithm: 'Algorithm'
     });
 
+    this.tabs.setTabContent('algorithm', '<form></form>');
+
     this.update();
     this.tabs.selectTab('algorithm');
   }
@@ -104,11 +106,22 @@ class SidebarAlgorithm extends SidebarContent {
   updateAlgorithm(algorithm) {
     let form = this.createForm(algorithm.inputs);
     let html = `
-      <div class="algorithm-container">
-        <div class="section-title">${algorithm.name}</div>
-        ${form}
+      ${form}
+      <button type="button" class="run-algorithm-btn">Generate results</button>
+      <div>
+        <button type="button" class="algorithm-prev-btn">Previous step</button>
+        <button type="button" class="algorithm-next-btn">Next step</button>
+      </div>
+      <div>
+        <button type="button" class="algorithm-play-btn">Play</button>
+        <button type="button" class="algorithm-pause-btn">Pause</button>
+      <div>
+      <div>
+        <p class="algorithm-step-num">Step #</p>
+        <p class="algorithm-step-des">This step is...</p>
       </div>
     `;
+    this.tabs.getTabContentElement('algorithm').querySelector('form').innerHTML = html;
     this.tabs.setTabContent('algorithm', html);
   }
 
@@ -142,33 +155,14 @@ class SidebarAlgorithm extends SidebarContent {
 
       let displayName = input.name;
       html += `
-        <fieldset class="data-item ${isRequired ? 'required' : ''}" name="${name}">
-          <span class="label col-2">${displayName}</span>
-          <span class="value col-2">${fieldHtml}</span>
+        <fieldset class="${isRequired ? 'required' : ''}" name="${name}">
+          <label>${displayName}</label>
+          ${fieldHtml}
         </fieldset>
       `;
     }
 
-    return `
-      <div class="data-container">
-        <form class="data-list">
-          ${html}
-          <button type="button" class="run-algorithm-btn">Generate results</button>
-        </form>
-        <div>
-          <button type="button" class="algorithm-prev-btn">Previous step</button>
-          <button type="button" class="algorithm-next-btn">Next step</button>
-        </div>
-        <div>
-          <button type="button" class="algorithm-play-btn">Play</button>
-          <button type="button" class="algorithm-pause-btn">Pause</button>
-        <div>
-        <div>
-          <p class="algorithm-step-num">Step #</p>
-          <p class="algorithm-step-des">This step is...</p>
-        </div>
-      </div>
-    `;
+    return html;
   }
 
   getCurrentInput() {
@@ -212,8 +206,7 @@ class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
-  update(obj) {
-  }
+  update() {}
 }
 
 export { SidebarAlgorithm };
