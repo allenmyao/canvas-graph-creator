@@ -57,6 +57,11 @@ export function init() {
   });
 }
 
+export function reset() {
+  currentTool.cancel();
+  currentTool.activate();
+}
+
 export function getCurrentTool() {
   return currentTool;
 }

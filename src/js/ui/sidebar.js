@@ -36,6 +36,14 @@ export function init(graph) {
   changeSidebar('select');
 }
 
+export function resetGraph(newGraph) {
+  sidebarContent.node.resetGraph(newGraph);
+  sidebarContent.edge.resetGraph(newGraph);
+  sidebarContent.select.resetGraph(newGraph);
+  changeSidebar('select');
+  updateSidebar(null);
+}
+
 export function changeSidebar(type) {
   content = sidebarContent[type];
   content.display();

@@ -51,59 +51,73 @@ export class Edge {
     this.isDirected = isDirected;
     this.isSelected = false;
 
+    if (this.startNode !== null && this.destNode !== null) {
+      this.startNode.edges.add(this);
+      this.destNode.edges.add(this);
 
-    startNode.edges.add(this);
-    destNode.edges.add(this);
+      if (this.startNode.id === this.destNode.id) {
+        if (this.startNode instanceof CircleNode) {
+          let angle = 247.5;
+          let theta = Math.PI * angle / 180;
+          let r = CircleNode.radius;
+          this.startPoint = {
+            x: r * Math.cos(theta) + this.startNode.x,
+            y: r * Math.sin(theta) + this.startNode.y
+          };
+          this.bezierPoint = {
+            x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
+            y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
+          };
+          this.destPoint = {
+            x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
+            y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
+          };
+        } else if (this.startNode instanceof SquareNode) {
+          let w = SquareNode.width;
+          let hw = w / 2;
+          this.startPoint = {
+            x: this.startNode.x - hw / 2,
+            y: this.startNode.y - hw
+          };
+          this.bezierPoint = {
+            x: this.startNode.x,
+            y: this.startNode.y - 2 * w
+          };
+          this.destPoint = {
+            x: this.startNode.x + hw / 2,
+            y: this.startNode.y - hw
+          };
+        }
+        this.isDirected = true;
+      } else {
+        try {
+          this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
+          this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
+        } catch (e) {
+          return;
+        }
 
-
-    if (this.startNode.id === this.destNode.id) {
-      if (this.startNode instanceof CircleNode) {
-        let angle = 247.5;
-        let theta = Math.PI * angle / 180;
-        let r = CircleNode.radius;
-        this.startPoint = {
-          x: r * Math.cos(theta) + this.startNode.x,
-          y: r * Math.sin(theta) + this.startNode.y
-        };
-        this.bezierPoint = {
-          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
-        };
-        this.destPoint = {
-          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
-        };
-      } else if (this.startNode instanceof SquareNode) {
-        let w = SquareNode.width;
-        let hw = w / 2;
-        this.startPoint = {
-          x: this.startNode.x - hw / 2,
-          y: this.startNode.y - hw
-        };
-        this.bezierPoint = {
-          x: this.startNode.x,
-          y: this.startNode.y - 2 * w
-        };
-        this.destPoint = {
-          x: this.startNode.x + hw / 2,
-          y: this.startNode.y - hw
-        };
+        if (bezierPoint === null) {
+          this.bezierPoint = {
+            x: (this.startPoint.x + this.destPoint.x) / 2,
+            y: (this.startPoint.y + this.destPoint.y) / 2
+          };
+        }
       }
-      this.isDirected = true;
     } else {
-      try {
-        this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
-        this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
-      } catch (e) {
-        return;
-      }
-
-      if (bezierPoint === null) {
-        this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x) / 2,
-          y: (this.startPoint.y + this.destPoint.y) / 2
-        };
-      }
+      // Serializer needs the ability to create an empty edge, so zero everything.
+      this.startPoint = {
+        x: 0,
+        y: 0
+      };
+      this.bezierPoint = {
+        x: 0,
+        y: 0
+      };
+      this.destPoint = {
+        x: 0,
+        y: 0
+      };
     }
 
     if (typeof cost === 'string' || cost instanceof String) {
@@ -117,8 +131,12 @@ export class Edge {
   }
 
   detach() {
-    this.startNode.edges.delete(this);
-    this.destNode.edges.delete(this);
+    if (this.startNode !== null) {
+      this.startNode.edges.delete(this);
+    }
+    if (this.destNode !== null) {
+      this.destNode.edges.delete(this);
+    }
     this.startNode = null;
     this.destNode = null;
   }

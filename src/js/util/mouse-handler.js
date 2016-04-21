@@ -19,6 +19,17 @@ export class MouseHandler {
     this.graph = graph;
   }
 
+  resetGraph(newGraph) {
+    this.graph = newGraph;
+    this.selectedObject = null;
+    this.draggedObject = null;
+
+    this.clickStartX = null;
+    this.clickStartY = null;
+    this.mousePressed = false;
+    this.isDragging = false;
+  }
+
   downListener(event, currentTool, x, y) {
     this.mousePressed = true;
     this.clickStartX = x;

@@ -8,6 +8,10 @@ export function init(graph) {
   Sidebar.init(graph);
 }
 
+export function resetGraph(newGraph) {
+  Sidebar.resetGraph(newGraph);
+}
+
 export function updateZoom(scale) {
   StatusBar.updateZoom(scale);
 }

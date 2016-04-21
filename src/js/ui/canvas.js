@@ -22,6 +22,11 @@ export function init(graph) {
   initMouseHandler(graph);
 }
 
+export function resetGraph(newGraph) {
+  mouseHandler.resetGraph(newGraph);
+  Toolbar.reset();
+}
+
 export function getDx() {
   return dx;
 }
