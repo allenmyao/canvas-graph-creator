@@ -1,5 +1,4 @@
 import { Edge } from './edge';
-import { drawArrows } from '../../util/curvedEdge';
 
 export class DashedEdge extends Edge {
 
@@ -23,7 +22,7 @@ export class DashedEdge extends Edge {
 
     if (this.isDirected) {
       context.fillStyle = this.isSelected ? this.selectedColor : this.color;
-      drawArrows(this, false, true);
+      this.drawArrow(context);
     }
 
     if (this.edgeLabel !== '') {
