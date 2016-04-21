@@ -1,4 +1,3 @@
-import { initCurved } from '../util/curvedEdge';
 import MouseHandler from '../util/mouse-handler';
 import ContextMenu from '../ui/context-menu';
 
@@ -23,7 +22,6 @@ class Canvas {
     this.ui = ui;
     this.canvas = document.getElementById('canvas');
     this.context = this.canvas.getContext('2d');
-    initCurved(this.canvas, this.context);
   }
 
   init(graph) {
