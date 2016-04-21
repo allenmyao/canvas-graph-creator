@@ -93,7 +93,7 @@ class Canvas {
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (this.contextMenu.menuState === 0 && event.button !== 2) {
+      if (!this.contextMenu.isDisplayed && event.button !== 2) {
         this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);
       }
     }, false);
@@ -102,9 +102,9 @@ class Canvas {
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (this.contextMenu.menuState === 1) {
+      if (this.contextMenu.isDisplayed) {
         this.contextMenu.toggleContextMenu();
-      } else if (this.contextMenu.menuState === 0 && event.button !== 2) {
+      } else if (!this.contextMenu.isDisplayed && event.button !== 2) {
         this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);
       }
     }, false);

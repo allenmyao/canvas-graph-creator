@@ -111,7 +111,15 @@ export class NodeTool extends Tool {
   }
 
   selectNone(event, graph, x, y) {
-    let NodeClass = NodeTool.modes[this.currentMode];
+    this.addNode(this.currentMode, graph, x, y);
+  }
+
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
+    this.selectNone(event, graph, x, y);
+  }
+
+  addNode(mode, graph, x, y) {
+    let NodeClass = NodeTool.modes[mode];
     let node = new NodeClass(x, y);
     for (let field of Object.keys(this.inputs)) {
       node[field] = this.inputs[field];
@@ -119,10 +127,6 @@ export class NodeTool extends Tool {
     if (!graph.isNodeCollision(node, x, y)) {
       graph.addNode(node);
     }
-  }
-
-  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
-    this.selectNone(event, graph, x, y);
   }
 
 }
