@@ -6,9 +6,9 @@ export class Edge {
   id = Edge.numEdges++;
 
   // Line Control
-  startPoint = {x: 0, y: 0};
-  bezierPoint = {x: 0, y: 0};
-  destPoint = {x: 0, y: 0};
+  startPoint = { x: 0, y: 0 };
+  bezierPoint = { x: 0, y: 0 };
+  destPoint = { x: 0, y: 0 };
 
   // graph data
   startNode = null;
@@ -79,6 +79,8 @@ export class Edge {
           this.partners[i].updateEndpoints();
         }
       }
+    } else {
+      this.partners.push(this);
     }
 
     this.generateDefaultTextLocation();
@@ -94,6 +96,8 @@ export class Edge {
       this.partners[i].partners.splice(index, 1);
       this.partners[i].updateEndpoints();
     }
+    this.partners = [];
+    this.partners.push(this);
 
     if (this.startNode !== null) {
       this.startNode.edges.delete(this);

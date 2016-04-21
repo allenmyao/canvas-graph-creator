@@ -144,14 +144,14 @@ function getFieldData(inputs, graph) {
     let name = input.name;
     let value;
     if (input.tagName === 'INPUT') {
-      value = getInputValue(input, graph);
+      value = getInputValueGraph(input, graph);
     }
     data[name] = value;
   }
   return data;
 }
 
-function getInputValue(input, graph) {
+function getInputValueGraph(input, graph) {
   let value;
   let type = input.getAttribute('type');
   let dataType = input.getAttribute('data-type');

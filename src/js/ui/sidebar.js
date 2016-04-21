@@ -29,9 +29,9 @@ class Sidebar {
   }
 
   resetGraph(newGraph) {
-    this.sidebarTypes.node.resetGraph(newGraph);
-    this.sidebarTypes.edge.resetGraph(newGraph);
+    this.sidebarTypes.display.resetGraph(newGraph);
     this.sidebarTypes.select.resetGraph(newGraph);
+    this.sidebarTypes.algorithm.resetGraph(newGraph);
     this.setSidebar('display');
     this.updateSidebar(null);
   }

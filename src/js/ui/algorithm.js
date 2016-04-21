@@ -10,6 +10,13 @@ export function init(g) {
   graph = g;
 }
 
+export function resetGraph(g) {
+  graph = g;
+  curAlgorithm = null;
+  inputs = null;
+  stepper = new Stepper();
+}
+
 export function selectObject(obj) {
   let sidebarContent = ui.sidebar.content;
   let currentInput = sidebarContent.getCurrentInput();

@@ -2,8 +2,15 @@ const nSerial = require('node-serialize');
 import { Graph } from '../data/graph';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
+
 import { CircleNode } from '../data/node/circle-node';
+import { TriangleNode } from '../data/node/triangle-node';
 import { SquareNode } from '../data/node/square-node';
+import { DiamondNode } from '../data/node/diamond-node';
+import { PentagonNode } from '../data/node/pentagon-node';
+import { HexagonNode } from '../data/node/hexagon-node';
+import { OctagonNode } from '../data/node/octagon-node';
+
 import { SolidEdge } from '../data/edge/solid-edge';
 import { DashedEdge } from '../data/edge/dashed-edge';
 
@@ -16,6 +23,18 @@ let IDSET = '_$$SET$$_';
 let IDNODE = '_$$NODE$$_';
 let IDEDGE = '_$$EDGE$$_';
 let IDDATA = '_$$DATA$$_';
+
+let classesByName = {
+  CircleNode: CircleNode,
+  TriangleNode: TriangleNode,
+  SquareNode: SquareNode,
+  DiamondNode: DiamondNode,
+  PentagonNode: PentagonNode,
+  HexagonNode: HexagonNode,
+  OctagonNode: OctagonNode,
+  SolidEdge: SolidEdge,
+  DashedEdge: DashedEdge
+};
 
 export class Serializer {
 
@@ -44,25 +63,8 @@ export class Serializer {
     let outElem;
     cache[path] = elem;
 
-    if (elem instanceof Node) {
-      console.log('Node at ' + path);
-      if (elem instanceof CircleNode) {
-        outputObj[IDTYPE] = 'CircleNode';
-      } else if (elem instanceof SquareNode) {
-        outputObj[IDTYPE] = 'SquareNode';
-      } else {
-        outputObj[IDTYPE] = 'Node';
-      }
-    } else if (elem instanceof Edge) {
-      console.log('Edge at ' + path);
-      if (elem instanceof SolidEdge) {
-        outputObj[IDTYPE] = 'SolidEdge';
-      } else if (elem instanceof DashedEdge) {
-        outputObj[IDTYPE] = 'DashedEdge';
-      } else {
-        outputObj[IDTYPE] = 'Edge';
-      }
-    }
+    console.log(elem.constructor.name + ' at ' + path);
+    outputObj[IDTYPE] = elem.constructor.name;
 
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
@@ -73,20 +75,34 @@ export class Serializer {
           } else if (elem[key] instanceof Edge) {
             console.log('Edge Field Detected');
             outputObj[IDEDGE + key] = elem[key].id;
+          } else if (elem[key] instanceof Array) {
+            outputObj[key] = [];
+            for (setElem of elem[key]) {
+              if (setElem instanceof Node) {
+                console.log('Node-Array Field Detected with id ' + setElem.id);
+                outElem = IDNODE + setElem.id.toString();
+              } else if (setElem instanceof Edge) {
+                console.log('Edge-Array Field Detected with id ' + setElem.id);
+                outElem = IDEDGE + setElem.id.toString();
+              } else {
+                console.log('Primitive-Array Field Detected with val ' + setElem.toString());
+                outElem = setElem;
+              }
+              outputObj[key].push(outElem);
+            }
           } else if (elem[key] instanceof Set) {
             modKey = IDSET + key;
             outputObj[modKey] = [];
             for (setElem of elem[key]) {
               if (setElem instanceof Node) {
-                console.log('Node Set Field Detected with id ' + setElem.id);
+                console.log('Node-Set Field Detected with id ' + setElem.id);
                 outElem = IDNODE + setElem.id.toString();
               } else if (setElem instanceof Edge) {
-                console.log('Edge Set Field Detected with id ' + setElem.id);
+                console.log('Edge-Set Field Detected with id ' + setElem.id);
                 outElem = IDEDGE + setElem.id.toString();
-                console.log('Edge Set Field Complete');
               } else {
-                outElem = nSerial.serialize(setElem, false, outElem, cache,
-                    path + KEYPATHSEPARATOR + modKey + KEYPATHSEPARATOR + outputObj[modKey].length.toString());
+                console.log('Primitive-Set Field Detected with val ' + setElem.toString());
+                outElem = setElem;
               }
               outputObj[modKey].push(outElem);
             }
@@ -144,18 +160,12 @@ export class Serializer {
 
   allocateElement(name) {
     console.log('Element allocation of type ' + name);
-    switch (name) {
-    case 'CircleNode':
-      return new CircleNode(0, 0);
-    case 'SquareNode':
-      return new SquareNode(0, 0);
-    case 'SolidEdge':
-      return new SolidEdge(null, null);
-    case 'DashedEdge':
-      return new DashedEdge(null, null);
-    default:
-      return null;
+    if (name.indexOf('Node') >= 0) {
+      return new classesByName[name](0, 0);
+    } else if (name.indexOf('Edge') >= 0) {
+      return new classesByName[name](null, null);
     }
+    return null;
   }
 
   importElement(elem, newElem, nodeCache, edgeCache) {
@@ -175,25 +185,47 @@ export class Serializer {
           modKey = key.substring(IDEDGE.length);
           newElem[modKey] = edgeCache[elem[key]];
           console.log('Inner Edge found called ' + modKey + ' with id ' + elem[key].toString());
-        } else if (key.indexOf(IDSET) === 0 && elem[key] instanceof Array) {
-          modKey = key.substring(IDSET.length);
-          console.log('Inner Set found called ' + modKey);
-          newElem[modKey] = new Set();
-          for (arrayElem of elem[key]) {
-            if (typeof arrayElem === 'string' || arrayElem instanceof String) {
-              if (arrayElem.indexOf(IDNODE) === 0) {
-                refKey = Number(arrayElem.substring(IDNODE.length));
-                newElem[modKey].add(nodeCache[refKey]);
-                console.log('Inner Set Node found with id ' + refKey.toString());
-              } else if (arrayElem.indexOf(IDEDGE) === 0) {
-                refKey = Number(arrayElem.substring(IDEDGE.length));
-                newElem[modKey].add(edgeCache[refKey]);
-                console.log('Inner Set Edge found with id ' + refKey.toString());
+        } else if (elem[key] instanceof Array) {
+          if (key.indexOf(IDSET) === 0) {
+            modKey = key.substring(IDSET.length);
+            console.log('Inner Set found called ' + modKey);
+            newElem[modKey] = new Set();
+            for (arrayElem of elem[key]) {
+              if (typeof arrayElem === 'string' || arrayElem instanceof String) {
+                if (arrayElem.indexOf(IDNODE) === 0) {
+                  refKey = Number(arrayElem.substring(IDNODE.length));
+                  newElem[modKey].add(nodeCache[refKey]);
+                  console.log('Inner-Set Node found with id ' + refKey.toString());
+                } else if (arrayElem.indexOf(IDEDGE) === 0) {
+                  refKey = Number(arrayElem.substring(IDEDGE.length));
+                  newElem[modKey].add(edgeCache[refKey]);
+                  console.log('Inner-Set Edge found with id ' + refKey.toString());
+                } else {
+                  newElem[modKey].add(nSerial.unserialize(arrayElem, elem));
+                }
               } else {
                 newElem[modKey].add(nSerial.unserialize(arrayElem, elem));
               }
-            } else {
-              newElem[modKey].add(nSerial.unserialize(arrayElem, elem));
+            }
+          } else {
+            console.log('Inner Array found called ' + key);
+            newElem[key] = [];
+            for (arrayElem of elem[key]) {
+              if (typeof arrayElem === 'string' || arrayElem instanceof String) {
+                if (arrayElem.indexOf(IDNODE) === 0) {
+                  refKey = Number(arrayElem.substring(IDNODE.length));
+                  newElem[key].push(nodeCache[refKey]);
+                  console.log('Inner-Array Node found with id ' + refKey.toString());
+                } else if (arrayElem.indexOf(IDEDGE) === 0) {
+                  refKey = Number(arrayElem.substring(IDEDGE.length));
+                  newElem[key].push(edgeCache[refKey]);
+                  console.log('Inner-Array Edge found with id ' + refKey.toString());
+                } else {
+                  newElem[key].push(nSerial.unserialize(arrayElem, elem));
+                }
+              } else {
+                newElem[key].push(nSerial.unserialize(arrayElem, elem));
+              }
             }
           }
         } else if (typeof elem[key] === 'string' || elem[key] instanceof String) {

@@ -24,8 +24,7 @@ function draw() {
 
 function resetGraph(newGraph) {
   graph = newGraph;
-  Canvas.resetGraph(newGraph);
-  UI.resetGraph(newGraph);
+  ui.resetGraph(newGraph);
   serializer.resetGraph(newGraph);
 }
 
