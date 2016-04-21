@@ -1,6 +1,15 @@
 import { Node } from 'data/node/node';
 import { Edge } from 'data/edge/edge';
 
+const MENU_TOGGLE_CLASS = 'context-menu--active';
+
+const MENU_SECTION_CLASS = 'context-menu__section';
+const MENU_SECTION_VISIBILITY_CLASS = 'context-menu__section--visible';
+const MENU_SECTION_NAME_ATTRIBUTE = 'data-name';
+
+const MENU_ITEM_TYPE_ATTRIBUTE = 'data-type';
+const MENU_ITEM_DATA_ATTRIBUTE = 'data-data';
+
 class ContextMenu {
 
   ui;
@@ -9,19 +18,12 @@ class ContextMenu {
 
   contextMenu;
 
-  menuState = 0;
+  isDisplayed = false;
   menuPosX;
   menuPosY;
+
+  currentSection = null;
   component;
-  taskArg = {
-    'Add Circle Node': 'circle',
-    'Add Square Node': 'square',
-    'Toggle Accepting State': 'isAcceptingState',
-    'Toggle Start State': 'isStartingState',
-    'Toggle Directed Edge': 'isDirected',
-    'Delete Node': 'node',
-    'Delete Edge': 'edge'
-  };
 
   constructor(ui, mouseHandler) {
     this.ui = ui;
@@ -32,16 +34,16 @@ class ContextMenu {
 
   initListeners() {
     this.contextMenu.addEventListener('mouseup', (event) => {
-      let task = event.srcElement.innerText;
-      let type = task.split(' ')[0];
+      let type = event.target.getAttribute(MENU_ITEM_TYPE_ATTRIBUTE);
+      let value = event.target.getAttribute(MENU_ITEM_DATA_ATTRIBUTE);
 
-      if (type === 'Add') {
-        this.mouseHandler.contextAdd(this.taskArg[task], this.menuPosX, this.menuPosY);
-      } else if (type === 'Toggle') {
-        this.mouseHandler.contextToggle(this.taskArg[task], this.component);
-      } else if (type === 'Delete') {
-        this.mouseHandler.contextDelete(this.taskArg[task], this.component);
-      } else if (type === 'Edit') {
+      if (type === 'add') {
+        this.mouseHandler.contextAdd(value, this.menuPosX, this.menuPosY);
+      } else if (type === 'toggle') {
+        this.mouseHandler.contextToggle(value, this.component);
+      } else if (type === 'delete') {
+        this.mouseHandler.contextDelete(value, this.component);
+      } else if (type === 'edit') {
         this.ui.toolbar.selectToolByName('metadata');
         this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.component, this.menuPosX, this.menuPosY);
       }
@@ -50,33 +52,21 @@ class ContextMenu {
     }, false);
   }
 
-  classDisplayChange(className, displayType) {
-    let items = this.contextMenu.getElementsByClassName(className);
-    for (let i = 0; i < items.length; ++i) {
-      items[i].style.display = displayType;
-    }
-  }
-
   toggleContextMenu() {
-    if (this.menuState !== 1) {
-      this.contextMenu.style.display = 'block';
-      this.menuState = 1;
+    if (this.isDisplayed) {
+      this.contextMenu.classList.remove(MENU_TOGGLE_CLASS);
     } else {
-      this.menuState = 0;
-      this.contextMenu.style.display = 'none';
-      this.classDisplayChange('component', 'none');
-      this.classDisplayChange('component-node', 'none');
-      this.classDisplayChange('component-edge', 'none');
-      this.classDisplayChange('blank', 'none');
+      this.contextMenu.classList.add(MENU_TOGGLE_CLASS);
     }
+    this.isDisplayed = !this.isDisplayed;
   }
 
   repositionMenu(event) {
     let xpos = event.pageX;
     let ypos = event.pageY;
 
-    document.getElementById('context-menu').style.left = xpos + 'px';
-    document.getElementById('context-menu').style.top = ypos + 'px';
+    this.contextMenu.style.left = xpos + 'px';
+    this.contextMenu.style.top = ypos + 'px';
   }
 
   contextmenuEventListener(event, x, y) {
@@ -92,15 +82,29 @@ class ContextMenu {
 
     this.repositionMenu(event);
 
+    // hide all menu sections
+    let sectionElements = this.contextMenu.querySelectorAll(`.${MENU_SECTION_CLASS}`);
+    for (let i = 0; i < sectionElements.length; i++) {
+      sectionElements[i].classList.remove(MENU_SECTION_VISIBILITY_CLASS);
+    }
+
+    // populate array with names of menu sections to be displayed
+    let sections = [];
     if (this.component !== null) {
-      this.classDisplayChange('component', 'block');
+      sections.push('component');
       if (this.component instanceof Node) {
-        this.classDisplayChange('component-node', 'block');
+        sections.push('node');
       } else if (this.component instanceof Edge) {
-        this.classDisplayChange('component-edge', 'block');
+        sections.push('edge');
       }
     } else {
-      this.classDisplayChange('blank', 'block');
+      sections.push('default');
+    }
+
+    // make menu sections visible
+    for (let section of sections) {
+      let sectionElement = this.contextMenu.querySelector(`.${MENU_SECTION_CLASS}[${MENU_SECTION_NAME_ATTRIBUTE}="${section}"]`);
+      sectionElement.classList.add(MENU_SECTION_VISIBILITY_CLASS);
     }
   }
 

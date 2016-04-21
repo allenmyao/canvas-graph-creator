@@ -130,53 +130,21 @@
   </div>
 
   <div id="context-menu" class="context-menu">
-    <ul class="component-node">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Toggle Accepting State
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Toggle Start State
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Delete Node
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="node">
+      <li class="context-menu__section__item" data-type="toggle" data-data="isAcceptingState">Toggle Accepting State</li>
+      <li class="context-menu__section__item" data-type="toggle" data-data="isStartingState">Toggle Start State</li>
+      <li class="context-menu__section__item" data-type="delete">Delete Node</li>
     </ul>
-    <ul class="component-edge">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-         Toggle Directed Edge
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Delete Edge
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="edge">
+      <li class="context-menu__section__item" data-type="toggle" data-data="isDirected">Toggle Directed Edge</li>
+      <li class="context-menu__section__item" data-type="delete">Delete Edge</li>
     </ul>
-    <ul class="component">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Edit Label
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="component">
+      <li class="context-menu__section__item" data-type="edit">Edit Label</li>
     </ul>
-    <ul class="blank">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Add Circle Node
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Add Square Node
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="default">
+      <li class="context-menu__section__item" data-type="add" data-data="circle">Add Circle Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="square">Add Square Node</li>
     </ul>
   </div>
 
