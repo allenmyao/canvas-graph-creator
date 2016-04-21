@@ -1,16 +1,36 @@
-// the following two functions adapted from:
-// http://stackoverflow.com/questions/27176423/function-to-solve-cubic-equation-analytically
-// calculates cube root
-// self-explanatory
+/**
+ * Calculates cube root.
+ * This is needed due to limits of Math.pow():
+ * From [MDN]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow}:
+ * > due to "even" and "odd" roots laying close to each other,
+ * > and limits in the floating number precision,
+ * > negative bases with fractional exponents always return NaN
+ * @param  {number} x - The number to find the cubic root of.
+ * @return {number} - The cubic root of x.
+ */
 function cuberoot(x) {
   let y = Math.pow(Math.abs(x), 1 / 3);
   return x < 0 ? -y : y;
 }
 
+/**
+ * Solve the root for a linear equation ax + b = 0.
+ * @param  {number} a - Coefficient for x term.
+ * @param  {number} b - Constant.
+ * @return {Array.<number>} - Array containing the root of the equation.
+ */
 function solveLinear(a, b) {
   return [ -b / a ];
 }
 
+/**
+ * Solve the root for a quadratic equation ax^2 + bx + c = 0.
+ * @param  {number} a - Coefficient for x^2 term.
+ * @param  {number} b - Coefficient for x term.
+ * @param  {number} c - Constant.
+ * @param  {number} epsilon - Margin of error for checking zero.
+ * @return {Array.<number>} - Array containing the root of the equation.
+ */
 function solveQuadratic(a, b, c, epsilon) {
   let roots;
   let d = b * b - 4 * a * c;
@@ -23,13 +43,14 @@ function solveQuadratic(a, b, c, epsilon) {
 }
 
 /**
- * Function to solve for x when ax^3 + bx^2 + c + d = 0/
+ * Function to solve for x when ax^3 + bx^2 + c + d = 0.
+ * Adapted from http://stackoverflow.com/a/27176424/1418962
  * @param  {number} a - Coefficient of x^3 term.
  * @param  {number} b - Coefficient of x^2 term.
  * @param  {number} c - Coefficient of x term.
  * @param  {number} d - Constant.
- * @param  {number} epsilon - Margin of error.
- * @return {Array.<number>} - An array of x-coordinates for the roots of the cubic.
+ * @param  {number} epsilon - Margin of error for checking zero.
+ * @return {Array.<number>} - Array containing the root of the equation.
  */
 function solveCubic(a, b, c, d, epsilon) {
   if (Math.abs(a) < epsilon) {
@@ -176,6 +197,14 @@ export function calcBezierDistance(pointX, pointY, start, control, end) {
   return smallestDist;
 }
 
+/**
+ * Find the derivative of a quadratic bezier at a given point.
+ * @param  {number} t - The point in the curve P(t) to find the derivative at.
+ * @param  {Point} start - The start point of the bezier curve.
+ * @param  {Point} control - The control point of the bezier curve.
+ * @param  {Point} end - The end point of the bezier curve.
+ * @return {Point} - Point object containing the x- and y-values of th derivative.
+ */
 export function bezierDerivative(t, start, control, end) {
   return {
     x: (2 * t - 2) * start.x + (2 - 4 * t) * control.x + 2 * t * end.x,
