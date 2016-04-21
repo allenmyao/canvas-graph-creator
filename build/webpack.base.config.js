@@ -4,7 +4,6 @@ const config = require('../config');
 const projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
-  cache: true,
   entry: {
     app: [
       'babel-polyfill',
@@ -12,7 +11,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ '', '.js', '.ts' ],
+    extensions: [ '', '.js' ],
     fallback: [ path.join(__dirname, '../node_modules') ],
     alias: {
       src: path.resolve(__dirname, '../src')
