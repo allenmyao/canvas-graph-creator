@@ -114,7 +114,11 @@ gulp.task('webpack-dev-server', (callback) => {
     },
     publicPath: webpackDevConfig.output.publicPath,
     stats: {
-      colors: true
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
     }
   });
 

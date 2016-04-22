@@ -25,7 +25,11 @@ var devServer = new WebpackDevServer(compiler, {
   },
   publicPath: webpackConfig.output.publicPath,
   stats: {
-    colors: true
+    colors: true,
+    modules: false,
+    children: false,
+    chunks: false,
+    chunkModules: false
   }
 });
 
