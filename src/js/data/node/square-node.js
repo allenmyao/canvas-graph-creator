@@ -4,7 +4,6 @@ export class SquareNode extends PolygonNode {
 
   constructor(x, y) {
     super(x, y);
-    this.generateDefaultTextLocation();
     this.inscribed = [ 45, 135, 225, 315 ];
     this.separation = 90;
   }

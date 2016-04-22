@@ -1,4 +1,5 @@
 import { calcBezierDistance, bezierDerivative } from '../../util/bezier';
+import Label from '../label';
 
 const EDGE_DISTANCE_THRESHOLD = 10;
 
@@ -17,12 +18,7 @@ export class Edge {
   isSelected = false;
 
   // label
-  xText;
-  yText;
-  edgeLabel = '';
-  labelFont = '14px Arial';
-  labelColor = '#000000';
-  showTextCtrl = false;
+  label;
 
   // appearance
   color = '#000000';
@@ -40,8 +36,8 @@ export class Edge {
       }
     }
 
-    if (arguments.length < 2) {
-      throw Error(`Edge constructor requires at least two arguments: startNode and destNode. Actually passed in ${arguments}`);
+    if (typeof startNode === 'undefined' || typeof destNode === 'undefined') {
+      throw Error(`Edge constructor requires at least two arguments: startNode and destNode. Actually passed in ${startNode}, ${destNode}`);
     }
 
     this.startNode = startNode;
@@ -76,7 +72,7 @@ export class Edge {
       }
     }
 
-    this.generateDefaultTextLocation();
+    this.label = new Label(this.bezierPoint.x, this.bezierPoint.y, this);
   }
 
   detach() {
@@ -172,7 +168,9 @@ export class Edge {
     } else {
       this.updateNormalEdgeEndpoints();
     }
-    this.updateTextLocation();
+    if (this.label) {
+      this.updateLabelLocation();
+    }
   }
 
   containsPoint(x, y) {
@@ -184,16 +182,7 @@ export class Edge {
   }
 
   drawLabel(context) {
-    context.font = this.labelFont;
-    context.fillStyle = this.labelColor;
-    context.fillText(this.edgeLabel, this.xText, this.yText);
-    if (this.showTextCtrl) {
-      context.fillStyle = 'red';
-      context.beginPath();
-      context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
-      context.lineTo(this.xText, this.yText);
-      context.fill();
-    }
+    this.label.draw(context);
   }
 
   drawArrow(context) {
@@ -210,19 +199,10 @@ export class Edge {
     context.fill();
   }
 
-  updateTextLocation() {
-    this.xText = this.bezierPoint.x;
-    this.yText = this.bezierPoint.y;
-  }
-
-  // find the starting point of our text box
-  generateDefaultTextLocation() {
-    // var xOffSet = context.measureText(this.edgeLabel)/2;
-    // var yOffSet = 1; //assuming an edge is just 1 pixel
-
-    this.xText = this.bezierPoint.x;
-    this.yText = this.bezierPoint.y;
-    // console.log("Line xText: " + this.xText + ", yText: " + this.yText);
+  updateLabelLocation() {
+    // TODO: properly update label position if moved
+    this.label.x = this.bezierPoint.x;
+    this.label.y = this.bezierPoint.y;
   }
 
 }

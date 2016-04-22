@@ -1,14 +1,13 @@
 import { Node } from './node';
+import Label from '../label';
 
 class CircleNode extends Node {
 
-  static radius = 30;
-
-  radius = CircleNode.radius;
+  radius = 30;
 
   constructor(x, y) {
     super(x, y);
-    this.generateDefaultTextLocation();
+    this.label = new Label(this.x + this.radius + 4, this.y, this);
   }
 
   containsPoint(x, y) {
@@ -60,20 +59,6 @@ class CircleNode extends Node {
 
     if (this.isStartingState) {
       this.drawStartingState(context);
-    }
-  }
-
-  drawLabel(context) {
-    // xOffSet = context.measureText(this.nodeLabel)/2;
-    context.font = this.labelFont;
-    context.fillStyle = this.labelColor;
-    context.fillText(this.nodeLabel, this.xText, this.yText);
-    if (this.showTextCtrl) {
-      context.fillStyle = 'red';
-      context.beginPath();
-      context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
-      context.lineTo(this.xText, this.yText);
-      context.fill();
     }
   }
 

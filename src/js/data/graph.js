@@ -5,7 +5,6 @@ export class Graph {
   }
 
   addNode(node) {
-    // console.log('Adding node at (' + node.x + ',' + node.y + ')');
     this.nodes.add(node);
   }
 
@@ -13,13 +12,10 @@ export class Graph {
     if (!this.nodes.has(edge.startNode) || !this.nodes.has(edge.destNode)) {
       throw new Error('Edge nodes are not in the graph');
     }
-
-    // console.log('Adding edge between ' + edge.startNode.id + ' and ' + edge.destNode.id);
     this.edges.add(edge);
   }
 
   removeNode(node) {
-    // console.log('Removing node ' + node.id);
     // Temp copy of edges to work on while we remove them
     let tempEdges = new Set();
     for (let edge of node.edges) {
@@ -32,7 +28,6 @@ export class Graph {
   }
 
   removeEdge(edge) {
-    // console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
     let id = edge.id;
     for (let i = 0; i < edge.partners.length; i++) {
       for (let j = 0; j < edge.partners[i].length; j++) {
@@ -66,28 +61,40 @@ export class Graph {
   }
 
   getComponent(x, y) {
-    let component = null;
-    this.forEachNode((node) => {
-      if (node.containsPoint(x, y)) {
-        component = node;
-        return false;
-      }
-      return true;
-    });
+    let nodes = this.nodes;
+    let edges = this.edges;
+    // generator function will yield all the nodes and then all the edges
+    let generator = function *() {
+      yield* nodes;
+      yield* edges;
+    };
 
-    if (component !== null) {
-      return component;
+    // generator function is used instead of new Set(this.nodes, this.edges)
+    // because the latter iterates over the combined length of both sets twice
+    let allComponents = new Set(generator());
+
+    for (let component of allComponents) {
+      let subComponent = component.label;
+      if (typeof subComponent === 'object') {
+        if (subComponent.containsPoint(x, y)) {
+          return subComponent;
+        }
+      }
     }
 
-    this.forEachEdge((edge) => {
-      if (edge.containsPoint(x, y)) {
-        component = edge;
-        return false;
+    for (let node of this.nodes) {
+      if (node.containsPoint(x, y)) {
+        return node;
       }
-      return true;
-    });
+    }
 
-    return component;
+    for (let edge of this.edges) {
+      if (edge.containsPoint(x, y)) {
+        return edge;
+      }
+    }
+
+    return null;
   }
 
   isNodeCollision(testNode, x, y) {
