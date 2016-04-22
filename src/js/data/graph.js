@@ -1,4 +1,4 @@
-export class Graph {
+class Graph {
   constructor(nodes, edges) {
     this.nodes = new Set(nodes);
     this.edges = new Set(edges);
@@ -61,18 +61,7 @@ export class Graph {
   }
 
   getComponent(x, y) {
-    let nodes = this.nodes;
-    let edges = this.edges;
-    // generator function will yield all the nodes and then all the edges
-    let generator = function *() {
-      yield* nodes;
-      yield* edges;
-    };
-
-    // generator function is used instead of new Set(this.nodes, this.edges)
-    // because the latter iterates over the combined length of both sets twice
-    let allComponents = new Set(generator());
-
+    let allComponents = new Set([ this.nodes, this.edges ]);
     for (let component of allComponents) {
       let subComponent = component.label;
       if (typeof subComponent === 'object') {
@@ -141,3 +130,6 @@ export class Graph {
     });
   }
 }
+
+export { Graph };
+export default Graph;
