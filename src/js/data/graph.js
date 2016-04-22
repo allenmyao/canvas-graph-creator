@@ -61,13 +61,15 @@ class Graph {
   }
 
   getComponent(x, y) {
-    let allComponents = new Set([ this.nodes, this.edges ]);
-    for (let component of allComponents) {
-      let subComponent = component.label;
-      if (typeof subComponent === 'object') {
-        if (subComponent.containsPoint(x, y)) {
-          return subComponent;
-        }
+    for (let node of this.nodes) {
+      if (node.label.containsPoint(x, y)) {
+        return node.label;
+      }
+    }
+
+    for (let edge of this.edges) {
+      if (edge.label.containsPoint(x, y)) {
+        return edge.label;
       }
     }
 
