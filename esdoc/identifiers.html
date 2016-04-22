@@ -90,6 +90,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
@@ -97,15 +98,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/stack.js~Stack.html">Stack</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierPoint">bezierPoint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calculateLoop">calculateLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawArrows">drawArrows</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawLabel">drawLabel</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initCurved">initCurved</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawCurvedEdge">drawCurvedEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_RADIUS">DEFAULT_RADIUS</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EDGE_DISTANCE_THRESHOLD">EDGE_DISTANCE_THRESHOLD</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Point">Point</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -1315,13 +1309,14 @@ for managing those subclasses as well.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span><span data-ice="signature">(t: <span>*</span>, startX: <span>*</span>, startY: <span>*</span>, controlX: <span>*</span>, controlY: <span>*</span>, endX: <span>*</span>, endY: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span><span data-ice="signature">(t: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, start: <span><a href="typedef/index.html#static-typedef-Point">Point</a></span>, control: <span><a href="typedef/index.html#static-typedef-Point">Point</a></span>, end: <span><a href="typedef/index.html#static-typedef-Point">Point</a></span>): <span><a href="typedef/index.html#static-typedef-Point">Point</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Find the derivative of a quadratic bezier at a given point.</p>
+</div>
       </div>
     </td>
     <td>
@@ -1340,63 +1335,14 @@ for managing those subclasses as well.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-bezierPoint">bezierPoint</a></span></span><span data-ice="signature">(t: <span>*</span>, startX: <span>*</span>, startY: <span>*</span>, controlX: <span>*</span>, controlY: <span>*</span>, endX: <span>*</span>, endY: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span><span data-ice="signature">(pointX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, pointY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, start: <span><a href="typedef/index.html#static-typedef-Point">Point</a></span>, control: <span><a href="typedef/index.html#static-typedef-Point">Point</a></span>, end: <span><a href="typedef/index.html#static-typedef-Point">Point</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span><span data-ice="signature">(pointX: <span>*</span>, pointY: <span>*</span>, startX: <span>*</span>, startY: <span>*</span>, controlX: <span>*</span>, controlY: <span>*</span>, endX: <span>*</span>, endY: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-calculateLoop">calculateLoop</a></span></span><span data-ice="signature">(node: <span>*</span>, angle: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Function that calculates the distance between a specified point and a quadratic bezier.</p>
+</div>
       </div>
     </td>
     <td>
@@ -1441,81 +1387,6 @@ for managing those subclasses as well.</p>
       <div>
         <p>
            <span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span><span data-ice="signature">(form: <span>*</span>, field: <span>*</span>, showError: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-drawArrows">drawArrows</a></span></span><span data-ice="signature">(edge: <span>*</span>, start: <span>*</span>, end: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-drawCurvedEdge">drawCurvedEdge</a></span></span><span data-ice="signature">(startx: <span>*</span>, starty: <span>*</span>, destx: <span>*</span>, desty: <span>*</span>, numEdge: <span>*</span>, rad: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-drawLabel">drawLabel</a></span></span><span data-ice="signature">(edge: <span>*</span>, label: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -1590,6 +1461,31 @@ for managing those subclasses as well.</p>
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span><span data-ice="signature">(input: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span><span data-ice="signature">(g: <span>*</span>)</span>
         </p>
       </div>
@@ -1616,31 +1512,6 @@ for managing those subclasses as well.</p>
       <div>
         <p>
            <span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span><span data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-initCurved">initCurved</a></span></span><span data-ice="signature">(canvas: <span>*</span>, context: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -1897,56 +1768,6 @@ for managing those subclasses as well.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_RADIUS">DEFAULT_RADIUS</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-EDGE_DISTANCE_THRESHOLD">EDGE_DISTANCE_THRESHOLD</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
            <span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span><span data-ice="signature">: <span><a href="class/src/js/ui/ui.js~UI.html">UI</a></span></span>
         </p>
       </div>
@@ -1980,6 +1801,31 @@ for managing those subclasses as well.</p>
       <div>
         <p>
            <span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="typedef/index.html#static-typedef-Point">Point</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>

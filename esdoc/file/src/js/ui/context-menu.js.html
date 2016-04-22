@@ -90,6 +90,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
@@ -97,22 +98,24 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/stack.js~Stack.html">Stack</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierPoint">bezierPoint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calculateLoop">calculateLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawArrows">drawArrows</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawLabel">drawLabel</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initCurved">initCurved</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawCurvedEdge">drawCurvedEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_RADIUS">DEFAULT_RADIUS</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EDGE_DISTANCE_THRESHOLD">EDGE_DISTANCE_THRESHOLD</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Point">Point</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/context-menu.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Node } from &apos;data/node/node&apos;;
-import { Edge } from &apos;data/edge/edge&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Node } from &apos;../data/node/node&apos;;
+import { Edge } from &apos;../data/edge/edge&apos;;
+
+const MENU_TOGGLE_CLASS = &apos;context-menu--active&apos;;
+
+const MENU_SECTION_CLASS = &apos;context-menu__section&apos;;
+const MENU_SECTION_VISIBILITY_CLASS = &apos;context-menu__section--visible&apos;;
+const MENU_SECTION_NAME_ATTRIBUTE = &apos;data-name&apos;;
+
+const MENU_ITEM_TYPE_ATTRIBUTE = &apos;data-type&apos;;
+const MENU_ITEM_DATA_ATTRIBUTE = &apos;data-data&apos;;
 
 class ContextMenu {
 
@@ -122,19 +125,12 @@ class ContextMenu {
 
   contextMenu;
 
-  menuState = 0;
+  isDisplayed = false;
   menuPosX;
   menuPosY;
+
+  currentSection = null;
   component;
-  taskArg = {
-    &apos;Add Circle Node&apos;: &apos;circle&apos;,
-    &apos;Add Square Node&apos;: &apos;square&apos;,
-    &apos;Toggle Accepting State&apos;: &apos;isAcceptingState&apos;,
-    &apos;Toggle Start State&apos;: &apos;isStartingState&apos;,
-    &apos;Toggle Directed Edge&apos;: &apos;isDirected&apos;,
-    &apos;Delete Node&apos;: &apos;node&apos;,
-    &apos;Delete Edge&apos;: &apos;edge&apos;
-  };
 
   constructor(ui, mouseHandler) {
     this.ui = ui;
@@ -145,51 +141,64 @@ class ContextMenu {
 
   initListeners() {
     this.contextMenu.addEventListener(&apos;mouseup&apos;, (event) =&gt; {
-      let task = event.srcElement.innerText;
-      let type = task.split(&apos; &apos;)[0];
+      let type = event.target.getAttribute(MENU_ITEM_TYPE_ATTRIBUTE);
+      let value = event.target.getAttribute(MENU_ITEM_DATA_ATTRIBUTE);
 
-      if (type === &apos;Add&apos;) {
-        this.mouseHandler.contextAdd(this.taskArg[task], this.menuPosX, this.menuPosY);
-      } else if (type === &apos;Toggle&apos;) {
-        this.mouseHandler.contextToggle(this.taskArg[task], this.component);
-      } else if (type === &apos;Delete&apos;) {
-        this.mouseHandler.contextDelete(this.taskArg[task], this.component);
-      } else if (type === &apos;Edit&apos;) {
+      if (type === &apos;add&apos;) {
+        this.mouseHandler.contextAdd(value, this.menuPosX, this.menuPosY);
+      } else if (type === &apos;toggle&apos;) {
+        this.mouseHandler.contextToggle(value, this.component);
+      } else if (type === &apos;delete&apos;) {
+        this.mouseHandler.contextDelete(value, this.component);
+      } else if (type === &apos;edit&apos;) {
         this.ui.toolbar.selectToolByName(&apos;metadata&apos;);
         this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.component, this.menuPosX, this.menuPosY);
       }
 
-      this.toggleContextMenu();
-    }, false);
-  }
+      if (event.button !== 2) {
+        this.toggleContextMenu();
+      }
+    });
 
-  classDisplayChange(className, displayType) {
-    let items = this.contextMenu.getElementsByClassName(className);
-    for (let i = 0; i &lt; items.length; ++i) {
-      items[i].style.display = displayType;
-    }
+    this.contextMenu.addEventListener(&apos;contextmenu&apos;, (event) =&gt; {
+      event.preventDefault();
+      this.toggleContextMenu();
+    });
+
+    document.addEventListener(&apos;click&apos;, (event) =&gt; {
+      if (!this.contextMenu.contains(event.target)) {
+        if (this.isDisplayed) {
+          this.toggleContextMenu();
+        }
+      }
+    });
   }
 
   toggleContextMenu() {
-    if (this.menuState !== 1) {
-      this.contextMenu.style.display = &apos;block&apos;;
-      this.menuState = 1;
+    if (this.isDisplayed) {
+      this.contextMenu.classList.remove(MENU_TOGGLE_CLASS);
     } else {
-      this.menuState = 0;
-      this.contextMenu.style.display = &apos;none&apos;;
-      this.classDisplayChange(&apos;component&apos;, &apos;none&apos;);
-      this.classDisplayChange(&apos;component-node&apos;, &apos;none&apos;);
-      this.classDisplayChange(&apos;component-edge&apos;, &apos;none&apos;);
-      this.classDisplayChange(&apos;blank&apos;, &apos;none&apos;);
+      this.contextMenu.classList.add(MENU_TOGGLE_CLASS);
     }
+    this.isDisplayed = !this.isDisplayed;
   }
 
   repositionMenu(event) {
-    let xpos = event.pageX;
-    let ypos = event.pageY;
+    let xpos = event.clientX;
+    let ypos = event.clientY;
 
-    document.getElementById(&apos;context-menu&apos;).style.left = xpos + &apos;px&apos;;
-    document.getElementById(&apos;context-menu&apos;).style.top = ypos + &apos;px&apos;;
+    this.contextMenu.style.left = xpos + &apos;px&apos;;
+    this.contextMenu.style.top = ypos + &apos;px&apos;;
+
+    let distanceRight = document.body.offsetWidth - xpos - this.contextMenu.offsetWidth;
+    let distanceBottom = document.body.offsetHeight - ypos - this.contextMenu.offsetHeight;
+
+    if (distanceRight &lt; 0) {
+      this.contextMenu.style.left = `${xpos + distanceRight}px`;
+    }
+    if (distanceBottom &lt; 0) {
+      this.contextMenu.style.top = `${ypos - this.contextMenu.offsetHeight}px`;
+    }
   }
 
   contextmenuEventListener(event, x, y) {
@@ -203,18 +212,32 @@ class ContextMenu {
 
     this.toggleContextMenu();
 
-    this.repositionMenu(event);
+    // hide all menu sections
+    let sectionElements = this.contextMenu.querySelectorAll(`.${MENU_SECTION_CLASS}`);
+    for (let i = 0; i &lt; sectionElements.length; i++) {
+      sectionElements[i].classList.remove(MENU_SECTION_VISIBILITY_CLASS);
+    }
 
+    // populate array with names of menu sections to be displayed
+    let sections = [];
     if (this.component !== null) {
-      this.classDisplayChange(&apos;component&apos;, &apos;block&apos;);
+      sections.push(&apos;component&apos;);
       if (this.component instanceof Node) {
-        this.classDisplayChange(&apos;component-node&apos;, &apos;block&apos;);
+        sections.push(&apos;node&apos;);
       } else if (this.component instanceof Edge) {
-        this.classDisplayChange(&apos;component-edge&apos;, &apos;block&apos;);
+        sections.push(&apos;edge&apos;);
       }
     } else {
-      this.classDisplayChange(&apos;blank&apos;, &apos;block&apos;);
+      sections.push(&apos;default&apos;);
     }
+
+    // make menu sections visible
+    for (let section of sections) {
+      let sectionElement = this.contextMenu.querySelector(`.${MENU_SECTION_CLASS}[${MENU_SECTION_NAME_ATTRIBUTE}=&quot;${section}&quot;]`);
+      sectionElement.classList.add(MENU_SECTION_VISIBILITY_CLASS);
+    }
+
+    this.repositionMenu(event);
   }
 
 }

@@ -42,12 +42,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "canvas-graph-creator/src/js/util/curvededge.js~default_radius",
-    "variable/index.html#static-variable-DEFAULT_RADIUS",
-    "<span>DEFAULT_RADIUS</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "variable"
-  ],
-  [
     "canvas-graph-creator/src/js/data/edge/dashed-edge.js~dashededge",
     "class/src/js/data/edge/dashed-edge.js~DashedEdge.html",
     "<span>DashedEdge</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/edge/dashed-edge.js</span>",
@@ -64,12 +58,6 @@ window.esdocSearchIndex = [
     "class/src/js/ui/dropdown.js~Dropdown.html",
     "<span>Dropdown</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/dropdown.js</span>",
     "class"
-  ],
-  [
-    "canvas-graph-creator/src/js/util/curvededge.js~edge_distance_threshold",
-    "variable/index.html#static-variable-EDGE_DISTANCE_THRESHOLD",
-    "<span>EDGE_DISTANCE_THRESHOLD</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "variable"
   ],
   [
     "canvas-graph-creator/src/js/data/edge/edge.js~edge",
@@ -294,27 +282,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "canvas-graph-creator/src/js/util/curvededge.js~bezierderivative",
+    "canvas-graph-creator/src/js/util/bezier.js~bezierderivative",
     "function/index.html#static-function-bezierDerivative",
-    "<span>bezierDerivative</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
+    "<span>bezierDerivative</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/bezier.js</span>",
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/util/curvededge.js~bezierpoint",
-    "function/index.html#static-function-bezierPoint",
-    "<span>bezierPoint</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/util/curvededge.js~calcbezierdistance",
+    "canvas-graph-creator/src/js/util/bezier.js~calcbezierdistance",
     "function/index.html#static-function-calcBezierDistance",
-    "<span>calcBezierDistance</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/util/curvededge.js~calculateloop",
-    "function/index.html#static-function-calculateLoop",
-    "<span>calculateLoop</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
+    "<span>calcBezierDistance</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/bezier.js</span>",
     "function"
   ],
   [
@@ -330,24 +306,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/util/curvededge.js~drawarrows",
-    "function/index.html#static-function-drawArrows",
-    "<span>drawArrows</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/util/drawcurvededge.js~drawcurvededge",
-    "function/index.html#static-function-drawCurvedEdge",
-    "<span>drawCurvedEdge</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/drawCurvedEdge.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/util/curvededge.js~drawlabel",
-    "function/index.html#static-function-drawLabel",
-    "<span>drawLabel</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/ui/algorithm.js~getalgorithminputs",
     "function/index.html#static-function-getAlgorithmInputs",
     "<span>getAlgorithmInputs</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
@@ -360,6 +318,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "canvas-graph-creator/src/js/ui/form.js~getinputvalue",
+    "function/index.html#static-function-getInputValue",
+    "<span>getInputValue</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
+    "function"
+  ],
+  [
     "canvas-graph-creator/src/js/ui/algorithm.js~init",
     "function/index.html#static-function-init",
     "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
@@ -369,12 +333,6 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/ui/form.js~init",
     "function/index.html#static-function-init",
     "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/util/curvededge.js~initcurved",
-    "function/index.html#static-function-initCurved",
-    "<span>initCurved</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/curvedEdge.js</span>",
     "function"
   ],
   [
@@ -2658,6 +2616,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/data/edge/edge.js~edge#drawarrow",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-drawArrow",
+    "src/js/data/edge/edge.js~Edge#drawArrow",
+    "method"
+  ],
+  [
     "src/js/data/edge/edge.js~edge#drawlabel",
     "class/src/js/data/edge/edge.js~Edge.html#instance-method-drawLabel",
     "src/js/data/edge/edge.js~Edge#drawLabel",
@@ -3516,6 +3480,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/js/tool/node-tool.js~nodetool#addnode",
+    "class/src/js/tool/node-tool.js~NodeTool.html#instance-method-addNode",
+    "src/js/tool/node-tool.js~NodeTool#addNode",
+    "method"
+  ],
+  [
     "src/js/tool/node-tool.js~nodetool#droponnone",
     "class/src/js/tool/node-tool.js~NodeTool.html#instance-method-dropOnNone",
     "src/js/tool/node-tool.js~NodeTool#dropOnNone",
@@ -3858,12 +3828,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/js/ui/context-menu.js~contextmenu#classdisplaychange",
-    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-method-classDisplayChange",
-    "src/js/ui/context-menu.js~ContextMenu#classDisplayChange",
-    "method"
-  ],
-  [
     "src/js/ui/context-menu.js~contextmenu#component",
     "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-component",
     "src/js/ui/context-menu.js~ContextMenu#component",
@@ -3894,6 +3858,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/context-menu.js~contextmenu#isdisplayed",
+    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-isDisplayed",
+    "src/js/ui/context-menu.js~ContextMenu#isDisplayed",
+    "member"
+  ],
+  [
     "src/js/ui/context-menu.js~contextmenu#menuposx",
     "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-menuPosX",
     "src/js/ui/context-menu.js~ContextMenu#menuPosX",
@@ -3903,12 +3873,6 @@ window.esdocSearchIndex = [
     "src/js/ui/context-menu.js~contextmenu#menuposy",
     "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-menuPosY",
     "src/js/ui/context-menu.js~ContextMenu#menuPosY",
-    "member"
-  ],
-  [
-    "src/js/ui/context-menu.js~contextmenu#menustate",
-    "class/src/js/ui/context-menu.js~ContextMenu.html#instance-member-menuState",
-    "src/js/ui/context-menu.js~ContextMenu#menuState",
     "member"
   ],
   [
@@ -4233,6 +4197,12 @@ window.esdocSearchIndex = [
     "src/js/ui/sidebar-select.js~sidebarselect#update",
     "class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-update",
     "src/js/ui/sidebar-select.js~SidebarSelect#update",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-select.js~sidebarselect#updateobjectvalues",
+    "class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-updateObjectValues",
+    "src/js/ui/sidebar-select.js~SidebarSelect#updateObjectValues",
     "method"
   ],
   [
@@ -4620,16 +4590,16 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/util/curvededge.js",
-    "file/src/js/util/curvedEdge.js.html",
-    "src/js/util/curvedEdge.js",
+    "src/js/util/bezier.js",
+    "file/src/js/util/bezier.js.html",
+    "src/js/util/bezier.js",
     "file"
   ],
   [
-    "src/js/util/drawcurvededge.js",
-    "file/src/js/util/drawCurvedEdge.js.html",
-    "src/js/util/drawCurvedEdge.js",
-    "file"
+    "src/js/util/bezier.js~point",
+    "typedef/index.html#static-typedef-Point",
+    "src/js/util/bezier.js~Point",
+    "typedef"
   ],
   [
     "src/js/util/mouse-handler.js",

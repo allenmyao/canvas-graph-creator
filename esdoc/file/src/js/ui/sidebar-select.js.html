@@ -90,6 +90,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
@@ -97,15 +98,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/stack.js~Stack.html">Stack</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierPoint">bezierPoint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calculateLoop">calculateLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawArrows">drawArrows</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawLabel">drawLabel</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initCurved">initCurved</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-drawCurvedEdge">drawCurvedEdge</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_RADIUS">DEFAULT_RADIUS</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EDGE_DISTANCE_THRESHOLD">EDGE_DISTANCE_THRESHOLD</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Point">Point</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -134,22 +128,11 @@ class SidebarSelect extends SidebarContent {
     this.tabs.selectTab(&apos;data&apos;);
 
     document.getElementById(&apos;sidebar&apos;).querySelector(&apos;form&apos;).addEventListener(&apos;input&apos;, (event) =&gt; {
-      let input = event.target;
-      let name = input.name;
-      let value;
-      if (input.type === &apos;checkbox&apos;) {
-        value = input.checked;
-      } else if (input.type === &apos;number&apos;) {
-        value = parseInt(input.value, 10);
-      } else {
-        value = input.value;
-      }
-      this.selectedObject[name] = value;
-      if (this.selectedObject instanceof Node) {
-        for (let edge of this.selectedObject.edges) {
-          edge.updateEndpoints();
-        }
-      }
+      this.updateObjectValues(event);
+    });
+
+    document.getElementById(&apos;sidebar&apos;).querySelector(&apos;form&apos;).addEventListener(&apos;change&apos;, (event) =&gt; {
+      this.updateObjectValues(event);
     });
   }
 
@@ -166,6 +149,18 @@ class SidebarSelect extends SidebarContent {
       this.selectedObject = null;
     }
     this.tabs.getTabContentElement(&apos;data&apos;).querySelector(&apos;form&apos;).innerHTML = html;
+  }
+
+  updateObjectValues(event) {
+    let input = event.target;
+    let name = input.name;
+    let value = Form.getInputValue(input);
+    this.selectedObject[name] = value;
+    if (this.selectedObject instanceof Node) {
+      for (let edge of this.selectedObject.edges) {
+        edge.updateEndpoints();
+      }
+    }
   }
 
   displayGraph(graph) {
