@@ -11,8 +11,9 @@ before_script:
   - npm install -g gulp http-server codeclimate-test-reporter
 
 script:
-  - gulp build --silent
-  - http-server --silent -p 8080 -a 0.0.0.0 &
+  - npm run test
+  - npm run build
+  - http-server ./dist --silent -p 8080 -a 0.0.0.0 &
   - cd selenium-tests
   - mvn -q test -Dremote=sauce
   - cd ..

@@ -3,7 +3,6 @@ const gutil = require('gulp-util');
 const del = require('del');
 const mergeStream = require('merge-stream');
 
-const eslint = require('gulp-eslint');
 const esdoc = require('gulp-esdoc');
 
 const babel = require('gulp-babel');
@@ -38,20 +37,7 @@ gulp.task('docs', [ 'clean:docs' ], () => {
     .pipe(esdoc());
 });
 
-gulp.task('lint', () => {
-  return gulp.src([ SRC_FILES, TEST_FILES ])
-      .pipe(eslint())
-      .pipe(eslint.format())
-      .pipe(eslint.results((results) => {
-        // Called once for all ESLint results.
-        gutil.log('[lint]', 'Total Warnings: ' + results.warningCount);
-        gutil.log('[lint]', 'Total Errors: ' + results.errorCount);
-      }))
-      // exit if linting error is encountered
-      .pipe(eslint.failAfterError());
-});
-
-gulp.task('test', [ 'lint' ], (cb) => {
+gulp.task('test', (cb) => {
   mergeStream(
     gulp.src([ SRC_FILES ])
       .pipe(istanbul({
@@ -90,7 +76,7 @@ gulp.task('test', [ 'lint' ], (cb) => {
     });
 });
 
-gulp.task('clean', [ 'test' ], () => {
+gulp.task('clean', () => {
   return del([ BUILD_OUTPUT_DIR ]);
 });
 
@@ -110,7 +96,7 @@ gulp.task('webpack:build', [ 'prep' ], (callback) => {
   });
 });
 
-gulp.task('webpack-dev-server', [ 'prep' ], (callback) => {
+gulp.task('webpack-dev-server', (callback) => {
   var compiler = webpack(webpackDevConfig);
 
   compiler.plugin('done', () => {
@@ -128,7 +114,11 @@ gulp.task('webpack-dev-server', [ 'prep' ], (callback) => {
     },
     publicPath: webpackDevConfig.output.publicPath,
     stats: {
-      colors: true
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
     }
   });
 
