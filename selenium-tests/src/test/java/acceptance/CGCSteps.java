@@ -48,12 +48,12 @@ public class CGCSteps {
 	{
 
 	}
-	@when("^.*scroll (out|in) by (.+) ticks$")
+	@When("^.*scroll (out|in) by (.+) ticks$")
 	public void scroll(String direction,String magnitude)
 	{
 
 	}
-	@when("I press the reset button")
+	@When("I press the reset button")
 	public void resetClick()
 	{
 
