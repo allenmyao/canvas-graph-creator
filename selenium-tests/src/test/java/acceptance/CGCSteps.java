@@ -48,16 +48,6 @@ public class CGCSteps {
 	{
 
 	}
-	@when("^.*scroll (out|in) by (.+) ticks$")
-	public void scroll(String direction,String magnitude)
-	{
-
-	}
-	@when("I press the reset button")
-	public void resetClick()
-	{
-
-	}
 	@When("^.*node (?:named (.+) |)at (.*)$")
 	public void createNode(String name, @Transform(PointTransformer.class) Point point)
 	{
