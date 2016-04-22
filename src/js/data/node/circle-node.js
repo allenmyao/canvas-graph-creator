@@ -1,4 +1,4 @@
-import { Node } from './node';
+import Node from './node';
 import Label from '../label';
 
 class CircleNode extends Node {

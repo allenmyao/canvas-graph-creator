@@ -1,10 +1,10 @@
-import { NodeTool } from '../tool/node-tool';
-import { EdgeTool } from '../tool/edge-tool';
-import { MoveTool } from '../tool/move-tool';
-import { EraseTool } from '../tool/erase-tool';
-import { PanTool } from '../tool/pan-tool';
-import { SelectTool } from '../tool/select-tool';
-import { AlgorithmTool } from '../tool/algorithm-tool';
+import NodeTool from '../tool/node-tool';
+import EdgeTool from '../tool/edge-tool';
+import MoveTool from '../tool/move-tool';
+import EraseTool from '../tool/erase-tool';
+import PanTool from '../tool/pan-tool';
+import SelectTool from '../tool/select-tool';
+import AlgorithmTool from '../tool/algorithm-tool';
 
 const TOOL_CLASS = 'tool';
 const TOOL_NAME_ATTR = 'data-tool';

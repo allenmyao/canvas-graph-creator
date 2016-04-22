@@ -1,6 +1,6 @@
-import { PolygonNode } from './polygon-node';
+import PolygonNode from './polygon-node';
 
-export class SquareNode extends PolygonNode {
+class SquareNode extends PolygonNode {
 
   constructor(x, y) {
     super(x, y);
@@ -9,3 +9,6 @@ export class SquareNode extends PolygonNode {
   }
 
 }
+
+export { SquareNode };
+export default SquareNode;

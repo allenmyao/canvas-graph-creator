@@ -1,8 +1,8 @@
-import { Tool } from '../tool/tool';
+import Tool from '../tool/tool';
 import Node from '../data/node/node';
 import Label from '../data/label';
 
-export class MoveTool extends Tool {
+class MoveTool extends Tool {
 
   name = 'Move Tool';
 
@@ -48,3 +48,6 @@ export class MoveTool extends Tool {
   }
 
 }
+
+export { MoveTool };
+export default MoveTool;

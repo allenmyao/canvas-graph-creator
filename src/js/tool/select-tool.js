@@ -1,7 +1,7 @@
-import { Tool } from '../tool/tool';
+import Tool from '../tool/tool';
 import Label from '../data/label';
 
-export class SelectTool extends Tool {
+class SelectTool extends Tool {
 
   name = 'Select Tool';
   sidebarType = 'select';
@@ -39,3 +39,6 @@ export class SelectTool extends Tool {
   }
 
 }
+
+export { SelectTool };
+export default SelectTool;

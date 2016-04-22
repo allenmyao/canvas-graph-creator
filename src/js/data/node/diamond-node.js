@@ -1,6 +1,6 @@
-import { PolygonNode } from './polygon-node';
+import PolygonNode from './polygon-node';
 
-export class DiamondNode extends PolygonNode {
+class DiamondNode extends PolygonNode {
 
   constructor(x, y) {
     super(x, y);
@@ -9,3 +9,6 @@ export class DiamondNode extends PolygonNode {
   }
 
 }
+
+export { DiamondNode };
+export default DiamondNode;

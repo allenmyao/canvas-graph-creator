@@ -3,7 +3,7 @@ import Label from '../label';
 
 const EDGE_DISTANCE_THRESHOLD = 10;
 
-export class Edge {
+class Edge {
 
   static numEdges = 0;
   id = Edge.numEdges++;
@@ -206,3 +206,6 @@ export class Edge {
   }
 
 }
+
+export { Edge };
+export default Edge;

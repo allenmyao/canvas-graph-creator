@@ -1,7 +1,7 @@
-import { Tool } from '../tool/tool';
+import Tool from '../tool/tool';
 import ui from '../ui/ui';
 
-export class PanTool extends Tool {
+class PanTool extends Tool {
 
   name = 'Pan Tool';
 
@@ -39,3 +39,6 @@ export class PanTool extends Tool {
   }
 
 }
+
+export { PanTool };
+export default PanTool;

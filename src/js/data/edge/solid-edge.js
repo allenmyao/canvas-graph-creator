@@ -1,6 +1,6 @@
-import { Edge } from './edge';
+import Edge from './edge';
 
-export class SolidEdge extends Edge {
+class SolidEdge extends Edge {
 
   draw(context) {
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
@@ -31,3 +31,6 @@ export class SolidEdge extends Edge {
   }
 
 }
+
+export { SolidEdge };
+export default SolidEdge;

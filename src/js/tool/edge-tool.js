@@ -1,10 +1,10 @@
-import { Tool } from '../tool/tool';
-import { Node } from '../data/node/node';
-import { SolidEdge } from '../data/edge/solid-edge';
-import { DashedEdge } from '../data/edge/dashed-edge';
-import { CircleNode } from '../data/node/circle-node';
+import Tool from '../tool/tool';
+import Node from '../data/node/node';
+import SolidEdge from '../data/edge/solid-edge';
+import DashedEdge from '../data/edge/dashed-edge';
+import CircleNode from '../data/node/circle-node';
 
-export class EdgeTool extends Tool {
+class EdgeTool extends Tool {
 
   name = 'Edge Tool';
 
@@ -110,3 +110,6 @@ export class EdgeTool extends Tool {
   }
 
 }
+
+export { EdgeTool };
+export default EdgeTool;

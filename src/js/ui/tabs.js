@@ -6,7 +6,7 @@ const TAB_CONTENT_ACTIVE_CLASS = 'active';
 
 const TAB_ATTRIBUTE_NAME = 'data-tab';
 
-export class Tabs {
+class Tabs {
 
   constructor(tabContainer, tabList) {
     this.tabContainer = tabContainer;
@@ -186,3 +186,6 @@ export class Tabs {
   }
 
 }
+
+export { Tabs };
+export default Tabs;

@@ -1,7 +1,7 @@
-import { Node } from './node';
+import Node from './node';
 import Label from '../label';
 
-export class PolygonNode extends Node {
+class PolygonNode extends Node {
 
   radius = 30;
 
@@ -139,3 +139,6 @@ export class PolygonNode extends Node {
   }
 
 }
+
+export { PolygonNode };
+export default PolygonNode;

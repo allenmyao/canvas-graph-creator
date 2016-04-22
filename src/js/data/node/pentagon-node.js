@@ -1,6 +1,6 @@
-import { PolygonNode } from './polygon-node';
+import PolygonNode from './polygon-node';
 
-export class PentagonNode extends PolygonNode {
+class PentagonNode extends PolygonNode {
 
   constructor(x, y) {
     super(x, y);
@@ -9,3 +9,6 @@ export class PentagonNode extends PolygonNode {
   }
 
 }
+
+export { PentagonNode };
+export default PentagonNode;

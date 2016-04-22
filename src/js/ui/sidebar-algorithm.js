@@ -1,6 +1,6 @@
 import SidebarContent from '../ui/sidebar-content';
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 import * as Form from '../ui/form';
 import * as AlgorithmInterface from '../ui/algorithm';
 
