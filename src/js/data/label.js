@@ -7,7 +7,7 @@ class Label {
   content = '';
 
   // state
-  isSelected = true;
+  isSelected = false;
   textMetric;
 
   // appearance
