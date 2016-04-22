@@ -1,5 +1,5 @@
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 
 const MENU_TOGGLE_CLASS = 'context-menu--active';
 
@@ -42,9 +42,8 @@ class ContextMenu {
       } else if (type === 'toggle') {
         this.mouseHandler.contextToggle(value, this.component);
       } else if (type === 'delete') {
-        this.mouseHandler.contextDelete(value, this.component);
+        this.mouseHandler.contextDelete(this.component);
       } else if (type === 'edit') {
-        this.ui.toolbar.selectToolByName('metadata');
         this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.component, this.menuPosX, this.menuPosY);
       }
 
