@@ -3,9 +3,9 @@
 import chai from 'chai';
 chai.should();
 
-import { Graph } from '../src/js/data/graph';
-import { CircleNode as Node } from '../src/js/data/node/circle-node';
-import { Edge } from '../src/js/data/edge/edge';
+import Graph from '../src/js/data/graph';
+import Node from '../src/js/data/node/circle-node';
+import Edge from '../src/js/data/edge/edge';
 
 describe('Graph', () => {
   describe('#constructor(x, y)', () => {
