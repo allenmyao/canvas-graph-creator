@@ -1,10 +1,10 @@
 import { Tool } from '../tool/tool';
-import { Node } from '../data/node/node';
+import Node from '../data/node/node';
+import Label from '../data/label';
 
 export class MoveTool extends Tool {
 
   name = 'Move Tool';
-  sidebarType = 'select';
 
   objStartX;
   objStartY;
@@ -16,13 +16,13 @@ export class MoveTool extends Tool {
   }
 
   dragObject(event, graph, obj, startX, startY, x, y) {
-    if (obj instanceof Node) {
+    if (obj instanceof Node || obj instanceof Label) {
       obj.setPos(x, y);
     }
   }
 
   dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
-    if (destObj instanceof Node && droppedObj instanceof Node) {
+    if (droppedObj instanceof Node && destObj instanceof Node) {
       // stop dragging, and reset to starting position
       this.resetObjectPosition(droppedObj);
     } else {
