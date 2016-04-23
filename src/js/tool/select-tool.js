@@ -23,6 +23,7 @@ class SelectTool extends Tool {
         targetObject = obj.parentObject;
       } else {
         this.selectNone(event, graph, x, y);
+        return;
       }
     } else {
       targetObject = obj;
