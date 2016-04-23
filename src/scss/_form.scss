@@ -9,11 +9,17 @@ form {
     margin-bottom: 20px;
 
     &.error {
-      color: red;
+      label {
+        color: $error-color;
+      }
 
       input, select, textarea, output {
-        border-color: red;
+        border-color: $error-color;
       }
+    }
+
+    input, select, textarea {
+      transition: color 0.15s ease-out, background 0.15s ease-out, border-color 0.15s ease-out;
     }
 
     select {
@@ -70,9 +76,9 @@ form {
       }
 
       &:invalid {
-        border-color: red;
+        border-color: $error-color;
         ~ label {
-          color: red;
+          color: $error-color;
         }
       }
 
