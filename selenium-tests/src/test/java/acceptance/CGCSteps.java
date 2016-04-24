@@ -97,7 +97,7 @@ public class CGCSteps {
 		// driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click()
 	}
 
-	@When("^.*set the (checkbox|text|color) input for ([a-z]+) to (.+)")
+	@When("^.*set the (checkbox|text|color) input for ([a-zA-Z]+) to (.+)")
 	public void setToolInput(String type, String name, String value) throws Throwable {
 		// WebElement webElement = driver.findElement(By.cssSelector("#tool-inputs input[name=\"" + name + "\"]"));
 		//
