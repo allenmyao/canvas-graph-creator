@@ -18,7 +18,6 @@ import model.Node;
 import utils.Utils;
 
 public class CGCSteps {
-	private HashMap<String, String> shortcuts;
 	private HashMap<String, Node> nodes;
 	private CGCPage cgc;
 	private WebDriver driver;
@@ -26,12 +25,10 @@ public class CGCSteps {
 	@Before
 	public void setUp() throws IOException
 	{
-		shortcuts = new HashMap<String, String>();
+
 		nodes = new HashMap<String, Node>();
 		driver = DriverFactory.createDriver();
 		cgc = new CGCPage(driver);
-
-		shortcuts.put("Edge", "#toolbar .tool[data-tool=\"edge\"]");
 	}
 	@After
 	public void tearDown()
@@ -47,6 +44,19 @@ public class CGCSteps {
 	public void doNothing()
 	{
 
+	}
+	@When("^.*scroll (out|in) by (\\d+) ticks$")
+	public void scroll(String direction, int ticks)
+	{
+		if(direction.equals("in"))
+			cgc.zoomIn(ticks);
+		else if(direction.equals("out"))
+			cgc.zoomOut(ticks);
+	}
+	@When("I press the reset button")
+	public void resetZoom()
+	{
+		cgc.resetZoom();
 	}
 	@When("^.*node (?:named (.+) |)at (.*)$")
 	public void createNode(String name, @Transform(PointTransformer.class) Point point)
@@ -74,7 +84,7 @@ public class CGCSteps {
 	@When("^.*I select the (.+) tool$")
 	public void selectTool(String name) throws Throwable
 	{
-		cgc.selectTool(shortcuts.get(name));
+		cgc.selectTool(name);
 	}
 	@When("^.*click and drag from (.*)$")
 	public void clickAndDrag(@Transform(PointListTransformer.class) List<Point> points) throws Throwable

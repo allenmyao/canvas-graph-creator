@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -12,14 +14,20 @@ import model.Node;
 public class CGCPage extends CanvasPage{
 
 	public static String CANVAS_CSS_SELECTOR = "#canvas";
+	public static String RESET_ZOOM_SELECTOR = "#reset-transform";
+	
 	public static String HOME_PAGE = "http://127.0.0.1:8080/";
 
 	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
+	
+	public static Map<String, String> shortcuts;
 
 	static{
 	    try{
-	        EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
+	        //EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
+	    	shortcuts = new HashMap<String, String>();
+	    	shortcuts.put("Edge", "#toolbar .tool[data-tool=\"edge\"]");
 	    }catch(final Exception ex){
 	        throw new RuntimeException("Failed to load resources", ex);
 	    }
@@ -48,9 +56,22 @@ public class CGCPage extends CanvasPage{
 	}
 	public void selectTool(String cssSelector)
 	{
-		clickCanvas(cssSelector, new Point(20, 20));
+		if(shortcuts.containsKey(cssSelector))
+			cssSelector = shortcuts.get(cssSelector);
+		clickCanvas(cssSelector, new Point(10, 10));
 	}
-
+	public void zoomIn(int ticks)
+	{
+		scroll(new Point(0, -1 * ticks));
+	}
+	public void zoomOut(int ticks)
+	{
+		scroll(new Point(0, ticks));
+	}
+	public void resetZoom()
+	{
+		selectTool(RESET_ZOOM_SELECTOR);
+	}
 
 	public void drawEdge(Node source, Node destination) {
 		selectTool("#toolbar .tool[data-tool=\"edge\"]");
