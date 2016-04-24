@@ -45,6 +45,14 @@ class ContextMenu {
         this.mouseHandler.contextDelete(this.component);
       } else if (type === 'edit') {
         this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.component, this.menuPosX, this.menuPosY);
+      } else if (type === 'save') {
+        let downloadLink = document.createElement('a');
+        downloadLink.href = this.ui.canvas.canvas.toDataURL('image/png');
+        downloadLink.download = 'canvas.png';
+        downloadLink.target = '_blank';
+        document.body.appendChild(downloadLink);
+        downloadLink.dispatchEvent(new MouseEvent('click'));
+        document.body.removeChild(downloadLink);
       }
 
       if (event.button !== 2) {
@@ -122,6 +130,7 @@ class ContextMenu {
     } else {
       sections.push('default');
     }
+    sections.push('action');
 
     // make menu sections visible
     for (let section of sections) {
