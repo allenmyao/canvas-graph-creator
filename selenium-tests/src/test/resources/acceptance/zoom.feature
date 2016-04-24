@@ -10,14 +10,14 @@ Feature: Canvas Zoom
     Then the screen should match 'no_zoom.png'
 
   Scenario: Scrolling out should zoom out
-    When I scroll out by 50 ticks
+    When I scroll out by 5 ticks
     Then the screen should match 'zoom_out.png'
 
   Scenario: Scrolling in should zoom in
-    When I scroll in by 50 ticks
+    When I scroll in by 5 ticks
     Then the screen should match 'zoom_in.png'
 
   Scenario: Pressing the reset button should reset the zoom
-    When I scroll out by 50 ticks
+    When I scroll out by 5 ticks
     And I press the reset button
     Then the screen should match 'no_zoom.png'

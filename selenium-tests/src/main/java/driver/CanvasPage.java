@@ -120,7 +120,7 @@ public abstract class CanvasPage {
 	public void scroll(Point ticks)
 	{
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("document.getElementById('canvas').dispatchEvent(new WheelEvent('wheel', {clientX: 500,clientY: 500,deltaY: 1}));");
+		jse.executeScript("document.getElementById('canvas').dispatchEvent(new WheelEvent('wheel', {clientX: 500,clientY: 500,deltaY: " + ticks.y + "}));");
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
