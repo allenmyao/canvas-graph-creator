@@ -66,12 +66,21 @@ public abstract class CanvasPage {
 	}
 	public void clickCanvas(Point point)
 	{
-		new Actions(driver).moveToElement(canvas, point.x, point.y).click().build().perform();   
+		click(canvas, point);   
 	}
-
-	public void clickCanvas(String cssSelector, Point point)
+	public void openContextMenu(Point point)
 	{
-		new Actions(driver).moveToElement(driver.findElement(By.cssSelector(cssSelector)), point.x, point.y).click().build().perform();
+		new Actions(driver).moveToElement(canvas, point.x, point.y).contextClick().build().perform();   
+	}
+	
+	public void click(String cssSelector, Point offset)
+	{
+		click(driver.findElement(By.cssSelector(cssSelector)), offset);
+	}
+	
+	public void click (WebElement element, Point offset)
+	{
+		new Actions(driver).moveToElement(element, offset.x, offset.y).click().build().perform();
 	}
 
 	public BufferedImage getResource(String path) throws URISyntaxException, IOException

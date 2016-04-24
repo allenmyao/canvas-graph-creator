@@ -28,6 +28,15 @@ public class CGCPage extends CanvasPage{
 	        //EDGE_TOOL = ImageIO.read(new File("src/test/resources/add_edge_tool.png"));
 	    	shortcuts = new HashMap<String, String>();
 	    	shortcuts.put("Edge", "#toolbar .tool[data-tool=\"edge\"]");
+	    	shortcuts.put("Toggle Directed Edge", "#context-menu > ul:nth-child(2) > li");
+	    	
+	    	shortcuts.put("Toggle Start State", "#context-menu > ul:nth-child(1) > li:nth-child(2)");
+	    	shortcuts.put("Toggle Accepting State", "#context-menu > ul:nth-child(1) > li:nth-child(1)");
+	    	
+	    	shortcuts.put("Delete Edge", "#context-menu > ul:nth-child(3) > li");
+	    	shortcuts.put("Delete Node", "#context-menu > ul:nth-child(3) > li");
+	    	
+	    	shortcuts.put("Add Circle Node", "#context-menu > ul.context-menu__section.context-menu__section--visible > li:nth-child(1)");
 	    }catch(final Exception ex){
 	        throw new RuntimeException("Failed to load resources", ex);
 	    }
@@ -58,7 +67,7 @@ public class CGCPage extends CanvasPage{
 	{
 		if(shortcuts.containsKey(cssSelector))
 			cssSelector = shortcuts.get(cssSelector);
-		clickCanvas(cssSelector, new Point(10, 10));
+		click(cssSelector, new Point(10, 10));
 	}
 	public void zoomIn(int ticks)
 	{
@@ -85,7 +94,7 @@ public class CGCPage extends CanvasPage{
 
 		selected = null;
 	}
-
+	
 	public void clickNode(Node node) {
 		clickCanvas(node.point);
 	}
