@@ -3,10 +3,10 @@
 import chai from 'chai';
 chai.should();
 
-import { EraseTool } from '../../src/js/tool/erase-tool';
-import { Graph } from '../../src/js/data/graph';
-import { CircleNode } from '../../src/js/data/node/circle-node';
-import { SolidEdge } from '../../src/js/data/edge/solid-edge';
+import EraseTool from '../../src/js/tool/erase-tool';
+import Graph from '../../src/js/data/graph';
+import CircleNode from '../../src/js/data/node/circle-node';
+import SolidEdge from '../../src/js/data/edge/solid-edge';
 
 describe('EraseTool', () => {
   let eraseTool;

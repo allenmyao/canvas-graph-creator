@@ -1,12 +1,14 @@
-import { PolygonNode } from './polygon-node';
+import PolygonNode from './polygon-node';
 
-export class TriangleNode extends PolygonNode {
+class TriangleNode extends PolygonNode {
 
   constructor(x, y) {
     super(x, y);
-    this.generateDefaultTextLocation();
     this.inscribed = [ 30, 150, 270 ];
     this.separation = 120;
   }
 
 }
+
+export { TriangleNode };
+export default TriangleNode;

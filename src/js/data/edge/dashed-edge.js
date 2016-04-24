@@ -1,6 +1,6 @@
-import { Edge } from './edge';
+import Edge from './edge';
 
-export class DashedEdge extends Edge {
+class DashedEdge extends Edge {
 
   draw(context) {
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
@@ -31,3 +31,6 @@ export class DashedEdge extends Edge {
   }
 
 }
+
+export { DashedEdge };
+export default DashedEdge;

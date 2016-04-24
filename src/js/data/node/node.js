@@ -14,12 +14,7 @@ class Node {
   isSelected = false;
 
   // label
-  xText = 0;
-  yText = 0;
-  nodeLabel = ''; // string the label of the node; changed name to nodeLabel - Athanasios 3/15/16
-  labelFont = '14px Arial';
-  labelColor = '#000000';
-  showTextCtrl = false;
+  label;
 
   // appearance
   color = '#000000'; // string Format as hex Color
@@ -55,8 +50,8 @@ class Node {
   }
 
   setPos(x, y) {
-    this.xText += (x - this.x);
-    this.yText += (y - this.y);
+    this.label.x += (x - this.x);
+    this.label.y += (y - this.y);
     this.x = x;
     this.y = y;
     for (let edge of this.edges) {
@@ -84,10 +79,8 @@ class Node {
     throw Error('Can\'t call methods from abstract Node class.');
   }
 
-  // find the starting point of our text box
-  generateDefaultTextLocation() {
-    this.xText = this.x + this.radius + 4;
-    this.yText = this.y;
+  drawLabel(context) {
+    this.label.draw(context);
   }
 
 }
