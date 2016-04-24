@@ -92,7 +92,7 @@ public class CGCSteps {
 			System.out.println(p);
 	}
 
-	@When("^.*change the tool mode to ([a-z\-]+)")
+	@When("^.*change the tool mode to ([a-z-]+)")
 	public void setToolMode(String name) throws Throwable {
 		// driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click()
 	}
