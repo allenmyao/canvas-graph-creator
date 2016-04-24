@@ -48,10 +48,9 @@ public class CGCSteps {
 	{
 
 	}
-	@When("^.*scroll (out|in) by (d+) ticks$")
+	@When("^.*scroll (out|in) by (\\d+) ticks$")
 	public void scroll(String direction, int ticks)
 	{
-		//down scrolls out and is positive
 		if(direction.equals("in"))
 			cgc.zoomIn(ticks);
 		else if(direction.equals("out"))
