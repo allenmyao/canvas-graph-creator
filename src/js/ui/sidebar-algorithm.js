@@ -2,78 +2,113 @@ import SidebarContent from '../ui/sidebar-content';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
 import * as Form from '../ui/form';
-import * as AlgorithmInterface from '../ui/algorithm';
+import Stepper from '../algorithm/stepper';
 
 class SidebarAlgorithm extends SidebarContent {
 
   currentInput;
+  graph;
+  stepper;
+  algoInputs;
+  curAlgorithm;
 
+  /**
+   * Constructor calls the super, creates a new stepper object and then assigns algorithm specific button listeners to the sidebar
+   * @param  {graph} graph - Reference to the master graph object
+   */
   constructor(graph) {
     super(graph);
-
+    this.graph = graph;
+    this.stepper = new Stepper();
     document.getElementById('sidebar').addEventListener('click', (event) => {
       if (event.target.classList.contains('run-algorithm-btn')) {
-        let form = event.target.parentNode;
-        let data = Form.getData(form, this.graph);
-
-        let hasError = false;
-        let inputs = AlgorithmInterface.getAlgorithmInputs();
-        for (let inputName of Object.keys(inputs)) {
-          let showError = !inputs[inputName].test(data[inputName]);
-          Form.displayError(form, inputName, showError);
-
-          if (showError && !hasError) {
-            hasError = true;
-          }
-        }
-
-        if (hasError) {
-          return;
-        }
-        AlgorithmInterface.setInputValues(data);
-        AlgorithmInterface.run();
+        this.runEvent();
       } else if (event.target.classList.contains('data-select-btn')) {
-        let output = event.target.previousElementSibling;
-        let input = output.previousElementSibling;
-
-        let inputName = input.name;
-        if (this.currentInput === inputName) {
-          this.currentInput = null;
-          if (input.value) {
-            event.target.textContent = `Change ${input.getAttribute('data-type')}`;
-          } else {
-            event.target.textContent = `Select ${input.getAttribute('data-type')}`;
-          }
-        } else {
-          this.currentInput = inputName;
-          event.target.textContent = 'Cancel';
-        }
+        this.selectEvent();
       } else if (event.target.classList.contains('algorithm-next-btn')) {
-        AlgorithmInterface.viewNext();
+        this.stepper.stepForward();
       } else if (event.target.classList.contains('algorithm-prev-btn')) {
-        AlgorithmInterface.viewPrevious();
+        this.stepper.stepBackward();
       } else if (event.target.classList.contains('algorithm-play-btn')) {
-        AlgorithmInterface.play();
+        if (!(this.stepper.result === null)) {
+          this.stepper.play();
+        }
       } else if (event.target.classList.contains('algorithm-pause-btn')) {
-        AlgorithmInterface.pause();
+        this.stepper.pause();
       }
     });
 
     document.getElementById('sidebar').addEventListener('mouseover', (event) => {
-      if (event.target.classList.contains('graph-link')) {
-        let type = event.target.getAttribute('data-type');
-        let id = event.target.getAttribute('data-id');
-        this.toggleHover(type, parseInt(id, 10), true);
-      }
+      this.hoverEvent(true);
     });
 
     document.getElementById('sidebar').addEventListener('mouseout', (event) => {
-      if (event.target.classList.contains('graph-link')) {
-        let type = event.target.getAttribute('data-type');
-        let id = event.target.getAttribute('data-id');
-        this.toggleHover(type, parseInt(id, 10), false);
-      }
+      this.hoverEvent(false);
     });
+  }
+
+  hoverEvent(bool) {
+    if (event.target.classList.contains('graph-link')) {
+      let type = event.target.getAttribute('data-type');
+      let id = event.target.getAttribute('data-id');
+      this.toggleHover(type, parseInt(id, 10), bool);
+    }
+  }
+
+  selectEvent() {
+    let output = event.target.previousElementSibling;
+    let input = output.previousElementSibling;
+
+    let inputName = input.name;
+    if (this.currentInput === inputName) {
+      this.currentInput = null;
+      if (input.value) {
+        event.target.textContent = `Change ${input.getAttribute('data-type')}`;
+      } else {
+        event.target.textContent = `Select ${input.getAttribute('data-type')}`;
+      }
+    } else {
+      this.currentInput = inputName;
+      event.target.textContent = 'Cancel';
+    }
+  }
+
+  runEvent() {
+    let form = event.target.parentNode;
+    let data = Form.getData(form, this.graph);
+
+    let hasError = false;
+    for (let inputName of Object.keys(this.algoInputs)) {
+      let showError = !this.algoInputs[inputName].test(data[inputName]);
+      Form.displayError(form, inputName, showError);
+
+      if (showError && !hasError) {
+        hasError = true;
+      }
+    }
+
+    if (hasError) {
+      return;
+    }
+    this.setInputValues(data);
+    this.run();
+  }
+
+  setInputValues(inputData) {
+    for (let name of Object.keys(inputData)) {
+      if (name in this.algoInputs) {
+        let value = inputData[name];
+        this.curAlgorithm[name] = value;
+      }
+    }
+  }
+
+  run() {
+    let hasNextStep = true;
+    while (hasNextStep) {
+      hasNextStep = this.curAlgorithm.step();
+    }
+    this.stepper.setResult(this.curAlgorithm.getResult());
   }
 
   toggleHover(type, id, isHovering) {
@@ -165,10 +200,6 @@ class SidebarAlgorithm extends SidebarContent {
     return html;
   }
 
-  getCurrentInput() {
-    return this.currentInput;
-  }
-
   updateInput(name, obj) {
     // update displayed input values
     if (name === this.currentInput) {
@@ -206,6 +237,24 @@ class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
+  selectObject(obj) {
+    if (this.currentInput && this.algoInputs && this.algoInputs[this.currentInput].test(obj)) {
+      this.updateInput(this.currentInput, obj);
+    }
+  }
+
+  setAlgorithm(AlgorithmClass) {
+    this.curAlgorithm = new AlgorithmClass(this.graph);
+    this.algoInputs = this.curAlgorithm.inputs;
+
+    this.stepper.reset();
+
+    this.updateAlgorithm(this.curAlgorithm);
+  }
+
+  /**
+   * update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar
+   */
   update() {}
 }
 

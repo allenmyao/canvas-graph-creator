@@ -1,6 +1,3 @@
-// NOTES:  make this responsible for GUI elements as well, move to UI folder?  should draw knowing little to nothing about container, difficult to not make assumptions though
-// import * as AlgorithmInterface from 'ui/algorithm';
-
 export default class Stepper {
 
   result;
