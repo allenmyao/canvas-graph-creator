@@ -1,4 +1,8 @@
 import { calcBezierDistance, bezierDerivative } from '../../util/bezier';
+import Point2D from '../../util/point-2d';
+import Triangle2D from '../../util/triangle-2d';
+import Line2D from '../../util/line-2d';
+// import Vector2D from '../../util/vector-2d';
 import Label from '../label';
 
 const EDGE_DISTANCE_THRESHOLD = 10;
@@ -12,6 +16,9 @@ class Edge {
   startNode;
   destNode;
   isDirected;
+  startPoint = null;
+  destPoint = null;
+  bezierPoint = null;
   partners = [];
 
   // status
@@ -163,13 +170,59 @@ class Edge {
   }
 
   updateEndpoints() {
+    let oldStartPoint = this.startPoint;
+    let oldBezierPoint = this.bezierPoint;
+    let oldDestPoint = this.destPoint;
     if (this.startNode === this.destNode) {
       this.updateSelfLoopEndpoints();
     } else {
       this.updateNormalEdgeEndpoints();
     }
     if (this.label) {
-      this.updateLabelLocation();
+      if (oldStartPoint === null || oldBezierPoint === null || oldDestPoint === null) {
+        // initial label location
+        this.label.x = this.bezierPoint.x;
+        this.label.y = this.bezierPoint.y;
+      } else if (this.startNode === this.destNode) {
+        // self loop case
+        this.updateSelfLoopLabel(oldBezierPoint);
+      } else {
+        let oldStartPoint2D = new Point2D(oldStartPoint.x, oldStartPoint.y);
+        let oldBezierPoint2D = new Point2D(oldBezierPoint.x, oldBezierPoint.y);
+        let oldDestPoint2D = new Point2D(oldDestPoint.x, oldDestPoint.y);
+
+        let startPoint2D = new Point2D(this.startPoint.x, this.startPoint.y);
+        let bezierPoint2D = new Point2D(this.bezierPoint.x, this.bezierPoint.y);
+        let destPoint2D = new Point2D(this.destPoint.x, this.destPoint.y);
+
+        let oldStartDest = new Line2D(oldStartPoint2D, oldDestPoint2D);
+        let startDest = new Line2D(startPoint2D, destPoint2D);
+        if (startDest.hasPoint(bezierPoint2D)) {
+          if (startPoint2D.equals(destPoint2D)) {
+            // corner case where startPoint == endPoint
+            this.label.x = startPoint2D.x;
+            this.label.y = startPoint2D.y;
+          }
+
+          // straight edge case
+          if (!oldStartDest.hasPoint(oldBezierPoint2D)) {
+            // was previously a bezier curve, so reset coordinates to bezierPoint
+            this.label.x = this.bezierPoint.x;
+            this.label.y = this.bezierPoint.y;
+            return;
+          }
+          this.updateStraightEdgeLabel(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D, startPoint2D, bezierPoint2D, destPoint2D);
+        } else {
+          if (oldStartDest.hasPoint(oldBezierPoint2D)) {
+            // was previously a straight line, so reset coordinates to bezierPoint
+            this.label.x = this.bezierPoint.x;
+            this.label.y = this.bezierPoint.y;
+            return;
+          }
+          // curved edge
+          this.updateCurvedEdgeLabel(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D, startPoint2D, bezierPoint2D, destPoint2D);
+        }
+      }
     }
   }
 
@@ -199,10 +252,53 @@ class Edge {
     context.fill();
   }
 
-  updateLabelLocation() {
-    // TODO: properly update label position if moved
-    this.label.x = this.bezierPoint.x;
-    this.label.y = this.bezierPoint.y;
+  updateSelfLoopLabel(oldBezierPoint) {
+    this.label.x += this.bezierPoint.x - oldBezierPoint.x;
+    this.label.y += this.bezierPoint.y - oldBezierPoint.y;
+  }
+
+  updateStraightEdgeLabel(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D, startPoint2D, bezierPoint2D, destPoint2D) {
+    let oldLabelPosition = new Point2D(this.label.x, this.label.y);
+    let oldStartLabelVec = oldStartPoint2D.vectorTo(oldLabelPosition);
+    let oldStartDestVec = oldStartPoint2D.vectorTo(oldDestPoint2D);
+
+    let u = oldStartLabelVec.projectOnto(oldStartDestVec);
+    let v = oldStartLabelVec.sub(u);
+
+    let ratioU = u.length / oldStartDestVec.length;
+    if (u.degreesTo(oldStartDestVec) !== 0) {
+      ratioU *= -1;
+    }
+
+    let startDestVec = startPoint2D.vectorTo(destPoint2D);
+    let newU = startDestVec.scale(ratioU);
+
+    let newLabelPosition;
+    if (v.length === 0) {
+      // label is on the line
+      newLabelPosition = startPoint2D.translateVec(newU);
+    } else {
+      // label is not on the line
+      let ratioV = v.length / oldStartDestVec.length;
+      let angle = oldStartDestVec.degreesTo(v);
+      let newV = startDestVec.rotateDegrees(angle).scale(ratioV);
+
+      newLabelPosition = startPoint2D.translateVec(newU).translateVec(newV);
+    }
+
+    this.label.x = newLabelPosition.x;
+    this.label.y = newLabelPosition.y;
+  }
+
+  updateCurvedEdgeLabel(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D, startPoint2D, bezierPoint2D, destPoint2D) {
+    let oldTriangle = new Triangle2D(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D);
+    let newTriangle = new Triangle2D(startPoint2D, bezierPoint2D, destPoint2D);
+
+    let oldLabelPosition = new Point2D(this.label.x, this.label.y);
+    let newLabelPosition = oldLabelPosition.relativePositionToTriangle2D(oldTriangle, newTriangle);
+
+    this.label.x = newLabelPosition.x;
+    this.label.y = newLabelPosition.y;
   }
 
 }
