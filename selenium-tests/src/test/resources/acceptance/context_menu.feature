@@ -4,7 +4,7 @@ Feature: Context Menu
     Given I navigate to the home page
     
   Scenario: Using the add node function of context menu should create a node
-    When I open the context menu at 100, 100
+    When I open the context menu at 500, 500
       And choose the Add Circle Node option
     Then there should be 1 node
         
