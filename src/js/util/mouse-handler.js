@@ -116,34 +116,38 @@ class MouseHandler {
   }
 
   contextComponent(event, x, y) {
-    let component = null;
     if (this.graph.hasComponent(x, y)) {
-      component = this.graph.getComponent(x, y);
+      this.selectedObject = this.graph.getComponent(x, y);
     }
-
-    return component;
+    return this.selectedObject;
   }
 
   contextAdd(arg, x, y) {
-    ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);
-  }
-
-  contextToggle(arg, component) {
-    component[arg] = !component[arg];
-  }
-
-  contextDelete(component) {
-    if (component instanceof Node) {
-      this.graph.removeNode(component);
-    } else if (component instanceof Edge) {
-      this.graph.removeEdge(component);
-    } else if (component instanceof Label) {
-      component.content = '';
+    if (arg === 'edge') {
+      ui.toolbar.selectToolByName('edge');
+      ui.toolbar.toolMap.edge.selectNode(this.graph, this.selectedObject);
+    } else {
+      ui.toolbar.selectToolByName('node');
+      ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);
     }
   }
 
-  contextSelect(event, currentTool, component, x, y) {
-    currentTool.selectObject(event, this.graph, component, x, y);
+  contextToggle(arg) {
+    this.selectedObject[arg] = !this.selectedObject[arg];
+  }
+
+  contextDelete() {
+    if (this.selectedObject instanceof Node) {
+      this.graph.removeNode(this.selectedObject);
+    } else if (this.selectedObject instanceof Edge) {
+      this.graph.removeEdge(this.selectedObject);
+    } else if (this.selectedObject instanceof Label) {
+      this.selectedObject.content = '';
+    }
+  }
+
+  contextSelect(event, currentTool, x, y) {
+    currentTool.selectObject(event, this.graph, this.selectedObject, x, y);
   }
 }
 
