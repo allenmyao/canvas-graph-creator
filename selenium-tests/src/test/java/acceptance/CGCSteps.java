@@ -59,12 +59,18 @@ public class CGCSteps {
 	{
     	cgc.drawEdge(nodes.get(source), nodes.get(destination));
 	}
-
+  @When("^.*right click at (.+)$")
+  public void rightClick(@Transform(PointTransformer.class) Point point) throws Throwable {
+      ## good luck
+  }
 	@When("^.*click on (.+)$")
 	public void clickNode(String node) throws Throwable {
 		cgc.clickNode(nodes.get(node));
 	}
-
+  @When("^.*choose the option (?:named (.+) |)$")
+  public void selectOption(String name) throws Throwable {
+    ## good luck again
+  }
 	@When("^.*I select the (.+) tool$")
 	public void selectTool(String name) throws Throwable
 	{
