@@ -48,15 +48,19 @@ public class CGCSteps {
 	{
 
 	}
-	@When("^.*scroll (out|in) by (.+) ticks$")
-	public void scroll(String direction,String magnitude)
+	@When("^.*scroll (out|in) by (d+) ticks$")
+	public void scroll(String direction, int ticks)
 	{
-
+		//down scrolls out and is positive
+		if(direction.equals("in"))
+			cgc.zoomIn(ticks);
+		else if(direction.equals("out"))
+			cgc.zoomOut(ticks);
 	}
 	@When("I press the reset button")
-	public void resetClick()
+	public void resetZoom()
 	{
-
+		cgc.resetZoom();
 	}
 	@When("^.*node (?:named (.+) |)at (.*)$")
 	public void createNode(String name, @Transform(PointTransformer.class) Point point)

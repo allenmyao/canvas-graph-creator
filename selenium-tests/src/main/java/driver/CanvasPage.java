@@ -117,6 +117,11 @@ public abstract class CanvasPage {
 
 		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
 	}
+	public void scroll(Point ticks)
+	{
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(" + ticks.x + ", " + ticks.y + ");");
+	}
 	private BufferedImage getScreenshot() throws IOException
 	{
 
