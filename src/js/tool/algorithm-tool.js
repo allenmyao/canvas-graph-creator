@@ -1,9 +1,9 @@
-import { Tool } from '../tool/tool';
-import { Node } from '../data/node/node';
+import Tool from '../tool/tool';
+import Node from '../data/node/node';
 import TraversalAlgorithm from '../algorithm/traversal-algorithm';
 import ui from '../ui/ui';
 
-export class AlgorithmTool extends Tool {
+class AlgorithmTool extends Tool {
 
   name = 'Algorithm Tool';
   sidebarType = 'algorithm';
@@ -39,3 +39,6 @@ export class AlgorithmTool extends Tool {
   }
 
 }
+
+export { AlgorithmTool };
+export default AlgorithmTool;

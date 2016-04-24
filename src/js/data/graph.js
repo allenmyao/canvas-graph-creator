@@ -1,11 +1,10 @@
-export class Graph {
+class Graph {
   constructor(nodes, edges) {
     this.nodes = new Set(nodes);
     this.edges = new Set(edges);
   }
 
   addNode(node) {
-    // console.log('Adding node at (' + node.x + ',' + node.y + ')');
     this.nodes.add(node);
   }
 
@@ -13,13 +12,10 @@ export class Graph {
     if (!this.nodes.has(edge.startNode) || !this.nodes.has(edge.destNode)) {
       throw new Error('Edge nodes are not in the graph');
     }
-
-    // console.log('Adding edge between ' + edge.startNode.id + ' and ' + edge.destNode.id);
     this.edges.add(edge);
   }
 
   removeNode(node) {
-    // console.log('Removing node ' + node.id);
     // Temp copy of edges to work on while we remove them
     let tempEdges = new Set();
     for (let edge of node.edges) {
@@ -32,7 +28,6 @@ export class Graph {
   }
 
   removeEdge(edge) {
-    // console.log('Removing edge ' + edge.startNode.id + '-' + edge.destNode.id);
     let id = edge.id;
     for (let i = 0; i < edge.partners.length; i++) {
       for (let j = 0; j < edge.partners[i].length; j++) {
@@ -66,28 +61,31 @@ export class Graph {
   }
 
   getComponent(x, y) {
-    let component = null;
-    this.forEachNode((node) => {
-      if (node.containsPoint(x, y)) {
-        component = node;
-        return false;
+    for (let node of this.nodes) {
+      if (node.label.containsPoint(x, y)) {
+        return node.label;
       }
-      return true;
-    });
-
-    if (component !== null) {
-      return component;
     }
 
-    this.forEachEdge((edge) => {
-      if (edge.containsPoint(x, y)) {
-        component = edge;
-        return false;
+    for (let edge of this.edges) {
+      if (edge.label.containsPoint(x, y)) {
+        return edge.label;
       }
-      return true;
-    });
+    }
 
-    return component;
+    for (let node of this.nodes) {
+      if (node.containsPoint(x, y)) {
+        return node;
+      }
+    }
+
+    for (let edge of this.edges) {
+      if (edge.containsPoint(x, y)) {
+        return edge;
+      }
+    }
+
+    return null;
   }
 
   isNodeCollision(testNode, x, y) {
@@ -134,3 +132,6 @@ export class Graph {
     });
   }
 }
+
+export { Graph };
+export default Graph;

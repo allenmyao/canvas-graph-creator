@@ -1,3 +1,6 @@
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
+import Label from '../data/label';
 import ui from '../ui/ui';
 
 class MouseHandler {
@@ -129,11 +132,13 @@ class MouseHandler {
     component[arg] = !component[arg];
   }
 
-  contextDelete(arg, component) {
-    if (arg === 'node') {
+  contextDelete(component) {
+    if (component instanceof Node) {
       this.graph.removeNode(component);
-    } else if (arg === 'edge') {
+    } else if (component instanceof Edge) {
       this.graph.removeEdge(component);
+    } else if (component instanceof Label) {
+      component.content = '';
     }
   }
 

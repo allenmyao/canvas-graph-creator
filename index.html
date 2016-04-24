@@ -50,19 +50,8 @@
         <li class="tool-listitem">
           <button type="button" class="tool btn-raised" data-tool="move">Move Object</button>
         </li>
-        <!--
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="editnode">Edit Node</button>
-        </li>
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="editedge">Edit Edge</button>
-        </li>
-        -->
         <li class="tool-listitem">
           <button type="button" class="tool btn-raised" data-tool="erase">Erase Object</button>
-        </li>
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="metadata">Edit Label</button>
         </li>
         <li class="tool-listitem">
           <button type="button" class="tool btn-raised" data-tool="pan">Pan</button>
@@ -131,14 +120,12 @@
     <ul class="context-menu__section" data-name="node">
       <li class="context-menu__section__item" data-type="toggle" data-data="isAcceptingState">Toggle Accepting State</li>
       <li class="context-menu__section__item" data-type="toggle" data-data="isStartingState">Toggle Start State</li>
-      <li class="context-menu__section__item" data-type="delete">Delete Node</li>
     </ul>
     <ul class="context-menu__section" data-name="edge">
       <li class="context-menu__section__item" data-type="toggle" data-data="isDirected">Toggle Directed Edge</li>
-      <li class="context-menu__section__item" data-type="delete">Delete Edge</li>
     </ul>
     <ul class="context-menu__section" data-name="component">
-      <li class="context-menu__section__item" data-type="edit">Edit Label</li>
+      <li class="context-menu__section__item" data-type="delete">Delete</li>
     </ul>
     <ul class="context-menu__section" data-name="default">
       <li class="context-menu__section__item" data-type="add" data-data="circle">Add Circle Node</li>
