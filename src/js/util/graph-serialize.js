@@ -41,18 +41,19 @@ export class Serializer {
   constructor(graph, resetFn) {
     this.currentGraph = graph;
     this.resetFn = resetFn;
+    if(typeof document !== 'undefined'){
+      this.exportBtn = document.getElementById('export-graph-button');
+      this.exportBtn.addEventListener('click', (event) => {
+        this.exportGraph();
+      });
+      this.importBtn = document.getElementById('import-graph-button');
+      this.importBtn.addEventListener('click', (event) => {
+        this.importGraph();
+      });
 
-    this.exportBtn = document.getElementById('export-graph-button');
-    this.exportBtn.addEventListener('click', (event) => {
-      this.exportGraph();
-    });
-    this.importBtn = document.getElementById('import-graph-button');
-    this.importBtn.addEventListener('click', (event) => {
-      this.importGraph();
-    });
-
-    this.textBox = document.getElementById('export-import-text');
-    this.textBox.value = '';
+      this.textBox = document.getElementById('export-import-text');
+      this.textBox.value = '';
+    }
   }
 
   exportElement(elem, cache, path) {
@@ -118,6 +119,11 @@ export class Serializer {
   }
 
   exportGraph() {
+    let graphStr = this.serializeGraph();
+    this.textBox.value = JSON.stringify(graphStr);
+  }
+
+  serializeGraph() {
     let obj = this.currentGraph;
     let cache = {};
     let path = '$';
@@ -155,7 +161,7 @@ export class Serializer {
         }
       }
     }
-    this.textBox.value = JSON.stringify(outputObj);
+    return outputObj;
   }
 
   allocateElement(name) {
@@ -249,16 +255,7 @@ export class Serializer {
   }
 
   importGraph() {
-    let newGraph = new Graph();
     let obj;
-    let key;
-    let modKey;
-    let maxNodeID = 0;
-    let nodeCache = {};
-    let maxEdgeID = 0;
-    let edgeCache = {};
-    let elem;
-    let newElem;
     if (this.textBox.value === '') {
       return;
     }
@@ -268,9 +265,25 @@ export class Serializer {
       console.log('Exception thrown from Parser');
       return;
     }
+    let deserializeInfo = this.deserializeGraph(obj);
+    Node.numNodes = deserializeInfo.nodes;
+    Edge.numEdged = deserializeInfo.edges
+    this.resetFn(deserializeInfo.graph);
+  }
+
+  deserializeGraph(obj) {
+    let newGraph = new Graph();
+    let key;
+    let modKey;
+    let maxNodeID = 0;
+    let nodeCache = {};
+    let maxEdgeID = 0;
+    let edgeCache = {};
+    let elem;
+    let newElem;
     if (obj === null || obj === {}) {
       console.log('Bad Object');
-      return;
+      return null;
     }
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -323,10 +336,11 @@ export class Serializer {
         }
       }
     }
-
-    Node.numNodes = maxNodeID + 1;
-    Edge.numEdged = maxEdgeID + 1;
-    this.resetFn(newGraph);
+    return {
+      nodes: maxNodeID+1, 
+      edges: maxEdgeID+1, 
+      graph: newGraph
+    };
   }
 
   // Formality, in case it's triggered by something other than us.
