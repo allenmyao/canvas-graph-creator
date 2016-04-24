@@ -1,8 +1,8 @@
 import chai from 'chai';
 chai.should();
 
-import { CircleNode as Node } from '../src/js/data/node/circle-node';
-import { SolidEdge } from '../src/js/data/edge/solid-edge';
+import Node from '../src/js/data/node/circle-node';
+import SolidEdge from '../src/js/data/edge/solid-edge';
 
 describe('SolidEdge', () => {
   describe('#constructor', () => {

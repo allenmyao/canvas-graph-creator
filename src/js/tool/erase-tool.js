@@ -1,8 +1,8 @@
-import { Tool } from '../tool/tool';
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Tool from '../tool/tool';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 
-export class EraseTool extends Tool {
+class EraseTool extends Tool {
 
   name = 'Erase Tool';
 
@@ -31,3 +31,6 @@ export class EraseTool extends Tool {
   }
 
 }
+
+export { EraseTool };
+export default EraseTool;

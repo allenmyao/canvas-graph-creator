@@ -3,9 +3,9 @@
 import chai from 'chai';
 chai.should();
 
-import { Graph } from '../../src/js/data/graph';
-import { CircleNode as Node } from '../../src/js/data/node/circle-node';
-import { SolidEdge as Edge } from '../../src/js/data/edge/solid-edge';
+import Graph from '../../src/js/data/graph';
+import Node from '../../src/js/data/node/circle-node';
+import Edge from '../../src/js/data/edge/solid-edge';
 import TraversalAlgorithm from '../../src/js/algorithm/traversal-algorithm';
 
 describe('TraversalAlgorithm', () => {

@@ -40,6 +40,7 @@ describe('MoveTool', () => {
 
   describe('#dragObject', () => {
     it('should move node', () => {
+      moveTool.preDragObject(null, graph, node2, node2.x, node2.y);
       moveTool.dragObject(null, graph, node2, x2, y2, 1000, 1000);
       (node2.x).should.be.equal(1000);
       (node2.y).should.be.equal(1000);
@@ -56,7 +57,7 @@ describe('MoveTool', () => {
 
   describe('#dropOnObject', () => {
     it('should not allow dropping on other nodes', () => {
-      moveTool.preDragObject(null, graph, node1, null, null);
+      moveTool.preDragObject(null, graph, node1, node1.x, node1.y);
       moveTool.dragObject(null, graph, node1, x1, y1, x2, y2);
       moveTool.dropOnObject(null, graph, node1, node2, x1, y1, x2, y2);
       if (x1 !== x2) {
@@ -68,7 +69,7 @@ describe('MoveTool', () => {
     });
 
     it('should move dragged node back to original position on drop failure', () => {
-      moveTool.preDragObject(null, graph, node1, null, null);
+      moveTool.preDragObject(null, graph, node1, node1.x, node1.y);
       moveTool.dragObject(null, graph, node1, x1, y1, x2, y2);
       moveTool.dropOnObject(null, graph, node1, node2, x1, y1, x2, y2);
       (node1.x).should.be.equal(x1);
@@ -76,7 +77,7 @@ describe('MoveTool', () => {
     });
 
     it('should ignore collision with edges', () => {
-      moveTool.preDragObject(null, graph, node1, null, null);
+      moveTool.preDragObject(null, graph, node1, node1.x, node1.y);
       moveTool.dragObject(null, graph, node1, x1, y1, midX, midY);
       moveTool.dropOnObject(null, graph, node1, edge, x1, y1, midX, midY);
       (node1.x).should.be.equal(midX);
@@ -96,7 +97,7 @@ describe('MoveTool', () => {
 
   describe('#dropOnNone', () => {
     it('should not allow collision with node', () => {
-      moveTool.preDragObject(null, graph, node1, null, null);
+      moveTool.preDragObject(null, graph, node1, node1.x, node1.y);
       let x = node2.x - node2.radius - node1.radius / 2;
       let y = node2.y;
       moveTool.dragObject(null, graph, node1, x1, y1, x, y);
@@ -110,7 +111,7 @@ describe('MoveTool', () => {
     it('should ignore collision with edges', () => {
       let node3 = new Node(0, -100);
       graph.addNode(node3);
-      moveTool.preDragObject(null, graph, node3, null, null);
+      moveTool.preDragObject(null, graph, node3, node3.x, node3.y);
       moveTool.dragObject(null, graph, node3, node3.x, node3.y, midX, midY + 1);
       moveTool.dropOnNone(null, graph, node3, node3.x, node3.y, midX, midY + 1);
 

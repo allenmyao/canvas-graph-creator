@@ -1,28 +1,32 @@
-import { Tool } from '../tool/tool';
-import { Node } from '../data/node/node';
+import Tool from '../tool/tool';
+import Node from '../data/node/node';
+import Label from '../data/label';
 
-export class MoveTool extends Tool {
+class MoveTool extends Tool {
 
   name = 'Move Tool';
-  sidebarType = 'select';
 
   objStartX;
   objStartY;
+  startX;
+  startY;
 
   preDragObject(event, graph, srcObj, x, y) {
+    this.startX = x;
+    this.startY = y;
     this.objStartX = srcObj.x;
     this.objStartY = srcObj.y;
     return true;
   }
 
   dragObject(event, graph, obj, startX, startY, x, y) {
-    if (obj instanceof Node) {
-      obj.setPos(x, y);
+    if (obj instanceof Node || obj instanceof Label) {
+      obj.setPos(x - (this.startX - this.objStartX), y - (this.startY - this.objStartY));
     }
   }
 
   dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
-    if (destObj instanceof Node && droppedObj instanceof Node) {
+    if (droppedObj instanceof Node && destObj instanceof Node) {
       // stop dragging, and reset to starting position
       this.resetObjectPosition(droppedObj);
     } else {
@@ -36,7 +40,9 @@ export class MoveTool extends Tool {
       if (graph.isNodeCollision(droppedObj, x, y)) {
         this.resetObjectPosition(droppedObj);
       } else {
-        droppedObj.setPos(x, y);
+        droppedObj.setPos(x - (this.startX - this.objStartX), y - (this.startY - this.objStartY));
+        this.startX = null;
+        this.startY = null;
       }
     }
   }
@@ -45,6 +51,11 @@ export class MoveTool extends Tool {
     object.setPos(this.objStartX, this.objStartY);
     this.objStartX = null;
     this.objStartY = null;
+    this.startX = null;
+    this.startY = null;
   }
 
 }
+
+export { MoveTool };
+export default MoveTool;

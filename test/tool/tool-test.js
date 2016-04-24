@@ -3,7 +3,7 @@
 import chai from 'chai';
 chai.should();
 
-import { Tool } from '../../src/js/tool/tool';
+import Tool from '../../src/js/tool/tool';
 
 describe('Tool', () => {
   let tool;
