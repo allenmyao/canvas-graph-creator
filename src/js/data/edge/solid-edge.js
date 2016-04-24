@@ -1,10 +1,11 @@
-import { Edge } from './edge';
-import { drawArrows } from '../../util/curvedEdge';
+import Edge from './edge';
 
-export class SolidEdge extends Edge {
+class SolidEdge extends Edge {
 
   draw(context) {
-    context.strokeStyle = this.isSelected ? 'red' : 'black';
+    context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
+    context.lineWidth = this.lineWidth;
+
 
     // Create a new path
     context.beginPath();
@@ -18,22 +19,18 @@ export class SolidEdge extends Edge {
     // Draw to the canvas
     context.stroke();
 
+
     if (this.isDirected) {
-      drawArrows(this, false, true);
+      context.fillStyle = this.isSelected ? this.selectedColor : this.color;
+      this.drawArrow(context);
     }
 
     if (this.edgeLabel !== '') {
-      context.font = '14px Arial';
-      context.fillStyle = 'black';
-      context.fillText(this.edgeLabel, this.xText, this.yText);
-      if (this.showTextCtrl) {
-        context.fillStyle = 'red';
-        context.beginPath();
-        context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
-        context.lineTo(this.xText, this.yText);
-        context.fill();
-      }
+      this.drawLabel(context);
     }
   }
 
 }
+
+export { SolidEdge };
+export default SolidEdge;

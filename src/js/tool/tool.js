@@ -1,19 +1,27 @@
-export class Tool {
+class Tool {
 
   name; // displayed name
   icon; // icon to display
-  sidebarType = 'select';
+  sidebarType = 'display';
 
   constructor(icon) {
     this.icon = icon;
   }
 
   hasModes() {
-    return false;
+    return typeof this.currentMode !== 'undefined'
+        && typeof this.constructor.modes !== 'undefined'
+        && typeof this.optionMap !== 'undefined'
+        && typeof this.optionContent !== 'undefined';
   }
 
   hasInputs() {
-    return false;
+    return typeof this.inputs !== 'undefined'
+        && typeof this.inputTypes !== 'undefined';
+  }
+
+  changeMode(mode) {
+    this.currentMode = mode;
   }
 
   // These is called when changing tools
@@ -45,3 +53,6 @@ export class Tool {
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {}
 
 }
+
+export { Tool };
+export default Tool;

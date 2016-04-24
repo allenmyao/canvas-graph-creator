@@ -1,10 +1,34 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif:400,700');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 
 // Typography
 $font-family-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
-$font-family-serif: 'PT Serif', serif;
-$font-family-mono: 'PT Mono', monospace;
+
+$font-weight-buttons: 600;
+$font-weight-nav: 600;
+
 
 // Default values
-$default-border-radius: 3px;
+$default-border-radius: 2px;
+
+
+// Layout
+$navbar-height: 50px;
+$top-bar-height: 100px;
+$toolbar-width: 246px;
+$sidebar-width: 380px;
+$status-bar-height: 50px;
+
+
+// Colors
+$primary-color: #009BFF;
+$primary-alt-color: #0089E2;
+
+$error-color: #FF0000;
+
+$secondary-color: #0E2C40;
+
+$primary-gray-color: #757575;
+$primary-gray-light-color: #999;
+$primary-gray-lighter-color: #ccc;
+$primary-gray-lightest-color: #ddd;
+$primary-gray-alt-color: #555;

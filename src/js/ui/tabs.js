@@ -6,7 +6,7 @@ const TAB_CONTENT_ACTIVE_CLASS = 'active';
 
 const TAB_ATTRIBUTE_NAME = 'data-tab';
 
-export class Tabs {
+class Tabs {
 
   constructor(tabContainer, tabList) {
     this.tabContainer = tabContainer;
@@ -55,6 +55,7 @@ export class Tabs {
 
     this.tabList.appendChild(tab);
     this.tabContainer.appendChild(tabContent);
+    this.updateTabListDisplay();
   }
 
   removeTab(name) {
@@ -63,6 +64,7 @@ export class Tabs {
       if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {
         tabs[i].remove();
         this.getTabContentElement(name).remove();
+        this.updateTabListDisplay();
         return;
       }
     }
@@ -80,6 +82,38 @@ export class Tabs {
 
     for (let name of Object.keys(names)) {
       this.addTab(name, names[name]);
+    }
+
+    this.updateTabListDisplay();
+  }
+
+  hideTab(tabName) {
+    this.displayTab(tabName, true);
+  }
+
+  showTab(tabName) {
+    this.displayTab(tabName, false);
+  }
+
+  displayTab(tabName, isHiding) {
+    let tabs = this.tabList.querySelectorAll(`.${TAB_CLASS}[${TAB_ATTRIBUTE_NAME}=${tabName}]`);
+    for (let i = 0; i < tabs.length; i++) {
+      let tab = tabs[i];
+      if (isHiding) {
+        tab.classList.add('hidden');
+      } else {
+        tab.classList.remove('hidden');
+      }
+    }
+    this.updateTabListDisplay();
+  }
+
+  updateTabListDisplay() {
+    let displayedTabs = this.tabList.querySelectorAll(`.${TAB_CLASS}:not(.hidden)`);
+    if (displayedTabs.length <= 1) {
+      this.tabList.classList.add('hidden');
+    } else {
+      this.tabList.classList.remove('hidden');
     }
   }
 
@@ -152,3 +186,6 @@ export class Tabs {
   }
 
 }
+
+export { Tabs };
+export default Tabs;

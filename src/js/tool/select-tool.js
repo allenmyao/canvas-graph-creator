@@ -1,22 +1,45 @@
-import { Tool } from '../tool/tool';
-// import * as UI from 'ui/ui';
-// import * as Sidebar from '../ui/sidebar';
+import Tool from '../tool/tool';
+import Label from '../data/label';
 
-export class SelectTool extends Tool {
+class SelectTool extends Tool {
 
   name = 'Select Tool';
   sidebarType = 'select';
 
-  selectObject(event, graph, obj, x, y) {
-    // UI.selectObject(obj);
-    // Sidebar.updateSidebar(obj);
+  selectedObject = null;
+
+  cancel() {
+    this.selectNone();
   }
 
-  // drag: multiselect?
+  selectObject(event, graph, obj, x, y) {
+    if (this.selectedObject) {
+      this.selectedObject.isSelected = false;
+    }
+
+    let targetObject;
+    if (obj instanceof Label) {
+      if (obj.parentObject.containsPoint(x, y)) {
+        targetObject = obj.parentObject;
+      } else {
+        this.selectNone(event, graph, x, y);
+        return;
+      }
+    } else {
+      targetObject = obj;
+    }
+    targetObject.isSelected = true;
+    this.selectedObject = targetObject;
+  }
 
   selectNone(event, graph, x, y) {
-    // UI.selectObject(graph);
-    // Sidebar.updateSidebar(graph);
+    if (this.selectedObject) {
+      this.selectedObject.isSelected = false;
+      this.selectedObject = null;
+    }
   }
 
 }
+
+export { SelectTool };
+export default SelectTool;

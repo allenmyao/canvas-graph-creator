@@ -1,108 +1,73 @@
-import { NodeTool } from '../tool/node-tool';
-import { EdgeTool } from '../tool/edge-tool';
-import { MoveTool } from '../tool/move-tool';
-import { EraseTool } from '../tool/erase-tool';
-import { EditNodeTool } from '../tool/editnode-tool';
-import { EditEdgeTool } from '../tool/editedge-tool';
-import { MetadataTool } from '../tool/metadata-tool';
-import { PanTool } from '../tool/pan-tool';
-import { SelectTool } from '../tool/select-tool';
-import * as Sidebar from '../ui/sidebar';
+import NodeTool from '../tool/node-tool';
+import EdgeTool from '../tool/edge-tool';
+import MoveTool from '../tool/move-tool';
+import EraseTool from '../tool/erase-tool';
+import PanTool from '../tool/pan-tool';
+import SelectTool from '../tool/select-tool';
+import AlgorithmTool from '../tool/algorithm-tool';
 
-// const TOOL_CLASS = 'tool';
-// const TOOL_NAME_ATTR = 'data-tool';
-// const TOOL_MODE_CLASS = 'mode';
-// const TOOL_MODE_NAME_ATTR = 'data-mode';
+const TOOL_CLASS = 'tool';
+const TOOL_NAME_ATTR = 'data-tool';
+const TOOL_SELECTED_CLASS = 'btn-primary';
 
-let toolbar;
-let toolMap = {
-  node: new NodeTool(),
-  edge: new EdgeTool(),
-  move: new MoveTool(),
-  erase: new EraseTool(),
-  editnode: new EditNodeTool(),
-  editedge: new EditEdgeTool(),
-  select: new SelectTool(),
-  metadata: new MetadataTool(),
-  pan: new PanTool()
-};
-let currentTool = toolMap.node;
+class Toolbar {
 
-export function init() {
-  toolbar = document.getElementById('toolbar');
+  ui;
 
-  toolbar.addEventListener('click', (event) => {
-    if (event.target.classList.contains('tool')) {
-      currentTool.cancel();
+  toolbar;
+  toolMap = {
+    node: new NodeTool(),
+    edge: new EdgeTool(),
+    move: new MoveTool(),
+    erase: new EraseTool(),
+    select: new SelectTool(),
+    pan: new PanTool(),
+    algorithm: new AlgorithmTool()
+  };
+  currentTool;
+  currentToolElement;
 
-      let toolName = event.target.getAttribute('data-tool');
-      currentTool = toolMap[toolName];
-      Sidebar.changeSidebar(currentTool.sidebarType);
+  constructor(ui) {
+    this.ui = ui;
+    this.toolbar = document.getElementById('toolbar');
+    this.initListeners();
+  }
 
-      selectItem('tool', event.target);
+  initListeners() {
+    this.toolbar.addEventListener('click', (event) => {
+      if (event.target.classList.contains(TOOL_CLASS)) {
+        this.selectTool(event.target);
+      }
+    });
+  }
 
-      showModes();
-      currentTool.activate();
+  selectTool(toolElement) {
+    if (this.currentTool) {
+      this.currentTool.cancel();
     }
-  });
 
-  showModes();
+    let toolName = toolElement.getAttribute(TOOL_NAME_ATTR);
 
-  // add event listener for mode clicks
-  document.getElementById('tool-modes').addEventListener('click', (event) => {
-    if (event.target.classList.contains('mode')) {
-      currentTool.currentMode = event.target.getAttribute('data-mode');
-      selectItem('mode', event.target);
+    this.currentTool = this.toolMap[toolName];
+    this.ui.sidebar.setSidebar(this.currentTool.sidebarType);
+
+    if (this.currentToolElement) {
+      this.currentToolElement.classList.remove(TOOL_SELECTED_CLASS);
     }
-  });
-}
+    this.currentToolElement = toolElement;
+    this.currentToolElement.classList.add(TOOL_SELECTED_CLASS);
 
-export function getCurrentTool() {
-  return currentTool;
-}
+    this.ui.topBar.showModes();
+    this.ui.topBar.showInputs();
+    this.currentTool.activate();
+    this.currentTool.changeMode(this.currentTool.currentMode);
+  }
 
-export function toMetadata() {
-  currentTool.cancel();
-  currentTool = toolMap.metadata;
-  selectItem('tool', 'metadata');
-  showModes();
-  currentTool.activate();
-}
-
-function selectItem(className, selectedElement) {
-  let elements = document.getElementsByClassName(className);
-  for (let i = 0; i < elements.length; i++) {
-    if (elements[i] === selectedElement) {
-      elements[i].classList.add('selected');
-    } else {
-      elements[i].classList.remove('selected');
-    }
+  selectToolByName(toolName) {
+    let toolElement = this.toolbar.querySelector(`.${TOOL_CLASS}[${TOOL_NAME_ATTR}="${toolName}"]`);
+    this.selectTool(toolElement);
   }
 }
 
-function showModes() {
-  let modeList = document.getElementById('tool-modes');
-  if (currentTool.hasModes()) {
-    // populate modes list
-    let html = '';
-    for (let mode of Object.keys(currentTool.constructor.modes)) {
-      let selected = mode === currentTool.currentMode ? ' selected' : '';
-      html += `<li class="tool-mode"><div class="mode vcenter-wrapper${selected}" data-mode="${mode}"><span class="vcenter">${mode}</span></div></li>`;
-    }
-
-    modeList.innerHTML = `<ul class="tool-mode-list">${html}</ul>`;
-  } else {
-    // clear the modes
-    modeList.innerHTML = '';
-  }
-
-  let inputList = document.getElementById('tool-inputs');
-  if (currentTool.hasInputs()) {
-    // populate inputs list
-    let html = currentTool.getInputHtml();
-    modeList.innerHTML = `<ul class="tool-input-list">${html}</ul>`;
-  } else {
-    // clear the inputs
-    inputList.innerHTML = '';
-  }
-}
+export { Toolbar };
+export default Toolbar;

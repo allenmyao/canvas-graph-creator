@@ -1,29 +1,31 @@
-import * as Canvas from '../ui/canvas';
+class StatusBar {
 
-let statusBar;
+  ui;
 
-export function init() {
-  statusBar = document.getElementById('status-bar');
+  statusBar;
 
-  document.getElementById('reset-transform').addEventListener('click', (event) => {
-    Canvas.reset();
-  });
+  constructor(ui) {
+    this.ui = ui;
+    this.statusBar = document.getElementById('status-bar');
+    this.initListeners();
+  }
+
+  initListeners() {
+    document.getElementById('reset-transform').addEventListener('click', (event) => {
+      this.ui.canvas.reset();
+    });
+  }
+
+  updateZoom(scale) {
+    document.getElementById('zoom-input').value = `${scale.toFixed(2) * 100}%`;
+  }
+
+  updateMouse(x, y) {
+    document.getElementById('mouse-x').textContent = x.toFixed(2);
+    document.getElementById('mouse-y').textContent = y.toFixed(2);
+  }
+
 }
 
-export function getStatusBar() {
-  return statusBar;
-}
-
-export function updateZoom(scale) {
-  document.getElementById('zoom-input').value = `${scale * 100}%`;
-}
-
-export function updateMouse(x, y) {
-  document.getElementById('mouse-x').textContent = x;
-  document.getElementById('mouse-y').textContent = y;
-}
-
-export function updateCanvasPosition(dx, dy) {
-  document.getElementById('canvas-dx').textContent = dx;
-  document.getElementById('canvas-dy').textContent = dy;
-}
+export { StatusBar };
+export default StatusBar;

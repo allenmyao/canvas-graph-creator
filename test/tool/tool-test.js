@@ -1,9 +1,9 @@
-/* eslint no-unused-expressions: 0 */
+/* eslint no-unused-expressions: 0, no-loop-func: 0 */
 
 import chai from 'chai';
 chai.should();
 
-import { Tool } from '../../src/js/tool/tool';
+import Tool from '../../src/js/tool/tool';
 
 describe('Tool', () => {
   let tool;

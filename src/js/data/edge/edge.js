@@ -1,247 +1,211 @@
-import { calcBezierDistance, EDGE_DISTANCE_THRESHOLD } from '../../util/curvedEdge';
-import { CircleNode } from '../node/circle-node';
-import { SquareNode } from '../node/square-node';
-import { Node } from '../node/node';
+import { calcBezierDistance, bezierDerivative } from '../../util/bezier';
+import Label from '../label';
 
-/*
-* Edge Class
-*   Represents an edge in the graph, and is also responsible for supplying draw functionality
-*
-*   Constructor accepts at least two parameters, startNode and destNode are mandatory, all others have default values, bezierPoint just becomes line midpoint
-*
-*   For the sake of organization and simplicity of use, try to only use the following members and functions
-*   Doing so will ensure that this class is used as intended, and also that our code is clean and organized
-*
-*   startNode
-*   destNode
-*   bezierPoint - returns a {x:,y:} object
-*   isDirected
-*   weight - get and set functions have been overloaded to hide confusing internals, can be assigned a number or a grammar string, access as a data member ie edge.weight = blah or blah = edge.weight
-*   getCostType() - returns whether or not this edge has a "Grammar", "Distance", or "None" type of cost associated with it
-*   getEndpoints(reference) - reference can be a node or a number(1,2), returns associated endpoint as {x:,y:}
-*   setEndpoints(reference, endpoint) - reference same as getEndpoints, enpoints must be a {x:,y:}
-*
-*   TODO:  implement better directed functionality, move in curvedEdge functionality
-*/
-export class Edge {
+const EDGE_DISTANCE_THRESHOLD = 10;
+
+class Edge {
 
   static numEdges = 0;
-  id = Node.numEdges++;
-  isSelected = false;
-  edgeLabel = '';
+  id = Edge.numEdges++;
 
-  constructor(startNode, destNode, bezierPoint = null, cost = null, isDirected = false) {
+  // graph data
+  startNode;
+  destNode;
+  isDirected;
+  partners = [];
+
+  // status
+  isSelected = false;
+
+  // label
+  label;
+
+  // appearance
+  color = '#000000';
+  selectedColor = '#FF0000';
+  lineWidth = 1;
+
+  constructor(startNode, destNode) {
     let methods = [
       'draw'
     ];
 
     for (let method of methods) {
-      if (typeof this[method] === 'undefined' || typeof this[method] !== 'function') {
+      if (typeof this[method] !== 'function') {
         throw TypeError('Must override method: ' + method);
       }
     }
 
-    if (arguments.length < 2) {
-      throw Error(`Edge constructor requires at least two arguments: startNode and destNode. Actually passed in ${arguments}`);
+    if (typeof startNode === 'undefined' || typeof destNode === 'undefined') {
+      throw Error(`Edge constructor requires at least two arguments: startNode and destNode. Actually passed in ${startNode}, ${destNode}`);
     }
-    this.costType = null;
+
     this.startNode = startNode;
     this.destNode = destNode;
-    this.bezierPoint = bezierPoint;
-    this.cost = cost;
-    this.isDirected = isDirected;
-    this.isSelected = false;
-
 
     startNode.edges.add(this);
     destNode.edges.add(this);
 
-
-    if (this.startNode.id === this.destNode.id) {
-      if (this.startNode instanceof CircleNode) {
-        let angle = 247.5;
-        let theta = Math.PI * angle / 180;
-        let r = CircleNode.radius;
-        this.startPoint = {
-          x: r * Math.cos(theta) + this.startNode.x,
-          y: r * Math.sin(theta) + this.startNode.y
-        };
-        this.bezierPoint = {
-          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
-        };
-        this.destPoint = {
-          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
-        };
-      } else if (this.startNode instanceof SquareNode) {
-        let w = SquareNode.width;
-        let hw = w / 2;
-        this.startPoint = {
-          x: this.startNode.x - hw / 2,
-          y: this.startNode.y - hw
-        };
-        this.bezierPoint = {
-          x: this.startNode.x,
-          y: this.startNode.y - 2 * w
-        };
-        this.destPoint = {
-          x: this.startNode.x + hw / 2,
-          y: this.startNode.y - hw
-        };
+    // copy partners from an existing partner edge
+    for (let edge of this.startNode.edges) {
+      if (edge.startNode === this.startNode && edge.destNode === this.destNode) {
+        this.partners = edge.partners.slice(0);
+        break;
+      } else if (edge.destNode === this.startNode && edge.startNode === this.destNode) {
+        this.partners = edge.partners.slice(0);
+        break;
       }
+    }
+
+    // add this edge to partners field of all partner edges
+    for (let i = 0; i < this.partners.length; i++) {
+      this.partners[i].partners.push(this);
+    }
+    this.partners.push(this);
+
+    if (this.startNode === this.destNode) {
       this.isDirected = true;
+      this.updateEndpoints();
     } else {
-      try {
-        this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
-        this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
-      } catch (e) {
-        return;
-      }
-
-      if (bezierPoint === null) {
-        this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x) / 2,
-          y: (this.startPoint.y + this.destPoint.y) / 2
-        };
+      for (let i = 0; i < this.partners.length; i++) {
+        this.partners[i].updateEndpoints();
       }
     }
 
-    if (typeof cost === 'string' || cost instanceof String) {
-      this.costType = false;
-    } else if (typeof cost === 'number') {
-      this.costType = true;
-    }
-
-    this.generateDefaultTextLocation();
-    this.showTextCtrl = false;
+    this.label = new Label(this.bezierPoint.x, this.bezierPoint.y, this);
   }
 
   detach() {
+    // remove this edge from partners of all partner edges
+    for (let i = 0; i < this.partners.length; i++) {
+      if (this.partners[i] === this) {
+        continue;
+      }
+      let index = this.partners[i].partners.indexOf(this);
+      this.partners[i].partners.splice(index, 1);
+      this.partners[i].updateEndpoints();
+    }
+
     this.startNode.edges.delete(this);
     this.destNode.edges.delete(this);
     this.startNode = null;
     this.destNode = null;
   }
 
-  getCostType() {
-    if (this.costType === false) {
-      return 'Grammar';
-    } else if (this.costType === true) {
-      return 'Distance';
-    }
-    return 'None';
+  updateSelfLoopEndpoints() {
+    this.startPoint = this.startNode.getAnglePoint(240);
+    this.destPoint = this.startNode.getAnglePoint(300);
+    this.bezierPoint = {
+      x: (this.startPoint.x + this.destPoint.x) / 2,
+      y: this.startPoint.y - 2 * this.startNode.radius
+    };
   }
 
-  set weight(cost) {
-    if (typeof cost === 'string' || cost instanceof String) {
-      this.costType = false;
-      this.cost = cost;
-    } else if (typeof cost === 'number') {
-      this.costType = true;
-      this.cost = cost;
-    } else if (cost === null) {
-      this.costType = null;
-      this.cost = null;
-    } else {
-      throw Error('cost must be a s(S)tring or number');
-    }
-  }
+  updateNormalEdgeEndpoints() {
+    let dx = this.destNode.x - this.startNode.x;
+    let dy = this.destNode.y - this.startNode.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
 
-  get weight() {
-    return this.cost;
-  }
+    // calculate incline based on dy and distance
+    // this is the angle between x-axis and the line from startNode to destNode
+    let incline = Math.asin(dy / distance);
+    // convert from radians to degrees
+    incline = incline * 180 / Math.PI;
 
-  getEndpoints(reference) {
-    if (reference === this.startNode || reference === 1) {
-      return this.startPoint;
-    } else if (reference === this.endNode || reference === 2) {
-      return this.destPoint;
-    }
-  }
+    // Note that canvas coordinates increase towards the bottom right
+    // Quadrants are oriented as follows:
+    //       |
+    //   Q3  |  Q4
+    //       |
+    // ------------- +x
+    //       |
+    //   Q2  |  Q1
+    //       |
+    //       +y
+    //
 
-  setEndpoints(reference, endpoint) {
-    if (reference === this.startNode || reference === 1) {
-      this.startPoint = endpoint;
-    } else if (reference === this.endNode || reference === 2) {
-      this.destPoint = endpoint;
+    // if destNode.x < startNode.x, the angle should end:
+    //   in the second quadrant if destNode.y > startNode.y
+    //   in the third quadrant if destNode.y < startNode.y
+    if (this.startNode.x >= this.destNode.x) {
+      if (this.startNode.y >= this.destNode.y) {
+        incline = (540 - incline) % 360;
+      } else {
+        incline = 180 - incline;
+      }
     }
+
+    let numPartners = this.partners.length + 1;
+    let multiIndex = this.partners.indexOf(this) + 1;
+
+    let ratio = multiIndex / numPartners;
+
+    // if the partner edge with index 0 is going in the opposite direction compared to the current edge
+    // then draw the current edge on the opposite side of the line connecting the two nodes
+    if (this.partners[0].startNode !== this.startNode) {
+      ratio = 1 - ratio;
+    }
+
+    let startAngle = incline + 90 * ratio - 45;
+    let destAngle = incline + 225 - 90 * ratio;
+    this.startPoint = this.startNode.getAnglePoint(startAngle);
+    this.destPoint = this.destNode.getAnglePoint(destAngle);
+
+    let orient = ratio - 0.5;
+    let diff = {
+      x: this.destPoint.x - this.startPoint.x,
+      y: this.destPoint.y - this.startPoint.y
+    };
+    this.bezierPoint = {
+      x: (this.startPoint.x + this.destPoint.x) / 2 - orient * diff.y,
+      y: (this.startPoint.y + this.destPoint.y) / 2 + orient * diff.x
+    };
   }
 
   updateEndpoints() {
-    if (this.startNode.id === this.destNode.id) {
-      if (this.startNode instanceof CircleNode) {
-        let angle = 247.5;
-        let theta = Math.PI * angle / 180;
-        let r = CircleNode.radius;
-        this.startPoint = {
-          x: r * Math.cos(theta) + this.startNode.x,
-          y: r * Math.sin(theta) + this.startNode.y
-        };
-        let oldBezier = this.bezierPoint;
-        this.bezierPoint = {
-          x: 4 * r * Math.cos(theta + Math.PI / 8) + this.startNode.x,
-          y: 4 * r * Math.sin(theta + Math.PI / 8) + this.startNode.y
-        };
-        this.xText += (this.bezierPoint.x - oldBezier.x);
-        this.yText += (this.bezierPoint.y - oldBezier.y);
-        this.destPoint = {
-          x: r * Math.cos(theta + Math.PI / 4) + this.startNode.x,
-          y: r * Math.sin(theta + Math.PI / 4) + this.startNode.y
-        };
-      } else if (this.startNode instanceof SquareNode) {
-        let w = SquareNode.width;
-        let hw = w / 2;
-        this.startPoint = {
-          x: this.startNode.x - hw / 2,
-          y: this.startNode.y - hw
-        };
-        let oldBezier = this.bezierPoint;
-        this.bezierPoint = {
-          x: this.startNode.x,
-          y: this.startNode.y - 2 * w
-        };
-        this.xText += (this.bezierPoint.x - oldBezier.x);
-        this.yText += (this.bezierPoint.y - oldBezier.y);
-        this.destPoint = {
-          x: this.startNode.x + hw / 2,
-          y: this.startNode.y - hw
-        };
-      }
-      this.isDirected = true;
+    if (this.startNode === this.destNode) {
+      this.updateSelfLoopEndpoints();
     } else {
-      try {
-        this.startPoint = this.startNode.edgePointInDirection(this.destNode.x, this.destNode.y);
-        this.destPoint = this.destNode.edgePointInDirection(this.startNode.x, this.startNode.y);
-        let oldBezier = this.bezierPoint;
-        this.bezierPoint = {
-          x: (this.startPoint.x + this.destPoint.x) / 2,
-          y: (this.startPoint.y + this.destPoint.y) / 2
-        };
-        this.xText += (this.bezierPoint.x - oldBezier.x);
-        this.yText += (this.bezierPoint.y - oldBezier.y);
-      } catch (e) {
-        return;
-      }
+      this.updateNormalEdgeEndpoints();
+    }
+    if (this.label) {
+      this.updateLabelLocation();
     }
   }
 
   containsPoint(x, y) {
-    return EDGE_DISTANCE_THRESHOLD > calcBezierDistance(x, y, this.startPoint.x, this.startPoint.y, this.bezierPoint.x, this.bezierPoint.y, this.destPoint.x, this.destPoint.y);
+    return EDGE_DISTANCE_THRESHOLD > calcBezierDistance(x, y, this.startPoint, this.bezierPoint, this.destPoint);
   }
 
   draw(context) {
     throw Error('Can\'t call draw from abstract Edge class.');
   }
 
-  // find the starting point of our text box
-  generateDefaultTextLocation() {
-    // var xOffSet = context.measureText(this.edgeLabel)/2;
-    // var yOffSet = 1; //assuming an edge is just 1 pixel
+  drawLabel(context) {
+    this.label.draw(context);
+  }
 
-    this.xText = this.bezierPoint.x;
-    this.yText = this.bezierPoint.y;
-    // console.log("Line xText: " + this.xText + ", yText: " + this.yText);
+  drawArrow(context) {
+    let slope = bezierDerivative(1, this.startPoint, this.bezierPoint, this.destPoint);
+    let length = Math.sqrt(slope.x * slope.x + slope.y * slope.y);
+    // normalize slope
+    slope = { x: slope.x / length, y: slope.y / length };
+    // perpendicular:
+    context.beginPath();
+    context.moveTo(this.destPoint.x, this.destPoint.y);
+    context.lineTo(this.destPoint.x - 15 * slope.x - 5 * slope.y, this.destPoint.y - 15 * slope.y + 5 * slope.x);
+    context.lineTo(this.destPoint.x - 9 * slope.x, this.destPoint.y - 9 * slope.y);
+    context.lineTo(this.destPoint.x - 15 * slope.x + 5 * slope.y, this.destPoint.y - 15 * slope.y - 5 * slope.x);
+    context.fill();
+  }
+
+  updateLabelLocation() {
+    // TODO: properly update label position if moved
+    this.label.x = this.bezierPoint.x;
+    this.label.y = this.bezierPoint.y;
   }
 
 }
+
+export { Edge };
+export default Edge;

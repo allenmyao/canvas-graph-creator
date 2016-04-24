@@ -1,25 +1,26 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const del = require('del');
-const eslint = require('gulp-eslint');
+const mergeStream = require('merge-stream');
+
+const esdoc = require('gulp-esdoc');
+
+const babel = require('gulp-babel');
+const mocha = require('gulp-mocha');
+const istanbul = require('gulp-babel-istanbul');
+
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const webpackConfig = require('./webpack.config.js');
-
-const istanbul = require('gulp-babel-istanbul');
-const mocha = require('gulp-mocha');
-const babel = require('gulp-babel');
-const mergeStream = require('merge-stream');
+const webpackDevConfig = require('./build/webpack.dev.config');
+const webpackProdConfig = require('./build/webpack.prod.config');
+const devServerConfig = require('./build/dev-server.config');
 
 const COVERAGE_THRESHOLD = 90; // percentage
 const SRC_FILES = 'src/js/**/*.js';
 const TEST_FILES = 'test/**/*.js';
 // const BROWSER_TEST_FILES = '';
-const OUTPUT_DIR = 'dist';
-
-const SERVER_HOST = '0.0.0.0';
+const BUILD_OUTPUT_DIR = 'dist';
+const DOCS_OUTPUT_DIR = 'esdoc';
 
 // The development server (the recommended option for development)
 gulp.task('default', [ 'webpack-dev-server' ]);
@@ -27,37 +28,31 @@ gulp.task('default', [ 'webpack-dev-server' ]);
 // Production build
 gulp.task('build', [ 'webpack:build' ]);
 
-
-gulp.task('lint', () => {
-  return gulp.src(SRC_FILES)
-      .pipe(eslint())
-      .pipe(eslint.format())
-      .pipe(eslint.format('checkstyle', function (results) {
-        require('fs').writeFileSync(require('path').join(__dirname, 'eslint-output.xml'), results);
-      }))
-      .pipe(eslint.results((results) => {
-        // Called once for all ESLint results.
-        gutil.log('[lint]', 'Total Results: ' + results.length);
-        gutil.log('[lint]', 'Total Warnings: ' + results.warningCount);
-        gutil.log('[lint]', 'Total Errors: ' + results.errorCount);
-      }))
-      // exit if linting error is encountered
-      .pipe(eslint.failAfterError());
+gulp.task('clean:docs', () => {
+  return del([ DOCS_OUTPUT_DIR ]);
 });
 
-gulp.task('test', [ 'lint' ], (cb) => {
+gulp.task('docs', [ 'clean:docs' ], () => {
+  return gulp.src(SRC_FILES)
+    .pipe(esdoc());
+});
+
+gulp.task('test', (cb) => {
   mergeStream(
     gulp.src([ SRC_FILES ])
-      .pipe(istanbul()),
+      .pipe(istanbul({
+        includeUntested: true
+      })),
     gulp.src([ TEST_FILES ])
       .pipe(babel())
   ).pipe(istanbul.hookRequire())
     .on('finish', () => {
       gulp.src([ TEST_FILES ])
-          .pipe(mocha())
+          .pipe(mocha({
+            reporter: 'min'
+          }))
           .pipe(istanbul.writeReports({
             dir: './coverage',
-            includeUntested: true,
             reporters: [ 'clover', 'lcov', 'text', 'text-summary' ],
             reportOpts: {
               clover: {
@@ -81,102 +76,56 @@ gulp.task('test', [ 'lint' ], (cb) => {
     });
 });
 
-gulp.task('clean', [ 'test' ], () => {
-  return del([ OUTPUT_DIR ]);
+gulp.task('clean', () => {
+  return del([ BUILD_OUTPUT_DIR ]);
 });
 
 gulp.task('prep', [ 'clean' ]);
 
 gulp.task('webpack:build', [ 'prep' ], (callback) => {
-  var myConfig = Object.create(webpackConfig);
-  myConfig.module.loaders = myConfig.module.loaders.concat({
-    test: /\.scss$/,
-    loader: ExtractTextPlugin.extract(
-      'style',
-      'css!sass'
-    )
-  });
-  myConfig.plugins = myConfig.plugins.concat(
-    new ExtractTextPlugin('../css/[name].css'),
-    new webpack.DefinePlugin({
-      'process.env': {
-        // This has effect on the react lib size
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-
   // run webpack
-  webpack(myConfig, (err, stats) => {
+  webpack(webpackProdConfig, (err, stats) => {
     if (err) {
       throw new gutil.PluginError('webpack:build', err);
     }
     gutil.log('[webpack:build]', stats.toString({
+      chunks: false,
       colors: true
     }));
     callback();
   });
 });
 
-// // modify some webpack config options
-// var myDevConfig = Object.create(webpackConfig);
-// myDevConfig.devtool = 'eval-source-map';
-// myDevConfig.debug = true;
-// myDevConfig.module.loaders = myDevConfig.module.loaders.concat({
-//   test: /\.scss$/,
-//   exclude: /node_modules/,
-//   loaders: [ 'style', 'css', 'sass' ]
-// });
-//
-// // create a single instance of the compiler to allow caching
-// var devCompiler = webpack(myDevConfig);
-//
-// gulp.task('webpack:build-dev', [ 'prep' ], (callback) => {
-//   // run webpack
-//   devCompiler.run((err, stats) => {
-//     if (err) {
-//       throw new gutil.PluginError('webpack:build-dev', err);
-//     }
-//     gutil.log('[webpack:build-dev]', stats.toString({
-//       colors: true
-//     }));
-//     callback();
-//   });
-// });
+gulp.task('webpack-dev-server', (callback) => {
+  var compiler = webpack(webpackDevConfig);
 
-gulp.task('webpack-dev-server', [ 'prep' ], (callback) => {
-  // modify some webpack config options
-  var myConfig = Object.create(webpackConfig);
-  myConfig.debug = true;
-  myConfig.devtool = 'eval-source-map';
-  myConfig.entry.app.unshift('webpack-dev-server/client?http://' + SERVER_HOST + ':8080', 'webpack/hot/dev-server');
-  myConfig.plugins = myConfig.plugins.concat(new webpack.HotModuleReplacementPlugin());
-  myConfig.module.loaders = myConfig.module.loaders.concat({
-    test: /\.scss$/,
-    exclude: /node_modules/,
-    loaders: [ 'style', 'css', 'sass' ]
+  compiler.plugin('done', () => {
+    gutil.log('[webpack-dev-server]', 'Webpack: Build successful!');
   });
 
-  // Start a webpack-dev-server
-  new WebpackDevServer(webpack(myConfig), {
+  var devServer = new WebpackDevServer(compiler, {
     hot: true,
     quiet: false,
-    // noInfo: true,
+    noInfo: true,
     lazy: false,
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
     },
-    publicPath: myConfig.output.publicPath,
+    publicPath: webpackDevConfig.output.publicPath,
     stats: {
-      colors: true
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
     }
-  }).listen(8080, SERVER_HOST, (err) => {
+  });
+
+  devServer.listen(devServerConfig.SERVER_PORT, devServerConfig.SERVER_HOST, (err) => {
     if (err) {
       throw new gutil.PluginError('webpack-dev-server', err);
     }
-    gutil.log('[webpack-dev-server]', 'http://' + SERVER_HOST + ':8080/webpack-dev-server/index.html');
+    gutil.log('[webpack-dev-server]', 'http://' + devServerConfig.SERVER_HOST + ':' + devServerConfig.SERVER_PORT + '/webpack-dev-server/index.html');
   });
 });

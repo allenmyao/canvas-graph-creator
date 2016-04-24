@@ -1,0 +1,41 @@
+#toolbar {
+  position: fixed;
+  top: $navbar-height + $top-bar-height;
+  bottom: $status-bar-height;
+  left: 0;
+  z-index: index($zindexes, toolbar);
+  width: $toolbar-width;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 2px 0 8px rgba(0, 0, 0, 0.28);
+}
+
+.tool-list {
+  display: block;
+  font-size: 0;
+
+  >.tool-listitem {
+    display: block;
+    margin: 20px;
+
+    >.tool {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      word-break: break-all;
+    }
+  }
+}
+
+.tool-input-list {
+  display: block;
+  font-size: 0;
+
+  >.tool-input {
+    display: inline-block;
+
+    >.tinput {
+      margin: 10px 0 10px 10px;
+    }
+  }
+}

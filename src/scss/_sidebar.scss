@@ -1,0 +1,53 @@
+#sidebar {
+  position: fixed;
+  top: $navbar-height + $top-bar-height;
+  right: 0;
+  bottom: $status-bar-height;
+  z-index: index($zindexes, sidebar);
+  width: $sidebar-width;
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), -2px 0 8px rgba(0, 0, 0, 0.28);
+  font-size: 1rem;
+
+  .tabs-container {
+    height: 100%;
+
+    .tab-list {
+      height: 50px;
+    }
+
+    .tab-content {
+      overflow-y: auto;
+    }
+  }
+
+  output {
+    height: 34px;
+
+    // &:empty {
+    //   display: none;
+    // }
+  }
+
+  button {
+    margin-top: 5px;
+  }
+
+
+  form {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    font-size: 1rem;
+
+    fieldset {
+      width: 100%;
+    }
+  }
+
+  .graph-link {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+}

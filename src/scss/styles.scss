@@ -2,269 +2,31 @@
 @import 'mixins';
 @import 'base';
 
+@import 'zindexes';
+
+@import 'button';
+@import 'dropdown';
+@import 'form';
+@import 'tabs';
+
+@import 'context-menu';
+@import 'navbar';
+@import 'top-bar';
+@import 'toolbar';
+@import 'sidebar';
+@import 'canvas';
+@import 'status-bar';
+
 html {
   font-family: $font-family-sans-serif;
   font-size: 16px;
 }
 
 body {
-  margin-top: 70px;
-}
-
-input,
-button,
-select,
-textarea {
-  max-width: 100%;
-  border: 1px solid gray;
-  padding: 5px;
-  font-size: 1rem;
-  font-family: $font-family-sans-serif;
-  @include border-radius($default-border-radius);
-}
-
-input[type="color"] {
-  padding: 0;
-}
-
-.col-2 {
-  display: inline-block;
-  vertical-align: top;
-  width: 50%;
-}
-
-.title {
-  text-align: center;
+  overflow: hidden;
 }
 
 .container {
-  width: 1200px;
-  margin: auto;
-
-  .row {
-    display: block;
-    width: 100%;
-    margin: 20px auto;
-    font-size: 0;
-  }
-}
-
-.col-container {
-  display: inline-block;
-  vertical-align: top;
-}
-
-#canvas-container {
-  width: 800px;
-
-  #canvas {
-    display: block;
-    border: 1px solid black;
-  }
-}
-
-.tabs-container {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-
-  .tab-list {
-    display: block;
-    width: 100%;
-    flex: 0;
-
-    .tab {
-      display: inline-block;
-      vertical-align: top;
-      cursor: pointer;
-
-      &.active {
-
-      }
-    }
-  }
-
-  .tab-content {
-    display: none;
-    width: 100%;
-    flex: 1;
-
-    &.active {
-      display: block;
-    }
-  }
-}
-
-#sidebar-container {
-  width: 380px;
-  margin-left: 20px;
-
-  #sidebar {
-    height: 600px;
-    font-size: 1rem;
-
-    .tabs-container {
-      height: 100%;
-
-      .tab-list {
-        height: 50px;
-        font-size: 0;
-        border-bottom: 1px solid black;
-
-        .tab {
-          padding: 10px 20px;
-          border: 1px solid black;
-          font-size: 1rem;
-
-          &:not(:first-child) {
-            margin-left: -1px;
-          }
-
-          &.active {
-            border-bottom: 1px solid white;
-          }
-        }
-      }
-
-      .tab-content {
-        border: 1px solid black;
-        border-top: 0;
-
-        .data-container {
-          width: 100%;
-          height: 100%;
-
-          .data-list {
-            display: block;
-            width: 100%;
-            padding: 10px;
-
-            .data-item {
-              display: block;
-              font-size: 0;
-
-              &:not(:first-child) {
-                margin: 5px 0;
-                padding-top: 5px;
-                border-top: 1px solid #ccc;
-              }
-
-              span {
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-#status-container {
-  #status-bar {
-    font-size: 1rem;
-  }
-}
-
-#toolbar {
   width: 100%;
-
-  #tool-modes {
-    width: 100%;
-  }
-
-  .tool-list,
-  .tool-mode-list {
-    display: block;
-    border: 1px solid black;
-    height: 120px;
-    font-size: 0;
-
-    >.tool-listitem,
-    >.tool-mode {
-      display: inline-block;
-
-      >.tool,
-      >.mode {
-        vertical-align: top;
-        display: inline-block;
-        width: 100px;
-        height: 100px;
-        margin: 10px 0 10px 10px;
-        background: #aaa;
-        text-align: center;
-        word-break: break-all;
-        cursor: pointer;
-
-        &:not(.selected):hover {
-          background: #bbb;
-        }
-
-        &.selected {
-          background: #616161;
-        }
-
-        >span {
-          font-size: 1rem;
-          color: white;
-          pointer-events: none;
-        }
-      }
-    }
-  }
-  .tool-input-list {
-    display: block;
-    border: 1px solid black;
-    height: 120px;
-    font-size: 0;
-
-    >.tool-listitem,
-    >.tool-input {
-      display: inline-block;
-
-      >.tool,
-      >.tinput {
-        vertical-align: top;
-        display: inline-block;
-        margin: 10px 0 10px 10px;
-        text-align: center;
-        word-break: break-all;
-        cursor: pointer;
-
-        >span {
-          font-size: 0.8rem;
-          color: white;
-          pointer-events: none;
-        }
-      }
-    }
-  }
-}
-
-#context-menu {
-  display: none;
-  position: absolute;
-  z-index: 10;
-  border: 1px solid black;
-  background: #aaa;
-}
-
-#context-menu .component-node{
-  display: none;
-  padding: 5px;
-}
-
-#context-menu .component-edge{
-  display: none;
-  padding: 5px;
-}
-
-#context-menu .blank {
-  display: none;
-  padding: 5px;
-}
-
-#context-menu .component {
-  display: none;
-  padding: 5px;
+  height: 100%;
 }
