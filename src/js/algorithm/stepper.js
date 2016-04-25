@@ -16,6 +16,12 @@ export default class Stepper {
     this.result = null;
   }
 
+  resetGraph() {
+    while(this.result.stepIndex !== -1) {
+      this.result.stepBackward();
+    }
+  }
+
   setResult(result) {
     this.reset();
     this.result = result;

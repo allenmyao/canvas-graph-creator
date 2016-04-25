@@ -130,6 +130,12 @@ class SidebarAlgorithm extends SidebarContent {
     this.updateAlgorithm(this.curAlgorithm);
   }
 
+  resetGraph() {
+    if (!(this.stepper.result === null)) {
+      this.stepper.resetGraph();
+    }
+  }
+
   /**
    * update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar
    */
