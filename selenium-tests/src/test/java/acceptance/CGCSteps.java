@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import cucumber.api.Transform;
 import cucumber.api.java.After;
@@ -94,7 +97,7 @@ public class CGCSteps {
 
 	@When("^.*change the tool mode to ([a-z-]+)")
 	public void setToolMode(String name) throws Throwable {
-		driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click()
+		driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click();
 	}
 
 	@When("^.*set the (checkbox|text|color) input for ([a-zA-Z]+) to (.+)")
@@ -109,7 +112,8 @@ public class CGCSteps {
 		} else if (type.equals("text")) {
 			webElement.sendKeys(value);
 		} else if (type.equals("color")) {
-			driver.executeScript("arguments[0].setAttribute('value', '" + value +"'); arguments[0].dispatchEvent(new UIEvent('input', { bubbles: true }));", webElement);
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].setAttribute('value', '" + value +"'); arguments[0].dispatchEvent(new UIEvent('input', { bubbles: true }));", webElement);
 		} else {
 			throw new Exception("Input type not recognized");
 		}
