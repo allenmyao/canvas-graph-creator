@@ -1,15 +1,12 @@
 import SidebarContent from '../ui/sidebar-content';
 import Node from '../data/node/node';
 import Edge from '../data/edge/edge';
-import * as Form from '../ui/form';
 import Stepper from '../algorithm/stepper';
 
 class SidebarAlgorithm extends SidebarContent {
 
-  currentInput;
   graph;
   stepper;
-  algoInputs;
   curAlgorithm;
 
   /**
@@ -21,11 +18,7 @@ class SidebarAlgorithm extends SidebarContent {
     this.graph = graph;
     this.stepper = new Stepper();
     document.getElementById('sidebar').addEventListener('click', (event) => {
-      if (event.target.classList.contains('run-algorithm-btn')) {
-        this.runEvent();
-      } else if (event.target.classList.contains('data-select-btn')) {
-        this.selectEvent();
-      } else if (event.target.classList.contains('algorithm-next-btn')) {
+      if (event.target.classList.contains('algorithm-next-btn')) {
         this.stepper.stepForward();
       } else if (event.target.classList.contains('algorithm-prev-btn')) {
         this.stepper.stepBackward();
@@ -55,55 +48,11 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
-  selectEvent() {
-    let output = event.target.previousElementSibling;
-    let input = output.previousElementSibling;
-
-    let inputName = input.name;
-    if (this.currentInput === inputName) {
-      this.currentInput = null;
-      if (input.value) {
-        event.target.textContent = `Change ${input.getAttribute('data-type')}`;
-      } else {
-        event.target.textContent = `Select ${input.getAttribute('data-type')}`;
-      }
-    } else {
-      this.currentInput = inputName;
-      event.target.textContent = 'Cancel';
-    }
-  }
-
-  runEvent() {
-    let form = event.target.parentNode;
-    let data = Form.getData(form, this.graph);
-
-    let hasError = false;
-    for (let inputName of Object.keys(this.algoInputs)) {
-      let showError = !this.algoInputs[inputName].test(data[inputName]);
-      Form.displayError(form, inputName, showError);
-
-      if (showError && !hasError) {
-        hasError = true;
-      }
-    }
-
-    if (hasError) {
-      return;
-    }
-    this.setInputValues(data);
-    this.run();
-  }
-
-  setInputValues(inputData) {
-    for (let name of Object.keys(inputData)) {
-      if (name in this.algoInputs) {
-        let value = inputData[name];
-        this.curAlgorithm[name] = value;
-      }
-    }
-  }
-
   run() {
+    for (let inputName of Object.keys(this.curAlgorithm.inputs)) {
+      this.curAlgorithm[inputName] = this.curAlgorithm.inputs[inputName];
+    }
+
     let hasNextStep = true;
     while (hasNextStep) {
       hasNextStep = this.curAlgorithm.step();
@@ -139,10 +88,7 @@ class SidebarAlgorithm extends SidebarContent {
   }
 
   updateAlgorithm(algorithm) {
-    let form = this.createForm(algorithm.inputs);
     let html = `
-      ${form}
-      <button type="button" class="run-algorithm-btn">Generate results</button>
       <div>
         <button type="button" class="algorithm-prev-btn">Previous step</button>
         <button type="button" class="algorithm-next-btn">Next step</button>
@@ -158,65 +104,6 @@ class SidebarAlgorithm extends SidebarContent {
     `;
     this.tabs.getTabContentElement('algorithm').querySelector('form').innerHTML = html;
     this.tabs.setTabContent('algorithm', html);
-  }
-
-  createForm(inputs) {
-    let html = '';
-
-    for (let inputName of Object.keys(inputs)) {
-      let fieldHtml;
-
-      let input = inputs[inputName];
-
-      let type = input.type;
-      let name = inputName;
-      let isRequired = input.required;
-
-      if (type === 'number') {
-        fieldHtml = `<input type="number" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'boolean') {
-        fieldHtml = `<input type="checkbox" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'string') {
-        fieldHtml = `<input type="text" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'color') {
-        fieldHtml = `<input type="color" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'node' || type === 'edge') {
-        fieldHtml = `
-          <input type="hidden" name="${name}" data-type="${type}" class="${isRequired ? 'required' : ''}">
-          <output name="${name}"></output>
-          <button type="button" class="data-select-btn">Choose ${type}</button>
-        `;
-      }
-
-      let displayName = input.name;
-      html += `
-        <fieldset class="${isRequired ? 'required' : ''}" name="${name}">
-          <label>${displayName}</label>
-          ${fieldHtml}
-        </fieldset>
-      `;
-    }
-
-    return html;
-  }
-
-  updateInput(name, obj) {
-    // update displayed input values
-    if (name === this.currentInput) {
-      let id = obj.id;
-      let sidebar = document.getElementById('sidebar');
-
-      let input = sidebar.querySelector(`input[name="${name}"]`);
-      input.value = id;
-
-      let output = sidebar.querySelector(`output[name="${name}"]`);
-      output.value = `Node ${id}`;
-
-      let button = output.nextElementSibling;
-      button.textContent = `Change ${input.getAttribute('data-type')}`;
-
-      this.currentInput = null;
-    }
   }
 
   createLinkElement(obj) {
@@ -237,18 +124,9 @@ class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
-  selectObject(obj) {
-    if (this.currentInput && this.algoInputs && this.algoInputs[this.currentInput].test(obj)) {
-      this.updateInput(this.currentInput, obj);
-    }
-  }
-
   setAlgorithm(AlgorithmClass) {
     this.curAlgorithm = new AlgorithmClass(this.graph);
-    this.algoInputs = this.curAlgorithm.inputs;
-
     this.stepper.reset();
-
     this.updateAlgorithm(this.curAlgorithm);
   }
 

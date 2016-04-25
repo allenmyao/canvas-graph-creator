@@ -1,5 +1,6 @@
 import Tool from '../tool/tool';
 import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 import TraversalAlgorithm from '../algorithm/traversal-algorithm';
 import ui from '../ui/ui';
 
@@ -27,14 +28,41 @@ class AlgorithmTool extends Tool {
     }
   };
 
+  currentInput = null;
+
+  get modeInputs() {
+    return ui.sidebar.content.curAlgorithm.inputs;
+  }
+
+  get modeInputTypes() {
+    return ui.sidebar.content.curAlgorithm.inputTypes;
+  }
+
+  submitModeInputs() {
+    return true;
+  }
+
+  submitModeInputsText() {
+    return 'Generate results';
+  }
+
+  submitModeInputsCallback() {
+    ui.sidebar.content.run();
+  }
+
+  cancel() {
+    this.currentInput = null;
+  }
+
   changeMode(mode) {
     this.currentMode = mode;
     ui.sidebar.content.setAlgorithm(AlgorithmTool.modes[mode]);
   }
 
   selectObject(event, graph, obj, x, y) {
-    if (obj instanceof Node) {
-      ui.sidebar.content.selectObject(obj);
+    if (obj instanceof Node || obj instanceof Edge) {
+      let inputType = this.modeInputTypes.filter((field) => field.name === this.currentInput.name);
+      ui.topBar.updateGraphInput(this.currentInput, obj, !inputType[0].test(obj));
     }
   }
 

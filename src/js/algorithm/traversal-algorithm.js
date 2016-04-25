@@ -1,7 +1,6 @@
 import Queue from '../util/queue';
-// import Stack from '../util/stack';
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 import AlgorithmResult from '../algorithm/algorithm-result';
 import AbstractAlgorithm from '../algorithm/abstract-algorithm';
 import StepBuilder from '../algorithm/step-builder';
@@ -15,17 +14,21 @@ class TraversalAlgorithm extends AbstractAlgorithm {
   // starting point for the algorithm
   source = null;
 
-  // things that the GUI needs to supply for the algorithm to run
   inputs = {
-    source: {
+    source: null
+  };
+
+  inputTypes = [
+    {
       type: 'node',
-      name: 'Source',
+      name: 'source',
+      displayName: 'Source',
       test: (node) => {
         return node instanceof Node;
       },
       required: true
     }
-  };
+  ];
 
   result;
 
@@ -56,7 +59,7 @@ class TraversalAlgorithm extends AbstractAlgorithm {
       }
       if (edge.isDirected && edge.startNode === node) {
         this.next.enqueue(edge);
-      } else {
+      } else if (!edge.isDirected) {
         this.next.enqueue(edge);
       }
     }

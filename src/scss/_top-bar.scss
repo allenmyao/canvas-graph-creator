@@ -42,7 +42,8 @@
     }
   }
 
-  #tool-inputs {
+  #tool-inputs,
+  #tool-mode-inputs {
     form {
       display: flex;
       height: 100%;
@@ -52,6 +53,33 @@
 
       >fieldset {
         margin-left: 40px;
+
+        input[type="hidden"] {
+
+          & ~ output {
+            display: inline-block;
+            min-width: 100px;
+            height: 2em;
+            margin: 0 20px;
+            border-bottom: 1px solid $primary-gray-color;
+          }
+
+          &.error{
+            border-color: $error-color;
+
+            & ~ output {
+              border-color: $error-color;
+            }
+
+            & ~ label {
+              color: $error-color;
+            }
+          }
+        }
+      }
+
+      .form__submit-btn {
+        margin: 30px 0 20px 40px;
       }
     }
   }

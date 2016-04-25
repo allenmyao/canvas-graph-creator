@@ -114,6 +114,47 @@ export function createForm(fields) {
   return html;
 }
 
+export function createGraphForm(fields, canSubmit, submitText) {
+  let html = '';
+
+  for (let field of fields) {
+    let fieldHtml;
+
+    let type = field.type;
+    let name = field.name;
+    let value = field.value;
+    let isRequired = field.required;
+    let displayName = field.displayName;
+
+    if (type === 'number') {
+      fieldHtml = `<input type="number" name="${name}" value="${value}" step="any" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;
+    } else if (type === 'boolean') {
+      fieldHtml = `<input type="checkbox" name="${name}" ${value ? 'checked="true"' : ''} ${isRequired ? 'required' : ''}><label>${displayName}</label>`;
+    } else if (type === 'string') {
+      fieldHtml = `<input type="text" name="${name}" value="${value}" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;
+    } else if (type === 'color') {
+      fieldHtml = `<input type="color" name="${name}" value="${value}" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;
+    } else if (type === 'node' || type === 'edge') {
+      fieldHtml = `
+        <input type="hidden" name="${name}" data-type="${type}" ${value ? 'value="${value.id}"' : ''} ${isRequired ? 'required' : ''}>
+        <label>${displayName}</label>
+        <output name="${name}">${value ? type + value.id : ' '}</output>
+        <button type="button" class="input-select-btn">Choose ${type}</button>
+      `;
+    }
+
+    html += `
+      <fieldset>
+        ${fieldHtml}
+      </fieldset>
+    `;
+  }
+
+  html += `<button type="button" class="form__submit-btn">${submitText}</button>`;
+
+  return html;
+}
+
 export function getData(form, graph) {
   let data = {};
   let fieldsets = form.querySelectorAll('fieldset');
@@ -129,7 +170,7 @@ export function getData(form, graph) {
 }
 
 export function displayError(form, field, showError) {
-  let fieldset = form.querySelectorAll(`fieldset[name="${field}"]`);
+  let fieldset = form.querySelectorAll(`[name="${field}"]`);
   if (showError) {
     fieldset[0].classList.add('error');
   } else {
@@ -151,7 +192,7 @@ function getFieldData(inputs, graph) {
   return data;
 }
 
-function getInputValueLocal(input, graph) {
+export function getInputValueLocal(input, graph) {
   let value;
   let type = input.getAttribute('type');
   let dataType = input.getAttribute('data-type');

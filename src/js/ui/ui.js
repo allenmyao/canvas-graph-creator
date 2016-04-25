@@ -7,6 +7,8 @@ import * as Form from '../ui/form';
 
 class UI {
 
+  graph;
+
   topBar;
   toolbar;
   sidebar;
@@ -22,6 +24,7 @@ class UI {
   }
 
   init(graph) {
+    this.graph = graph;
     this.sidebar.init(graph);
     this.canvas.init(graph);
     Form.init();

@@ -20,6 +20,11 @@ class Tool {
         && typeof this.inputTypes !== 'undefined';
   }
 
+  hasModeInputs() {
+    return typeof this.modeInputs !== 'undefined'
+        && typeof this.modeInputTypes !== 'undefined';
+  }
+
   changeMode(mode) {
     this.currentMode = mode;
   }
