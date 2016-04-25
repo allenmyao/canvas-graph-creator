@@ -94,25 +94,25 @@ public class CGCSteps {
 
 	@When("^.*change the tool mode to ([a-z-]+)")
 	public void setToolMode(String name) throws Throwable {
-		// driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click()
+		driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click()
 	}
 
 	@When("^.*set the (checkbox|text|color) input for ([a-zA-Z]+) to (.+)")
 	public void setToolInput(String type, String name, String value) throws Throwable {
-		// WebElement webElement = driver.findElement(By.cssSelector("#tool-inputs input[name=\"" + name + "\"]"));
-		//
-		// if (type.equals("checkbox")) {
-		// 	if (value.equals("true") && !webElement.isSelected()
-		// 			|| value.equals("false") && webElement.isSelected()) {
-		// 		webElement.click();
-		// 	}
-		// } else if (type.equals("text")) {
-		// 	webElement.sendKeys(value);
-		// } else if (type.equals("color")) {
-		// 	driver.executeScript("arguments[0].setAttribute('value', '" + value +"'); arguments[0].dispatchEvent(new UIEvent('input', { bubbles: true }));", webElement);
-		// } else {
-		// 	throw new Exception("Input type not recognized");
-		// }
+		WebElement webElement = driver.findElement(By.cssSelector("#tool-inputs input[name=\"" + name + "\"]"));
+
+		if (type.equals("checkbox")) {
+			if (value.equals("true") && !webElement.isSelected()
+					|| value.equals("false") && webElement.isSelected()) {
+				webElement.click();
+			}
+		} else if (type.equals("text")) {
+			webElement.sendKeys(value);
+		} else if (type.equals("color")) {
+			driver.executeScript("arguments[0].setAttribute('value', '" + value +"'); arguments[0].dispatchEvent(new UIEvent('input', { bubbles: true }));", webElement);
+		} else {
+			throw new Exception("Input type not recognized");
+		}
 	}
 
 	@Then("^*the screen should match '(.+)'$")
