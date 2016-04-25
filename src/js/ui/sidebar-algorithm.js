@@ -20,14 +20,20 @@ class SidebarAlgorithm extends SidebarContent {
     document.getElementById('sidebar').addEventListener('click', (event) => {
       if (event.target.classList.contains('algorithm-next-btn')) {
         this.stepper.stepForward();
+        this.updateStepGUI();
       } else if (event.target.classList.contains('algorithm-prev-btn')) {
         this.stepper.stepBackward();
+        this.updateStepGUI();
       } else if (event.target.classList.contains('algorithm-play-btn')) {
-        if (!(this.stepper.result === null)) {
-          this.stepper.play();
+        if (!this.stepper.result !== null) {
+          this.stepper.play(() => {
+            this.updateStepGUI();
+          });
         }
       } else if (event.target.classList.contains('algorithm-pause-btn')) {
-        this.stepper.pause();
+        if (this.stepper.interval !== null) {
+          this.stepper.pause();
+        }
       }
     });
 
@@ -62,7 +68,22 @@ class SidebarAlgorithm extends SidebarContent {
 
     this.stepper.setResult(this.curAlgorithm.getResult());
 
-    // TODO immediately display steps in sidebar
+    // TODO immediately display all steps in sidebar
+    this.updateStepGUI();
+  }
+
+  updateStepGUI() {
+    let description = this.stepper.result.getStepDescription(this.stepper.result.stepIndex);
+    let stepNum = this.stepper.result.stepIndex + 2;
+    let stepTotal = this.stepper.result.timeline.length + 2;
+
+    let des = document.getElementsByClassName('algorithm-step-des');
+    let num = document.getElementsByClassName('algorithm-step-num');
+
+    if (des.length === 1 && num.length === 1) {
+      des[0].innerHTML = 'Description:  ' + description;
+      num[0].innerHTML = 'Step ' + stepNum + ' of ' + stepTotal;
+    }
   }
 
   toggleHover(type, id, isHovering) {
@@ -86,7 +107,7 @@ class SidebarAlgorithm extends SidebarContent {
       algorithm: 'Algorithm'
     });
 
-    this.tabs.setTabContent('algorithm', '<form></form>');
+    // this.tabs.setTabContent('algorithm', '');
 
     this.update();
     this.tabs.selectTab('algorithm');
@@ -95,19 +116,19 @@ class SidebarAlgorithm extends SidebarContent {
   updateAlgorithm(algorithm) {
     let html = `
       <div>
-        <button type="button" class="algorithm-prev-btn">Previous step</button>
-        <button type="button" class="algorithm-next-btn">Next step</button>
+        <button type="button" class="algorithm-prev-btn btn-flat">Previous step</button>
+        <button type="button" class="algorithm-next-btn btn-flat">Next step</button>
       </div>
       <div>
-        <button type="button" class="algorithm-play-btn">Play</button>
-        <button type="button" class="algorithm-pause-btn">Pause</button>
+        <button type="button" class="algorithm-play-btn btn-flat">Play</button>
+        <button type="button" class="algorithm-pause-btn btn-flat">Pause</button>
       <div>
       <div>
-        <p class="algorithm-step-num">Step #</p>
-        <p class="algorithm-step-des">This step is...</p>
+        <p class="algorithm-step-num"></p>
+        <p class="algorithm-step-des"></p>
       </div>
     `;
-    this.tabs.getTabContentElement('algorithm').querySelector('form').innerHTML = html;
+    this.tabs.getTabContentElement('algorithm').innerHTML = html;
     this.tabs.setTabContent('algorithm', html);
   }
 

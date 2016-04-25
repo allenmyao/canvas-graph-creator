@@ -2,7 +2,7 @@ export default class Stepper {
 
   result = null;
   speed = 500;
-  interval;
+  interval = null;
 
   constructor() {
   }
@@ -30,34 +30,26 @@ export default class Stepper {
     this.result = result;
   }
 
-  updateStepGUI(description, stepNum, stepTotal) {
-    let des = document.getElementsByClassName('algorithm-step-des');
-    let num = document.getElementsByClassName('algorithm-step-num');
-
-    if (des.length === 1 && num.length === 1) {
-      des[0].innerHTML = 'Description:  ' + description;
-      num[0].innerHTML = 'Step ' + stepNum + ' of ' + stepTotal;
-    }
-  }
-
   stepBackward() {
-    this.updateStepGUI(this.result.stepBackward(), this.result.stepIndex, this.result.timeline.length);
+    this.result.stepBackward();
   }
 
 
   stepForward() {
-    this.updateStepGUI(this.result.stepForward(), this.result.stepIndex, this.result.timeline.length);
+    this.result.stepForward();
   }
 
   pause() {
     clearInterval(this.interval);
+    this.interval = null;
   }
 
-  play() {
+  play(callback) {
     this.interval = setInterval(() => {
       if (this.result.stepIndex < this.result.timeline.length) {
         try {
           this.stepForward();
+          callback();
         } catch (e) {
           this.pause();
           throw e;

@@ -58,9 +58,9 @@
 
           & ~ output {
             display: inline-block;
-            min-width: 100px;
+            min-width: 60px;
             height: 2em;
-            margin: 0 20px;
+            margin: 0 15px;
             border-bottom: 1px solid $primary-gray-color;
           }
 
@@ -76,10 +76,14 @@
             }
           }
         }
+
+        .input-select-btn {
+          width: 80px;
+        }
       }
 
       .form__submit-btn {
-        margin: 30px 0 20px 40px;
+        margin: 30px 0 20px 60px;
       }
     }
   }

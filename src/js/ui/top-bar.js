@@ -66,9 +66,9 @@ class TopBar {
     if (currentTool.currentInput === input) {
       currentTool.currentInput = null;
       if (input.value) {
-        event.target.textContent = `Change ${input.getAttribute('data-type')}`;
+        event.target.textContent = 'Change';
       } else {
-        event.target.textContent = `Select ${input.getAttribute('data-type')}`;
+        event.target.textContent = 'Select';
       }
     } else {
       currentTool.currentInput = input;
@@ -88,10 +88,10 @@ class TopBar {
 
     let name = input.name;
     let output = input.parentNode.querySelector(`output[name="${name}"]`);
-    output.value = `node ${id}`;
+    output.value = `${input.getAttribute('data-type')} ${id}`;
 
     let button = input.parentNode.querySelector('.input-select-btn');
-    button.textContent = `Change ${input.getAttribute('data-type')}`;
+    button.textContent = 'Change';
 
     currentTool.currentInput = null;
   }
