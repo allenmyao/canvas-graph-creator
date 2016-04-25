@@ -1,4 +1,4 @@
-/* eslint no-unused-expressions: 0, no-loop-func: 0 */
+/* eslint-disable no-loop-func */
 
 import chai from 'chai';
 chai.should();
