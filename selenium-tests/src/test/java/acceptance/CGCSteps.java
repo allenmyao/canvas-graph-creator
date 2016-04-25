@@ -111,6 +111,7 @@ public class CGCSteps {
 				webElement.click();
 			}
 		} else if (type.equals("text")) {
+			webElement.clear();
 			webElement.sendKeys(value);
 		} else if (type.equals("color")) {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
