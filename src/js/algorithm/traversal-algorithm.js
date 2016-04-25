@@ -120,6 +120,15 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     return true;
   }
 
+  reset() {
+    this.next.clear();
+    this.isComplete = false;
+    this.hasStarted = false;
+    this.graphState = new WeakMap();
+    this.result = new AlgorithmResult();
+    this.stepBuilder = new StepBuilder(this.nodeFields, this.edgeFields, this.result);
+  }
+
 }
 
 export { TraversalAlgorithm };

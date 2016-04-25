@@ -1,6 +1,6 @@
 export default class Stepper {
 
-  result;
+  result = null;
   speed = 500;
   interval;
 
@@ -17,7 +17,10 @@ export default class Stepper {
   }
 
   resetGraph() {
-    while(this.result.stepIndex !== -1) {
+    if (this.result === null) {
+      return;
+    }
+    while (this.result.stepIndex !== -1) {
       this.result.stepBackward();
     }
   }

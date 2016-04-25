@@ -49,6 +49,8 @@ class SidebarAlgorithm extends SidebarContent {
   }
 
   run() {
+    this.stepper.resetGraph();
+    this.curAlgorithm.reset();
     for (let inputName of Object.keys(this.curAlgorithm.inputs)) {
       this.curAlgorithm[inputName] = this.curAlgorithm.inputs[inputName];
     }
@@ -57,7 +59,10 @@ class SidebarAlgorithm extends SidebarContent {
     while (hasNextStep) {
       hasNextStep = this.curAlgorithm.step();
     }
+
     this.stepper.setResult(this.curAlgorithm.getResult());
+
+    // TODO immediately display steps in sidebar
   }
 
   toggleHover(type, id, isHovering) {
@@ -131,9 +136,7 @@ class SidebarAlgorithm extends SidebarContent {
   }
 
   resetGraph() {
-    if (!(this.stepper.result === null)) {
-      this.stepper.resetGraph();
-    }
+    this.stepper.resetGraph();
   }
 
   /**

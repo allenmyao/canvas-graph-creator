@@ -61,7 +61,7 @@ class TopBar {
   selectGraphObject(event) {
     let currentTool = this.ui.toolbar.currentTool;
     let output = event.target.parentNode.querySelector('output');
-    let input = output.parentNode.querySelector('input');
+    let input = output.parentNode.querySelector('input[type="hidden"]');
 
     if (currentTool.currentInput === input) {
       currentTool.currentInput = null;
