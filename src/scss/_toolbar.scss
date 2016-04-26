@@ -17,6 +17,11 @@
   >.tool-listitem {
     display: block;
     margin: 20px;
+    
+    >button>img {
+      height: 24px;
+      float: right;
+    }
 
     >.tool {
       display: block;
