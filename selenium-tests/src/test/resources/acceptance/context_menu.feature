@@ -1,5 +1,6 @@
 Feature: Context Menu
-  As a user I want to have a context menu for ease of use. 
+  As a user I want to have a context menu that allows me to quickly 
+access different tools. 
   Background:
     Given I navigate to the home page
     
