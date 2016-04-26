@@ -58,7 +58,7 @@ export class Serializer {
         this.uploader.value = null;
       });
 
-      this.downloadBtn = document.getElementById('open-graph-button');
+      this.downloadBtn = document.getElementById('load-graph-button');
       this.downloadBtn.addEventListener('click', (event) => {
         this.uploader.click();
       });
