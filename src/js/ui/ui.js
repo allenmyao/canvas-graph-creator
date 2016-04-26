@@ -3,7 +3,6 @@ import StatusBar from '../ui/status-bar';
 import Sidebar from '../ui/sidebar';
 import TopBar from '../ui/top-bar';
 import Canvas from '../ui/canvas';
-import * as AlgorithmInterface from '../ui/algorithm';
 import * as Form from '../ui/form';
 
 class UI {
@@ -25,7 +24,6 @@ class UI {
   init(graph) {
     this.sidebar.init(graph);
     this.canvas.init(graph);
-    AlgorithmInterface.init(graph);
     Form.init();
   }
 
@@ -33,7 +31,6 @@ class UI {
     this.toolbar.reset();
     this.sidebar.resetGraph(newGraph);
     this.canvas.resetGraph(newGraph);
-    AlgorithmInterface.resetGraph(newGraph);
   }
 }
 

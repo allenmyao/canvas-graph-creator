@@ -2,6 +2,7 @@ const nSerial = require('node-serialize');
 import { Graph } from '../data/graph';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
+import { Label } from '../data/label';
 
 import { CircleNode } from '../data/node/circle-node';
 import { TriangleNode } from '../data/node/triangle-node';
@@ -14,35 +15,35 @@ import { OctagonNode } from '../data/node/octagon-node';
 import { SolidEdge } from '../data/edge/solid-edge';
 import { DashedEdge } from '../data/edge/dashed-edge';
 
-// let FUNCFLAG = '_$$ND_FUNC$$_';
 let CIRCULARFLAG = '_$$ND_CC$$_';
 let KEYPATHSEPARATOR = '_$$.$$_';
-// let ISNATIVEFUNC = /^function\s*[^(]*\(.*\)\s*\{\s*\[native code\]\s*\}$/;
 let IDTYPE = '_$$TYPE$$_';
 let IDSET = '_$$SET$$_';
 let IDNODE = '_$$NODE$$_';
 let IDEDGE = '_$$EDGE$$_';
+let IDLABEL = '_$$LABEL$$_';
 let IDDATA = '_$$DATA$$_';
 
-let classesByName = {
-  CircleNode: CircleNode,
-  TriangleNode: TriangleNode,
-  SquareNode: SquareNode,
-  DiamondNode: DiamondNode,
-  PentagonNode: PentagonNode,
-  HexagonNode: HexagonNode,
-  OctagonNode: OctagonNode,
-  SolidEdge: SolidEdge,
-  DashedEdge: DashedEdge
-};
-
 export class Serializer {
+
+  static classesByName = {
+    CircleNode: CircleNode,
+    TriangleNode: TriangleNode,
+    SquareNode: SquareNode,
+    DiamondNode: DiamondNode,
+    PentagonNode: PentagonNode,
+    HexagonNode: HexagonNode,
+    OctagonNode: OctagonNode,
+    SolidEdge: SolidEdge,
+    DashedEdge: DashedEdge,
+    Label: Label
+  };
 
   constructor(graph, resetFn) {
     this.currentGraph = graph;
     this.resetFn = resetFn;
 
-    if(typeof document !== 'undefined') {
+    if (typeof document !== 'undefined') {
       this.reader = new FileReader();
       this.reader.addEventListener('load', (event) => {
         this.uploadGraph();
@@ -92,7 +93,9 @@ export class Serializer {
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
         if (typeof elem[key] === 'object' && elem[key] !== null) {
-          if (elem[key] instanceof Node) {
+          if (elem[key] instanceof Label) {
+            outputObj[IDLABEL + key] = this.exportElement(elem[key], cache, path + KEYPATHSEPARATOR + IDLABEL + key);
+          } else if (elem[key] instanceof Node) {
             console.log('Node Field Detected');
             outputObj[IDNODE + key] = elem[key].id;
           } else if (elem[key] instanceof Edge) {
@@ -203,9 +206,11 @@ export class Serializer {
   allocateElement(name) {
     console.log('Element allocation of type ' + name);
     if (name.indexOf('Node') >= 0) {
-      return new classesByName[name](0, 0);
+      return new Serializer.classesByName[name](0, 0);
     } else if (name.indexOf('Edge') >= 0) {
-      return new classesByName[name](null, null);
+      return new Serializer.classesByName[name](null, null);
+    } else if (name.indexOf('Label') >= 0) {
+      return new Serializer.classesByName[name](0, 0, null);
     }
     return null;
   }
@@ -219,7 +224,10 @@ export class Serializer {
     delete elem[IDTYPE];
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
-        if (key.indexOf(IDNODE) === 0) {
+        if (key.indexOf(IDLABEL) === 0) {
+          modKey = key.substring(IDLABEL.length);
+          newElem[modKey] = this.importElement(elem[key], this.allocateElement(elem[key][IDTYPE]), nodeCache, edgeCache);
+        } else if (key.indexOf(IDNODE) === 0) {
           modKey = key.substring(IDNODE.length);
           newElem[modKey] = nodeCache[elem[key]];
           console.log('Inner Node found called ' + modKey + ' with id ' + elem[key].toString());
@@ -303,7 +311,7 @@ export class Serializer {
     }
     let deserializeInfo = this.deserializeGraph(obj);
     Node.numNodes = deserializeInfo.nodes;
-    Edge.numEdged = deserializeInfo.edges
+    Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
   }
 
@@ -320,7 +328,7 @@ export class Serializer {
     }
     let deserializeInfo = this.deserializeGraph(obj);
     Node.numNodes = deserializeInfo.nodes;
-    Edge.numEdged = deserializeInfo.edges
+    Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
   }
 
@@ -390,8 +398,8 @@ export class Serializer {
       }
     }
     return {
-      nodes: maxNodeID+1, 
-      edges: maxEdgeID+1, 
+      nodes: maxNodeID + 1,
+      edges: maxEdgeID + 1,
       graph: newGraph
     };
   }

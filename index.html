@@ -3,8 +3,6 @@
 
 <head>
   <title>Canvas Graph Creator</title>
-
-  <link rel="stylesheet" type="text/css" href="./dist/css/app.css" />
 </head>
 
 <body>
@@ -12,7 +10,7 @@
 
     <nav id="navbar">
       <div>
-        <a href="" class="logo">Canvas Graph Creator</a>
+        <a href="" class="logo"><img src="icons/logo.png">Canvas Graph Creator</a>
       </div>
       <div>
         <ul class="nav-list">
@@ -41,36 +39,25 @@
     <div id="toolbar">
       <ul class="tool-list">
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="node">Add Node</button>
+          <button type="button" class="tool btn-raised" data-tool="node">Add Node<img src="icons/addnode.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="edge">Add Edge</button>
+          <button type="button" class="tool btn-raised" data-tool="edge">Add Edge<img src="icons/addedge.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="select">Select Object</button>
+          <button type="button" class="tool btn-raised" data-tool="select">Select Object<img src="icons/selectobject.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="move">Move Object</button>
-        </li>
-        <!--
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="editnode">Edit Node</button>
+          <button type="button" class="tool btn-raised" data-tool="move">Move Object<img src="icons/moveobject.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="editedge">Edit Edge</button>
-        </li>
-        -->
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="erase">Erase Object</button>
+          <button type="button" class="tool btn-raised" data-tool="erase">Erase Object<img src="icons/eraseobject.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="metadata">Edit Label</button>
+          <button type="button" class="tool btn-raised" data-tool="pan">Pan<img src="icons/pan.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="pan">Pan</button>
-        </li>
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="algorithm">Algorithm</button>
+          <button type="button" class="tool btn-raised" data-tool="algorithm">Algorithm<img src="icons/algorithm.png"></button>
         </li>
       </ul>
     </div>
@@ -127,7 +114,7 @@
         </li>
         <div style="float:right;  padding-right: 30px; ">
           <form id="serialization">
-            <input type="file" id="graph-uploader" class="btn-flat-file" name="graph-file" style="display: none"/>
+            <input type="file" id="graph-uploader" style="display: none"/>
             <button type="button" id="open-graph-button" class="btn-flat">Open File</button>
             <button type="button" id="save-graph-button" class="btn-flat">Save File</button>
             <button type="button" id="import-graph-button" class="btn-flat">Import</button>
@@ -140,58 +127,30 @@
   </div>
 
   <div id="context-menu" class="context-menu">
-    <ul class="component-node">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Toggle Accepting State
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Toggle Start State
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Delete Node
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="node">
+      <li class="context-menu__section__item" data-type="add" data-data="edge">Add Edge</li>
+      <li class="context-menu__section__item" data-type="toggle" data-data="isAcceptingState">Toggle Accepting State</li>
+      <li class="context-menu__section__item" data-type="toggle" data-data="isStartingState">Toggle Start State</li>
     </ul>
-    <ul class="component-edge">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-         Toggle Directed Edge
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Delete Edge
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="edge">
+      <li class="context-menu__section__item" data-type="toggle" data-data="isDirected">Toggle Directed Edge</li>
     </ul>
-    <ul class="component">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Edit Label
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="component">
+      <li class="context-menu__section__item" data-type="delete">Delete</li>
     </ul>
-    <ul class="blank">
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Add Circle Node
-        </a>
-      </li>
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link">
-          Add Square Node
-        </a>
-      </li>
+    <ul class="context-menu__section" data-name="default">
+      <li class="context-menu__section__item" data-type="add" data-data="circle">Add Circle Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="triangle">Add Triangle Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="square">Add Square Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="diamond">Add Diamond Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="pentagon">Add Pentagon Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="hexagon">Add Hexagon Node</li>
+      <li class="context-menu__section__item" data-type="add" data-data="octagon">Add Octagon Node</li>
+    </ul>
+    <ul class="context-menu__section" data-name="action">
+      <li class="context-menu__section__item" data-type="save">Save as image...</li>
     </ul>
   </div>
-
-
-  <script src="./dist/js/app.js"></script>
 </body>
 
 </html>

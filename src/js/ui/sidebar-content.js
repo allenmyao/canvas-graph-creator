@@ -1,4 +1,4 @@
-import { Tabs } from '../ui/tabs';
+import Tabs from '../ui/tabs';
 
 /*
 *  SidebarContent is a super class
@@ -28,7 +28,7 @@ class SidebarContent {
     this.tabs.init();
   }
 
-  resetGraph(newGraph) {
+  changeGraph(newGraph) {
     this.graph = newGraph;
   }
 

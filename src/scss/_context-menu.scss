@@ -1,22 +1,32 @@
 .context-menu {
-  display: none;
   position: absolute;
-  z-index: 10;
   z-index: index($zindexes, navigation);
+  display: none;
+  width: 200px;
   background: white;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.20);
 
-  >ul {
-    margin: 10px 0;
+  &--active {
+    display: block;
   }
 
-  &__link {
-    display: block;
-    padding: 10px;
-    color: $primary-gray-color;
+  &__section {
+    display: none;
+    margin: 10px 0;
 
-    &:hover {
-      background: $primary-gray-lightest-color;
+    &--visible {
+      display: block;
+    }
+
+    &__item {
+      display: block;
+      padding: 10px;
+      color: $primary-gray-color;
+      cursor: pointer;
+
+      &:hover {
+        background: $primary-gray-lightest-color;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-export class Tool {
+class Tool {
 
   name; // displayed name
   icon; // icon to display
@@ -53,3 +53,6 @@ export class Tool {
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {}
 
 }
+
+export { Tool };
+export default Tool;

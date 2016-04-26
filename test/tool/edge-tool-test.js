@@ -3,10 +3,10 @@
 import chai from 'chai';
 let should = chai.should();
 
-import { EdgeTool } from '../../src/js/tool/edge-tool';
-import { Graph } from '../../src/js/data/graph';
-import { CircleNode } from '../../src/js/data/node/circle-node';
-import { SolidEdge } from '../../src/js/data/edge/solid-edge';
+import EdgeTool from '../../src/js/tool/edge-tool';
+import Graph from '../../src/js/data/graph';
+import CircleNode from '../../src/js/data/node/circle-node';
+import SolidEdge from '../../src/js/data/edge/solid-edge';
 
 describe('EdgeTool', () => {
   let edgeTool;

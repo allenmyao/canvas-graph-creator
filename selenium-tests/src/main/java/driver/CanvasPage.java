@@ -1,7 +1,6 @@
 package driver;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -45,8 +44,7 @@ public abstract class CanvasPage {
 
 	public void clickElement(String element)
 	{
-		Point coordinate = elements.get(element);
-		clickCanvas(coordinate.x, coordinate.y);
+		clickCanvas(elements.get(element));
 	}
 	/**
 	 * Finds an element on a page by locating its best match.
@@ -66,13 +64,23 @@ public abstract class CanvasPage {
 	{
 		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
 	}
-	public void clickCanvas(int x, int y)
+	public void clickCanvas(Point point)
 	{
-		new Actions(driver).moveToElement(canvas, x, y).click().build().perform();
+		click(canvas, point);   
 	}
-	public void clickCanvas(String cssSelector, int x, int y)
+	public void openContextMenu(Point point)
 	{
-		new Actions(driver).moveToElement(driver.findElement(By.cssSelector(cssSelector)), x, y).click().build().perform();
+		new Actions(driver).moveToElement(canvas, point.x, point.y).contextClick().build().perform();   
+	}
+	
+	public void click(String cssSelector, Point offset)
+	{
+		click(driver.findElement(By.cssSelector(cssSelector)), offset);
+	}
+	
+	public void click (WebElement element, Point offset)
+	{
+		new Actions(driver).moveToElement(element, offset.x, offset.y).click().build().perform();
 	}
 
 	public BufferedImage getResource(String path) throws URISyntaxException, IOException
@@ -117,6 +125,11 @@ public abstract class CanvasPage {
 		driver.get(website);
 
 		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
+	}
+	public void scroll(Point ticks)
+	{
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("document.getElementById('canvas').dispatchEvent(new WheelEvent('wheel', {clientX: 500,clientY: 500,deltaY: " + ticks.y + "}));");
 	}
 	private BufferedImage getScreenshot() throws IOException
 	{
