@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import cucumber.api.Transform;
 import cucumber.api.java.After;
@@ -39,7 +36,7 @@ public class CGCSteps {
 		driver.quit();
 	}
 
-	@Given("I navigate to the home page")
+	@Given("^.*navigate to the home page$")
 	public void navigateTo() throws Throwable {
 
 	}
@@ -57,7 +54,7 @@ public class CGCSteps {
 			cgc.zoomOut(ticks);
 	}
 
-	@When("I press the reset button")
+	@When("^.*press the reset button$")
 	public void resetZoom() {
 		cgc.resetZoom();
 	}
@@ -97,28 +94,19 @@ public class CGCSteps {
 
 	@When("^.*change the tool mode to ([a-z-]+)")
 	public void setToolMode(String name) throws Throwable {
-		driver.findElement(By.cssSelector("#tool-modes .dropdown")).click();
-		driver.findElement(By.cssSelector("#tool-modes .dropdown__menu__list__item[data-value=\"" + name + "\"]")).click();
+		cgc.setToolMode(name);
 	}
 
 	@When("^.*set the (checkbox|text|color) input for ([a-zA-Z]+) to (.+)")
 	public void setToolInput(String type, String name, String value) throws Throwable {
-		WebElement webElement = driver.findElement(By.cssSelector("#tool-inputs input[name=\"" + name + "\"]"));
-
-		if (type.equals("checkbox")) {
-			if (value.equals("true") && !webElement.isSelected()
-					|| value.equals("false") && webElement.isSelected()) {
-				webElement.click();
-			}
-		} else if (type.equals("text")) {
-			webElement.clear();
-			webElement.sendKeys(value);
-		} else if (type.equals("color")) {
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].setAttribute('value', '" + value +"'); arguments[0].dispatchEvent(new UIEvent('input', { bubbles: true }));", webElement);
-		} else {
-			throw new Exception("Input type not recognized");
-		}
+		if (type.equals("checkbox"))
+			cgc.setCheckbox(Boolean.parseBoolean(value));
+		else if (type.equals("text"))
+			cgc.setText(value);
+		else if (type.equals("color"))
+			cgc.setColor(value);
+		else
+			throw new IllegalArgumentException("Input type " + type + "not recognized");
 	}
 
 	@Then("^*the screen should match '(.+)'$")
