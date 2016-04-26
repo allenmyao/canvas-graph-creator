@@ -36,7 +36,7 @@ public class CGCSteps {
 		driver.quit();
 	}
 
-	@Given("I navigate to the home page")
+	@Given("^.*navigate to the home page$")
 	public void navigateTo() throws Throwable {
 
 	}
@@ -54,7 +54,7 @@ public class CGCSteps {
 			cgc.zoomOut(ticks);
 	}
 
-	@When("I press the reset button")
+	@When("^.*press the reset button$")
 	public void resetZoom() {
 		cgc.resetZoom();
 	}
@@ -90,6 +90,23 @@ public class CGCSteps {
 		// When I click and drag from (0, 1) to (1, 2) to (2, 3)
 		for (Point p : points)
 			System.out.println(p);
+	}
+
+	@When("^.*change the tool mode to ([a-z-]+)")
+	public void setToolMode(String name) throws Throwable {
+		cgc.setToolMode(name);
+	}
+
+	@When("^.*set the (checkbox|text|color) input for ([a-zA-Z]+) to (.+)")
+	public void setToolInput(String type, String name, String value) throws Throwable {
+		if (type.equals("checkbox"))
+			cgc.setCheckbox(name, Boolean.parseBoolean(value));
+		else if (type.equals("text"))
+			cgc.setText(name, value);
+		else if (type.equals("color"))
+			cgc.setColor(name, value);
+		else
+			throw new IllegalArgumentException("Input type " + type + "not recognized");
 	}
 
 	@Then("^*the screen should match '(.+)'$")

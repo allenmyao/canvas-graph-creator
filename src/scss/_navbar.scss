@@ -21,10 +21,14 @@
   .logo {
     display: inline-block;
     height: 100%;
-    padding: 10px;
+    padding: 6px;
     line-height: 30px;
-    font-size: 1.3rem;
+    font-size: 1.3em;
     color: white;
+
+    >img{
+      height: 100%;
+    }
   }
 
   a {
@@ -35,7 +39,6 @@
   ul.nav-list {
     display: inline-block;
     height: 100%;
-    font-size: 0;
 
     li {
       display: inline-block;
@@ -46,7 +49,7 @@
         height: 100%;
         padding: 15px;
         line-height: 20px;
-        font-size: 1rem;
+        font-size: 1em;
 
         &:hover {
           background: $primary-alt-color;
