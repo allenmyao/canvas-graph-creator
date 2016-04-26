@@ -87,7 +87,6 @@ export class Serializer {
     let outElem;
     cache[path] = elem;
 
-    console.log(elem.constructor.name + ' at ' + path);
     outputObj[IDTYPE] = elem.constructor.name;
 
     for (key in elem) {
@@ -96,22 +95,18 @@ export class Serializer {
           if (elem[key] instanceof Label) {
             outputObj[IDLABEL + key] = this.exportElement(elem[key], cache, path + KEYPATHSEPARATOR + IDLABEL + key);
           } else if (elem[key] instanceof Node) {
-            console.log('Node Field Detected');
+            // Node Field Detected
             outputObj[IDNODE + key] = elem[key].id;
           } else if (elem[key] instanceof Edge) {
             // Edge Field Detected
             outputObj[IDEDGE + key] = elem[key].id;
-          } 
-
-          //helper function--------------------- 
-          else if (elem[key] instanceof Array || elem[key] instanceof Set) {
-            if(elem[key] instanceof Set){
+          } else if (elem[key] instanceof Array || elem[key] instanceof Set) {
+            if (elem[key] instanceof Set) {
               modKey = IDSET + key;
-              outputObj[modKey] = [];
+            } else {
+              modKey = key;
             }
-            else{
-              outputObj[key] = [];
-            }
+            outputObj[modKey] = [];
             for (setElem of elem[key]) {
               if (setElem instanceof Node) {
                 // Node-Array Field Detected
@@ -123,27 +118,9 @@ export class Serializer {
                 // Primitive-Array Field Detected
                 outElem = setElem;
               }
-              outputObj[key].push(outElem);
+              outputObj[modKey].push(outElem);
             }
-          // } else if (elem[key] instanceof Set) {
-          //   modKey = IDSET + key;
-          //   outputObj[modKey] = [];
-          //   for (setElem of elem[key]) {
-          //     if (setElem instanceof Node) {
-          //       //Node-Set Field Detected
-          //       outElem = IDNODE + setElem.id.toString();
-          //     } else if (setElem instanceof Edge) {
-          //       //Edge-Set Field Detected
-          //       outElem = IDEDGE + setElem.id.toString();
-          //     } else {
-          //       // Primitive-Set Field Detected
-          //       outElem = setElem;
-          //     }
-          //     outputObj[modKey].push(outElem);
-          //   }
-          // }
-          ///-------------------------------------------
-           else {
+          } else {
             outputObj[key] = nSerial.serialize(elem[key], false, outputObj[key], cache, path + KEYPATHSEPARATOR + key);
           }
         } else {
@@ -294,13 +271,11 @@ export class Serializer {
           } else {
             newElem[key] = elem[key];
           }
-        } else {
+        } else if (key === 'isSelected' || key === 'showTextCtrl') {
           // Inner Generic found
-          if (key === 'isSelected' || key === 'showTextCtrl') {
-            newElem[key] = false;
-          } else {
-            newElem[key] = nSerial.unserialize(elem[key], elem);
-          }
+          newElem[key] = false;
+        } else {
+          newElem[key] = nSerial.unserialize(elem[key], elem);
         }
       }
     }
@@ -315,7 +290,7 @@ export class Serializer {
     try {
       obj = JSON.parse(this.reader.result);
     } catch (ex) {
-      console.log('Exception thrown from Parser');
+      // Exception thrown from Parser
       return;
     }
     let deserializeInfo = this.deserializeGraph(obj);
