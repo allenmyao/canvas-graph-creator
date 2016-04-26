@@ -113,21 +113,21 @@ public class CGCPage extends CanvasPage {
 		return driver.findElement(By.cssSelector("#tool-inputs input[name=\"" + name + "\"]"));
 	}
 
-	public void setColor(String color) {
-		WebElement colorSelection = getToolInput("color");
+	public void setColor(String name, String color) {
+		WebElement colorSelection = getToolInput(name);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].setAttribute('value', '" + color
 				+ "'); arguments[0].dispatchEvent(new UIEvent('input', { bubbles: true }));", colorSelection);
 	}
 
-	public void setText(String text) {
-		WebElement textBox = getToolInput("text");
+	public void setText(String name, String text) {
+		WebElement textBox = getToolInput(name);
 		textBox.clear();
 		textBox.sendKeys(text);
 	}
 
-	public void setCheckbox(boolean selected) {
-		WebElement checkbox = getToolInput("checkbox");
+	public void setCheckbox(String name, boolean selected) {
+		WebElement checkbox = getToolInput(name);
 		if ((selected && !checkbox.isSelected()) || (!selected && checkbox.isSelected()))
 			checkbox.click();
 	}

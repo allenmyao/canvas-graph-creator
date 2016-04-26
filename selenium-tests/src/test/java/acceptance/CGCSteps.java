@@ -100,11 +100,11 @@ public class CGCSteps {
 	@When("^.*set the (checkbox|text|color) input for ([a-zA-Z]+) to (.+)")
 	public void setToolInput(String type, String name, String value) throws Throwable {
 		if (type.equals("checkbox"))
-			cgc.setCheckbox(Boolean.parseBoolean(value));
+			cgc.setCheckbox(name, Boolean.parseBoolean(value));
 		else if (type.equals("text"))
-			cgc.setText(value);
+			cgc.setText(name, value);
 		else if (type.equals("color"))
-			cgc.setColor(value);
+			cgc.setColor(name, value);
 		else
 			throw new IllegalArgumentException("Input type " + type + "not recognized");
 	}
