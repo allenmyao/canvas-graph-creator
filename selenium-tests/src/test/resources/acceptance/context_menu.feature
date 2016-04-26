@@ -1,5 +1,6 @@
 Feature: Context Menu
-  As a user I want to have a context menu for ease of use. 
+  As a user I want to have a context menu that allows me to quickly 
+access different tools. 
   Background:
     Given I navigate to the home page
     
@@ -18,13 +19,13 @@ Feature: Context Menu
     When I create a node named Node1 at 500, 500
       And I open the context menu at 500, 500
       And choose the Toggle Accepting State option
-    Then the screen should match 'accept_node.png'
+    Then the screen should match 'isAcceptingState_true.png'
         
   Scenario: Using toggle start state should make a node an starting node
     When I create a node named Node1 at 500, 500
       And I open the context menu at 500, 500
       And choose the Toggle Start State option
-    Then the screen should match 'start_node.png'
+    Then the screen should match 'isStartingState_true.png'
         
   Scenario: Using the delete edge function of context menu should delete an edge
     When I create a node named Node 1 at 500, 500
@@ -41,6 +42,7 @@ Feature: Context Menu
       And I open the context menu at 525, 525
       And choose the Toggle Directed Edge option
     Then the screen should match 'directed_edge.png'
+<<<<<<< HEAD
     
   Scenario: Using add edge function of context menu should create an edge
     When I create a node named Node 1 at 500, 500
@@ -49,3 +51,6 @@ Feature: Context Menu
       And choose the Add Edge option
       And click on Node 2
     Then the screen should match 'edge.png'
+=======
+  
+>>>>>>> refs/remotes/origin/master

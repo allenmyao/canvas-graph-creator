@@ -3,6 +3,8 @@ import Edge from '../data/edge/edge';
 import Label from '../data/label';
 import ui from '../ui/ui';
 
+import PanTool from '../tool/pan-tool';
+
 class MouseHandler {
 
   // distance the mouse needs to move to start a drag
@@ -16,6 +18,14 @@ class MouseHandler {
   clickStartY = null;
   mousePressed = false;
   isDragging = false;
+
+  rightClickStartX = null;
+  rightClickStartY = null;
+  rightMousePressed = false;
+  isRightDragging = false;
+  wasRightDragging = false;
+
+  panTool = new PanTool();
 
   constructor(graph) {
     this.graph = graph;
@@ -112,6 +122,58 @@ class MouseHandler {
     } else {
       // handle dragging empty space
       currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
+    }
+  }
+
+  rightDownListener(event, x, y) {
+    this.rightMousePressed = true;
+    this.rightClickStartX = x;
+    this.rightClickStartY = y;
+
+    this.panTool.preSelectNone(event, this.graph, x, y);
+  }
+
+  rightUpListener(event, x, y) {
+    // check if dragging
+    if (this.isRightDragging) {
+      this.isRightDragging = false;
+      this.panTool.dropOnNone(event, this.graph, null, this.rightClickStartX, this.rightClickStartY, x, y);
+    } else if (this.rightMousePressed) {
+      // click
+      this.panTool.selectNone(event, this.graph, x, y);
+    }
+    this.rightMousePressed = false;
+  }
+
+  rightMoveListener(event, x, y) {
+    ui.statusBar.updateMouse(x, y);
+    if (!this.isRightDragging) {
+      // check for dragging
+      if (this.rightMousePressed) {
+        // check if mouse movement passes threshold
+        let dx = x - this.rightClickStartX;
+        let dy = y - this.rightClickStartY;
+
+        if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
+          this.isRightDragging = true;
+          this.wasRightDragging = true;
+          this.panTool.preDragNone(this.graph, x, y);
+        }
+      }
+    } else {
+      // handle dragging
+      this.panTool.dragNone(event, this.graph, this.rightClickStartX, this.rightClickStartY, x, y);
+    }
+  }
+
+  contextmenuEventListener(event, x, y, contextMenu) {
+    if (this.wasRightDragging) {
+      // prevent default context menu
+      event.preventDefault();
+      this.wasRightDragging = false;
+    } else if (event.target === document.getElementById('canvas')) {
+      // open context menu if mouse was not right dragging
+      contextMenu.contextmenuEventListener(event, x, y);
     }
   }
 
