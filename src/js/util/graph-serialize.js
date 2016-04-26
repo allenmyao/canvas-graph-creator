@@ -42,6 +42,7 @@ export class Serializer {
   constructor(graph, resetFn) {
     this.currentGraph = graph;
     this.resetFn = resetFn;
+    this.quickString = '';
 
     if (typeof document !== 'undefined') {
       this.reader = new FileReader();
@@ -73,9 +74,6 @@ export class Serializer {
       this.exportBtn.addEventListener('click', (event) => {
         this.exportGraph();
       });
-
-      this.textBox = document.getElementById('import-export-text');
-      this.textBox.value = '';
     }
   }
 
@@ -147,7 +145,7 @@ export class Serializer {
 
   exportGraph() {
     let graphStr = JSON.stringify(this.serializeGraph());
-    this.textBox.value = graphStr;
+    this.quickString = graphStr;
   }
 
   serializeGraph() {
@@ -206,6 +204,7 @@ export class Serializer {
     let modKey;
     let refKey;
     let arrayElem;
+    let addObj;
    // Element found of type 'elem[IDTYPE]''
     delete elem[IDTYPE];
     for (key in elem) {
@@ -223,45 +222,34 @@ export class Serializer {
           // Inner Edge found called
         } else if (elem[key] instanceof Array) {
           if (key.indexOf(IDSET) === 0) {
+            // Inner Set found
             modKey = key.substring(IDSET.length);
-            // Inner Set found called
             newElem[modKey] = new Set();
-            for (arrayElem of elem[key]) {
-              if (typeof arrayElem === 'string' || arrayElem instanceof String) {
-                if (arrayElem.indexOf(IDNODE) === 0) {
-                  refKey = Number(arrayElem.substring(IDNODE.length));
-                  newElem[modKey].add(nodeCache[refKey]);
-                  // Inner-Set Node found
-                } else if (arrayElem.indexOf(IDEDGE) === 0) {
-                  refKey = Number(arrayElem.substring(IDEDGE.length));
-                  newElem[modKey].add(edgeCache[refKey]);
-                  // Inner-Set Edge found
-                } else {
-                  newElem[modKey].add(nSerial.unserialize(arrayElem, elem));
-                }
-              } else {
-                newElem[modKey].add(nSerial.unserialize(arrayElem, elem));
-              }
-            }
           } else {
             // Inner Array found
-            newElem[key] = [];
-            for (arrayElem of elem[key]) {
-              if (typeof arrayElem === 'string' || arrayElem instanceof String) {
-                if (arrayElem.indexOf(IDNODE) === 0) {
-                  refKey = Number(arrayElem.substring(IDNODE.length));
-                  newElem[key].push(nodeCache[refKey]);
-                  // Inner-Array Node
-                } else if (arrayElem.indexOf(IDEDGE) === 0) {
-                  refKey = Number(arrayElem.substring(IDEDGE.length));
-                  newElem[key].push(edgeCache[refKey]);
-                  // Inner-Array Edge found
-                } else {
-                  newElem[key].push(nSerial.unserialize(arrayElem, elem));
-                }
+            modKey = key;
+            newElem[modKey] = [];
+          }
+          for (arrayElem of elem[key]) {
+            if (typeof arrayElem === 'string' || arrayElem instanceof String) {
+              if (arrayElem.indexOf(IDNODE) === 0) {
+                refKey = Number(arrayElem.substring(IDNODE.length));
+                addObj = nodeCache[refKey];
+                // Inner-Set Node found
+              } else if (arrayElem.indexOf(IDEDGE) === 0) {
+                refKey = Number(arrayElem.substring(IDEDGE.length));
+                addObj = edgeCache[refKey];
+                // Inner-Set Edge found
               } else {
-                newElem[key].push(nSerial.unserialize(arrayElem, elem));
+                addObj = nSerial.unserialize(arrayElem, elem);
               }
+            } else {
+              addObj = nSerial.unserialize(arrayElem, elem);
+            }
+            if (newElem[modKey] instanceof Set) {
+              newElem[modKey].add(addObj);
+            } else {
+              newElem[modKey].push(addObj);
             }
           }
         } else if (typeof elem[key] === 'string' || elem[key] instanceof String) {
@@ -301,11 +289,11 @@ export class Serializer {
 
   importGraph() {
     let obj;
-    if (this.textBox.value === '') {
+    if (this.quickString === '') {
       return;
     }
     try {
-      obj = JSON.parse(this.textBox.value);
+      obj = JSON.parse(this.quickString);
     } catch (ex) {
       // Exception thrown from Parser
       return;
