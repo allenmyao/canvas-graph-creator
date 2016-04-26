@@ -146,7 +146,7 @@ class MouseHandler {
   }
 
   rightMoveListener(event, x, y) {
-    // ui.statusBar.updateMouse(x, y);
+    ui.statusBar.updateMouse(x, y);
     if (!this.isRightDragging) {
       // check for dragging
       if (this.rightMousePressed) {
@@ -168,8 +168,10 @@ class MouseHandler {
 
   contextmenuEventListener(event, x, y, contextMenu) {
     if (this.wasRightDragging) {
+      // prevent default context menu
+      event.preventDefault();
       this.wasRightDragging = false;
-    } else {
+    } else if (event.target === document.getElementById('canvas')) {
       // open context menu if mouse was not right dragging
       contextMenu.contextmenuEventListener(event, x, y);
     }
