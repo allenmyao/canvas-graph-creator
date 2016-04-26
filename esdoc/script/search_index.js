@@ -72,18 +72,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "canvas-graph-creator/src/js/tool/editedge-tool.js~editedgetool",
-    "class/src/js/tool/editedge-tool.js~EditEdgeTool.html",
-    "<span>EditEdgeTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/editedge-tool.js</span>",
-    "class"
-  ],
-  [
-    "canvas-graph-creator/src/js/tool/editnode-tool.js~editnodetool",
-    "class/src/js/tool/editnode-tool.js~EditNodeTool.html",
-    "<span>EditNodeTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/editnode-tool.js</span>",
-    "class"
-  ],
-  [
     "canvas-graph-creator/src/js/tool/erase-tool.js~erasetool",
     "class/src/js/tool/erase-tool.js~EraseTool.html",
     "<span>EraseTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/erase-tool.js</span>",
@@ -102,9 +90,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "canvas-graph-creator/src/js/tool/metadata-tool.js~metadatatool",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html",
-    "<span>MetadataTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/metadata-tool.js</span>",
+    "canvas-graph-creator/src/js/data/label.js~label",
+    "class/src/js/data/label.js~Label.html",
+    "<span>Label</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/label.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/util/line-2d.js~line2d",
+    "class/src/js/util/line-2d.js~Line2D.html",
+    "<span>Line2D</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/line-2d.js</span>",
     "class"
   ],
   [
@@ -147,6 +141,12 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/data/node/pentagon-node.js~pentagonnode",
     "class/src/js/data/node/pentagon-node.js~PentagonNode.html",
     "<span>PentagonNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/node/pentagon-node.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/util/point-2d.js~point2d",
+    "class/src/js/util/point-2d.js~Point2D.html",
+    "<span>Point2D</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/point-2d.js</span>",
     "class"
   ],
   [
@@ -270,6 +270,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "canvas-graph-creator/src/js/util/triangle-2d.js~triangle2d",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html",
+    "<span>Triangle2D</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/triangle-2d.js</span>",
+    "class"
+  ],
+  [
     "canvas-graph-creator/src/js/data/node/triangle-node.js~trianglenode",
     "class/src/js/data/node/triangle-node.js~TriangleNode.html",
     "<span>TriangleNode</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/data/node/triangle-node.js</span>",
@@ -279,6 +285,12 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/ui/ui.js~ui",
     "class/src/js/ui/ui.js~UI.html",
     "<span>UI</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/util/vector-2d.js~vector2d",
+    "class/src/js/util/vector-2d.js~Vector2D.html",
+    "<span>Vector2D</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/vector-2d.js</span>",
     "class"
   ],
   [
@@ -306,12 +318,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/algorithm.js~getalgorithminputs",
-    "function/index.html#static-function-getAlgorithmInputs",
-    "<span>getAlgorithmInputs</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/ui/form.js~getdata",
     "function/index.html#static-function-getData",
     "<span>getData</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
@@ -321,12 +327,6 @@ window.esdocSearchIndex = [
     "canvas-graph-creator/src/js/ui/form.js~getinputvalue",
     "function/index.html#static-function-getInputValue",
     "<span>getInputValue</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
     "function"
   ],
   [
@@ -342,58 +342,10 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/algorithm.js~pause",
-    "function/index.html#static-function-pause",
-    "<span>pause</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~play",
-    "function/index.html#static-function-play",
-    "<span>play</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~run",
-    "function/index.html#static-function-run",
-    "<span>run</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~selectobject",
-    "function/index.html#static-function-selectObject",
-    "<span>selectObject</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~setalgorithm",
-    "function/index.html#static-function-setAlgorithm",
-    "<span>setAlgorithm</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~setinputvalues",
-    "function/index.html#static-function-setInputValues",
-    "<span>setInputValues</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/ui/ui.js~ui",
     "variable/index.html#static-variable-ui",
     "<span>ui</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
     "variable"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~viewnext",
-    "function/index.html#static-function-viewNext",
-    "<span>viewNext</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
-  ],
-  [
-    "canvas-graph-creator/src/js/ui/algorithm.js~viewprevious",
-    "function/index.html#static-function-viewPrevious",
-    "<span>viewPrevious</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/algorithm.js</span>",
-    "function"
   ],
   [
     "",
@@ -1303,55 +1255,55 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber48",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber49",
     "MoveTool #dragObject should not move edge",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber97",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber98",
     "MoveTool #dropOnNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber110",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber111",
     "MoveTool #dropOnNone should ignore collision with edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber98",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber99",
     "MoveTool #dropOnNone should not allow collision with node",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber57",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber58",
     "MoveTool #dropOnObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber78",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber79",
     "MoveTool #dropOnObject should ignore collision with edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber70",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber71",
     "MoveTool #dropOnObject should move dragged node back to original position on drop failure",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber86",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber87",
     "MoveTool #dropOnObject should not allow dropping non-node objects",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber58",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber59",
     "MoveTool #dropOnObject should not allow dropping on other nodes",
     "test"
   ],
@@ -2460,6 +2412,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/algorithm/stepper.js~stepper#resetgraph",
+    "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-resetGraph",
+    "src/js/algorithm/stepper.js~Stepper#resetGraph",
+    "method"
+  ],
+  [
     "src/js/algorithm/stepper.js~stepper#result",
     "class/src/js/algorithm/stepper.js~Stepper.html#instance-member-result",
     "src/js/algorithm/stepper.js~Stepper#result",
@@ -2628,15 +2586,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#generatedefaulttextlocation",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/edge/edge.js~Edge#generateDefaultTextLocation",
-    "method"
-  ],
-  [
     "src/js/data/edge/edge.js~edge#isdirected",
     "class/src/js/data/edge/edge.js~Edge.html#instance-member-isDirected",
     "src/js/data/edge/edge.js~Edge#isDirected",
+    "member"
+  ],
+  [
+    "src/js/data/edge/edge.js~edge#label",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-member-label",
+    "src/js/data/edge/edge.js~Edge#label",
     "member"
   ],
   [
@@ -2658,6 +2616,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/data/edge/edge.js~edge#updatecurvededgelabel",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateCurvedEdgeLabel",
+    "src/js/data/edge/edge.js~Edge#updateCurvedEdgeLabel",
+    "method"
+  ],
+  [
     "src/js/data/edge/edge.js~edge#updateendpoints",
     "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateEndpoints",
     "src/js/data/edge/edge.js~Edge#updateEndpoints",
@@ -2676,22 +2640,16 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#updatetextlocation",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateTextLocation",
-    "src/js/data/edge/edge.js~Edge#updateTextLocation",
+    "src/js/data/edge/edge.js~edge#updateselflooplabel",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateSelfLoopLabel",
+    "src/js/data/edge/edge.js~Edge#updateSelfLoopLabel",
     "method"
   ],
   [
-    "src/js/data/edge/edge.js~edge#xtext",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-member-xText",
-    "src/js/data/edge/edge.js~Edge#xText",
-    "member"
-  ],
-  [
-    "src/js/data/edge/edge.js~edge#ytext",
-    "class/src/js/data/edge/edge.js~Edge.html#instance-member-yText",
-    "src/js/data/edge/edge.js~Edge#yText",
-    "member"
+    "src/js/data/edge/edge.js~edge#updatestraightedgelabel",
+    "class/src/js/data/edge/edge.js~Edge.html#instance-method-updateStraightEdgeLabel",
+    "src/js/data/edge/edge.js~Edge#updateStraightEdgeLabel",
+    "method"
   ],
   [
     "src/js/data/edge/solid-edge.js",
@@ -2796,6 +2754,72 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/data/label.js",
+    "file/src/js/data/label.js.html",
+    "src/js/data/label.js",
+    "file"
+  ],
+  [
+    "src/js/data/label.js~label#constructor",
+    "class/src/js/data/label.js~Label.html#instance-constructor-constructor",
+    "src/js/data/label.js~Label#constructor",
+    "method"
+  ],
+  [
+    "src/js/data/label.js~label#containspoint",
+    "class/src/js/data/label.js~Label.html#instance-method-containsPoint",
+    "src/js/data/label.js~Label#containsPoint",
+    "method"
+  ],
+  [
+    "src/js/data/label.js~label#draw",
+    "class/src/js/data/label.js~Label.html#instance-method-draw",
+    "src/js/data/label.js~Label#draw",
+    "method"
+  ],
+  [
+    "src/js/data/label.js~label#drawbox",
+    "class/src/js/data/label.js~Label.html#instance-method-drawBox",
+    "src/js/data/label.js~Label#drawBox",
+    "method"
+  ],
+  [
+    "src/js/data/label.js~label#font",
+    "class/src/js/data/label.js~Label.html#instance-get-font",
+    "src/js/data/label.js~Label#font",
+    "member"
+  ],
+  [
+    "src/js/data/label.js~label#parentobject",
+    "class/src/js/data/label.js~Label.html#instance-member-parentObject",
+    "src/js/data/label.js~Label#parentObject",
+    "member"
+  ],
+  [
+    "src/js/data/label.js~label#setpos",
+    "class/src/js/data/label.js~Label.html#instance-method-setPos",
+    "src/js/data/label.js~Label#setPos",
+    "method"
+  ],
+  [
+    "src/js/data/label.js~label#textmetric",
+    "class/src/js/data/label.js~Label.html#instance-member-textMetric",
+    "src/js/data/label.js~Label#textMetric",
+    "member"
+  ],
+  [
+    "src/js/data/label.js~label#x",
+    "class/src/js/data/label.js~Label.html#instance-member-x",
+    "src/js/data/label.js~Label#x",
+    "member"
+  ],
+  [
+    "src/js/data/label.js~label#y",
+    "class/src/js/data/label.js~Label.html#instance-member-y",
+    "src/js/data/label.js~Label#y",
+    "member"
+  ],
+  [
     "src/js/data/node/circle-node.js",
     "file/src/js/data/node/circle-node.js.html",
     "src/js/data/node/circle-node.js",
@@ -2832,12 +2856,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/circle-node.js~circlenode#drawlabel",
-    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-drawLabel",
-    "src/js/data/node/circle-node.js~CircleNode#drawLabel",
-    "method"
-  ],
-  [
     "src/js/data/node/circle-node.js~circlenode#drawstartingstate",
     "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-drawStartingState",
     "src/js/data/node/circle-node.js~CircleNode#drawStartingState",
@@ -2854,6 +2872,12 @@ window.esdocSearchIndex = [
     "class/src/js/data/node/circle-node.js~CircleNode.html#instance-method-getAnglePoint",
     "src/js/data/node/circle-node.js~CircleNode#getAnglePoint",
     "method"
+  ],
+  [
+    "src/js/data/node/circle-node.js~circlenode#label",
+    "class/src/js/data/node/circle-node.js~CircleNode.html#instance-member-label",
+    "src/js/data/node/circle-node.js~CircleNode#label",
+    "member"
   ],
   [
     "src/js/data/node/diamond-node.js",
@@ -2934,15 +2958,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/node.js~node#edgepointindirection",
-    "class/src/js/data/node/node.js~Node.html#instance-method-edgePointInDirection",
-    "src/js/data/node/node.js~Node#edgePointInDirection",
+    "src/js/data/node/node.js~node#drawlabel",
+    "class/src/js/data/node/node.js~Node.html#instance-method-drawLabel",
+    "src/js/data/node/node.js~Node#drawLabel",
     "method"
   ],
   [
-    "src/js/data/node/node.js~node#generatedefaulttextlocation",
-    "class/src/js/data/node/node.js~Node.html#instance-method-generateDefaultTextLocation",
-    "src/js/data/node/node.js~Node#generateDefaultTextLocation",
+    "src/js/data/node/node.js~node#edgepointindirection",
+    "class/src/js/data/node/node.js~Node.html#instance-method-edgePointInDirection",
+    "src/js/data/node/node.js~Node#edgePointInDirection",
     "method"
   ],
   [
@@ -2964,21 +2988,9 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/data/node/node.js~node#xtext",
-    "class/src/js/data/node/node.js~Node.html#instance-member-xText",
-    "src/js/data/node/node.js~Node#xText",
-    "member"
-  ],
-  [
     "src/js/data/node/node.js~node#y",
     "class/src/js/data/node/node.js~Node.html#instance-member-y",
     "src/js/data/node/node.js~Node#y",
-    "member"
-  ],
-  [
-    "src/js/data/node/node.js~node#ytext",
-    "class/src/js/data/node/node.js~Node.html#instance-member-yText",
-    "src/js/data/node/node.js~Node#yText",
     "member"
   ],
   [
@@ -3066,12 +3078,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/data/node/polygon-node.js~polygonnode#drawlabel",
-    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawLabel",
-    "src/js/data/node/polygon-node.js~PolygonNode#drawLabel",
-    "method"
-  ],
-  [
     "src/js/data/node/polygon-node.js~polygonnode#drawstartingstate",
     "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawStartingState",
     "src/js/data/node/polygon-node.js~PolygonNode#drawStartingState",
@@ -3088,6 +3094,12 @@ window.esdocSearchIndex = [
     "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-getAnglePoint",
     "src/js/data/node/polygon-node.js~PolygonNode#getAnglePoint",
     "method"
+  ],
+  [
+    "src/js/data/node/polygon-node.js~polygonnode#label",
+    "class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-member-label",
+    "src/js/data/node/polygon-node.js~PolygonNode#label",
+    "member"
   ],
   [
     "src/js/data/node/square-node.js",
@@ -3210,42 +3222,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/js/tool/editedge-tool.js",
-    "file/src/js/tool/editedge-tool.js.html",
-    "src/js/tool/editedge-tool.js",
-    "file"
-  ],
-  [
-    "src/js/tool/editedge-tool.js~editedgetool#dragoverobject",
-    "class/src/js/tool/editedge-tool.js~EditEdgeTool.html#instance-method-dragOverObject",
-    "src/js/tool/editedge-tool.js~EditEdgeTool#dragOverObject",
-    "method"
-  ],
-  [
-    "src/js/tool/editedge-tool.js~editedgetool#selectobject",
-    "class/src/js/tool/editedge-tool.js~EditEdgeTool.html#instance-method-selectObject",
-    "src/js/tool/editedge-tool.js~EditEdgeTool#selectObject",
-    "method"
-  ],
-  [
-    "src/js/tool/editnode-tool.js",
-    "file/src/js/tool/editnode-tool.js.html",
-    "src/js/tool/editnode-tool.js",
-    "file"
-  ],
-  [
-    "src/js/tool/editnode-tool.js~editnodetool#dragoverobject",
-    "class/src/js/tool/editnode-tool.js~EditNodeTool.html#instance-method-dragOverObject",
-    "src/js/tool/editnode-tool.js~EditNodeTool#dragOverObject",
-    "method"
-  ],
-  [
-    "src/js/tool/editnode-tool.js~editnodetool#selectobject",
-    "class/src/js/tool/editnode-tool.js~EditNodeTool.html#instance-method-selectObject",
-    "src/js/tool/editnode-tool.js~EditNodeTool#selectObject",
-    "method"
-  ],
-  [
     "src/js/tool/erase-tool.js",
     "file/src/js/tool/erase-tool.js.html",
     "src/js/tool/erase-tool.js",
@@ -3274,156 +3250,6 @@ window.esdocSearchIndex = [
     "class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-selectObject",
     "src/js/tool/erase-tool.js~EraseTool#selectObject",
     "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js",
-    "file/src/js/tool/metadata-tool.js.html",
-    "src/js/tool/metadata-tool.js",
-    "file"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#abortselect",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-abortSelect",
-    "src/js/tool/metadata-tool.js~MetadataTool#abortSelect",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#activate",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-activate",
-    "src/js/tool/metadata-tool.js~MetadataTool#activate",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#active",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-member-active",
-    "src/js/tool/metadata-tool.js~MetadataTool#active",
-    "member"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#apply",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-apply",
-    "src/js/tool/metadata-tool.js~MetadataTool#apply",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#cancel",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-cancel",
-    "src/js/tool/metadata-tool.js~MetadataTool#cancel",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#deselect",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-deselect",
-    "src/js/tool/metadata-tool.js~MetadataTool#deselect",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#dragnone",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-dragNone",
-    "src/js/tool/metadata-tool.js~MetadataTool#dragNone",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#dragging",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-member-dragging",
-    "src/js/tool/metadata-tool.js~MetadataTool#dragging",
-    "member"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#droponnone",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-dropOnNone",
-    "src/js/tool/metadata-tool.js~MetadataTool#dropOnNone",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#droponobject",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-dropOnObject",
-    "src/js/tool/metadata-tool.js~MetadataTool#dropOnObject",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#getinputhtml",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-getInputHtml",
-    "src/js/tool/metadata-tool.js~MetadataTool#getInputHtml",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#hasinputs",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-hasInputs",
-    "src/js/tool/metadata-tool.js~MetadataTool#hasInputs",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#labelbox",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-member-labelBox",
-    "src/js/tool/metadata-tool.js~MetadataTool#labelBox",
-    "member"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#labelbtn",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-member-labelBtn",
-    "src/js/tool/metadata-tool.js~MetadataTool#labelBtn",
-    "member"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#onctrl",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-member-onCtrl",
-    "src/js/tool/metadata-tool.js~MetadataTool#onCtrl",
-    "member"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#predragnone",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-preDragNone",
-    "src/js/tool/metadata-tool.js~MetadataTool#preDragNone",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#predragobject",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-preDragObject",
-    "src/js/tool/metadata-tool.js~MetadataTool#preDragObject",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#preselectnone",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-preSelectNone",
-    "src/js/tool/metadata-tool.js~MetadataTool#preSelectNone",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#preselectobject",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-preSelectObject",
-    "src/js/tool/metadata-tool.js~MetadataTool#preSelectObject",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#selectedge",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-selectEdge",
-    "src/js/tool/metadata-tool.js~MetadataTool#selectEdge",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#selectnode",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-selectNode",
-    "src/js/tool/metadata-tool.js~MetadataTool#selectNode",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#selectnone",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-selectNone",
-    "src/js/tool/metadata-tool.js~MetadataTool#selectNone",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#selectobject",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-method-selectObject",
-    "src/js/tool/metadata-tool.js~MetadataTool#selectObject",
-    "method"
-  ],
-  [
-    "src/js/tool/metadata-tool.js~metadatatool#target",
-    "class/src/js/tool/metadata-tool.js~MetadataTool.html#instance-member-target",
-    "src/js/tool/metadata-tool.js~MetadataTool#target",
-    "member"
   ],
   [
     "src/js/tool/move-tool.js",
@@ -3472,6 +3298,18 @@ window.esdocSearchIndex = [
     "class/src/js/tool/move-tool.js~MoveTool.html#instance-method-resetObjectPosition",
     "src/js/tool/move-tool.js~MoveTool#resetObjectPosition",
     "method"
+  ],
+  [
+    "src/js/tool/move-tool.js~movetool#startx",
+    "class/src/js/tool/move-tool.js~MoveTool.html#instance-member-startX",
+    "src/js/tool/move-tool.js~MoveTool#startX",
+    "member"
+  ],
+  [
+    "src/js/tool/move-tool.js~movetool#starty",
+    "class/src/js/tool/move-tool.js~MoveTool.html#instance-member-startY",
+    "src/js/tool/move-tool.js~MoveTool#startY",
+    "member"
   ],
   [
     "src/js/tool/node-tool.js",
@@ -3534,9 +3372,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/tool/pan-tool.js~pantool#ispanning",
-    "class/src/js/tool/pan-tool.js~PanTool.html#instance-member-isPanning",
-    "src/js/tool/pan-tool.js~PanTool#isPanning",
+    "src/js/tool/pan-tool.js~pantool#preselectnone",
+    "class/src/js/tool/pan-tool.js~PanTool.html#instance-method-preSelectNone",
+    "src/js/tool/pan-tool.js~PanTool#preSelectNone",
+    "method"
+  ],
+  [
+    "src/js/tool/pan-tool.js~pantool#startposition",
+    "class/src/js/tool/pan-tool.js~PanTool.html#instance-member-startPosition",
+    "src/js/tool/pan-tool.js~PanTool#startPosition",
     "member"
   ],
   [
@@ -3696,12 +3540,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/algorithm.js",
-    "file/src/js/ui/algorithm.js.html",
-    "src/js/ui/algorithm.js",
-    "file"
-  ],
-  [
     "src/js/ui/canvas.js",
     "file/src/js/ui/canvas.js.html",
     "src/js/ui/canvas.js",
@@ -3793,13 +3631,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
@@ -4032,6 +3870,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#algoinputs",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-algoInputs",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#algoInputs",
+    "member"
+  ],
+  [
     "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#constructor",
     "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-constructor-constructor",
     "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#constructor",
@@ -4050,6 +3894,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#curalgorithm",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-curAlgorithm",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#curAlgorithm",
+    "member"
+  ],
+  [
     "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#currentinput",
     "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-currentInput",
     "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#currentInput",
@@ -4062,10 +3912,64 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#getcurrentinput",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-getCurrentInput",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#getCurrentInput",
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#graph",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-graph",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#graph",
+    "member"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#hoverevent",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-hoverEvent",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#hoverEvent",
     "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#resetgraph",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-resetGraph",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#resetGraph",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#run",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-run",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#run",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#runevent",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-runEvent",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#runEvent",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#selectevent",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-selectEvent",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#selectEvent",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#selectobject",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-selectObject",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#selectObject",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#setalgorithm",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-setAlgorithm",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#setAlgorithm",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#setinputvalues",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-setInputValues",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#setInputValues",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#stepper",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-stepper",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#stepper",
+    "member"
   ],
   [
     "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#togglehover",
@@ -4179,6 +4083,12 @@ window.esdocSearchIndex = [
     "src/js/ui/sidebar-select.js~sidebarselect#displaygraph",
     "class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-displayGraph",
     "src/js/ui/sidebar-select.js~SidebarSelect#displayGraph",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar-select.js~sidebarselect#displaylabel",
+    "class/src/js/ui/sidebar-select.js~SidebarSelect.html#instance-method-displayLabel",
+    "src/js/ui/sidebar-select.js~SidebarSelect#displayLabel",
     "method"
   ],
   [
@@ -4326,9 +4236,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/tabs.js~tabs#displaytabs",
-    "class/src/js/ui/tabs.js~Tabs.html#instance-method-displayTabs",
-    "src/js/ui/tabs.js~Tabs#displayTabs",
+    "src/js/ui/tabs.js~tabs#displaytab",
+    "class/src/js/ui/tabs.js~Tabs.html#instance-method-displayTab",
+    "src/js/ui/tabs.js~Tabs#displayTab",
     "method"
   ],
   [
@@ -4341,6 +4251,12 @@ window.esdocSearchIndex = [
     "src/js/ui/tabs.js~tabs#gettabcontentelement",
     "class/src/js/ui/tabs.js~Tabs.html#instance-method-getTabContentElement",
     "src/js/ui/tabs.js~Tabs#getTabContentElement",
+    "method"
+  ],
+  [
+    "src/js/ui/tabs.js~tabs#hidetab",
+    "class/src/js/ui/tabs.js~Tabs.html#instance-method-hideTab",
+    "src/js/ui/tabs.js~Tabs#hideTab",
     "method"
   ],
   [
@@ -4404,6 +4320,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/tabs.js~tabs#showtab",
+    "class/src/js/ui/tabs.js~Tabs.html#instance-method-showTab",
+    "src/js/ui/tabs.js~Tabs#showTab",
+    "method"
+  ],
+  [
     "src/js/ui/tabs.js~tabs#tabcontainer",
     "class/src/js/ui/tabs.js~Tabs.html#instance-member-tabContainer",
     "src/js/ui/tabs.js~Tabs#tabContainer",
@@ -4414,6 +4336,12 @@ window.esdocSearchIndex = [
     "class/src/js/ui/tabs.js~Tabs.html#instance-member-tabList",
     "src/js/ui/tabs.js~Tabs#tabList",
     "member"
+  ],
+  [
+    "src/js/ui/tabs.js~tabs#updatetablistdisplay",
+    "class/src/js/ui/tabs.js~Tabs.html#instance-method-updateTabListDisplay",
+    "src/js/ui/tabs.js~Tabs#updateTabListDisplay",
+    "method"
   ],
   [
     "src/js/ui/toolbar.js",
@@ -4455,12 +4383,6 @@ window.esdocSearchIndex = [
     "src/js/ui/toolbar.js~toolbar#selecttoolbyname",
     "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-selectToolByName",
     "src/js/ui/toolbar.js~Toolbar#selectToolByName",
-    "method"
-  ],
-  [
-    "src/js/ui/toolbar.js~toolbar#showinputs",
-    "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-showInputs",
-    "src/js/ui/toolbar.js~Toolbar#showInputs",
     "method"
   ],
   [
@@ -4602,6 +4524,42 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
+    "src/js/util/line-2d.js",
+    "file/src/js/util/line-2d.js.html",
+    "src/js/util/line-2d.js",
+    "file"
+  ],
+  [
+    "src/js/util/line-2d.js~line2d#a",
+    "class/src/js/util/line-2d.js~Line2D.html#instance-member-a",
+    "src/js/util/line-2d.js~Line2D#a",
+    "member"
+  ],
+  [
+    "src/js/util/line-2d.js~line2d#b",
+    "class/src/js/util/line-2d.js~Line2D.html#instance-member-b",
+    "src/js/util/line-2d.js~Line2D#b",
+    "member"
+  ],
+  [
+    "src/js/util/line-2d.js~line2d#constructor",
+    "class/src/js/util/line-2d.js~Line2D.html#instance-constructor-constructor",
+    "src/js/util/line-2d.js~Line2D#constructor",
+    "method"
+  ],
+  [
+    "src/js/util/line-2d.js~line2d#haspoint",
+    "class/src/js/util/line-2d.js~Line2D.html#instance-method-hasPoint",
+    "src/js/util/line-2d.js~Line2D#hasPoint",
+    "method"
+  ],
+  [
+    "src/js/util/line-2d.js~line2d#length",
+    "class/src/js/util/line-2d.js~Line2D.html#instance-get-length",
+    "src/js/util/line-2d.js~Line2D#length",
+    "member"
+  ],
+  [
     "src/js/util/mouse-handler.js",
     "file/src/js/util/mouse-handler.js.html",
     "src/js/util/mouse-handler.js",
@@ -4656,6 +4614,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/util/mouse-handler.js~mousehandler#contextmenueventlistener",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-contextmenuEventListener",
+    "src/js/util/mouse-handler.js~MouseHandler#contextmenuEventListener",
+    "method"
+  ],
+  [
     "src/js/util/mouse-handler.js~mousehandler#downlistener",
     "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-downListener",
     "src/js/util/mouse-handler.js~MouseHandler#downListener",
@@ -4680,6 +4644,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/util/mouse-handler.js~mousehandler#isrightdragging",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-member-isRightDragging",
+    "src/js/util/mouse-handler.js~MouseHandler#isRightDragging",
+    "member"
+  ],
+  [
     "src/js/util/mouse-handler.js~mousehandler#mousepressed",
     "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-member-mousePressed",
     "src/js/util/mouse-handler.js~MouseHandler#mousePressed",
@@ -4689,6 +4659,42 @@ window.esdocSearchIndex = [
     "src/js/util/mouse-handler.js~mousehandler#movelistener",
     "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-moveListener",
     "src/js/util/mouse-handler.js~MouseHandler#moveListener",
+    "method"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#rightclickstartx",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-member-rightClickStartX",
+    "src/js/util/mouse-handler.js~MouseHandler#rightClickStartX",
+    "member"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#rightclickstarty",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-member-rightClickStartY",
+    "src/js/util/mouse-handler.js~MouseHandler#rightClickStartY",
+    "member"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#rightdownlistener",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-rightDownListener",
+    "src/js/util/mouse-handler.js~MouseHandler#rightDownListener",
+    "method"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#rightmousepressed",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-member-rightMousePressed",
+    "src/js/util/mouse-handler.js~MouseHandler#rightMousePressed",
+    "member"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#rightmovelistener",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-rightMoveListener",
+    "src/js/util/mouse-handler.js~MouseHandler#rightMoveListener",
+    "method"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#rightuplistener",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-rightUpListener",
+    "src/js/util/mouse-handler.js~MouseHandler#rightUpListener",
     "method"
   ],
   [
@@ -4702,6 +4708,72 @@ window.esdocSearchIndex = [
     "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-upListener",
     "src/js/util/mouse-handler.js~MouseHandler#upListener",
     "method"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#wasrightdragging",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-member-wasRightDragging",
+    "src/js/util/mouse-handler.js~MouseHandler#wasRightDragging",
+    "member"
+  ],
+  [
+    "src/js/util/point-2d.js",
+    "file/src/js/util/point-2d.js.html",
+    "src/js/util/point-2d.js",
+    "file"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#constructor",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-constructor-constructor",
+    "src/js/util/point-2d.js~Point2D#constructor",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#distanceto",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-method-distanceTo",
+    "src/js/util/point-2d.js~Point2D#distanceTo",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#equals",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-method-equals",
+    "src/js/util/point-2d.js~Point2D#equals",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#lineto",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-method-lineTo",
+    "src/js/util/point-2d.js~Point2D#lineTo",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#relativepositiontotriangle2d",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-method-relativePositionToTriangle2D",
+    "src/js/util/point-2d.js~Point2D#relativePositionToTriangle2D",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#translatevec",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-method-translateVec",
+    "src/js/util/point-2d.js~Point2D#translateVec",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#vectorto",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-method-vectorTo",
+    "src/js/util/point-2d.js~Point2D#vectorTo",
+    "method"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#x",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-member-x",
+    "src/js/util/point-2d.js~Point2D#x",
+    "member"
+  ],
+  [
+    "src/js/util/point-2d.js~point2d#y",
+    "class/src/js/util/point-2d.js~Point2D.html#instance-member-y",
+    "src/js/util/point-2d.js~Point2D#y",
+    "member"
   ],
   [
     "src/js/util/queue.js",
@@ -4827,6 +4899,150 @@ window.esdocSearchIndex = [
     "src/js/util/stack.js~stack#stack",
     "class/src/js/util/stack.js~Stack.html#instance-member-stack",
     "src/js/util/stack.js~Stack#stack",
+    "member"
+  ],
+  [
+    "src/js/util/triangle-2d.js",
+    "file/src/js/util/triangle-2d.js.html",
+    "src/js/util/triangle-2d.js",
+    "file"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#a",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-member-a",
+    "src/js/util/triangle-2d.js~Triangle2D#a",
+    "member"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#area",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-get-area",
+    "src/js/util/triangle-2d.js~Triangle2D#area",
+    "member"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#b",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-member-b",
+    "src/js/util/triangle-2d.js~Triangle2D#b",
+    "member"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#c",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-member-c",
+    "src/js/util/triangle-2d.js~Triangle2D#c",
+    "member"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#constructor",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-constructor-constructor",
+    "src/js/util/triangle-2d.js~Triangle2D#constructor",
+    "method"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#getbarycentriccoordinates",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-method-getBarycentricCoordinates",
+    "src/js/util/triangle-2d.js~Triangle2D#getBarycentricCoordinates",
+    "method"
+  ],
+  [
+    "src/js/util/triangle-2d.js~triangle2d#getpointfrombarycentriccoordinates",
+    "class/src/js/util/triangle-2d.js~Triangle2D.html#instance-method-getPointFromBarycentricCoordinates",
+    "src/js/util/triangle-2d.js~Triangle2D#getPointFromBarycentricCoordinates",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js",
+    "file/src/js/util/vector-2d.js.html",
+    "src/js/util/vector-2d.js",
+    "file"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#add",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-add",
+    "src/js/util/vector-2d.js~Vector2D#add",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#constructor",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-constructor-constructor",
+    "src/js/util/vector-2d.js~Vector2D#constructor",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#cross",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-cross",
+    "src/js/util/vector-2d.js~Vector2D#cross",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#degreesto",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-degreesTo",
+    "src/js/util/vector-2d.js~Vector2D#degreesTo",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#dot",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-dot",
+    "src/js/util/vector-2d.js~Vector2D#dot",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#equals",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-equals",
+    "src/js/util/vector-2d.js~Vector2D#equals",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#length",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-get-length",
+    "src/js/util/vector-2d.js~Vector2D#length",
+    "member"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#projectonto",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-projectOnto",
+    "src/js/util/vector-2d.js~Vector2D#projectOnto",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#rotatedegrees",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-rotateDegrees",
+    "src/js/util/vector-2d.js~Vector2D#rotateDegrees",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#rotateradians",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-rotateRadians",
+    "src/js/util/vector-2d.js~Vector2D#rotateRadians",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#scale",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-scale",
+    "src/js/util/vector-2d.js~Vector2D#scale",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#sub",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-sub",
+    "src/js/util/vector-2d.js~Vector2D#sub",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#topoint",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-toPoint",
+    "src/js/util/vector-2d.js~Vector2D#toPoint",
+    "method"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#x",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-member-x",
+    "src/js/util/vector-2d.js~Vector2D#x",
+    "member"
+  ],
+  [
+    "src/js/util/vector-2d.js~vector2d#y",
+    "class/src/js/util/vector-2d.js~Vector2D.html#instance-member-y",
+    "src/js/util/vector-2d.js~Vector2D#y",
     "member"
   ],
   [
