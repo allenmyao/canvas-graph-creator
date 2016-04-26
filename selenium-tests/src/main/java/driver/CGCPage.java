@@ -43,18 +43,30 @@ public class CGCPage extends CanvasPage{
 	}
 	private Node selected;
 
+	/**
+	 * Creates a page object that handles interaction with the CGC page
+	 * @param driver
+	 * @throws IOException
+	 */
 	public CGCPage(WebDriver driver) throws IOException{
 		super(driver, HOME_PAGE);
 		selected = null;
 	}
 
-
+	/**
+	 * Creates a node on the canvas at a given coordinate
+	 * @param point
+	 * @return object that represents the created node
+	 */
 	public Node createNode(Point point) {
 		deselect();
 		clickCanvas(point);
 		Node node = new Node(point);
 		return node;
 	}
+	/**
+	 * Deselects the currently selected node if there is one
+	 */
 	public void deselect()
 	{
 		if(selected != null)
@@ -63,28 +75,48 @@ public class CGCPage extends CanvasPage{
 			selected = null;
 		}
 	}
+	/**
+	 * Selects the current tool based on a given css selector or shortcut
+	 * @param cssSelector
+	 */
 	public void selectTool(String cssSelector)
 	{
 		if(shortcuts.containsKey(cssSelector))
 			cssSelector = shortcuts.get(cssSelector);
 		click(cssSelector, new Point(10, 10));
 	}
+	/**
+	 * Zooms the canvas in by using the mouse wheel
+	 * @param ticks 
+	 */
 	public void zoomIn(int ticks)
 	{
-		scroll(new Point(0, -1 * ticks));
+		zoomOut(-1 * ticks);
 	}
+	/**
+	 * Zooms the canvas out by using the mouse wheel
+	 * @param ticks 
+	 */
 	public void zoomOut(int ticks)
 	{
 		scroll(new Point(0, ticks));
 	}
+	/**
+	 * Resets the zoom by clicking on the reset button
+	 */
 	public void resetZoom()
 	{
 		selectTool(RESET_ZOOM_SELECTOR);
 	}
 
+	/**
+	 * Draws an edge between two nodes
+	 * @param source
+	 * @param destination
+	 */
 	public void drawEdge(Node source, Node destination) {
-		selectTool("#toolbar .tool[data-tool=\"edge\"]");
-		//clickElement("edge tool");
+		selectTool("Edge");
+
 		if (source != selected)
 		{
 			deselect();
@@ -95,15 +127,19 @@ public class CGCPage extends CanvasPage{
 		selected = null;
 	}
 	
+	/**
+	 * Clicks on a given node 
+	 * @param node
+	 */
 	public void clickNode(Node node) {
 		clickCanvas(node.point);
 	}
+	
 	@Override
 	public void initialize(String website)
 	{
 		super.initialize(website);
 		
 		selectCanvas(CANVAS_CSS_SELECTOR);
-		//addElement(EDGE_TOOL, "edge tool");
 	}
 }
