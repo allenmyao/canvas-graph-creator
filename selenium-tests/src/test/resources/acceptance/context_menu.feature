@@ -41,4 +41,11 @@ Feature: Context Menu
       And I open the context menu at 525, 525
       And choose the Toggle Directed Edge option
     Then the screen should match 'directed_edge.png'
-  
+    
+  Scenario: Using add edge function of context menu should create an edge
+    When I create a node named Node 1 at 500, 500
+      And another node named Node 2 at 550, 550
+      And I open the context menu at 500, 500
+      And choose the Add Edge option
+      And click on Node 2
+    Then the screen should match 'edge.png'
