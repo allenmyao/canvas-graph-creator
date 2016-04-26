@@ -71,43 +71,54 @@ export class Serializer {
       if (elem.hasOwnProperty(key)) {
         if (typeof elem[key] === 'object' && elem[key] !== null) {
           if (elem[key] instanceof Node) {
-            console.log('Node Field Detected');
+            // Node Field Detected
             outputObj[IDNODE + key] = elem[key].id;
           } else if (elem[key] instanceof Edge) {
-            console.log('Edge Field Detected');
+            // Edge Field Detected
             outputObj[IDEDGE + key] = elem[key].id;
-          } else if (elem[key] instanceof Array) {
-            outputObj[key] = [];
+          } 
+
+          //helper function--------------------- 
+          else if (elem[key] instanceof Array || elem[key] instanceof Set) {
+            if(elem[key] instanceof Set){
+              modKey = IDSET + key;
+              outputObj[modKey] = [];
+            }
+            else{
+              outputObj[key] = [];
+            }
             for (setElem of elem[key]) {
               if (setElem instanceof Node) {
-                console.log('Node-Array Field Detected with id ' + setElem.id);
+                // Node-Array Field Detected
                 outElem = IDNODE + setElem.id.toString();
               } else if (setElem instanceof Edge) {
-                console.log('Edge-Array Field Detected with id ' + setElem.id);
+                // Edge-Array Field Detected
                 outElem = IDEDGE + setElem.id.toString();
               } else {
-                console.log('Primitive-Array Field Detected with val ' + setElem.toString());
+                // Primitive-Array Field Detected
                 outElem = setElem;
               }
               outputObj[key].push(outElem);
             }
-          } else if (elem[key] instanceof Set) {
-            modKey = IDSET + key;
-            outputObj[modKey] = [];
-            for (setElem of elem[key]) {
-              if (setElem instanceof Node) {
-                console.log('Node-Set Field Detected with id ' + setElem.id);
-                outElem = IDNODE + setElem.id.toString();
-              } else if (setElem instanceof Edge) {
-                console.log('Edge-Set Field Detected with id ' + setElem.id);
-                outElem = IDEDGE + setElem.id.toString();
-              } else {
-                console.log('Primitive-Set Field Detected with val ' + setElem.toString());
-                outElem = setElem;
-              }
-              outputObj[modKey].push(outElem);
-            }
-          } else {
+          // } else if (elem[key] instanceof Set) {
+          //   modKey = IDSET + key;
+          //   outputObj[modKey] = [];
+          //   for (setElem of elem[key]) {
+          //     if (setElem instanceof Node) {
+          //       //Node-Set Field Detected
+          //       outElem = IDNODE + setElem.id.toString();
+          //     } else if (setElem instanceof Edge) {
+          //       //Edge-Set Field Detected
+          //       outElem = IDEDGE + setElem.id.toString();
+          //     } else {
+          //       // Primitive-Set Field Detected
+          //       outElem = setElem;
+          //     }
+          //     outputObj[modKey].push(outElem);
+          //   }
+          // }
+          ///-------------------------------------------
+           else {
             outputObj[key] = nSerial.serialize(elem[key], false, outputObj[key], cache, path + KEYPATHSEPARATOR + key);
           }
         } else {
@@ -134,8 +145,6 @@ export class Serializer {
     let outElem;
     cache[path] = obj;
 
-    console.log('Serial Node: ' + nSerial.serialize(obj.nodes.values().next().value));
-
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (typeof obj[key] === 'object' && obj[key] !== null) {
@@ -149,7 +158,7 @@ export class Serializer {
               } else {
                 outElem = nSerial.serialize(setElem, false, outElem, cache,
                     path + KEYPATHSEPARATOR + modKey + KEYPATHSEPARATOR + outputObj[modKey].length.toString());
-                console.log('Foreign Set Object');
+                // Foreign Set Object
               }
               outputObj[modKey].push(outElem);
             }
@@ -165,7 +174,7 @@ export class Serializer {
   }
 
   allocateElement(name) {
-    console.log('Element allocation of type ' + name);
+    // Element allocation of type has type 'name'
     if (name.indexOf('Node') >= 0) {
       return new classesByName[name](0, 0);
     } else if (name.indexOf('Edge') >= 0) {
@@ -179,33 +188,33 @@ export class Serializer {
     let modKey;
     let refKey;
     let arrayElem;
-    console.log('Element found of type ' + elem[IDTYPE]);
+   // Element found of type 'elem[IDTYPE]''
     delete elem[IDTYPE];
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
         if (key.indexOf(IDNODE) === 0) {
           modKey = key.substring(IDNODE.length);
           newElem[modKey] = nodeCache[elem[key]];
-          console.log('Inner Node found called ' + modKey + ' with id ' + elem[key].toString());
+          // Inner Node found called
         } else if (key.indexOf(IDEDGE) === 0) {
           modKey = key.substring(IDEDGE.length);
           newElem[modKey] = edgeCache[elem[key]];
-          console.log('Inner Edge found called ' + modKey + ' with id ' + elem[key].toString());
+          // Inner Edge found called
         } else if (elem[key] instanceof Array) {
           if (key.indexOf(IDSET) === 0) {
             modKey = key.substring(IDSET.length);
-            console.log('Inner Set found called ' + modKey);
+            // Inner Set found called
             newElem[modKey] = new Set();
             for (arrayElem of elem[key]) {
               if (typeof arrayElem === 'string' || arrayElem instanceof String) {
                 if (arrayElem.indexOf(IDNODE) === 0) {
                   refKey = Number(arrayElem.substring(IDNODE.length));
                   newElem[modKey].add(nodeCache[refKey]);
-                  console.log('Inner-Set Node found with id ' + refKey.toString());
+                  // Inner-Set Node found
                 } else if (arrayElem.indexOf(IDEDGE) === 0) {
                   refKey = Number(arrayElem.substring(IDEDGE.length));
                   newElem[modKey].add(edgeCache[refKey]);
-                  console.log('Inner-Set Edge found with id ' + refKey.toString());
+                  // Inner-Set Edge found
                 } else {
                   newElem[modKey].add(nSerial.unserialize(arrayElem, elem));
                 }
@@ -214,18 +223,18 @@ export class Serializer {
               }
             }
           } else {
-            console.log('Inner Array found called ' + key);
+            // Inner Array found
             newElem[key] = [];
             for (arrayElem of elem[key]) {
               if (typeof arrayElem === 'string' || arrayElem instanceof String) {
                 if (arrayElem.indexOf(IDNODE) === 0) {
                   refKey = Number(arrayElem.substring(IDNODE.length));
                   newElem[key].push(nodeCache[refKey]);
-                  console.log('Inner-Array Node found with id ' + refKey.toString());
+                  // Inner-Array Node
                 } else if (arrayElem.indexOf(IDEDGE) === 0) {
                   refKey = Number(arrayElem.substring(IDEDGE.length));
                   newElem[key].push(edgeCache[refKey]);
-                  console.log('Inner-Array Edge found with id ' + refKey.toString());
+                  // Inner-Array Edge found
                 } else {
                   newElem[key].push(nSerial.unserialize(arrayElem, elem));
                 }
@@ -235,14 +244,14 @@ export class Serializer {
             }
           }
         } else if (typeof elem[key] === 'string' || elem[key] instanceof String) {
-          console.log('Inner String found called ' + key);
+          // Inner String found
           if (elem[key].indexOf(CIRCULARFLAG) === 0) {
             throw new Error('Can\'t deserialize a circular dependency in the top-level graph.');
           } else {
             newElem[key] = elem[key];
           }
         } else {
-          console.log('Inner Generic found called ' + key);
+          // Inner Generic found
           if (key === 'isSelected' || key === 'showTextCtrl') {
             newElem[key] = false;
           } else {
@@ -262,7 +271,7 @@ export class Serializer {
     try {
       obj = JSON.parse(this.textBox.value);
     } catch (ex) {
-      console.log('Exception thrown from Parser');
+      // Exception thrown from Parser
       return;
     }
     let deserializeInfo = this.deserializeGraph(obj);
@@ -282,14 +291,14 @@ export class Serializer {
     let elem;
     let newElem;
     if (obj === null || obj === {}) {
-      console.log('Bad Object');
+      // Bad Object
       return null;
     }
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (key.indexOf(IDSET) === 0 && obj[key] instanceof Array) {
           modKey = key.substring(IDSET.length);
-          console.log('Set found called ' + modKey);
+          // Set found
           newGraph[modKey] = new Set();
           for (elem of obj[key]) {
             if (elem[IDTYPE]) {
@@ -297,11 +306,11 @@ export class Serializer {
               newElem.id = elem.id;
               newElem[IDDATA] = elem;
               if (newElem instanceof Node) {
-                console.log('Cached Node with ID ' + newElem.id);
+               // Cached Node with ID
                 nodeCache[newElem.id] = newElem;
                 maxNodeID = Math.max(maxNodeID, newElem.id);
               } else if (newElem instanceof Edge) {
-                console.log('Cached Edge with ID ' + newElem.id);
+                // Cached Edge with ID
                 edgeCache[newElem.id] = newElem;
                 maxEdgeID = Math.max(maxEdgeID, newElem.id);
               }
@@ -326,7 +335,7 @@ export class Serializer {
     for (key in newGraph) {
       if (newGraph.hasOwnProperty(key)) {
         if (newGraph[key] instanceof Set) {
-          console.log('Iterating Set ' + key);
+          // Iterating Set
           for (elem of newGraph[key]) {
             if (elem[IDDATA]) {
               this.importElement(elem[IDDATA], elem, nodeCache, edgeCache);
