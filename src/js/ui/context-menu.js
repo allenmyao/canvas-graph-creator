@@ -102,9 +102,6 @@ class ContextMenu {
   }
 
   contextmenuEventListener(event, x, y) {
-    // prevent default context menu
-    event.preventDefault();
-
     this.menuPosX = x;
     this.menuPosY = y;
 

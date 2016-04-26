@@ -90,37 +90,52 @@ class Canvas {
 
   initListeners() {
     this.canvas.addEventListener('mousedown', (event) => {
+      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (!this.contextMenu.isDisplayed && event.button !== 2) {
+      if (event.button === 0 && !this.contextMenu.isDisplayed) {
         this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);
+      } else if (event.button === 2) {
+        this.mouseHandler.rightDownListener(event, x, y);
       }
     });
 
     this.canvas.addEventListener('mouseup', (event) => {
+      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (this.contextMenu.isDisplayed) {
-        this.contextMenu.toggleContextMenu();
-      } else if (!this.contextMenu.isDisplayed && event.button !== 2) {
+      if (event.button === 0) {
         this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);
+      } else if (event.button === 2) {
+        this.mouseHandler.rightUpListener(event, x, y);
       }
     });
 
     this.canvas.addEventListener('mousemove', (event) => {
+      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
+      if (event.button === 0) {
+        this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
+      } else if (event.button === 2) {
+        this.mouseHandler.rightMoveListener(event, x, y);
+      }
     });
 
     this.canvas.addEventListener('contextmenu', (event) => {
-      this.contextMenu.contextmenuEventListener(event, this.getCanvasX(event), this.getCanvasY(event));
+      // prevent default context menu
+      event.preventDefault();
+      event.stopPropagation();
+      let x = this.getCanvasX(event);
+      let y = this.getCanvasY(event);
+
+      this.mouseHandler.contextmenuEventListener(event, x, y, this.contextMenu);
     });
 
     this.canvas.addEventListener('wheel', (event) => {
