@@ -127,7 +127,7 @@ public class CGCPage extends CanvasPage {
 	}
 
 	public void setCheckbox(String name, boolean selected) {
-		WebElement checkbox = getToolInput(name);
+		WebElement checkbox = getToolInput("checkbox");
 		if ((selected && !checkbox.isSelected()) || (!selected && checkbox.isSelected()))
 			checkbox.click();
 	}
