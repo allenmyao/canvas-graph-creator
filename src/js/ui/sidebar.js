@@ -1,6 +1,6 @@
 import SidebarDisplay from '../ui/sidebar-display';
 import SidebarSelect from '../ui/sidebar-select';
-import SidebarAlgorithm from 'ui/sidebar-algorithm';
+import SidebarAlgorithm from '../ui/sidebar-algorithm';
 
 /**
  * This class manages the container for sidebar-content subclasses, and is responsible
@@ -29,9 +29,9 @@ class Sidebar {
   }
 
   resetGraph(newGraph) {
-    this.sidebarTypes.display.resetGraph(newGraph);
-    this.sidebarTypes.select.resetGraph(newGraph);
-    this.sidebarTypes.algorithm.resetGraph(newGraph);
+    this.sidebarTypes.display.changeGraph(newGraph);
+    this.sidebarTypes.select.changeGraph(newGraph);
+    this.sidebarTypes.algorithm.changeGraph(newGraph);
     this.setSidebar('display');
     this.updateSidebar(null);
   }
@@ -39,6 +39,9 @@ class Sidebar {
   setSidebar(sidebarType) {
     if (this.currentSidebar === sidebarType) {
       return;
+    }
+    if (this.currentSidebar === 'algorithm') {
+      this.content.resetGraph();
     }
     this.content = this.sidebarTypes[sidebarType];
     this.content.display();

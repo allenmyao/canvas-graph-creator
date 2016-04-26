@@ -1,6 +1,7 @@
-import { Tool } from '../tool/tool';
+import Tool from '../tool/tool';
+import Label from '../data/label';
 
-export class SelectTool extends Tool {
+class SelectTool extends Tool {
 
   name = 'Select Tool';
   sidebarType = 'select';
@@ -15,11 +16,21 @@ export class SelectTool extends Tool {
     if (this.selectedObject) {
       this.selectedObject.isSelected = false;
     }
-    obj.isSelected = true;
-    this.selectedObject = obj;
-  }
 
-  // drag: multiselect?
+    let targetObject;
+    if (obj instanceof Label) {
+      if (obj.parentObject.containsPoint(x, y)) {
+        targetObject = obj.parentObject;
+      } else {
+        this.selectNone(event, graph, x, y);
+        return;
+      }
+    } else {
+      targetObject = obj;
+    }
+    targetObject.isSelected = true;
+    this.selectedObject = targetObject;
+  }
 
   selectNone(event, graph, x, y) {
     if (this.selectedObject) {
@@ -29,3 +40,6 @@ export class SelectTool extends Tool {
   }
 
 }
+
+export { SelectTool };
+export default SelectTool;

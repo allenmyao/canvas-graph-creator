@@ -1,12 +1,14 @@
 package model;
 
+import org.openqa.selenium.Point;
+
 public class Node {
-	public int x;
-	public int y;
-	
-	public Node(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Point point;
+
+
+	public Node(Point point) {
+		this.point = point;
+
 	}
 
 }

@@ -1,7 +1,6 @@
-import { Edge } from './edge';
-import { drawArrows } from '../../util/curvedEdge';
+import Edge from './edge';
 
-export class SolidEdge extends Edge {
+class SolidEdge extends Edge {
 
   draw(context) {
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
@@ -23,7 +22,7 @@ export class SolidEdge extends Edge {
 
     if (this.isDirected) {
       context.fillStyle = this.isSelected ? this.selectedColor : this.color;
-      drawArrows(this, false, true);
+      this.drawArrow(context);
     }
 
     if (this.edgeLabel !== '') {
@@ -32,3 +31,6 @@ export class SolidEdge extends Edge {
   }
 
 }
+
+export { SolidEdge };
+export default SolidEdge;

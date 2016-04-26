@@ -1,32 +1,29 @@
-// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
-// @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
-// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
 
 // Typography
 $font-family-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
-// $font-family-serif: 'Roboto Slab', 'Times New Roman', serif;
-// $font-family-mono: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
 
 $font-weight-buttons: 600;
 $font-weight-nav: 600;
 
+
 // Default values
 $default-border-radius: 2px;
 
+
+// Layout
 $navbar-height: 50px;
 $top-bar-height: 100px;
 $toolbar-width: 246px;
 $sidebar-width: 380px;
 $status-bar-height: 50px;
 
+
+// Colors
 $primary-color: #009BFF;
 $primary-alt-color: #0089E2;
 
-// #38B1FF
-
-// #236B98
-// #1C597F
+$error-color: #FF0000;
 
 $secondary-color: #0E2C40;
 

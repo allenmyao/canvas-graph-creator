@@ -1,14 +1,14 @@
-import { Tool } from '../tool/tool';
-import { Node } from '../data/node/node';
-import { CircleNode } from '../data/node/circle-node';
-import { SquareNode } from '../data/node/square-node';
-import { TriangleNode } from '../data/node/triangle-node';
-import { DiamondNode } from '../data/node/diamond-node';
-import { PentagonNode } from '../data/node/pentagon-node';
-import { HexagonNode } from '../data/node/hexagon-node';
-import { OctagonNode } from '../data/node/octagon-node';
+import Tool from '../tool/tool';
+import Node from '../data/node/node';
+import CircleNode from '../data/node/circle-node';
+import TriangleNode from '../data/node/triangle-node';
+import SquareNode from '../data/node/square-node';
+import DiamondNode from '../data/node/diamond-node';
+import PentagonNode from '../data/node/pentagon-node';
+import HexagonNode from '../data/node/hexagon-node';
+import OctagonNode from '../data/node/octagon-node';
 
-export class NodeTool extends Tool {
+class NodeTool extends Tool {
 
   name = 'Node Tool';
 
@@ -111,7 +111,15 @@ export class NodeTool extends Tool {
   }
 
   selectNone(event, graph, x, y) {
-    let NodeClass = NodeTool.modes[this.currentMode];
+    this.addNode(this.currentMode, graph, x, y);
+  }
+
+  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
+    this.selectNone(event, graph, x, y);
+  }
+
+  addNode(mode, graph, x, y) {
+    let NodeClass = NodeTool.modes[mode];
     let node = new NodeClass(x, y);
     for (let field of Object.keys(this.inputs)) {
       node[field] = this.inputs[field];
@@ -121,8 +129,7 @@ export class NodeTool extends Tool {
     }
   }
 
-  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
-    this.selectNone(event, graph, x, y);
-  }
-
 }
+
+export { NodeTool };
+export default NodeTool;

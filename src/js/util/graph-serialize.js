@@ -2,6 +2,7 @@ const nSerial = require('node-serialize');
 import { Graph } from '../data/graph';
 import { Node } from '../data/node/node';
 import { Edge } from '../data/edge/edge';
+import { Label } from '../data/label';
 
 import { CircleNode } from '../data/node/circle-node';
 import { TriangleNode } from '../data/node/triangle-node';
@@ -14,44 +15,66 @@ import { OctagonNode } from '../data/node/octagon-node';
 import { SolidEdge } from '../data/edge/solid-edge';
 import { DashedEdge } from '../data/edge/dashed-edge';
 
-// let FUNCFLAG = '_$$ND_FUNC$$_';
 let CIRCULARFLAG = '_$$ND_CC$$_';
 let KEYPATHSEPARATOR = '_$$.$$_';
-// let ISNATIVEFUNC = /^function\s*[^(]*\(.*\)\s*\{\s*\[native code\]\s*\}$/;
 let IDTYPE = '_$$TYPE$$_';
 let IDSET = '_$$SET$$_';
 let IDNODE = '_$$NODE$$_';
 let IDEDGE = '_$$EDGE$$_';
+let IDLABEL = '_$$LABEL$$_';
 let IDDATA = '_$$DATA$$_';
 
-let classesByName = {
-  CircleNode: CircleNode,
-  TriangleNode: TriangleNode,
-  SquareNode: SquareNode,
-  DiamondNode: DiamondNode,
-  PentagonNode: PentagonNode,
-  HexagonNode: HexagonNode,
-  OctagonNode: OctagonNode,
-  SolidEdge: SolidEdge,
-  DashedEdge: DashedEdge
-};
-
 export class Serializer {
+
+  static classesByName = {
+    CircleNode: CircleNode,
+    TriangleNode: TriangleNode,
+    SquareNode: SquareNode,
+    DiamondNode: DiamondNode,
+    PentagonNode: PentagonNode,
+    HexagonNode: HexagonNode,
+    OctagonNode: OctagonNode,
+    SolidEdge: SolidEdge,
+    DashedEdge: DashedEdge,
+    Label: Label
+  };
 
   constructor(graph, resetFn) {
     this.currentGraph = graph;
     this.resetFn = resetFn;
-    if(typeof document !== 'undefined'){
-      this.exportBtn = document.getElementById('export-graph-button');
-      this.exportBtn.addEventListener('click', (event) => {
-        this.exportGraph();
+
+    if (typeof document !== 'undefined') {
+      this.reader = new FileReader();
+      this.reader.addEventListener('load', (event) => {
+        this.uploadGraph();
+      });
+
+      this.uploader = document.getElementById('graph-uploader');
+      this.uploader.addEventListener('change', (event) => {
+        this.reader.readAsText(this.uploader.files[0]);
+      });
+      this.uploader.addEventListener('click', (event) => {
+        this.uploader.value = null;
+      });
+
+      this.downloadBtn = document.getElementById('open-graph-button');
+      this.downloadBtn.addEventListener('click', (event) => {
+        this.uploader.click();
+      });
+      this.downloadBtn = document.getElementById('save-graph-button');
+      this.downloadBtn.addEventListener('click', (event) => {
+        this.downloadGraph();
       });
       this.importBtn = document.getElementById('import-graph-button');
       this.importBtn.addEventListener('click', (event) => {
         this.importGraph();
       });
+      this.exportBtn = document.getElementById('export-graph-button');
+      this.exportBtn.addEventListener('click', (event) => {
+        this.exportGraph();
+      });
 
-      this.textBox = document.getElementById('export-import-text');
+      this.textBox = document.getElementById('import-export-text');
       this.textBox.value = '';
     }
   }
@@ -70,8 +93,10 @@ export class Serializer {
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
         if (typeof elem[key] === 'object' && elem[key] !== null) {
-          if (elem[key] instanceof Node) {
-            // Node Field Detected
+          if (elem[key] instanceof Label) {
+            outputObj[IDLABEL + key] = this.exportElement(elem[key], cache, path + KEYPATHSEPARATOR + IDLABEL + key);
+          } else if (elem[key] instanceof Node) {
+            console.log('Node Field Detected');
             outputObj[IDNODE + key] = elem[key].id;
           } else if (elem[key] instanceof Edge) {
             // Edge Field Detected
@@ -129,9 +154,23 @@ export class Serializer {
     return outputObj;
   }
 
+  downloadGraph() {
+    let graphStr = JSON.stringify(this.serializeGraph());
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(graphStr));
+    element.setAttribute('download', 'graphdata.json');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
   exportGraph() {
-    let graphStr = this.serializeGraph();
-    this.textBox.value = JSON.stringify(graphStr);
+    let graphStr = JSON.stringify(this.serializeGraph());
+    this.textBox.value = graphStr;
   }
 
   serializeGraph() {
@@ -176,9 +215,11 @@ export class Serializer {
   allocateElement(name) {
     // Element allocation of type has type 'name'
     if (name.indexOf('Node') >= 0) {
-      return new classesByName[name](0, 0);
+      return new Serializer.classesByName[name](0, 0);
     } else if (name.indexOf('Edge') >= 0) {
-      return new classesByName[name](null, null);
+      return new Serializer.classesByName[name](null, null);
+    } else if (name.indexOf('Label') >= 0) {
+      return new Serializer.classesByName[name](0, 0, null);
     }
     return null;
   }
@@ -192,7 +233,10 @@ export class Serializer {
     delete elem[IDTYPE];
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
-        if (key.indexOf(IDNODE) === 0) {
+        if (key.indexOf(IDLABEL) === 0) {
+          modKey = key.substring(IDLABEL.length);
+          newElem[modKey] = this.importElement(elem[key], this.allocateElement(elem[key][IDTYPE]), nodeCache, edgeCache);
+        } else if (key.indexOf(IDNODE) === 0) {
           modKey = key.substring(IDNODE.length);
           newElem[modKey] = nodeCache[elem[key]];
           // Inner Node found called
@@ -263,6 +307,23 @@ export class Serializer {
     return newElem;
   }
 
+  uploadGraph() {
+    let obj;
+    if (typeof this.reader.result === 'undefined' || this.reader.result === '') {
+      return;
+    }
+    try {
+      obj = JSON.parse(this.reader.result);
+    } catch (ex) {
+      console.log('Exception thrown from Parser');
+      return;
+    }
+    let deserializeInfo = this.deserializeGraph(obj);
+    Node.numNodes = deserializeInfo.nodes;
+    Edge.numEdges = deserializeInfo.edges;
+    this.resetFn(deserializeInfo.graph);
+  }
+
   importGraph() {
     let obj;
     if (this.textBox.value === '') {
@@ -276,7 +337,7 @@ export class Serializer {
     }
     let deserializeInfo = this.deserializeGraph(obj);
     Node.numNodes = deserializeInfo.nodes;
-    Edge.numEdged = deserializeInfo.edges
+    Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
   }
 
@@ -346,8 +407,8 @@ export class Serializer {
       }
     }
     return {
-      nodes: maxNodeID+1, 
-      edges: maxEdgeID+1, 
+      nodes: maxNodeID + 1,
+      edges: maxEdgeID + 1,
       graph: newGraph
     };
   }

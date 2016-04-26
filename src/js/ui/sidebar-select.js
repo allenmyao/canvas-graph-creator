@@ -1,6 +1,6 @@
 import SidebarContent from '../ui/sidebar-content';
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 import * as Form from '../ui/form';
 
 class SidebarSelect extends SidebarContent {
@@ -12,21 +12,29 @@ class SidebarSelect extends SidebarContent {
 
   display() {
     this.tabs.replaceTabs({
-      data: 'Data'
+      data: 'Data',
+      label: 'Label'
     });
 
     this.tabs.setTabContent('data', '<form></form>');
+    this.tabs.setTabContent('label', '<form></form>');
+    this.tabs.hideTab('label');
 
     this.update();
     this.tabs.selectTab('data');
 
-    document.getElementById('sidebar').querySelector('form').addEventListener('input', (event) => {
-      this.updateObjectValues(event);
-    });
+    let forms = document.getElementById('sidebar').querySelectorAll('form');
 
-    document.getElementById('sidebar').querySelector('form').addEventListener('change', (event) => {
-      this.updateObjectValues(event);
-    });
+    for (let i = 0; i < forms.length; i++) {
+      let form = forms[i];
+      form.addEventListener('input', (event) => {
+        this.updateObjectValues(event);
+      });
+
+      form.addEventListener('change', (event) => {
+        this.updateObjectValues(event);
+      });
+    }
   }
 
   update(obj) {
@@ -34,25 +42,39 @@ class SidebarSelect extends SidebarContent {
     if (obj instanceof Node) {
       html = this.displayNode(obj);
       this.selectedObject = obj;
+      this.tabs.showTab('label');
     } else if (obj instanceof Edge) {
       html = this.displayEdge(obj);
       this.selectedObject = obj;
+      this.tabs.showTab('label');
     } else {
       html = this.displayGraph(this.graph);
       this.selectedObject = null;
+      this.tabs.hideTab('label');
+      this.tabs.selectTab('data');
     }
     this.tabs.getTabContentElement('data').querySelector('form').innerHTML = html;
+    if (obj instanceof Node || obj instanceof Edge) {
+      this.tabs.getTabContentElement('label').querySelector('form').innerHTML = this.displayLabel(obj.label);
+    }
   }
 
   updateObjectValues(event) {
-    let input = event.target;
-    let name = input.name;
-    let value = Form.getInputValue(input);
-    this.selectedObject[name] = value;
-    if (this.selectedObject instanceof Node) {
-      for (let edge of this.selectedObject.edges) {
-        edge.updateEndpoints();
+    if (this.tabs.getTabContentElement('data').contains(event.target)) {
+      let input = event.target;
+      let name = input.name;
+      let value = Form.getInputValue(input);
+      this.selectedObject[name] = value;
+      if (this.selectedObject instanceof Node) {
+        for (let edge of this.selectedObject.edges) {
+          edge.updateEndpoints();
+        }
       }
+    } else if (this.tabs.getTabContentElement('label').contains(event.target)) {
+      let input = event.target;
+      let name = input.name;
+      let value = Form.getInputValue(input);
+      this.selectedObject.label[name] = value;
     }
   }
 
@@ -120,36 +142,6 @@ class SidebarSelect extends SidebarContent {
         name: 'lineWidth',
         value: node.lineWidth,
         displayName: 'Line Width'
-      },
-      {
-        type: 'number',
-        name: 'xText',
-        value: node.xText,
-        displayName: 'Label x'
-      },
-      {
-        type: 'number',
-        name: 'yText',
-        value: node.yText,
-        displayName: 'Label y'
-      },
-      {
-        type: 'string',
-        name: 'nodeLabel',
-        value: node.nodeLabel,
-        displayName: 'Label'
-      },
-      {
-        type: 'string',
-        name: 'labelFont',
-        value: node.labelFont,
-        displayName: 'Label font'
-      },
-      {
-        type: 'color',
-        name: 'labelColor',
-        value: node.labelColor,
-        displayName: 'Label color'
       }
     ]);
   }
@@ -173,36 +165,47 @@ class SidebarSelect extends SidebarContent {
         name: 'lineWidth',
         value: edge.lineWidth,
         displayName: 'Width'
+      }
+    ]);
+  }
+
+  displayLabel(label) {
+    return Form.createForm([
+      {
+        type: 'number',
+        name: 'x',
+        value: label.x,
+        displayName: 'x'
       },
       {
         type: 'number',
-        name: 'xText',
-        value: edge.xText,
-        displayName: 'Label x'
-      },
-      {
-        type: 'number',
-        name: 'yText',
-        value: edge.yText,
-        displayName: 'Label y'
+        name: 'y',
+        value: label.y,
+        displayName: 'y'
       },
       {
         type: 'string',
-        name: 'edgeLabel',
-        value: edge.edgeLabel,
+        name: 'content',
+        value: label.content,
         displayName: 'Label'
       },
       {
         type: 'string',
-        name: 'labelFont',
-        value: edge.labelFont,
-        displayName: 'Label font'
+        name: 'fontSize',
+        value: label.fontSize,
+        displayName: 'Font size'
+      },
+      {
+        type: 'string',
+        name: 'fontFamily',
+        value: label.fontFamily,
+        displayName: 'Font family'
       },
       {
         type: 'color',
-        name: 'labelColor',
-        value: edge.labelColor,
-        displayName: 'Label color'
+        name: 'color',
+        value: label.color,
+        displayName: 'Color'
       }
     ]);
   }

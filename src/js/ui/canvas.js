@@ -1,4 +1,3 @@
-import { initCurved } from '../util/curvedEdge';
 import MouseHandler from '../util/mouse-handler';
 import ContextMenu from '../ui/context-menu';
 
@@ -23,7 +22,6 @@ class Canvas {
     this.ui = ui;
     this.canvas = document.getElementById('canvas');
     this.context = this.canvas.getContext('2d');
-    initCurved(this.canvas, this.context);
   }
 
   init(graph) {
@@ -96,37 +94,41 @@ class Canvas {
 
   initListeners() {
     this.canvas.addEventListener('mousedown', (event) => {
+      event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (this.contextMenu.menuState === 0 && event.button !== 2) {
+      if (!this.contextMenu.isDisplayed && event.button !== 2) {
         this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);
       }
-    }, false);
+    });
 
     this.canvas.addEventListener('mouseup', (event) => {
+      event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (this.contextMenu.menuState === 1) {
+      if (this.contextMenu.isDisplayed) {
         this.contextMenu.toggleContextMenu();
-      } else if (this.contextMenu.menuState === 0 && event.button !== 2) {
+      } else if (!this.contextMenu.isDisplayed && event.button !== 2) {
         this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);
       }
-    }, false);
+    });
 
     this.canvas.addEventListener('mousemove', (event) => {
+      event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
       this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
-    }, false);
+    });
 
     this.canvas.addEventListener('contextmenu', (event) => {
       this.contextMenu.contextmenuEventListener(event, this.getCanvasX(event), this.getCanvasY(event));
-    }, false);
+    });
 
     this.canvas.addEventListener('wheel', (event) => {
+      event.stopPropagation();
       // prevent page scrolling (the default scroll behavior)
       event.preventDefault();
 
@@ -178,7 +180,19 @@ class Canvas {
       this.update();
 
       this.ui.statusBar.updateZoom(this.scale);
-    }, false);
+    });
+
+    this.canvas.addEventListener('selectstart', (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    });
+
+    this.canvas.addEventListener('dblclick', (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    });
   }
 }
 

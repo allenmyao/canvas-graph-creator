@@ -1,6 +1,7 @@
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
+import Label from '../data/label';
 import ui from '../ui/ui';
-import { CircleNode } from '../data/node/circle-node';
-import { SquareNode } from '../data/node/square-node';
 
 class MouseHandler {
 
@@ -130,42 +131,38 @@ class MouseHandler {
   }
 
   contextComponent(event, x, y) {
-    let component = null;
     if (this.graph.hasComponent(x, y)) {
-      component = this.graph.getComponent(x, y);
+      this.selectedObject = this.graph.getComponent(x, y);
     }
-
-    return component;
+    return this.selectedObject;
   }
 
   contextAdd(arg, x, y) {
-    let modes = {
-      circle: CircleNode,
-      square: SquareNode
-    };
-
-    let NodeClass = modes[arg];
-    let node = new NodeClass(x, y);
-
-    if (!this.graph.isNodeCollision(node, x, y)) {
-      this.graph.addNode(node);
+    if (arg === 'edge') {
+      ui.toolbar.selectToolByName('edge');
+      ui.toolbar.toolMap.edge.selectNode(this.graph, this.selectedObject);
+    } else {
+      ui.toolbar.selectToolByName('node');
+      ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);
     }
   }
 
-  contextToggle(arg, component) {
-    component[arg] = !component[arg];
+  contextToggle(arg) {
+    this.selectedObject[arg] = !this.selectedObject[arg];
   }
 
-  contextDelete(arg, component) {
-    if (arg === 'node') {
-      this.graph.removeNode(component);
-    } else if (arg === 'edge') {
-      this.graph.removeEdge(component);
+  contextDelete() {
+    if (this.selectedObject instanceof Node) {
+      this.graph.removeNode(this.selectedObject);
+    } else if (this.selectedObject instanceof Edge) {
+      this.graph.removeEdge(this.selectedObject);
+    } else if (this.selectedObject instanceof Label) {
+      this.selectedObject.content = '';
     }
   }
 
-  contextSelect(event, currentTool, component, x, y) {
-    currentTool.selectObject(event, this.graph, component, x, y);
+  contextSelect(event, currentTool, x, y) {
+    currentTool.selectObject(event, this.graph, this.selectedObject, x, y);
   }
 }
 

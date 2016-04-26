@@ -1,7 +1,9 @@
 const path = require('path');
 
+const config = require('../config');
+const projectRoot = path.resolve(__dirname, '../');
+
 module.exports = {
-  cache: true,
   entry: {
     app: [
       'babel-polyfill',
@@ -9,17 +11,30 @@ module.exports = {
     ]
   },
   resolve: {
-    root: path.resolve('src', 'js'),
-    modulesDirectories: [ 'node_modules' ],
-    extensions: [ '', '.js' ]
+    extensions: [ '', '.js' ],
+    fallback: [ path.join(__dirname, '../node_modules') ],
+    alias: {
+      src: path.resolve(__dirname, '../src')
+    }
+  },
+  resolveLoader: {
+    fallback: [ path.join(__dirname, '../node_modules') ]
   },
   output: {
-    path: path.join(__dirname, '..', 'dist', 'js'),
-    publicPath: '/dist/js/',
+    path: config.build.assetsRoot,
+    publicPath: config.build.assetsPublicPath,
     filename: '[name].js',
     chunkFilename: '[chunkhash].js'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
@@ -27,6 +42,9 @@ module.exports = {
         loader: 'babel'
       }
     ]
+  },
+  eslint: {
+    formatter: require('eslint-friendly-formatter')
   },
   plugins: []
 };

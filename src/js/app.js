@@ -1,7 +1,7 @@
 require('../scss/styles.scss');
 
 import { Graph } from './data/graph';
-import { Serializer } from 'util/graph-serialize';
+import { Serializer } from './util/graph-serialize';
 import ui from './ui/ui';
 
 let graph;

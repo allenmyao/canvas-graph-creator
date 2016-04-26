@@ -3,7 +3,7 @@
 import chai from 'chai';
 chai.should();
 
-import { CircleNode } from '../src/js/data/node/circle-node';
+import CircleNode from '../src/js/data/node/circle-node';
 
 describe('CircleNode', () => {
   describe('#constructor', () => {

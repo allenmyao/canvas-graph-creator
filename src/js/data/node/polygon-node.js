@@ -1,6 +1,7 @@
-import { Node } from './node';
+import Node from './node';
+import Label from '../label';
 
-export class PolygonNode extends Node {
+class PolygonNode extends Node {
 
   radius = 30;
 
@@ -9,7 +10,7 @@ export class PolygonNode extends Node {
 
   constructor(x, y) {
     super(x, y);
-    this.generateDefaultTextLocation();
+    this.label = new Label(this.x + this.radius + 4, this.y, this);
   }
 
   containsPoint(x, y) {
@@ -70,19 +71,6 @@ export class PolygonNode extends Node {
 
     if (this.isStartingState) {
       this.drawStartingState(context);
-    }
-  }
-
-  drawLabel(context) {
-    context.font = this.labelFont;
-    context.fillStyle = this.labelColor;
-    context.fillText(this.nodeLabel, this.xText, this.yText);
-    if (this.showTextCtrl) {
-      context.fillStyle = 'red';
-      context.beginPath();
-      context.arc(this.xText, this.yText, 3.0, 0, 1.5 * Math.PI);
-      context.lineTo(this.xText, this.yText);
-      context.fill();
     }
   }
 
@@ -151,3 +139,6 @@ export class PolygonNode extends Node {
   }
 
 }
+
+export { PolygonNode };
+export default PolygonNode;
