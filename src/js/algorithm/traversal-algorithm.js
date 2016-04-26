@@ -107,7 +107,15 @@ class TraversalAlgorithm extends AbstractAlgorithm {
       throw Error('Non-graph object in algorithm queue');
     }
     // represent the visual aspects of this step by creating a new step, adding a change for the current object, and completing the step
-    this.stepBuilder.newStep(`Visiting ${nextItem.constructor.name} ${nextItem.id}`);
+    let typeName;
+    if (nextItem instanceof Node) {
+      typeName = 'node';
+    } else if (nextItem instanceof Edge) {
+      typeName = 'edge';
+    } else {
+      typeName = nextItem.constructor.name;
+    }
+    this.stepBuilder.newStep(`Visiting ${typeName} ${nextItem.id}`);
     this.stepBuilder.addChange(nextItem, {
       color: 'black'
     }, {
