@@ -5,8 +5,14 @@ class PanTool extends Tool {
 
   name = 'Pan Tool';
 
-  isPanning = false;
   startPosition = {};
+
+  preSelectNone(event, graph, x, y) {
+    this.startPosition.dx = ui.canvas.dx;
+    this.startPosition.dy = ui.canvas.dy;
+    this.startPosition.x = event.offsetX;
+    this.startPosition.y = event.offsetY;
+  }
 
   dragObject(event, graph, srcObj, startX, startY, x, y) {
     this.dragNone(event, graph, startX, startY, x, y);
@@ -17,15 +23,6 @@ class PanTool extends Tool {
   }
 
   dragNone(event, graph, startX, startY, x, y) {
-    if (!this.isPanning) {
-      this.isPanning = true;
-
-      this.startPosition.dx = ui.canvas.dx;
-      this.startPosition.dy = ui.canvas.dy;
-      this.startPosition.x = event.offsetX;
-      this.startPosition.y = event.offsetY;
-    }
-
     let scale = ui.canvas.scale;
     ui.canvas.dx = this.startPosition.dx + (this.startPosition.x - event.offsetX) / scale;
     ui.canvas.dy = this.startPosition.dy + (this.startPosition.y - event.offsetY) / scale;
@@ -33,9 +30,7 @@ class PanTool extends Tool {
   }
 
   dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
-    if (this.isPanning) {
-      this.isPanning = false;
-    }
+    this.startPosition = {};
   }
 
 }
