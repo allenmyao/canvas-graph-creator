@@ -17,7 +17,7 @@ class StatusBar {
   }
 
   updateZoom(scale) {
-    document.getElementById('zoom-input').value = `${scale.toFixed(2) * 100}%`;
+    document.getElementById('zoom-input').value = `${Math.round(scale * 100)}%`;
   }
 
   updateMouse(x, y) {
