@@ -20,6 +20,10 @@ button {
     background: none;
     color: $primary-gray-color;
 
+    &:disabled {
+      color: $primary-gray-lightest-color;
+    }
+
     &:hover {
       background: $primary-gray-lightest-color;
     }
