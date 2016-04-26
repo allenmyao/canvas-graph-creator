@@ -62,13 +62,25 @@ class Canvas {
   }
 
   getCanvasX(event) {
-    let canvasX = event.offsetX;
+    let canvasX;
+    if (event.target === this.canvas) {
+      canvasX = event.offsetX;
+    } else {
+      let offsets = document.getElementById('canvas').getBoundingClientRect();
+      canvasX = event.screenX - offsets.left;
+    }
     let x = canvasX / this.scale + this.dx;
     return x;
   }
 
   getCanvasY(event) {
-    let canvasY = event.offsetY;
+    let canvasY;
+    if (event.target === this.canvas) {
+      canvasY = event.offsetY;
+    } else {
+      let offsets = document.getElementById('canvas').getBoundingClientRect();
+      canvasY = event.screenY - offsets.top;
+    }
     let y = canvasY / this.scale + this.dy;
     return y;
   }
@@ -94,37 +106,58 @@ class Canvas {
 
   initListeners() {
     this.canvas.addEventListener('mousedown', (event) => {
+      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (!this.contextMenu.isDisplayed && event.button !== 2) {
+      if (event.button === 0 && !this.contextMenu.isDisplayed) {
         this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);
+      } else if (event.button === 2) {
+        this.mouseHandler.rightDownListener(event, x, y);
       }
-    });
-
-    this.canvas.addEventListener('mouseup', (event) => {
-      event.stopPropagation();
-      let x = this.getCanvasX(event);
-      let y = this.getCanvasY(event);
 
       if (this.contextMenu.isDisplayed) {
         this.contextMenu.toggleContextMenu();
-      } else if (!this.contextMenu.isDisplayed && event.button !== 2) {
-        this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);
       }
     });
 
-    this.canvas.addEventListener('mousemove', (event) => {
+    window.addEventListener('mouseup', (event) => {
+      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
+      if (event.button === 0) {
+        this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);
+      } else if (event.button === 2) {
+        this.mouseHandler.rightUpListener(event, x, y);
+      }
     });
 
-    this.canvas.addEventListener('contextmenu', (event) => {
-      this.contextMenu.contextmenuEventListener(event, this.getCanvasX(event), this.getCanvasY(event));
+    window.addEventListener('mousemove', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      let x = this.getCanvasX(event);
+      let y = this.getCanvasY(event);
+
+      if (event.button === 0 && event.buttons !== 2) {
+        this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
+      } else if (event.button === 2 || event.buttons === 2) {
+        this.mouseHandler.rightMoveListener(event, x, y);
+      }
+    });
+
+    window.addEventListener('contextmenu', (event) => {
+      if (event.target === this.canvas) {
+        // prevent default context menu
+        event.preventDefault();
+      }
+      event.stopPropagation();
+      let x = this.getCanvasX(event);
+      let y = this.getCanvasY(event);
+
+      this.mouseHandler.contextmenuEventListener(event, x, y, this.contextMenu);
     });
 
     this.canvas.addEventListener('wheel', (event) => {
