@@ -52,8 +52,7 @@
             line-height: normal;
           }
 
-          input {
-
+          input[type=text] {
             &:valid ~ label,
             &.empty ~ label {
               font-size: 1em;

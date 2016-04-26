@@ -126,9 +126,14 @@
           </form>
         </li>
         <div style="float:right;  padding-right: 30px; ">
-          <button type="button" id="export-graph-button" class="btn-flat">Export</button>
-          <button type="button" id="import-graph-button" class="btn-flat">Import</button>
-          <input type="text" id="export-import-text"  placeholder="serialized string" style = "border: 0; outline: 0; background: transparent; border-bottom: 1px solid black; width: 300px;  height:32px;"/>
+          <form id="serialization">
+            <input type="file" id="graph-uploader" class="btn-flat-file" name="graph-file" style="display: none"/>
+            <button type="button" id="open-graph-button" class="btn-flat">Open File</button>
+            <button type="button" id="save-graph-button" class="btn-flat">Save File</button>
+            <button type="button" id="import-graph-button" class="btn-flat">Import</button>
+            <button type="button" id="export-graph-button" class="btn-flat">Export</button>
+            <input type="text" id="import-export-text"  placeholder="serialized string" style = "border: 0; outline: 0; background: transparent; border-bottom: 1px solid black; width: 300px;  height:32px;"/>
+          </form>
         </div>
       </ul>
     </div>

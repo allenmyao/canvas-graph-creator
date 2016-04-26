@@ -1,4 +1,4 @@
-button {
+button, input[type="button"] {
   max-width: 100%;
   padding: 10px;
   border: 0;
@@ -34,6 +34,54 @@ button {
   }
 
   &.btn-raised {
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .20);
+
+    &:active {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .20), 0 6px 6px rgba(0, 0, 0, .25);
+    }
+
+    &:disabled {
+      box-shadow: none;
+    }
+  }
+}
+
+input[type="file"] {
+  max-width: 100%;
+  padding: 10px;
+  border: 0;
+  border-radius: $default-border-radius;
+  outline: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: $font-weight-buttons;
+  font-family: $font-family-sans-serif;
+  cursor: pointer;
+
+  &.btn-default-file {
+    background: none;
+    color: $primary-gray-color;
+  }
+
+  &.btn-flat-file {
+    background: none;
+    color: $primary-gray-color;
+
+    &:hover {
+      background: $primary-gray-lightest-color;
+    }
+
+    &:active {
+      background: $primary-gray-lighter-color;
+    }
+  }
+
+  &.btn-primary-file {
+    background: $primary-color;
+    color: white;
+  }
+
+  &.btn-raised-file {
     box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .20);
 
     &:active {

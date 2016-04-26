@@ -41,17 +41,39 @@ export class Serializer {
   constructor(graph, resetFn) {
     this.currentGraph = graph;
     this.resetFn = resetFn;
-    if(typeof document !== 'undefined'){
-      this.exportBtn = document.getElementById('export-graph-button');
-      this.exportBtn.addEventListener('click', (event) => {
-        this.exportGraph();
+
+    if(typeof document !== 'undefined') {
+      this.reader = new FileReader();
+      this.reader.addEventListener('load', (event) => {
+        this.uploadGraph();
+      });
+
+      this.uploader = document.getElementById('graph-uploader');
+      this.uploader.addEventListener('change', (event) => {
+        this.reader.readAsText(this.uploader.files[0]);
+      });
+      this.uploader.addEventListener('click', (event) => {
+        this.uploader.value = null;
+      });
+
+      this.downloadBtn = document.getElementById('open-graph-button');
+      this.downloadBtn.addEventListener('click', (event) => {
+        this.uploader.click();
+      });
+      this.downloadBtn = document.getElementById('save-graph-button');
+      this.downloadBtn.addEventListener('click', (event) => {
+        this.downloadGraph();
       });
       this.importBtn = document.getElementById('import-graph-button');
       this.importBtn.addEventListener('click', (event) => {
         this.importGraph();
       });
+      this.exportBtn = document.getElementById('export-graph-button');
+      this.exportBtn.addEventListener('click', (event) => {
+        this.exportGraph();
+      });
 
-      this.textBox = document.getElementById('export-import-text');
+      this.textBox = document.getElementById('import-export-text');
       this.textBox.value = '';
     }
   }
@@ -118,9 +140,23 @@ export class Serializer {
     return outputObj;
   }
 
+  downloadGraph() {
+    let graphStr = JSON.stringify(this.serializeGraph());
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(graphStr));
+    element.setAttribute('download', 'graphdata.json');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
   exportGraph() {
-    let graphStr = this.serializeGraph();
-    this.textBox.value = JSON.stringify(graphStr);
+    let graphStr = JSON.stringify(this.serializeGraph());
+    this.textBox.value = graphStr;
   }
 
   serializeGraph() {
@@ -252,6 +288,23 @@ export class Serializer {
       }
     }
     return newElem;
+  }
+
+  uploadGraph() {
+    let obj;
+    if (typeof this.reader.result === 'undefined' || this.reader.result === '') {
+      return;
+    }
+    try {
+      obj = JSON.parse(this.reader.result);
+    } catch (ex) {
+      console.log('Exception thrown from Parser');
+      return;
+    }
+    let deserializeInfo = this.deserializeGraph(obj);
+    Node.numNodes = deserializeInfo.nodes;
+    Edge.numEdged = deserializeInfo.edges
+    this.resetFn(deserializeInfo.graph);
   }
 
   importGraph() {
