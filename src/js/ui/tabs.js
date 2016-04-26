@@ -36,6 +36,12 @@ class Tabs {
     tabContentElement.innerHTML = content;
   }
 
+  setTabScroll(tab, shouldScroll) {
+    if (!shouldScroll) {
+      this.getTabContentElement(tab).classList.add('no-scroll');
+    }
+  }
+
   addTab(name, displayName) {
     let tabs = this.tabList.children;
     for (let i = 0; i < tabs.length; i++) {

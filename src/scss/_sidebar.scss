@@ -18,13 +18,12 @@
 
     .tab-content {
       overflow-y: auto;
+
+      &.no-scroll {
+        overflow-y: hidden;
+      }
     }
   }
-
-  button {
-    margin-top: 5px;
-  }
-
 
   form {
     display: block;
