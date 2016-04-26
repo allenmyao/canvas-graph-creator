@@ -1,6 +1,3 @@
-// NOTES:  make this responsible for GUI elements as well, move to UI folder?  should draw knowing little to nothing about container, difficult to not make assumptions though
-// import * as AlgorithmInterface from 'ui/algorithm';
-
 export default class Stepper {
 
   result;
@@ -17,6 +14,12 @@ export default class Stepper {
   reset() {
     this.pause();
     this.result = null;
+  }
+
+  resetGraph() {
+    while(this.result.stepIndex !== -1) {
+      this.result.stepBackward();
+    }
   }
 
   setResult(result) {

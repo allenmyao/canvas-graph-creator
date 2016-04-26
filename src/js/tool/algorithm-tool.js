@@ -1,7 +1,7 @@
 import Tool from '../tool/tool';
 import Node from '../data/node/node';
 import TraversalAlgorithm from '../algorithm/traversal-algorithm';
-import * as AlgorithmInterface from '../ui/algorithm';
+import ui from '../ui/ui';
 
 class AlgorithmTool extends Tool {
 
@@ -29,12 +29,12 @@ class AlgorithmTool extends Tool {
 
   changeMode(mode) {
     this.currentMode = mode;
-    AlgorithmInterface.setAlgorithm(AlgorithmTool.modes[mode]);
+    ui.sidebar.content.setAlgorithm(AlgorithmTool.modes[mode]);
   }
 
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
-      AlgorithmInterface.selectObject(obj);
+      ui.sidebar.content.selectObject(obj);
     }
   }
 
