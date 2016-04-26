@@ -48,11 +48,21 @@ public class CGCPage extends CanvasPage {
 	}
 	private Node selected;
 
-	public CGCPage(WebDriver driver) throws IOException {
+	/**
+	 * Creates a page object that handles interaction with the CGC page
+	 * @param driver
+	 * @throws IOException
+	 */
+	public CGCPage(WebDriver driver) throws IOException{
 		super(driver, HOME_PAGE);
 		selected = null;
 	}
 
+	/**
+	 * Creates a node on the canvas at a given coordinate
+	 * @param point
+	 * @return object that represents the created node
+	 */
 	public Node createNode(Point point) {
 		deselect();
 		clickCanvas(point);
@@ -60,35 +70,62 @@ public class CGCPage extends CanvasPage {
 		return node;
 	}
 
-	public void deselect() {
-		if (selected != null) {
+	/**
+	 * Deselects the currently selected node if there is one
+	 */
+	public void deselect()
+	{
+		if(selected != null)
+		{
 			clickCanvas(selected.point);
 			selected = null;
 		}
 	}
 
-	public void selectTool(String cssSelector) {
-		if (shortcuts.containsKey(cssSelector))
+	/**
+	 * Selects the current tool based on a given css selector or shortcut
+	 * @param cssSelector
+	 */
+	public void selectTool(String cssSelector)
+	{
+		if(shortcuts.containsKey(cssSelector))
 			cssSelector = shortcuts.get(cssSelector);
 		click(cssSelector, new Point(10, 10));
 	}
-
-	public void zoomIn(int ticks) {
-		scroll(new Point(0, -1 * ticks));
+	/**
+	 * Zooms the canvas in by using the mouse wheel
+	 * @param ticks 
+	 */
+	public void zoomIn(int ticks)
+	{
+		zoomOut(-1 * ticks);
 	}
-
-	public void zoomOut(int ticks) {
+	/**
+	 * Zooms the canvas out by using the mouse wheel
+	 * @param ticks 
+	 */
+	public void zoomOut(int ticks)
+	{
 		scroll(new Point(0, ticks));
 	}
-
-	public void resetZoom() {
+	/**
+	 * Resets the zoom by clicking on the reset button
+	 */
+	public void resetZoom()
+	{
 		selectTool(RESET_ZOOM_SELECTOR);
 	}
 
+	/**
+	 * Draws an edge between two nodes
+	 * @param source
+	 * @param destination
+	 */
 	public void drawEdge(Node source, Node destination) {
-		selectTool("#toolbar .tool[data-tool=\"edge\"]");
-		// clickElement("edge tool");
-		if (source != selected) {
+		selectTool("Edge");
+
+		if (source != selected)
+		{
 			deselect();
 			clickNode(source);
 		}
@@ -96,17 +133,20 @@ public class CGCPage extends CanvasPage {
 
 		selected = null;
 	}
-
+	
+	/**
+	 * Clicks on a given node 
+	 * @param node
+	 */
 	public void clickNode(Node node) {
 		clickCanvas(node.point);
 	}
-
+	
 	@Override
 	public void initialize(String website) {
 		super.initialize(website);
 
 		selectCanvas(CANVAS_CSS_SELECTOR);
-		// addElement(EDGE_TOOL, "edge tool");
 	}
 
 	public WebElement getToolInput(String name) {

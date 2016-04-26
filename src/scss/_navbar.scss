@@ -21,10 +21,14 @@
   .logo {
     display: inline-block;
     height: 100%;
-    padding: 10px;
+    padding: 6px;
     line-height: 30px;
     font-size: 1.3em;
     color: white;
+
+    >img{
+      height: 100%;
+    }
   }
 
   a {

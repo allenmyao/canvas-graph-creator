@@ -32,6 +32,9 @@ class Sidebar {
     if (this.currentSidebar === sidebarType) {
       return;
     }
+    if (this.currentSidebar === 'algorithm') {
+      this.content.resetGraph();
+    }
     this.content = this.sidebarTypes[sidebarType];
     this.content.display();
     this.currentSidebar = sidebarType;
