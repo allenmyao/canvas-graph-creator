@@ -137,9 +137,9 @@ class Canvas {
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
 
-      if (event.button === 0) {
+      if (event.button === 0 && event.buttons !== 2) {
         this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);
-      } else if (event.button === 2) {
+      } else if (event.button === 2 || event.buttons === 2) {
         this.mouseHandler.rightMoveListener(event, x, y);
       }
     });
