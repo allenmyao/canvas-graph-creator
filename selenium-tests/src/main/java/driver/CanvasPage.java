@@ -78,7 +78,7 @@ public abstract class CanvasPage {
 		click(driver.findElement(By.cssSelector(cssSelector)), offset);
 	}
 	
-	public void click (WebElement element, Point offset)
+	public void click(WebElement element, Point offset)
 	{
 		new Actions(driver).moveToElement(element, offset.x, offset.y).click().build().perform();
 	}

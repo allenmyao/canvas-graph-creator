@@ -34,11 +34,11 @@ public class CGCPage extends CanvasPage {
 			shortcuts.put("Node", "#toolbar .tool[data-tool=\"node\"]");
 			shortcuts.put("Toggle Directed Edge", "#context-menu > ul:nth-child(2) > li");
 
-			shortcuts.put("Toggle Start State", "#context-menu > ul:nth-child(1) > li:nth-child(2)");
-			shortcuts.put("Toggle Accepting State", "#context-menu > ul:nth-child(1) > li:nth-child(1)");
+      shortcuts.put("Add Edge", "#context-menu > ul.context-menu__section.context-menu__section--visible > li:nth-child(1)");
+			shortcuts.put("Toggle Start State", "#context-menu > ul:nth-child(1) > li:nth-child(3)");
+			shortcuts.put("Toggle Accepting State", "#context-menu > ul:nth-child(1) > li:nth-child(2)");
 
-			shortcuts.put("Delete Edge", "#context-menu > ul:nth-child(3) > li");
-			shortcuts.put("Delete Node", "#context-menu > ul:nth-child(3) > li");
+			shortcuts.put("Delete", "#context-menu > ul:nth-child(3) > li");
 
 			shortcuts.put("Add Circle Node",
 					"#context-menu > ul.context-menu__section.context-menu__section--visible > li:nth-child(1)");
