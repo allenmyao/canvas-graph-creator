@@ -28,6 +28,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ImageUtils;
 
 public abstract class CanvasPage {
+	public static final int DRIVER_TIMEOUT = 900;
 	protected WebElement html;
 	protected WebElement canvas;
 
@@ -35,6 +36,12 @@ public abstract class CanvasPage {
 	protected HashMap<String, Point> elements;
 	protected WebDriver driver;
 
+	/**
+	 * Creates a canvas page object that represents the given website
+	 * @param driver
+	 * @param website
+	 * @throws IOException
+	 */
 	public CanvasPage(WebDriver driver, String website) throws IOException
 	{
 		this.driver = driver;
@@ -43,11 +50,12 @@ public abstract class CanvasPage {
 		initialize(website);
 		initialScreenshot = getScreenshot();
 	}
-
+/*
 	public void clickElement(String element)
 	{
 		clickCanvas(elements.get(element));
 	}
+*/
 	/**
 	 * Finds an element on a page by locating its best match.
 	 * The element is stored internally with the given name
@@ -62,14 +70,26 @@ public abstract class CanvasPage {
 		elements.put(name, best);
 	}
 
+	/**
+	 * Waits for the given canvas to load and stores it for future use
+	 * @param cssSelector selector for the canvas element
+	 */
 	public void selectCanvas(String cssSelector)
 	{
-		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
+		canvas = (new WebDriverWait(driver, DRIVER_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
 	}
+	/**
+	 * Clicks on a given point on the canvas
+	 * @param point
+	 */
 	public void clickCanvas(Point point)
 	{
 		click(canvas, point);   
 	}
+	/**
+	 * Opens the context menu at a given point on the canvas
+	 * @param point
+	 */
 	public void openContextMenu(Point point)
 	{
 		new Actions(driver).moveToElement(canvas, point.x, point.y).contextClick().build().perform();   
@@ -99,7 +119,6 @@ public abstract class CanvasPage {
 				
 				for(int j = 0; j < steps; j++)
 				{
-					System.out.println("moving by " + deltaX + ", " + deltaY);
 					actions = actions.moveByOffset(deltaX, deltaY);
 				}
 			}
@@ -140,7 +159,7 @@ public abstract class CanvasPage {
 	//http://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
 	public void waitUntilLoaded()
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 900);
+		WebDriverWait wait = new WebDriverWait(driver, DRIVER_TIMEOUT);
 
 	    wait.until(new ExpectedCondition<Boolean>() {
 	        public Boolean apply(WebDriver wdriver) {
@@ -165,7 +184,7 @@ public abstract class CanvasPage {
 		waitUntilLoaded();
 		driver.get(website);
 
-		canvas = (new WebDriverWait(driver, 900)).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
+		canvas = (new WebDriverWait(driver, DRIVER_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
 	}
 	public void scroll(Point ticks)
 	{
