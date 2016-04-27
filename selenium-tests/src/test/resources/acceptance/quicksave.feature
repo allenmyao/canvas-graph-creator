@@ -1,4 +1,4 @@
-Feature: Move Object
+Feature: Quicksave
   As a user I want to save my current graph and reload it 
 
   Background:
@@ -15,7 +15,7 @@ Feature: Move Object
       And I Quicksave
       And I create a node at 500, 500
       And I Quickload
-    Then the screen should match circle_node.png
+    Then the screen should match 'circle_node.png'
 
   Scenario: Save and load graph node after alteration
     When I create a node named Node 1 at 500, 500
