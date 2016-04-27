@@ -45,7 +45,7 @@ button, input[type="button"] {
       color: $primary-gray-lightest-color;
     }
 
-    &:hover {
+    &:not(:disabled):not(:active):hover {
       background: $primary-gray-light-color;
     }
 

@@ -68,19 +68,6 @@
           margin: auto 10px;
           padding: 5px 10px;
         }
-
-        button {
-          display: inline-block;
-          vertical-align: middle;
-          height: 100%;
-          margin: 0px 0px;
-          padding: 2px 2px;
-
-          >img {
-            height: 32px;
-            float: right;
-          }
-        }
       }
 
       #mouse-pos {
@@ -105,6 +92,20 @@
 
       #serialization {
         padding: 0 20px;
+
+        button {
+          display: inline-block;
+          vertical-align: middle;
+          height: 40px;
+          margin: 5px 0;
+          padding: 2px;
+
+          >img {
+            height: 100%;
+            float: right;
+            pointer-events: none;
+          }
+        }
       }
     }
   }
