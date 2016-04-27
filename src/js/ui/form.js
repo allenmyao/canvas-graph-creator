@@ -150,7 +150,7 @@ export function createGraphForm(fields, canSubmit, submitText) {
     `;
   }
 
-  html += `<button type="button" class="form__submit-btn btn-flat">${submitText}</button>`;
+  html += `<button type="button" class="form__submit-btn btn-flat btn-primary">${submitText}</button>`;
 
   return html;
 }

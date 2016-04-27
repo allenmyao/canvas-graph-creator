@@ -11,6 +11,10 @@ button, input[type="button"] {
   transition: all 0.15s ease-out;
   cursor: pointer;
 
+  &:disabled {
+    cursor: default;
+  }
+
   &.btn-default {
     background: none;
     color: $primary-gray-color;
@@ -22,21 +26,38 @@ button, input[type="button"] {
     box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px $primary-color;
 
     &:disabled {
-      color: $primary-gray-lightest-color;
+      color: rgba($primary-gray-color, 0.24);
     }
 
-    &:hover {
-      background: $primary-gray-lightest-color;
+    &:not(:disabled):not(:active):hover {
+      background: rgba($primary-gray-color, 0.12);
     }
 
     &:active {
-      background: $primary-gray-lighter-color;
+      background: rgba($primary-gray-color, 0.24);
     }
   }
 
   &.btn-primary {
     background: $primary-color;
     color: white;
+
+    &.btn-flat {
+      background: white;
+      color: $primary-color;
+
+      &:disabled {
+        color: rgba($primary-color, 0.24);
+      }
+
+      &:not(:disabled):not(:active):hover {
+        background: rgba($primary-color, 0.12);
+      }
+
+      &:active {
+        background: rgba($primary-color, 0.24);
+      }
+    }
   }
 
   &.btn-raised {
