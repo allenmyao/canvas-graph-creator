@@ -11,50 +11,46 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   font-weight: $font-weight-nav;
 
-  >div {
-    display: inline-block;
-    height: 100%;
-    vertical-align: top;
-    margin-right: 5px;
-  }
-
   .logo {
-    display: inline-block;
-    height: 100%;
-    padding: 6px;
+    margin-right: 10px;
+    padding: 10px 0;
     line-height: 30px;
     font-size: 1.3em;
-    color: white;
+  }
 
-    >img{
+  .logo-img {
+    padding: 7px 5px;
+    >img {
       height: 100%;
+    }
+  }
+
+  ul {
+    display: block;
+    height: 100%;
+    margin-left: 10px;
+  }
+
+  li {
+    vertical-align: top;
+    display: inline-block;
+    height: 100%;
+
+    &.nav-item {
+      margin-left: 0px;
+
+      &:hover {
+        background: $primary-alt-color;
+      }
     }
   }
 
   a {
-    color: white;
-    text-decoration: none;
-  }
-
-  ul.nav-list {
-    display: inline-block;
+    display: block;
     height: 100%;
-
-    li {
-      display: inline-block;
-      height: 100%;
-
-      a {
-        display: block;
-        height: 100%;
-        padding: 15px;
-        line-height: 20px;
-        font-size: 1em;
-
-        &:hover {
-          background: $primary-alt-color;
-        }
-      }
-    }
+    padding: 15px;
+    line-height: 20px;
+    font-size: 1em;
+    color: white;
   }
 }
