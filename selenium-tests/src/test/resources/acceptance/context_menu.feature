@@ -12,7 +12,7 @@ access different tools.
   Scenario: Using the delete node function of context menu should delete a node
     When I create a node named Node1 at 500, 500
       And I open the context menu at 500, 500
-      And choose the Delete Node option
+      And choose the Delete option
     Then there should be no nodes
         
   Scenario: Using toggle accept state should make a node an accepting node
@@ -32,7 +32,7 @@ access different tools.
       And another node named Node 2 at 550, 550
   	  And add an edge between Node 1 and Node 2
       And I open the context menu at 525, 525
-      And choose the Delete Edge option
+      And choose the Delete option
     Then the screen should match 'no_edge.png'
     
   Scenario: Using toggle directed edge should make an edge a directed edge
@@ -42,4 +42,11 @@ access different tools.
       And I open the context menu at 525, 525
       And choose the Toggle Directed Edge option
     Then the screen should match 'directed_edge.png'
-  
+    
+  Scenario: Using add edge function of context menu should create an edge
+    When I create a node named Node 1 at 500, 500
+      And another node named Node 2 at 550, 550
+      And I open the context menu at 500, 500
+      And choose the Add Edge option
+      And click on Node 2
+    Then the screen should match 'edge.png'

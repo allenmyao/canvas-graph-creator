@@ -1,9 +1,8 @@
 import NodeTool from '../tool/node-tool';
 import EdgeTool from '../tool/edge-tool';
-import MoveTool from '../tool/move-tool';
 import EraseTool from '../tool/erase-tool';
 import PanTool from '../tool/pan-tool';
-import SelectTool from '../tool/select-tool';
+import SelectMoveTool from '../tool/select-move-tool';
 import AlgorithmTool from '../tool/algorithm-tool';
 
 const TOOL_CLASS = 'tool';
@@ -18,9 +17,8 @@ class Toolbar {
   toolMap = {
     node: new NodeTool(),
     edge: new EdgeTool(),
-    move: new MoveTool(),
     erase: new EraseTool(),
-    select: new SelectTool(),
+    select: new SelectMoveTool(),
     pan: new PanTool(),
     algorithm: new AlgorithmTool()
   };
