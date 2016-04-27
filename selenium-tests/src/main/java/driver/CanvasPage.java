@@ -74,6 +74,13 @@ public abstract class CanvasPage {
 	{
 		new Actions(driver).moveToElement(canvas, point.x, point.y).contextClick().build().perform();   
 	}
+	private int steps(Point source, Point target, int stepDistance)
+	{
+		double diffX = (target.x - source.x);
+		double diffY = (target.y - source.y);
+		double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+		return (int)(distance/stepDistance);
+	}
 	public void clickAndDrag(List<Point> points)
 	{
 		if(points.size() < 2)
@@ -83,8 +90,17 @@ public abstract class CanvasPage {
 		Actions actions = new Actions(driver).moveToElement(canvas, curr.x, curr.y).clickAndHold();
 		for(int i = 1; i < points.size(); i++)
 		{
-			curr = points.get(i);
-			actions = actions.moveToElement(canvas, curr.x, curr.y);
+			Point target = points.get(i);
+			int steps = steps(curr, target, 10);
+			int deltaX = (target.x - curr.x) / steps;
+			int deltaY = (target.y - curr.y) / steps;
+			
+			for(int j = 0; j < steps; j++)
+			{
+				actions = actions.moveByOffset(deltaX, deltaY);
+			}
+			actions = actions.moveToElement(canvas, target.x, target.y);
+			curr = target;
 		}
 		actions = actions.release();
 		actions.build().perform();
@@ -167,3 +183,4 @@ public abstract class CanvasPage {
 	}
 
 }
+
