@@ -87,9 +87,7 @@ public class CGCSteps {
 
 	@When("^.*click and drag from (.*)$")
 	public void clickAndDrag(@Transform(PointListTransformer.class) List<Point> points) throws Throwable {
-		// When I click and drag from (0, 1) to (1, 2) to (2, 3)
-		for (Point p : points)
-			System.out.println(p);
+		cgc.clickAndDrag(points);
 	}
 
 	@When("^.*change the tool mode to ([a-z-]+)")
