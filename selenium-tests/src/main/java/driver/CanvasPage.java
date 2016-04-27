@@ -7,7 +7,9 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -71,6 +73,45 @@ public abstract class CanvasPage {
 	public void openContextMenu(Point point)
 	{
 		new Actions(driver).moveToElement(canvas, point.x, point.y).contextClick().build().perform();   
+	}
+	private int steps(Point source, Point target, int stepDistance)
+	{
+		double diffX = (target.x - source.x);
+		double diffY = (target.y - source.y);
+		double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+		return (int)(distance/stepDistance);
+	}
+	public void clickAndDrag(List<Point> points)
+	{
+		if(points.size() < 2)
+			throw new IllegalArgumentException("Click and drag must have at least 2 points");
+
+		Point curr = points.get(0);
+		Actions actions = new Actions(driver).moveToElement(canvas, curr.x, curr.y).clickAndHold();
+		for(int i = 1; i < points.size(); i++)
+		{
+			Point target = points.get(i);
+			int steps = steps(curr, target, 10);
+			if(steps > 0)
+			{
+				int deltaX = (target.x - curr.x) / steps;
+				int deltaY = (target.y - curr.y) / steps;
+				
+				for(int j = 0; j < steps; j++)
+				{
+					System.out.println("moving by " + deltaX + ", " + deltaY);
+					actions = actions.moveByOffset(deltaX, deltaY);
+				}
+			}
+			actions = actions.moveToElement(canvas, target.x, target.y);
+			curr = target;
+		}
+		actions = actions.release();
+		actions.build().perform();
+	}
+	public void clickAndDrag(Point... points)
+	{
+		clickAndDrag(Arrays.asList(points));
 	}
 	
 	public void click(String cssSelector, Point offset)
@@ -139,9 +180,11 @@ public abstract class CanvasPage {
 
         return ImageIO.read(new ByteArrayInputStream(arrScreen));
 
+        //use the following for pages that can scroll
 		//return new AShot().coordsProvider(new WebDriverCoordsProvider())
 		  //.takeScreenshot(driver, canvas).getImage();
 		//return new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver).getImage();
 	}
 
 }
+
