@@ -87,7 +87,7 @@ export class Serializer {
   }
 
    /**
-   * exports element of graph in object form
+   * Exports element of graph in object form
    * @param {Object} elem is the element of graph to be exported
    * @param {Object} cache is a remnant of the original serializer
    * @param {string} path is a remnant of the original serializer
@@ -146,7 +146,7 @@ export class Serializer {
   }
 
   /**
-   * is called when user wants to download the graph
+   * Is called when user wants to download the graph
    */
   downloadGraph() {
     let graphStr = JSON.stringify(this.serializeGraph());
@@ -171,8 +171,8 @@ export class Serializer {
   }
 
   /**
-   * abstracts graph into outputOBj
-   * @returns {Object} outputOBj will be stringifyed, contains graph data
+   * Abstracts graph into outputOBj
+   * @returns {Object} outputObj JSON object that can be stringified, contains graph data
    */
   serializeGraph() {
     let obj = this.currentGraph;
@@ -214,9 +214,9 @@ export class Serializer {
   }
 
   /**
-   * Not sure
-   * @param {string} name of element to allocate
-   * @returns {string} this is return description.
+   * Helper function to construct empty objects by class name
+   * @param {string} name of element tyoe to allocate
+   * @returns {Object} the constructed object
    */
   allocateElement(name) {
     // Element allocation of type has type 'name'
@@ -231,12 +231,12 @@ export class Serializer {
   }
 
   /**
-   * reads the elem contents and converts it to newElem
+   * Reads the elem contents and converts it to a raw JSON object newElem
    * @param {Object} elem is the element of graph to be imported
    * @param {Object} newElem is the return element and contains the imported data
-   * @param {Object} nodeCache is a remnant of the original serializer
-   * @param {Object} edgeCache is a remnant of the original serializer
-   * @returns {string} newElem
+   * @param {Object} nodeCache allows for loading references to existing nodes
+   * @param {Object} edgeCache allows for loading references to existing edges
+   * @returns {Object} newElem a fully initialized graph element.
    */
   importElement(elem, newElem, nodeCache, edgeCache) {
     let key;
@@ -244,7 +244,7 @@ export class Serializer {
     let refKey;
     let arrayElem;
     let addObj;
-   // Element found of type 'elem[IDTYPE]''
+   // Element found of type 'elem[IDTYPE]'
     delete elem[IDTYPE];
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
@@ -310,20 +310,21 @@ export class Serializer {
   }
 
   /**
-   * will not run if the JSON reader fails. Loads the graph from JSON file
+   * Will not run if the JSON reader fails. Loads the graph from JSON file
    */
   uploadGraph() {
     let obj;
+    let deserializeInfo;
     if (typeof this.reader.result === 'undefined' || this.reader.result === '') {
       return;
     }
     try {
       obj = JSON.parse(this.reader.result);
+      deserializeInfo = this.deserializeGraph(obj);
     } catch (ex) {
-      // Exception thrown from Parser
+      // Exception thrown from parser or deserializer. Abort.
       return;
     }
-    let deserializeInfo = this.deserializeGraph(obj);
     Node.numNodes = deserializeInfo.nodes;
     Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
@@ -334,23 +335,24 @@ export class Serializer {
    */
   importGraph() {
     let obj;
+    let deserializeInfo;
     if (this.quickString === '') {
       return;
     }
     try {
       obj = JSON.parse(this.quickString);
+      deserializeInfo = this.deserializeGraph(obj);
     } catch (ex) {
-      // Exception thrown from Parser
+      // Exception thrown from parser or deserializer. Abort.
       return;
     }
-    let deserializeInfo = this.deserializeGraph(obj);
     Node.numNodes = deserializeInfo.nodes;
     Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
   }
 
   /**
-   * reads the graph data and creates new elements accordingly
+   * Reads the graph data and creates new elements accordingly
    * @param {Object} obj is the graph data contained in obj
    * @returns {Object} data containing the graph and nodes and edge counts
    */
