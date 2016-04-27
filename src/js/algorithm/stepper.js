@@ -17,7 +17,7 @@ export default class Stepper {
   }
 
   resetGraph() {
-    while(this.result.stepIndex !== -1) {
+    while (this.result.stepIndex !== -1) {
       this.result.stepBackward();
     }
   }
