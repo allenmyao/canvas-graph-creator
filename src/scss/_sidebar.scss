@@ -18,21 +18,12 @@
 
     .tab-content {
       overflow-y: auto;
+
+      &.no-scroll {
+        overflow-y: hidden;
+      }
     }
   }
-
-  output {
-    height: 34px;
-
-    // &:empty {
-    //   display: none;
-    // }
-  }
-
-  button {
-    margin-top: 5px;
-  }
-
 
   form {
     display: block;
@@ -48,6 +39,49 @@
   .graph-link {
     font-size: 1rem;
     cursor: pointer;
+  }
+
+  .algorithm-content {
+    align-items: stretch;
+    flex-flow: column nowrap;
+    display: flex;
+    height: 100%;
+
+    .algorithm-controls {
+      z-index: index($zindexes, navigation);
+      width: 100%;
+      border-bottom: 1px solid $primary-gray-lightest-color;
+      background: white;
+      text-align: center;
+
+      button {
+        margin: 10px 5px 0 5px;
+        padding: 10px;
+      }
+
+      .algorithm-speed {
+        margin-bottom: 15px;
+      }
+    }
+
+    .speed-notch {
+      width: 1.25em;
+      height: 1.25em;
+      display: inline-block;
+      background: $primary-gray-lightest-color;
+      border-radius: 50%;
+      color: white;
+      margin-top: 1em;
+
+      &--active {
+        background: $primary-color;
+      }
+    }
+
+    .algorithm-results {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
   }
 
 }

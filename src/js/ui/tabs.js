@@ -36,6 +36,12 @@ class Tabs {
     tabContentElement.innerHTML = content;
   }
 
+  setTabScroll(tab, shouldScroll) {
+    if (!shouldScroll) {
+      this.getTabContentElement(tab).classList.add('no-scroll');
+    }
+  }
+
   addTab(name, displayName) {
     let tabs = this.tabList.children;
     for (let i = 0; i < tabs.length; i++) {
@@ -111,9 +117,9 @@ class Tabs {
   updateTabListDisplay() {
     let displayedTabs = this.tabList.querySelectorAll(`.${TAB_CLASS}:not(.hidden)`);
     if (displayedTabs.length <= 1) {
-      this.tabList.classList.add('hidden');
+      this.tabContainer.classList.add('hidden-tabs');
     } else {
-      this.tabList.classList.remove('hidden');
+      this.tabContainer.classList.remove('hidden-tabs');
     }
   }
 

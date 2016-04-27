@@ -32,16 +32,3 @@
     }
   }
 }
-
-.tool-input-list {
-  display: block;
-  font-size: 0;
-
-  >.tool-input {
-    display: inline-block;
-
-    >.tinput {
-      margin: 10px 0 10px 10px;
-    }
-  }
-}

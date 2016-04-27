@@ -1,4 +1,4 @@
-/* eslint no-unused-expressions: 0 */
+/* eslint-disable no-unused-expressions, max-nested-callbacks */
 
 import chai from 'chai';
 chai.should();
@@ -24,16 +24,18 @@ describe('TraversalAlgorithm', () => {
       (algorithm.inputs).should.have.property('source');
     });
 
-    it('should reuire "source" to be a Node', () => {
+    it('should require "source" to be a Node', () => {
       let graph = new Graph();
       let node1 = new Node(0, 0);
       let node2 = new Node(100, 100);
       let edge = new Edge(node1, node2);
       let algorithm = new TraversalAlgorithm(graph);
 
-      (algorithm.inputs.source.test(node1)).should.be.true;
-      (algorithm.inputs.source.test(edge)).should.be.false;
-      (algorithm.inputs.source.test({})).should.be.false;
+      let inputField = algorithm.inputTypes.filter((field) => field.name === 'source')[0];
+
+      (inputField.test(node1)).should.be.true;
+      (inputField.test(edge)).should.be.false;
+      (inputField.test({})).should.be.false;
     });
   });
 
