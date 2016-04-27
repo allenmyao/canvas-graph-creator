@@ -32,6 +32,7 @@ public class CGCPage extends CanvasPage {
 			shortcuts = new HashMap<String, String>();
 			shortcuts.put("Edge", "#toolbar .tool[data-tool=\"edge\"]");
 			shortcuts.put("Node", "#toolbar .tool[data-tool=\"node\"]");
+			shortcuts.put("Erase" "#toolbar .tool[data-tool=\"erase\"]");
 			shortcuts.put("Toggle Directed Edge", "#context-menu > ul:nth-child(2) > li");
 
       shortcuts.put("Add Edge", "#context-menu > ul:nth-child(1) > li:nth-child(1)");
