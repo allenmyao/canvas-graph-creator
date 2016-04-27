@@ -143,6 +143,20 @@ public class CGCPage extends CanvasPage {
 		clickCanvas(node.point);
 	}
 	
+	/**
+	 * Triggers a Quicksave
+	 */
+	public void quickSave() {
+		click("button[id=export-graph-button]", new Point(10, 10));
+	}
+
+	/**
+	 * Triggers a Quickload
+	 */
+	public void quickLoad() {
+		click("button[id=import-graph-button]", new Point(10, 10));
+	}
+
 	@Override
 	public void initialize(String website) {
 		super.initialize(website);
