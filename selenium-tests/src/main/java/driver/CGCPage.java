@@ -15,12 +15,14 @@ import model.Node;
 
 public class CGCPage extends CanvasPage {
 
-	public static String CANVAS_CSS_SELECTOR = "#canvas";
-	public static String RESET_ZOOM_SELECTOR = "#reset-transform";
+	public static final String EXPORT_CSS_SELECTOR = "#export-graph-button";
+	public static final String IMPORT_CSS_SELECTOR = "#import-graph-button";
+	public static final String CANVAS_CSS_SELECTOR = "#canvas";
+	public static final String RESET_ZOOM_SELECTOR = "#reset-transform";
 
-	public static String HOME_PAGE = "http://127.0.0.1:8080/";
+	public static final String HOME_PAGE = "http://127.0.0.1:8080/";
 
-	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
+	public static final String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
 
 	public static Map<String, String> shortcuts;
@@ -147,14 +149,14 @@ public class CGCPage extends CanvasPage {
 	 * Triggers a Quicksave
 	 */
 	public void quickSave() {
-		click("button[id=export-graph-button]", new Point(10, 10));
+		selectTool(EXPORT_CSS_SELECTOR);
 	}
 
 	/**
 	 * Triggers a Quickload
 	 */
 	public void quickLoad() {
-		click("button[id=import-graph-button]", new Point(10, 10));
+		selectTool(IMPORT_CSS_SELECTOR);
 	}
 
 	@Override
