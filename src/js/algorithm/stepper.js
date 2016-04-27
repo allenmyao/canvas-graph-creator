@@ -16,13 +16,19 @@ export default class Stepper {
   speedUp() {
     if (this.speed !== this.MIN_INTERVAL) {
       this.speed = this.speed - 200;
+      console.log(this.speed);
+      return true;
     }
+    return false;
   }
 
   slowDown() {
-    if (this.speed !== this.MAX_INVERVAL) {
+    if (this.speed !== this.MAX_INTERVAL) {
       this.speed = this.speed + 200;
+      console.log(this.speed);
+      return true;
     }
+    return false;
   }
 
   reset() {
