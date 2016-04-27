@@ -24,6 +24,10 @@ let IDEDGE = '_$$EDGE$$_';
 let IDLABEL = '_$$LABEL$$_';
 let IDDATA = '_$$DATA$$_';
 
+/**
+ * Serializer class takes care of saving
+ * and loading graph via JSON manipulation
+ */
 export class Serializer {
 
   static classesByName = {
@@ -39,6 +43,11 @@ export class Serializer {
     Label: Label
   };
 
+  /**
+   * Serializer constructor
+   * @param {Graph} graph Current graph structure
+   * @param {function} resetFn function to reset graph
+   */
   constructor(graph, resetFn) {
     this.currentGraph = graph;
     this.resetFn = resetFn;
@@ -77,6 +86,13 @@ export class Serializer {
     }
   }
 
+   /**
+   * exports element of graph in object form
+   * @param {Object} elem is the element of graph to be exported
+   * @param {Object} cache is a remnant of the original serializer
+   * @param {string} path is a remnant of the original serializer
+   * @returns {Object} outputObj contains the element object data
+   */
   exportElement(elem, cache, path) {
     let outputObj = {};
     let key;
@@ -129,6 +145,9 @@ export class Serializer {
     return outputObj;
   }
 
+  /**
+   * is called when user wants to download the graph
+   */
   downloadGraph() {
     let graphStr = JSON.stringify(this.serializeGraph());
     let element = document.createElement('a');
@@ -143,11 +162,18 @@ export class Serializer {
     document.body.removeChild(element);
   }
 
+  /**
+   * Sets value of textbox to the serialzed graph in JSON form
+   */
   exportGraph() {
     let graphStr = JSON.stringify(this.serializeGraph());
     this.quickString = graphStr;
   }
 
+  /**
+   * abstracts graph into outputOBj
+   * @returns {Object} outputOBj will be stringifyed, contains graph data
+   */
   serializeGraph() {
     let obj = this.currentGraph;
     let cache = {};
@@ -187,6 +213,11 @@ export class Serializer {
     return outputObj;
   }
 
+  /**
+   * Not sure
+   * @param {string} name of element to allocate
+   * @returns {string} this is return description.
+   */
   allocateElement(name) {
     // Element allocation of type has type 'name'
     if (name.indexOf('Node') >= 0) {
@@ -199,6 +230,14 @@ export class Serializer {
     return null;
   }
 
+  /**
+   * reads the elem contents and converts it to newElem
+   * @param {Object} elem is the element of graph to be imported
+   * @param {Object} newElem is the return element and contains the imported data
+   * @param {Object} nodeCache is a remnant of the original serializer
+   * @param {Object} edgeCache is a remnant of the original serializer
+   * @returns {string} newElem
+   */
   importElement(elem, newElem, nodeCache, edgeCache) {
     let key;
     let modKey;
@@ -270,6 +309,9 @@ export class Serializer {
     return newElem;
   }
 
+  /**
+   * will not run if the JSON reader fails. Loads the graph from JSON file
+   */
   uploadGraph() {
     let obj;
     if (typeof this.reader.result === 'undefined' || this.reader.result === '') {
@@ -287,6 +329,9 @@ export class Serializer {
     this.resetFn(deserializeInfo.graph);
   }
 
+  /**
+   * Imports the graph from JSON string
+   */
   importGraph() {
     let obj;
     if (this.quickString === '') {
@@ -304,6 +349,11 @@ export class Serializer {
     this.resetFn(deserializeInfo.graph);
   }
 
+  /**
+   * reads the graph data and creates new elements accordingly
+   * @param {Object} obj is the graph data contained in obj
+   * @returns {Object} data containing the graph and nodes and edge counts
+   */
   deserializeGraph(obj) {
     let newGraph = new Graph();
     let key;
@@ -376,8 +426,12 @@ export class Serializer {
     };
   }
 
-  // Formality, in case it's triggered by something other than us.
+  /**
+   * Resets the graph
+   * @param {Graph} newGraph is the graph data to reset with
+   */
   resetGraph(newGraph) {
+     // Formality, in case it's triggered by something other than us.
     if (newGraph instanceof Graph) {
       this.currentGraph = newGraph;
     }
