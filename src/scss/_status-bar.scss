@@ -87,6 +87,7 @@
         padding: 0;
 
         fieldset {
+          width: 128px;
           padding: 10px;
 
           label,
@@ -96,6 +97,10 @@
             margin: 0 5px;
           }
         }
+      }
+
+      #zoom-input {
+        width: 80px;
       }
     }
   }
