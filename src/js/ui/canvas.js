@@ -106,7 +106,6 @@ class Canvas {
 
   initListeners() {
     this.canvas.addEventListener('mousedown', (event) => {
-      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
@@ -123,7 +122,6 @@ class Canvas {
     });
 
     window.addEventListener('mouseup', (event) => {
-      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
@@ -136,7 +134,6 @@ class Canvas {
     });
 
     window.addEventListener('mousemove', (event) => {
-      event.preventDefault();
       event.stopPropagation();
       let x = this.getCanvasX(event);
       let y = this.getCanvasY(event);
@@ -215,13 +212,13 @@ class Canvas {
       this.ui.statusBar.updateZoom(this.scale);
     });
 
-    this.canvas.addEventListener('selectstart', (event) => {
+    document.addEventListener('selectstart', (event) => {
       event.stopPropagation();
       event.preventDefault();
       return false;
     });
 
-    this.canvas.addEventListener('dblclick', (event) => {
+    document.addEventListener('dblclick', (event) => {
       event.stopPropagation();
       event.preventDefault();
       return false;
