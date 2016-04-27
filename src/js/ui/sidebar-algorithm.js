@@ -2,6 +2,7 @@ import SidebarContent from '../ui/sidebar-content';
 import Node from '../data/node/node';
 import Edge from '../data/edge/edge';
 import Stepper from '../algorithm/stepper';
+import scrollToElement from '../util/scroll-to-element';
 
 class SidebarAlgorithm extends SidebarContent {
 
@@ -161,6 +162,8 @@ class SidebarAlgorithm extends SidebarContent {
     let step = this.tabs.getTabContentElement('algorithm').querySelector(`.stepper__step[data-index="${this.stepper.result.stepIndex}"]`);
     if (step) {
       step.classList.add('stepper__step--active');
+      let resultsContainer = document.getElementById('sidebar').querySelector('.algorithm-results');
+      scrollToElement(resultsContainer, step.offsetTop - resultsContainer.offsetTop - 10, 100, 'easeInOutSine');
     }
   }
 
