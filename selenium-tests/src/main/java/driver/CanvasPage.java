@@ -1,6 +1,7 @@
 package driver;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -170,7 +171,10 @@ public abstract class CanvasPage {
 	    });
 	}
 	public void assertContains(String path) throws IOException, URISyntaxException {
-		assertContains(path, 1);
+		BufferedImage template = getResource(path);
+		//BufferedImage screenshot = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());;
+		BufferedImage screenshot = getScreenshot();
+		assertTrue(ImageUtils.templateMatch(template, screenshot).size() >= 1);
 	}
 	public void assertContains(String path, int count) throws IOException, URISyntaxException
 	{
