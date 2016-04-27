@@ -37,9 +37,21 @@ class SidebarAlgorithm extends SidebarContent {
           event.target.textContent = 'Pause';
         }
       } else if (event.target.classList.contains('algorithm-speed-up-btn')) {
-        this.stepper.speedUp();
+        if(this.stepper.speedUp() === true) {
+          let speed = this.tabs.getTabContentElement('algorithm').querySelector(`.speed-notch--active`);
+          if (speed) {
+            speed.classList.remove('speed-notch--active');
+            speed.nextElementSibling.classList.add('speed-notch--active');
+          }
+        }
       } else if (event.target.classList.contains('algorithm-slow-down-btn')) {
-        this.stepper.slowDown();
+        if(this.stepper.slowDown() === true) {
+          let speed = this.tabs.getTabContentElement('algorithm').querySelector(`.speed-notch--active`);
+          if (speed) {
+            speed.classList.remove('speed-notch--active');
+            speed.previousElementSibling.classList.add('speed-notch--active');
+          }
+        }
       }
     });
 
@@ -221,6 +233,11 @@ class SidebarAlgorithm extends SidebarContent {
           <button type="button" class="algorithm-next-btn btn-flat" disabled>Next step</button>
           <div class="algorithm-speed">
             <button type="button" class="algorithm-slow-down-btn btn-flat" disabled>Slower</button>
+            <div class="speed-notch"><<</div>
+            <div class="speed-notch"><</div>
+            <div class="speed-notch speed-notch--active">.</div>
+            <div class="speed-notch">></div>
+            <div class="speed-notch">>></div>
             <button type="button" class="algorithm-speed-up-btn btn-flat" disabled>Faster</button>
           </div>
         </div>
