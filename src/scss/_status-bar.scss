@@ -61,7 +61,7 @@
           }
         }
 
-        button[id=reset-transform] {
+        #reset-transform {
           display: inline-block;
           vertical-align: middle;
           height: 100%;
@@ -101,6 +101,10 @@
 
       #zoom-input {
         width: 80px;
+      }
+
+      #serialization {
+        padding: 0 20px;
       }
     }
   }
