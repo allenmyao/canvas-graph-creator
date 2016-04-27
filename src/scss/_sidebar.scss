@@ -48,11 +48,12 @@
     height: 100%;
 
     .algorithm-controls {
+      z-index: index($zindexes, navigation);
       width: 100%;
       height: 100px;
-      text-align: center;
+      border-bottom: 1px solid $primary-gray-lightest-color;
       background: white;
-      z-index: index($zindexes, navigation);
+      text-align: center;
     }
 
     .algorithm-results {
