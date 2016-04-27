@@ -3,6 +3,7 @@ node_modules/
 
 # output files
 dist/
+selenium-tests/target/
 esdoc/
 
 # test output

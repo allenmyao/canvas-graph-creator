@@ -1,6 +1,6 @@
-button {
+button, input[type="button"] {
   max-width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   border: 0;
   border-radius: $default-border-radius;
   outline: 0;
@@ -11,6 +11,10 @@ button {
   transition: all 0.15s ease-out;
   cursor: pointer;
 
+  &:disabled {
+    cursor: default;
+  }
+
   &.btn-default {
     background: none;
     color: $primary-gray-color;
@@ -19,18 +23,17 @@ button {
   &.btn-secondary {
     background: none;
     color: $primary-gray-color;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px $primary-color;
 
     &:disabled {
-      color: $primary-gray-lightest-color;
+      color: rgba($primary-gray-color, 0.24);
     }
 
-    &:hover {
-      background: $primary-gray-lightest-color;
+    &:not(:disabled):not(:active):hover {
+      background: rgba($primary-gray-color, 0.12);
     }
 
     &:active {
-      background: $primary-gray-lighter-color;
+      background: rgba($primary-gray-color, 0.24);
     }
   }
 
@@ -54,16 +57,38 @@ button {
   &.btn-primary {
     background: $primary-color;
     color: white;
+
+    &.btn-flat {
+      background: white;
+      color: $primary-color;
+
+      &:disabled {
+        color: rgba($primary-color, 0.24);
+      }
+
+      &:not(:disabled):not(:active):hover {
+        background: rgba($primary-color, 0.12);
+      }
+
+      &:active {
+        background: rgba($primary-color, 0.24);
+      }
+    }
   }
 
   &.btn-raised {
     box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .20);
+
+    &:not(.btn-primary) {
+      background: white;
+    }
 
     &:active {
       box-shadow: 0 10px 20px rgba(0, 0, 0, .20), 0 6px 6px rgba(0, 0, 0, .25);
     }
 
     &:disabled {
+      background: rgba($primary-gray-color, 0.12);
       box-shadow: none;
     }
   }

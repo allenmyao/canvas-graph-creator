@@ -2,6 +2,7 @@ import SidebarContent from '../ui/sidebar-content';
 import Node from '../data/node/node';
 import Edge from '../data/edge/edge';
 import Stepper from '../algorithm/stepper';
+import scrollToElement from '../util/scroll-to-element';
 
 class SidebarAlgorithm extends SidebarContent {
 
@@ -36,16 +37,16 @@ class SidebarAlgorithm extends SidebarContent {
           event.target.textContent = 'Pause';
         }
       } else if (event.target.classList.contains('algorithm-speed-up-btn')) {
-        if(this.stepper.speedUp() === true) {
-          let speed = this.tabs.getTabContentElement('algorithm').querySelector(`.speed-notch--active`);
+        if (this.stepper.speedUp() === true) {
+          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');
           if (speed) {
             speed.classList.remove('speed-notch--active');
             speed.nextElementSibling.classList.add('speed-notch--active');
           }
         }
       } else if (event.target.classList.contains('algorithm-slow-down-btn')) {
-        if(this.stepper.slowDown() === true) {
-          let speed = this.tabs.getTabContentElement('algorithm').querySelector(`.speed-notch--active`);
+        if (this.stepper.slowDown() === true) {
+          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');
           if (speed) {
             speed.classList.remove('speed-notch--active');
             speed.previousElementSibling.classList.add('speed-notch--active');
@@ -173,6 +174,8 @@ class SidebarAlgorithm extends SidebarContent {
     let step = this.tabs.getTabContentElement('algorithm').querySelector(`.stepper__step[data-index="${this.stepper.result.stepIndex}"]`);
     if (step) {
       step.classList.add('stepper__step--active');
+      let resultsContainer = document.getElementById('sidebar').querySelector('.algorithm-results');
+      scrollToElement(resultsContainer, step.offsetTop - resultsContainer.offsetTop - 10, 100, 'easeInOutSine');
     }
   }
 
@@ -225,17 +228,19 @@ class SidebarAlgorithm extends SidebarContent {
     let html = `
       <div class="algorithm-content">
         <div class="algorithm-controls">
-          <button type="button" class="algorithm-prev-btn btn-secondary" disabled>Previous step</button>
-          <button type="button" class="algorithm-play-toggle-btn btn-secondary" disabled>Play</button>
-          <button type="button" class="algorithm-next-btn btn-secondary" disabled>Next step</button>
+          <div class="algorithm-step-controls">
+            <button type="button" class="algorithm-prev-btn btn-raised" disabled>Previous step</button>
+            <button type="button" class="algorithm-play-toggle-btn btn-raised" disabled>Play</button>
+            <button type="button" class="algorithm-next-btn btn-raised" disabled>Next step</button>
+          </div>
           <div class="algorithm-speed">
-            <button type="button" class="algorithm-slow-down-btn btn-secondary" disabled>Slower</button>
+            <button type="button" class="algorithm-slow-down-btn btn-raised" disabled>Slower</button>
             <div class="speed-notch"><<</div>
             <div class="speed-notch"><</div>
             <div class="speed-notch speed-notch--active">.</div>
             <div class="speed-notch">></div>
             <div class="speed-notch">>></div>
-            <button type="button" class="algorithm-speed-up-btn btn-secondary" disabled>Faster</button>
+            <button type="button" class="algorithm-speed-up-btn btn-raised" disabled>Faster</button>
           </div>
         </div>
         <div class="algorithm-results">

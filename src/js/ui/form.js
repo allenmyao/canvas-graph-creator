@@ -139,7 +139,7 @@ export function createGraphForm(fields, canSubmit, submitText) {
         <input type="hidden" name="${name}" data-type="${type}" ${value ? 'value="${value.id}"' : ''} ${isRequired ? 'required' : ''}>
         <label>${displayName}</label>
         <output name="${name}">${value ? type + value.id : ' '}</output>
-        <button type="button" class="input-select-btn btn-secondary">Select</button>
+        <button type="button" class="input-select-btn btn-raised">Select</button>
       `;
     }
 
@@ -150,7 +150,11 @@ export function createGraphForm(fields, canSubmit, submitText) {
     `;
   }
 
+<<<<<<< HEAD
   html += `<button type="button" class="form__submit-btn btn-secondary">${submitText}</button>`;
+=======
+  html += `<button type="button" class="form__submit-btn btn-raised btn-primary">${submitText}</button>`;
+>>>>>>> f4e04ddb46953ad023dfcb9e19e2fbe76da767fb
 
   return html;
 }

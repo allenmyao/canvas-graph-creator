@@ -12,13 +12,15 @@ class Edge {
   static numEdges = 0;
   id = Edge.numEdges++;
 
+  // Line Control
+  startPoint = { x: 0, y: 0 };
+  bezierPoint = { x: 0, y: 0 };
+  destPoint = { x: 0, y: 0 };
+
   // graph data
-  startNode;
-  destNode;
-  isDirected;
-  startPoint = null;
-  destPoint = null;
-  bezierPoint = null;
+  startNode = null;
+  destNode = null;
+  isDirected = false;
   partners = [];
 
   // status
@@ -50,33 +52,37 @@ class Edge {
     this.startNode = startNode;
     this.destNode = destNode;
 
-    startNode.edges.add(this);
-    destNode.edges.add(this);
+    if (this.startNode !== null && this.destNode !== null) {
+      this.startNode.edges.add(this);
+      this.destNode.edges.add(this);
 
-    // copy partners from an existing partner edge
-    for (let edge of this.startNode.edges) {
-      if (edge.startNode === this.startNode && edge.destNode === this.destNode) {
-        this.partners = edge.partners.slice(0);
-        break;
-      } else if (edge.destNode === this.startNode && edge.startNode === this.destNode) {
-        this.partners = edge.partners.slice(0);
-        break;
+      // copy partners from an existing partner edge
+      for (let edge of this.startNode.edges) {
+        if (edge.startNode === this.startNode && edge.destNode === this.destNode) {
+          this.partners = edge.partners.slice(0);
+          break;
+        } else if (edge.destNode === this.startNode && edge.startNode === this.destNode) {
+          this.partners = edge.partners.slice(0);
+          break;
+        }
       }
-    }
 
-    // add this edge to partners field of all partner edges
-    for (let i = 0; i < this.partners.length; i++) {
-      this.partners[i].partners.push(this);
-    }
-    this.partners.push(this);
-
-    if (this.startNode === this.destNode) {
-      this.isDirected = true;
-      this.updateEndpoints();
-    } else {
+      // add this edge to partners field of all partner edges
       for (let i = 0; i < this.partners.length; i++) {
-        this.partners[i].updateEndpoints();
+        this.partners[i].partners.push(this);
       }
+      this.partners.push(this);
+
+      if (this.startNode === this.destNode) {
+        this.isDirected = true;
+        this.updateEndpoints();
+      } else {
+        for (let i = 0; i < this.partners.length; i++) {
+          this.partners[i].updateEndpoints();
+        }
+      }
+    } else {
+      this.partners.push(this);
     }
 
     this.label = new Label(this.bezierPoint.x, this.bezierPoint.y, this);
@@ -92,9 +98,15 @@ class Edge {
       this.partners[i].partners.splice(index, 1);
       this.partners[i].updateEndpoints();
     }
+    this.partners = [];
+    this.partners.push(this);
 
-    this.startNode.edges.delete(this);
-    this.destNode.edges.delete(this);
+    if (this.startNode !== null) {
+      this.startNode.edges.delete(this);
+    }
+    if (this.destNode !== null) {
+      this.destNode.edges.delete(this);
+    }
     this.startNode = null;
     this.destNode = null;
   }
