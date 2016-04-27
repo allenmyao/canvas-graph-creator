@@ -10,6 +10,8 @@ import { CircleNode as Node } from '../src/js/data/node/circle-node';
 import { HexagonNode } from '../src/js/data/node/hexagon-node';
 import { SolidEdge as Edge } from '../src/js/data/edge/solid-edge';
 
+let IDSET = '_$$SET$$_';
+
 describe('Serializer', () => {
   describe('#constructor', () => {
     it('creates instance of Serializer', () => {
@@ -26,10 +28,10 @@ describe('Serializer', () => {
       let serializer = new Serializer(graph, fn);
       let serialObj = serializer.serializeGraph();
       console.log(JSON.stringify(serialObj));
-      (serialObj.hasOwnProperty('_$$SET$$_edges')).should.be.true;
-      (serialObj.hasOwnProperty('_$$SET$$_nodes')).should.be.true;
-      (serialObj._$$SET$$_nodes.length).should.equal(0);
-      (serialObj._$$SET$$_edges.length).should.equal(0);
+      (serialObj.hasOwnProperty(IDSET +'edges')).should.be.true;
+      (serialObj.hasOwnProperty(IDSET + 'nodes')).should.be.true;
+      (serialObj[IDSET + 'nodes'].length).should.equal(0);
+      (serialObj[IDSET + 'edges'].length).should.equal(0);
     });
 
     it('should create valid graph obj import', () => {
@@ -43,6 +45,19 @@ describe('Serializer', () => {
       graph2.nodes.size.should.equal(0);
       graph2.edges.size.should.equal(0);
       (graph2 === graph).should.be.false;
+    });
+
+    it('should fail cleanly on importing malformed input', () => {
+      let badInput = JSON.parse('{"_$$SET$$_nodes":[{"NotANode":0}],"Everything":42}');
+      let deserializeInfo = null;
+      try {
+        deserializeInfo = serializer.deserializeGraph(badInput);
+        // should never be reached
+        (0).should.equal(1);
+      } catch(ex) {
+        (ex).should.be.instanceof(Error);
+        (deserializeInfo === null).should.be.true;
+      }
     });
   });
 
@@ -63,10 +78,10 @@ describe('Serializer', () => {
       let fn = function (g) {};
       let serializer = new Serializer(graph, fn);
       let serialObj = serializer.serializeGraph();
-      (serialObj.hasOwnProperty('_$$SET$$_edges')).should.be.true;
-      (serialObj.hasOwnProperty('_$$SET$$_nodes')).should.be.true;
-      let edgeArray = serialObj._$$SET$$_edges;
-      let nodeArray = serialObj._$$SET$$_nodes;
+      (serialObj.hasOwnProperty(IDSET + 'edges')).should.be.true;
+      (serialObj.hasOwnProperty(IDSET + 'nodes')).should.be.true;
+      let edgeArray = serialObj[IDSET + 'edges'];
+      let nodeArray = serialObj[IDSET + 'nodes'];
       (nodeArray.length).should.equal(2);
       (edgeArray.length).should.equal(1);
     });
@@ -87,8 +102,8 @@ describe('Serializer', () => {
       let fn = function (g) {};
       let serializer = new Serializer(graph, fn);
       let serialObj = serializer.serializeGraph();
-      let edgeArray = serialObj._$$SET$$_edges;
-      let nodeArray = serialObj._$$SET$$_nodes;
+      let edgeArray = serialObj[IDSET + 'edges'];
+      let nodeArray = serialObj[IDSET + 'nodes'];
       (nodeArray.length).should.equal(2);
       (edgeArray.length).should.equal(1);
       let deserializeInfo = serializer.deserializeGraph(serialObj);
@@ -103,6 +118,7 @@ describe('Serializer', () => {
         (testEdge.id === edge1.id).should.be.true;
       }
     });
+
     it('should create valid graph obj import', () => {
       let node1 = new Node(0, 0);
       let node2 = new Node(1, 0);
@@ -125,8 +141,8 @@ describe('Serializer', () => {
       let fn = function (g) {};
       let serializer = new Serializer(graph, fn);
       let serialObj = serializer.serializeGraph();
-      let edgeArray = serialObj._$$SET$$_edges;
-      let nodeArray = serialObj._$$SET$$_nodes;
+      let edgeArray = serialObj[IDSET + 'edges'];
+      let nodeArray = serialObj[IDSET + 'nodes'];
       (nodeArray.length).should.equal(4);
       (edgeArray.length).should.equal(2);
       let deserializeInfo = serializer.deserializeGraph(serialObj);

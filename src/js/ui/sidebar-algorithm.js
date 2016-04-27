@@ -22,9 +22,9 @@ class SidebarAlgorithm extends SidebarContent {
     this.stepper = new Stepper();
     document.getElementById('sidebar').addEventListener('click', (event) => {
       if (event.target.classList.contains('run-algorithm-btn')) {
-        this.runEvent();
+        this.runEvent(event);
       } else if (event.target.classList.contains('data-select-btn')) {
-        this.selectEvent();
+        this.selectEvent(event);
       } else if (event.target.classList.contains('algorithm-next-btn')) {
         this.stepper.stepForward();
       } else if (event.target.classList.contains('algorithm-prev-btn')) {
@@ -55,7 +55,7 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
-  selectEvent() {
+  selectEvent(event) {
     let output = event.target.previousElementSibling;
     let input = output.previousElementSibling;
 
@@ -73,7 +73,7 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
-  runEvent() {
+  runEvent(event) {
     let form = event.target.parentNode;
     let data = Form.getData(form, this.graph);
 

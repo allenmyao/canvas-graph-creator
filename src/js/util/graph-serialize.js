@@ -325,6 +325,7 @@ export class Serializer {
       // Exception thrown from parser or deserializer. Abort.
       return;
     }
+    // Graph Upload OK
     Node.numNodes = deserializeInfo.nodes;
     Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
@@ -346,6 +347,7 @@ export class Serializer {
       // Exception thrown from parser or deserializer. Abort.
       return;
     }
+    // Graph Quickload OK
     Node.numNodes = deserializeInfo.nodes;
     Edge.numEdges = deserializeInfo.edges;
     this.resetFn(deserializeInfo.graph);
@@ -421,6 +423,11 @@ export class Serializer {
         }
       }
     }
+
+    if (!newGraph.validate()) {
+      throw new Error('New Graph failed validation check');
+    }
+
     return {
       nodes: maxNodeID + 1,
       edges: maxEdgeID + 1,
