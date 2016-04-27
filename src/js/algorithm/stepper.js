@@ -1,8 +1,10 @@
 export default class Stepper {
 
-  result;
+  result = null;
   speed = 500;
-  interval;
+  MAX_INTERVAL = 900;
+  MIN_INTERVAL = 100;
+  interval = null;
 
   constructor() {
   }
@@ -11,12 +13,33 @@ export default class Stepper {
     return this.algorithm;
   }
 
+  speedUp() {
+    if (this.speed !== this.MIN_INTERVAL) {
+      this.speed = this.speed - 200;
+      console.log(this.speed);
+      return true;
+    }
+    return false;
+  }
+
+  slowDown() {
+    if (this.speed !== this.MAX_INTERVAL) {
+      this.speed = this.speed + 200;
+      console.log(this.speed);
+      return true;
+    }
+    return false;
+  }
+
   reset() {
     this.pause();
     this.result = null;
   }
 
   resetGraph() {
+    if (this.result === null) {
+      return;
+    }
     while (this.result.stepIndex !== -1) {
       this.result.stepBackward();
     }
@@ -27,34 +50,28 @@ export default class Stepper {
     this.result = result;
   }
 
-  updateStepGUI(description, stepNum, stepTotal) {
-    let des = document.getElementsByClassName('algorithm-step-des');
-    let num = document.getElementsByClassName('algorithm-step-num');
-
-    if (des.length === 1 && num.length === 1) {
-      des[0].innerHTML = 'Description:  ' + description;
-      num[0].innerHTML = 'Step ' + stepNum + ' of ' + stepTotal;
-    }
-  }
-
   stepBackward() {
-    this.updateStepGUI(this.result.stepBackward(), this.result.stepIndex, this.result.timeline.length);
+    this.result.stepBackward();
   }
 
 
   stepForward() {
-    this.updateStepGUI(this.result.stepForward(), this.result.stepIndex, this.result.timeline.length);
+    this.result.stepForward();
   }
 
   pause() {
     clearInterval(this.interval);
+    this.interval = null;
   }
 
-  play() {
+  play(callback) {
     this.interval = setInterval(() => {
       if (this.result.stepIndex < this.result.timeline.length) {
         try {
           this.stepForward();
+          callback();
+          clearInterval(this.interval);
+          this.play(callback);
         } catch (e) {
           this.pause();
           throw e;

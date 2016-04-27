@@ -59,10 +59,11 @@ class Toolbar {
     this.currentToolElement = toolElement;
     this.currentToolElement.classList.add(TOOL_SELECTED_CLASS);
 
-    this.ui.topBar.showModes();
-    this.ui.topBar.showInputs();
     this.currentTool.activate();
     this.currentTool.changeMode(this.currentTool.currentMode);
+    this.ui.topBar.showModes();
+    this.ui.topBar.showInputs();
+    this.ui.topBar.showModeInputs();
   }
 
   selectToolByName(toolName) {

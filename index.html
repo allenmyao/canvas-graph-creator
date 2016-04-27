@@ -34,8 +34,9 @@
       <div id="tool-inputs">
         <form id="tool-inputs-form"></form>
       </div>
-
-      <div id="metadata-tool-inputs"></div>
+      <div id="tool-mode-inputs">
+        <form id="tool-mode-inputs-form"></form>
+      </div>
     </div>
 
     <div id="toolbar">
@@ -75,21 +76,7 @@
           <form id="zoom">
             <fieldset>
               <div class="flex">
-                <input type="text" id="zoom-input" value="100%" list="zoom-list">
-                <datalist id="zoom-list">
-                  <option value="10"></option>
-                  <option value="25"></option>
-                  <option value="50"></option>
-                  <option value="75"></option>
-                  <option value="100"></option>
-                  <option value="125"></option>
-                  <option value="150"></option>
-                  <option value="200"></option>
-                  <option value="400"></option>
-                  <option value="600"></option>
-                  <option value="800"></option>
-                  <option value="1000"></option>
-                </datalist>
+                <input type="text" id="zoom-input" value="100%">
                 <label>Zoom</label>
               </div>
             </fieldset>

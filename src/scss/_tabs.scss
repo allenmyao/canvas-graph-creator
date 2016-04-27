@@ -1,22 +1,27 @@
 .tabs-container {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
+  position: relative;
+
+  &.hidden-tabs {
+    .tab-list {
+      display: none;
+    }
+
+    .tab-content {
+      top: 0;
+    }
+  }
 
   .tab-list {
     display: block;
     width: 100%;
-    flex: 0;
-
-    &.hidden {
-      display: none;
-    }
 
     .tab {
-      display: inline-block;
       vertical-align: top;
-      padding: 10px 20px;
+      display: inline-block;
+      height: 100%;
+      padding: 20px;
       border-bottom: 2px solid transparent;
+      line-height: 10px;
       font-size: 1em;
       color: $primary-gray-color;
       transition: all 0.15s ease-out;
@@ -35,9 +40,12 @@
   }
 
   .tab-content {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
     display: none;
     width: 100%;
-    flex: 1;
 
     &.active {
       display: block;

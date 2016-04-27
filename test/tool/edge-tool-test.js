@@ -1,5 +1,3 @@
-/* eslint no-unused-expressions: 0 */
-
 import chai from 'chai';
 let should = chai.should();
 
