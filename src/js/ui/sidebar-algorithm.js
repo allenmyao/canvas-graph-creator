@@ -35,6 +35,10 @@ class SidebarAlgorithm extends SidebarContent {
           });
           event.target.textContent = 'Pause';
         }
+      } else if (event.target.classList.contains('algorithm-speed-up-btn')) {
+        this.stepper.speedUp();
+      } else if (event.target.classList.contains('algorithm-slow-down-btn')) {
+        this.stepper.slowDown();
       }
     });
 
@@ -115,6 +119,10 @@ class SidebarAlgorithm extends SidebarContent {
     let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');
     let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');
     let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');
+    let fastBtn = document.getElementById('sidebar').querySelector('.algorithm-speed-up-btn');
+    let slowBtn = document.getElementById('sidebar').querySelector('.algorithm-slow-down-btn');
+    fastBtn.disabled = false;
+    slowBtn.disabled = false;
     prevBtn.disabled = true;
     nextBtn.disabled = false;
     playBtn.disabled = false;
@@ -208,6 +216,10 @@ class SidebarAlgorithm extends SidebarContent {
           <button type="button" class="algorithm-prev-btn btn-flat" disabled>Previous step</button>
           <button type="button" class="algorithm-play-toggle-btn btn-flat" disabled>Play</button>
           <button type="button" class="algorithm-next-btn btn-flat" disabled>Next step</button>
+          <div class="algorithm-speed">
+            <button type="button" class="algorithm-slow-down-btn btn-flat" disabled>Slower</button>
+            <button type="button" class="algorithm-speed-up-btn btn-flat" disabled>Faster</button>
+          </div>
         </div>
         <div class="algorithm-results">
           <ul class="stepper"></ul>

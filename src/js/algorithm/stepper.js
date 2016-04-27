@@ -2,6 +2,8 @@ export default class Stepper {
 
   result = null;
   speed = 500;
+  MAX_INTERVAL = 900;
+  MIN_INTERVAL = 100;
   interval = null;
 
   constructor() {
@@ -9,6 +11,18 @@ export default class Stepper {
 
   getAlgorithm() {
     return this.algorithm;
+  }
+
+  speedUp() {
+    if (this.speed !== this.MIN_INTERVAL) {
+      this.speed = this.speed - 200;
+    }
+  }
+
+  slowDown() {
+    if (this.speed !== this.MAX_INVERVAL) {
+      this.speed = this.speed + 200;
+    }
   }
 
   reset() {
@@ -50,6 +64,8 @@ export default class Stepper {
         try {
           this.stepForward();
           callback();
+          clearInterval(this.interval);
+          this.play(callback);
         } catch (e) {
           this.pause();
           throw e;
