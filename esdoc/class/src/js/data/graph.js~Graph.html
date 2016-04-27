@@ -60,6 +60,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/move-tool.js~MoveTool.html">MoveTool</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/node-tool.js~NodeTool.html">NodeTool</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/pan-tool.js~PanTool.html">PanTool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/select-move-tool.js~SelectMoveTool.html">SelectMoveTool</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/select-tool.js~SelectTool.html">SelectTool</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/tool/tool.js~Tool.html">Tool</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/ui</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/canvas.js~Canvas.html">Canvas</a></span></span></li>
@@ -76,13 +77,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/top-bar.js~TopBar.html">TopBar</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/ui/ui.js~UI.html">UI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createGraphForm">createGraphForm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValueLocal">getInputValueLocal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/line-2d.js~Line2D.html">Line2D</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/graph-serialize.js~Serializer.html">Serializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/line-2d.js~Line2D.html">Line2D</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/mouse-handler.js~MouseHandler.html">MouseHandler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/queue.js~Queue.html">Queue</a></span></span></li>
@@ -91,19 +95,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/vector-2d.js~Vector2D.html">Vector2D</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bezierDerivative">bezierDerivative</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcBezierDistance">calcBezierDistance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-scrollToElement">scrollToElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Point">Point</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Graph from &apos;<span><a href="file/src/js/data/graph.js.html#lineNumber1">canvas-graph-creator/src/js/data/graph.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Graph from &apos;<span><a href="file/src/js/data/graph.js.html#lineNumber5">canvas-graph-creator/src/js/data/graph.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/data/graph.js.html#lineNumber1">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/data/graph.js.html#lineNumber5">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -504,6 +509,31 @@
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-validate">validate</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -525,7 +555,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber2">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber6">source</a></span></span>
     </span>
   </h3>
 
@@ -590,7 +620,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
@@ -630,7 +660,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber3">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber7">source</a></span></span>
     </span>
   </h3>
 
@@ -673,7 +703,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -729,7 +759,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
@@ -785,7 +815,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber125">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber153">source</a></span></span>
     </span>
   </h3>
 
@@ -841,7 +871,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber117">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber145">source</a></span></span>
     </span>
   </h3>
 
@@ -897,7 +927,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber109">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber137">source</a></span></span>
     </span>
   </h3>
 
@@ -953,7 +983,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -1025,7 +1055,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber86">source</a></span></span>
     </span>
   </h3>
 
@@ -1103,7 +1133,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber73">source</a></span></span>
     </span>
   </h3>
 
@@ -1175,7 +1205,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber91">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber119">source</a></span></span>
     </span>
   </h3>
 
@@ -1253,7 +1283,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber58">source</a></span></span>
     </span>
   </h3>
 
@@ -1309,7 +1339,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
@@ -1340,6 +1370,56 @@
 </div>
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-validate">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">validate</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber11">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 

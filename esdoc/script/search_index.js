@@ -162,9 +162,21 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "canvas-graph-creator/src/js/tool/select-move-tool.js~selectmovetool",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html",
+    "<span>SelectMoveTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/select-move-tool.js</span>",
+    "class"
+  ],
+  [
     "canvas-graph-creator/src/js/tool/select-tool.js~selecttool",
     "class/src/js/tool/select-tool.js~SelectTool.html",
     "<span>SelectTool</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/tool/select-tool.js</span>",
+    "class"
+  ],
+  [
+    "canvas-graph-creator/src/js/util/graph-serialize.js~serializer",
+    "class/src/js/util/graph-serialize.js~Serializer.html",
+    "<span>Serializer</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/graph-serialize.js</span>",
     "class"
   ],
   [
@@ -312,6 +324,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "canvas-graph-creator/src/js/ui/form.js~creategraphform",
+    "function/index.html#static-function-createGraphForm",
+    "<span>createGraphForm</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
+    "function"
+  ],
+  [
     "canvas-graph-creator/src/js/ui/form.js~displayerror",
     "function/index.html#static-function-displayError",
     "<span>displayError</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
@@ -330,6 +348,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "canvas-graph-creator/src/js/ui/form.js~getinputvaluelocal",
+    "function/index.html#static-function-getInputValueLocal",
+    "<span>getInputValueLocal</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
+    "function"
+  ],
+  [
     "canvas-graph-creator/src/js/ui/form.js~init",
     "function/index.html#static-function-init",
     "<span>init</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
@@ -342,6 +366,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "canvas-graph-creator/src/js/util/scroll-to-element.js~scrolltoelement",
+    "function/index.html#static-function-scrollToElement",
+    "<span>scrollToElement</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/scroll-to-element.js</span>",
+    "function"
+  ],
+  [
     "canvas-graph-creator/src/js/ui/ui.js~ui",
     "variable/index.html#static-variable-ui",
     "<span>ui</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/ui.js</span>",
@@ -349,79 +379,79 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber9",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber7",
     "AlgorithmResult",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber17",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber15",
     "AlgorithmResult #addStep()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber18",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber16",
     "AlgorithmResult #addStep() should add the step to timeline",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber10",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber8",
     "AlgorithmResult #constructor()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber11",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber9",
     "AlgorithmResult #constructor() should be instance of AlgorithmResult",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber56",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber54",
     "AlgorithmResult #stepBackward()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber75",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber73",
     "AlgorithmResult #stepBackward() should not step past the initial step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber66",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber64",
     "AlgorithmResult #stepBackward() should step back from index past final step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber57",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber55",
     "AlgorithmResult #stepBackward() should step backward in the timeline",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber28",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber26",
     "AlgorithmResult #stepForward()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber46",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber44",
     "AlgorithmResult #stepForward() should not step past the final step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber38",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber36",
     "AlgorithmResult #stepForward() should step forward from index before first step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber29",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber27",
     "AlgorithmResult #stepForward() should step forward in the timeline",
     "test"
   ],
@@ -757,830 +787,896 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber8",
+    "test-file/test/node-test.js.html#lineNumber6",
     "CircleNode",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber9",
+    "test-file/test/node-test.js.html#lineNumber7",
     "CircleNode #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber10",
+    "test-file/test/node-test.js.html#lineNumber8",
     "CircleNode #constructor should create instance of CircleNode",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber15",
+    "test-file/test/node-test.js.html#lineNumber13",
     "CircleNode #containsPoint",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber16",
+    "test-file/test/node-test.js.html#lineNumber14",
     "CircleNode #containsPoint should contain this point",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber20",
+    "test-file/test/node-test.js.html#lineNumber18",
     "CircleNode #containsPoint should not contain this point",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber26",
+    "test-file/test/node-test.js.html#lineNumber24",
     "CircleNode #distanceToPoint",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber27",
+    "test-file/test/node-test.js.html#lineNumber25",
     "CircleNode #distanceToPoint should do this distance calculation",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber35",
+    "test-file/test/node-test.js.html#lineNumber33",
     "CircleNode #distanceToPoint should do this negative point test",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber31",
+    "test-file/test/node-test.js.html#lineNumber29",
     "CircleNode #distanceToPoint should do this simple distance calculation 2",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber41",
+    "test-file/test/node-test.js.html#lineNumber39",
     "CircleNode #edgePointInDirection",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber47",
+    "test-file/test/node-test.js.html#lineNumber45",
     "CircleNode #edgePointInDirection should account for a point within the radius of the node",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber42",
+    "test-file/test/node-test.js.html#lineNumber40",
     "CircleNode #edgePointInDirection should do this simple point check",
     "test"
   ],
   [
     "",
-    "test-file/test/node-test.js.html#lineNumber53",
+    "test-file/test/node-test.js.html#lineNumber51",
     "CircleNode #edgePointInDirection should throw error when point is at node origin",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber11",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber9",
     "EdgeTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber87",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber85",
     "EdgeTool #cancel",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber88",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber86",
     "EdgeTool #cancel should cancel action by clearing fields",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber35",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber33",
     "EdgeTool #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber36",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber34",
     "EdgeTool #constructor should create instance of EdgeTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber41",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber39",
     "EdgeTool #hasModes",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber42",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber40",
     "EdgeTool #hasModes should return true",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber72",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber70",
     "EdgeTool #selectNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber79",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber77",
     "EdgeTool #selectNone should deselect nodes if selected",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber73",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber71",
     "EdgeTool #selectNone should do nothing if no node is selected",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber47",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber45",
     "EdgeTool #selectObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber58",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber56",
     "EdgeTool #selectObject should add edge if \"start\" node exists",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber48",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber46",
     "EdgeTool #selectObject should not select edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber64",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber62",
     "EdgeTool #selectObject should reset fields after adding edge",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/edge-tool-test.js.html#lineNumber53",
+    "test-file/test/tool/edge-tool-test.js.html#lineNumber51",
     "EdgeTool #selectObject should store node in \"start\"",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber11",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber9",
     "EraseTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber18",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber16",
     "EraseTool #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber19",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber17",
     "EraseTool #constructor should create instance of EraseTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber75",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber73",
     "EraseTool #dragOverObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber106",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber104",
     "EraseTool #dragOverObject should not handle other types of objects",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber101",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber99",
     "EraseTool #dragOverObject should remove edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber91",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber89",
     "EraseTool #dragOverObject should remove nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber96",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber94",
     "EraseTool #dragOverObject should remove nodes and the edges connected to that node",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber30",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber28",
     "EraseTool #preDragObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber31",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber29",
     "EraseTool #preDragObject should return false",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber24",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber22",
     "EraseTool #preSelectObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber25",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber23",
     "EraseTool #preSelectObject should return true",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber36",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber34",
     "EraseTool #selectObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber67",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber65",
     "EraseTool #selectObject should not handle other types of objects",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber62",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber60",
     "EraseTool #selectObject should remove edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber52",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber50",
     "EraseTool #selectObject should remove nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/erase-tool-test.js.html#lineNumber57",
+    "test-file/test/tool/erase-tool-test.js.html#lineNumber55",
     "EraseTool #selectObject should remove nodes and the edges connected to that node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber10",
+    "test-file/test/graph-test.js.html#lineNumber8",
     "Graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber96",
+    "test-file/test/graph-test.js.html#lineNumber94",
     "Graph #addEdge(edge)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber106",
+    "test-file/test/graph-test.js.html#lineNumber104",
     "Graph #addEdge(edge) should add to edges",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber118",
+    "test-file/test/graph-test.js.html#lineNumber116",
     "Graph #addEdge(edge) should not add duplicate edge",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber97",
+    "test-file/test/graph-test.js.html#lineNumber95",
     "Graph #addEdge(edge) should throw error when edge nodes are not in graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber36",
+    "test-file/test/graph-test.js.html#lineNumber34",
     "Graph #addNode(node)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber37",
+    "test-file/test/graph-test.js.html#lineNumber35",
     "Graph #addNode(node) should add to nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber45",
+    "test-file/test/graph-test.js.html#lineNumber43",
     "Graph #addNode(node) should not add duplicate node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber11",
+    "test-file/test/graph-test.js.html#lineNumber9",
     "Graph #constructor(x, y)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber12",
+    "test-file/test/graph-test.js.html#lineNumber10",
     "Graph #constructor(x, y) should accept iterable arguments",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber29",
+    "test-file/test/graph-test.js.html#lineNumber27",
     "Graph #constructor(x, y) should work with no arguments",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber231",
+    "test-file/test/graph-test.js.html#lineNumber229",
     "Graph #forEachNode(callback)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber251",
+    "test-file/test/graph-test.js.html#lineNumber249",
     "Graph #forEachNode(callback) should break if callback(node) returns false",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber232",
+    "test-file/test/graph-test.js.html#lineNumber230",
     "Graph #forEachNode(callback) should run callback(node) for each node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber195",
+    "test-file/test/graph-test.js.html#lineNumber193",
     "Graph #getComponent(x, y)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber202",
+    "test-file/test/graph-test.js.html#lineNumber200",
     "Graph #getComponent(x, y) should return non-null when clicking on a node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber196",
+    "test-file/test/graph-test.js.html#lineNumber194",
     "Graph #getComponent(x, y) should return null for empty graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber186",
+    "test-file/test/graph-test.js.html#lineNumber184",
     "Graph #hasComponent(x, y, ignore)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber187",
+    "test-file/test/graph-test.js.html#lineNumber185",
     "Graph #hasComponent(x, y, ignore) should return false for empty graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber152",
+    "test-file/test/graph-test.js.html#lineNumber150",
     "Graph #hasEdge(start, dest)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber174",
+    "test-file/test/graph-test.js.html#lineNumber172",
     "Graph #hasEdge(start, dest) should not add duplicate edge",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber163",
+    "test-file/test/graph-test.js.html#lineNumber161",
     "Graph #hasEdge(start, dest) should return true if has edge",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber153",
+    "test-file/test/graph-test.js.html#lineNumber151",
     "Graph #hasEdge(start, dest) should throw error if nodes are not in graph",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber211",
+    "test-file/test/graph-test.js.html#lineNumber209",
     "Graph #isNodeCollision(testNode, x, y)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber221",
+    "test-file/test/graph-test.js.html#lineNumber219",
     "Graph #isNodeCollision(testNode, x, y) should return false if farther than 60",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber212",
+    "test-file/test/graph-test.js.html#lineNumber210",
     "Graph #isNodeCollision(testNode, x, y) should return true if within 60",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber133",
+    "test-file/test/graph-test.js.html#lineNumber131",
     "Graph #removeEdge(edge)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber134",
+    "test-file/test/graph-test.js.html#lineNumber132",
     "Graph #removeEdge(edge) should remove from edges",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber56",
+    "test-file/test/graph-test.js.html#lineNumber54",
     "Graph #removeNode(node)",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber84",
+    "test-file/test/graph-test.js.html#lineNumber82",
     "Graph #removeNode(node) should not remove bogus node",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber57",
+    "test-file/test/graph-test.js.html#lineNumber55",
     "Graph #removeNode(node) should remove from nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/graph-test.js.html#lineNumber67",
+    "test-file/test/graph-test.js.html#lineNumber65",
     "Graph #removeNode(node) should remove from nodes and edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber11",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber9",
     "MoveTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber35",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber33",
     "MoveTool #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber36",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber34",
     "MoveTool #constructor should create instance of MoveTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber41",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber39",
     "MoveTool #dragObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber42",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber40",
     "MoveTool #dragObject should move node",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber49",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber47",
     "MoveTool #dragObject should not move edge",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber98",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber96",
     "MoveTool #dropOnNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber111",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber109",
     "MoveTool #dropOnNone should ignore collision with edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber99",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber97",
     "MoveTool #dropOnNone should not allow collision with node",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber58",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber56",
     "MoveTool #dropOnObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber79",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber77",
     "MoveTool #dropOnObject should ignore collision with edges",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber71",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber69",
     "MoveTool #dropOnObject should move dragged node back to original position on drop failure",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber87",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber85",
     "MoveTool #dropOnObject should not allow dropping non-node objects",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/move-tool-test.js.html#lineNumber59",
+    "test-file/test/tool/move-tool-test.js.html#lineNumber57",
     "MoveTool #dropOnObject should not allow dropping on other nodes",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber11",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber9",
     "NodeTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber20",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber18",
     "NodeTool #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber21",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber19",
     "NodeTool #constructor should create instance of NodeTool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber78",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber76",
     "NodeTool #dropOnNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber79",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber77",
     "NodeTool #dropOnNone should add node if no collisions detected",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber84",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber82",
     "NodeTool #dropOnNone should not add node if colliding with another node",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber26",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber24",
     "NodeTool #hasModes",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber27",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber25",
     "NodeTool #hasModes should return true",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber61",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber59",
     "NodeTool #selectNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber62",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber60",
     "NodeTool #selectNone should add node if no collisions detected",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber67",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber65",
     "NodeTool #selectNone should not add node if colliding with another node",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber32",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber30",
     "NodeTool #selectObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber41",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber39",
     "NodeTool #selectObject should add node if object is an edge",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber33",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber31",
     "NodeTool #selectObject should not add a node on another node",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber8",
+    "test-file/test/queue-test.js.html#lineNumber6",
     "Queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber38",
+    "test-file/test/queue-test.js.html#lineNumber36",
     "Queue #clear",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber39",
+    "test-file/test/queue-test.js.html#lineNumber37",
     "Queue #clear should clear the queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber9",
+    "test-file/test/queue-test.js.html#lineNumber7",
     "Queue #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber10",
+    "test-file/test/queue-test.js.html#lineNumber8",
     "Queue #constructor creates instance of Queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber80",
+    "test-file/test/queue-test.js.html#lineNumber78",
     "Queue #dequeue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber105",
+    "test-file/test/queue-test.js.html#lineNumber103",
     "Queue #dequeue should handle offset when more than half empty",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber95",
+    "test-file/test/queue-test.js.html#lineNumber93",
     "Queue #dequeue should remove the first item in queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber81",
+    "test-file/test/queue-test.js.html#lineNumber79",
     "Queue #dequeue should return null for empty queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber86",
+    "test-file/test/queue-test.js.html#lineNumber84",
     "Queue #dequeue should return the first item in queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber47",
+    "test-file/test/queue-test.js.html#lineNumber45",
     "Queue #enqueue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber55",
+    "test-file/test/queue-test.js.html#lineNumber53",
     "Queue #enqueue should add item to back of queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber48",
+    "test-file/test/queue-test.js.html#lineNumber46",
     "Queue #enqueue should add item to queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber65",
+    "test-file/test/queue-test.js.html#lineNumber63",
     "Queue #enqueue should throw error when adding null",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber72",
+    "test-file/test/queue-test.js.html#lineNumber70",
     "Queue #enqueue should throw error when adding undefined",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber173",
+    "test-file/test/queue-test.js.html#lineNumber171",
     "Queue #forEach",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber214",
+    "test-file/test/queue-test.js.html#lineNumber212",
     "Queue #forEach should iterate in order starting from the front of the queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber174",
+    "test-file/test/queue-test.js.html#lineNumber172",
     "Queue #forEach should iterate through all items",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber193",
+    "test-file/test/queue-test.js.html#lineNumber191",
     "Queue #forEach should stop if callback returns false",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber145",
+    "test-file/test/queue-test.js.html#lineNumber143",
     "Queue #has",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber166",
+    "test-file/test/queue-test.js.html#lineNumber164",
     "Queue #has should return false if item is not in queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber160",
+    "test-file/test/queue-test.js.html#lineNumber158",
     "Queue #has should return true if item is in queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber146",
+    "test-file/test/queue-test.js.html#lineNumber144",
     "Queue #has should throw error when checking null",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber153",
+    "test-file/test/queue-test.js.html#lineNumber151",
     "Queue #has should throw error when checking undefined",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber119",
+    "test-file/test/queue-test.js.html#lineNumber117",
     "Queue #peek",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber134",
+    "test-file/test/queue-test.js.html#lineNumber132",
     "Queue #peek should not remove item from queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber120",
+    "test-file/test/queue-test.js.html#lineNumber118",
     "Queue #peek should return null for empty queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber125",
+    "test-file/test/queue-test.js.html#lineNumber123",
     "Queue #peek should return the first item in queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber15",
+    "test-file/test/queue-test.js.html#lineNumber13",
     "Queue #size",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber16",
+    "test-file/test/queue-test.js.html#lineNumber14",
     "Queue #size should be 0 for empty queue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber29",
+    "test-file/test/queue-test.js.html#lineNumber27",
     "Queue #size should decrement for each dequeue",
     "test"
   ],
   [
     "",
-    "test-file/test/queue-test.js.html#lineNumber21",
+    "test-file/test/queue-test.js.html#lineNumber19",
     "Queue #size should increment for each enqueue",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber15",
+    "Serializer",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber16",
+    "Serializer #constructor",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber17",
+    "Serializer #constructor creates instance of Serializer",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber24",
+    "Serializer #emptyGraph",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber25",
+    "Serializer #emptyGraph should create valid graph obj export",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber37",
+    "Serializer #emptyGraph should create valid graph obj import",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber50",
+    "Serializer #emptyGraph should fail cleanly on importing malformed input",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber64",
+    "Serializer #populatedGraph",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber65",
+    "Serializer #populatedGraph should create valid graph obj export",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber89",
+    "Serializer #populatedGraph should create valid graph obj import",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/serialize-test.js.html#lineNumber122",
+    "Serializer #populatedGraph should create valid graph obj import",
     "test"
   ],
   [
@@ -1603,265 +1699,265 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber8",
+    "test-file/test/stack-test.js.html#lineNumber6",
     "Stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber38",
+    "test-file/test/stack-test.js.html#lineNumber36",
     "Stack #clear",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber39",
+    "test-file/test/stack-test.js.html#lineNumber37",
     "Stack #clear should clear the stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber9",
+    "test-file/test/stack-test.js.html#lineNumber7",
     "Stack #constructor",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber10",
+    "test-file/test/stack-test.js.html#lineNumber8",
     "Stack #constructor creates instance of Stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber160",
+    "test-file/test/stack-test.js.html#lineNumber158",
     "Stack #forEach",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber201",
+    "test-file/test/stack-test.js.html#lineNumber199",
     "Stack #forEach should iterate in order starting from the top of the stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber161",
+    "test-file/test/stack-test.js.html#lineNumber159",
     "Stack #forEach should iterate through all items",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber180",
+    "test-file/test/stack-test.js.html#lineNumber178",
     "Stack #forEach should stop if callback returns false",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber132",
+    "test-file/test/stack-test.js.html#lineNumber130",
     "Stack #has",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber153",
+    "test-file/test/stack-test.js.html#lineNumber151",
     "Stack #has should return false if item is not in stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber147",
+    "test-file/test/stack-test.js.html#lineNumber145",
     "Stack #has should return true if item is in stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber133",
+    "test-file/test/stack-test.js.html#lineNumber131",
     "Stack #has should throw error when checking null",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber140",
+    "test-file/test/stack-test.js.html#lineNumber138",
     "Stack #has should throw error when checking undefined",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber106",
+    "test-file/test/stack-test.js.html#lineNumber104",
     "Stack #peek",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber121",
+    "test-file/test/stack-test.js.html#lineNumber119",
     "Stack #peek should not remove item from stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber107",
+    "test-file/test/stack-test.js.html#lineNumber105",
     "Stack #peek should return null for empty stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber112",
+    "test-file/test/stack-test.js.html#lineNumber110",
     "Stack #peek should return the item on top of stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber80",
+    "test-file/test/stack-test.js.html#lineNumber78",
     "Stack #pop",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber95",
+    "test-file/test/stack-test.js.html#lineNumber93",
     "Stack #pop should remove the top item in stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber81",
+    "test-file/test/stack-test.js.html#lineNumber79",
     "Stack #pop should return null for empty stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber86",
+    "test-file/test/stack-test.js.html#lineNumber84",
     "Stack #pop should return the item on top of stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber47",
+    "test-file/test/stack-test.js.html#lineNumber45",
     "Stack #push",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber48",
+    "test-file/test/stack-test.js.html#lineNumber46",
     "Stack #push should add item to stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber55",
+    "test-file/test/stack-test.js.html#lineNumber53",
     "Stack #push should add item to top of stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber65",
+    "test-file/test/stack-test.js.html#lineNumber63",
     "Stack #push should throw error when adding null",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber72",
+    "test-file/test/stack-test.js.html#lineNumber70",
     "Stack #push should throw error when adding undefined",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber15",
+    "test-file/test/stack-test.js.html#lineNumber13",
     "Stack #size",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber16",
+    "test-file/test/stack-test.js.html#lineNumber14",
     "Stack #size should be 0 for empty stack",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber29",
+    "test-file/test/stack-test.js.html#lineNumber27",
     "Stack #size should decrement for each pop",
     "test"
   ],
   [
     "",
-    "test-file/test/stack-test.js.html#lineNumber21",
+    "test-file/test/stack-test.js.html#lineNumber19",
     "Stack #size should increment for each push",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber8",
+    "test-file/test/algorithm/step-test.js.html#lineNumber6",
     "Step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber16",
+    "test-file/test/algorithm/step-test.js.html#lineNumber14",
     "Step #addChange()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber24",
+    "test-file/test/algorithm/step-test.js.html#lineNumber22",
     "Step #applyDuring",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber28",
+    "test-file/test/algorithm/step-test.js.html#lineNumber26",
     "Step #applyPost",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber20",
+    "test-file/test/algorithm/step-test.js.html#lineNumber18",
     "Step #applyPre",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber9",
+    "test-file/test/algorithm/step-test.js.html#lineNumber7",
     "Step #constructor()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber10",
+    "test-file/test/algorithm/step-test.js.html#lineNumber8",
     "Step #constructor() should be instance of Step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber8",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber6",
     "StepBuilder",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber20",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber18",
     "StepBuilder #addChange",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber24",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber22",
     "StepBuilder #completeStep",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber9",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber7",
     "StepBuilder #constructor()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber10",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber8",
     "StepBuilder #constructor() should be instance of StepBuilder",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber16",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber14",
     "StepBuilder #newStep",
     "test"
   ],
@@ -1975,31 +2071,31 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber144",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber146",
     "TraversalAlgorithm #hasVisited()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber154",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber156",
     "TraversalAlgorithm #hasVisited() should return false if edge has not been visited",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber145",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber147",
     "TraversalAlgorithm #hasVisited() should return false if node has not been visited",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber177",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber179",
     "TraversalAlgorithm #hasVisited() should return true for edge after calling visitEdge on that edge",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber167",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber169",
     "TraversalAlgorithm #hasVisited() should return true for node after calling visitNode on that node",
     "test"
   ],
@@ -2018,126 +2114,126 @@ window.esdocSearchIndex = [
   [
     "",
     "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber27",
-    "TraversalAlgorithm #inputs should reuire \"source\" to be a Node",
+    "TraversalAlgorithm #inputs should require \"source\" to be a Node",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber192",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber194",
     "TraversalAlgorithm #step()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber270",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber272",
     "TraversalAlgorithm #step() should call visitEdge if next item is an edge",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber259",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber261",
     "TraversalAlgorithm #step() should call visitNode if next item is a node",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber226",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber228",
     "TraversalAlgorithm #step() should mark algorithm as complete if queue is empty",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber215",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber217",
     "TraversalAlgorithm #step() should not mark algorithm as complete if it hasn't started yet",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber238",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber240",
     "TraversalAlgorithm #step() should return false if complete",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber249",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber251",
     "TraversalAlgorithm #step() should return true if not complete",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber204",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber206",
     "TraversalAlgorithm #step() should start from #source field object",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber193",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber195",
     "TraversalAlgorithm #step() should throw error if next item is not Node or Edge",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber93",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber95",
     "TraversalAlgorithm #visitEdge()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber122",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber124",
     "TraversalAlgorithm #visitEdge() should add only destNode to queue if unvisited and edge is directed",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber116",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber118",
     "TraversalAlgorithm #visitEdge() should add startNode to queue if unvisited and edge is not directed",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber137",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber139",
     "TraversalAlgorithm #visitEdge() should handle self-loop edges",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber111",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber113",
     "TraversalAlgorithm #visitEdge() should mark edge as visited in graphState",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber129",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber131",
     "TraversalAlgorithm #visitEdge() should not add visited nodes to queue",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber40",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber42",
     "TraversalAlgorithm #visitNode()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber51",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber53",
     "TraversalAlgorithm #visitNode() should add adjacent edge to queue",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber65",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber67",
     "TraversalAlgorithm #visitNode() should add self-loop edges to queue",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber41",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber43",
     "TraversalAlgorithm #visitNode() should mark node as visited in graphState",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber77",
+    "test-file/test/algorithm/traversal-algorithm-test.js.html#lineNumber79",
     "TraversalAlgorithm #visitNode() should not add visited edges to queue",
     "test"
   ],
@@ -2193,6 +2289,12 @@ window.esdocSearchIndex = [
     "src/js/algorithm/algorithm-result.js~algorithmresult#constructor",
     "class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html#instance-constructor-constructor",
     "src/js/algorithm/algorithm-result.js~AlgorithmResult#constructor",
+    "method"
+  ],
+  [
+    "src/js/algorithm/algorithm-result.js~algorithmresult#getstepdescription",
+    "class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html#instance-method-getStepDescription",
+    "src/js/algorithm/algorithm-result.js~AlgorithmResult#getStepDescription",
     "method"
   ],
   [
@@ -2430,6 +2532,24 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/algorithm/stepper.js~stepper#slowdown",
+    "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-slowDown",
+    "src/js/algorithm/stepper.js~Stepper#slowDown",
+    "method"
+  ],
+  [
+    "src/js/algorithm/stepper.js~stepper#speed",
+    "class/src/js/algorithm/stepper.js~Stepper.html#instance-member-speed",
+    "src/js/algorithm/stepper.js~Stepper#speed",
+    "member"
+  ],
+  [
+    "src/js/algorithm/stepper.js~stepper#speedup",
+    "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-speedUp",
+    "src/js/algorithm/stepper.js~Stepper#speedUp",
+    "method"
+  ],
+  [
     "src/js/algorithm/stepper.js~stepper#stepbackward",
     "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-stepBackward",
     "src/js/algorithm/stepper.js~Stepper#stepBackward",
@@ -2439,12 +2559,6 @@ window.esdocSearchIndex = [
     "src/js/algorithm/stepper.js~stepper#stepforward",
     "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-stepForward",
     "src/js/algorithm/stepper.js~Stepper#stepForward",
-    "method"
-  ],
-  [
-    "src/js/algorithm/stepper.js~stepper#updatestepgui",
-    "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-updateStepGUI",
-    "src/js/algorithm/stepper.js~Stepper#updateStepGUI",
     "method"
   ],
   [
@@ -2458,6 +2572,12 @@ window.esdocSearchIndex = [
     "class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-constructor-constructor",
     "src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm#constructor",
     "method"
+  ],
+  [
+    "src/js/algorithm/traversal-algorithm.js~traversalalgorithm#graphstate",
+    "class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-member-graphState",
+    "src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm#graphState",
+    "member"
   ],
   [
     "src/js/algorithm/traversal-algorithm.js~traversalalgorithm#hasstarted",
@@ -2476,6 +2596,12 @@ window.esdocSearchIndex = [
     "class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-member-isComplete",
     "src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm#isComplete",
     "member"
+  ],
+  [
+    "src/js/algorithm/traversal-algorithm.js~traversalalgorithm#reset",
+    "class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-reset",
+    "src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm#reset",
+    "method"
   ],
   [
     "src/js/algorithm/traversal-algorithm.js~traversalalgorithm#result",
@@ -2751,6 +2877,12 @@ window.esdocSearchIndex = [
     "src/js/data/graph.js~graph#removenode",
     "class/src/js/data/graph.js~Graph.html#instance-method-removeNode",
     "src/js/data/graph.js~Graph#removeNode",
+    "method"
+  ],
+  [
+    "src/js/data/graph.js~graph#validate",
+    "class/src/js/data/graph.js~Graph.html#instance-method-validate",
+    "src/js/data/graph.js~Graph#validate",
     "method"
   ],
   [
@@ -3156,10 +3288,22 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/js/tool/algorithm-tool.js~algorithmtool#cancel",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-cancel",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#cancel",
+    "method"
+  ],
+  [
     "src/js/tool/algorithm-tool.js~algorithmtool#changemode",
     "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-changeMode",
     "src/js/tool/algorithm-tool.js~AlgorithmTool#changeMode",
     "method"
+  ],
+  [
+    "src/js/tool/algorithm-tool.js~algorithmtool#currentinput",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-member-currentInput",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#currentInput",
+    "member"
   ],
   [
     "src/js/tool/algorithm-tool.js~algorithmtool#currentmode",
@@ -3168,9 +3312,39 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/tool/algorithm-tool.js~algorithmtool#modeinputtypes",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-get-modeInputTypes",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#modeInputTypes",
+    "member"
+  ],
+  [
+    "src/js/tool/algorithm-tool.js~algorithmtool#modeinputs",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-get-modeInputs",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#modeInputs",
+    "member"
+  ],
+  [
     "src/js/tool/algorithm-tool.js~algorithmtool#selectobject",
     "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-selectObject",
     "src/js/tool/algorithm-tool.js~AlgorithmTool#selectObject",
+    "method"
+  ],
+  [
+    "src/js/tool/algorithm-tool.js~algorithmtool#submitmodeinputs",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-submitModeInputs",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#submitModeInputs",
+    "method"
+  ],
+  [
+    "src/js/tool/algorithm-tool.js~algorithmtool#submitmodeinputscallback",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-submitModeInputsCallback",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#submitModeInputsCallback",
+    "method"
+  ],
+  [
+    "src/js/tool/algorithm-tool.js~algorithmtool#submitmodeinputstext",
+    "class/src/js/tool/algorithm-tool.js~AlgorithmTool.html#instance-method-submitModeInputsText",
+    "src/js/tool/algorithm-tool.js~AlgorithmTool#submitModeInputsText",
     "method"
   ],
   [
@@ -3384,6 +3558,54 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/tool/select-move-tool.js",
+    "file/src/js/tool/select-move-tool.js.html",
+    "src/js/tool/select-move-tool.js",
+    "file"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#cancel",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-cancel",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#cancel",
+    "method"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#dragobject",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-dragObject",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#dragObject",
+    "method"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#droponnone",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-dropOnNone",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#dropOnNone",
+    "method"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#droponobject",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-dropOnObject",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#dropOnObject",
+    "method"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#predragobject",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-preDragObject",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#preDragObject",
+    "method"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#selectnone",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-selectNone",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#selectNone",
+    "method"
+  ],
+  [
+    "src/js/tool/select-move-tool.js~selectmovetool#selectobject",
+    "class/src/js/tool/select-move-tool.js~SelectMoveTool.html#instance-method-selectObject",
+    "src/js/tool/select-move-tool.js~SelectMoveTool#selectObject",
+    "method"
+  ],
+  [
     "src/js/tool/select-tool.js",
     "file/src/js/tool/select-tool.js.html",
     "src/js/tool/select-tool.js",
@@ -3489,6 +3711,12 @@ window.esdocSearchIndex = [
     "src/js/tool/tool.js~tool#hasinputs",
     "class/src/js/tool/tool.js~Tool.html#instance-method-hasInputs",
     "src/js/tool/tool.js~Tool#hasInputs",
+    "method"
+  ],
+  [
+    "src/js/tool/tool.js~tool#hasmodeinputs",
+    "class/src/js/tool/tool.js~Tool.html#instance-method-hasModeInputs",
+    "src/js/tool/tool.js~Tool#hasModeInputs",
     "method"
   ],
   [
@@ -3621,6 +3849,12 @@ window.esdocSearchIndex = [
     "src/js/ui/canvas.js~canvas#reset",
     "class/src/js/ui/canvas.js~Canvas.html#instance-method-reset",
     "src/js/ui/canvas.js~Canvas#reset",
+    "method"
+  ],
+  [
+    "src/js/ui/canvas.js~canvas#resetgraph",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-method-resetGraph",
+    "src/js/ui/canvas.js~Canvas#resetGraph",
     "method"
   ],
   [
@@ -3870,21 +4104,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#algoinputs",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-algoInputs",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#algoInputs",
-    "member"
-  ],
-  [
     "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#constructor",
     "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-constructor-constructor",
     "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#constructor",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#createform",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-createForm",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#createForm",
     "method"
   ],
   [
@@ -3897,12 +4119,6 @@ window.esdocSearchIndex = [
     "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#curalgorithm",
     "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-curAlgorithm",
     "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#curAlgorithm",
-    "member"
-  ],
-  [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#currentinput",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-member-currentInput",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#currentInput",
     "member"
   ],
   [
@@ -3936,33 +4152,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#runevent",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-runEvent",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#runEvent",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#selectevent",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-selectEvent",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#selectEvent",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#selectobject",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-selectObject",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#selectObject",
-    "method"
-  ],
-  [
     "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#setalgorithm",
     "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-setAlgorithm",
     "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#setAlgorithm",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#setinputvalues",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-setInputValues",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#setInputValues",
     "method"
   ],
   [
@@ -3984,15 +4176,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#updatealgorithm",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-updateAlgorithm",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#updateAlgorithm",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#updateinput",
-    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-updateInput",
-    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#updateInput",
+    "src/js/ui/sidebar-algorithm.js~sidebaralgorithm#updatestepgui",
+    "class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-updateStepGUI",
+    "src/js/ui/sidebar-algorithm.js~SidebarAlgorithm#updateStepGUI",
     "method"
   ],
   [
@@ -4000,6 +4186,12 @@ window.esdocSearchIndex = [
     "file/src/js/ui/sidebar-content.js.html",
     "src/js/ui/sidebar-content.js",
     "file"
+  ],
+  [
+    "src/js/ui/sidebar-content.js~sidebarcontent#changegraph",
+    "class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-changeGraph",
+    "src/js/ui/sidebar-content.js~SidebarContent#changeGraph",
+    "method"
   ],
   [
     "src/js/ui/sidebar-content.js~sidebarcontent#constructor",
@@ -4143,6 +4335,12 @@ window.esdocSearchIndex = [
     "src/js/ui/sidebar.js~sidebar#init",
     "class/src/js/ui/sidebar.js~Sidebar.html#instance-method-init",
     "src/js/ui/sidebar.js~Sidebar#init",
+    "method"
+  ],
+  [
+    "src/js/ui/sidebar.js~sidebar#resetgraph",
+    "class/src/js/ui/sidebar.js~Sidebar.html#instance-method-resetGraph",
+    "src/js/ui/sidebar.js~Sidebar#resetGraph",
     "method"
   ],
   [
@@ -4320,6 +4518,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/tabs.js~tabs#settabscroll",
+    "class/src/js/ui/tabs.js~Tabs.html#instance-method-setTabScroll",
+    "src/js/ui/tabs.js~Tabs#setTabScroll",
+    "method"
+  ],
+  [
     "src/js/ui/tabs.js~tabs#showtab",
     "class/src/js/ui/tabs.js~Tabs.html#instance-method-showTab",
     "src/js/ui/tabs.js~Tabs#showTab",
@@ -4371,6 +4575,12 @@ window.esdocSearchIndex = [
     "src/js/ui/toolbar.js~toolbar#initlisteners",
     "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-initListeners",
     "src/js/ui/toolbar.js~Toolbar#initListeners",
+    "method"
+  ],
+  [
+    "src/js/ui/toolbar.js~toolbar#reset",
+    "class/src/js/ui/toolbar.js~Toolbar.html#instance-method-reset",
+    "src/js/ui/toolbar.js~Toolbar#reset",
     "method"
   ],
   [
@@ -4428,10 +4638,22 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/ui/top-bar.js~topbar#modeinputform",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-member-modeInputForm",
+    "src/js/ui/top-bar.js~TopBar#modeInputForm",
+    "member"
+  ],
+  [
     "src/js/ui/top-bar.js~topbar#modeselect",
     "class/src/js/ui/top-bar.js~TopBar.html#instance-member-modeSelect",
     "src/js/ui/top-bar.js~TopBar#modeSelect",
     "member"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#selectgraphobject",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-selectGraphObject",
+    "src/js/ui/top-bar.js~TopBar#selectGraphObject",
+    "method"
   ],
   [
     "src/js/ui/top-bar.js~topbar#showinputs",
@@ -4440,9 +4662,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/top-bar.js~topbar#showmodeinputs",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-showModeInputs",
+    "src/js/ui/top-bar.js~TopBar#showModeInputs",
+    "method"
+  ],
+  [
     "src/js/ui/top-bar.js~topbar#showmodes",
     "class/src/js/ui/top-bar.js~TopBar.html#instance-method-showModes",
     "src/js/ui/top-bar.js~TopBar#showModes",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#submitmodeinputvalues",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-submitModeInputValues",
+    "src/js/ui/top-bar.js~TopBar#submitModeInputValues",
     "method"
   ],
   [
@@ -4458,9 +4692,27 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/js/ui/top-bar.js~topbar#updateallmodeinputvalues",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-updateAllModeInputValues",
+    "src/js/ui/top-bar.js~TopBar#updateAllModeInputValues",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#updategraphinput",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-updateGraphInput",
+    "src/js/ui/top-bar.js~TopBar#updateGraphInput",
+    "method"
+  ],
+  [
     "src/js/ui/top-bar.js~topbar#updateinputvalues",
     "class/src/js/ui/top-bar.js~TopBar.html#instance-method-updateInputValues",
     "src/js/ui/top-bar.js~TopBar#updateInputValues",
+    "method"
+  ],
+  [
+    "src/js/ui/top-bar.js~topbar#updatemodeinputvalues",
+    "class/src/js/ui/top-bar.js~TopBar.html#instance-method-updateModeInputValues",
+    "src/js/ui/top-bar.js~TopBar#updateModeInputValues",
     "method"
   ],
   [
@@ -4482,9 +4734,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/ui.js~ui#graph",
+    "class/src/js/ui/ui.js~UI.html#instance-member-graph",
+    "src/js/ui/ui.js~UI#graph",
+    "member"
+  ],
+  [
     "src/js/ui/ui.js~ui#init",
     "class/src/js/ui/ui.js~UI.html#instance-method-init",
     "src/js/ui/ui.js~UI#init",
+    "method"
+  ],
+  [
+    "src/js/ui/ui.js~ui#resetgraph",
+    "class/src/js/ui/ui.js~UI.html#instance-method-resetGraph",
+    "src/js/ui/ui.js~UI#resetGraph",
     "method"
   ],
   [
@@ -4522,6 +4786,126 @@ window.esdocSearchIndex = [
     "typedef/index.html#static-typedef-Point",
     "src/js/util/bezier.js~Point",
     "typedef"
+  ],
+  [
+    "src/js/util/graph-serialize.js",
+    "file/src/js/util/graph-serialize.js.html",
+    "src/js/util/graph-serialize.js",
+    "file"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#allocateelement",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-allocateElement",
+    "src/js/util/graph-serialize.js~Serializer#allocateElement",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#constructor",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-constructor-constructor",
+    "src/js/util/graph-serialize.js~Serializer#constructor",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#currentgraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-currentGraph",
+    "src/js/util/graph-serialize.js~Serializer#currentGraph",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#deserializegraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-deserializeGraph",
+    "src/js/util/graph-serialize.js~Serializer#deserializeGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#downloadbtn",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-downloadBtn",
+    "src/js/util/graph-serialize.js~Serializer#downloadBtn",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#downloadgraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-downloadGraph",
+    "src/js/util/graph-serialize.js~Serializer#downloadGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#exportbtn",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-exportBtn",
+    "src/js/util/graph-serialize.js~Serializer#exportBtn",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#exportelement",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-exportElement",
+    "src/js/util/graph-serialize.js~Serializer#exportElement",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#exportgraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-exportGraph",
+    "src/js/util/graph-serialize.js~Serializer#exportGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#importbtn",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-importBtn",
+    "src/js/util/graph-serialize.js~Serializer#importBtn",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#importelement",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-importElement",
+    "src/js/util/graph-serialize.js~Serializer#importElement",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#importgraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-importGraph",
+    "src/js/util/graph-serialize.js~Serializer#importGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#quickstring",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-quickString",
+    "src/js/util/graph-serialize.js~Serializer#quickString",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#reader",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-reader",
+    "src/js/util/graph-serialize.js~Serializer#reader",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#resetfn",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-resetFn",
+    "src/js/util/graph-serialize.js~Serializer#resetFn",
+    "member"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#resetgraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-resetGraph",
+    "src/js/util/graph-serialize.js~Serializer#resetGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#serializegraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-serializeGraph",
+    "src/js/util/graph-serialize.js~Serializer#serializeGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#uploadgraph",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-method-uploadGraph",
+    "src/js/util/graph-serialize.js~Serializer#uploadGraph",
+    "method"
+  ],
+  [
+    "src/js/util/graph-serialize.js~serializer#uploader",
+    "class/src/js/util/graph-serialize.js~Serializer.html#instance-member-uploader",
+    "src/js/util/graph-serialize.js~Serializer#uploader",
+    "member"
   ],
   [
     "src/js/util/line-2d.js",
@@ -4659,6 +5043,12 @@ window.esdocSearchIndex = [
     "src/js/util/mouse-handler.js~mousehandler#movelistener",
     "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-moveListener",
     "src/js/util/mouse-handler.js~MouseHandler#moveListener",
+    "method"
+  ],
+  [
+    "src/js/util/mouse-handler.js~mousehandler#resetgraph",
+    "class/src/js/util/mouse-handler.js~MouseHandler.html#instance-method-resetGraph",
+    "src/js/util/mouse-handler.js~MouseHandler#resetGraph",
     "method"
   ],
   [
@@ -4840,6 +5230,12 @@ window.esdocSearchIndex = [
     "class/src/js/util/queue.js~Queue.html#instance-get-size",
     "src/js/util/queue.js~Queue#size",
     "member"
+  ],
+  [
+    "src/js/util/scroll-to-element.js",
+    "file/src/js/util/scroll-to-element.js.html",
+    "src/js/util/scroll-to-element.js",
+    "file"
   ],
   [
     "src/js/util/stack.js",
@@ -5091,6 +5487,12 @@ window.esdocSearchIndex = [
     "test/queue-test.js",
     "test-file/test/queue-test.js.html",
     "test/queue-test.js",
+    "testFile"
+  ],
+  [
+    "test/serialize-test.js",
+    "test-file/test/serialize-test.js.html",
+    "test/serialize-test.js",
     "testFile"
   ],
   [
