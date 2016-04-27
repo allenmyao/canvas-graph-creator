@@ -29,6 +29,13 @@ class UI {
     this.canvas.init(graph);
     Form.init();
   }
+
+  resetGraph(newGraph) {
+    this.graph = newGraph;
+    this.toolbar.reset();
+    this.sidebar.resetGraph(newGraph);
+    this.canvas.resetGraph(newGraph);
+  }
 }
 
 const ui = new UI();

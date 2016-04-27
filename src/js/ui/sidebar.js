@@ -28,6 +28,14 @@ class Sidebar {
     };
   }
 
+  resetGraph(newGraph) {
+    this.sidebarTypes.display.changeGraph(newGraph);
+    this.sidebarTypes.select.changeGraph(newGraph);
+    this.sidebarTypes.algorithm.changeGraph(newGraph);
+    this.setSidebar('display');
+    this.updateSidebar(null);
+  }
+
   setSidebar(sidebarType) {
     if (this.currentSidebar === sidebarType) {
       return;

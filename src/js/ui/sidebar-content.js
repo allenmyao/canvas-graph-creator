@@ -28,6 +28,10 @@ class SidebarContent {
     this.tabs.init();
   }
 
+  changeGraph(newGraph) {
+    this.graph = newGraph;
+  }
+
   update() {
     throw Error('Can\'t call draw from abstract SideContent class.');
   }

@@ -1,7 +1,35 @@
+import { Node } from '../data/node/node';
+import { Edge } from '../data/edge/edge';
+import { Label } from '../data/label';
+
 class Graph {
   constructor(nodes, edges) {
     this.nodes = new Set(nodes);
     this.edges = new Set(edges);
+  }
+
+  validate() {
+    if (!(this.nodes instanceof Set) || !(this.edges instanceof Set)) {
+      return false;
+    }
+    for (let node of this.nodes) {
+      if (!(node instanceof Node) || !(node.id >= 0)) {
+        return false;
+      }
+      if (node.label !== null && !(node.label instanceof Label)) {
+        return false;
+      }
+    }
+
+    for (let edge of this.edges) {
+      if (!(edge instanceof Edge) || !(edge.id >= 0)) {
+        return false;
+      }
+      if (edge.label !== null && !(edge.label instanceof Label)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   addNode(node) {

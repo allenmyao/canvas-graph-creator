@@ -3,6 +3,8 @@ import Edge from '../data/edge/edge';
 import Label from '../data/label';
 import ui from '../ui/ui';
 
+import PanTool from '../tool/pan-tool';
+
 class MouseHandler {
 
   // distance the mouse needs to move to start a drag
@@ -17,8 +19,27 @@ class MouseHandler {
   mousePressed = false;
   isDragging = false;
 
+  rightClickStartX = null;
+  rightClickStartY = null;
+  rightMousePressed = false;
+  isRightDragging = false;
+  wasRightDragging = false;
+
+  panTool = new PanTool();
+
   constructor(graph) {
     this.graph = graph;
+  }
+
+  resetGraph(newGraph) {
+    this.graph = newGraph;
+    this.selectedObject = null;
+    this.draggedObject = null;
+
+    this.clickStartX = null;
+    this.clickStartY = null;
+    this.mousePressed = false;
+    this.isDragging = false;
   }
 
   downListener(event, currentTool, x, y) {
@@ -29,11 +50,14 @@ class MouseHandler {
     if (this.graph.hasComponent(x, y)) {
       let component = this.graph.getComponent(x, y);
       if (currentTool.preSelectObject(event, this.graph, component, x, y)) {
+        // console.log('Preselect Object Ok!');
         this.selectedObject = component;
       } else {
+        // console.log('Preselect Object Denied!');
         this.selectedObject = null;
       }
     } else {
+      // console.log('Preselect None!');
       currentTool.preSelectNone(event, this.graph, x, y);
       this.selectedObject = null;
     }
@@ -84,6 +108,7 @@ class MouseHandler {
         let dy = y - this.clickStartY;
 
         if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
+          // console.log('Drag Threshold!');
           this.isDragging = true;
           if (this.selectedObject !== null) {
             if (currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {
@@ -93,7 +118,7 @@ class MouseHandler {
               this.draggedObject = null;
             }
           } else {
-            currentTool.preDragNone(this.graph, x, y);
+            currentTool.preDragNone(event, this.graph, x, y);
             this.draggedObject = this.selectedObject;
           }
         }
@@ -115,35 +140,91 @@ class MouseHandler {
     }
   }
 
-  contextComponent(event, x, y) {
-    let component = null;
-    if (this.graph.hasComponent(x, y)) {
-      component = this.graph.getComponent(x, y);
-    }
+  rightDownListener(event, x, y) {
+    this.rightMousePressed = true;
+    this.rightClickStartX = x;
+    this.rightClickStartY = y;
 
-    return component;
+    this.panTool.preSelectNone(event, this.graph, x, y);
+  }
+
+  rightUpListener(event, x, y) {
+    // check if dragging
+    if (this.isRightDragging) {
+      this.isRightDragging = false;
+      this.panTool.dropOnNone(event, this.graph, null, this.rightClickStartX, this.rightClickStartY, x, y);
+    } else if (this.rightMousePressed) {
+      // click
+      this.panTool.selectNone(event, this.graph, x, y);
+    }
+    this.rightMousePressed = false;
+  }
+
+  rightMoveListener(event, x, y) {
+    ui.statusBar.updateMouse(x, y);
+    if (!this.isRightDragging) {
+      // check for dragging
+      if (this.rightMousePressed) {
+        // check if mouse movement passes threshold
+        let dx = x - this.rightClickStartX;
+        let dy = y - this.rightClickStartY;
+
+        if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
+          this.isRightDragging = true;
+          this.wasRightDragging = true;
+          this.panTool.preDragNone(this.graph, x, y);
+        }
+      }
+    } else {
+      // handle dragging
+      this.panTool.dragNone(event, this.graph, this.rightClickStartX, this.rightClickStartY, x, y);
+    }
+  }
+
+  contextmenuEventListener(event, x, y, contextMenu) {
+    if (this.wasRightDragging) {
+      // prevent default context menu
+      event.preventDefault();
+      this.wasRightDragging = false;
+    } else if (event.target === document.getElementById('canvas')) {
+      // open context menu if mouse was not right dragging
+      contextMenu.contextmenuEventListener(event, x, y);
+    }
+  }
+
+  contextComponent(event, x, y) {
+    if (this.graph.hasComponent(x, y)) {
+      this.selectedObject = this.graph.getComponent(x, y);
+    }
+    return this.selectedObject;
   }
 
   contextAdd(arg, x, y) {
-    ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);
-  }
-
-  contextToggle(arg, component) {
-    component[arg] = !component[arg];
-  }
-
-  contextDelete(component) {
-    if (component instanceof Node) {
-      this.graph.removeNode(component);
-    } else if (component instanceof Edge) {
-      this.graph.removeEdge(component);
-    } else if (component instanceof Label) {
-      component.content = '';
+    if (arg === 'edge') {
+      ui.toolbar.selectToolByName('edge');
+      ui.toolbar.toolMap.edge.selectNode(this.graph, this.selectedObject);
+    } else {
+      ui.toolbar.selectToolByName('node');
+      ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);
     }
   }
 
-  contextSelect(event, currentTool, component, x, y) {
-    currentTool.selectObject(event, this.graph, component, x, y);
+  contextToggle(arg) {
+    this.selectedObject[arg] = !this.selectedObject[arg];
+  }
+
+  contextDelete() {
+    if (this.selectedObject instanceof Node) {
+      this.graph.removeNode(this.selectedObject);
+    } else if (this.selectedObject instanceof Edge) {
+      this.graph.removeEdge(this.selectedObject);
+    } else if (this.selectedObject instanceof Label) {
+      this.selectedObject.content = '';
+    }
+  }
+
+  contextSelect(event, currentTool, x, y) {
+    currentTool.selectObject(event, this.graph, this.selectedObject, x, y);
   }
 }
 

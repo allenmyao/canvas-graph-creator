@@ -40,11 +40,11 @@ class ContextMenu {
       if (type === 'add') {
         this.mouseHandler.contextAdd(value, this.menuPosX, this.menuPosY);
       } else if (type === 'toggle') {
-        this.mouseHandler.contextToggle(value, this.component);
+        this.mouseHandler.contextToggle(value);
       } else if (type === 'delete') {
-        this.mouseHandler.contextDelete(this.component);
+        this.mouseHandler.contextDelete();
       } else if (type === 'edit') {
-        this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.component, this.menuPosX, this.menuPosY);
+        this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.menuPosX, this.menuPosY);
       } else if (type === 'save') {
         let downloadLink = document.createElement('a');
         downloadLink.href = this.ui.canvas.canvas.toDataURL('image/png');
@@ -102,9 +102,6 @@ class ContextMenu {
   }
 
   contextmenuEventListener(event, x, y) {
-    // prevent default context menu
-    event.preventDefault();
-
     this.menuPosX = x;
     this.menuPosY = y;
 

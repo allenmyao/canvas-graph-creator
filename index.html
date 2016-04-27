@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <link rel="shortcut icon" href="static/favicon.ico">
   <title>Canvas Graph Creator</title>
 </head>
 
@@ -9,19 +10,20 @@
   <div class="container">
 
     <nav id="navbar">
-      <div>
-        <a href="" class="logo">Canvas Graph Creator</a>
-      </div>
-      <div>
-        <ul class="nav-list">
-          <li>
-            <a href="https://github.com/allenmyao/canvas-graph-creator">Source</a>
-          </li>
-          <li>
-            <a href="./esdoc">Documentation</a>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li>
+          <a href="" class="logo-img"><img src="static/img/logo.png"></a>
+        </li>
+        <li>
+          <a href="" class="logo">Canvas Graph Creator</a>
+        </li>
+        <li class="nav-item">
+          <a href="https://github.com/allenmyao/canvas-graph-creator">Source</a>
+        </li>
+        <li class="nav-item">
+          <a href="./esdoc">Documentation</a>
+        </li>
+      </ul>
     </nav>
 
     <div id="top-bar">
@@ -40,25 +42,19 @@
     <div id="toolbar">
       <ul class="tool-list">
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="node">Add Node</button>
+          <button type="button" class="tool btn-raised" data-tool="node">Add Node<img src="static/img/addnode.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="edge">Add Edge</button>
+          <button type="button" class="tool btn-raised" data-tool="edge">Add Edge<img src="static/img/addedge.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="select">Select Object</button>
+          <button type="button" class="tool btn-raised" data-tool="select">Select Object<img src="static/img/selectobject.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="move">Move Object</button>
+          <button type="button" class="tool btn-raised" data-tool="erase">Erase Object<img src="static/img/eraseobject.png"></button>
         </li>
         <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="erase">Erase Object</button>
-        </li>
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="pan">Pan</button>
-        </li>
-        <li class="tool-listitem">
-          <button type="button" class="tool btn-raised" data-tool="algorithm">Algorithm</button>
+          <button type="button" class="tool btn-raised" data-tool="algorithm">Algorithm<img src="static/img/algorithm.png"></button>
         </li>
       </ul>
     </div>
@@ -99,12 +95,28 @@
             </fieldset>
           </form>
         </li>
+        <li class="status-bar__itemlist__item">
+          <form id="serialization">
+            <input type="file" id="graph-uploader" style="display: none"/>
+            <fieldset>
+              <label>File:</label>
+            </fieldset>
+            <button type="button" id="load-graph-button" class="btn-flat" title="Load"><img src="static/img/load.png"></button>
+            <button type="button" id="save-graph-button" class="btn-flat" title="Save"><img src="static/img/save.png"></button>
+            <fieldset>
+              <label>Snapshot:</label>
+            </fieldset>
+            <button type="button" id="import-graph-button" class="btn-flat" title="Quickload"><img src="static/img/quickload.png"></button>
+            <button type="button" id="export-graph-button" class="btn-flat" title="Quicksave"><img src="static/img/quicksave.png"></button>
+          </form>
+        </li>
       </ul>
     </div>
   </div>
 
   <div id="context-menu" class="context-menu">
     <ul class="context-menu__section" data-name="node">
+      <li class="context-menu__section__item" data-type="add" data-data="edge">Add Edge</li>
       <li class="context-menu__section__item" data-type="toggle" data-data="isAcceptingState">Toggle Accepting State</li>
       <li class="context-menu__section__item" data-type="toggle" data-data="isStartingState">Toggle Start State</li>
     </ul>
