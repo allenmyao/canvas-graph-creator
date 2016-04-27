@@ -92,12 +92,16 @@ public abstract class CanvasPage {
 		{
 			Point target = points.get(i);
 			int steps = steps(curr, target, 10);
-			int deltaX = (target.x - curr.x) / steps;
-			int deltaY = (target.y - curr.y) / steps;
-			
-			for(int j = 0; j < steps; j++)
+			if(steps > 0)
 			{
-				actions = actions.moveByOffset(deltaX, deltaY);
+				int deltaX = (target.x - curr.x) / steps;
+				int deltaY = (target.y - curr.y) / steps;
+				
+				for(int j = 0; j < steps; j++)
+				{
+					System.out.println("moving by " + deltaX + ", " + deltaY);
+					actions = actions.moveByOffset(deltaX, deltaY);
+				}
 			}
 			actions = actions.moveToElement(canvas, target.x, target.y);
 			curr = target;
