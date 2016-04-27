@@ -39,6 +39,10 @@ class Toolbar {
     });
   }
 
+  reset() {
+    this.selectToolByName('node');
+  }
+
   selectTool(toolElement) {
     if (this.currentTool) {
       this.currentTool.cancel();

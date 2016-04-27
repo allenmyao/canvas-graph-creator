@@ -47,13 +47,13 @@
 
           label {
             position: static;
+            vertical-align: middle;
             height: 2em;
             font-size: 1em;
             line-height: normal;
           }
 
-          input {
-
+          input[type=text] {
             &:valid ~ label,
             &.empty ~ label {
               font-size: 1em;
@@ -61,12 +61,25 @@
           }
         }
 
-        button {
+        button[id=reset-transform] {
           display: inline-block;
-          vertical-align: top;
+          vertical-align: middle;
           height: 100%;
           margin: auto 10px;
           padding: 5px 10px;
+        }
+
+        button {
+          display: inline-block;
+          vertical-align: middle;
+          height: 100%;
+          margin: 0px 0px;
+          padding: 2px 2px;
+
+          >img {
+            height: 32px;
+            float: right;
+          }
         }
       }
 

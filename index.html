@@ -97,14 +97,29 @@
         </li>
         <li class="status-bar__itemlist__item">
           <form id="mouse-pos">
-            <fieldset>
+            <fieldset style="width: 128px;">
               <label>x</label>
               <output id="mouse-x">0</output>
             </fieldset>
-            <fieldset>
+            <fieldset style="width: 128px;">
               <label>y</label>
               <output id="mouse-y">0</output>
             </fieldset>
+          </form>
+        </li>
+        <li class="status-bar__itemlist__item">
+          <form id="serialization">
+            <input type="file" id="graph-uploader" style="display: none"/>
+            <fieldset>
+              <label>File:</label>
+            </fieldset>
+            <button type="button" id="load-graph-button" class="btn-flat" title="Load"><img src="static/img/load.png"></button>
+            <button type="button" id="save-graph-button" class="btn-flat" title="Save"><img src="static/img/save.png"></button>
+            <fieldset>
+              <label>Snapshot:</label>
+            </fieldset>
+            <button type="button" id="import-graph-button" class="btn-flat" title="Quickload"><img src="static/img/quickload.png"></button>
+            <button type="button" id="export-graph-button" class="btn-flat" title="Quicksave"><img src="static/img/quicksave.png"></button>
           </form>
         </li>
       </ul>

@@ -30,6 +30,10 @@ class Canvas {
     this.initListeners();
   }
 
+  resetGraph(newGraph) {
+    this.mouseHandler.resetGraph(newGraph);
+  }
+
   resize(event) {
     this.context.canvas.width = window.innerWidth;
     this.context.canvas.height = window.innerHeight;

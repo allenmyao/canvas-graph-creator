@@ -31,6 +31,17 @@ class MouseHandler {
     this.graph = graph;
   }
 
+  resetGraph(newGraph) {
+    this.graph = newGraph;
+    this.selectedObject = null;
+    this.draggedObject = null;
+
+    this.clickStartX = null;
+    this.clickStartY = null;
+    this.mousePressed = false;
+    this.isDragging = false;
+  }
+
   downListener(event, currentTool, x, y) {
     this.mousePressed = true;
     this.clickStartX = x;
@@ -39,11 +50,14 @@ class MouseHandler {
     if (this.graph.hasComponent(x, y)) {
       let component = this.graph.getComponent(x, y);
       if (currentTool.preSelectObject(event, this.graph, component, x, y)) {
+        // console.log('Preselect Object Ok!');
         this.selectedObject = component;
       } else {
+        // console.log('Preselect Object Denied!');
         this.selectedObject = null;
       }
     } else {
+      // console.log('Preselect None!');
       currentTool.preSelectNone(event, this.graph, x, y);
       this.selectedObject = null;
     }
@@ -94,6 +108,7 @@ class MouseHandler {
         let dy = y - this.clickStartY;
 
         if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {
+          // console.log('Drag Threshold!');
           this.isDragging = true;
           if (this.selectedObject !== null) {
             if (currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {
@@ -103,7 +118,7 @@ class MouseHandler {
               this.draggedObject = null;
             }
           } else {
-            currentTool.preDragNone(this.graph, x, y);
+            currentTool.preDragNone(event, this.graph, x, y);
             this.draggedObject = this.selectedObject;
           }
         }
