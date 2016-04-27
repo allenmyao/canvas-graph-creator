@@ -8,7 +8,7 @@ Feature: Erase
   		And another node named Node 2 at 550, 550
   		And add an edge between Node 1 and Node 2
   		And I select the Erase tool
-  		And I click and drag from (350, 350) to (400, 400)
+  		And I click and drag from (350, 350) to (375, 375) to (400, 400)
   	Then the screen should match 'edge.png'
 
    Scenario: Edge should be erased when dragging over it
@@ -16,7 +16,7 @@ Feature: Erase
   		And another node named Node 2 at 550, 550
   		And add an edge between Node 1 and Node 2
   		And I select the Erase tool
-  		And I click and drag from (520, 530) to (530, 520)
+  		And I click and drag from (520, 530) to (525, 525) to (530, 520)
   	Then the screen should match 'no_edge.png'
 
    Scenario: Node and its connected edges should be erased when clicking on it
@@ -31,5 +31,5 @@ Feature: Erase
   	When I create a node named Node 1 at 500, 500
   		And another node named Node 2 at 550, 550
   		And I select the Erase tool
-  		And I click and drag from (500, 500) to (550, 550)
+  		And I click and drag from (490, 495) to (500, 500) to (505, 505) to (525, 525) to (545, 545) to (550, 550) to (560, 555)
   	Then there should be no nodes
