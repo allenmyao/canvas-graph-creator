@@ -225,17 +225,17 @@ class SidebarAlgorithm extends SidebarContent {
     let html = `
       <div class="algorithm-content">
         <div class="algorithm-controls">
-          <button type="button" class="algorithm-prev-btn btn-flat" disabled>Previous step</button>
-          <button type="button" class="algorithm-play-toggle-btn btn-flat" disabled>Play</button>
-          <button type="button" class="algorithm-next-btn btn-flat" disabled>Next step</button>
+          <button type="button" class="algorithm-prev-btn btn-secondary" disabled>Previous step</button>
+          <button type="button" class="algorithm-play-toggle-btn btn-secondary" disabled>Play</button>
+          <button type="button" class="algorithm-next-btn btn-secondary" disabled>Next step</button>
           <div class="algorithm-speed">
-            <button type="button" class="algorithm-slow-down-btn btn-flat" disabled>Slower</button>
+            <button type="button" class="algorithm-slow-down-btn btn-secondary" disabled>Slower</button>
             <div class="speed-notch"><<</div>
             <div class="speed-notch"><</div>
             <div class="speed-notch speed-notch--active">.</div>
             <div class="speed-notch">></div>
             <div class="speed-notch">>></div>
-            <button type="button" class="algorithm-speed-up-btn btn-flat" disabled>Faster</button>
+            <button type="button" class="algorithm-speed-up-btn btn-secondary" disabled>Faster</button>
           </div>
         </div>
         <div class="algorithm-results">

@@ -16,7 +16,7 @@ button {
     color: $primary-gray-color;
   }
 
-  &.btn-flat {
+  &.btn-secondary {
     background: none;
     color: $primary-gray-color;
     box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px $primary-color;
@@ -31,6 +31,23 @@ button {
 
     &:active {
       background: $primary-gray-lighter-color;
+    }
+  }
+
+  &.btn-flat {
+    background: $primary-gray-lighter-color;
+    color: black;
+
+    &:disabled {
+      color: $primary-gray-lightest-color;
+    }
+
+    &:hover {
+      background: $primary-gray-light-color;
+    }
+
+    &:active {
+      background: $primary-gray-lightest-color;
     }
   }
 
