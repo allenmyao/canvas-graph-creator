@@ -31,5 +31,5 @@ Feature: Erase
   	When I create a node named Node 1 at 500, 500
   		And another node named Node 2 at 550, 550
   		And I select the Erase tool
-  		And I click and drag from (490, 495) to (500, 500) to (505, 505) to (525, 525) to (545, 545) to (550, 550) to (560, 555)
+  		And I click and drag from (500, 500) to (505, 505) to (525, 525) to (545, 545) to (550, 550)
   	Then there should be no nodes
