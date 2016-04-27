@@ -12,7 +12,7 @@ Feature: Move Object
 
   Scenario: Save and load a single node after alteration
     When I create a node at 600, 600 
-      I Quicksave
+      And I Quicksave
       And I create a node at 500, 500
       And I Quickload
     Then the screen should match circle_node.png
