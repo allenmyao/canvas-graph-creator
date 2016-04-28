@@ -27,7 +27,6 @@ describe('Serializer', () => {
       let fn = function (g) {};
       let serializer = new Serializer(graph, fn);
       let serialObj = serializer.serializeGraph();
-      console.log(JSON.stringify(serialObj));
       (serialObj.hasOwnProperty(IDSET +'edges')).should.be.true;
       (serialObj.hasOwnProperty(IDSET + 'nodes')).should.be.true;
       (serialObj[IDSET + 'nodes'].length).should.equal(0);
@@ -48,6 +47,9 @@ describe('Serializer', () => {
     });
 
     it('should fail cleanly on importing malformed input', () => {
+      let graph = new Graph();
+      let fn = function (g) {};
+      let serializer = new Serializer(graph, fn);
       let badInput = JSON.parse('{"_$$SET$$_nodes":[{"NotANode":0}],"Everything":42}');
       let deserializeInfo = null;
       try {
