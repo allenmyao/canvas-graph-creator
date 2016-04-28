@@ -101,7 +101,12 @@ export class Serializer {
     let outElem;
     cache[path] = elem;
 
-    outputObj[IDTYPE] = elem.constructor.name;
+    for (let name of Object.keys(Serializer.classesByName)) {
+      if (elem instanceof Serializer.classesByName[name]) {
+        outputObj[IDTYPE] = name;
+        break;
+      }
+    }
 
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
@@ -323,7 +328,7 @@ export class Serializer {
       deserializeInfo = this.deserializeGraph(obj);
     } catch (ex) {
       // Exception thrown from parser or deserializer. Abort.
-      return;
+      throw ex;
     }
     // Graph Upload OK
     Node.numNodes = deserializeInfo.nodes;
@@ -338,6 +343,7 @@ export class Serializer {
     let obj;
     let deserializeInfo;
     if (this.quickString === '') {
+      console.log('Nothing has been saved');
       return;
     }
     try {
@@ -345,7 +351,7 @@ export class Serializer {
       deserializeInfo = this.deserializeGraph(obj);
     } catch (ex) {
       // Exception thrown from parser or deserializer. Abort.
-      return;
+      throw ex;
     }
     // Graph Quickload OK
     Node.numNodes = deserializeInfo.nodes;
