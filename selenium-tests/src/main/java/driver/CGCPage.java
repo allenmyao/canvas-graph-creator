@@ -15,12 +15,14 @@ import model.Node;
 
 public class CGCPage extends CanvasPage {
 
-	public static String CANVAS_CSS_SELECTOR = "#canvas";
-	public static String RESET_ZOOM_SELECTOR = "#reset-transform";
+	public static final String EXPORT_CSS_SELECTOR = "#export-graph-button";
+	public static final String IMPORT_CSS_SELECTOR = "#import-graph-button";
+	public static final String CANVAS_CSS_SELECTOR = "#canvas";
+	public static final String RESET_ZOOM_SELECTOR = "#reset-transform";
 
-	public static String HOME_PAGE = "http://127.0.0.1:8080/";
+	public static final String HOME_PAGE = "http://127.0.0.1:8080/";
 
-	public static String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
+	public static final String NODE_IMAGE = "src/test/resources/UnselectedNode.png";
 	public static BufferedImage EDGE_TOOL;
 
 	public static Map<String, String> shortcuts;
@@ -32,8 +34,9 @@ public class CGCPage extends CanvasPage {
 			shortcuts = new HashMap<String, String>();
 			shortcuts.put("Edge", "#toolbar .tool[data-tool=\"edge\"]");
 			shortcuts.put("Node", "#toolbar .tool[data-tool=\"node\"]");
+			shortcuts.put("Erase", "#toolbar .tool[data-tool=\"erase\"]");
+			shortcuts.put("Select", "#toolbar > ul > li:nth-child(3) > button");
 			shortcuts.put("Toggle Directed Edge", "#context-menu > ul:nth-child(2) > li");
-
       shortcuts.put("Add Edge", "#context-menu > ul:nth-child(1) > li:nth-child(1)");
 			shortcuts.put("Toggle Start State", "#context-menu > ul:nth-child(1) > li:nth-child(3)");
 			shortcuts.put("Toggle Accepting State", "#context-menu > ul:nth-child(1) > li:nth-child(2)");
@@ -142,6 +145,20 @@ public class CGCPage extends CanvasPage {
 		clickCanvas(node.point);
 	}
 	
+	/**
+	 * Triggers a Quicksave
+	 */
+	public void quickSave() {
+		selectTool(EXPORT_CSS_SELECTOR);
+	}
+
+	/**
+	 * Triggers a Quickload
+	 */
+	public void quickLoad() {
+		selectTool(IMPORT_CSS_SELECTOR);
+	}
+
 	@Override
 	public void initialize(String website) {
 		super.initialize(website);

@@ -17,30 +17,18 @@
   >.tool-listitem {
     display: block;
     margin: 20px;
-    
-    >button>img {
-      height: 24px;
-      float: right;
-    }
 
     >.tool {
       display: block;
       width: 100%;
       padding: 10px;
       word-break: break-all;
-    }
-  }
-}
 
-.tool-input-list {
-  display: block;
-  font-size: 0;
-
-  >.tool-input {
-    display: inline-block;
-
-    >.tinput {
-      margin: 10px 0 10px 10px;
+      >img {
+        height: 24px;
+        float: right;
+        pointer-events: none;
+      }
     }
   }
 }

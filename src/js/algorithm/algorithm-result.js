@@ -31,9 +31,18 @@ class AlgorithmResult {
     this.stepIndex = -1;
   }
 
+  getStepDescription(index) {
+    if (this.stepIndex === this.timeline.length) {
+      return 'Finished';
+    } else if (this.stepIndex === -1) {
+      return 'Initial state';
+    }
+    return this.timeline[index].description;
+  }
+
   stepForward() {
     if (this.stepIndex === this.timeline.length) {
-      return 'Algorithm finished!';
+      return;
     }
     if (this.stepIndex > -1) {
       let finishingStep = this.timeline[this.stepIndex];
@@ -43,15 +52,14 @@ class AlgorithmResult {
       let nextStep = this.timeline[this.stepIndex + 1];
       nextStep.applyDuring();
       this.stepIndex++;
-      return nextStep.description;
+      return;
     }
     this.stepIndex++;
-    return 'Done!';
   }
 
   stepBackward() {
     if (this.stepIndex === -1) {
-      return 'Algorithm ready to begin!';
+      return;
     }
     if (this.stepIndex < this.timeline.length) {
       let redactingStep = this.timeline[this.stepIndex];
@@ -61,10 +69,9 @@ class AlgorithmResult {
       let previousStep = this.timeline[this.stepIndex - 1];
       previousStep.applyDuring();
       this.stepIndex--;
-      return previousStep.description;
+      return;
     }
     this.stepIndex--;
-    return 'Ready!';
   }
 
   /**

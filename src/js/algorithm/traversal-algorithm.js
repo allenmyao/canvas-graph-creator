@@ -1,7 +1,6 @@
 import Queue from '../util/queue';
-// import Stack from '../util/stack';
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 import AlgorithmResult from '../algorithm/algorithm-result';
 import AbstractAlgorithm from '../algorithm/abstract-algorithm';
 import StepBuilder from '../algorithm/step-builder';
@@ -15,17 +14,21 @@ class TraversalAlgorithm extends AbstractAlgorithm {
   // starting point for the algorithm
   source = null;
 
-  // things that the GUI needs to supply for the algorithm to run
   inputs = {
-    source: {
+    source: null
+  };
+
+  inputTypes = [
+    {
       type: 'node',
-      name: 'Source',
+      name: 'source',
+      displayName: 'Source',
       test: (node) => {
         return node instanceof Node;
       },
       required: true
     }
-  };
+  ];
 
   result;
 
@@ -56,7 +59,7 @@ class TraversalAlgorithm extends AbstractAlgorithm {
       }
       if (edge.isDirected && edge.startNode === node) {
         this.next.enqueue(edge);
-      } else {
+      } else if (!edge.isDirected) {
         this.next.enqueue(edge);
       }
     }
@@ -104,7 +107,15 @@ class TraversalAlgorithm extends AbstractAlgorithm {
       throw Error('Non-graph object in algorithm queue');
     }
     // represent the visual aspects of this step by creating a new step, adding a change for the current object, and completing the step
-    this.stepBuilder.newStep(`Visiting ${nextItem.constructor.name} ${nextItem.id}`);
+    let typeName;
+    if (nextItem instanceof Node) {
+      typeName = 'node';
+    } else if (nextItem instanceof Edge) {
+      typeName = 'edge';
+    } else {
+      typeName = nextItem.constructor.name;
+    }
+    this.stepBuilder.newStep(`Visiting ${typeName} ${nextItem.id}`);
     this.stepBuilder.addChange(nextItem, {
       color: 'black'
     }, {
@@ -115,6 +126,15 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     this.stepBuilder.completeStep();
 
     return true;
+  }
+
+  reset() {
+    this.next.clear();
+    this.isComplete = false;
+    this.hasStarted = false;
+    this.graphState = new WeakMap();
+    this.result = new AlgorithmResult();
+    this.stepBuilder = new StepBuilder(this.nodeFields, this.edgeFields, this.result);
   }
 
 }

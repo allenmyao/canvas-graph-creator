@@ -85,6 +85,15 @@ class EdgeTool extends Tool {
       this.start.isSelected = true;
     } else {
       this.dest = node;
+      if (this.start.id === this.dest.id) {
+        // check for existing self-loop
+        for (let edge of this.start.edges) {
+          if (edge.startNode.id === edge.destNode.id) {
+            this.dest = null;
+            return;
+          }
+        }
+      }
       let edge = new EdgeClass(this.start, this.dest);
       for (let field of Object.keys(this.inputs)) {
         if (field === 'isDirected' && this.start === this.dest) {

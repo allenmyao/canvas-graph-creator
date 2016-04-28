@@ -1,53 +1,70 @@
 import SidebarContent from '../ui/sidebar-content';
 import Node from '../data/node/node';
 import Edge from '../data/edge/edge';
-import * as Form from '../ui/form';
 import Stepper from '../algorithm/stepper';
+import scrollToElement from '../util/scroll-to-element';
 
 class SidebarAlgorithm extends SidebarContent {
 
-  currentInput;
   graph;
   stepper;
-  algoInputs;
   curAlgorithm;
 
   /**
    * Constructor calls the super, creates a new stepper object and then assigns algorithm specific button listeners to the sidebar
    * @param  {graph} graph - Reference to the master graph object
+   * @constructs SidebarAlgorithm
    */
   constructor(graph) {
     super(graph);
     this.graph = graph;
     this.stepper = new Stepper();
     document.getElementById('sidebar').addEventListener('click', (event) => {
-      if (event.target.classList.contains('run-algorithm-btn')) {
-        this.runEvent(event);
-      } else if (event.target.classList.contains('data-select-btn')) {
-        this.selectEvent(event);
-      } else if (event.target.classList.contains('algorithm-next-btn')) {
+      if (event.target.classList.contains('algorithm-next-btn')) {
         this.stepper.stepForward();
+        this.updateStepGUI();
       } else if (event.target.classList.contains('algorithm-prev-btn')) {
         this.stepper.stepBackward();
-      } else if (event.target.classList.contains('algorithm-play-btn')) {
-        if (!(this.stepper.result === null)) {
-          this.stepper.play();
+        this.updateStepGUI();
+      } else if (event.target.classList.contains('algorithm-play-toggle-btn')) {
+        if (this.stepper.interval !== null) {
+          this.stepper.pause();
+          event.target.textContent = 'Play';
+        } else if (this.stepper.interval === null && this.stepper.result !== null) {
+          this.stepper.play(() => {
+            this.updateStepGUI();
+          });
+          event.target.textContent = 'Pause';
         }
-      } else if (event.target.classList.contains('algorithm-pause-btn')) {
-        this.stepper.pause();
+      } else if (event.target.classList.contains('algorithm-speed-up-btn')) {
+        if (this.stepper.speedUp() === true) {
+          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');
+          if (speed) {
+            speed.classList.remove('speed-notch--active');
+            speed.nextElementSibling.classList.add('speed-notch--active');
+          }
+        }
+      } else if (event.target.classList.contains('algorithm-slow-down-btn')) {
+        if (this.stepper.slowDown() === true) {
+          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');
+          if (speed) {
+            speed.classList.remove('speed-notch--active');
+            speed.previousElementSibling.classList.add('speed-notch--active');
+          }
+        }
       }
     });
 
     document.getElementById('sidebar').addEventListener('mouseover', (event) => {
-      this.hoverEvent(event, true);
+      this.hoverEvent(true);
     });
 
     document.getElementById('sidebar').addEventListener('mouseout', (event) => {
-      this.hoverEvent(event, false);
+      this.hoverEvent(false);
     });
   }
 
-  hoverEvent(event, bool) {
+  hoverEvent(bool) {
     if (event.target.classList.contains('graph-link')) {
       let type = event.target.getAttribute('data-type');
       let id = event.target.getAttribute('data-id');
@@ -55,60 +72,111 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
-  selectEvent(event) {
-    let output = event.target.previousElementSibling;
-    let input = output.previousElementSibling;
-
-    let inputName = input.name;
-    if (this.currentInput === inputName) {
-      this.currentInput = null;
-      if (input.value) {
-        event.target.textContent = `Change ${input.getAttribute('data-type')}`;
-      } else {
-        event.target.textContent = `Select ${input.getAttribute('data-type')}`;
-      }
-    } else {
-      this.currentInput = inputName;
-      event.target.textContent = 'Cancel';
-    }
-  }
-
-  runEvent(event) {
-    let form = event.target.parentNode;
-    let data = Form.getData(form, this.graph);
-
-    let hasError = false;
-    for (let inputName of Object.keys(this.algoInputs)) {
-      let showError = !this.algoInputs[inputName].test(data[inputName]);
-      Form.displayError(form, inputName, showError);
-
-      if (showError && !hasError) {
-        hasError = true;
-      }
-    }
-
-    if (hasError) {
-      return;
-    }
-    this.setInputValues(data);
-    this.run();
-  }
-
-  setInputValues(inputData) {
-    for (let name of Object.keys(inputData)) {
-      if (name in this.algoInputs) {
-        let value = inputData[name];
-        this.curAlgorithm[name] = value;
-      }
-    }
-  }
-
   run() {
+    this.stepper.resetGraph();
+    this.curAlgorithm.reset();
+    for (let inputName of Object.keys(this.curAlgorithm.inputs)) {
+      this.curAlgorithm[inputName] = this.curAlgorithm.inputs[inputName];
+    }
+
     let hasNextStep = true;
     while (hasNextStep) {
       hasNextStep = this.curAlgorithm.step();
     }
+
     this.stepper.setResult(this.curAlgorithm.getResult());
+
+    // TODO immediately display all steps in sidebar
+    this.updateStepGUI();
+
+    let stepsHtml = `
+      <li class="stepper__step stepper__step--active" data-index="-1">
+        <div class="stepper__step__header">
+          <div class="stepper__step__header__number"></div><div class="stepper__step__header__description">Initial state</div>
+        </div>
+        <div class="stepper__step__details">
+          <div class="stepper__step__details__spacer"></div>
+          <div class="stepper__step__details__content"></div>
+        </div>
+      </li>
+    `;
+    for (let stepIndex = 0; stepIndex < this.stepper.result.timeline.length; stepIndex++) {
+      stepsHtml += `
+        <li class="stepper__step" data-index="${stepIndex}">
+          <div class="stepper__step__header">
+            <div class="stepper__step__header__number">${stepIndex + 1}</div><div class="stepper__step__header__description">${this.stepper.result.timeline[stepIndex].description}</div>
+          </div>
+          <div class="stepper__step__details">
+            <div class="stepper__step__details__spacer"></div>
+            <div class="stepper__step__details__content"></div>
+          </div>
+        </li>
+      `;
+    }
+
+    stepsHtml += `
+      <li class="stepper__step" data-index="${this.stepper.result.timeline.length}">
+        <div class="stepper__step__header">
+          <div class="stepper__step__header__number"></div><div class="stepper__step__header__description">Finished</div>
+        </div>
+        <div class="stepper__step__details">
+          <div class="stepper__step__details__spacer"></div>
+          <div class="stepper__step__details__content"></div>
+        </div>
+      </li>
+    `;
+
+    let stepper = this.tabs.getTabContentElement('algorithm').querySelector('.stepper');
+    stepper.innerHTML = stepsHtml;
+
+    let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');
+    let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');
+    let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');
+    let fastBtn = document.getElementById('sidebar').querySelector('.algorithm-speed-up-btn');
+    let slowBtn = document.getElementById('sidebar').querySelector('.algorithm-slow-down-btn');
+    fastBtn.disabled = false;
+    slowBtn.disabled = false;
+    prevBtn.disabled = true;
+    nextBtn.disabled = false;
+    playBtn.disabled = false;
+  }
+
+  updateStepGUI() {
+    let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');
+    let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');
+    let stepIndex = this.stepper.result.stepIndex;
+    let maxStepIndex = this.stepper.result.timeline.length;
+    if (stepIndex === maxStepIndex) {
+      nextBtn.disabled = true;
+    } else if (stepIndex === -1) {
+      prevBtn.disabled = true;
+    }
+    if (stepIndex > -1) {
+      prevBtn.disabled = false;
+    }
+    if (stepIndex < maxStepIndex) {
+      nextBtn.disabled = false;
+    }
+
+    let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');
+    if (stepIndex === maxStepIndex) {
+      playBtn.textContent = 'Play';
+      playBtn.disabled = true;
+    } else if (stepIndex < maxStepIndex) {
+      playBtn.disabled = false;
+    }
+
+    let activeStep = this.tabs.getTabContentElement('algorithm').querySelector('.stepper__step--active');
+    if (activeStep) {
+      activeStep.classList.remove('stepper__step--active');
+    }
+
+    let step = this.tabs.getTabContentElement('algorithm').querySelector(`.stepper__step[data-index="${this.stepper.result.stepIndex}"]`);
+    if (step) {
+      step.classList.add('stepper__step--active');
+      let resultsContainer = document.getElementById('sidebar').querySelector('.algorithm-results');
+      scrollToElement(resultsContainer, step.offsetTop - resultsContainer.offsetTop - 10, 100, 'easeInOutSine');
+    }
   }
 
   toggleHover(type, id, isHovering) {
@@ -131,92 +199,8 @@ class SidebarAlgorithm extends SidebarContent {
     this.tabs.replaceTabs({
       algorithm: 'Algorithm'
     });
-
-    this.tabs.setTabContent('algorithm', '<form></form>');
-
-    this.update();
+    this.tabs.setTabScroll('algorithm', false);
     this.tabs.selectTab('algorithm');
-  }
-
-  updateAlgorithm(algorithm) {
-    let form = this.createForm(algorithm.inputs);
-    let html = `
-      ${form}
-      <button type="button" class="run-algorithm-btn">Generate results</button>
-      <div>
-        <button type="button" class="algorithm-prev-btn">Previous step</button>
-        <button type="button" class="algorithm-next-btn">Next step</button>
-      </div>
-      <div>
-        <button type="button" class="algorithm-play-btn">Play</button>
-        <button type="button" class="algorithm-pause-btn">Pause</button>
-      <div>
-      <div>
-        <p class="algorithm-step-num">Step #</p>
-        <p class="algorithm-step-des">This step is...</p>
-      </div>
-    `;
-    this.tabs.getTabContentElement('algorithm').querySelector('form').innerHTML = html;
-    this.tabs.setTabContent('algorithm', html);
-  }
-
-  createForm(inputs) {
-    let html = '';
-
-    for (let inputName of Object.keys(inputs)) {
-      let fieldHtml;
-
-      let input = inputs[inputName];
-
-      let type = input.type;
-      let name = inputName;
-      let isRequired = input.required;
-
-      if (type === 'number') {
-        fieldHtml = `<input type="number" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'boolean') {
-        fieldHtml = `<input type="checkbox" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'string') {
-        fieldHtml = `<input type="text" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'color') {
-        fieldHtml = `<input type="color" name="${name}" class="${isRequired ? 'required' : ''}">`;
-      } else if (type === 'node' || type === 'edge') {
-        fieldHtml = `
-          <input type="hidden" name="${name}" data-type="${type}" class="${isRequired ? 'required' : ''}">
-          <output name="${name}"></output>
-          <button type="button" class="data-select-btn">Choose ${type}</button>
-        `;
-      }
-
-      let displayName = input.name;
-      html += `
-        <fieldset class="${isRequired ? 'required' : ''}" name="${name}">
-          <label>${displayName}</label>
-          ${fieldHtml}
-        </fieldset>
-      `;
-    }
-
-    return html;
-  }
-
-  updateInput(name, obj) {
-    // update displayed input values
-    if (name === this.currentInput) {
-      let id = obj.id;
-      let sidebar = document.getElementById('sidebar');
-
-      let input = sidebar.querySelector(`input[name="${name}"]`);
-      input.value = id;
-
-      let output = sidebar.querySelector(`output[name="${name}"]`);
-      output.value = `Node ${id}`;
-
-      let button = output.nextElementSibling;
-      button.textContent = `Change ${input.getAttribute('data-type')}`;
-
-      this.currentInput = null;
-    }
   }
 
   createLinkElement(obj) {
@@ -237,25 +221,39 @@ class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
-  selectObject(obj) {
-    if (this.currentInput && this.algoInputs && this.algoInputs[this.currentInput].test(obj)) {
-      this.updateInput(this.currentInput, obj);
-    }
-  }
-
   setAlgorithm(AlgorithmClass) {
     this.curAlgorithm = new AlgorithmClass(this.graph);
-    this.algoInputs = this.curAlgorithm.inputs;
-
     this.stepper.reset();
 
-    this.updateAlgorithm(this.curAlgorithm);
+    let html = `
+      <div class="algorithm-content">
+        <div class="algorithm-controls">
+          <div class="algorithm-step-controls">
+            <button type="button" class="algorithm-prev-btn btn-raised" disabled>Previous step</button>
+            <button type="button" class="algorithm-play-toggle-btn btn-raised" disabled>Play</button>
+            <button type="button" class="algorithm-next-btn btn-raised" disabled>Next step</button>
+          </div>
+          <div class="algorithm-speed">
+            <button type="button" class="algorithm-slow-down-btn btn-raised" disabled>Slower</button>
+            <div class="speed-notch"><<</div>
+            <div class="speed-notch"><</div>
+            <div class="speed-notch speed-notch--active">.</div>
+            <div class="speed-notch">></div>
+            <div class="speed-notch">>></div>
+            <button type="button" class="algorithm-speed-up-btn btn-raised" disabled>Faster</button>
+          </div>
+        </div>
+        <div class="algorithm-results">
+          <ul class="stepper"></ul>
+        </div>
+      </div>
+    `;
+    this.tabs.getTabContentElement('algorithm').innerHTML = html;
+    this.tabs.setTabContent('algorithm', html);
   }
 
   resetGraph() {
-    if (!(this.stepper.result === null)) {
-      this.stepper.resetGraph();
-    }
+    this.stepper.resetGraph();
   }
 
   /**
