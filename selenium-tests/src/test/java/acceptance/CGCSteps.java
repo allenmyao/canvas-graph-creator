@@ -46,6 +46,16 @@ public class CGCSteps {
 
 	}
 
+	@When("^.*Quicksave$")
+	public void quickSave() {
+		cgc.quickSave();
+	}
+
+	@When("^.*Quickload$")
+	public void quickLoad() {
+		cgc.quickLoad();
+	}
+
 	@When("^.*scroll (out|in) by (\\d+) ticks$")
 	public void scroll(String direction, int ticks) {
 		if (direction.equals("in"))

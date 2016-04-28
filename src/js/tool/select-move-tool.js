@@ -5,7 +5,6 @@ import Tool from './tool';
 class SelectMoveTool extends Tool {
 
   sidebarType = 'select';
-
   selectTool = new SelectTool();
   moveTool = new MoveTool();
 
