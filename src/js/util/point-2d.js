@@ -7,6 +7,8 @@ import Line2D from './line-2d';
  */
 class Point2D {
 
+  static EPSILON = 1e-8;
+
   /**
    * x-coordinate of the point.
    * @type {number}
@@ -26,8 +28,8 @@ class Point2D {
    * @constructs Point2D
    */
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    this.x = Math.abs(x) < Point2D.EPSILON ? 0 : x;
+    this.y = Math.abs(y) < Point2D.EPSILON ? 0 : y;
   }
 
   /**
@@ -36,7 +38,7 @@ class Point2D {
    * @return {boolean} - Whether or not the points are equivalent.
    */
   equals(point) {
-    return Math.abs(this.x - point.x) < 1e-8 && Math.abs(this.y - point.y) < 1e-8;
+    return Math.abs(this.x - point.x) < Point2D.EPSILON && Math.abs(this.y - point.y) < Point2D.EPSILON;
   }
 
   /**
@@ -48,7 +50,7 @@ class Point2D {
     let dx = point.x - this.x;
     let dy = point.y - this.y;
     let dist = Math.sqrt(dx * dx + dy * dy);
-    return Math.abs(dist) < 1e-8 ? 0 : dist;
+    return Math.abs(dist) < Point2D.EPSILON ? 0 : dist;
   }
 
   /**

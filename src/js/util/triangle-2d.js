@@ -7,28 +7,28 @@ import Point2D from './point-2d';
 class Triangle2D {
 
   /**
-   * First endpoint of the triangle.
+   * First vertex of the triangle.
    * @type {Point2D}
    */
   a;
 
   /**
-   * Second endpoint of the triangle.
+   * Second vertex of the triangle.
    * @type {Point2D}
    */
   b;
 
   /**
-   * Third endpoint of the triangle.
+   * Third vertex of the triangle.
    * @type {Point2D}
    */
   c;
 
   /**
    * Constructs a Triangle2D object.
-   * @param  {Point2D} a - First endpoint of the triangle.
-   * @param  {Point2D} b - Second endpoint of the triangle.
-   * @param  {Point2D} c - Third endpoint of the triangle.
+   * @param  {Point2D} a - First vertex of the triangle.
+   * @param  {Point2D} b - Second vertex of the triangle.
+   * @param  {Point2D} c - Third vertex of the triangle.
    * @constructs Triangle2D
    */
   constructor(a, b, c) {
