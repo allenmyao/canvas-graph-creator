@@ -1,10 +1,10 @@
-import Point2D from './point-2d';
-
 /**
  * Class for representing 2D vectors.
  * @class Vector2D
  */
 class Vector2D {
+
+  static EPSILON = 1e-8;
 
   /**
    * x component of the vector.
@@ -35,7 +35,7 @@ class Vector2D {
    */
   get length() {
     let len = Math.sqrt(this.x * this.x + this.y * this.y);
-    return Math.abs(len) < 1e-8 ? 0 : len;
+    return Math.abs(len) < Vector2D.EPSILON ? 0 : len;
   }
 
   /**
@@ -44,7 +44,7 @@ class Vector2D {
    * @return {boolean} - Whether or not the vectors are equivalent.
    */
   equals(vec) {
-    return Math.abs(this.x - vec.x) < 1e-8 && Math.abs(this.y - vec.y) < 1e-8;
+    return Math.abs(this.x - vec.x) < Vector2D.EPSILON && Math.abs(this.y - vec.y) < Vector2D.EPSILON;
   }
 
   /**
@@ -121,7 +121,7 @@ class Vector2D {
     let angle = Math.atan2(vec.y, vec.x) - Math.atan2(this.y, this.x);
     angle *= 180 / Math.PI;
     angle = (angle + 360) % 360;
-    if (Math.abs(Math.round(angle) - angle) < 1e-8) {
+    if (Math.abs(Math.round(angle) - angle) < Vector2D.EPSILON) {
       return Math.round(angle);
     }
     return angle;
@@ -134,14 +134,6 @@ class Vector2D {
    */
   projectOnto(vec) {
     return vec.scale(this.dot(vec) / vec.dot(vec));
-  }
-
-  /**
-   * Converts the Vector2D object to a Point2D object. x- and y-components of the vector are used as x- and y-coordinates for the point.
-   * @return {Point2D} - Point with the same x and y values as this vector.
-   */
-  toPoint() {
-    return new Point2D(this.x, this.y);
   }
 }
 
