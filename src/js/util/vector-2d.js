@@ -121,7 +121,7 @@ class Vector2D {
     let angle = Math.atan2(vec.y, vec.x) - Math.atan2(this.y, this.x);
     angle *= 180 / Math.PI;
     angle = (angle + 360) % 360;
-    if (Math.abs(Math.round(angle) - angle) < Vector2D.EPSILON) {
+    if (Math.round(angle) !== angle && Math.abs(Math.round(angle) - angle) < Vector2D.EPSILON) {
       return Math.round(angle);
     }
     return angle;
