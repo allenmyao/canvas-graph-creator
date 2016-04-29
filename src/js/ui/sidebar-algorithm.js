@@ -84,7 +84,7 @@ class SidebarAlgorithm extends SidebarContent {
       hasNextStep = this.curAlgorithm.step();
     }
 
-    this.stepper.setResult(this.curAlgorithm.getResult());
+    this.stepper.setResult(this.curAlgorithm.result);
 
     this.updateStepGUI();
 
