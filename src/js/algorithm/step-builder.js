@@ -64,6 +64,8 @@ class StepBuilder {
       fields = this.nodeFields;
     } else if (object instanceof Edge) {
       fields = this.edgeFields;
+    } else {
+      throw Error('Object is not a Node or Edge');
     }
     let change = new Change(object, fields, preValues, duringValues, postValues);
     this.step.addChange(change);
