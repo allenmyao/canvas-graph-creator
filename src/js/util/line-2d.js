@@ -28,14 +28,6 @@ class Line2D {
   }
 
   /**
-   * Getter for the length of the line.
-   * @return {number} - Length of the line.
-   */
-  get length() {
-    return this.a.distanceTo(this.b);
-  }
-
-  /**
    * Checks if the given point is on the line.
    * @param  {Point2D} c - The point to check.
    * @return {boolean} - Whether or not the given point is on the line.
