@@ -1,15 +1,19 @@
 engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 40
+    checks:
+      Similar code:
+        enabled: false
   eslint:
     enabled: true
     checks:
       keyword-spacing:
         enabled: false
       no-console:
-        enabled: false
-  duplication:
-    enabled: true
-    checks:
-      Similar code:
         enabled: false
   fixme:
     enabled: true
