@@ -4,25 +4,22 @@ chai.should();
 import AlgorithmResult from '../../src/js/algorithm/algorithm-result';
 import Step from '../../src/js/algorithm/step';
 
+/** @test {AlgorithmResult} **/
 describe('AlgorithmResult', () => {
+  /** @test {AlgorithmResult#constructor} **/
   describe('#constructor()', () => {
     it('should be instance of AlgorithmResult', () => {
       let algorithmResult = new AlgorithmResult();
       algorithmResult.should.be.instanceof(AlgorithmResult);
     });
-  });
 
-  describe('#addStep()', () => {
-    it('should add the step to timeline', () => {
+    it('should start with a step index of -1', () => {
       let algorithmResult = new AlgorithmResult();
-      let step = new Step('');
-      algorithmResult.addStep(step);
-      let timeline = algorithmResult.timeline;
-
-      (timeline[timeline.length - 1]).should.be.equal(step);
+      (algorithmResult.stepIndex).should.be.equal(-1);
     });
   });
 
+  /** @test {AlgorithmResult#stepForward} **/
   describe('#stepForward()', () => {
     it('should step forward in the timeline', () => {
       let algorithmResult = new AlgorithmResult();
@@ -51,6 +48,7 @@ describe('AlgorithmResult', () => {
     });
   });
 
+  /** @test {AlgorithmResult#stepBackward} **/
   describe('#stepBackward()', () => {
     it('should step backward in the timeline', () => {
       let algorithmResult = new AlgorithmResult();
@@ -77,6 +75,18 @@ describe('AlgorithmResult', () => {
       algorithmResult.stepIndex = -1;
       algorithmResult.stepBackward();
       (algorithmResult.stepIndex).should.be.equal(-1);
+    });
+  });
+
+  /** @test {AlgorithmResult#addStep} **/
+  describe('#addStep(step)', () => {
+    it('should add the step to timeline', () => {
+      let algorithmResult = new AlgorithmResult();
+      let step = new Step('');
+      algorithmResult.addStep(step);
+      let timeline = algorithmResult.timeline;
+
+      (timeline[timeline.length - 1]).should.be.equal(step);
     });
   });
 });

@@ -86,7 +86,6 @@ class SidebarAlgorithm extends SidebarContent {
 
     this.stepper.setResult(this.curAlgorithm.getResult());
 
-    // TODO immediately display all steps in sidebar
     this.updateStepGUI();
 
     let stepsHtml = `
@@ -100,6 +99,7 @@ class SidebarAlgorithm extends SidebarContent {
         </div>
       </li>
     `;
+
     for (let stepIndex = 0; stepIndex < this.stepper.result.timeline.length; stepIndex++) {
       stepsHtml += `
         <li class="stepper__step" data-index="${stepIndex}">

@@ -1,8 +1,12 @@
-import { Node } from '../data/node/node';
-import { Edge } from '../data/edge/edge';
+import Node from '../data/node/node';
+import Edge from '../data/edge/edge';
 import Step from '../algorithm/step';
 import Change from '../algorithm/change';
 
+/**
+ * Helper class to build Step objects.
+ * @class StepBuilder
+ */
 class StepBuilder {
 
   /**
@@ -23,12 +27,23 @@ class StepBuilder {
    */
   edgeFields;
 
-  constructor(nodeFields, edgeFields, timeline) {
+  /**
+   * Constructs a StepBuilder.
+   * @param  {Array.<string>} nodeFields - Array of names of Node fields that the algorithm has access to.
+   * @param  {Array.<string>} edgeFields - Array of names of Edge fields that the algorithm has access to.
+   * @param  {AlgorithmResult} algorithmResult - AlgorithmResult object that the step will be stored in.
+   * @constructs StepBuilder
+   */
+  constructor(nodeFields, edgeFields, algorithmResult) {
     this.nodeFields = nodeFields;
     this.edgeFields = edgeFields;
-    this.timeline = timeline;
+    this.algorithmResult = algorithmResult;
   }
 
+  /**
+   * Begin building a new Step object.
+   * @param  {string} description - Description of the Step.
+   */
   newStep(description) {
     this.step = new Step(description);
   }
@@ -49,15 +64,20 @@ class StepBuilder {
       fields = this.nodeFields;
     } else if (object instanceof Edge) {
       fields = this.edgeFields;
+    } else {
+      throw Error('Object is not a Node or Edge');
     }
     let change = new Change(object, fields, preValues, duringValues, postValues);
     this.step.addChange(change);
   }
 
+  /**
+   * Called when the step is completed.
+   */
   completeStep() {
     let step = this.step;
     this.step = null;
-    this.timeline.addStep(step);
+    this.algorithmResult.addStep(step);
   }
 }
 
