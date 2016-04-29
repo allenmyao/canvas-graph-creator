@@ -117,7 +117,7 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     }
     this.stepBuilder.newStep(`Visiting ${typeName} ${nextItem.id}`);
     this.stepBuilder.addChange(nextItem, {
-      color: 'black'
+      color: nextItem.color
     }, {
       color: 'red'
     }, {
