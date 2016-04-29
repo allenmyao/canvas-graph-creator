@@ -5,19 +5,46 @@ import AlgorithmResult from '../algorithm/algorithm-result';
 import AbstractAlgorithm from '../algorithm/abstract-algorithm';
 import StepBuilder from '../algorithm/step-builder';
 
+/**
+ * Class that contains code for running a traversal algorithm.
+ * @class TraversalAlgorithm
+ */
 class TraversalAlgorithm extends AbstractAlgorithm {
 
-  name = 'Traversal';
-  // data structure that determines order of traversal
+  /**
+   * Data structure that determines order of traversal.
+   * @type {Queue}
+   */
   next = new Queue();
 
-  // starting point for the algorithm
+  /**
+   * Source node of the algorithm.
+   * @type {[type]}
+   */
   source = null;
 
+  /**
+   * Object that holds the algorithm input values. Used by the UI classes to view and store values.
+   * @type {Object.<string, *>}
+   */
   inputs = {
     source: null
   };
 
+  /**
+   * @typedef InputType
+   * @type {object}
+   * @property {string} type - String representing tyoe of input.
+   * @property {string} name - Name of the field.
+   * @property {string} displayName - Name to be displayed.
+   * @property {method} test - Function run to validate input.
+   * @property {boolean} required - Whether or not the input is required.
+   */
+
+  /**
+   * Object that defines the algorithm input types.
+   * @type {Object.<string, InputType>}
+   */
   inputTypes = [
     {
       type: 'node',
@@ -30,23 +57,37 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     }
   ];
 
-  result;
-
-  // the members of the nodes and edges that the algorithm will edit
+  /**
+   * Array of field names to store for Node objects.
+   * @type {Array.<string>}
+   */
   nodeFields = [
     'color'
   ];
+
+  /**
+   * Array of field names to store for Edge objects.
+   * @type {Array.<string>}
+   */
   edgeFields = [
     'color'
   ];
 
+  /**
+   * Constructor for TraversalAlgorithm.
+   * @param  {Graph} graph - The graph that the algorithm will be run on.
+   * @constructs TraversalAlgorithm
+   */
   constructor(graph) {
     super(graph);
     this.result = new AlgorithmResult();
     this.stepBuilder = new StepBuilder(this.nodeFields, this.edgeFields, this.result);
   }
 
-  // visit the specified node
+  /**
+   * Visit the specified node.
+   * @param  {Node} node - The node to be visited.
+   */
   visitNode(node) {
     // mark node as visited
     this.graphState.set(node, true);
@@ -65,7 +106,10 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     }
   }
 
-  // visit the specified edge
+  /**
+   * Visit the specified edge.
+   * @param  {Edge} edge - The edge to be visited.
+   */
   visitEdge(edge) {
     // mark edge as visited
     this.graphState.set(edge, true);
@@ -78,12 +122,18 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     }
   }
 
-  // check if object has been visited by algorithm
+  /**
+   * Check if a node or edge has been visited by the algorithm.
+   * @param  {(Node|Edge)}  object - The node/edge to be checked.
+   * @return {boolean} - Whether or not the node/edge has been visited.
+   */
   hasVisited(object) {
     return this.graphState.has(object) && this.graphState.get(object);
   }
 
-  // run the next step of the algorithm
+  /**
+   * @override
+   */
   step() {
     if (this.hasStarted && this.next.size === 0) {
       this.isComplete = true;
@@ -128,6 +178,9 @@ class TraversalAlgorithm extends AbstractAlgorithm {
     return true;
   }
 
+  /**
+   * Reset the algorithm so that it can be run again.
+   */
   reset() {
     this.next.clear();
     this.isComplete = false;
