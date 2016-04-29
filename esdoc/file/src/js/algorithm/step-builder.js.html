@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,11 +103,15 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/algorithm/step-builder.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Node } from &apos;../data/node/node&apos;;
-import { Edge } from &apos;../data/edge/edge&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Node from &apos;../data/node/node&apos;;
+import Edge from &apos;../data/edge/edge&apos;;
 import Step from &apos;../algorithm/step&apos;;
 import Change from &apos;../algorithm/change&apos;;
 
+/**
+ * Helper class to build Step objects.
+ * @class StepBuilder
+ */
 class StepBuilder {
 
   /**
@@ -127,12 +132,23 @@ class StepBuilder {
    */
   edgeFields;
 
-  constructor(nodeFields, edgeFields, timeline) {
+  /**
+   * Constructs a StepBuilder.
+   * @param  {Array.&lt;string&gt;} nodeFields - Array of names of Node fields that the algorithm has access to.
+   * @param  {Array.&lt;string&gt;} edgeFields - Array of names of Edge fields that the algorithm has access to.
+   * @param  {AlgorithmResult} algorithmResult - AlgorithmResult object that the step will be stored in.
+   * @constructs StepBuilder
+   */
+  constructor(nodeFields, edgeFields, algorithmResult) {
     this.nodeFields = nodeFields;
     this.edgeFields = edgeFields;
-    this.timeline = timeline;
+    this.algorithmResult = algorithmResult;
   }
 
+  /**
+   * Begin building a new Step object.
+   * @param  {string} description - Description of the Step.
+   */
   newStep(description) {
     this.step = new Step(description);
   }
@@ -153,15 +169,20 @@ class StepBuilder {
       fields = this.nodeFields;
     } else if (object instanceof Edge) {
       fields = this.edgeFields;
+    } else {
+      throw Error(&apos;Object is not a Node or Edge&apos;);
     }
     let change = new Change(object, fields, preValues, duringValues, postValues);
     this.step.addChange(change);
   }
 
+  /**
+   * Called when the step is completed.
+   */
   completeStep() {
     let step = this.step;
     this.step = null;
-    this.timeline.addStep(step);
+    this.algorithmResult.addStep(step);
   }
 }
 

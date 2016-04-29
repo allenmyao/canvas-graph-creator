@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,13 +103,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Stepper from &apos;<span><a href="file/src/js/algorithm/stepper.js.html#lineNumber1">canvas-graph-creator/src/js/algorithm/stepper.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Stepper from &apos;<span><a href="file/src/js/algorithm/stepper.js.html#lineNumber5">canvas-graph-creator/src/js/algorithm/stepper.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/algorithm/stepper.js.html#lineNumber1">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/algorithm/stepper.js.html#lineNumber5">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +129,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Helper class for stepping through and playing algorithm results.</p>
+</div>
 
   
 
@@ -141,38 +143,7 @@
 
 
 
-<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-constructor-constructor">constructor</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+
 <div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
   <tbody>
@@ -270,38 +241,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-method-getAlgorithm">getAlgorithm</a></span></span><span data-ice="signature">(): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
            <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-method-pause">pause</a></span></span><span data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Pause the stepper if it is currently playing.</p>
+</div>
       </div>
     </td>
     <td>
@@ -320,13 +267,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-method-play">play</a></span></span><span data-ice="signature">(callback: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-method-play">play</a></span></span><span data-ice="signature">(callback: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Play the algorithm results.</p>
+</div>
       </div>
     </td>
     <td>
@@ -351,7 +299,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Reset the stepper object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -376,7 +325,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Reset the state of the graph by undoing all changes made by the algorithm steps.</p>
+</div>
       </div>
     </td>
     <td>
@@ -395,13 +345,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-method-setResult">setResult</a></span></span><span data-ice="signature">(result: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html#instance-method-setResult">setResult</a></span></span><span data-ice="signature">(result: <span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Set the specified AlgorithmResult object to the &quot;result&quot; field.</p>
+</div>
       </div>
     </td>
     <td>
@@ -476,7 +427,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Go to the previous algorithm step.</p>
+</div>
       </div>
     </td>
     <td>
@@ -501,7 +453,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Go to the next algorithm step.</p>
+</div>
       </div>
     </td>
     <td>
@@ -517,49 +470,7 @@
 
 
 
-<div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-constructor-constructor">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">constructor</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber9">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
@@ -573,7 +484,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber64">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber77">source</a></span></span>
     </span>
   </h3>
 
@@ -613,7 +524,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber36">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -653,7 +564,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber15">source</a></span></span>
     </span>
   </h3>
 
@@ -686,56 +597,6 @@
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-getAlgorithm">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">getAlgorithm</span><span data-ice="signature">(): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber12">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-pause">
     <span class="access" data-ice="access">public</span>
     
@@ -746,14 +607,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber75">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Pause the stepper if it is currently playing.</p>
+</div>
 
   
 
@@ -782,18 +644,19 @@
     
     
     
-    <span data-ice="name">play</span><span data-ice="signature">(callback: <span>*</span>)</span>
+    <span data-ice="name">play</span><span data-ice="signature">(callback: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber84">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Play the algorithm results. Steps forward until paused or finished.</p>
+</div>
 
   
 
@@ -807,9 +670,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">callback</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Callback function that is called whenever a step is completed.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -842,14 +706,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Reset the stepper object. Clears the algorithm results.</p>
+</div>
 
   
 
@@ -882,14 +747,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber40">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Reset the state of the graph by undoing all changes made by the algorithm steps.</p>
+</div>
 
   
 
@@ -918,18 +784,19 @@
     
     
     
-    <span data-ice="name">setResult</span><span data-ice="signature">(result: <span>*</span>)</span>
+    <span data-ice="name">setResult</span><span data-ice="signature">(result: <span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber53">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Set the specified AlgorithmResult object to the &quot;result&quot; field.</p>
+</div>
 
   
 
@@ -943,9 +810,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">result</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>AlgorithmResult object.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -978,7 +846,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
@@ -1028,7 +896,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber13">source</a></span></span>
     </span>
   </h3>
 
@@ -1078,14 +946,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber53">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Go to the previous algorithm step.</p>
+</div>
 
   
 
@@ -1118,14 +987,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/stepper.js.html#lineNumber68">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Go to the next algorithm step.</p>
+</div>
 
   
 

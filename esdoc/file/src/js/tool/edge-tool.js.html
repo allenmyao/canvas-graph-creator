@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -189,6 +190,15 @@ class EdgeTool extends Tool {
       this.start.isSelected = true;
     } else {
       this.dest = node;
+      if (this.start.id === this.dest.id) {
+        // check for existing self-loop
+        for (let edge of this.start.edges) {
+          if (edge.startNode.id === edge.destNode.id) {
+            this.dest = null;
+            return;
+          }
+        }
+      }
       let edge = new EdgeClass(this.start, this.dest);
       for (let field of Object.keys(this.inputs)) {
         if (field === &apos;isDirected&apos; &amp;&amp; this.start === this.dest) {

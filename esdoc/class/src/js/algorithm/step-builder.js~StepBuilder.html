@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,13 +103,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StepBuilder from &apos;<span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber6">canvas-graph-creator/src/js/algorithm/step-builder.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StepBuilder from &apos;<span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber10">canvas-graph-creator/src/js/algorithm/step-builder.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber6">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber10">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,13 +129,20 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Helper class to build Step objects.</p>
+</div>
 
   
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/step-builder-test.js.html#lineNumber11">StepBuilder</a></span></li>
+</ul>
+  </div>
 
   
 </div>
@@ -156,13 +164,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(nodeFields: <span>*</span>, edgeFields: <span>*</span>, timeline: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(nodeFields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;, edgeFields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;, algorithmResult: <span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructs a StepBuilder.</p>
+</div>
       </div>
     </td>
     <td>
@@ -178,6 +187,31 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-member-algorithmResult">algorithmResult</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -252,31 +286,6 @@
       
     </td>
   </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-member-timeline">timeline</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
 </tbody>
 </table>
 </div>
@@ -327,7 +336,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Called when the step is completed.</p>
+</div>
       </div>
     </td>
     <td>
@@ -346,13 +356,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-method-newStep">newStep</a></span></span><span data-ice="signature">(description: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-method-newStep">newStep</a></span></span><span data-ice="signature">(description: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Begin building a new Step object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -377,18 +388,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(nodeFields: <span>*</span>, edgeFields: <span>*</span>, timeline: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(nodeFields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;, edgeFields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;, algorithmResult: <span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber26">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructs a StepBuilder.</p>
+</div>
 
   
 
@@ -402,21 +414,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">nodeFields</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Array of names of Node fields that the algorithm has access to.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">edgeFields</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Array of names of Edge fields that the algorithm has access to.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">timeline</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="name" data-depth="0">algorithmResult</td>
+      <td data-ice="type"><span><a href="class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html">AlgorithmResult</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>AlgorithmResult object that the step will be stored in.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -433,7 +448,13 @@
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/step-builder-test.js.html#lineNumber13">StepBuilder #constructor()</a></span></li>
+</ul>
+  </div>
 
   
   
@@ -441,6 +462,46 @@
 </div>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-algorithmResult">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">algorithmResult</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber40">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-member-edgeFields">
     <span class="access" data-ice="access">public</span>
@@ -452,7 +513,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -492,7 +553,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber38">source</a></span></span>
     </span>
   </h3>
 
@@ -532,47 +593,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber33">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-timeline">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">timeline</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
@@ -615,7 +636,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber58">source</a></span></span>
     </span>
   </h3>
 
@@ -678,7 +699,13 @@
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/step-builder-test.js.html#lineNumber38">StepBuilder #addChange</a></span></li>
+</ul>
+  </div>
 
   
   
@@ -694,14 +721,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber57">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber77">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Called when the step is completed.</p>
+</div>
 
   
 
@@ -718,7 +746,13 @@
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/step-builder-test.js.html#lineNumber80">StepBuilder #completeStep</a></span></li>
+</ul>
+  </div>
 
   
   
@@ -730,18 +764,19 @@
     
     
     
-    <span data-ice="name">newStep</span><span data-ice="signature">(description: <span>*</span>)</span>
+    <span data-ice="name">newStep</span><span data-ice="signature">(description: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/step-builder.js.html#lineNumber47">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Begin building a new Step object.</p>
+</div>
 
   
 
@@ -755,9 +790,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">description</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Description of the Step.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -774,7 +810,13 @@
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/step-builder-test.js.html#lineNumber21">StepBuilder #newStep</a></span></li>
+</ul>
+  </div>
 
   
   

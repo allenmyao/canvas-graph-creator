@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -108,25 +109,22 @@ chai.should();
 import AlgorithmResult from &apos;../../src/js/algorithm/algorithm-result&apos;;
 import Step from &apos;../../src/js/algorithm/step&apos;;
 
+/** @test {AlgorithmResult} **/
 describe(&apos;AlgorithmResult&apos;, () =&gt; {
+  /** @test {AlgorithmResult#constructor} **/
   describe(&apos;#constructor()&apos;, () =&gt; {
     it(&apos;should be instance of AlgorithmResult&apos;, () =&gt; {
       let algorithmResult = new AlgorithmResult();
       algorithmResult.should.be.instanceof(AlgorithmResult);
     });
-  });
 
-  describe(&apos;#addStep()&apos;, () =&gt; {
-    it(&apos;should add the step to timeline&apos;, () =&gt; {
+    it(&apos;should start with a step index of -1&apos;, () =&gt; {
       let algorithmResult = new AlgorithmResult();
-      let step = new Step(&apos;&apos;);
-      algorithmResult.addStep(step);
-      let timeline = algorithmResult.timeline;
-
-      (timeline[timeline.length - 1]).should.be.equal(step);
+      (algorithmResult.stepIndex).should.be.equal(-1);
     });
   });
 
+  /** @test {AlgorithmResult#stepForward} **/
   describe(&apos;#stepForward()&apos;, () =&gt; {
     it(&apos;should step forward in the timeline&apos;, () =&gt; {
       let algorithmResult = new AlgorithmResult();
@@ -155,6 +153,7 @@ describe(&apos;AlgorithmResult&apos;, () =&gt; {
     });
   });
 
+  /** @test {AlgorithmResult#stepBackward} **/
   describe(&apos;#stepBackward()&apos;, () =&gt; {
     it(&apos;should step backward in the timeline&apos;, () =&gt; {
       let algorithmResult = new AlgorithmResult();
@@ -181,6 +180,18 @@ describe(&apos;AlgorithmResult&apos;, () =&gt; {
       algorithmResult.stepIndex = -1;
       algorithmResult.stepBackward();
       (algorithmResult.stepIndex).should.be.equal(-1);
+    });
+  });
+
+  /** @test {AlgorithmResult#addStep} **/
+  describe(&apos;#addStep(step)&apos;, () =&gt; {
+    it(&apos;should add the step to timeline&apos;, () =&gt; {
+      let algorithmResult = new AlgorithmResult();
+      let step = new Step(&apos;&apos;);
+      algorithmResult.addStep(step);
+      let timeline = algorithmResult.timeline;
+
+      (timeline[timeline.length - 1]).should.be.equal(step);
     });
   });
 });

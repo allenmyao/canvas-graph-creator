@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -205,7 +206,12 @@ export class Serializer {
     let outElem;
     cache[path] = elem;
 
-    outputObj[IDTYPE] = elem.constructor.name;
+    for (let name of Object.keys(Serializer.classesByName)) {
+      if (elem instanceof Serializer.classesByName[name]) {
+        outputObj[IDTYPE] = name;
+        break;
+      }
+    }
 
     for (key in elem) {
       if (elem.hasOwnProperty(key)) {
@@ -427,7 +433,7 @@ export class Serializer {
       deserializeInfo = this.deserializeGraph(obj);
     } catch (ex) {
       // Exception thrown from parser or deserializer. Abort.
-      return;
+      throw ex;
     }
     // Graph Upload OK
     Node.numNodes = deserializeInfo.nodes;
@@ -442,6 +448,7 @@ export class Serializer {
     let obj;
     let deserializeInfo;
     if (this.quickString === &apos;&apos;) {
+      console.log(&apos;Nothing has been saved&apos;);
       return;
     }
     try {
@@ -449,7 +456,7 @@ export class Serializer {
       deserializeInfo = this.deserializeGraph(obj);
     } catch (ex) {
       // Exception thrown from parser or deserializer. Abort.
-      return;
+      throw ex;
     }
     // Graph Quickload OK
     Node.numNodes = deserializeInfo.nodes;

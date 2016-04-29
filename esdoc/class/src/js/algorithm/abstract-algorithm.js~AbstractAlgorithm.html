@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,13 +103,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import AbstractAlgorithm from &apos;<span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber10">canvas-graph-creator/src/js/algorithm/abstract-algorithm.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import AbstractAlgorithm from &apos;<span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber5">canvas-graph-creator/src/js/algorithm/abstract-algorithm.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber5">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -135,7 +136,13 @@
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber8">AbstractAlgorithm</a></span></li>
+</ul>
+  </div>
 
   
 </div>
@@ -157,13 +164,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(graph: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructor for the abstract algorithm class.</p>
+</div>
       </div>
     </td>
     <td>
@@ -221,38 +229,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-getResult">getResult</a></span></span><span data-ice="signature">(): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-step">step</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-step">step</a></span></span><span data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Run the next step of the algorithm.</p>
+</div>
       </div>
     </td>
     <td>
@@ -277,18 +261,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(graph: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber69">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber88">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructor for the abstract algorithm class. Should not be called directly.</p>
+</div>
 
   
 
@@ -302,9 +287,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Graph that the algorithm is run on.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -321,7 +307,13 @@
 
   
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber10">AbstractAlgorithm #constructor()</a></span></li>
+</ul>
+  </div>
 
   
   
@@ -340,7 +332,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber70">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
@@ -373,24 +365,25 @@
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-getResult">
+  <h3 data-ice="anchor" id="instance-method-step">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">getResult</span><span data-ice="signature">(): <span>*</span></span>
+    <span data-ice="name">step</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber96">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Run the next step of the algorithm.</p>
+</div>
 
   
 
@@ -401,53 +394,14 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not the algorithm has a next step.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-step">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">step</span><span data-ice="signature">()</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/algorithm/abstract-algorithm.js.html#lineNumber78">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
 
   
 

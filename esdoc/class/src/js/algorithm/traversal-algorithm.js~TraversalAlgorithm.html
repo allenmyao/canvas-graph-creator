@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,13 +103,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import TraversalAlgorithm from &apos;<span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber8">canvas-graph-creator/src/js/algorithm/traversal-algorithm.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import TraversalAlgorithm from &apos;<span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber12">canvas-graph-creator/src/js/algorithm/traversal-algorithm.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber8">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber12">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +129,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Class that contains code for running a traversal algorithm.</p>
+</div>
 
   
 
@@ -156,13 +158,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(graph: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructor for TraversalAlgorithm.</p>
+</div>
       </div>
     </td>
     <td>
@@ -320,13 +323,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-hasVisited">hasVisited</a></span></span><span data-ice="signature">(object: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-hasVisited">hasVisited</a></span></span><span data-ice="signature">(object: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Check if a node or edge has been visited by the algorithm.</p>
+</div>
       </div>
     </td>
     <td>
@@ -351,7 +355,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Reset the algorithm so that it can be run again.</p>
+</div>
       </div>
     </td>
     <td>
@@ -395,13 +400,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-visitEdge">visitEdge</a></span></span><span data-ice="signature">(edge: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-visitEdge">visitEdge</a></span></span><span data-ice="signature">(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Visit the specified edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -420,13 +426,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-visitNode">visitNode</a></span></span><span data-ice="signature">(node: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-visitNode">visitNode</a></span></span><span data-ice="signature">(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Visit the specified node.</p>
+</div>
       </div>
     </td>
     <td>
@@ -478,38 +485,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-getResult">getResult</a></span></span><span data-ice="signature">(): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-step">step</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-step">step</a></span></span><span data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Run the next step of the algorithm.</p>
+</div>
       </div>
     </td>
     <td>
@@ -532,18 +515,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(graph: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber81">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructor for TraversalAlgorithm.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-constructor-constructor">AbstractAlgorithm#constructor</a></span></div>
 
@@ -557,9 +541,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The graph that the algorithm will be run on.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -595,7 +580,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber135">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber188">source</a></span></span>
     </span>
   </h3>
 
@@ -635,7 +620,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber98">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber148">source</a></span></span>
     </span>
   </h3>
 
@@ -675,7 +660,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber139">source</a></span></span>
     </span>
   </h3>
 
@@ -715,7 +700,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber83">source</a></span></span>
     </span>
   </h3>
 
@@ -755,7 +740,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber84">source</a></span></span>
     </span>
   </h3>
 
@@ -794,18 +779,19 @@
     
     
     
-    <span data-ice="name">hasVisited</span><span data-ice="signature">(object: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">hasVisited</span><span data-ice="signature">(object: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber82">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber130">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Check if a node or edge has been visited by the algorithm.</p>
+</div>
 
   
 
@@ -819,9 +805,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">object</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The node/edge to be checked.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -832,8 +819,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not the node/edge has been visited.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -864,14 +852,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber131">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber184">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Reset the algorithm so that it can be run again.</p>
+</div>
 
   
 
@@ -904,7 +893,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber87">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber137">source</a></span></span>
     </span>
   </h3>
 
@@ -950,18 +939,19 @@
     
     
     
-    <span data-ice="name">visitEdge</span><span data-ice="signature">(edge: <span>*</span>)</span>
+    <span data-ice="name">visitEdge</span><span data-ice="signature">(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber69">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber113">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Visit the specified edge.</p>
+</div>
 
   
 
@@ -975,9 +965,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">edge</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The edge to be visited.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1006,18 +997,19 @@
     
     
     
-    <span data-ice="name">visitNode</span><span data-ice="signature">(node: <span>*</span>)</span>
+    <span data-ice="name">visitNode</span><span data-ice="signature">(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/algorithm/traversal-algorithm.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Visit the specified node.</p>
+</div>
 
   
 
@@ -1031,9 +1023,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">node</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The node to be visited.</p>
+</td>
     </tr>
 </tbody>
   </table>

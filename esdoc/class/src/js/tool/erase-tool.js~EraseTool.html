@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,13 +103,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import EraseTool from &apos;<span><a href="file/src/js/tool/erase-tool.js.html#lineNumber5">canvas-graph-creator/src/js/tool/erase-tool.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import EraseTool from &apos;<span><a href="file/src/js/tool/erase-tool.js.html#lineNumber8">canvas-graph-creator/src/js/tool/erase-tool.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/tool/erase-tool.js.html#lineNumber5">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/tool/erase-tool.js.html#lineNumber8">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +129,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Eraser Tool for removing nodes and edges from the graph using the mouse pointer.</p>
+</div>
 
   
 
@@ -158,13 +160,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-dragOverObject">dragOverObject</a></span></span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, obj: <span>*</span>, x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-dragOverObject">dragOverObject</a></span></span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, obj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Deletes the dragged-over object</p>
+</div>
       </div>
     </td>
     <td>
@@ -183,13 +186,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-preDragObject">preDragObject</a></span></span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, srcObj: <span>*</span>, x: <span>*</span>, y: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-preDragObject">preDragObject</a></span></span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, srcObj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>bool</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Refuses to commit to object drag when called by mouse handler</p>
+</div>
       </div>
     </td>
     <td>
@@ -208,13 +212,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-preSelectObject">preSelectObject</a></span></span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, obj: <span>*</span>, x: <span>*</span>, y: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-preSelectObject">preSelectObject</a></span></span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, obj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>bool</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Commits to object selection when called by mouse handler</p>
+</div>
       </div>
     </td>
     <td>
@@ -233,13 +238,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-selectObject">selectObject</a></span></span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, obj: <span>*</span>, x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/tool/erase-tool.js~EraseTool.html#instance-method-selectObject">selectObject</a></span></span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, obj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Deletes the selected object</p>
+</div>
       </div>
     </td>
     <td>
@@ -772,18 +778,19 @@
     
     
     
-    <span data-ice="name">dragOverObject</span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, obj: <span>*</span>, x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">dragOverObject</span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, obj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Deletes the dragged-over object</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/tool/tool.js~Tool.html#instance-method-dragOverObject">Tool#dragOverObject</a></span></div>
 
@@ -797,33 +804,38 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">event</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>mouse event</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the current graph object</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">obj</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the object to delete</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s x position</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s y position</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -852,18 +864,19 @@
     
     
     
-    <span data-ice="name">preDragObject</span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, srcObj: <span>*</span>, x: <span>*</span>, y: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span data-ice="name">preDragObject</span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, srcObj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>bool</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Refuses to commit to object drag when called by mouse handler</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/tool/tool.js~Tool.html#instance-method-preDragObject">Tool#preDragObject</a></span></div>
 
@@ -877,33 +890,38 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">event</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>mouse event</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the current graph object</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">srcObj</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the selectable object</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s x position</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s y position</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -914,8 +932,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        
+        <td class="return-type" data-ice="returnType"><span>bool</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>false this tool does not need drag data</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -942,18 +961,19 @@
     
     
     
-    <span data-ice="name">preSelectObject</span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, obj: <span>*</span>, x: <span>*</span>, y: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span data-ice="name">preSelectObject</span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, obj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>bool</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber9">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Commits to object selection when called by mouse handler</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/tool/tool.js~Tool.html#instance-method-preSelectObject">Tool#preSelectObject</a></span></div>
 
@@ -967,33 +987,38 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">event</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>mouse event</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the current graph object</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">obj</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the selectable object</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s x position</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s y position</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1004,8 +1029,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        
+        <td class="return-type" data-ice="returnType"><span>bool</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true this tool needs selection data</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1032,18 +1058,19 @@
     
     
     
-    <span data-ice="name">selectObject</span><span data-ice="signature">(event: <span>*</span>, graph: <span>*</span>, obj: <span>*</span>, x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">selectObject</span><span data-ice="signature">(event: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, graph: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, obj: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/tool/erase-tool.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Deletes the selected object</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/tool/tool.js~Tool.html#instance-method-selectObject">Tool#selectObject</a></span></div>
 
@@ -1057,33 +1084,38 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">event</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>mouse event</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the current graph object</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">obj</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the object to delete</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s x position</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the mouse cursor&apos;s y position</p>
+</td>
     </tr>
 </tbody>
   </table>

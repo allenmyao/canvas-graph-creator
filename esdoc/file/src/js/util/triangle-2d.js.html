@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -111,28 +112,28 @@
 class Triangle2D {
 
   /**
-   * First endpoint of the triangle.
+   * First vertex of the triangle.
    * @type {Point2D}
    */
   a;
 
   /**
-   * Second endpoint of the triangle.
+   * Second vertex of the triangle.
    * @type {Point2D}
    */
   b;
 
   /**
-   * Third endpoint of the triangle.
+   * Third vertex of the triangle.
    * @type {Point2D}
    */
   c;
 
   /**
    * Constructs a Triangle2D object.
-   * @param  {Point2D} a - First endpoint of the triangle.
-   * @param  {Point2D} b - Second endpoint of the triangle.
-   * @param  {Point2D} c - Third endpoint of the triangle.
+   * @param  {Point2D} a - First vertex of the triangle.
+   * @param  {Point2D} b - Second vertex of the triangle.
+   * @param  {Point2D} c - Third vertex of the triangle.
    * @constructs Triangle2D
    */
   constructor(a, b, c) {

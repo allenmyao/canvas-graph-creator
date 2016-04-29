@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -103,11 +104,17 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/algorithm/step-builder-test.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import chai from &apos;chai&apos;;
-chai.should();
+let should = chai.should();
 
 import StepBuilder from &apos;../../src/js/algorithm/step-builder&apos;;
+import AlgorithmResult from &apos;../../src/js/algorithm/algorithm-result&apos;;
+import Step from &apos;../../src/js/algorithm/step&apos;;
+import Node from &apos;../../src/js/data/node/circle-node&apos;;
+import Edge from &apos;../../src/js/data/edge/solid-edge&apos;;
 
+/** @test {StepBuilder} **/
 describe(&apos;StepBuilder&apos;, () =&gt; {
+  /** @test {StepBuilder#constructor} **/
   describe(&apos;#constructor()&apos;, () =&gt; {
     it(&apos;should be instance of StepBuilder&apos;, () =&gt; {
       let stepBuilder = new StepBuilder();
@@ -115,16 +122,83 @@ describe(&apos;StepBuilder&apos;, () =&gt; {
     });
   });
 
+  /** @test {StepBuilder#newStep} **/
   describe(&apos;#newStep&apos;, () =&gt; {
+    it(&apos;should create a new Step object in the &quot;step&quot; field&apos;, () =&gt; {
+      let stepBuilder = new StepBuilder();
+      stepBuilder.newStep();
+      (stepBuilder.step).should.be.instanceof(Step);
+      (stepBuilder.step.changes.size).should.be.equal(0);
+    });
 
+    it(&apos;should store parameter as step description&apos;, () =&gt; {
+      let stepBuilder = new StepBuilder();
+      let description = &apos;test&apos;;
+      stepBuilder.newStep(description);
+      (stepBuilder.step.description).should.be.equal(description);
+    });
   });
 
+  /** @test {StepBuilder#addChange} **/
   describe(&apos;#addChange&apos;, () =&gt; {
+    it(&apos;should throw error if no Step has been created yet&apos;, () =&gt; {
+      let stepBuilder = new StepBuilder();
+      (() =&gt; {
+        stepBuilder.addChange(null, {}, {}, {});
+      }).should.throw(Error);
+    });
 
+    it(&apos;should add change with nodeFields if given a Node&apos;, () =&gt; {
+      let stepBuilder = new StepBuilder([ &apos;x&apos; ], [], null);
+      let node = new Node(0, 0);
+      stepBuilder.step = new Step();
+      stepBuilder.addChange(node, { x: 1 }, { x: 2 }, { x: 3 });
+      for (let change of stepBuilder.step.changes) {
+        (change.preStepValues.x).should.be.equal(1);
+        (change.duringStepValues.x).should.be.equal(2);
+        (change.postStepValues.x).should.be.equal(3);
+      }
+    });
+
+    it(&apos;should add change with edgeFields if given an Edge&apos;, () =&gt; {
+      let stepBuilder = new StepBuilder([], [ &apos;color&apos; ], null);
+      let edge = new Edge(new Node(0, 0), new Node(100, 0));
+      stepBuilder.step = new Step();
+      stepBuilder.addChange(edge, { color: &apos;#ff0000&apos; }, { color: &apos;#00ff00&apos; }, { color: &apos;#0000ff&apos; });
+      for (let change of stepBuilder.step.changes) {
+        (change.preStepValues.color).should.be.equal(&apos;#ff0000&apos;);
+        (change.duringStepValues.color).should.be.equal(&apos;#00ff00&apos;);
+        (change.postStepValues.color).should.be.equal(&apos;#0000ff&apos;);
+      }
+    });
+
+    it(&apos;should throw error if object is not a Node or Edge&apos;, () =&gt; {
+      let stepBuilder = new StepBuilder([], [], null);
+      stepBuilder.step = new Step();
+      (() =&gt; {
+        stepBuilder.addChange(null, {}, {}, {});
+      }).should.throw(Error);
+    });
   });
 
+  /** @test {StepBuilder#completeStep} **/
   describe(&apos;#completeStep&apos;, () =&gt; {
+    it(&apos;should add the step to the algorithm results&apos;, () =&gt; {
+      let algorithmResult = new AlgorithmResult();
+      let stepBuilder = new StepBuilder([], [], algorithmResult);
+      let step = new Step(&apos;test&apos;);
+      stepBuilder.step = step;
+      stepBuilder.completeStep();
+      (algorithmResult.timeline[0]).should.be.equal(step);
+    });
 
+    it(&apos;should set the &quot;step&quot; field to null&apos;, () =&gt; {
+      let algorithmResult = new AlgorithmResult();
+      let stepBuilder = new StepBuilder([], [], algorithmResult);
+      stepBuilder.step = new Step(&apos;test&apos;);
+      stepBuilder.completeStep();
+      should.not.exist(stepBuilder.step);
+    });
   });
 });
 </code></pre>

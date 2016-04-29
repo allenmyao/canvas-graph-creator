@@ -1,27 +1,21 @@
 {
-  "coverage": "11.85%",
-  "expectCount": 540,
-  "actualCount": 64,
+  "coverage": "16.85%",
+  "expectCount": 534,
+  "actualCount": 90,
   "files": {
     "src/js/algorithm/abstract-algorithm.js": {
-      "expectCount": 5,
-      "actualCount": 1,
+      "expectCount": 4,
+      "actualCount": 3,
       "undocumentLines": [
-        69,
-        73,
-        70,
-        78
+        89
       ]
     },
     "src/js/algorithm/algorithm-result.js": {
-      "expectCount": 8,
-      "actualCount": 3,
+      "expectCount": 7,
+      "actualCount": 5,
       "undocumentLines": [
-        34,
-        60,
-        43,
-        31,
-        30
+        27,
+        26
       ]
     },
     "src/js/tool/algorithm-tool.js": {
@@ -193,21 +187,15 @@
         73,
         78,
         81,
-        108,
-        102,
+        117,
+        111,
         77
       ]
     },
     "src/js/tool/erase-tool.js": {
       "expectCount": 5,
-      "actualCount": 0,
-      "undocumentLines": [
-        5,
-        25,
-        13,
-        9,
-        17
-      ]
+      "actualCount": 5,
+      "undocumentLines": []
     },
     "src/js/data/graph.js": {
       "expectCount": 16,
@@ -259,8 +247,8 @@
       ]
     },
     "src/js/util/line-2d.js": {
-      "expectCount": 6,
-      "actualCount": 4,
+      "expectCount": 5,
+      "actualCount": 3,
       "undocumentLines": [
         26,
         27
@@ -380,8 +368,8 @@
       "expectCount": 10,
       "actualCount": 8,
       "undocumentLines": [
-        29,
-        30
+        31,
+        32
       ]
     },
     "src/js/data/node/polygon-node.js": {
@@ -422,13 +410,13 @@
       "actualCount": 0,
       "undocumentLines": [
         5,
-        12,
-        28,
-        37,
-        33,
-        24,
-        20,
-        16
+        11,
+        27,
+        36,
+        32,
+        23,
+        19,
+        15
       ]
     },
     "src/js/tool/select-tool.js": {
@@ -585,37 +573,23 @@
     },
     "src/js/algorithm/step-builder.js": {
       "expectCount": 9,
-      "actualCount": 1,
+      "actualCount": 5,
       "undocumentLines": [
-        6,
-        57,
-        26,
-        28,
-        32,
-        27,
-        33,
-        29
+        40,
+        39,
+        38,
+        48
       ]
     },
     "src/js/algorithm/stepper.js": {
-      "expectCount": 15,
-      "actualCount": 0,
+      "expectCount": 13,
+      "actualCount": 8,
       "undocumentLines": [
-        1,
-        9,
-        12,
-        64,
-        62,
-        67,
+        77,
         34,
-        39,
-        36,
-        48,
-        25,
-        18,
-        16,
-        53,
-        58
+        21,
+        15,
+        13
       ]
     },
     "src/js/ui/tabs.js": {
@@ -716,20 +690,13 @@
     },
     "src/js/algorithm/traversal-algorithm.js": {
       "expectCount": 12,
-      "actualCount": 0,
+      "actualCount": 7,
       "undocumentLines": [
-        8,
-        43,
-        135,
-        98,
-        82,
-        89,
-        131,
-        45,
-        87,
-        46,
-        69,
-        50
+        188,
+        148,
+        139,
+        83,
+        84
       ]
     },
     "src/js/util/triangle-2d.js": {
@@ -769,8 +736,8 @@
       ]
     },
     "src/js/util/vector-2d.js": {
-      "expectCount": 16,
-      "actualCount": 14,
+      "expectCount": 15,
+      "actualCount": 13,
       "undocumentLines": [
         28,
         29

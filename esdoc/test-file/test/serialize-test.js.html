@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -131,7 +132,6 @@ describe(&apos;Serializer&apos;, () =&gt; {
       let fn = function (g) {};
       let serializer = new Serializer(graph, fn);
       let serialObj = serializer.serializeGraph();
-      console.log(JSON.stringify(serialObj));
       (serialObj.hasOwnProperty(IDSET +&apos;edges&apos;)).should.be.true;
       (serialObj.hasOwnProperty(IDSET + &apos;nodes&apos;)).should.be.true;
       (serialObj[IDSET + &apos;nodes&apos;].length).should.equal(0);
@@ -152,6 +152,9 @@ describe(&apos;Serializer&apos;, () =&gt; {
     });
 
     it(&apos;should fail cleanly on importing malformed input&apos;, () =&gt; {
+      let graph = new Graph();
+      let fn = function (g) {};
+      let serializer = new Serializer(graph, fn);
       let badInput = JSON.parse(&apos;{&quot;_$$SET$$_nodes&quot;:[{&quot;NotANode&quot;:0}],&quot;Everything&quot;:42}&apos;);
       let deserializeInfo = null;
       try {

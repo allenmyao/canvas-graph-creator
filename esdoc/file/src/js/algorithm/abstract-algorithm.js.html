@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,22 +103,12 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/algorithm/abstract-algorithm.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// import Queue from &apos;../util/queue&apos;;
-// import Stack from &apos;../util/stack&apos;;
-// import { Node } from &apos;../data/node/node&apos;;
-// import { Edge } from &apos;../data/edge/edge&apos;;
-
-/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * Abstract class for algorithms.
  * @class AbstractAlgorithm
  */
 class AbstractAlgorithm {
 
-  /**
-   * Name of the algorithm.
-   * @type {string}
-   */
-  name;
   /**
    * Reference to the graph the algorithm is running on.
    * @type {Graph}
@@ -149,10 +140,17 @@ class AbstractAlgorithm {
   hasStarted = false;
 
   /**
+   * Object that holds the algorithm input values. Used by the UI classes to view and store values.
+   * @type {Object.&lt;string, *&gt;}
+   */
+  inputs = {};
+
+  /**
    * @typedef InputType
    * @type {object}
    * @property {string} type - String representing tyoe of input.
-   * @property {string} name - Name to be displayed.
+   * @property {string} name - Name of the field.
+   * @property {string} displayName - Name to be displayed.
    * @property {method} test - Function run to validate input.
    * @property {boolean} required - Whether or not the input is required.
    */
@@ -161,25 +159,48 @@ class AbstractAlgorithm {
    * Object that defines the algorithm input types.
    * @type {Object.&lt;string, InputType&gt;}
    */
-  inputs = {};
+  inputTypes = {};
 
+  /**
+   * AlgorithmResult object where the results will be stored.
+   * @type {AlgorithmResult}
+   */
   result;
 
+  /**
+   * Array of names of Node fields that the algorithm has access to.
+   * @type {Array.&lt;string&gt;}
+   */
   nodeFields = [];
+
+  /**
+   * Array of names of Edge fields that the algorithm has access to.
+   * @type {Array.&lt;string&gt;}
+   */
   edgeFields = [];
 
+  /**
+   * StepBuilder object that is used to create Step objects.
+   * @type {StepBuilder}
+   */
   stepBuilder;
 
+  /**
+   * Constructor for the abstract algorithm class. Should not be called directly.
+   * @param  {Graph} graph - Graph that the algorithm is run on.
+   * @constructs AbstractAlgorithm
+   */
   constructor(graph) {
     this.graph = graph;
   }
 
-  getResult() {
-    return this.result;
+  /**
+   * Run the next step of the algorithm.
+   * @return {boolean} - Whether or not the algorithm has a next step.
+   */
+  step() {
+    return false;
   }
-
-  // run the next step of the algorithm
-  step() {}
 
 }
 

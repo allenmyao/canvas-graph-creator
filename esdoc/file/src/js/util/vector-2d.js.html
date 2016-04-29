@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,13 +103,13 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/util/vector-2d.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Point2D from &apos;./point-2d&apos;;
-
-/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * Class for representing 2D vectors.
  * @class Vector2D
  */
 class Vector2D {
+
+  static EPSILON = 1e-8;
 
   /**
    * x component of the vector.
@@ -139,7 +140,7 @@ class Vector2D {
    */
   get length() {
     let len = Math.sqrt(this.x * this.x + this.y * this.y);
-    return Math.abs(len) &lt; 1e-8 ? 0 : len;
+    return Math.abs(len) &lt; Vector2D.EPSILON ? 0 : len;
   }
 
   /**
@@ -148,7 +149,7 @@ class Vector2D {
    * @return {boolean} - Whether or not the vectors are equivalent.
    */
   equals(vec) {
-    return Math.abs(this.x - vec.x) &lt; 1e-8 &amp;&amp; Math.abs(this.y - vec.y) &lt; 1e-8;
+    return Math.abs(this.x - vec.x) &lt; Vector2D.EPSILON &amp;&amp; Math.abs(this.y - vec.y) &lt; Vector2D.EPSILON;
   }
 
   /**
@@ -225,7 +226,7 @@ class Vector2D {
     let angle = Math.atan2(vec.y, vec.x) - Math.atan2(this.y, this.x);
     angle *= 180 / Math.PI;
     angle = (angle + 360) % 360;
-    if (Math.abs(Math.round(angle) - angle) &lt; 1e-8) {
+    if (Math.round(angle) !== angle &amp;&amp; Math.abs(Math.round(angle) - angle) &lt; Vector2D.EPSILON) {
       return Math.round(angle);
     }
     return angle;
@@ -238,14 +239,6 @@ class Vector2D {
    */
   projectOnto(vec) {
     return vec.scale(this.dot(vec) / vec.dot(vec));
-  }
-
-  /**
-   * Converts the Vector2D object to a Point2D object. x- and y-components of the vector are used as x- and y-coordinates for the point.
-   * @return {Point2D} - Point with the same x and y values as this vector.
-   */
-  toPoint() {
-    return new Point2D(this.x, this.y);
   }
 }
 

@@ -378,80 +378,122 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "abstractalgorithm src/js/algorithm/abstract-algorithm.js~abstractalgorithm,abstractalgorithm",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber8",
+    "AbstractAlgorithm",
+    "test"
+  ],
+  [
+    "abstractalgorithm#constructor src/js/algorithm/abstract-algorithm.js~abstractalgorithm#constructor,abstractalgorithm#constructor",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber10",
+    "AbstractAlgorithm #constructor()",
+    "test"
+  ],
+  [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber7",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber11",
+    "AbstractAlgorithm #constructor() should be instance of AbstractAlgorithm",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber16",
+    "AbstractAlgorithm #constructor() should store parameter in \"graph\" field",
+    "test"
+  ],
+  [
+    "algorithmresult#step algorithmresult#step,algorithmresult#step",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber24",
+    "AbstractAlgorithm #step()",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html#lineNumber25",
+    "AbstractAlgorithm #step() should return false",
+    "test"
+  ],
+  [
+    "algorithmresult src/js/algorithm/algorithm-result.js~algorithmresult,algorithmresult",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber8",
     "AlgorithmResult",
     "test"
   ],
   [
-    "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber15",
-    "AlgorithmResult #addStep()",
+    "algorithmresult#addstep src/js/algorithm/algorithm-result.js~algorithmresult#addstep,algorithmresult#addstep",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber82",
+    "AlgorithmResult #addStep(step)",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber16",
-    "AlgorithmResult #addStep() should add the step to timeline",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber83",
+    "AlgorithmResult #addStep(step) should add the step to timeline",
     "test"
   ],
   [
-    "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber8",
+    "algorithmresult#constructor src/js/algorithm/algorithm-result.js~algorithmresult#constructor,algorithmresult#constructor",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber10",
     "AlgorithmResult #constructor()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber9",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber11",
     "AlgorithmResult #constructor() should be instance of AlgorithmResult",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber54",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber16",
+    "AlgorithmResult #constructor() should start with a step index of -1",
+    "test"
+  ],
+  [
+    "algorithmresult#stepbackward src/js/algorithm/algorithm-result.js~algorithmresult#stepbackward,algorithmresult#stepbackward",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber52",
     "AlgorithmResult #stepBackward()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber73",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber71",
     "AlgorithmResult #stepBackward() should not step past the initial step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber64",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber62",
     "AlgorithmResult #stepBackward() should step back from index past final step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber55",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber53",
     "AlgorithmResult #stepBackward() should step backward in the timeline",
     "test"
   ],
   [
-    "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber26",
+    "algorithmresult#stepforward src/js/algorithm/algorithm-result.js~algorithmresult#stepforward,algorithmresult#stepforward",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber23",
     "AlgorithmResult #stepForward()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber44",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber41",
     "AlgorithmResult #stepForward() should not step past the final step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber36",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber33",
     "AlgorithmResult #stepForward() should step forward from index before first step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber27",
+    "test-file/test/algorithm/algorithm-result-test.js.html#lineNumber24",
     "AlgorithmResult #stepForward() should step forward in the timeline",
     "test"
   ],
@@ -1254,6 +1296,60 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "line2d src/js/util/line-2d.js~line2d,line2d",
+    "test-file/test/util/line-2d-test.js.html#lineNumber8",
+    "Line2D",
+    "test"
+  ],
+  [
+    "line2d#constructor src/js/util/line-2d.js~line2d#constructor,line2d#constructor",
+    "test-file/test/util/line-2d-test.js.html#lineNumber10",
+    "Line2D #constructor(a, b)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/line-2d-test.js.html#lineNumber11",
+    "Line2D #constructor(a, b) creates instance of Line2D",
+    "test"
+  ],
+  [
+    "line2d#haspoint src/js/util/line-2d.js~line2d#haspoint,line2d#haspoint",
+    "test-file/test/util/line-2d-test.js.html#lineNumber17",
+    "Line2D #hasPoint(c)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/line-2d-test.js.html#lineNumber48",
+    "Line2D #hasPoint(c) should return false if point is not on the line",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/line-2d-test.js.html#lineNumber38",
+    "Line2D #hasPoint(c) should return true if point has same coordinates as a",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/line-2d-test.js.html#lineNumber43",
+    "Line2D #hasPoint(c) should return true if point has same coordinates as b",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/line-2d-test.js.html#lineNumber28",
+    "Line2D #hasPoint(c) should return true if point is between a and b",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/line-2d-test.js.html#lineNumber33",
+    "Line2D #hasPoint(c) should return true if point is on the line but not between a and b",
+    "test"
+  ],
+  [
     "",
     "test-file/test/tool/move-tool-test.js.html#lineNumber9",
     "MoveTool",
@@ -1419,6 +1515,186 @@ window.esdocSearchIndex = [
     "",
     "test-file/test/tool/node-tool-test.js.html#lineNumber31",
     "NodeTool #selectObject should not add a node on another node",
+    "test"
+  ],
+  [
+    "point2d src/js/util/point-2d.js~point2d,point2d",
+    "test-file/test/util/point-2d-test.js.html#lineNumber9",
+    "Point2D",
+    "test"
+  ],
+  [
+    "point2d#constructor src/js/util/point-2d.js~point2d#constructor,point2d#constructor",
+    "test-file/test/util/point-2d-test.js.html#lineNumber11",
+    "Point2D #constructor(x, y)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber12",
+    "Point2D #constructor(x, y) creates instance of Point2D",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber16",
+    "Point2D #constructor(x, y) should set values below the defined epsilon to zero",
+    "test"
+  ],
+  [
+    "point2d#distanceto src/js/util/point-2d.js~point2d#distanceto,point2d#distanceto",
+    "test-file/test/util/point-2d-test.js.html#lineNumber50",
+    "Point2D #distanceTo(point)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber54",
+    "Point2D #distanceTo(point) should return the Euclidian distance (i.e. straight line distance)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber68",
+    "Point2D #distanceTo(point) should return zero if distance less than the defined epsilon",
+    "test"
+  ],
+  [
+    "point2d#equals src/js/util/point-2d.js~point2d#equals,point2d#equals",
+    "test-file/test/util/point-2d-test.js.html#lineNumber24",
+    "Point2D #equals(point)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber36",
+    "Point2D #equals(point) should return false if x-coordinates are not equal",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber42",
+    "Point2D #equals(point) should return false if y-coordinates are not equal",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber30",
+    "Point2D #equals(point) should return true if coordinates are equal",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber25",
+    "Point2D #equals(point) should return true if the same point object is passed in",
+    "test"
+  ],
+  [
+    "point2d#lineto src/js/util/point-2d.js~point2d#lineto,point2d#lineto",
+    "test-file/test/util/point-2d-test.js.html#lineNumber178",
+    "Point2D #lineTo(point)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber197",
+    "Point2D #lineTo(point) should create line using references to the original point objects",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber189",
+    "Point2D #lineTo(point) should create line with current point as first point",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber193",
+    "Point2D #lineTo(point) should create line with other point as second point",
+    "test"
+  ],
+  [
+    "point2d#relativepositiontotriangle2d src/js/util/point-2d.js~point2d#relativepositiontotriangle2d,point2d#relativepositiontotriangle2d",
+    "test-file/test/util/point-2d-test.js.html#lineNumber77",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber145",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should be able to handle triangle vertex order rotations",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber100",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should not change the coordinates of the original point",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber138",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should return point on side of new triangle if on side of old triangle",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber127",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should return the centroid of new triangle if on centroid of old triangle",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber106",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should return vertex A on new triangle if on vertex A of old triangle",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber113",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should return vertex B on new triangle if on vertex B of old triangle",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber120",
+    "Point2D #relativePositionToTriangle2D(oldTriangle, newTriangle) should return vertex C on new triangle if on vertex C of old triangle",
+    "test"
+  ],
+  [
+    "point2d#translatevec src/js/util/point-2d.js~point2d#translatevec,point2d#translatevec",
+    "test-file/test/util/point-2d-test.js.html#lineNumber157",
+    "Point2D #translateVec(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber166",
+    "Point2D #translateVec(vec) should be translated in the vector direction",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber171",
+    "Point2D #translateVec(vec) should not modify values of the original point object",
+    "test"
+  ],
+  [
+    "point2d#vectorto src/js/util/point-2d.js~point2d#vectorto,point2d#vectorto",
+    "test-file/test/util/point-2d-test.js.html#lineNumber204",
+    "Point2D #vectorTo(point)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber217",
+    "Point2D #vectorTo(point) should be able to return vectors with negative components",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/point-2d-test.js.html#lineNumber209",
+    "Point2D #vectorTo(point) should create vector from first point to second point",
     "test"
   ],
   [
@@ -1645,37 +1921,37 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/serialize-test.js.html#lineNumber37",
+    "test-file/test/serialize-test.js.html#lineNumber36",
     "Serializer #emptyGraph should create valid graph obj import",
     "test"
   ],
   [
     "",
-    "test-file/test/serialize-test.js.html#lineNumber50",
+    "test-file/test/serialize-test.js.html#lineNumber49",
     "Serializer #emptyGraph should fail cleanly on importing malformed input",
     "test"
   ],
   [
     "",
-    "test-file/test/serialize-test.js.html#lineNumber64",
+    "test-file/test/serialize-test.js.html#lineNumber66",
     "Serializer #populatedGraph",
     "test"
   ],
   [
     "",
-    "test-file/test/serialize-test.js.html#lineNumber65",
+    "test-file/test/serialize-test.js.html#lineNumber67",
     "Serializer #populatedGraph should create valid graph obj export",
     "test"
   ],
   [
     "",
-    "test-file/test/serialize-test.js.html#lineNumber89",
+    "test-file/test/serialize-test.js.html#lineNumber91",
     "Serializer #populatedGraph should create valid graph obj import",
     "test"
   ],
   [
     "",
-    "test-file/test/serialize-test.js.html#lineNumber122",
+    "test-file/test/serialize-test.js.html#lineNumber124",
     "Serializer #populatedGraph should create valid graph obj import",
     "test"
   ],
@@ -1884,81 +2160,165 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber6",
+    "step src/js/algorithm/step.js~step,step",
+    "test-file/test/algorithm/step-test.js.html#lineNumber9",
     "Step",
     "test"
   ],
   [
-    "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber14",
+    "step#addchange src/js/algorithm/step.js~step#addchange,step#addchange",
+    "test-file/test/algorithm/step-test.js.html#lineNumber30",
     "Step #addChange()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber22",
+    "test-file/test/algorithm/step-test.js.html#lineNumber31",
+    "Step #addChange() should add change object to \"changes\" field",
+    "test"
+  ],
+  [
+    "step#applyduring src/js/algorithm/step.js~step#applyduring,step#applyduring",
+    "test-file/test/algorithm/step-test.js.html#lineNumber52",
     "Step #applyDuring",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber26",
+    "test-file/test/algorithm/step-test.js.html#lineNumber53",
+    "Step #applyDuring should apply the \"during\" step values for all change objects",
+    "test"
+  ],
+  [
+    "step#applypost src/js/algorithm/step.js~step#applypost,step#applypost",
+    "test-file/test/algorithm/step-test.js.html#lineNumber64",
     "Step #applyPost",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber18",
+    "test-file/test/algorithm/step-test.js.html#lineNumber65",
+    "Step #applyPost should apply the \"post\" step values for all change objects",
+    "test"
+  ],
+  [
+    "step#applypre src/js/algorithm/step.js~step#applypre,step#applypre",
+    "test-file/test/algorithm/step-test.js.html#lineNumber40",
     "Step #applyPre",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber7",
+    "test-file/test/algorithm/step-test.js.html#lineNumber41",
+    "Step #applyPre should apply the \"pre\" step values for all change objects",
+    "test"
+  ],
+  [
+    "step#constructor src/js/algorithm/step.js~step#constructor,step#constructor",
+    "test-file/test/algorithm/step-test.js.html#lineNumber11",
     "Step #constructor()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-test.js.html#lineNumber8",
+    "test-file/test/algorithm/step-test.js.html#lineNumber12",
     "Step #constructor() should be instance of Step",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber6",
-    "StepBuilder",
+    "test-file/test/algorithm/step-test.js.html#lineNumber23",
+    "Step #constructor() should have default description",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber18",
+    "test-file/test/algorithm/step-test.js.html#lineNumber17",
+    "Step #constructor() should store the parameter in \"description\" field",
+    "test"
+  ],
+  [
+    "stepbuilder src/js/algorithm/step-builder.js~stepbuilder,stepbuilder",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber11",
+    "StepBuilder",
+    "test"
+  ],
+  [
+    "stepbuilder#addchange src/js/algorithm/step-builder.js~stepbuilder#addchange,stepbuilder#addchange",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber38",
     "StepBuilder #addChange",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber22",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber58",
+    "StepBuilder #addChange should add change with edgeFields if given an Edge",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber46",
+    "StepBuilder #addChange should add change with nodeFields if given a Node",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber39",
+    "StepBuilder #addChange should throw error if no Step has been created yet",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber70",
+    "StepBuilder #addChange should throw error if object is not a Node or Edge",
+    "test"
+  ],
+  [
+    "stepbuilder#completestep src/js/algorithm/step-builder.js~stepbuilder#completestep,stepbuilder#completestep",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber80",
     "StepBuilder #completeStep",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber7",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber81",
+    "StepBuilder #completeStep should add the step to the algorithm results",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber90",
+    "StepBuilder #completeStep should set the \"step\" field to null",
+    "test"
+  ],
+  [
+    "stepbuilder#constructor src/js/algorithm/step-builder.js~stepbuilder#constructor,stepbuilder#constructor",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber13",
     "StepBuilder #constructor()",
     "test"
   ],
   [
     "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber8",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber14",
     "StepBuilder #constructor() should be instance of StepBuilder",
     "test"
   ],
   [
-    "",
-    "test-file/test/algorithm/step-builder-test.js.html#lineNumber14",
+    "stepbuilder#newstep src/js/algorithm/step-builder.js~stepbuilder#newstep,stepbuilder#newstep",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber21",
     "StepBuilder #newStep",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber22",
+    "StepBuilder #newStep should create a new Step object in the \"step\" field",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/algorithm/step-builder-test.js.html#lineNumber29",
+    "StepBuilder #newStep should store parameter as step description",
     "test"
   ],
   [
@@ -2238,6 +2598,354 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "triangle2d src/js/util/triangle-2d.js~triangle2d,triangle2d",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber8",
+    "Triangle2D",
+    "test"
+  ],
+  [
+    "triangle2d#constructor src/js/util/triangle-2d.js~triangle2d#constructor,triangle2d#constructor",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber10",
+    "Triangle2D #constructor(a, b, c)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber11",
+    "Triangle2D #constructor(a, b, c) creates instance of Triangle2D",
+    "test"
+  ],
+  [
+    "triangle2d#getbarycentriccoordinates src/js/util/triangle-2d.js~triangle2d#getbarycentriccoordinates,triangle2d#getbarycentriccoordinates",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber41",
+    "Triangle2D #getBarycentricCoordinates",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber56",
+    "Triangle2D #getBarycentricCoordinates should return (1/3, 1/3) for centroid",
+    "test"
+  ],
+  [
+    "triangle2d#getpointfrombarycentriccoordinates src/js/util/triangle-2d.js~triangle2d#getpointfrombarycentriccoordinates,triangle2d#getpointfrombarycentriccoordinates",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber67",
+    "Triangle2D #getPointFromBarycentricCoordinates",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber82",
+    "Triangle2D #getPointFromBarycentricCoordinates should return centroid for coordinates (1/3, 1/3)",
+    "test"
+  ],
+  [
+    "triangle2d#area src/js/util/triangle-2d.js~triangle2d#area,triangle2d#area",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber17",
+    "Triangle2D .area",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber31",
+    "Triangle2D .area should return a negative value if vertexes are oriented clockwise around triangle",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/triangle-2d-test.js.html#lineNumber23",
+    "Triangle2D .area should return the area of the triangle",
+    "test"
+  ],
+  [
+    "vector2d src/js/util/vector-2d.js~vector2d,vector2d",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber7",
+    "Vector2D",
+    "test"
+  ],
+  [
+    "vector2d#add src/js/util/vector-2d.js~vector2d#add,vector2d#add",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber50",
+    "Vector2D #add(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber51",
+    "Vector2D #add(vec) should add the x- and y-components",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber67",
+    "Vector2D #add(vec) should not modify original vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber59",
+    "Vector2D #add(vec) should work with negative x- and y- components",
+    "test"
+  ],
+  [
+    "vector2d#constructor src/js/util/vector-2d.js~vector2d#constructor,vector2d#constructor",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber9",
+    "Vector2D #constructor(a, b)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber10",
+    "Vector2D #constructor(a, b) creates instance of Vector2D",
+    "test"
+  ],
+  [
+    "vector2d#cross src/js/util/vector-2d.js~vector2d#cross,vector2d#cross",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber149",
+    "Vector2D #cross(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber171",
+    "Vector2D #cross(vec) should not modify original vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber150",
+    "Vector2D #cross(vec) should return the \"cross product\" of the two vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber157",
+    "Vector2D #cross(vec) should return zero if the vectors are parallel",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber164",
+    "Vector2D #cross(vec) should return zero if the vectors have zero length",
+    "test"
+  ],
+  [
+    "vector2d#degreesto src/js/util/vector-2d.js~vector2d#degreesto,vector2d#degreesto",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber248",
+    "Vector2D #degreesTo(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber263",
+    "Vector2D #degreesTo(vec) should handle floating point precision errors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber256",
+    "Vector2D #degreesTo(vec) should not return a negative value",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber249",
+    "Vector2D #degreesTo(vec) should return the degrees between the vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber270",
+    "Vector2D #degreesTo(vec) should return zero if vectors are in same direction",
+    "test"
+  ],
+  [
+    "vector2d#dot src/js/util/vector-2d.js~vector2d#dot,vector2d#dot",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber108",
+    "Vector2D #dot(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber130",
+    "Vector2D #dot(vec) should be equal to negative product of magnitudes if the vectors are in the opposite direction",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber123",
+    "Vector2D #dot(vec) should be equal to product of magnitudes if the vectors are in the same direction",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber116",
+    "Vector2D #dot(vec) should be zero if the vectors are orthogonal",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber109",
+    "Vector2D #dot(vec) should find the dot product between two vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber137",
+    "Vector2D #dot(vec) should not modify original vectors",
+    "test"
+  ],
+  [
+    "vector2d#equals src/js/util/vector-2d.js~vector2d#equals,vector2d#equals",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber24",
+    "Vector2D #equals(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber36",
+    "Vector2D #equals(vec) should return false if the x-components are not equal",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber42",
+    "Vector2D #equals(vec) should return false if the y-components are not equal",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber25",
+    "Vector2D #equals(vec) should return true if the same vector object is passed in",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber30",
+    "Vector2D #equals(vec) should return true if the x- and y-components are equal",
+    "test"
+  ],
+  [
+    "vector2d#projectonto src/js/util/vector-2d.js~vector2d#projectonto,vector2d#projectonto",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber279",
+    "Vector2D #projectOnto(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber288",
+    "Vector2D #projectOnto(vec) should not modify original vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber280",
+    "Vector2D #projectOnto(vec) should return a projection of the current vector onto the given vector",
+    "test"
+  ],
+  [
+    "vector2d#rotatedegrees src/js/util/vector-2d.js~vector2d#rotatedegrees,vector2d#rotatedegrees",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber214",
+    "Vector2D #rotateDegrees(deg)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber222",
+    "Vector2D #rotateDegrees(deg) should not modify original vector",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber215",
+    "Vector2D #rotateDegrees(deg) should rotate vector by the given number of degrees",
+    "test"
+  ],
+  [
+    "vector2d#rotateradians src/js/util/vector-2d.js~vector2d#rotateradians,vector2d#rotateradians",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber231",
+    "Vector2D #rotateRadians(rad)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber239",
+    "Vector2D #rotateRadians(rad) should not modify original vector",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber232",
+    "Vector2D #rotateRadians(rad) should rotate vector by the given number of radians",
+    "test"
+  ],
+  [
+    "vector2d#scale src/js/util/vector-2d.js~vector2d#scale,vector2d#scale",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber183",
+    "Vector2D #scale(n)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber205",
+    "Vector2D #scale(n) should not modify original vector",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber191",
+    "Vector2D #scale(n) should scale vector by fractions",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber198",
+    "Vector2D #scale(n) should scale vector by negative numbers",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber184",
+    "Vector2D #scale(n) should scale vector by the number",
+    "test"
+  ],
+  [
+    "vector2d#sub src/js/util/vector-2d.js~vector2d#sub,vector2d#sub",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber79",
+    "Vector2D #sub(vec)",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber80",
+    "Vector2D #sub(vec) should add the x- and y-components",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber96",
+    "Vector2D #sub(vec) should not modify original vectors",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber88",
+    "Vector2D #sub(vec) should work with negative x- and y- components",
+    "test"
+  ],
+  [
+    "vector2d#length src/js/util/vector-2d.js~vector2d#length,vector2d#length",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber16",
+    "Vector2D .length",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/util/vector-2d-test.js.html#lineNumber17",
+    "Vector2D .length should return the magnitude of the vector",
+    "test"
+  ],
+  [
     "src/js/algorithm/abstract-algorithm.js",
     "file/src/js/algorithm/abstract-algorithm.js.html",
     "src/js/algorithm/abstract-algorithm.js",
@@ -2247,12 +2955,6 @@ window.esdocSearchIndex = [
     "src/js/algorithm/abstract-algorithm.js~abstractalgorithm#constructor",
     "class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-constructor-constructor",
     "src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm#constructor",
-    "method"
-  ],
-  [
-    "src/js/algorithm/abstract-algorithm.js~abstractalgorithm#getresult",
-    "class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-method-getResult",
-    "src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm#getResult",
     "method"
   ],
   [
@@ -2289,12 +2991,6 @@ window.esdocSearchIndex = [
     "src/js/algorithm/algorithm-result.js~algorithmresult#constructor",
     "class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html#instance-constructor-constructor",
     "src/js/algorithm/algorithm-result.js~AlgorithmResult#constructor",
-    "method"
-  ],
-  [
-    "src/js/algorithm/algorithm-result.js~algorithmresult#getstepdescription",
-    "class/src/js/algorithm/algorithm-result.js~AlgorithmResult.html#instance-method-getStepDescription",
-    "src/js/algorithm/algorithm-result.js~AlgorithmResult#getStepDescription",
     "method"
   ],
   [
@@ -2388,6 +3084,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/algorithm/step-builder.js~stepbuilder#algorithmresult",
+    "class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-member-algorithmResult",
+    "src/js/algorithm/step-builder.js~StepBuilder#algorithmResult",
+    "member"
+  ],
+  [
     "src/js/algorithm/step-builder.js~stepbuilder#completestep",
     "class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-method-completeStep",
     "src/js/algorithm/step-builder.js~StepBuilder#completeStep",
@@ -2421,12 +3123,6 @@ window.esdocSearchIndex = [
     "src/js/algorithm/step-builder.js~stepbuilder#step",
     "class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-member-step",
     "src/js/algorithm/step-builder.js~StepBuilder#step",
-    "member"
-  ],
-  [
-    "src/js/algorithm/step-builder.js~stepbuilder#timeline",
-    "class/src/js/algorithm/step-builder.js~StepBuilder.html#instance-member-timeline",
-    "src/js/algorithm/step-builder.js~StepBuilder#timeline",
     "member"
   ],
   [
@@ -2476,18 +3172,6 @@ window.esdocSearchIndex = [
     "file/src/js/algorithm/stepper.js.html",
     "src/js/algorithm/stepper.js",
     "file"
-  ],
-  [
-    "src/js/algorithm/stepper.js~stepper#constructor",
-    "class/src/js/algorithm/stepper.js~Stepper.html#instance-constructor-constructor",
-    "src/js/algorithm/stepper.js~Stepper#constructor",
-    "method"
-  ],
-  [
-    "src/js/algorithm/stepper.js~stepper#getalgorithm",
-    "class/src/js/algorithm/stepper.js~Stepper.html#instance-method-getAlgorithm",
-    "src/js/algorithm/stepper.js~Stepper#getAlgorithm",
-    "method"
   ],
   [
     "src/js/algorithm/stepper.js~stepper#interval",
@@ -2632,6 +3316,12 @@ window.esdocSearchIndex = [
     "class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html#instance-method-visitNode",
     "src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm#visitNode",
     "method"
+  ],
+  [
+    "src/js/algorithm/traversal-algorithm.js~traversalalgorithm.inputtype",
+    "typedef/index.html#static-typedef-InputType",
+    "src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.InputType",
+    "typedef"
   ],
   [
     "src/js/app.js",
@@ -3865,13 +4555,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
@@ -4938,12 +5628,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/util/line-2d.js~line2d#length",
-    "class/src/js/util/line-2d.js~Line2D.html#instance-get-length",
-    "src/js/util/line-2d.js~Line2D#length",
-    "member"
-  ],
-  [
     "src/js/util/mouse-handler.js",
     "file/src/js/util/mouse-handler.js.html",
     "src/js/util/mouse-handler.js",
@@ -5424,12 +6108,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/util/vector-2d.js~vector2d#topoint",
-    "class/src/js/util/vector-2d.js~Vector2D.html#instance-method-toPoint",
-    "src/js/util/vector-2d.js~Vector2D#toPoint",
-    "method"
-  ],
-  [
     "src/js/util/vector-2d.js~vector2d#x",
     "class/src/js/util/vector-2d.js~Vector2D.html#instance-member-x",
     "src/js/util/vector-2d.js~Vector2D#x",
@@ -5440,6 +6118,12 @@ window.esdocSearchIndex = [
     "class/src/js/util/vector-2d.js~Vector2D.html#instance-member-y",
     "src/js/util/vector-2d.js~Vector2D#y",
     "member"
+  ],
+  [
+    "test/algorithm/abstract-algorithm-test.js",
+    "test-file/test/algorithm/abstract-algorithm-test.js.html",
+    "test/algorithm/abstract-algorithm-test.js",
+    "testFile"
   ],
   [
     "test/algorithm/algorithm-result-test.js",
@@ -5529,6 +6213,30 @@ window.esdocSearchIndex = [
     "test/tool/tool-test.js",
     "test-file/test/tool/tool-test.js.html",
     "test/tool/tool-test.js",
+    "testFile"
+  ],
+  [
+    "test/util/line-2d-test.js",
+    "test-file/test/util/line-2d-test.js.html",
+    "test/util/line-2d-test.js",
+    "testFile"
+  ],
+  [
+    "test/util/point-2d-test.js",
+    "test-file/test/util/point-2d-test.js.html",
+    "test/util/point-2d-test.js",
+    "testFile"
+  ],
+  [
+    "test/util/triangle-2d-test.js",
+    "test-file/test/util/triangle-2d-test.js.html",
+    "test/util/triangle-2d-test.js",
+    "testFile"
+  ],
+  [
+    "test/util/vector-2d-test.js",
+    "test-file/test/util/vector-2d-test.js.html",
+    "test/util/vector-2d-test.js",
     "testFile"
   ]
 ]

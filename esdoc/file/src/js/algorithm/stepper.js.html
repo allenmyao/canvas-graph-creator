@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/stepper.js~Stepper.html">Stepper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/algorithm/traversal-algorithm.js~TraversalAlgorithm.html">TraversalAlgorithm</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/data/edge</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/data/edge/dashed-edge.js~DashedEdge.html">DashedEdge</a></span></span></li>
@@ -102,7 +103,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/algorithm/stepper.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export default class Stepper {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Helper class for stepping through and playing algorithm results.
+ * @class Stepper
+ */
+class Stepper {
 
   result = null;
   speed = 500;
@@ -110,17 +115,9 @@
   MIN_INTERVAL = 100;
   interval = null;
 
-  constructor() {
-  }
-
-  getAlgorithm() {
-    return this.algorithm;
-  }
-
   speedUp() {
     if (this.speed !== this.MIN_INTERVAL) {
       this.speed = this.speed - 200;
-      console.log(this.speed);
       return true;
     }
     return false;
@@ -129,17 +126,22 @@
   slowDown() {
     if (this.speed !== this.MAX_INTERVAL) {
       this.speed = this.speed + 200;
-      console.log(this.speed);
       return true;
     }
     return false;
   }
 
+  /**
+   * Reset the stepper object. Clears the algorithm results.
+   */
   reset() {
     this.pause();
     this.result = null;
   }
 
+  /**
+   * Reset the state of the graph by undoing all changes made by the algorithm steps.
+   */
   resetGraph() {
     if (this.result === null) {
       return;
@@ -149,25 +151,41 @@
     }
   }
 
+  /**
+   * Set the specified AlgorithmResult object to the &quot;result&quot; field.
+   * @param {AlgorithmResult} result - AlgorithmResult object.
+   */
   setResult(result) {
     this.reset();
     this.result = result;
   }
 
+  /**
+   * Go to the previous algorithm step.
+   */
   stepBackward() {
     this.result.stepBackward();
   }
 
-
+  /**
+   * Go to the next algorithm step.
+   */
   stepForward() {
     this.result.stepForward();
   }
 
+  /**
+   * Pause the stepper if it is currently playing.
+   */
   pause() {
     clearInterval(this.interval);
     this.interval = null;
   }
 
+  /**
+   * Play the algorithm results. Steps forward until paused or finished.
+   * @param  {Function} callback - Callback function that is called whenever a step is completed.
+   */
   play(callback) {
     this.interval = setInterval(() =&gt; {
       if (this.result.stepIndex &lt; this.result.timeline.length) {
@@ -187,6 +205,9 @@
   }
 
 }
+
+export { Stepper };
+export default Stepper;
 </code></pre>
 
 </div>
