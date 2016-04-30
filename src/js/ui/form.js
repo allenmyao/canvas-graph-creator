@@ -181,7 +181,7 @@ export function createGraphForm(fields, canSubmit, submitText) {
  * Get all of the data from a form.
  * @param  {Element} form - Form DOM element.
  * @param  {Graph} graph - The current graph object.
- * @return {Object.<string,(boolean|number|string|Node|Edge)>} - Object containing input names and their associated input values
+ * @return {Object.<string,*>} - Object containing input names and their associated input values
  */
 export function getData(form, graph) {
   let data = {};
@@ -230,7 +230,7 @@ function getFieldData(inputs, graph) {
  * Get the value of a single input. Used when the input could contain a reference to a Node or Edge.
  * @param  {Element} input - Form input DOM element.
  * @param  {Graph} graph - Graph object.
- * @return {(boolean|number|string|Node|Edge)} - The value of teh input.
+ * @return {(boolean|number|string|Node|Edge)} - The value of the input.
  */
 export function getInputValueLocal(input, graph) {
   let value;
