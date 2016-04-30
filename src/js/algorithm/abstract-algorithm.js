@@ -43,7 +43,7 @@ class AbstractAlgorithm {
   /**
    * @typedef InputType
    * @type {object}
-   * @property {string} type - String representing tyoe of input.
+   * @property {string} type - String representing type of input.
    * @property {string} name - Name of the field.
    * @property {string} displayName - Name to be displayed.
    * @property {method} test - Function run to validate input.
