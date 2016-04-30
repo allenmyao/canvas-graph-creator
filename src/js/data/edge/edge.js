@@ -2,11 +2,14 @@ import { calcBezierDistance, bezierDerivative } from '../../util/bezier';
 import Point2D from '../../util/point-2d';
 import Triangle2D from '../../util/triangle-2d';
 import Line2D from '../../util/line-2d';
-// import Vector2D from '../../util/vector-2d';
 import Label from '../label';
 
 const EDGE_DISTANCE_THRESHOLD = 10;
 
+/**
+ * Data representation of a graph edge.
+ * @class Edge
+ */
 class Edge {
 
   static numEdges = 0;
@@ -34,17 +37,13 @@ class Edge {
   selectedColor = '#FF0000';
   lineWidth = 1;
 
+  /**
+   * Constructs an Edge instance. Should not be called directly.
+   * @param  {Node} startNode - Start node of the edge.
+   * @param  {Node} destNode - Destination node of the edge.
+   * @constructs Edge
+   */
   constructor(startNode, destNode) {
-    let methods = [
-      'draw'
-    ];
-
-    for (let method of methods) {
-      if (typeof this[method] !== 'function') {
-        throw TypeError('Must override method: ' + method);
-      }
-    }
-
     if (typeof startNode === 'undefined' || typeof destNode === 'undefined') {
       throw Error(`Edge constructor requires at least two arguments: startNode and destNode. Actually passed in ${startNode}, ${destNode}`);
     }
@@ -88,6 +87,9 @@ class Edge {
     this.label = new Label(this.bezierPoint.x, this.bezierPoint.y, this);
   }
 
+  /**
+   * Remove the edge from all other graph objects associated with it.
+   */
   detach() {
     // remove this edge from partners of all partner edges
     for (let i = 0; i < this.partners.length; i++) {
@@ -111,6 +113,9 @@ class Edge {
     this.destNode = null;
   }
 
+  /**
+   * Update endpoints for a self-loop edge. Called by updateEndpoints().
+   */
   updateSelfLoopEndpoints() {
     this.startPoint = this.startNode.getAnglePoint(240);
     this.destPoint = this.startNode.getAnglePoint(300);
@@ -120,6 +125,9 @@ class Edge {
     };
   }
 
+  /**
+   * Update endpoints for a normal edge. Called by updateEndpoints().
+   */
   updateNormalEdgeEndpoints() {
     let dx = this.destNode.x - this.startNode.x;
     let dy = this.destNode.y - this.startNode.y;
@@ -181,6 +189,9 @@ class Edge {
     };
   }
 
+  /**
+   * Update the endpoints of the edge.
+   */
   updateEndpoints() {
     let oldStartPoint = this.startPoint;
     let oldBezierPoint = this.bezierPoint;
@@ -238,18 +249,38 @@ class Edge {
     }
   }
 
+  /**
+   * Check if the edge contains a given point (within a distance threshold).
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @return {boolean} - Whether or not the edge contains the point.
+   */
   containsPoint(x, y) {
     return EDGE_DISTANCE_THRESHOLD > calcBezierDistance(x, y, this.startPoint, this.bezierPoint, this.destPoint);
   }
 
+  /**
+   * Draw the edge on the given canvas context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   * @throws {Error} - Throws error if called.
+   * @abstract
+   */
   draw(context) {
     throw Error('Can\'t call draw from abstract Edge class.');
   }
 
+  /**
+   * Draw the Label object associated with this edge.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawLabel(context) {
     this.label.draw(context);
   }
 
+  /**
+   * Draw an arrow on the destination side of the edge on the given context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawArrow(context) {
     let slope = bezierDerivative(1, this.startPoint, this.bezierPoint, this.destPoint);
     let length = Math.sqrt(slope.x * slope.x + slope.y * slope.y);
@@ -264,11 +295,26 @@ class Edge {
     context.fill();
   }
 
+  /**
+   * Update the position of the Label for a self-loop edge.
+   * @param {Object} oldBezierPoint - The previous bezier point location.
+   * @param {number} oldBezierPoint.x - The x-coordinate of the bezier point.
+   * @param {number} oldBezierPoint.y - The y-coordinate of the bezier point.
+   */
   updateSelfLoopLabel(oldBezierPoint) {
     this.label.x += this.bezierPoint.x - oldBezierPoint.x;
     this.label.y += this.bezierPoint.y - oldBezierPoint.y;
   }
 
+  /**
+   * Update the position of the Label for a straight edge.
+   * @param  {Point2D} oldStartPoint2D - The previous start point.
+   * @param  {Point2D} oldBezierPoint2D - The previous bezier point.
+   * @param  {Point2D} oldDestPoint2D - The previous destination point.
+   * @param  {Point2D} startPoint2D - The current start point.
+   * @param  {Point2D} bezierPoint2D - The current bezier point.
+   * @param  {Point2D} destPoint2D - The current destination point.
+   */
   updateStraightEdgeLabel(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D, startPoint2D, bezierPoint2D, destPoint2D) {
     let oldLabelPosition = new Point2D(this.label.x, this.label.y);
     let oldStartLabelVec = oldStartPoint2D.vectorTo(oldLabelPosition);
@@ -302,6 +348,15 @@ class Edge {
     this.label.y = newLabelPosition.y;
   }
 
+  /**
+   * Update the position of the Label for a curved edge.
+   * @param  {Point2D} oldStartPoint2D - The previous start point.
+   * @param  {Point2D} oldBezierPoint2D - The previous bezier point.
+   * @param  {Point2D} oldDestPoint2D - The previous destination point.
+   * @param  {Point2D} startPoint2D - The current start point.
+   * @param  {Point2D} bezierPoint2D - The current bezier point.
+   * @param  {Point2D} destPoint2D - The current destination point.
+   */
   updateCurvedEdgeLabel(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D, startPoint2D, bezierPoint2D, destPoint2D) {
     let oldTriangle = new Triangle2D(oldStartPoint2D, oldBezierPoint2D, oldDestPoint2D);
     let newTriangle = new Triangle2D(startPoint2D, bezierPoint2D, destPoint2D);

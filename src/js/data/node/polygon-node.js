@@ -1,6 +1,10 @@
 import Node from './node';
 import Label from '../label';
 
+/**
+ * Node subclass for polygon nodes.
+ * @class PolygonNode
+ */
 class PolygonNode extends Node {
 
   radius = 30;
@@ -8,21 +12,50 @@ class PolygonNode extends Node {
   inscribed = [];
   separation;
 
+  /**
+   * Constructs a PolygonNode instance. Should not be called directly.
+   * @param  {number} x - x-coordinate of the node.
+   * @param  {number} y - y-coordinate of the node.
+   * @constructs PolygonNode
+   */
   constructor(x, y) {
     super(x, y);
     this.label = new Label(this.x + this.radius + 4, this.y, this);
   }
 
+  /**
+   * Check if the node contains the given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @return {boolean} - Whether or not the node contains the point.
+   * @override
+   */
   containsPoint(x, y) {
     return this.distanceToPoint(x, y) <= this.radius;
   }
 
+  /**
+   * Find the distance from the node's coordinates to a given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @returns {number} - The distance to the point.
+   * @override
+   */
   distanceToPoint(x, y) {
     let dx = x - this.x;
     let dy = y - this.y;
     return Math.sqrt(dx * dx + dy * dy);
   }
 
+  /**
+   * Find the point on the edge of the node in the direction of the given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @returns {Object} - The edge point in the direction of the given point.
+   * @property {number} x - x-coordinate of the edge point.
+   * @property {number} y - y-coordinate of the edge point.
+   * @override
+   */
   edgePointInDirection(x, y) {
     if (x === this.x && y === this.y) {
       throw new Error('Point is at origin of Node');
@@ -36,6 +69,11 @@ class PolygonNode extends Node {
     };
   }
 
+  /**
+   * Draw the node on the given canvas context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   * @override
+   */
   draw(context) {
     // let xOffSet = 0;
     // let yOffSet = 0;
@@ -74,6 +112,10 @@ class PolygonNode extends Node {
     }
   }
 
+  /**
+   * Draw additional objects to display the node as an accepting state on the given canvas context.
+   * @param {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawAcceptingState(context) {
     context.fillStyle = this.fillColor;
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
@@ -89,6 +131,10 @@ class PolygonNode extends Node {
     context.stroke();
   }
 
+  /**
+   * Draw additional objects to display the node as a starting state on the given canvas context.
+   * @param {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawStartingState(context) {
     let endpoint = this.getAnglePoint(225);
     context.fillStyle = this.isSelected ? this.selectedColor : this.color;
@@ -105,6 +151,14 @@ class PolygonNode extends Node {
     context.fill();
   }
 
+  /**
+   * Get the point on the edge of the node at the given angle.
+   * @param  {number} arbangle - The angle (clockwise from +x axis).
+   * @returns {Object} - The edge point in the direction of the given angle.
+   * @property {number} x - x-coordinate of the edge point.
+   * @property {number} y - y-coordinate of the edge point.
+   * @override
+   */
   getAnglePoint(arbangle) {
     let frac;
     let directionX;
