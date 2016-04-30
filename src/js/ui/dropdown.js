@@ -17,22 +17,19 @@ const DROPDOWN_OPTION_INDEX_ATTRIBUTE = 'data-index';
 const DROPDOWN_OPTION_VALUE_ATTRIBUTE = 'data-value';
 const DROPDOWN_OPTION_LABEL_ATTRIBUTE = 'data-label';
 
+/**
+ * Class to create custom dropdown menus, backed by HTML <select> objects.
+ * @class Dropdown
+ */
 class Dropdown {
 
-  // // width of options
-  // width;
-  //
-  // // height of options
-  // height;
-  //
-  // // number of elements to display in a row in the dropdown menu
-  // numCols;
-  //
-  // // number of rows to display in the dropdown menu (before needing a scrollbar)
-  // numRows;
-
+  // <select> element that contains the values of the dropdown
   selectElement;
+
+  // map of option names to objects containing labels for the options
   optionMap;
+
+  // map of option names to objects containing html content and init() functions
   optionContent;
 
   // container element that is a common ancestor for all other dropdown elements
@@ -44,18 +41,28 @@ class Dropdown {
   // dropdown menu that contains all the options
   menu;
 
-  // list of options
+  // parent element of all the dropdown options
   optionlist;
 
+  // boolean indicating whether or not the dropdown menu is being displayed
   isDisplayingMenu = false;
 
+  // the current selected dropdown option
   selectedOption = null;
 
+  /**
+   * Constructs a Dropdown object.
+   * @param  {Element} selectElement - Select DOM element.
+   */
   constructor(selectElement) {
     this.selectElement = selectElement;
     this.createDropdown();
   }
 
+  /**
+   * Returns the value of the selected option.
+   * @return {string} - Value of the selected option.
+   */
   get value() {
     if (!this.selectOption) {
       throw Error('No option is selected');
@@ -63,6 +70,10 @@ class Dropdown {
     return this.selectElement.options[this.selectOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE)];
   }
 
+  /**
+   * Returns an HTML string containing all the options for the dropdown menu.
+   * @return {string} - HTML string containing all the options for the dropdown menu.
+   */
   getOptionsHtml() {
     let options = this.selectElement.children;
     let optionsHtml = '';
@@ -79,6 +90,9 @@ class Dropdown {
     return optionsHtml;
   }
 
+  /**
+   * Creates a dropdown menu by appending HTML as a sibling of the select element.
+   */
   createDropdown() {
     let optionsHtml = this.getOptionsHtml();
     let dropdownHtml = `
@@ -113,6 +127,9 @@ class Dropdown {
     this.initListeners();
   }
 
+  /**
+   * Update all the displayed dropdown options using their respective init() functions in the "optionContent" field.
+   */
   updateOptionContent() {
     let options = this.optionlist.querySelectorAll(`.${DROPDOWN_OPTION_CLASS}`);
     for (let i = 0; i < options.length; i++) {
@@ -124,6 +141,9 @@ class Dropdown {
     }
   }
 
+  /**
+   * Initialize all event listeners for the dropdown menu.
+   */
   initListeners() {
     document.addEventListener('click', (event) => {
       if (!this.container.contains(event.target)) {
@@ -140,7 +160,7 @@ class Dropdown {
       }
     });
 
-    // Create MutationObserver to check for changes in selectElement options
+    // Create MutationObserver to check for changes in the <select> element options
     let obs = new MutationObserver((mutations, observer) => {
       for (let mutation of mutations) {
         if (mutation.addedNodes || mutation.removedNodes) {
@@ -158,6 +178,9 @@ class Dropdown {
     });
   }
 
+  /**
+   * Update the status of the options and display the selected option. This is called when the options in the <select> element change.
+   */
   updateOptions() {
     this.optionlist.innerHTML = this.getOptionsHtml();
 
@@ -176,6 +199,9 @@ class Dropdown {
     this.updateOptionContent();
   }
 
+  /**
+   * Toggle the display of the dropdown menu.
+   */
   toggleMenu() {
     if (this.isDisplayingMenu) {
       this.hideMenu();
@@ -184,18 +210,28 @@ class Dropdown {
     }
   }
 
+  /**
+   * Show the dropdown menu.
+   */
   showMenu() {
     this.container.classList.add(DROPDOWN_TOGGLE_CLASS);
     this.menu.classList.add(DROPDOWN_MENU_TOGGLE_CLASS);
     this.isDisplayingMenu = true;
   }
 
+  /**
+   * Hide the dropdown menu.
+   */
   hideMenu() {
     this.container.classList.remove(DROPDOWN_TOGGLE_CLASS);
     this.menu.classList.remove(DROPDOWN_MENU_TOGGLE_CLASS);
     this.isDisplayingMenu = false;
   }
 
+  /**
+   * Selects an option in the dropdown menu and updates the display.
+   * @param  {Element} optionElement - The option that was selected.
+   */
   selectOption(optionElement) {
     if (this.selectedOption) {
       this.selectedOption.classList.remove(DROPDOWN_OPTION_SELECTED_CLASS);
@@ -215,6 +251,9 @@ class Dropdown {
     this.displaySelectedOption();
   }
 
+  /**
+   * Display the selected dropdown option by copying the content to the dropdown display area. If the content includes a canvas, the content of the canvas will be copied as well.
+   */
   displaySelectedOption() {
     if (this.selectedOption) {
       this.display.innerHTML = this.selectedOption.innerHTML;
