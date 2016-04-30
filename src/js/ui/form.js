@@ -138,7 +138,7 @@ export function createGraphForm(fields, canSubmit, submitText) {
       fieldHtml = `
         <input type="hidden" name="${name}" data-type="${type}" ${value ? 'value="${value.id}"' : ''} ${isRequired ? 'required' : ''}>
         <label>${displayName}</label>
-        <output name="${name}">${value ? type + value.id : ' '}</output>
+        <output name="${name}">${value ? type + value.id : '&nbsp;'}</output>
         <button type="button" class="input-select-btn btn-raised">Select</button>
       `;
     }
