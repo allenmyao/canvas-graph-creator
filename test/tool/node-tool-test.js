@@ -49,11 +49,6 @@ describe('NodeTool', () => {
       nodeTool.selectObject(null, graph, edge, node1.radius * 3, 0);
       (graph.nodes.size).should.be.equal(3);
     });
-
-    // it('should not add node if object is an edge over a node', () => {
-    //   // TODO implement this
-    //   console.log('Not implemented yet');
-    // });
   });
 
   describe('#selectNone', () => {
