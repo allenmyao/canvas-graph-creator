@@ -203,7 +203,7 @@ export function calcBezierDistance(pointX, pointY, start, control, end) {
  * @param  {Point} start - The start point of the bezier curve.
  * @param  {Point} control - The control point of the bezier curve.
  * @param  {Point} end - The end point of the bezier curve.
- * @return {Point} - Point object containing the x- and y-values of th derivative.
+ * @return {Point} - Point object containing the x- and y-values of the derivative.
  */
 export function bezierDerivative(t, start, control, end) {
   return {

@@ -1,7 +1,16 @@
 import Edge from './edge';
 
+/**
+ * Edge subclass for solid edges.
+ * @class SolidEdge
+ */
 class SolidEdge extends Edge {
 
+  /**
+   * Draw the edge on the given canvas context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   * @override
+   */
   draw(context) {
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
     context.lineWidth = this.lineWidth;
