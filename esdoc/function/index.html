@@ -84,7 +84,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValueLocal">getInputValueLocal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/graph-serialize.js~Serializer.html">Serializer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/line-2d.js~Line2D.html">Line2D</a></span></span></li>
@@ -170,13 +169,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span><span data-ice="signature">(fields: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-createForm">createForm</a></span></span><span data-ice="signature">(fields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Create an html string for a form given an array of field types.</p>
+</div>
       </div>
     </td>
     <td>
@@ -195,13 +195,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-createGraphForm">createGraphForm</a></span></span><span data-ice="signature">(fields: <span>*</span>, canSubmit: <span>*</span>, submitText: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-createGraphForm">createGraphForm</a></span></span><span data-ice="signature">(fields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span>&gt;, canSubmit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, submitText: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Create a form with inputs for graph elements.</p>
+</div>
       </div>
     </td>
     <td>
@@ -220,13 +221,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span><span data-ice="signature">(form: <span>*</span>, field: <span>*</span>, showError: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-displayError">displayError</a></span></span><span data-ice="signature">(form: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, inputName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, showError: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Add/remove the CSS class &apos;error&apos; to the specified form input.</p>
+</div>
       </div>
     </td>
     <td>
@@ -245,13 +247,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span><span data-ice="signature">(form: <span>*</span>, graph: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-getData">getData</a></span></span><span data-ice="signature">(form: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, <span>*</span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get all of the data from a form.</p>
+</div>
       </div>
     </td>
     <td>
@@ -270,13 +273,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span><span data-ice="signature">(input: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span><span data-ice="signature">(input: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get the value of the given form input.</p>
+</div>
       </div>
     </td>
     <td>
@@ -295,13 +299,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-getInputValueLocal">getInputValueLocal</a></span></span><span data-ice="signature">(input: <span>*</span>, graph: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-getInputValueLocal">getInputValueLocal</a></span></span><span data-ice="signature">(input: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get the value of a single input.</p>
+</div>
       </div>
     </td>
     <td>
@@ -326,7 +331,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Call to initialize form functionality.</p>
+</div>
       </div>
     </td>
     <td>
@@ -345,38 +351,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span><span data-ice="signature">()</span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-scrollToElement">scrollToElement</a></span></span><span data-ice="signature">(element: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, to: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, speed: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, easing: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-scrollToElement">scrollToElement</a></span></span><span data-ice="signature">(element: <span>*</span>, to: <span>*</span>, speed: <span>*</span>, easing: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Function to scroll to an element.</p>
+</div>
       </div>
     </td>
     <td>
@@ -583,18 +565,19 @@
     
     
     
-    <span data-ice="name">createForm</span><span data-ice="signature">(fields: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">createForm</span><span data-ice="signature">(fields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span>&gt;): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber86">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber99">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createForm} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber86">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createForm} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber99">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Create an html string for a form given an array of field types.</p>
+</div>
 
   
 
@@ -608,9 +591,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">fields</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Array of input types.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -621,8 +605,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>String containing HTML for the form.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -649,18 +634,19 @@
     
     
     
-    <span data-ice="name">createGraphForm</span><span data-ice="signature">(fields: <span>*</span>, canSubmit: <span>*</span>, submitText: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">createGraphForm</span><span data-ice="signature">(fields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span>&gt;, canSubmit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, submitText: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber117">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber137">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createGraphForm} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber117">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createGraphForm} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber137">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Create a form with inputs for graph elements. Also has options for a button to submit the form.</p>
+</div>
 
   
 
@@ -674,21 +660,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">fields</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="typedef/index.html#static-typedef-InputType">InputType</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Array of input types.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">canSubmit</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Whether or not the form can be submitted.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">submitText</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Text to be displayed on the submit button.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -699,8 +688,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>String containing HTML for the form.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -727,18 +717,19 @@
     
     
     
-    <span data-ice="name">displayError</span><span data-ice="signature">(form: <span>*</span>, field: <span>*</span>, showError: <span>*</span>)</span>
+    <span data-ice="name">displayError</span><span data-ice="signature">(form: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, inputName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, showError: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber174">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber206">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {displayError} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber174">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {displayError} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber206">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Add/remove the CSS class &apos;error&apos; to the specified form input.</p>
+</div>
 
   
 
@@ -752,21 +743,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">form</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Form dom element.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">field</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="name" data-depth="0">inputName</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Name of the input.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">showError</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Whether or not the input should display an error.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -795,18 +789,19 @@
     
     
     
-    <span data-ice="name">getData</span><span data-ice="signature">(form: <span>*</span>, graph: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">getData</span><span data-ice="signature">(form: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, <span>*</span>&gt;</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber160">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber186">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getData} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber160">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getData} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber186">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Get all of the data from a form.</p>
+</div>
 
   
 
@@ -820,15 +815,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">form</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Form DOM element.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current graph object.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -839,8 +836,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, <span>*</span>&gt;</td>
+        <td class="return-desc" data-ice="returnDescription"><p>Object containing input names and their associated input values</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -867,18 +865,19 @@
     
     
     
-    <span data-ice="name">getInputValue</span><span data-ice="signature">(input: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">getInputValue</span><span data-ice="signature">(input: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber74">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber82">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getInputValue} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber74">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getInputValue} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber82">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Get the value of the given form input.</p>
+</div>
 
   
 
@@ -892,9 +891,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">input</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Form input DOM element.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -905,8 +905,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Value of the input.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -933,18 +934,19 @@
     
     
     
-    <span data-ice="name">getInputValueLocal</span><span data-ice="signature">(input: <span>*</span>, graph: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">getInputValueLocal</span><span data-ice="signature">(input: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber197">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber235">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getInputValueLocal} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber197">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getInputValueLocal} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber235">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Get the value of a single input. Used when the input could contain a reference to a Node or Edge.</p>
+</div>
 
   
 
@@ -958,15 +960,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">input</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Form input DOM element.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Graph object.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -977,8 +981,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The value of the input.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1009,54 +1014,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber1">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber4">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {init} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber1">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {init} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber4">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
   
   
-  
-
-  
-
-  <div data-ice="properties">
+  <div data-ice="description"><p>Call to initialize form functionality.</p>
 </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-initListeners">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">initListeners</span><span data-ice="signature">()</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/js/ui/form.js.html#lineNumber5">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {initListeners} from &apos;<span><a href="file/src/js/ui/form.js.html#lineNumber5">canvas-graph-creator/src/js/ui/form.js</a></span>&apos;</code></pre></div>
-  
-  
-  
 
   
 
@@ -1085,18 +1051,20 @@
     
     
     
-    <span data-ice="name">scrollToElement</span><span data-ice="signature">(element: <span>*</span>, to: <span>*</span>, speed: <span>*</span>, easing: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+    <span data-ice="name">scrollToElement</span><span data-ice="signature">(element: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>, to: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, speed: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, easing: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/util/scroll-to-element.js.html#lineNumber2">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/util/scroll-to-element.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import scrollToElement from &apos;<span><a href="file/src/js/util/scroll-to-element.js.html#lineNumber2">canvas-graph-creator/src/js/util/scroll-to-element.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import scrollToElement from &apos;<span><a href="file/src/js/util/scroll-to-element.js.html#lineNumber9">canvas-graph-creator/src/js/util/scroll-to-element.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Function to scroll to an element.
+Based on scrollToY from <a href="http://stackoverflow.com/a/16136789/1418962">http://stackoverflow.com/a/16136789/1418962</a></p>
+</div>
 
   
 
@@ -1110,28 +1078,31 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">element</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The elemnt to scroll to.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">to</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Number indicating offset from the top of the element.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">speed</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Speed to scroll.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">easing</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: easeOutSine</li></ul></td>
-      <td data-ice="description"></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Name of easing function (default: &apos;easeOutSine&apos;).</p>
+</td>
     </tr>
 </tbody>
   </table>

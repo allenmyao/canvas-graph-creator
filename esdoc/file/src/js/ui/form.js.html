@@ -84,7 +84,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValueLocal">getInputValueLocal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/graph-serialize.js~Serializer.html">Serializer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/line-2d.js~Line2D.html">Line2D</a></span></span></li>
@@ -103,12 +102,15 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/form.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export function init() {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Call to initialize form functionality.
+ */
+export function init() {
   initListeners();
 }
 
-export function initListeners() {
-  // Create MutationObserver to check for changes in selectElement options
+function initListeners() {
+  // Create MutationObserver to check for newly added inputs
   let obs = new MutationObserver((mutations, observer) =&gt; {
     for (let mutation of mutations) {
       if (mutation.addedNodes) {
@@ -176,6 +178,11 @@ function checkLabelClick(event) {
   }
 }
 
+/**
+ * Get the value of the given form input.
+ * @param  {Element} input - Form input DOM element.
+ * @return {(boolean|number|string)} - Value of the input.
+ */
 export function getInputValue(input) {
   let value;
   if (input.type === &apos;checkbox&apos;) {
@@ -188,6 +195,11 @@ export function getInputValue(input) {
   return value;
 }
 
+/**
+ * Create an html string for a form given an array of field types.
+ * @param  {Array.&lt;InputType&gt;} fields - Array of input types.
+ * @return {string} - String containing HTML for the form.
+ */
 export function createForm(fields) {
   let html = &apos;&apos;;
 
@@ -219,6 +231,13 @@ export function createForm(fields) {
   return html;
 }
 
+/**
+ * Create a form with inputs for graph elements. Also has options for a button to submit the form.
+ * @param  {Array.&lt;InputType&gt;} fields - Array of input types.
+ * @param  {boolean} canSubmit - Whether or not the form can be submitted.
+ * @param  {string} submitText - Text to be displayed on the submit button.
+ * @return {string} - String containing HTML for the form.
+ */
 export function createGraphForm(fields, canSubmit, submitText) {
   let html = &apos;&apos;;
 
@@ -243,7 +262,7 @@ export function createGraphForm(fields, canSubmit, submitText) {
       fieldHtml = `
         &lt;input type=&quot;hidden&quot; name=&quot;${name}&quot; data-type=&quot;${type}&quot; ${value ? &apos;value=&quot;${value.id}&quot;&apos; : &apos;&apos;} ${isRequired ? &apos;required&apos; : &apos;&apos;}&gt;
         &lt;label&gt;${displayName}&lt;/label&gt;
-        &lt;output name=&quot;${name}&quot;&gt;${value ? type + value.id : &apos; &apos;}&lt;/output&gt;
+        &lt;output name=&quot;${name}&quot;&gt;${value ? type + value.id : &apos;&amp;nbsp;&apos;}&lt;/output&gt;
         &lt;button type=&quot;button&quot; class=&quot;input-select-btn btn-raised&quot;&gt;Select&lt;/button&gt;
       `;
     }
@@ -262,6 +281,12 @@ export function createGraphForm(fields, canSubmit, submitText) {
   return html;
 }
 
+/**
+ * Get all of the data from a form.
+ * @param  {Element} form - Form DOM element.
+ * @param  {Graph} graph - The current graph object.
+ * @return {Object.&lt;string,*&gt;} - Object containing input names and their associated input values
+ */
 export function getData(form, graph) {
   let data = {};
   let fieldsets = form.querySelectorAll(&apos;fieldset&apos;);
@@ -276,12 +301,18 @@ export function getData(form, graph) {
   return data;
 }
 
-export function displayError(form, field, showError) {
-  let fieldset = form.querySelectorAll(`[name=&quot;${field}&quot;]`);
+/**
+ * Add/remove the CSS class &apos;error&apos; to the specified form input.
+ * @param  {Element} form - Form dom element.
+ * @param  {string} inputName - Name of the input.
+ * @param  {boolean} showError - Whether or not the input should display an error.
+ */
+export function displayError(form, inputName, showError) {
+  let fieldset = form.querySelector(`[name=&quot;${inputName}&quot;]`);
   if (showError) {
-    fieldset[0].classList.add(&apos;error&apos;);
+    fieldset.classList.add(&apos;error&apos;);
   } else {
-    fieldset[0].classList.remove(&apos;error&apos;);
+    fieldset.classList.remove(&apos;error&apos;);
   }
 }
 
@@ -299,6 +330,12 @@ function getFieldData(inputs, graph) {
   return data;
 }
 
+/**
+ * Get the value of a single input. Used when the input could contain a reference to a Node or Edge.
+ * @param  {Element} input - Form input DOM element.
+ * @param  {Graph} graph - Graph object.
+ * @return {(boolean|number|string|Node|Edge)} - The value of the input.
+ */
 export function getInputValueLocal(input, graph) {
   let value;
   let type = input.getAttribute(&apos;type&apos;);

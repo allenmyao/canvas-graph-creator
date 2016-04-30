@@ -8825,7 +8825,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "const DROPDOWN_CLASS = 'dropdown';\r\nconst DROPDOWN_HIDDEN_CLASS = 'dropdown--hidden';\r\nconst DROPDOWN_TOGGLE_CLASS = 'dropdown--active';\r\n\r\nconst DROPDOWN_SELECT_CLASS = 'dropdown__select';\r\n\r\nconst DROPDOWN_DISPLAY_CLASS = 'dropdown__select__display';\r\n\r\nconst DROPDOWN_MENU_CLASS = 'dropdown__menu';\r\nconst DROPDOWN_MENU_TOGGLE_CLASS = 'dropdown__menu--active';\r\n\r\nconst DROPDOWN_OPTIONLIST_CLASS = 'dropdown__menu__list';\r\n\r\nconst DROPDOWN_OPTION_CLASS = 'dropdown__menu__list__item';\r\nconst DROPDOWN_OPTION_SELECTED_CLASS = 'dropdown__menu__list__item--selected';\r\nconst DROPDOWN_OPTION_INDEX_ATTRIBUTE = 'data-index';\r\nconst DROPDOWN_OPTION_VALUE_ATTRIBUTE = 'data-value';\r\nconst DROPDOWN_OPTION_LABEL_ATTRIBUTE = 'data-label';\r\n\r\nclass Dropdown {\r\n\r\n  // // width of options\r\n  // width;\r\n  //\r\n  // // height of options\r\n  // height;\r\n  //\r\n  // // number of elements to display in a row in the dropdown menu\r\n  // numCols;\r\n  //\r\n  // // number of rows to display in the dropdown menu (before needing a scrollbar)\r\n  // numRows;\r\n\r\n  selectElement;\r\n  optionMap;\r\n  optionContent;\r\n\r\n  // container element that is a common ancestor for all other dropdown elements\r\n  container;\r\n\r\n  // the element that displays the selected option\r\n  display;\r\n\r\n  // dropdown menu that contains all the options\r\n  menu;\r\n\r\n  // list of options\r\n  optionlist;\r\n\r\n  isDisplayingMenu = false;\r\n\r\n  selectedOption = null;\r\n\r\n  constructor(selectElement) {\r\n    this.selectElement = selectElement;\r\n    this.createDropdown();\r\n  }\r\n\r\n  get value() {\r\n    if (!this.selectOption) {\r\n      throw Error('No option is selected');\r\n    }\r\n    return this.selectElement.options[this.selectOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE)];\r\n  }\r\n\r\n  getOptionsHtml() {\r\n    let options = this.selectElement.children;\r\n    let optionsHtml = '';\r\n    for (let i = 0; i < options.length; i++) {\r\n      let option = options[i];\r\n      optionsHtml += `\r\n        <li class=\"${DROPDOWN_OPTION_CLASS} ${this.selectElement.value === option.value ? DROPDOWN_OPTION_SELECTED_CLASS : ''}\"\r\n            ${DROPDOWN_OPTION_INDEX_ATTRIBUTE}=\"${option.index}\"\r\n            ${DROPDOWN_OPTION_VALUE_ATTRIBUTE}=\"${option.value}\"\r\n            ${DROPDOWN_OPTION_LABEL_ATTRIBUTE}=\"${this.optionMap[option.text].label}\">\r\n          ${this.optionContent.html}\r\n        </li>`;\r\n    }\r\n    return optionsHtml;\r\n  }\r\n\r\n  createDropdown() {\r\n    let optionsHtml = this.getOptionsHtml();\r\n    let dropdownHtml = `\r\n      <div class=\"${DROPDOWN_CLASS}\">\r\n        <div class=\"${DROPDOWN_SELECT_CLASS}\">\r\n          <div class=\"${DROPDOWN_DISPLAY_CLASS}\"></div>\r\n          <div class=\"dropdown__select__arrow\">\r\n            <span></span>\r\n          </div>\r\n        </div>\r\n        <div class=\"${DROPDOWN_MENU_CLASS}\">\r\n          <ul class=\"${DROPDOWN_OPTIONLIST_CLASS}\">\r\n            ${optionsHtml}\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    `;\r\n\r\n    let ancestor = this.selectElement.parentNode;\r\n\r\n    let div = document.createElement('div');\r\n    div.innerHTML = dropdownHtml;\r\n    ancestor.appendChild(div.children[0]);\r\n\r\n    this.container = ancestor.querySelector(`.${DROPDOWN_CLASS}`);\r\n    this.display = ancestor.querySelector(`.${DROPDOWN_DISPLAY_CLASS}`);\r\n    this.menu = ancestor.querySelector(`.${DROPDOWN_MENU_CLASS}`);\r\n    this.optionlist = ancestor.querySelector(`.${DROPDOWN_OPTIONLIST_CLASS}`);\r\n\r\n    this.updateOptionContent();\r\n\r\n    this.initListeners();\r\n  }\r\n\r\n  updateOptionContent() {\r\n    let options = this.optionlist.querySelectorAll(`.${DROPDOWN_OPTION_CLASS}`);\r\n    for (let i = 0; i < options.length; i++) {\r\n      let option = options[i];\r\n      if (option === this.selectedOption) {\r\n        this.optionContent.init(this.display, this.selectedOption.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE));\r\n      }\r\n      this.optionContent.init(option, option.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE));\r\n    }\r\n  }\r\n\r\n  initListeners() {\r\n    document.addEventListener('click', (event) => {\r\n      if (!this.container.contains(event.target)) {\r\n        this.hideMenu();\r\n      }\r\n    });\r\n\r\n    this.container.addEventListener('click', (event) => {\r\n      this.toggleMenu();\r\n    });\r\n    this.optionlist.addEventListener('click', (event) => {\r\n      if (event.target.classList.contains(DROPDOWN_OPTION_CLASS)) {\r\n        this.selectOption(event.target);\r\n      }\r\n    });\r\n\r\n    // Create MutationObserver to check for changes in selectElement options\r\n    let obs = new MutationObserver((mutations, observer) => {\r\n      for (let mutation of mutations) {\r\n        if (mutation.addedNodes || mutation.removedNodes) {\r\n          this.updateOptions();\r\n          break;\r\n        }\r\n      }\r\n    });\r\n    // Observe document\r\n    obs.observe(this.selectElement, {\r\n      childList: true,\r\n      attributes: true,\r\n      characterData: true,\r\n      subtree: true\r\n    });\r\n  }\r\n\r\n  updateOptions() {\r\n    this.optionlist.innerHTML = this.getOptionsHtml();\r\n\r\n    if (this.optionlist.children.length === 0) {\r\n      this.container.classList.add(DROPDOWN_HIDDEN_CLASS);\r\n    } else {\r\n      this.container.classList.remove(DROPDOWN_HIDDEN_CLASS);\r\n    }\r\n\r\n    let index = this.selectElement.selectedIndex;\r\n    this.selectedOption = this.optionlist.querySelector(`.${DROPDOWN_OPTION_CLASS}[${DROPDOWN_OPTION_INDEX_ATTRIBUTE}=\"${index}\"]`);\r\n    if (this.selectedOption) {\r\n      this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);\r\n    }\r\n    this.displaySelectedOption();\r\n    this.updateOptionContent();\r\n  }\r\n\r\n  toggleMenu() {\r\n    if (this.isDisplayingMenu) {\r\n      this.hideMenu();\r\n    } else {\r\n      this.showMenu();\r\n    }\r\n  }\r\n\r\n  showMenu() {\r\n    this.container.classList.add(DROPDOWN_TOGGLE_CLASS);\r\n    this.menu.classList.add(DROPDOWN_MENU_TOGGLE_CLASS);\r\n    this.isDisplayingMenu = true;\r\n  }\r\n\r\n  hideMenu() {\r\n    this.container.classList.remove(DROPDOWN_TOGGLE_CLASS);\r\n    this.menu.classList.remove(DROPDOWN_MENU_TOGGLE_CLASS);\r\n    this.isDisplayingMenu = false;\r\n  }\r\n\r\n  selectOption(optionElement) {\r\n    if (this.selectedOption) {\r\n      this.selectedOption.classList.remove(DROPDOWN_OPTION_SELECTED_CLASS);\r\n    }\r\n\r\n    this.selectedOption = optionElement;\r\n    this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);\r\n\r\n    this.selectElement.options[this.selectElement.selectedIndex].selected = false;\r\n    this.selectElement.selectedIndex = this.selectedOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE);\r\n    this.selectElement.options[this.selectElement.selectedIndex].selected = true;\r\n\r\n    // Dispatch the 'change' event since modifying selectedIndex doesn't do it automatically\r\n    let event = new Event('change');\r\n    this.selectElement.dispatchEvent(event);\r\n\r\n    this.displaySelectedOption();\r\n  }\r\n\r\n  displaySelectedOption() {\r\n    if (this.selectedOption) {\r\n      this.display.innerHTML = this.selectedOption.innerHTML;\r\n\r\n      let srcCanvas = this.selectedOption.querySelector('canvas');\r\n      let destCanvas = this.display.querySelector('canvas');\r\n      if (srcCanvas && destCanvas) {\r\n        let destCtx = destCanvas.getContext('2d');\r\n        destCtx.clearRect(0, 0, destCanvas.width, destCanvas.height);\r\n        destCtx.drawImage(srcCanvas, 0, 0);\r\n      }\r\n    } else {\r\n      this.display.innerHTML = '';\r\n    }\r\n  }\r\n}\r\n\r\nexport { Dropdown };\r\nexport default Dropdown;\r\n"
+    "content": "const DROPDOWN_CLASS = 'dropdown';\r\nconst DROPDOWN_HIDDEN_CLASS = 'dropdown--hidden';\r\nconst DROPDOWN_TOGGLE_CLASS = 'dropdown--active';\r\n\r\nconst DROPDOWN_SELECT_CLASS = 'dropdown__select';\r\n\r\nconst DROPDOWN_DISPLAY_CLASS = 'dropdown__select__display';\r\n\r\nconst DROPDOWN_MENU_CLASS = 'dropdown__menu';\r\nconst DROPDOWN_MENU_TOGGLE_CLASS = 'dropdown__menu--active';\r\n\r\nconst DROPDOWN_OPTIONLIST_CLASS = 'dropdown__menu__list';\r\n\r\nconst DROPDOWN_OPTION_CLASS = 'dropdown__menu__list__item';\r\nconst DROPDOWN_OPTION_SELECTED_CLASS = 'dropdown__menu__list__item--selected';\r\nconst DROPDOWN_OPTION_INDEX_ATTRIBUTE = 'data-index';\r\nconst DROPDOWN_OPTION_VALUE_ATTRIBUTE = 'data-value';\r\nconst DROPDOWN_OPTION_LABEL_ATTRIBUTE = 'data-label';\r\n\r\n/**\r\n * Class to create custom dropdown menus, backed by HTML <select> objects.\r\n * @class Dropdown\r\n */\r\nclass Dropdown {\r\n\r\n  // <select> element that contains the values of the dropdown\r\n  selectElement;\r\n\r\n  // map of option names to objects containing labels for the options\r\n  optionMap;\r\n\r\n  // map of option names to objects containing html content and init() functions\r\n  optionContent;\r\n\r\n  // container element that is a common ancestor for all other dropdown elements\r\n  container;\r\n\r\n  // the element that displays the selected option\r\n  display;\r\n\r\n  // dropdown menu that contains all the options\r\n  menu;\r\n\r\n  // parent element of all the dropdown options\r\n  optionlist;\r\n\r\n  // boolean indicating whether or not the dropdown menu is being displayed\r\n  isDisplayingMenu = false;\r\n\r\n  // the current selected dropdown option\r\n  selectedOption = null;\r\n\r\n  /**\r\n   * Constructs a Dropdown object.\r\n   * @param  {Element} selectElement - Select DOM element.\r\n   */\r\n  constructor(selectElement) {\r\n    this.selectElement = selectElement;\r\n    this.createDropdown();\r\n  }\r\n\r\n  /**\r\n   * Returns the value of the selected option.\r\n   * @return {string} - Value of the selected option.\r\n   */\r\n  get value() {\r\n    if (!this.selectOption) {\r\n      throw Error('No option is selected');\r\n    }\r\n    return this.selectElement.options[this.selectOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE)];\r\n  }\r\n\r\n  /**\r\n   * Returns an HTML string containing all the options for the dropdown menu.\r\n   * @return {string} - HTML string containing all the options for the dropdown menu.\r\n   */\r\n  getOptionsHtml() {\r\n    let options = this.selectElement.children;\r\n    let optionsHtml = '';\r\n    for (let i = 0; i < options.length; i++) {\r\n      let option = options[i];\r\n      optionsHtml += `\r\n        <li class=\"${DROPDOWN_OPTION_CLASS} ${this.selectElement.value === option.value ? DROPDOWN_OPTION_SELECTED_CLASS : ''}\"\r\n            ${DROPDOWN_OPTION_INDEX_ATTRIBUTE}=\"${option.index}\"\r\n            ${DROPDOWN_OPTION_VALUE_ATTRIBUTE}=\"${option.value}\"\r\n            ${DROPDOWN_OPTION_LABEL_ATTRIBUTE}=\"${this.optionMap[option.text].label}\">\r\n          ${this.optionContent.html}\r\n        </li>`;\r\n    }\r\n    return optionsHtml;\r\n  }\r\n\r\n  /**\r\n   * Creates a dropdown menu by appending HTML as a sibling of the select element.\r\n   */\r\n  createDropdown() {\r\n    let optionsHtml = this.getOptionsHtml();\r\n    let dropdownHtml = `\r\n      <div class=\"${DROPDOWN_CLASS}\">\r\n        <div class=\"${DROPDOWN_SELECT_CLASS}\">\r\n          <div class=\"${DROPDOWN_DISPLAY_CLASS}\"></div>\r\n          <div class=\"dropdown__select__arrow\">\r\n            <span></span>\r\n          </div>\r\n        </div>\r\n        <div class=\"${DROPDOWN_MENU_CLASS}\">\r\n          <ul class=\"${DROPDOWN_OPTIONLIST_CLASS}\">\r\n            ${optionsHtml}\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    `;\r\n\r\n    let ancestor = this.selectElement.parentNode;\r\n\r\n    let div = document.createElement('div');\r\n    div.innerHTML = dropdownHtml;\r\n    ancestor.appendChild(div.children[0]);\r\n\r\n    this.container = ancestor.querySelector(`.${DROPDOWN_CLASS}`);\r\n    this.display = ancestor.querySelector(`.${DROPDOWN_DISPLAY_CLASS}`);\r\n    this.menu = ancestor.querySelector(`.${DROPDOWN_MENU_CLASS}`);\r\n    this.optionlist = ancestor.querySelector(`.${DROPDOWN_OPTIONLIST_CLASS}`);\r\n\r\n    this.updateOptionContent();\r\n\r\n    this.initListeners();\r\n  }\r\n\r\n  /**\r\n   * Update all the displayed dropdown options using their respective init() functions in the \"optionContent\" field.\r\n   */\r\n  updateOptionContent() {\r\n    let options = this.optionlist.querySelectorAll(`.${DROPDOWN_OPTION_CLASS}`);\r\n    for (let i = 0; i < options.length; i++) {\r\n      let option = options[i];\r\n      if (option === this.selectedOption) {\r\n        this.optionContent.init(this.display, this.selectedOption.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE));\r\n      }\r\n      this.optionContent.init(option, option.getAttribute(DROPDOWN_OPTION_VALUE_ATTRIBUTE));\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Initialize all event listeners for the dropdown menu.\r\n   */\r\n  initListeners() {\r\n    document.addEventListener('click', (event) => {\r\n      if (!this.container.contains(event.target)) {\r\n        this.hideMenu();\r\n      }\r\n    });\r\n\r\n    this.container.addEventListener('click', (event) => {\r\n      this.toggleMenu();\r\n    });\r\n    this.optionlist.addEventListener('click', (event) => {\r\n      if (event.target.classList.contains(DROPDOWN_OPTION_CLASS)) {\r\n        this.selectOption(event.target);\r\n      }\r\n    });\r\n\r\n    // Create MutationObserver to check for changes in the <select> element options\r\n    let obs = new MutationObserver((mutations, observer) => {\r\n      for (let mutation of mutations) {\r\n        if (mutation.addedNodes || mutation.removedNodes) {\r\n          this.updateOptions();\r\n          break;\r\n        }\r\n      }\r\n    });\r\n    // Observe document\r\n    obs.observe(this.selectElement, {\r\n      childList: true,\r\n      attributes: true,\r\n      characterData: true,\r\n      subtree: true\r\n    });\r\n  }\r\n\r\n  /**\r\n   * Update the status of the options and display the selected option. This is called when the options in the <select> element change.\r\n   */\r\n  updateOptions() {\r\n    this.optionlist.innerHTML = this.getOptionsHtml();\r\n\r\n    if (this.optionlist.children.length === 0) {\r\n      this.container.classList.add(DROPDOWN_HIDDEN_CLASS);\r\n    } else {\r\n      this.container.classList.remove(DROPDOWN_HIDDEN_CLASS);\r\n    }\r\n\r\n    let index = this.selectElement.selectedIndex;\r\n    this.selectedOption = this.optionlist.querySelector(`.${DROPDOWN_OPTION_CLASS}[${DROPDOWN_OPTION_INDEX_ATTRIBUTE}=\"${index}\"]`);\r\n    if (this.selectedOption) {\r\n      this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);\r\n    }\r\n    this.displaySelectedOption();\r\n    this.updateOptionContent();\r\n  }\r\n\r\n  /**\r\n   * Toggle the display of the dropdown menu.\r\n   */\r\n  toggleMenu() {\r\n    if (this.isDisplayingMenu) {\r\n      this.hideMenu();\r\n    } else {\r\n      this.showMenu();\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Show the dropdown menu.\r\n   */\r\n  showMenu() {\r\n    this.container.classList.add(DROPDOWN_TOGGLE_CLASS);\r\n    this.menu.classList.add(DROPDOWN_MENU_TOGGLE_CLASS);\r\n    this.isDisplayingMenu = true;\r\n  }\r\n\r\n  /**\r\n   * Hide the dropdown menu.\r\n   */\r\n  hideMenu() {\r\n    this.container.classList.remove(DROPDOWN_TOGGLE_CLASS);\r\n    this.menu.classList.remove(DROPDOWN_MENU_TOGGLE_CLASS);\r\n    this.isDisplayingMenu = false;\r\n  }\r\n\r\n  /**\r\n   * Selects an option in the dropdown menu and updates the display.\r\n   * @param  {Element} optionElement - The option that was selected.\r\n   */\r\n  selectOption(optionElement) {\r\n    if (this.selectedOption) {\r\n      this.selectedOption.classList.remove(DROPDOWN_OPTION_SELECTED_CLASS);\r\n    }\r\n\r\n    this.selectedOption = optionElement;\r\n    this.selectedOption.classList.add(DROPDOWN_OPTION_SELECTED_CLASS);\r\n\r\n    this.selectElement.options[this.selectElement.selectedIndex].selected = false;\r\n    this.selectElement.selectedIndex = this.selectedOption.getAttribute(DROPDOWN_OPTION_INDEX_ATTRIBUTE);\r\n    this.selectElement.options[this.selectElement.selectedIndex].selected = true;\r\n\r\n    // Dispatch the 'change' event since modifying selectedIndex doesn't do it automatically\r\n    let event = new Event('change');\r\n    this.selectElement.dispatchEvent(event);\r\n\r\n    this.displaySelectedOption();\r\n  }\r\n\r\n  /**\r\n   * Display the selected dropdown option by copying the content to the dropdown display area. If the content includes a canvas, the content of the canvas will be copied as well.\r\n   */\r\n  displaySelectedOption() {\r\n    if (this.selectedOption) {\r\n      this.display.innerHTML = this.selectedOption.innerHTML;\r\n\r\n      let srcCanvas = this.selectedOption.querySelector('canvas');\r\n      let destCanvas = this.display.querySelector('canvas');\r\n      if (srcCanvas && destCanvas) {\r\n        let destCtx = destCanvas.getContext('2d');\r\n        destCtx.clearRect(0, 0, destCanvas.width, destCanvas.height);\r\n        destCtx.drawImage(srcCanvas, 0, 0);\r\n      }\r\n    } else {\r\n      this.display.innerHTML = '';\r\n    }\r\n  }\r\n}\r\n\r\nexport { Dropdown };\r\nexport default Dropdown;\r\n"
   },
   {
     "__docId__": 367,
@@ -9112,9 +9112,14 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/dropdown.js",
     "importStyle": "Dropdown",
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
+    "description": "Class to create custom dropdown menus, backed by HTML <select> objects.",
+    "lineNumber": 24,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Dropdown"
+      }
+    ],
     "interface": false
   },
   {
@@ -9126,15 +9131,18 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 54,
-    "undocument": true,
+    "description": "Constructs a Dropdown object.",
+    "lineNumber": 57,
     "params": [
       {
-        "name": "selectElement",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "selectElement",
+        "description": "Select DOM element."
       }
     ],
     "generator": false
@@ -9149,7 +9157,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#selectElement",
     "access": null,
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 58,
     "undocument": true,
     "type": {
       "types": [
@@ -9166,9 +9174,16 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#value",
     "access": null,
-    "description": null,
-    "lineNumber": 59,
-    "undocument": true,
+    "description": "Returns the value of the selected option.",
+    "lineNumber": 66,
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": "Value of the selected option."
+    },
     "type": {
       "types": [
         "*"
@@ -9185,14 +9200,16 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#getOptionsHtml",
     "access": null,
-    "description": null,
-    "lineNumber": 66,
-    "undocument": true,
+    "description": "Returns an HTML string containing all the options for the dropdown menu.",
+    "lineNumber": 77,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": "HTML string containing all the options for the dropdown menu."
     },
     "generator": false
   },
@@ -9205,9 +9222,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#createDropdown",
     "access": null,
-    "description": null,
-    "lineNumber": 82,
-    "undocument": true,
+    "description": "Creates a dropdown menu by appending HTML as a sibling of the select element.",
+    "lineNumber": 96,
     "params": [],
     "generator": false
   },
@@ -9221,7 +9237,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#container",
     "access": null,
     "description": null,
-    "lineNumber": 106,
+    "lineNumber": 120,
     "undocument": true,
     "type": {
       "types": [
@@ -9239,7 +9255,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#display",
     "access": null,
     "description": null,
-    "lineNumber": 107,
+    "lineNumber": 121,
     "undocument": true,
     "type": {
       "types": [
@@ -9257,7 +9273,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#menu",
     "access": null,
     "description": null,
-    "lineNumber": 108,
+    "lineNumber": 122,
     "undocument": true,
     "type": {
       "types": [
@@ -9275,7 +9291,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#optionlist",
     "access": null,
     "description": null,
-    "lineNumber": 109,
+    "lineNumber": 123,
     "undocument": true,
     "type": {
       "types": [
@@ -9292,9 +9308,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#updateOptionContent",
     "access": null,
-    "description": null,
-    "lineNumber": 116,
-    "undocument": true,
+    "description": "Update all the displayed dropdown options using their respective init() functions in the \"optionContent\" field.",
+    "lineNumber": 133,
     "params": [],
     "generator": false
   },
@@ -9307,9 +9322,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#initListeners",
     "access": null,
-    "description": null,
-    "lineNumber": 127,
-    "undocument": true,
+    "description": "Initialize all event listeners for the dropdown menu.",
+    "lineNumber": 147,
     "params": [],
     "generator": false
   },
@@ -9322,9 +9336,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#updateOptions",
     "access": null,
-    "description": null,
-    "lineNumber": 161,
-    "undocument": true,
+    "description": "Update the status of the options and display the selected option. This is called when the options in the <select> element change.",
+    "lineNumber": 184,
     "params": [],
     "generator": false
   },
@@ -9338,7 +9351,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#selectedOption",
     "access": null,
     "description": null,
-    "lineNumber": 171,
+    "lineNumber": 194,
     "undocument": true,
     "type": {
       "types": [
@@ -9355,9 +9368,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#toggleMenu",
     "access": null,
-    "description": null,
-    "lineNumber": 179,
-    "undocument": true,
+    "description": "Toggle the display of the dropdown menu.",
+    "lineNumber": 205,
     "params": [],
     "generator": false
   },
@@ -9370,9 +9382,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#showMenu",
     "access": null,
-    "description": null,
-    "lineNumber": 187,
-    "undocument": true,
+    "description": "Show the dropdown menu.",
+    "lineNumber": 216,
     "params": [],
     "generator": false
   },
@@ -9386,7 +9397,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#isDisplayingMenu",
     "access": null,
     "description": null,
-    "lineNumber": 190,
+    "lineNumber": 219,
     "undocument": true,
     "type": {
       "types": [
@@ -9403,9 +9414,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#hideMenu",
     "access": null,
-    "description": null,
-    "lineNumber": 193,
-    "undocument": true,
+    "description": "Hide the dropdown menu.",
+    "lineNumber": 225,
     "params": [],
     "generator": false
   },
@@ -9419,7 +9429,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#isDisplayingMenu",
     "access": null,
     "description": null,
-    "lineNumber": 196,
+    "lineNumber": 228,
     "undocument": true,
     "type": {
       "types": [
@@ -9436,15 +9446,18 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#selectOption",
     "access": null,
-    "description": null,
-    "lineNumber": 199,
-    "undocument": true,
+    "description": "Selects an option in the dropdown menu and updates the display.",
+    "lineNumber": 235,
     "params": [
       {
-        "name": "optionElement",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "optionElement",
+        "description": "The option that was selected."
       }
     ],
     "generator": false
@@ -9459,7 +9472,7 @@
     "longname": "src/js/ui/dropdown.js~Dropdown#selectedOption",
     "access": null,
     "description": null,
-    "lineNumber": 204,
+    "lineNumber": 240,
     "undocument": true,
     "type": {
       "types": [
@@ -9476,9 +9489,8 @@
     "memberof": "src/js/ui/dropdown.js~Dropdown",
     "longname": "src/js/ui/dropdown.js~Dropdown#displaySelectedOption",
     "access": null,
-    "description": null,
-    "lineNumber": 218,
-    "undocument": true,
+    "description": "Display the selected dropdown option by copying the content to the dropdown display area. If the content includes a canvas, the content of the canvas will be copied as well.",
+    "lineNumber": 257,
     "params": [],
     "generator": false
   },
@@ -9493,7 +9505,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export function init() {\r\n  initListeners();\r\n}\r\n\r\nexport function initListeners() {\r\n  // Create MutationObserver to check for changes in selectElement options\r\n  let obs = new MutationObserver((mutations, observer) => {\r\n    for (let mutation of mutations) {\r\n      if (mutation.addedNodes) {\r\n        for (let element of mutation.addedNodes) {\r\n          // Check if input was added\r\n          if (element.tagName === 'FIELDSET') {\r\n            let inputs = element.querySelectorAll('input, textarea');\r\n            for (let i = 0; i < inputs.length; i++) {\r\n              let input = inputs[i];\r\n              if (input.value === '') {\r\n                input.classList.add('empty');\r\n              } else {\r\n                input.classList.remove('empty');\r\n              }\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  });\r\n\r\n  // Observe document for element addition/removal\r\n  obs.observe(document, {\r\n    childList: true,\r\n    subtree: true\r\n  });\r\n\r\n  document.addEventListener('change', (event) => {\r\n    checkInputEmpty(event);\r\n  });\r\n\r\n  document.addEventListener('input', (event) => {\r\n    checkInputEmpty(event);\r\n  });\r\n\r\n  document.addEventListener('click', (event) => {\r\n    checkLabelClick(event);\r\n  });\r\n}\r\n\r\nfunction checkInputEmpty(event) {\r\n  if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {\r\n    let input = event.target;\r\n    if (!input.validity.valid) {\r\n      return;\r\n    }\r\n    if (input.value === '') {\r\n      input.classList.add('empty');\r\n    } else {\r\n      input.classList.remove('empty');\r\n    }\r\n  }\r\n}\r\n\r\nfunction checkLabelClick(event) {\r\n  if (event.target.tagName === 'LABEL') {\r\n    let input = event.target.parentNode.querySelector('input, select, textarea');\r\n    let type = input.type;\r\n\r\n    if (type === 'checkbox' || type === 'radio' || type === 'color') {\r\n      input.click();\r\n    } else {\r\n      input.focus();\r\n    }\r\n  }\r\n}\r\n\r\nexport function getInputValue(input) {\r\n  let value;\r\n  if (input.type === 'checkbox') {\r\n    value = input.checked;\r\n  } else if (input.type === 'number') {\r\n    value = parseInt(input.value, 10);\r\n  } else {\r\n    value = input.value;\r\n  }\r\n  return value;\r\n}\r\n\r\nexport function createForm(fields) {\r\n  let html = '';\r\n\r\n  for (let field of fields) {\r\n    let fieldHtml;\r\n\r\n    let type = field.type;\r\n    let name = field.name;\r\n    let value = field.value;\r\n    if (type === 'number') {\r\n      if (value !== Math.round(value)) {\r\n        value = value.toFixed(2);\r\n      }\r\n      fieldHtml = `<input type=\"number\" name=\"${name}\" value=\"${value}\" step=\"any\">`;\r\n    } else if (type === 'boolean') {\r\n      fieldHtml = `<input type=\"checkbox\" name=\"${name}\" ${value ? 'checked=\"true\"' : ''}>`;\r\n    } else if (type === 'string') {\r\n      fieldHtml = `<input type=\"text\" name=\"${name}\" value=\"${value}\">`;\r\n    } else if (type === 'color') {\r\n      fieldHtml = `<input type=\"color\" name=\"${name}\" value=\"${value}\">`;\r\n    } else {\r\n      fieldHtml = `<output>${value}</output>`;\r\n    }\r\n\r\n    let displayName = field.displayName;\r\n    html += `<fieldset>${fieldHtml}<label>${displayName}</label></fieldset>`;\r\n  }\r\n\r\n  return html;\r\n}\r\n\r\nexport function createGraphForm(fields, canSubmit, submitText) {\r\n  let html = '';\r\n\r\n  for (let field of fields) {\r\n    let fieldHtml;\r\n\r\n    let type = field.type;\r\n    let name = field.name;\r\n    let value = field.value;\r\n    let isRequired = field.required;\r\n    let displayName = field.displayName;\r\n\r\n    if (type === 'number') {\r\n      fieldHtml = `<input type=\"number\" name=\"${name}\" value=\"${value}\" step=\"any\" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'boolean') {\r\n      fieldHtml = `<input type=\"checkbox\" name=\"${name}\" ${value ? 'checked=\"true\"' : ''} ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'string') {\r\n      fieldHtml = `<input type=\"text\" name=\"${name}\" value=\"${value}\" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'color') {\r\n      fieldHtml = `<input type=\"color\" name=\"${name}\" value=\"${value}\" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'node' || type === 'edge') {\r\n      fieldHtml = `\r\n        <input type=\"hidden\" name=\"${name}\" data-type=\"${type}\" ${value ? 'value=\"${value.id}\"' : ''} ${isRequired ? 'required' : ''}>\r\n        <label>${displayName}</label>\r\n        <output name=\"${name}\">${value ? type + value.id : ' '}</output>\r\n        <button type=\"button\" class=\"input-select-btn btn-raised\">Select</button>\r\n      `;\r\n    }\r\n\r\n    html += `\r\n      <fieldset>\r\n        ${fieldHtml}\r\n      </fieldset>\r\n    `;\r\n  }\r\n\r\n\n  html += `<button type=\"button\" class=\"form__submit-btn btn-raised btn-primary\">${submitText}</button>`;\r\n\n\r\n  return html;\r\n}\r\n\r\nexport function getData(form, graph) {\r\n  let data = {};\r\n  let fieldsets = form.querySelectorAll('fieldset');\r\n\r\n  for (let i = 0; i < fieldsets.length; i++) {\r\n    let inputs = fieldsets[i].querySelectorAll('input, select, textarea');\r\n    let fieldData = getFieldData(inputs, graph);\r\n    for (let field of Object.keys(fieldData)) {\r\n      data[field] = fieldData[field];\r\n    }\r\n  }\r\n  return data;\r\n}\r\n\r\nexport function displayError(form, field, showError) {\r\n  let fieldset = form.querySelectorAll(`[name=\"${field}\"]`);\r\n  if (showError) {\r\n    fieldset[0].classList.add('error');\r\n  } else {\r\n    fieldset[0].classList.remove('error');\r\n  }\r\n}\r\n\r\nfunction getFieldData(inputs, graph) {\r\n  let data = {};\r\n  for (let i = 0; i < inputs.length; i++) {\r\n    let input = inputs[i];\r\n    let name = input.name;\r\n    let value;\r\n    if (input.tagName === 'INPUT') {\r\n      value = getInputValueLocal(input, graph);\r\n    }\r\n    data[name] = value;\r\n  }\r\n  return data;\r\n}\r\n\r\nexport function getInputValueLocal(input, graph) {\r\n  let value;\r\n  let type = input.getAttribute('type');\r\n  let dataType = input.getAttribute('data-type');\r\n  if (type === 'checkbox') {\r\n    value = input.checked;\r\n  } else if (type === 'number') {\r\n    value = parseInt(input.value, 10);\r\n  } else if (type === 'hidden' && [ 'node', 'edge' ].indexOf(dataType) >= 0) {\r\n    let id = parseInt(input.value, 10);\r\n    if (dataType === 'node') {\r\n      value = getNodeById(graph, id);\r\n    } else if (dataType === 'edge') {\r\n      value = getEdgeById(graph, id);\r\n    }\r\n  } else {\r\n    value = input.value;\r\n  }\r\n  return value;\r\n}\r\n\r\nfunction getNodeById(graph, id) {\r\n  let value = null;\r\n  graph.forEachNode((node) => {\r\n    if (node.id === id) {\r\n      value = node;\r\n      return false;\r\n    }\r\n    return true;\r\n  });\r\n  return value;\r\n}\r\n\r\nfunction getEdgeById(graph, id) {\r\n  let value = null;\r\n  graph.forEachEdge((edge) => {\r\n    if (edge.id === id) {\r\n      value = edge;\r\n      return false;\r\n    }\r\n    return true;\r\n  });\r\n  return value;\r\n}\r\n"
+    "content": "/**\r\n * Call to initialize form functionality.\r\n */\r\nexport function init() {\r\n  initListeners();\r\n}\r\n\r\nfunction initListeners() {\r\n  // Create MutationObserver to check for newly added inputs\r\n  let obs = new MutationObserver((mutations, observer) => {\r\n    for (let mutation of mutations) {\r\n      if (mutation.addedNodes) {\r\n        for (let element of mutation.addedNodes) {\r\n          // Check if input was added\r\n          if (element.tagName === 'FIELDSET') {\r\n            let inputs = element.querySelectorAll('input, textarea');\r\n            for (let i = 0; i < inputs.length; i++) {\r\n              let input = inputs[i];\r\n              if (input.value === '') {\r\n                input.classList.add('empty');\r\n              } else {\r\n                input.classList.remove('empty');\r\n              }\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  });\r\n\r\n  // Observe document for element addition/removal\r\n  obs.observe(document, {\r\n    childList: true,\r\n    subtree: true\r\n  });\r\n\r\n  document.addEventListener('change', (event) => {\r\n    checkInputEmpty(event);\r\n  });\r\n\r\n  document.addEventListener('input', (event) => {\r\n    checkInputEmpty(event);\r\n  });\r\n\r\n  document.addEventListener('click', (event) => {\r\n    checkLabelClick(event);\r\n  });\r\n}\r\n\r\nfunction checkInputEmpty(event) {\r\n  if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {\r\n    let input = event.target;\r\n    if (!input.validity.valid) {\r\n      return;\r\n    }\r\n    if (input.value === '') {\r\n      input.classList.add('empty');\r\n    } else {\r\n      input.classList.remove('empty');\r\n    }\r\n  }\r\n}\r\n\r\nfunction checkLabelClick(event) {\r\n  if (event.target.tagName === 'LABEL') {\r\n    let input = event.target.parentNode.querySelector('input, select, textarea');\r\n    let type = input.type;\r\n\r\n    if (type === 'checkbox' || type === 'radio' || type === 'color') {\r\n      input.click();\r\n    } else {\r\n      input.focus();\r\n    }\r\n  }\r\n}\r\n\r\n/**\r\n * Get the value of the given form input.\r\n * @param  {Element} input - Form input DOM element.\r\n * @return {(boolean|number|string)} - Value of the input.\r\n */\r\nexport function getInputValue(input) {\r\n  let value;\r\n  if (input.type === 'checkbox') {\r\n    value = input.checked;\r\n  } else if (input.type === 'number') {\r\n    value = parseInt(input.value, 10);\r\n  } else {\r\n    value = input.value;\r\n  }\r\n  return value;\r\n}\r\n\r\n/**\r\n * Create an html string for a form given an array of field types.\r\n * @param  {Array.<InputType>} fields - Array of input types.\r\n * @return {string} - String containing HTML for the form.\r\n */\r\nexport function createForm(fields) {\r\n  let html = '';\r\n\r\n  for (let field of fields) {\r\n    let fieldHtml;\r\n\r\n    let type = field.type;\r\n    let name = field.name;\r\n    let value = field.value;\r\n    if (type === 'number') {\r\n      if (value !== Math.round(value)) {\r\n        value = value.toFixed(2);\r\n      }\r\n      fieldHtml = `<input type=\"number\" name=\"${name}\" value=\"${value}\" step=\"any\">`;\r\n    } else if (type === 'boolean') {\r\n      fieldHtml = `<input type=\"checkbox\" name=\"${name}\" ${value ? 'checked=\"true\"' : ''}>`;\r\n    } else if (type === 'string') {\r\n      fieldHtml = `<input type=\"text\" name=\"${name}\" value=\"${value}\">`;\r\n    } else if (type === 'color') {\r\n      fieldHtml = `<input type=\"color\" name=\"${name}\" value=\"${value}\">`;\r\n    } else {\r\n      fieldHtml = `<output>${value}</output>`;\r\n    }\r\n\r\n    let displayName = field.displayName;\r\n    html += `<fieldset>${fieldHtml}<label>${displayName}</label></fieldset>`;\r\n  }\r\n\r\n  return html;\r\n}\r\n\r\n/**\r\n * Create a form with inputs for graph elements. Also has options for a button to submit the form.\r\n * @param  {Array.<InputType>} fields - Array of input types.\r\n * @param  {boolean} canSubmit - Whether or not the form can be submitted.\r\n * @param  {string} submitText - Text to be displayed on the submit button.\r\n * @return {string} - String containing HTML for the form.\r\n */\r\nexport function createGraphForm(fields, canSubmit, submitText) {\r\n  let html = '';\r\n\r\n  for (let field of fields) {\r\n    let fieldHtml;\r\n\r\n    let type = field.type;\r\n    let name = field.name;\r\n    let value = field.value;\r\n    let isRequired = field.required;\r\n    let displayName = field.displayName;\r\n\r\n    if (type === 'number') {\r\n      fieldHtml = `<input type=\"number\" name=\"${name}\" value=\"${value}\" step=\"any\" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'boolean') {\r\n      fieldHtml = `<input type=\"checkbox\" name=\"${name}\" ${value ? 'checked=\"true\"' : ''} ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'string') {\r\n      fieldHtml = `<input type=\"text\" name=\"${name}\" value=\"${value}\" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'color') {\r\n      fieldHtml = `<input type=\"color\" name=\"${name}\" value=\"${value}\" ${isRequired ? 'required' : ''}><label>${displayName}</label>`;\r\n    } else if (type === 'node' || type === 'edge') {\r\n      fieldHtml = `\r\n        <input type=\"hidden\" name=\"${name}\" data-type=\"${type}\" ${value ? 'value=\"${value.id}\"' : ''} ${isRequired ? 'required' : ''}>\r\n        <label>${displayName}</label>\r\n        <output name=\"${name}\">${value ? type + value.id : '&nbsp;'}</output>\r\n        <button type=\"button\" class=\"input-select-btn btn-raised\">Select</button>\r\n      `;\r\n    }\r\n\r\n    html += `\r\n      <fieldset>\r\n        ${fieldHtml}\r\n      </fieldset>\r\n    `;\r\n  }\r\n\r\n\n  html += `<button type=\"button\" class=\"form__submit-btn btn-raised btn-primary\">${submitText}</button>`;\r\n\n\r\n  return html;\r\n}\r\n\r\n/**\r\n * Get all of the data from a form.\r\n * @param  {Element} form - Form DOM element.\r\n * @param  {Graph} graph - The current graph object.\r\n * @return {Object.<string,*>} - Object containing input names and their associated input values\r\n */\r\nexport function getData(form, graph) {\r\n  let data = {};\r\n  let fieldsets = form.querySelectorAll('fieldset');\r\n\r\n  for (let i = 0; i < fieldsets.length; i++) {\r\n    let inputs = fieldsets[i].querySelectorAll('input, select, textarea');\r\n    let fieldData = getFieldData(inputs, graph);\r\n    for (let field of Object.keys(fieldData)) {\r\n      data[field] = fieldData[field];\r\n    }\r\n  }\r\n  return data;\r\n}\r\n\r\n/**\r\n * Add/remove the CSS class 'error' to the specified form input.\r\n * @param  {Element} form - Form dom element.\r\n * @param  {string} inputName - Name of the input.\r\n * @param  {boolean} showError - Whether or not the input should display an error.\r\n */\r\nexport function displayError(form, inputName, showError) {\r\n  let fieldset = form.querySelector(`[name=\"${inputName}\"]`);\r\n  if (showError) {\r\n    fieldset.classList.add('error');\r\n  } else {\r\n    fieldset.classList.remove('error');\r\n  }\r\n}\r\n\r\nfunction getFieldData(inputs, graph) {\r\n  let data = {};\r\n  for (let i = 0; i < inputs.length; i++) {\r\n    let input = inputs[i];\r\n    let name = input.name;\r\n    let value;\r\n    if (input.tagName === 'INPUT') {\r\n      value = getInputValueLocal(input, graph);\r\n    }\r\n    data[name] = value;\r\n  }\r\n  return data;\r\n}\r\n\r\n/**\r\n * Get the value of a single input. Used when the input could contain a reference to a Node or Edge.\r\n * @param  {Element} input - Form input DOM element.\r\n * @param  {Graph} graph - Graph object.\r\n * @return {(boolean|number|string|Node|Edge)} - The value of the input.\r\n */\r\nexport function getInputValueLocal(input, graph) {\r\n  let value;\r\n  let type = input.getAttribute('type');\r\n  let dataType = input.getAttribute('data-type');\r\n  if (type === 'checkbox') {\r\n    value = input.checked;\r\n  } else if (type === 'number') {\r\n    value = parseInt(input.value, 10);\r\n  } else if (type === 'hidden' && [ 'node', 'edge' ].indexOf(dataType) >= 0) {\r\n    let id = parseInt(input.value, 10);\r\n    if (dataType === 'node') {\r\n      value = getNodeById(graph, id);\r\n    } else if (dataType === 'edge') {\r\n      value = getEdgeById(graph, id);\r\n    }\r\n  } else {\r\n    value = input.value;\r\n  }\r\n  return value;\r\n}\r\n\r\nfunction getNodeById(graph, id) {\r\n  let value = null;\r\n  graph.forEachNode((node) => {\r\n    if (node.id === id) {\r\n      value = node;\r\n      return false;\r\n    }\r\n    return true;\r\n  });\r\n  return value;\r\n}\r\n\r\nfunction getEdgeById(graph, id) {\r\n  let value = null;\r\n  graph.forEachEdge((edge) => {\r\n    if (edge.id === id) {\r\n      value = edge;\r\n      return false;\r\n    }\r\n    return true;\r\n  });\r\n  return value;\r\n}\r\n"
   },
   {
     "__docId__": 403,
@@ -9507,9 +9519,8 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{init}",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Call to initialize form functionality.",
+    "lineNumber": 4,
     "params": [],
     "generator": false
   },
@@ -9522,11 +9533,11 @@
     "memberof": "src/js/ui/form.js",
     "longname": "src/js/ui/form.js~initListeners",
     "access": null,
-    "export": true,
+    "export": false,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
-    "importStyle": "{initListeners}",
+    "importStyle": null,
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 8,
     "undocument": true,
     "params": [],
     "generator": false
@@ -9544,7 +9555,7 @@
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 50,
     "undocument": true,
     "params": [
       {
@@ -9569,7 +9580,7 @@
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 61,
+    "lineNumber": 64,
     "undocument": true,
     "params": [
       {
@@ -9593,21 +9604,29 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{getInputValue}",
-    "description": null,
-    "lineNumber": 74,
-    "undocument": true,
+    "description": "Get the value of the given form input.",
+    "lineNumber": 82,
     "params": [
       {
-        "name": "input",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "input",
+        "description": "Form input DOM element."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "boolean",
+        "number",
+        "string"
+      ],
+      "spread": false,
+      "description": "Value of the input."
     },
     "generator": false
   },
@@ -9623,21 +9642,27 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{createForm}",
-    "description": null,
-    "lineNumber": 86,
-    "undocument": true,
+    "description": "Create an html string for a form given an array of field types.",
+    "lineNumber": 99,
     "params": [
       {
-        "name": "fields",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Array.<InputType>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fields",
+        "description": "Array of input types."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": "String containing HTML for the form."
     },
     "generator": false
   },
@@ -9653,33 +9678,47 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{createGraphForm}",
-    "description": null,
-    "lineNumber": 117,
-    "undocument": true,
+    "description": "Create a form with inputs for graph elements. Also has options for a button to submit the form.",
+    "lineNumber": 137,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Array.<InputType>"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "fields",
-        "types": [
-          "*"
-        ]
+        "description": "Array of input types."
       },
       {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "canSubmit",
-        "types": [
-          "*"
-        ]
+        "description": "Whether or not the form can be submitted."
       },
       {
-        "name": "submitText",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "submitText",
+        "description": "Text to be displayed on the submit button."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": "String containing HTML for the form."
     },
     "generator": false
   },
@@ -9695,27 +9734,37 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{getData}",
-    "description": null,
-    "lineNumber": 160,
-    "undocument": true,
+    "description": "Get all of the data from a form.",
+    "lineNumber": 186,
     "params": [
       {
-        "name": "form",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "form",
+        "description": "Form DOM element."
       },
       {
-        "name": "graph",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Graph"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "graph",
+        "description": "The current graph object."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Object.<string,*>"
+      ],
+      "spread": false,
+      "description": "Object containing input names and their associated input values"
     },
     "generator": false
   },
@@ -9731,27 +9780,38 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{displayError}",
-    "description": null,
-    "lineNumber": 174,
-    "undocument": true,
+    "description": "Add/remove the CSS class 'error' to the specified form input.",
+    "lineNumber": 206,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "form",
-        "types": [
-          "*"
-        ]
+        "description": "Form dom element."
       },
       {
-        "name": "field",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "inputName",
+        "description": "Name of the input."
       },
       {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "showError",
-        "types": [
-          "*"
-        ]
+        "description": "Whether or not the input should display an error."
       }
     ],
     "generator": false
@@ -9769,7 +9829,7 @@
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 183,
+    "lineNumber": 215,
     "undocument": true,
     "params": [
       {
@@ -9804,27 +9864,41 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": "{getInputValueLocal}",
-    "description": null,
-    "lineNumber": 197,
-    "undocument": true,
+    "description": "Get the value of a single input. Used when the input could contain a reference to a Node or Edge.",
+    "lineNumber": 235,
     "params": [
       {
-        "name": "input",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "input",
+        "description": "Form input DOM element."
       },
       {
-        "name": "graph",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Graph"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "graph",
+        "description": "Graph object."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "boolean",
+        "number",
+        "string",
+        "Node",
+        "Edge"
+      ],
+      "spread": false,
+      "description": "The value of the input."
     },
     "generator": false
   },
@@ -9841,7 +9915,7 @@
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 218,
+    "lineNumber": 256,
     "undocument": true,
     "params": [
       {
@@ -9877,7 +9951,7 @@
     "importPath": "canvas-graph-creator/src/js/ui/form.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 230,
+    "lineNumber": 268,
     "undocument": true,
     "params": [
       {
@@ -9911,7 +9985,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import SidebarContent from '../ui/sidebar-content';\nimport Node from '../data/node/node';\r\nimport Edge from '../data/edge/edge';\r\nimport Stepper from '../algorithm/stepper';\r\nimport scrollToElement from '../util/scroll-to-element';\r\n\r\nclass SidebarAlgorithm extends SidebarContent {\r\n\r\n  graph;\r\n  stepper;\r\n  curAlgorithm;\r\n\r\n  /**\r\n   * Constructor calls the super, creates a new stepper object and then assigns algorithm specific button listeners to the sidebar\r\n   * @param  {graph} graph - Reference to the master graph object\r\n   * @constructs SidebarAlgorithm\r\n   */\r\n  constructor(graph) {\r\n    super(graph);\r\n    this.graph = graph;\r\n    this.stepper = new Stepper();\r\n    document.getElementById('sidebar').addEventListener('click', (event) => {\r\n      if (event.target.classList.contains('algorithm-next-btn')) {\r\n        this.stepper.stepForward();\r\n        this.updateStepGUI();\r\n      } else if (event.target.classList.contains('algorithm-prev-btn')) {\r\n        this.stepper.stepBackward();\r\n        this.updateStepGUI();\r\n      } else if (event.target.classList.contains('algorithm-play-toggle-btn')) {\r\n        if (this.stepper.interval !== null) {\r\n          this.stepper.pause();\r\n          event.target.textContent = 'Play';\r\n        } else if (this.stepper.interval === null && this.stepper.result !== null) {\r\n          this.stepper.play(() => {\r\n            this.updateStepGUI();\r\n          });\r\n          event.target.textContent = 'Pause';\r\n        }\r\n      } else if (event.target.classList.contains('algorithm-speed-up-btn')) {\r\n        if (this.stepper.speedUp() === true) {\r\n          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');\r\n          if (speed) {\r\n            speed.classList.remove('speed-notch--active');\r\n            speed.nextElementSibling.classList.add('speed-notch--active');\r\n          }\r\n        }\r\n      } else if (event.target.classList.contains('algorithm-slow-down-btn')) {\r\n        if (this.stepper.slowDown() === true) {\r\n          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');\r\n          if (speed) {\r\n            speed.classList.remove('speed-notch--active');\r\n            speed.previousElementSibling.classList.add('speed-notch--active');\r\n          }\r\n        }\r\n      }\r\n    });\r\n\r\n    document.getElementById('sidebar').addEventListener('mouseover', (event) => {\r\n      this.hoverEvent(true);\r\n    });\r\n\r\n    document.getElementById('sidebar').addEventListener('mouseout', (event) => {\r\n      this.hoverEvent(false);\r\n    });\r\n  }\r\n\r\n  hoverEvent(bool) {\r\n    if (event.target.classList.contains('graph-link')) {\r\n      let type = event.target.getAttribute('data-type');\r\n      let id = event.target.getAttribute('data-id');\r\n      this.toggleHover(type, parseInt(id, 10), bool);\r\n    }\r\n  }\r\n\r\n  run() {\r\n    this.stepper.resetGraph();\r\n    this.curAlgorithm.reset();\r\n    for (let inputName of Object.keys(this.curAlgorithm.inputs)) {\r\n      this.curAlgorithm[inputName] = this.curAlgorithm.inputs[inputName];\r\n    }\r\n\r\n    let hasNextStep = true;\r\n    while (hasNextStep) {\r\n      hasNextStep = this.curAlgorithm.step();\r\n    }\r\n\r\n    this.stepper.setResult(this.curAlgorithm.getResult());\r\n\r\n    this.updateStepGUI();\r\n\r\n    let stepsHtml = `\r\n      <li class=\"stepper__step stepper__step--active\" data-index=\"-1\">\r\n        <div class=\"stepper__step__header\">\r\n          <div class=\"stepper__step__header__number\"></div><div class=\"stepper__step__header__description\">Initial state</div>\r\n        </div>\r\n        <div class=\"stepper__step__details\">\r\n          <div class=\"stepper__step__details__spacer\"></div>\r\n          <div class=\"stepper__step__details__content\"></div>\r\n        </div>\r\n      </li>\r\n    `;\r\n\r\n    for (let stepIndex = 0; stepIndex < this.stepper.result.timeline.length; stepIndex++) {\r\n      stepsHtml += `\r\n        <li class=\"stepper__step\" data-index=\"${stepIndex}\">\r\n          <div class=\"stepper__step__header\">\r\n            <div class=\"stepper__step__header__number\">${stepIndex + 1}</div><div class=\"stepper__step__header__description\">${this.stepper.result.timeline[stepIndex].description}</div>\r\n          </div>\r\n          <div class=\"stepper__step__details\">\r\n            <div class=\"stepper__step__details__spacer\"></div>\r\n            <div class=\"stepper__step__details__content\"></div>\r\n          </div>\r\n        </li>\r\n      `;\r\n    }\r\n\r\n    stepsHtml += `\r\n      <li class=\"stepper__step\" data-index=\"${this.stepper.result.timeline.length}\">\r\n        <div class=\"stepper__step__header\">\r\n          <div class=\"stepper__step__header__number\"></div><div class=\"stepper__step__header__description\">Finished</div>\r\n        </div>\r\n        <div class=\"stepper__step__details\">\r\n          <div class=\"stepper__step__details__spacer\"></div>\r\n          <div class=\"stepper__step__details__content\"></div>\r\n        </div>\r\n      </li>\r\n    `;\r\n\r\n    let stepper = this.tabs.getTabContentElement('algorithm').querySelector('.stepper');\r\n    stepper.innerHTML = stepsHtml;\r\n\r\n    let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');\r\n    let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');\r\n    let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');\r\n    let fastBtn = document.getElementById('sidebar').querySelector('.algorithm-speed-up-btn');\r\n    let slowBtn = document.getElementById('sidebar').querySelector('.algorithm-slow-down-btn');\r\n    fastBtn.disabled = false;\r\n    slowBtn.disabled = false;\r\n    prevBtn.disabled = true;\r\n    nextBtn.disabled = false;\r\n    playBtn.disabled = false;\r\n  }\r\n\r\n  updateStepGUI() {\r\n    let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');\r\n    let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');\r\n    let stepIndex = this.stepper.result.stepIndex;\r\n    let maxStepIndex = this.stepper.result.timeline.length;\r\n    if (stepIndex === maxStepIndex) {\r\n      nextBtn.disabled = true;\r\n    } else if (stepIndex === -1) {\r\n      prevBtn.disabled = true;\r\n    }\r\n    if (stepIndex > -1) {\r\n      prevBtn.disabled = false;\r\n    }\r\n    if (stepIndex < maxStepIndex) {\r\n      nextBtn.disabled = false;\r\n    }\r\n\r\n    let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');\r\n    if (stepIndex === maxStepIndex) {\r\n      playBtn.textContent = 'Play';\r\n      playBtn.disabled = true;\r\n    } else if (stepIndex < maxStepIndex) {\r\n      playBtn.disabled = false;\r\n    }\r\n\r\n    let activeStep = this.tabs.getTabContentElement('algorithm').querySelector('.stepper__step--active');\r\n    if (activeStep) {\r\n      activeStep.classList.remove('stepper__step--active');\r\n    }\r\n\r\n    let step = this.tabs.getTabContentElement('algorithm').querySelector(`.stepper__step[data-index=\"${this.stepper.result.stepIndex}\"]`);\r\n    if (step) {\r\n      step.classList.add('stepper__step--active');\r\n      let resultsContainer = document.getElementById('sidebar').querySelector('.algorithm-results');\r\n      scrollToElement(resultsContainer, step.offsetTop - resultsContainer.offsetTop - 10, 100, 'easeInOutSine');\r\n    }\r\n  }\r\n\r\n  toggleHover(type, id, isHovering) {\r\n    if (type === 'node') {\r\n      this.graph.forEachNode((node) => {\r\n        if (node.id === id) {\r\n          node.isSelected = isHovering;\r\n        }\r\n      });\r\n    } else if (type === 'edge') {\r\n      this.graph.forEachEdge((edge) => {\r\n        if (edge.id === id) {\r\n          edge.isSelected = isHovering;\r\n        }\r\n      });\r\n    }\r\n  }\r\n\r\n  display() {\r\n    this.tabs.replaceTabs({\r\n      algorithm: 'Algorithm'\r\n    });\r\n    this.tabs.setTabScroll('algorithm', false);\r\n    this.tabs.selectTab('algorithm');\r\n  }\r\n\r\n  createLinkElement(obj) {\r\n    let id = obj.id;\r\n    let name;\r\n\r\n    let type;\r\n    if (obj instanceof Node) {\r\n      type = 'node';\r\n      name = `Node ${id}`;\r\n    } else if (obj instanceof Edge) {\r\n      type = 'edge';\r\n      name = `Edge ${id}`;\r\n    }\r\n\r\n    return `\r\n      <div class=\"graph-link\" data-type=\"${type}\" data-id=\"${id}\">${name}</div>\r\n    `;\r\n  }\r\n\r\n  setAlgorithm(AlgorithmClass) {\r\n    this.curAlgorithm = new AlgorithmClass(this.graph);\r\n    this.stepper.reset();\r\n\r\n    let html = `\r\n      <div class=\"algorithm-content\">\r\n        <div class=\"algorithm-controls\">\r\n          <div class=\"algorithm-step-controls\">\r\n            <button type=\"button\" class=\"algorithm-prev-btn btn-raised\" disabled>Previous step</button>\r\n            <button type=\"button\" class=\"algorithm-play-toggle-btn btn-raised\" disabled>Play</button>\r\n            <button type=\"button\" class=\"algorithm-next-btn btn-raised\" disabled>Next step</button>\r\n          </div>\r\n          <div class=\"algorithm-speed\">\r\n            <button type=\"button\" class=\"algorithm-slow-down-btn btn-raised\" disabled>Slower</button>\r\n            <div class=\"speed-notch\"><<</div>\r\n            <div class=\"speed-notch\"><</div>\r\n            <div class=\"speed-notch speed-notch--active\">.</div>\r\n            <div class=\"speed-notch\">></div>\r\n            <div class=\"speed-notch\">>></div>\r\n            <button type=\"button\" class=\"algorithm-speed-up-btn btn-raised\" disabled>Faster</button>\r\n          </div>\r\n        </div>\r\n        <div class=\"algorithm-results\">\r\n          <ul class=\"stepper\"></ul>\r\n        </div>\r\n      </div>\r\n    `;\r\n    this.tabs.getTabContentElement('algorithm').innerHTML = html;\r\n    this.tabs.setTabContent('algorithm', html);\r\n  }\r\n\r\n  resetGraph() {\r\n    this.stepper.resetGraph();\r\n  }\r\n\r\n  /**\r\n   * update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar\r\n   */\r\n  update() {}\r\n}\r\n\r\nexport { SidebarAlgorithm };\r\nexport default SidebarAlgorithm;\r\n"
+    "content": "import SidebarContent from '../ui/sidebar-content';\nimport Node from '../data/node/node';\r\nimport Edge from '../data/edge/edge';\r\nimport Stepper from '../algorithm/stepper';\r\nimport scrollToElement from '../util/scroll-to-element';\r\n\r\nclass SidebarAlgorithm extends SidebarContent {\r\n\r\n  graph;\r\n  stepper;\r\n  curAlgorithm;\r\n\r\n  /**\r\n   * Constructor calls the super, creates a new stepper object and then assigns algorithm specific button listeners to the sidebar\r\n   * @param  {graph} graph - Reference to the master graph object\r\n   * @constructs SidebarAlgorithm\r\n   */\r\n  constructor(graph) {\r\n    super(graph);\r\n    this.graph = graph;\r\n    this.stepper = new Stepper();\r\n    document.getElementById('sidebar').addEventListener('click', (event) => {\r\n      if (event.target.classList.contains('algorithm-next-btn')) {\r\n        this.stepper.stepForward();\r\n        this.updateStepGUI();\r\n      } else if (event.target.classList.contains('algorithm-prev-btn')) {\r\n        this.stepper.stepBackward();\r\n        this.updateStepGUI();\r\n      } else if (event.target.classList.contains('algorithm-play-toggle-btn')) {\r\n        if (this.stepper.interval !== null) {\r\n          this.stepper.pause();\r\n          event.target.textContent = 'Play';\r\n        } else if (this.stepper.interval === null && this.stepper.result !== null) {\r\n          this.stepper.play(() => {\r\n            this.updateStepGUI();\r\n          });\r\n          event.target.textContent = 'Pause';\r\n        }\r\n      } else if (event.target.classList.contains('algorithm-speed-up-btn')) {\r\n        if (this.stepper.speedUp() === true) {\r\n          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');\r\n          if (speed) {\r\n            speed.classList.remove('speed-notch--active');\r\n            speed.nextElementSibling.classList.add('speed-notch--active');\r\n          }\r\n        }\r\n      } else if (event.target.classList.contains('algorithm-slow-down-btn')) {\r\n        if (this.stepper.slowDown() === true) {\r\n          let speed = this.tabs.getTabContentElement('algorithm').querySelector('.speed-notch--active');\r\n          if (speed) {\r\n            speed.classList.remove('speed-notch--active');\r\n            speed.previousElementSibling.classList.add('speed-notch--active');\r\n          }\r\n        }\r\n      }\r\n    });\r\n\r\n    document.getElementById('sidebar').addEventListener('mouseover', (event) => {\r\n      this.hoverEvent(true);\r\n    });\r\n\r\n    document.getElementById('sidebar').addEventListener('mouseout', (event) => {\r\n      this.hoverEvent(false);\r\n    });\r\n  }\r\n\r\n  hoverEvent(bool) {\r\n    if (event.target.classList.contains('graph-link')) {\r\n      let type = event.target.getAttribute('data-type');\r\n      let id = event.target.getAttribute('data-id');\r\n      this.toggleHover(type, parseInt(id, 10), bool);\r\n    }\r\n  }\r\n\r\n  run() {\r\n    this.stepper.resetGraph();\r\n    this.curAlgorithm.reset();\r\n    for (let inputName of Object.keys(this.curAlgorithm.inputs)) {\r\n      this.curAlgorithm[inputName] = this.curAlgorithm.inputs[inputName];\r\n    }\r\n\r\n    let hasNextStep = true;\r\n    while (hasNextStep) {\r\n      hasNextStep = this.curAlgorithm.step();\r\n    }\r\n\r\n    this.stepper.setResult(this.curAlgorithm.result);\r\n\r\n    this.updateStepGUI();\r\n\r\n    let stepsHtml = `\r\n      <li class=\"stepper__step stepper__step--active\" data-index=\"-1\">\r\n        <div class=\"stepper__step__header\">\r\n          <div class=\"stepper__step__header__number\"></div><div class=\"stepper__step__header__description\">Initial state</div>\r\n        </div>\r\n        <div class=\"stepper__step__details\">\r\n          <div class=\"stepper__step__details__spacer\"></div>\r\n          <div class=\"stepper__step__details__content\"></div>\r\n        </div>\r\n      </li>\r\n    `;\r\n\r\n    for (let stepIndex = 0; stepIndex < this.stepper.result.timeline.length; stepIndex++) {\r\n      stepsHtml += `\r\n        <li class=\"stepper__step\" data-index=\"${stepIndex}\">\r\n          <div class=\"stepper__step__header\">\r\n            <div class=\"stepper__step__header__number\">${stepIndex + 1}</div><div class=\"stepper__step__header__description\">${this.stepper.result.timeline[stepIndex].description}</div>\r\n          </div>\r\n          <div class=\"stepper__step__details\">\r\n            <div class=\"stepper__step__details__spacer\"></div>\r\n            <div class=\"stepper__step__details__content\"></div>\r\n          </div>\r\n        </li>\r\n      `;\r\n    }\r\n\r\n    stepsHtml += `\r\n      <li class=\"stepper__step\" data-index=\"${this.stepper.result.timeline.length}\">\r\n        <div class=\"stepper__step__header\">\r\n          <div class=\"stepper__step__header__number\"></div><div class=\"stepper__step__header__description\">Finished</div>\r\n        </div>\r\n        <div class=\"stepper__step__details\">\r\n          <div class=\"stepper__step__details__spacer\"></div>\r\n          <div class=\"stepper__step__details__content\"></div>\r\n        </div>\r\n      </li>\r\n    `;\r\n\r\n    let stepper = this.tabs.getTabContentElement('algorithm').querySelector('.stepper');\r\n    stepper.innerHTML = stepsHtml;\r\n\r\n    let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');\r\n    let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');\r\n    let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');\r\n    let fastBtn = document.getElementById('sidebar').querySelector('.algorithm-speed-up-btn');\r\n    let slowBtn = document.getElementById('sidebar').querySelector('.algorithm-slow-down-btn');\r\n    fastBtn.disabled = false;\r\n    slowBtn.disabled = false;\r\n    prevBtn.disabled = true;\r\n    nextBtn.disabled = false;\r\n    playBtn.disabled = false;\r\n  }\r\n\r\n  updateStepGUI() {\r\n    let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');\r\n    let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');\r\n    let stepIndex = this.stepper.result.stepIndex;\r\n    let maxStepIndex = this.stepper.result.timeline.length;\r\n    if (stepIndex === maxStepIndex) {\r\n      nextBtn.disabled = true;\r\n    } else if (stepIndex === -1) {\r\n      prevBtn.disabled = true;\r\n    }\r\n    if (stepIndex > -1) {\r\n      prevBtn.disabled = false;\r\n    }\r\n    if (stepIndex < maxStepIndex) {\r\n      nextBtn.disabled = false;\r\n    }\r\n\r\n    let playBtn = document.getElementById('sidebar').querySelector('.algorithm-play-toggle-btn');\r\n    if (stepIndex === maxStepIndex) {\r\n      playBtn.textContent = 'Play';\r\n      playBtn.disabled = true;\r\n    } else if (stepIndex < maxStepIndex) {\r\n      playBtn.disabled = false;\r\n    }\r\n\r\n    let activeStep = this.tabs.getTabContentElement('algorithm').querySelector('.stepper__step--active');\r\n    if (activeStep) {\r\n      activeStep.classList.remove('stepper__step--active');\r\n    }\r\n\r\n    let step = this.tabs.getTabContentElement('algorithm').querySelector(`.stepper__step[data-index=\"${this.stepper.result.stepIndex}\"]`);\r\n    if (step) {\r\n      step.classList.add('stepper__step--active');\r\n      let resultsContainer = document.getElementById('sidebar').querySelector('.algorithm-results');\r\n      scrollToElement(resultsContainer, step.offsetTop - resultsContainer.offsetTop - 10, 100, 'easeInOutSine');\r\n    }\r\n  }\r\n\r\n  toggleHover(type, id, isHovering) {\r\n    if (type === 'node') {\r\n      this.graph.forEachNode((node) => {\r\n        if (node.id === id) {\r\n          node.isSelected = isHovering;\r\n        }\r\n      });\r\n    } else if (type === 'edge') {\r\n      this.graph.forEachEdge((edge) => {\r\n        if (edge.id === id) {\r\n          edge.isSelected = isHovering;\r\n        }\r\n      });\r\n    }\r\n  }\r\n\r\n  display() {\r\n    this.tabs.replaceTabs({\r\n      algorithm: 'Algorithm'\r\n    });\r\n    this.tabs.setTabScroll('algorithm', false);\r\n    this.tabs.selectTab('algorithm');\r\n  }\r\n\r\n  createLinkElement(obj) {\r\n    let id = obj.id;\r\n    let name;\r\n\r\n    let type;\r\n    if (obj instanceof Node) {\r\n      type = 'node';\r\n      name = `Node ${id}`;\r\n    } else if (obj instanceof Edge) {\r\n      type = 'edge';\r\n      name = `Edge ${id}`;\r\n    }\r\n\r\n    return `\r\n      <div class=\"graph-link\" data-type=\"${type}\" data-id=\"${id}\">${name}</div>\r\n    `;\r\n  }\r\n\r\n  setAlgorithm(AlgorithmClass) {\r\n    this.curAlgorithm = new AlgorithmClass(this.graph);\r\n    this.stepper.reset();\r\n\r\n    let html = `\r\n      <div class=\"algorithm-content\">\r\n        <div class=\"algorithm-controls\">\r\n          <div class=\"algorithm-step-controls\">\r\n            <button type=\"button\" class=\"algorithm-prev-btn btn-raised\" disabled>Previous step</button>\r\n            <button type=\"button\" class=\"algorithm-play-toggle-btn btn-raised\" disabled>Play</button>\r\n            <button type=\"button\" class=\"algorithm-next-btn btn-raised\" disabled>Next step</button>\r\n          </div>\r\n          <div class=\"algorithm-speed\">\r\n            <button type=\"button\" class=\"algorithm-slow-down-btn btn-raised\" disabled>Slower</button>\r\n            <div class=\"speed-notch\"><<</div>\r\n            <div class=\"speed-notch\"><</div>\r\n            <div class=\"speed-notch speed-notch--active\">.</div>\r\n            <div class=\"speed-notch\">></div>\r\n            <div class=\"speed-notch\">>></div>\r\n            <button type=\"button\" class=\"algorithm-speed-up-btn btn-raised\" disabled>Faster</button>\r\n          </div>\r\n        </div>\r\n        <div class=\"algorithm-results\">\r\n          <ul class=\"stepper\"></ul>\r\n        </div>\r\n      </div>\r\n    `;\r\n    this.tabs.getTabContentElement('algorithm').innerHTML = html;\r\n    this.tabs.setTabContent('algorithm', html);\r\n  }\r\n\r\n  resetGraph() {\r\n    this.stepper.resetGraph();\r\n  }\r\n\r\n  /**\r\n   * update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar\r\n   */\r\n  update() {}\r\n}\r\n\r\nexport { SidebarAlgorithm };\r\nexport default SidebarAlgorithm;\r\n"
   },
   {
     "__docId__": 417,
@@ -11139,7 +11213,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "const TAB_CLASS = 'tab';\r\nconst TAB_ACTIVE_CLASS = 'active';\r\n\r\nconst TAB_CONTENT_CLASS = 'tab-content';\r\nconst TAB_CONTENT_ACTIVE_CLASS = 'active';\r\n\r\nconst TAB_ATTRIBUTE_NAME = 'data-tab';\r\n\r\nclass Tabs {\r\n\r\n  constructor(tabContainer, tabList) {\r\n    this.tabContainer = tabContainer;\r\n    this.tabList = tabList;\r\n  }\r\n\r\n  init() {\r\n    this.tabList.addEventListener('click', (event) => {\r\n      if (event.target.classList.contains(TAB_CLASS)) {\r\n        this.selectTab(event.target);\r\n      }\r\n    });\r\n  }\r\n\r\n  selectTab(tab) {\r\n    if (typeof tab === 'string') {\r\n      this.selectTabByName(tab);\r\n    } else if (tab instanceof Element) {\r\n      this.selectTabByTarget(tab);\r\n    } else {\r\n      throw Error(`Cannot select tab: ${tab}`);\r\n    }\r\n  }\r\n\r\n  setTabContent(tab, content) {\r\n    let tabContentElement = this.getTabContentElement(tab);\r\n    tabContentElement.innerHTML = content;\r\n  }\r\n\r\n  setTabScroll(tab, shouldScroll) {\r\n    if (!shouldScroll) {\r\n      this.getTabContentElement(tab).classList.add('no-scroll');\r\n    }\r\n  }\r\n\r\n  addTab(name, displayName) {\r\n    let tabs = this.tabList.children;\r\n    for (let i = 0; i < tabs.length; i++) {\r\n      if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {\r\n        throw Error('Tab with that name already exists');\r\n      }\r\n    }\r\n\r\n    let tab = document.createElement('li');\r\n    tab.classList.add(TAB_CLASS);\r\n    tab.textContent = displayName;\r\n    tab.setAttribute(TAB_ATTRIBUTE_NAME, name);\r\n\r\n    let tabContent = document.createElement('div');\r\n    tabContent.classList.add(TAB_CONTENT_CLASS);\r\n    tabContent.setAttribute(TAB_ATTRIBUTE_NAME, name);\r\n\r\n    this.tabList.appendChild(tab);\r\n    this.tabContainer.appendChild(tabContent);\r\n    this.updateTabListDisplay();\r\n  }\r\n\r\n  removeTab(name) {\r\n    let tabs = this.tabList.children;\r\n    for (let i = 0; i < tabs.length; i++) {\r\n      if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {\r\n        tabs[i].remove();\r\n        this.getTabContentElement(name).remove();\r\n        this.updateTabListDisplay();\r\n        return;\r\n      }\r\n    }\r\n    throw Error('Tab does not exists');\r\n  }\r\n\r\n  replaceTabs(names) {\r\n    while (this.tabList.firstChild) {\r\n      let tab = this.tabList.firstChild;\r\n      this.tabList.removeChild(tab);\r\n      if (tab.nodeType === Node.ELEMENT_NODE) {\r\n        this.getTabContentElement(tab).remove();\r\n      }\r\n    }\r\n\r\n    for (let name of Object.keys(names)) {\r\n      this.addTab(name, names[name]);\r\n    }\r\n\r\n    this.updateTabListDisplay();\r\n  }\r\n\r\n  hideTab(tabName) {\r\n    this.displayTab(tabName, true);\r\n  }\r\n\r\n  showTab(tabName) {\r\n    this.displayTab(tabName, false);\r\n  }\r\n\r\n  displayTab(tabName, isHiding) {\r\n    let tabs = this.tabList.querySelectorAll(`.${TAB_CLASS}[${TAB_ATTRIBUTE_NAME}=${tabName}]`);\r\n    for (let i = 0; i < tabs.length; i++) {\r\n      let tab = tabs[i];\r\n      if (isHiding) {\r\n        tab.classList.add('hidden');\r\n      } else {\r\n        tab.classList.remove('hidden');\r\n      }\r\n    }\r\n    this.updateTabListDisplay();\r\n  }\r\n\r\n  updateTabListDisplay() {\r\n    let displayedTabs = this.tabList.querySelectorAll(`.${TAB_CLASS}:not(.hidden)`);\r\n    if (displayedTabs.length <= 1) {\r\n      this.tabContainer.classList.add('hidden-tabs');\r\n    } else {\r\n      this.tabContainer.classList.remove('hidden-tabs');\r\n    }\r\n  }\r\n\r\n  getTabContentElement(tab) {\r\n    let name;\r\n    if (typeof tab === 'string') {\r\n      name = tab;\r\n    } else if (tab instanceof Element) {\r\n      name = tab.getAttribute(TAB_ATTRIBUTE_NAME);\r\n    } else {\r\n      throw Error(`Cannot get tab content for: ${tab}`);\r\n    }\r\n\r\n    return this.getElementByCallback(TAB_CONTENT_CLASS, this.tabContainer, (child) => {\r\n      return child.getAttribute(TAB_ATTRIBUTE_NAME) === name;\r\n    });\r\n  }\r\n\r\n  selectTabByName(name) {\r\n    this.selectElementByAttribute(TAB_CLASS, TAB_ACTIVE_CLASS, this.tabList, TAB_ATTRIBUTE_NAME, name);\r\n    this.selectElementByAttribute(TAB_CONTENT_CLASS, TAB_CONTENT_ACTIVE_CLASS, this.tabContainer, TAB_ATTRIBUTE_NAME, name);\r\n  }\r\n\r\n  selectTabByTarget(targetElement) {\r\n    if (!targetElement.classList.contains(TAB_CLASS)) {\r\n      throw Error('Target element is not a tab');\r\n    }\r\n\r\n    this.selectElementByTarget(TAB_CLASS, TAB_ACTIVE_CLASS, this.tabList, targetElement);\r\n    this.selectElementByAttribute(TAB_CONTENT_CLASS, TAB_CONTENT_ACTIVE_CLASS, this.tabContainer, TAB_ATTRIBUTE_NAME, targetElement.getAttribute(TAB_ATTRIBUTE_NAME));\r\n  }\r\n\r\n  selectElementByAttribute(className, toggleClass, parentElement, attrName, attrVal) {\r\n    this.selectElementByCallback(className, toggleClass, parentElement, (element) => {\r\n      return element.getAttribute(attrName) === attrVal;\r\n    });\r\n  }\r\n\r\n  selectElementByTarget(className, toggleClass, parentElement, targetElement) {\r\n    this.selectElementByCallback(className, toggleClass, parentElement, (element) => {\r\n      return element === targetElement;\r\n    });\r\n  }\r\n\r\n  selectElementByCallback(className, toggleClass, parentElement, callback) {\r\n    let children = parentElement.children;\r\n    for (let i = 0; i < children.length; i++) {\r\n      let child = children[i];\r\n      if (child.classList.contains(className)) {\r\n        if (callback(child)) {\r\n          child.classList.add(toggleClass);\r\n        } else {\r\n          child.classList.remove(toggleClass);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  getElementByCallback(className, parentElement, callback) {\r\n    let children = parentElement.children;\r\n    for (let i = 0; i < children.length; i++) {\r\n      let child = children[i];\r\n      if (child.classList.contains(className)) {\r\n        if (callback(child)) {\r\n          return child;\r\n        }\r\n      }\r\n    }\r\n    return null;\r\n  }\r\n\r\n}\r\n\r\nexport { Tabs };\r\nexport default Tabs;\r\n"
+    "content": "const TAB_CLASS = 'tab';\r\nconst TAB_ACTIVE_CLASS = 'active';\r\n\r\nconst TAB_CONTENT_CLASS = 'tab-content';\r\nconst TAB_CONTENT_ACTIVE_CLASS = 'active';\r\n\r\nconst TAB_ATTRIBUTE_NAME = 'data-tab';\r\n\r\n/**\r\n * Class for controlling tabs.\r\n * @class Tabs\r\n */\r\nclass Tabs {\r\n\r\n  /**\r\n   * Constructs a Tabs object.\r\n   * @param  {Element} tabContainer - Container element that holds all the tabs and tab content.\r\n   * @param  {Element} tabList - Parent element of all the tabs.\r\n   * @constructs Tabs\r\n   */\r\n  constructor(tabContainer, tabList) {\r\n    this.tabContainer = tabContainer;\r\n    this.tabList = tabList;\r\n  }\r\n\r\n  /**\r\n   * Initialization function to add click event listeners to the tabs.\r\n   */\r\n  init() {\r\n    this.tabList.addEventListener('click', (event) => {\r\n      if (event.target.classList.contains(TAB_CLASS)) {\r\n        this.selectTab(event.target);\r\n      }\r\n    });\r\n  }\r\n\r\n  /**\r\n   * Select a specific tab.\r\n   * @param  {(string|Element)} tab - Name of tab or tab element to be selected.\r\n   */\r\n  selectTab(tab) {\r\n    if (typeof tab === 'string') {\r\n      this.selectTabByName(tab);\r\n    } else if (tab instanceof Element) {\r\n      this.selectTabByTarget(tab);\r\n    } else {\r\n      throw Error(`Cannot select tab: ${tab}`);\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Set a particular tab's content as the given HTML string.\r\n   * @param  {(string|Element)} tab - Name of tab or tab element.\r\n   * @param {string} content - HTML string containing the tab's new content.\r\n   */\r\n  setTabContent(tab, content) {\r\n    let tabContentElement = this.getTabContentElement(tab);\r\n    tabContentElement.innerHTML = content;\r\n  }\r\n\r\n  /**\r\n   * Set whether or not the tab should allow scrolling in the tab content element.\r\n   * @param  {(string|Element)} tab - Name of tab or tab element.\r\n   * @param {boolean} shouldScroll - Whether or not the tab content element should allow scrolling.\r\n   */\r\n  setTabScroll(tab, shouldScroll) {\r\n    if (!shouldScroll) {\r\n      this.getTabContentElement(tab).classList.add('no-scroll');\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Add a tab.\r\n   * @param {string} name - Name of the tab. This is used to refer to the tab.\r\n   * @param {string} displayName - String that is displayed on the actual tab.\r\n   */\r\n  addTab(name, displayName) {\r\n    let tabs = this.tabList.children;\r\n    for (let i = 0; i < tabs.length; i++) {\r\n      if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {\r\n        throw Error('Tab with that name already exists');\r\n      }\r\n    }\r\n\r\n    let tab = document.createElement('li');\r\n    tab.classList.add(TAB_CLASS);\r\n    tab.textContent = displayName;\r\n    tab.setAttribute(TAB_ATTRIBUTE_NAME, name);\r\n\r\n    let tabContent = document.createElement('div');\r\n    tabContent.classList.add(TAB_CONTENT_CLASS);\r\n    tabContent.setAttribute(TAB_ATTRIBUTE_NAME, name);\r\n\r\n    this.tabList.appendChild(tab);\r\n    this.tabContainer.appendChild(tabContent);\r\n    this.updateTabListDisplay();\r\n  }\r\n\r\n  /**\r\n   * Remove the specified tab.\r\n   * @param  {string} name - Name of the tab to remove.\r\n   */\r\n  removeTab(name) {\r\n    let tabs = this.tabList.children;\r\n    for (let i = 0; i < tabs.length; i++) {\r\n      if (tabs[i].getAttribute(TAB_ATTRIBUTE_NAME) === name) {\r\n        tabs[i].remove();\r\n        this.getTabContentElement(name).remove();\r\n        this.updateTabListDisplay();\r\n        return;\r\n      }\r\n    }\r\n    throw Error('Tab does not exists');\r\n  }\r\n\r\n  /**\r\n   * Replace all the tabs with new ones.\r\n   * @param  {Object.<string,string>} names - Object with a map of tab names to tab display names.\r\n   */\r\n  replaceTabs(names) {\r\n    while (this.tabList.firstChild) {\r\n      let tab = this.tabList.firstChild;\r\n      this.tabList.removeChild(tab);\r\n      if (tab.nodeType === Node.ELEMENT_NODE) {\r\n        this.getTabContentElement(tab).remove();\r\n      }\r\n    }\r\n\r\n    for (let name of Object.keys(names)) {\r\n      this.addTab(name, names[name]);\r\n    }\r\n\r\n    this.updateTabListDisplay();\r\n  }\r\n\r\n  /**\r\n   * Hide the tab with the specified name.\r\n   * @param  {string} tabName - Name of the tab to hide.\r\n   */\r\n  hideTab(tabName) {\r\n    this.displayTab(tabName, true);\r\n  }\r\n\r\n  /**\r\n   * Show the tab with the specified name.\r\n   * @param  {string} tabName - Name of the tab to show.\r\n   */\r\n  showTab(tabName) {\r\n    this.displayTab(tabName, false);\r\n  }\r\n\r\n  /**\r\n   * Set whether or not a tab should be displayed.\r\n   * @param  {string}  tabName - Name of the tab.\r\n   * @param  {boolean} isHiding - Whether or not the tab should be displayed.\r\n   */\r\n  displayTab(tabName, isHiding) {\r\n    let tabs = this.tabList.querySelectorAll(`.${TAB_CLASS}[${TAB_ATTRIBUTE_NAME}=${tabName}]`);\r\n    for (let i = 0; i < tabs.length; i++) {\r\n      let tab = tabs[i];\r\n      if (isHiding) {\r\n        tab.classList.add('hidden');\r\n      } else {\r\n        tab.classList.remove('hidden');\r\n      }\r\n    }\r\n    this.updateTabListDisplay();\r\n  }\r\n\r\n  /**\r\n   * Update the display status of the tabList element. If there are 1 or fewer tabs, the tabList is hidden.\r\n   */\r\n  updateTabListDisplay() {\r\n    let displayedTabs = this.tabList.querySelectorAll(`.${TAB_CLASS}:not(.hidden)`);\r\n    if (displayedTabs.length <= 1) {\r\n      this.tabContainer.classList.add('hidden-tabs');\r\n    } else {\r\n      this.tabContainer.classList.remove('hidden-tabs');\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Get the element associated with the specified tab.\r\n   * @param  {(string|Element)} tab - Name of tab or tab element.\r\n   * @return {Element} - The element containing the tab content.\r\n   */\r\n  getTabContentElement(tab) {\r\n    let name;\r\n    if (typeof tab === 'string') {\r\n      name = tab;\r\n    } else if (tab instanceof Element) {\r\n      name = tab.getAttribute(TAB_ATTRIBUTE_NAME);\r\n    } else {\r\n      throw Error(`Cannot get tab content for: ${tab}`);\r\n    }\r\n\r\n    return this.getElementByCallback(TAB_CONTENT_CLASS, this.tabContainer, (child) => {\r\n      return child.getAttribute(TAB_ATTRIBUTE_NAME) === name;\r\n    });\r\n  }\r\n\r\n  /**\r\n   * Select the tab with the specified name.\r\n   * @param  {string} name - The name of the tab.\r\n   */\r\n  selectTabByName(name) {\r\n    this.selectElementByAttribute(TAB_CLASS, TAB_ACTIVE_CLASS, this.tabList, TAB_ATTRIBUTE_NAME, name);\r\n    this.selectElementByAttribute(TAB_CONTENT_CLASS, TAB_CONTENT_ACTIVE_CLASS, this.tabContainer, TAB_ATTRIBUTE_NAME, name);\r\n  }\r\n\r\n  /**\r\n   * Select the given tab element.\r\n   * @param  {Element} targetElement - The tab element.\r\n   */\r\n  selectTabByTarget(targetElement) {\r\n    if (!targetElement.classList.contains(TAB_CLASS)) {\r\n      throw Error('Target element is not a tab');\r\n    }\r\n\r\n    this.selectElementByTarget(TAB_CLASS, TAB_ACTIVE_CLASS, this.tabList, targetElement);\r\n    this.selectElementByAttribute(TAB_CONTENT_CLASS, TAB_CONTENT_ACTIVE_CLASS, this.tabContainer, TAB_ATTRIBUTE_NAME, targetElement.getAttribute(TAB_ATTRIBUTE_NAME));\r\n  }\r\n\r\n  /**\r\n   * Toggle selection class for an element (and its siblings) with the specified class, parent element, attribute name, and attribute value. Checks for an element with the specified attribute value for the attribute given.\r\n   * @param  {string} className - Name of the class of the element to select.\r\n   * @param  {string} toggleClass - Class that should be toggled to select the element.\r\n   * @param  {Element} parentElement - Parent element of the element to select.\r\n   * @param  {string} attrName - Name of the attribute to check.\r\n   * @param  {string} attrVal - Value of the attribute to match.\r\n   */\r\n  selectElementByAttribute(className, toggleClass, parentElement, attrName, attrVal) {\r\n    this.selectElementByCallback(className, toggleClass, parentElement, (element) => {\r\n      return element.getAttribute(attrName) === attrVal;\r\n    });\r\n  }\r\n\r\n  /**\r\n   * Toggle selection class for an element (and its siblings) with the specified class, parent element, and target element. Checks for an element that matches the target element.\r\n   * @param  {string} className - Name of the class of the element to select.\r\n   * @param  {string} toggleClass - Class that should be toggled to select the element.\r\n   * @param  {Element} parentElement - Parent element of the element to select.\r\n   * @param  {Element} targetElement - Element to select (if it exists).\r\n   */\r\n  selectElementByTarget(className, toggleClass, parentElement, targetElement) {\r\n    this.selectElementByCallback(className, toggleClass, parentElement, (element) => {\r\n      return element === targetElement;\r\n    });\r\n  }\r\n\r\n  /**\r\n   * Toggle selection class for an element (and its siblings) with the specified class, parent element, and callback function. The callback should return true or false to select or deselect the elements.\r\n   * @param  {string} className - Name of the class of the element to select.\r\n   * @param  {string} toggleClass - Class that should be toggled to select the element.\r\n   * @param  {Element} parentElement - Parent element of the element to select.\r\n   * @param  {function(element: Element): boolean} callback - Callback function that determines whether the element is selected or not.\r\n   */\r\n  selectElementByCallback(className, toggleClass, parentElement, callback) {\r\n    let children = parentElement.children;\r\n    for (let i = 0; i < children.length; i++) {\r\n      let child = children[i];\r\n      if (child.classList.contains(className)) {\r\n        if (callback(child)) {\r\n          child.classList.add(toggleClass);\r\n        } else {\r\n          child.classList.remove(toggleClass);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Get the element with the specified class name and parent element that meets the criteria of a filter function.\r\n   * @param  {string} className - Name of the element class.\r\n   * @param  {Element} parentElement - Parent element of the element.\r\n   * @param  {function(element: Element): boolean} callback - Callback function that determines whether the element should be returned or not.\r\n   * @return {?Element} - Element if a matching one is found, null otherwise.\r\n   */\r\n  getElementByCallback(className, parentElement, callback) {\r\n    let children = parentElement.children;\r\n    for (let i = 0; i < children.length; i++) {\r\n      let child = children[i];\r\n      if (child.classList.contains(className)) {\r\n        if (callback(child)) {\r\n          return child;\r\n        }\r\n      }\r\n    }\r\n    return null;\r\n  }\r\n\r\n}\r\n\r\nexport { Tabs };\r\nexport default Tabs;\r\n"
   },
   {
     "__docId__": 480,
@@ -11258,9 +11332,14 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/tabs.js",
     "importStyle": "Tabs",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "Class for controlling tabs.",
+    "lineNumber": 13,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Tabs"
+      }
+    ],
     "interface": false
   },
   {
@@ -11272,21 +11351,34 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "description": "Constructs a Tabs object.",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@constructs",
+        "tagValue": "Tabs"
+      }
+    ],
     "params": [
       {
-        "name": "tabContainer",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tabContainer",
+        "description": "Container element that holds all the tabs and tab content."
       },
       {
-        "name": "tabList",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tabList",
+        "description": "Parent element of all the tabs."
       }
     ],
     "generator": false
@@ -11301,7 +11393,7 @@
     "longname": "src/js/ui/tabs.js~Tabs#tabContainer",
     "access": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 22,
     "undocument": true,
     "type": {
       "types": [
@@ -11319,7 +11411,7 @@
     "longname": "src/js/ui/tabs.js~Tabs#tabList",
     "access": null,
     "description": null,
-    "lineNumber": 13,
+    "lineNumber": 23,
     "undocument": true,
     "type": {
       "types": [
@@ -11336,9 +11428,8 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#init",
     "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
+    "description": "Initialization function to add click event listeners to the tabs.",
+    "lineNumber": 29,
     "params": [],
     "generator": false
   },
@@ -11351,15 +11442,19 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#selectTab",
     "access": null,
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
+    "description": "Select a specific tab.",
+    "lineNumber": 41,
     "params": [
       {
-        "name": "tab",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string",
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tab",
+        "description": "Name of tab or tab element to be selected."
       }
     ],
     "generator": false
@@ -11373,21 +11468,29 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#setTabContent",
     "access": null,
-    "description": null,
-    "lineNumber": 34,
-    "undocument": true,
+    "description": "Set a particular tab's content as the given HTML string.",
+    "lineNumber": 56,
     "params": [
       {
-        "name": "tab",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string",
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tab",
+        "description": "Name of tab or tab element."
       },
       {
-        "name": "content",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "content",
+        "description": "HTML string containing the tab's new content."
       }
     ],
     "generator": false
@@ -11401,21 +11504,29 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#setTabScroll",
     "access": null,
-    "description": null,
-    "lineNumber": 39,
-    "undocument": true,
+    "description": "Set whether or not the tab should allow scrolling in the tab content element.",
+    "lineNumber": 66,
     "params": [
       {
-        "name": "tab",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string",
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tab",
+        "description": "Name of tab or tab element."
       },
       {
-        "name": "shouldScroll",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "shouldScroll",
+        "description": "Whether or not the tab content element should allow scrolling."
       }
     ],
     "generator": false
@@ -11429,21 +11540,28 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#addTab",
     "access": null,
-    "description": null,
-    "lineNumber": 45,
-    "undocument": true,
+    "description": "Add a tab.",
+    "lineNumber": 77,
     "params": [
       {
-        "name": "name",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the tab. This is used to refer to the tab."
       },
       {
-        "name": "displayName",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "displayName",
+        "description": "String that is displayed on the actual tab."
       }
     ],
     "generator": false
@@ -11457,15 +11575,18 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#removeTab",
     "access": null,
-    "description": null,
-    "lineNumber": 67,
-    "undocument": true,
+    "description": "Remove the specified tab.",
+    "lineNumber": 103,
     "params": [
       {
-        "name": "name",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the tab to remove."
       }
     ],
     "generator": false
@@ -11479,15 +11600,18 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#replaceTabs",
     "access": null,
-    "description": null,
-    "lineNumber": 80,
-    "undocument": true,
+    "description": "Replace all the tabs with new ones.",
+    "lineNumber": 120,
     "params": [
       {
-        "name": "names",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Object.<string,string>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "names",
+        "description": "Object with a map of tab names to tab display names."
       }
     ],
     "generator": false
@@ -11501,15 +11625,18 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#hideTab",
     "access": null,
-    "description": null,
-    "lineNumber": 96,
-    "undocument": true,
+    "description": "Hide the tab with the specified name.",
+    "lineNumber": 140,
     "params": [
       {
-        "name": "tabName",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tabName",
+        "description": "Name of the tab to hide."
       }
     ],
     "generator": false
@@ -11523,15 +11650,18 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#showTab",
     "access": null,
-    "description": null,
-    "lineNumber": 100,
-    "undocument": true,
+    "description": "Show the tab with the specified name.",
+    "lineNumber": 148,
     "params": [
       {
-        "name": "tabName",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tabName",
+        "description": "Name of the tab to show."
       }
     ],
     "generator": false
@@ -11545,21 +11675,28 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#displayTab",
     "access": null,
-    "description": null,
-    "lineNumber": 104,
-    "undocument": true,
+    "description": "Set whether or not a tab should be displayed.",
+    "lineNumber": 157,
     "params": [
       {
-        "name": "tabName",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tabName",
+        "description": "Name of the tab."
       },
       {
-        "name": "isHiding",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "isHiding",
+        "description": "Whether or not the tab should be displayed."
       }
     ],
     "generator": false
@@ -11573,9 +11710,8 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#updateTabListDisplay",
     "access": null,
-    "description": null,
-    "lineNumber": 117,
-    "undocument": true,
+    "description": "Update the display status of the tabList element. If there are 1 or fewer tabs, the tabList is hidden.",
+    "lineNumber": 173,
     "params": [],
     "generator": false
   },
@@ -11588,21 +11724,28 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#getTabContentElement",
     "access": null,
-    "description": null,
-    "lineNumber": 126,
-    "undocument": true,
+    "description": "Get the element associated with the specified tab.",
+    "lineNumber": 187,
     "params": [
       {
-        "name": "tab",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string",
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tab",
+        "description": "Name of tab or tab element."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Element"
+      ],
+      "spread": false,
+      "description": "The element containing the tab content."
     },
     "generator": false
   },
@@ -11615,15 +11758,18 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#selectTabByName",
     "access": null,
-    "description": null,
-    "lineNumber": 141,
-    "undocument": true,
+    "description": "Select the tab with the specified name.",
+    "lineNumber": 206,
     "params": [
       {
-        "name": "name",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "The name of the tab."
       }
     ],
     "generator": false
@@ -11637,15 +11783,18 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#selectTabByTarget",
     "access": null,
-    "description": null,
-    "lineNumber": 146,
-    "undocument": true,
+    "description": "Select the given tab element.",
+    "lineNumber": 215,
     "params": [
       {
-        "name": "targetElement",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "targetElement",
+        "description": "The tab element."
       }
     ],
     "generator": false
@@ -11659,39 +11808,58 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#selectElementByAttribute",
     "access": null,
-    "description": null,
-    "lineNumber": 155,
-    "undocument": true,
+    "description": "Toggle selection class for an element (and its siblings) with the specified class, parent element, attribute name, and attribute value. Checks for an element with the specified attribute value for the attribute given.",
+    "lineNumber": 232,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "className",
-        "types": [
-          "*"
-        ]
+        "description": "Name of the class of the element to select."
       },
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "toggleClass",
-        "types": [
-          "*"
-        ]
+        "description": "Class that should be toggled to select the element."
       },
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "parentElement",
-        "types": [
-          "*"
-        ]
+        "description": "Parent element of the element to select."
       },
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "attrName",
-        "types": [
-          "*"
-        ]
+        "description": "Name of the attribute to check."
       },
       {
-        "name": "attrVal",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "attrVal",
+        "description": "Value of the attribute to match."
       }
     ],
     "generator": false
@@ -11705,33 +11873,48 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#selectElementByTarget",
     "access": null,
-    "description": null,
-    "lineNumber": 161,
-    "undocument": true,
+    "description": "Toggle selection class for an element (and its siblings) with the specified class, parent element, and target element. Checks for an element that matches the target element.",
+    "lineNumber": 245,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "className",
-        "types": [
-          "*"
-        ]
+        "description": "Name of the class of the element to select."
       },
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "toggleClass",
-        "types": [
-          "*"
-        ]
+        "description": "Class that should be toggled to select the element."
       },
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "parentElement",
-        "types": [
-          "*"
-        ]
+        "description": "Parent element of the element to select."
       },
       {
-        "name": "targetElement",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "targetElement",
+        "description": "Element to select (if it exists)."
       }
     ],
     "generator": false
@@ -11745,33 +11928,48 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#selectElementByCallback",
     "access": null,
-    "description": null,
-    "lineNumber": 167,
-    "undocument": true,
+    "description": "Toggle selection class for an element (and its siblings) with the specified class, parent element, and callback function. The callback should return true or false to select or deselect the elements.",
+    "lineNumber": 258,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "className",
-        "types": [
-          "*"
-        ]
+        "description": "Name of the class of the element to select."
       },
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "toggleClass",
-        "types": [
-          "*"
-        ]
+        "description": "Class that should be toggled to select the element."
       },
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "parentElement",
-        "types": [
-          "*"
-        ]
+        "description": "Parent element of the element to select."
       },
       {
-        "name": "callback",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "function(element: Element): boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": "Callback function that determines whether the element is selected or not."
       }
     ],
     "generator": false
@@ -11785,33 +11983,47 @@
     "memberof": "src/js/ui/tabs.js~Tabs",
     "longname": "src/js/ui/tabs.js~Tabs#getElementByCallback",
     "access": null,
-    "description": null,
-    "lineNumber": 181,
-    "undocument": true,
+    "description": "Get the element with the specified class name and parent element that meets the criteria of a filter function.",
+    "lineNumber": 279,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "className",
-        "types": [
-          "*"
-        ]
+        "description": "Name of the element class."
       },
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "parentElement",
-        "types": [
-          "*"
-        ]
+        "description": "Parent element of the element."
       },
       {
-        "name": "callback",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "function(element: Element): boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": "Callback function that determines whether the element should be returned or not."
       }
     ],
     "return": {
+      "nullable": true,
       "types": [
-        "*"
-      ]
+        "Element"
+      ],
+      "spread": false,
+      "description": "Element if a matching one is found, null otherwise."
     },
     "generator": false
   },
@@ -15698,7 +15910,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "// based on scrollToY from http://stackoverflow.com/a/16136789/1418962\r\nfunction scrollToElement(element, to, speed, easing = 'easeOutSine') {\r\n  let start = element.scrollTop;\r\n  let diff = to - start;\r\n  let currentTime = 0;\r\n\r\n  // min time .1, max time .8 seconds\r\n  let time = Math.max(0.1, Math.min(Math.abs(diff) / speed, 0.8));\r\n\r\n  // easing equations from https://github.com/danro/easing-js/blob/master/easing.js\r\n  let easingEquations = {\r\n    easeOutSine: function (pos) {\r\n      return Math.sin(pos * (Math.PI / 2));\r\n    },\r\n    easeInOutSine: function (pos) {\r\n      return (-0.5 * (Math.cos(Math.PI * pos) - 1));\r\n    },\r\n    easeInOutQuint: function (oldPos) {\r\n      let pos = oldPos * 2;\r\n      if (pos < 1) {\r\n        return 0.5 * Math.pow(pos, 5);\r\n      }\r\n      return 0.5 * (Math.pow((pos - 2), 5) + 2);\r\n    }\r\n  };\r\n\r\n  // add animation loop\r\n  function tick() {\r\n    currentTime += 1 / 60;\r\n\r\n    let p = currentTime / time;\r\n    let t = easingEquations[easing](p);\r\n\r\n    if (p < 1) {\r\n      window.requestAnimationFrame(tick);\r\n      element.scrollTop = start + (diff * t);\r\n    } else {\r\n      element.scrollTop = to;\r\n    }\r\n  }\r\n\r\n  // call it once to get started\r\n  tick();\r\n}\r\n\r\nexport { scrollToElement };\r\nexport default scrollToElement;\r\n"
+    "content": "/**\r\n * Function to scroll to an element.\r\n * Based on scrollToY from http://stackoverflow.com/a/16136789/1418962\r\n * @param  {Element} element - The elemnt to scroll to.\r\n * @param  {number} to - Number indicating offset from the top of the element.\r\n * @param  {number} speed - Speed to scroll.\r\n * @param  {string} easing - Name of easing function (default: 'easeOutSine').\r\n */\r\nfunction scrollToElement(element, to, speed, easing = 'easeOutSine') {\r\n  let start = element.scrollTop;\r\n  let diff = to - start;\r\n  let currentTime = 0;\r\n\r\n  // min time .1, max time .8 seconds\r\n  let time = Math.max(0.1, Math.min(Math.abs(diff) / speed, 0.8));\r\n\r\n  // easing equations from https://github.com/danro/easing-js/blob/master/easing.js\r\n  let easingEquations = {\r\n    easeOutSine: function (pos) {\r\n      return Math.sin(pos * (Math.PI / 2));\r\n    },\r\n    easeInOutSine: function (pos) {\r\n      return (-0.5 * (Math.cos(Math.PI * pos) - 1));\r\n    },\r\n    easeInOutQuint: function (oldPos) {\r\n      let pos = oldPos * 2;\r\n      if (pos < 1) {\r\n        return 0.5 * Math.pow(pos, 5);\r\n      }\r\n      return 0.5 * (Math.pow((pos - 2), 5) + 2);\r\n    }\r\n  };\r\n\r\n  // add animation loop\r\n  function tick() {\r\n    currentTime += 1 / 60;\r\n\r\n    let p = currentTime / time;\r\n    let t = easingEquations[easing](p);\r\n\r\n    if (p < 1) {\r\n      window.requestAnimationFrame(tick);\r\n      element.scrollTop = start + (diff * t);\r\n    } else {\r\n      element.scrollTop = to;\r\n    }\r\n  }\r\n\r\n  // call it once to get started\r\n  tick();\r\n}\r\n\r\nexport { scrollToElement };\r\nexport default scrollToElement;\r\n"
   },
   {
     "__docId__": 676,
@@ -15712,36 +15924,48 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/util/scroll-to-element.js",
     "importStyle": "scrollToElement",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
+    "description": "Function to scroll to an element.\nBased on scrollToY from http://stackoverflow.com/a/16136789/1418962",
+    "lineNumber": 9,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "element",
-        "types": [
-          "*"
-        ]
+        "description": "The elemnt to scroll to."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "to",
-        "types": [
-          "*"
-        ]
+        "description": "Number indicating offset from the top of the element."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "speed",
-        "types": [
-          "*"
-        ]
+        "description": "Speed to scroll."
       },
       {
-        "name": "easing",
-        "optional": true,
+        "nullable": null,
         "types": [
           "string"
         ],
-        "defaultRaw": "easeOutSine",
-        "defaultValue": "easeOutSine"
+        "spread": false,
+        "optional": false,
+        "name": "easing",
+        "description": "Name of easing function (default: 'easeOutSine')."
       }
     ],
     "generator": false

@@ -360,12 +360,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "canvas-graph-creator/src/js/ui/form.js~initlisteners",
-    "function/index.html#static-function-initListeners",
-    "<span>initListeners</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/ui/form.js</span>",
-    "function"
-  ],
-  [
     "canvas-graph-creator/src/js/util/scroll-to-element.js~scrolltoelement",
     "function/index.html#static-function-scrollToElement",
     "<span>scrollToElement</span> <span class=\"search-result-import-path\">canvas-graph-creator/src/js/util/scroll-to-element.js</span>",

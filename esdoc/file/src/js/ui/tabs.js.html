@@ -84,7 +84,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValue">getInputValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInputValueLocal">getInputValueLocal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initListeners">initListeners</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ui">ui</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">js/util</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/graph-serialize.js~Serializer.html">Serializer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/js/util/line-2d.js~Line2D.html">Line2D</a></span></span></li>
@@ -111,13 +110,26 @@ const TAB_CONTENT_ACTIVE_CLASS = &apos;active&apos;;
 
 const TAB_ATTRIBUTE_NAME = &apos;data-tab&apos;;
 
+/**
+ * Class for controlling tabs.
+ * @class Tabs
+ */
 class Tabs {
 
+  /**
+   * Constructs a Tabs object.
+   * @param  {Element} tabContainer - Container element that holds all the tabs and tab content.
+   * @param  {Element} tabList - Parent element of all the tabs.
+   * @constructs Tabs
+   */
   constructor(tabContainer, tabList) {
     this.tabContainer = tabContainer;
     this.tabList = tabList;
   }
 
+  /**
+   * Initialization function to add click event listeners to the tabs.
+   */
   init() {
     this.tabList.addEventListener(&apos;click&apos;, (event) =&gt; {
       if (event.target.classList.contains(TAB_CLASS)) {
@@ -126,6 +138,10 @@ class Tabs {
     });
   }
 
+  /**
+   * Select a specific tab.
+   * @param  {(string|Element)} tab - Name of tab or tab element to be selected.
+   */
   selectTab(tab) {
     if (typeof tab === &apos;string&apos;) {
       this.selectTabByName(tab);
@@ -136,17 +152,32 @@ class Tabs {
     }
   }
 
+  /**
+   * Set a particular tab&apos;s content as the given HTML string.
+   * @param  {(string|Element)} tab - Name of tab or tab element.
+   * @param {string} content - HTML string containing the tab&apos;s new content.
+   */
   setTabContent(tab, content) {
     let tabContentElement = this.getTabContentElement(tab);
     tabContentElement.innerHTML = content;
   }
 
+  /**
+   * Set whether or not the tab should allow scrolling in the tab content element.
+   * @param  {(string|Element)} tab - Name of tab or tab element.
+   * @param {boolean} shouldScroll - Whether or not the tab content element should allow scrolling.
+   */
   setTabScroll(tab, shouldScroll) {
     if (!shouldScroll) {
       this.getTabContentElement(tab).classList.add(&apos;no-scroll&apos;);
     }
   }
 
+  /**
+   * Add a tab.
+   * @param {string} name - Name of the tab. This is used to refer to the tab.
+   * @param {string} displayName - String that is displayed on the actual tab.
+   */
   addTab(name, displayName) {
     let tabs = this.tabList.children;
     for (let i = 0; i &lt; tabs.length; i++) {
@@ -169,6 +200,10 @@ class Tabs {
     this.updateTabListDisplay();
   }
 
+  /**
+   * Remove the specified tab.
+   * @param  {string} name - Name of the tab to remove.
+   */
   removeTab(name) {
     let tabs = this.tabList.children;
     for (let i = 0; i &lt; tabs.length; i++) {
@@ -182,6 +217,10 @@ class Tabs {
     throw Error(&apos;Tab does not exists&apos;);
   }
 
+  /**
+   * Replace all the tabs with new ones.
+   * @param  {Object.&lt;string,string&gt;} names - Object with a map of tab names to tab display names.
+   */
   replaceTabs(names) {
     while (this.tabList.firstChild) {
       let tab = this.tabList.firstChild;
@@ -198,14 +237,27 @@ class Tabs {
     this.updateTabListDisplay();
   }
 
+  /**
+   * Hide the tab with the specified name.
+   * @param  {string} tabName - Name of the tab to hide.
+   */
   hideTab(tabName) {
     this.displayTab(tabName, true);
   }
 
+  /**
+   * Show the tab with the specified name.
+   * @param  {string} tabName - Name of the tab to show.
+   */
   showTab(tabName) {
     this.displayTab(tabName, false);
   }
 
+  /**
+   * Set whether or not a tab should be displayed.
+   * @param  {string}  tabName - Name of the tab.
+   * @param  {boolean} isHiding - Whether or not the tab should be displayed.
+   */
   displayTab(tabName, isHiding) {
     let tabs = this.tabList.querySelectorAll(`.${TAB_CLASS}[${TAB_ATTRIBUTE_NAME}=${tabName}]`);
     for (let i = 0; i &lt; tabs.length; i++) {
@@ -219,6 +271,9 @@ class Tabs {
     this.updateTabListDisplay();
   }
 
+  /**
+   * Update the display status of the tabList element. If there are 1 or fewer tabs, the tabList is hidden.
+   */
   updateTabListDisplay() {
     let displayedTabs = this.tabList.querySelectorAll(`.${TAB_CLASS}:not(.hidden)`);
     if (displayedTabs.length &lt;= 1) {
@@ -228,6 +283,11 @@ class Tabs {
     }
   }
 
+  /**
+   * Get the element associated with the specified tab.
+   * @param  {(string|Element)} tab - Name of tab or tab element.
+   * @return {Element} - The element containing the tab content.
+   */
   getTabContentElement(tab) {
     let name;
     if (typeof tab === &apos;string&apos;) {
@@ -243,11 +303,19 @@ class Tabs {
     });
   }
 
+  /**
+   * Select the tab with the specified name.
+   * @param  {string} name - The name of the tab.
+   */
   selectTabByName(name) {
     this.selectElementByAttribute(TAB_CLASS, TAB_ACTIVE_CLASS, this.tabList, TAB_ATTRIBUTE_NAME, name);
     this.selectElementByAttribute(TAB_CONTENT_CLASS, TAB_CONTENT_ACTIVE_CLASS, this.tabContainer, TAB_ATTRIBUTE_NAME, name);
   }
 
+  /**
+   * Select the given tab element.
+   * @param  {Element} targetElement - The tab element.
+   */
   selectTabByTarget(targetElement) {
     if (!targetElement.classList.contains(TAB_CLASS)) {
       throw Error(&apos;Target element is not a tab&apos;);
@@ -257,18 +325,40 @@ class Tabs {
     this.selectElementByAttribute(TAB_CONTENT_CLASS, TAB_CONTENT_ACTIVE_CLASS, this.tabContainer, TAB_ATTRIBUTE_NAME, targetElement.getAttribute(TAB_ATTRIBUTE_NAME));
   }
 
+  /**
+   * Toggle selection class for an element (and its siblings) with the specified class, parent element, attribute name, and attribute value. Checks for an element with the specified attribute value for the attribute given.
+   * @param  {string} className - Name of the class of the element to select.
+   * @param  {string} toggleClass - Class that should be toggled to select the element.
+   * @param  {Element} parentElement - Parent element of the element to select.
+   * @param  {string} attrName - Name of the attribute to check.
+   * @param  {string} attrVal - Value of the attribute to match.
+   */
   selectElementByAttribute(className, toggleClass, parentElement, attrName, attrVal) {
     this.selectElementByCallback(className, toggleClass, parentElement, (element) =&gt; {
       return element.getAttribute(attrName) === attrVal;
     });
   }
 
+  /**
+   * Toggle selection class for an element (and its siblings) with the specified class, parent element, and target element. Checks for an element that matches the target element.
+   * @param  {string} className - Name of the class of the element to select.
+   * @param  {string} toggleClass - Class that should be toggled to select the element.
+   * @param  {Element} parentElement - Parent element of the element to select.
+   * @param  {Element} targetElement - Element to select (if it exists).
+   */
   selectElementByTarget(className, toggleClass, parentElement, targetElement) {
     this.selectElementByCallback(className, toggleClass, parentElement, (element) =&gt; {
       return element === targetElement;
     });
   }
 
+  /**
+   * Toggle selection class for an element (and its siblings) with the specified class, parent element, and callback function. The callback should return true or false to select or deselect the elements.
+   * @param  {string} className - Name of the class of the element to select.
+   * @param  {string} toggleClass - Class that should be toggled to select the element.
+   * @param  {Element} parentElement - Parent element of the element to select.
+   * @param  {function(element: Element): boolean} callback - Callback function that determines whether the element is selected or not.
+   */
   selectElementByCallback(className, toggleClass, parentElement, callback) {
     let children = parentElement.children;
     for (let i = 0; i &lt; children.length; i++) {
@@ -283,6 +373,13 @@ class Tabs {
     }
   }
 
+  /**
+   * Get the element with the specified class name and parent element that meets the criteria of a filter function.
+   * @param  {string} className - Name of the element class.
+   * @param  {Element} parentElement - Parent element of the element.
+   * @param  {function(element: Element): boolean} callback - Callback function that determines whether the element should be returned or not.
+   * @return {?Element} - Element if a matching one is found, null otherwise.
+   */
   getElementByCallback(className, parentElement, callback) {
     let children = parentElement.children;
     for (let i = 0; i &lt; children.length; i++) {
