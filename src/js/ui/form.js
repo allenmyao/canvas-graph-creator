@@ -1,9 +1,12 @@
+/**
+ * Call to initialize form functionality.
+ */
 export function init() {
   initListeners();
 }
 
-export function initListeners() {
-  // Create MutationObserver to check for changes in selectElement options
+function initListeners() {
+  // Create MutationObserver to check for newly added inputs
   let obs = new MutationObserver((mutations, observer) => {
     for (let mutation of mutations) {
       if (mutation.addedNodes) {
@@ -71,6 +74,11 @@ function checkLabelClick(event) {
   }
 }
 
+/**
+ * Get the value of the given form input.
+ * @param  {Element} input - Form input DOM element.
+ * @return {(boolean|number|string)} - Value of the input.
+ */
 export function getInputValue(input) {
   let value;
   if (input.type === 'checkbox') {
@@ -83,6 +91,11 @@ export function getInputValue(input) {
   return value;
 }
 
+/**
+ * Create an html string for a form given an array of field types.
+ * @param  {Array.<InputType>} fields - Array of input types.
+ * @return {string} - String containing HTML for the form.
+ */
 export function createForm(fields) {
   let html = '';
 
@@ -114,6 +127,13 @@ export function createForm(fields) {
   return html;
 }
 
+/**
+ * Create a form with inputs for graph elements. Also has options for a button to submit the form.
+ * @param  {Array.<InputType>} fields - Array of input types.
+ * @param  {boolean} canSubmit - Whether or not the form can be submitted.
+ * @param  {string} submitText - Text to be displayed on the submit button.
+ * @return {string} - String containing HTML for the form.
+ */
 export function createGraphForm(fields, canSubmit, submitText) {
   let html = '';
 
@@ -157,6 +177,12 @@ export function createGraphForm(fields, canSubmit, submitText) {
   return html;
 }
 
+/**
+ * Get all of the data from a form.
+ * @param  {Element} form - Form DOM element.
+ * @param  {Graph} graph - The current graph object.
+ * @return {Object.<string,(boolean|number|string|Node|Edge)>} - Object containing input names and their associated input values
+ */
 export function getData(form, graph) {
   let data = {};
   let fieldsets = form.querySelectorAll('fieldset');
@@ -171,12 +197,18 @@ export function getData(form, graph) {
   return data;
 }
 
-export function displayError(form, field, showError) {
-  let fieldset = form.querySelectorAll(`[name="${field}"]`);
+/**
+ * Add/remove the CSS class 'error' to the specified form input.
+ * @param  {Element} form - Form dom element.
+ * @param  {string} inputName - Name of the input.
+ * @param  {boolean} showError - Whether or not the input should display an error.
+ */
+export function displayError(form, inputName, showError) {
+  let fieldset = form.querySelector(`[name="${inputName}"]`);
   if (showError) {
-    fieldset[0].classList.add('error');
+    fieldset.classList.add('error');
   } else {
-    fieldset[0].classList.remove('error');
+    fieldset.classList.remove('error');
   }
 }
 
@@ -194,6 +226,12 @@ function getFieldData(inputs, graph) {
   return data;
 }
 
+/**
+ * Get the value of a single input. Used when the input could contain a reference to a Node or Edge.
+ * @param  {Element} input - Form input DOM element.
+ * @param  {Graph} graph - Graph object.
+ * @return {(boolean|number|string|Node|Edge)} - The value of teh input.
+ */
 export function getInputValueLocal(input, graph) {
   let value;
   let type = input.getAttribute('type');

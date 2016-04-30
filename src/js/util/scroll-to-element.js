@@ -1,4 +1,11 @@
-// based on scrollToY from http://stackoverflow.com/a/16136789/1418962
+/**
+ * Function to scroll to an element.
+ * Based on scrollToY from http://stackoverflow.com/a/16136789/1418962
+ * @param  {Element} element - The elemnt to scroll to.
+ * @param  {number} to - Number indicating offset from the top of the element.
+ * @param  {number} speed - Speed to scroll.
+ * @param  {string} easing - Name of easing function (default: 'easeOutSine').
+ */
 function scrollToElement(element, to, speed, easing = 'easeOutSine') {
   let start = element.scrollTop;
   let diff = to - start;
