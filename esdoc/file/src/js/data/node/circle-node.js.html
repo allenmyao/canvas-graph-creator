@@ -105,25 +105,58 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Node from &apos;./node&apos;;
 import Label from &apos;../label&apos;;
 
+/**
+ * Node subclass for circle nodes.
+ * @class CircleNode
+ */
 class CircleNode extends Node {
 
   radius = 30;
 
+  /**
+   * Constructs a CircleNode instance.
+   * @param  {number} x - x-coordinate of the node.
+   * @param  {number} y - y-coordinate of the node.
+   * @constructs CircleNode
+   */
   constructor(x, y) {
     super(x, y);
     this.label = new Label(this.x + this.radius + 4, this.y, this);
   }
 
+  /**
+   * Check if the node contains the given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @return {boolean} - Whether or not the node contains the point.
+   * @override
+   */
   containsPoint(x, y) {
     return this.distanceToPoint(x, y) &lt;= this.radius;
   }
 
+  /**
+   * Find the distance from the node&apos;s coordinates to a given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @returns {number} - The distance to the point.
+   * @override
+   */
   distanceToPoint(x, y) {
     let dx = x - this.x;
     let dy = y - this.y;
     return Math.sqrt(dx * dx + dy * dy);
   }
 
+  /**
+   * Find the point on the edge of the node in the direction of the given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @returns {Object} - The edge point in the direction of the given point.
+   * @property {number} x - x-coordinate of the edge point.
+   * @property {number} y - y-coordinate of the edge point.
+   * @override
+   */
   edgePointInDirection(x, y) {
     if (x === this.x &amp;&amp; y === this.y) {
       throw new Error(&apos;Point is at origin of Node&apos;);
@@ -137,9 +170,12 @@ class CircleNode extends Node {
     };
   }
 
+  /**
+   * Draw the node on the given canvas context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   * @override
+   */
   draw(context) {
-    // let xOffSet = 0;
-    // let yOffset = 0;
     context.fillStyle = this.fillColor;
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
     context.lineWidth = this.lineWidth;
@@ -166,6 +202,10 @@ class CircleNode extends Node {
     }
   }
 
+  /**
+   * Draw additional objects to display the node as an accepting state on the given canvas context.
+   * @param {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawAcceptingState(context) {
     context.fillStyle = this.fillColor;
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
@@ -175,6 +215,10 @@ class CircleNode extends Node {
     context.stroke();
   }
 
+  /**
+   * Draw additional objects to display the node as a starting state on the given canvas context.
+   * @param {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawStartingState(context) {
     let endpoint = this.getAnglePoint(225);
     context.fillStyle = this.isSelected ? this.selectedColor : this.color;
@@ -191,49 +235,14 @@ class CircleNode extends Node {
     context.fill();
   }
 
-  /*
-  generateTextLocation(){
-
-    if () {
-      // default (to the right)
-      this.xText = this.x + this.radius + 4;
-      this.yText = this.y;
-    } else if () {
-      // place to the left
-      this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
-      this.yText = this.y;
-    } else if () {
-      // place on top
-      this.xText = this.x - (context.measureText(this.nodeLabel)/2);
-      this.yText = this.y + this.radius + 4;
-    } else if () {
-      // place on the bottom
-      this.xText = this.x - (context.measureText(this.nodeLabel)/2);
-      this.yText = this.y -(this.radius + 4);
-    } else if () {
-      // place at top-right
-      this.xText = this.x + this.radius + 4;
-      this.yText = this.y + this.radius + 4;
-    } else if () {
-      // place at bottom-right
-      this.xText = this.x + this.radius + 4;
-      this.yText = this.y -(this.radius + 4);
-    } else if() {
-      // place at bottom-left
-      this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
-      this.yText = this.y -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
-    } else if() {
-      // place at top-left
-      this.xText = this.x -(this.radius + 4 + (context.measureText(this.nodeLabel)/2));
-      this.yText = this.y + this.radius + 4 + (context.measureText(this.nodeLabel)/2);
-    } else {
-      // just go back to default
-      this.xText = this.x + this.radius + 4;
-      this.yText = this.y;
-    }
-  }
-*/
-
+  /**
+   * Get the point on the edge of the node at the given angle.
+   * @param  {number} angle - The angle (clockwise from +x axis).
+   * @returns {Object} - The edge point in the direction of the given angle.
+   * @property {number} x - x-coordinate of the edge point.
+   * @property {number} y - y-coordinate of the edge point.
+   * @override
+   */
   getAnglePoint(angle) {
     return {
       x: this.x + this.radius * Math.cos(angle * Math.PI / 180),

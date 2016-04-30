@@ -1,7 +1,7 @@
 {
-  "coverage": "24.57%",
+  "coverage": "51.21%",
   "expectCount": 533,
-  "actualCount": 131,
+  "actualCount": 273,
   "files": {
     "src/js/algorithm/abstract-algorithm.js": {
       "expectCount": 4,
@@ -55,8 +55,8 @@
         52,
         33,
         37,
-        43,
         47,
+        43,
         48,
         22,
         88
@@ -74,18 +74,9 @@
     },
     "src/js/data/node/circle-node.js": {
       "expectCount": 10,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        4,
-        8,
-        13,
-        17,
-        36,
-        65,
-        74,
-        23,
-        133,
-        10
+        20
       ]
     },
     "src/js/ui/context-menu.js": {
@@ -109,20 +100,15 @@
     },
     "src/js/data/edge/dashed-edge.js": {
       "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        5
-      ]
+      "actualCount": 2,
+      "undocumentLines": []
     },
     "src/js/data/node/diamond-node.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        3,
-        5,
-        7,
-        8
+        17,
+        18
       ]
     },
     "src/js/ui/dropdown.js": {
@@ -140,29 +126,16 @@
     },
     "src/js/data/edge/edge.js": {
       "expectCount": 21,
-      "actualCount": 0,
+      "actualCount": 13,
       "undocumentLines": [
-        10,
-        117,
-        37,
-        241,
-        53,
-        116,
-        91,
-        245,
-        253,
-        249,
-        77,
-        88,
-        62,
+        122,
         52,
-        115,
-        305,
-        184,
-        123,
-        114,
-        267,
-        272
+        121,
+        76,
+        87,
+        61,
+        51,
+        120
       ]
     },
     "src/js/tool/edge-tool.js": {
@@ -186,51 +159,28 @@
     },
     "src/js/data/graph.js": {
       "expectCount": 16,
-      "actualCount": 0,
+      "actualCount": 14,
       "undocumentLines": [
-        5,
-        39,
-        35,
-        6,
-        153,
-        8,
-        145,
-        137,
-        91,
-        86,
-        73,
-        119,
-        7,
-        58,
-        46,
-        11
+        19,
+        18
       ]
     },
     "src/js/data/node/hexagon-node.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        3,
-        5,
-        7,
-        8
+        17,
+        18
       ]
     },
     "src/js/data/label.js": {
       "expectCount": 11,
-      "actualCount": 0,
+      "actualCount": 7,
       "undocumentLines": [
-        1,
-        34,
-        40,
-        65,
-        84,
-        56,
-        37,
-        60,
-        70,
-        35,
-        36
+        48,
+        100,
+        46,
+        47
       ]
     },
     "src/js/util/line-2d.js": {
@@ -292,19 +242,10 @@
     },
     "src/js/data/node/node.js": {
       "expectCount": 11,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        1,
-        25,
-        62,
-        66,
-        74,
-        82,
-        70,
-        78,
-        52,
-        48,
-        49
+        39,
+        40
       ]
     },
     "src/js/tool/node-tool.js": {
@@ -320,12 +261,10 @@
     },
     "src/js/data/node/octagon-node.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        3,
-        5,
-        7,
-        8
+        17,
+        18
       ]
     },
     "src/js/tool/pan-tool.js": {
@@ -343,12 +282,10 @@
     },
     "src/js/data/node/pentagon-node.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        3,
-        5,
-        7,
-        8
+        17,
+        18
       ]
     },
     "src/js/util/point-2d.js": {
@@ -361,35 +298,17 @@
     },
     "src/js/data/node/polygon-node.js": {
       "expectCount": 10,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        4,
-        11,
-        16,
-        20,
-        39,
-        77,
-        92,
-        26,
-        108,
-        13
+        23
       ]
     },
     "src/js/util/queue.js": {
       "expectCount": 11,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        8,
-        22,
-        10,
-        41,
-        31,
-        79,
-        67,
-        13,
-        63,
-        12,
-        17
+        19,
+        18
       ]
     },
     "src/js/tool/select-move-tool.js": {
@@ -433,122 +352,70 @@
     },
     "src/js/ui/sidebar.js": {
       "expectCount": 11,
-      "actualCount": 1,
+      "actualCount": 6,
       "undocumentLines": [
-        18,
-        46,
-        48,
-        23,
-        31,
-        39,
-        20,
-        24,
-        19,
-        53
+        87,
+        89,
+        49,
+        57,
+        48
       ]
     },
     "src/js/ui/sidebar-algorithm.js": {
       "expectCount": 14,
-      "actualCount": 2,
+      "actualCount": 11,
       "undocumentLines": [
-        7,
-        206,
-        225,
-        198,
-        20,
-        67,
-        255,
-        75,
-        224,
-        21,
-        182,
-        144
+        266,
+        32,
+        33
       ]
     },
     "src/js/ui/sidebar-content.js": {
-      "expectCount": 6,
-      "actualCount": 0,
+      "expectCount": 7,
+      "actualCount": 5,
       "undocumentLines": [
-        11,
-        31,
-        12,
-        24,
-        27,
+        32,
         35
       ]
     },
     "src/js/ui/sidebar-display.js": {
-      "expectCount": 5,
-      "actualCount": 0,
-      "undocumentLines": [
-        4,
-        5,
-        9,
-        25,
-        20
-      ]
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
     },
     "src/js/ui/sidebar-select.js": {
       "expectCount": 10,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        6,
-        7,
-        13,
-        149,
-        81,
-        172,
-        96,
-        10,
-        40,
-        62
+        67
       ]
     },
     "src/js/data/edge/solid-edge.js": {
       "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        5
-      ]
+      "actualCount": 2,
+      "undocumentLines": []
     },
     "src/js/data/node/square-node.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        3,
-        5,
-        7,
-        8
+        17,
+        18
       ]
     },
     "src/js/util/stack.js": {
       "expectCount": 10,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        1,
-        12,
-        3,
-        47,
-        35,
-        31,
-        23,
-        16,
-        8,
-        4
+        12
       ]
     },
     "src/js/ui/status-bar.js": {
       "expectCount": 7,
-      "actualCount": 0,
+      "actualCount": 5,
       "undocumentLines": [
-        1,
-        7,
-        13,
-        9,
-        8,
-        23,
-        19
+        26,
+        25
       ]
     },
     "src/js/algorithm/step.js": {
@@ -617,18 +484,12 @@
     },
     "src/js/ui/toolbar.js": {
       "expectCount": 10,
-      "actualCount": 0,
+      "actualCount": 6,
       "undocumentLines": [
-        12,
-        28,
-        53,
-        59,
-        34,
-        42,
-        46,
-        69,
-        30,
-        29
+        95,
+        101,
+        62,
+        61
       ]
     },
     "src/js/ui/top-bar.js": {
@@ -677,29 +538,23 @@
     },
     "src/js/data/node/triangle-node.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        3,
-        5,
-        7,
-        8
+        17,
+        18
       ]
     },
     "src/js/ui/ui.js": {
       "expectCount": 11,
-      "actualCount": 0,
+      "actualCount": 4,
       "undocumentLines": [
-        8,
-        23,
-        18,
-        27,
-        26,
-        33,
-        21,
-        22,
-        20,
-        19,
-        44
+        59,
+        67,
+        57,
+        58,
+        56,
+        55,
+        88
       ]
     },
     "src/js/util/vector-2d.js": {

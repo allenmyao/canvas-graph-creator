@@ -102,13 +102,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SidebarAlgorithm from &apos;<span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber7">canvas-graph-creator/src/js/ui/sidebar-algorithm.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SidebarAlgorithm from &apos;<span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber11">canvas-graph-creator/src/js/ui/sidebar-algorithm.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber11">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +128,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Sidebar that accompanies the AlgorithmTool.</p>
+</div>
 
   
 
@@ -156,7 +157,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(graph: <span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-member-graph">graph</a></span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
         </p>
       </div>
       <div>
@@ -271,13 +272,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-createLinkElement">createLinkElement</a></span></span><span data-ice="signature">(obj: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-createLinkElement">createLinkElement</a></span></span><span data-ice="signature">(obj: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Create a graph link element using the specified Node or Edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -302,7 +304,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Called when the sidebar content is switched to this.</p>
+</div>
       </div>
     </td>
     <td>
@@ -321,13 +324,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-hoverEvent">hoverEvent</a></span></span><span data-ice="signature">(bool: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-hoverEvent">hoverEvent</a></span></span><span data-ice="signature">(bool: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Called to check for hovering over a graph link (link that associates text with an object in the Graph).</p>
+</div>
       </div>
     </td>
     <td>
@@ -352,7 +356,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Reset the graph.</p>
+</div>
       </div>
     </td>
     <td>
@@ -377,7 +382,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Runs the current algorithm and displays the results in the sidebar.</p>
+</div>
       </div>
     </td>
     <td>
@@ -396,13 +402,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-setAlgorithm">setAlgorithm</a></span></span><span data-ice="signature">(AlgorithmClass: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-setAlgorithm">setAlgorithm</a></span></span><span data-ice="signature">(AlgorithmClass: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Set the current algorithm to a new instance of the given algorithm class.</p>
+</div>
       </div>
     </td>
     <td>
@@ -421,13 +428,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-toggleHover">toggleHover</a></span></span><span data-ice="signature">(type: <span>*</span>, id: <span>*</span>, isHovering: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-algorithm.js~SidebarAlgorithm.html#instance-method-toggleHover">toggleHover</a></span></span><span data-ice="signature">(type: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, id: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isHovering: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Toggle the hover state of the associated Node or Edge when a graph link is being hovered.</p>
+</div>
       </div>
     </td>
     <td>
@@ -452,7 +460,7 @@
       <div>
         
         
-        <div data-ice="description"><p>update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar</p>
+        <div data-ice="description"><p>Update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar.</p>
 </div>
       </div>
     </td>
@@ -478,7 +486,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Update the state of the buttons in the sidebar.</p>
+</div>
       </div>
     </td>
     <td>
@@ -555,13 +564,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-changeGraph">changeGraph</a></span></span><span data-ice="signature">(newGraph: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-changeGraph">changeGraph</a></span></span><span data-ice="signature">(newGraph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Change the Graph object reference stored to the new one.</p>
+</div>
       </div>
     </td>
     <td>
@@ -574,7 +584,33 @@
       <span class="access" data-ice="access">public</span>
       
       
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-display">display</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Display the sidebar.</p>
+</div>
+      </div>
+    </td>
+    <td>
       
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
       <span class="override" data-ice="override"></span>
     </td>
     <td>
@@ -586,7 +622,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Update the sidebar state.</p>
+</div>
       </div>
     </td>
     <td>
@@ -609,11 +646,11 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(graph: <span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-member-graph">graph</a></span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(graph: <span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber30">source</a></span></span>
     </span>
   </h3>
 
@@ -635,7 +672,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">graph</td>
-      <td data-ice="type"><span><a href="class/src/js/algorithm/abstract-algorithm.js~AbstractAlgorithm.html#instance-member-graph">graph</a></span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/graph.js~Graph.html">Graph</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>Reference to the master graph object</p>
 </td>
@@ -674,7 +711,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber225">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber266">source</a></span></span>
     </span>
   </h3>
 
@@ -714,7 +751,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
@@ -754,7 +791,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -793,18 +830,19 @@
     
     
     
-    <span data-ice="name">createLinkElement</span><span data-ice="signature">(obj: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span data-ice="name">createLinkElement</span><span data-ice="signature">(obj: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber206">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber243">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Create a graph link element using the specified Node or Edge.</p>
+</div>
 
   
 
@@ -818,9 +856,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">obj</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Node or Edge object to create a graph link for.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -832,7 +871,8 @@
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-        
+        <td class="return-desc" data-ice="returnDescription"><p>String containing the HTML for the graph link to the specified Node or Edge.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -863,16 +903,17 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber198">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber230">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Called when the sidebar content is switched to this.</p>
+</div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-display">SidebarContent#display</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -899,18 +940,19 @@
     
     
     
-    <span data-ice="name">hoverEvent</span><span data-ice="signature">(bool: <span>*</span>)</span>
+    <span data-ice="name">hoverEvent</span><span data-ice="signature">(bool: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber83">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Called to check for hovering over a graph link (link that associates text with an object in the Graph).</p>
+</div>
 
   
 
@@ -924,9 +966,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">bool</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Whether or not the graph link is currently being hovered over.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -959,14 +1002,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber255">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber299">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Reset the graph. Calls resetGraph() of the Stepper instance.</p>
+</div>
 
   
 
@@ -999,14 +1043,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber75">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber94">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Runs the current algorithm and displays the results in the sidebar.</p>
+</div>
 
   
 
@@ -1035,18 +1080,19 @@
     
     
     
-    <span data-ice="name">setAlgorithm</span><span data-ice="signature">(AlgorithmClass: <span>*</span>)</span>
+    <span data-ice="name">setAlgorithm</span><span data-ice="signature">(AlgorithmClass: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber224">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber265">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Set the current algorithm to a new instance of the given algorithm class.</p>
+</div>
 
   
 
@@ -1060,9 +1106,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">AlgorithmClass</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The algorihtm class</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1091,18 +1138,19 @@
     
     
     
-    <span data-ice="name">toggleHover</span><span data-ice="signature">(type: <span>*</span>, id: <span>*</span>, isHovering: <span>*</span>)</span>
+    <span data-ice="name">toggleHover</span><span data-ice="signature">(type: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, id: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isHovering: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber182">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber210">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Toggle the hover state of the associated Node or Edge when a graph link is being hovered.</p>
+</div>
 
   
 
@@ -1116,21 +1164,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">type</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>String containing the type of the object.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">id</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>ID of the object.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">isHovering</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Whether or not the mouse is hovering over the graph link.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1163,14 +1214,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber262">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber306">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar</p>
+  <div data-ice="description"><p>Update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-update">SidebarContent#update</a></span></div>
@@ -1204,14 +1255,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber144">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/ui/sidebar-algorithm.js.html#lineNumber166">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update the state of the buttons in the sidebar.</p>
+</div>
 
   
 

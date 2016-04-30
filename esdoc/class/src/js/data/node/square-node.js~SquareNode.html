@@ -102,13 +102,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SquareNode from &apos;<span><a href="file/src/js/data/node/square-node.js.html#lineNumber3">canvas-graph-creator/src/js/data/node/square-node.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SquareNode from &apos;<span><a href="file/src/js/data/node/square-node.js.html#lineNumber7">canvas-graph-creator/src/js/data/node/square-node.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/data/node/square-node.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/data/node/square-node.js.html#lineNumber7">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +128,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Node subclass for diamond nodes.</p>
+</div>
 
   
 
@@ -156,13 +157,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/square-node.js~SquareNode.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/square-node.js~SquareNode.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructs a SquareNode instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -291,19 +293,72 @@
       <span class="access" data-ice="access">public</span>
       
       
-      
+      <span class="abstract" data-ice="abstract">abstract</span>
       <span class="override" data-ice="override"></span>
     </td>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Check if the node contains the given point.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-distanceToPoint">distanceToPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Find the distance from the node&apos;s coordinates to a given point.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Draw the node on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -322,13 +377,66 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-distanceToPoint">distanceToPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-drawLabel">drawLabel</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Draw the Label object associated with this node.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-edgePointInDirection">edgePointInDirection</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Find the point on the edge of the node in the direction of the given point.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-getAnglePoint">getAnglePoint</a></span></span><span data-ice="signature">(angle: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Get the point on the edge of the node at the given angle.</p>
+</div>
       </div>
     </td>
     <td>
@@ -347,113 +455,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-setPos">setPos</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-drawLabel">drawLabel</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-edgePointInDirection">edgePointInDirection</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-getAnglePoint">getAnglePoint</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-setPos">setPos</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Update the node position.</p>
+</div>
       </div>
     </td>
     <td>
@@ -504,13 +513,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Check if the node contains the given point.</p>
+</div>
       </div>
     </td>
     <td>
@@ -529,13 +539,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-distanceToPoint">distanceToPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-distanceToPoint">distanceToPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Find the distance from the node&apos;s coordinates to a given point.</p>
+</div>
       </div>
     </td>
     <td>
@@ -554,13 +565,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Draw the node on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -579,13 +591,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawAcceptingState">drawAcceptingState</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawAcceptingState">drawAcceptingState</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Draw additional objects to display the node as an accepting state on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -604,13 +617,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawStartingState">drawStartingState</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-drawStartingState">drawStartingState</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Draw additional objects to display the node as a starting state on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -629,13 +643,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-edgePointInDirection">edgePointInDirection</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-edgePointInDirection">edgePointInDirection</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Find the point on the edge of the node in the direction of the given point.</p>
+</div>
       </div>
     </td>
     <td>
@@ -654,13 +669,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-getAnglePoint">getAnglePoint</a></span></span><span data-ice="signature">(arbangle: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-method-getAnglePoint">getAnglePoint</a></span></span><span data-ice="signature">(arbangle: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get the point on the edge of the node at the given angle.</p>
+</div>
       </div>
     </td>
     <td>
@@ -683,18 +699,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/square-node.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/square-node.js.html#lineNumber15">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructs a SquareNode instance.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/js/data/node/polygon-node.js~PolygonNode.html#instance-constructor-constructor">PolygonNode#constructor</a></span></div>
 
@@ -708,15 +725,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the node.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the node.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -752,7 +771,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/square-node.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/square-node.js.html#lineNumber17">source</a></span></span>
     </span>
   </h3>
 
@@ -792,7 +811,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/square-node.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/square-node.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 

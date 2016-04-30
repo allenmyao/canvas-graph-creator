@@ -102,13 +102,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Graph from &apos;<span><a href="file/src/js/data/graph.js.html#lineNumber5">canvas-graph-creator/src/js/data/graph.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Graph from &apos;<span><a href="file/src/js/data/graph.js.html#lineNumber9">canvas-graph-creator/src/js/data/graph.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/data/graph.js.html#lineNumber5">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/data/graph.js.html#lineNumber9">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +128,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Data representation of a graph.</p>
+</div>
 
   
 
@@ -156,13 +157,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(nodes: <span>*</span>, edges: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(nodes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>&gt;, edges: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>&gt;)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructs a Graph instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -245,13 +247,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-addEdge">addEdge</a></span></span><span data-ice="signature">(edge: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-addEdge">addEdge</a></span></span><span data-ice="signature">(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Add an edge to the graph.</p>
+</div>
       </div>
     </td>
     <td>
@@ -270,13 +273,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-addNode">addNode</a></span></span><span data-ice="signature">(node: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-addNode">addNode</a></span></span><span data-ice="signature">(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Add a node to the graph.</p>
+</div>
       </div>
     </td>
     <td>
@@ -295,13 +299,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Draw the graph on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -320,13 +325,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-forEachEdge">forEachEdge</a></span></span><span data-ice="signature">(callback: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-forEachEdge">forEachEdge</a></span></span><span data-ice="signature">(callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Iterator for all graph edges.</p>
+</div>
       </div>
     </td>
     <td>
@@ -345,13 +351,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-forEachNode">forEachNode</a></span></span><span data-ice="signature">(callback: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-forEachNode">forEachNode</a></span></span><span data-ice="signature">(callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Iterator for all graph nodes.</p>
+</div>
       </div>
     </td>
     <td>
@@ -370,13 +377,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-getComponent">getComponent</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-getComponent">getComponent</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span> | <span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get the graph component at the given point, if it exists.</p>
+</div>
       </div>
     </td>
     <td>
@@ -395,13 +403,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-hasComponent">hasComponent</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>, ignore: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-hasComponent">hasComponent</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, ignore: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span> | <span><a href="class/src/js/data/label.js~Label.html">Label</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Check if the graph has a component at the given point.</p>
+</div>
       </div>
     </td>
     <td>
@@ -420,13 +429,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-hasEdge">hasEdge</a></span></span><span data-ice="signature">(start: <span>*</span>, dest: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-hasEdge">hasEdge</a></span></span><span data-ice="signature">(start: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>, dest: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Check if the graph has an edge from start to dest.</p>
+</div>
       </div>
     </td>
     <td>
@@ -445,13 +455,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-isNodeCollision">isNodeCollision</a></span></span><span data-ice="signature">(testNode: <span>*</span>, x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-isNodeCollision">isNodeCollision</a></span></span><span data-ice="signature">(testNode: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Checks if there is a node collision by moving a node</p>
+</div>
       </div>
     </td>
     <td>
@@ -470,13 +481,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-removeEdge">removeEdge</a></span></span><span data-ice="signature">(edge: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-removeEdge">removeEdge</a></span></span><span data-ice="signature">(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Remove an edge from the graph.</p>
+</div>
       </div>
     </td>
     <td>
@@ -495,13 +507,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-removeNode">removeNode</a></span></span><span data-ice="signature">(node: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/graph.js~Graph.html#instance-method-removeNode">removeNode</a></span></span><span data-ice="signature">(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Remove a node from the graph.</p>
+</div>
       </div>
     </td>
     <td>
@@ -526,7 +539,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Validate the graph.</p>
+</div>
       </div>
     </td>
     <td>
@@ -551,18 +565,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(nodes: <span>*</span>, edges: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(nodes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>&gt;, edges: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>&gt;)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber6">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber17">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructs a Graph instance.</p>
+</div>
 
   
 
@@ -576,15 +591,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">nodes</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Iterable containing nodes to add.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">edges</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>&gt;</td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Iterable containing edges to add.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -620,7 +637,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber19">source</a></span></span>
     </span>
   </h3>
 
@@ -660,7 +677,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -699,18 +716,19 @@
     
     
     
-    <span data-ice="name">addEdge</span><span data-ice="signature">(edge: <span>*</span>)</span>
+    <span data-ice="name">addEdge</span><span data-ice="signature">(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Add an edge to the graph.</p>
+</div>
 
   
 
@@ -724,9 +742,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">edge</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The edge to add.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -755,18 +774,19 @@
     
     
     
-    <span data-ice="name">addNode</span><span data-ice="signature">(node: <span>*</span>)</span>
+    <span data-ice="name">addNode</span><span data-ice="signature">(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber54">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Add a node to the graph.</p>
+</div>
 
   
 
@@ -780,9 +800,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">node</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The node to add.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -811,18 +832,19 @@
     
     
     
-    <span data-ice="name">draw</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">draw</span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber153">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber222">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Draw the graph on the given canvas context.</p>
+</div>
 
   
 
@@ -836,9 +858,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Canvas 2D context.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -867,18 +890,19 @@
     
     
     
-    <span data-ice="name">forEachEdge</span><span data-ice="signature">(callback: <span>*</span>)</span>
+    <span data-ice="name">forEachEdge</span><span data-ice="signature">(callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber145">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber210">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Iterator for all graph edges. Remaining edges are skipped if the callback returns false.</p>
+</div>
 
   
 
@@ -892,9 +916,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">callback</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Called once for each edge, with the edge as a parameter. Return false to skip remaining edges.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -923,18 +948,19 @@
     
     
     
-    <span data-ice="name">forEachNode</span><span data-ice="signature">(callback: <span>*</span>)</span>
+    <span data-ice="name">forEachNode</span><span data-ice="signature">(callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber137">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber198">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Iterator for all graph nodes. Remaining nodes are skipped if the callback returns false.</p>
+</div>
 
   
 
@@ -948,9 +974,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">callback</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Called once for each node, with the node as a parameter. Return false to skip remaining nodes.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -979,18 +1006,19 @@
     
     
     
-    <span data-ice="name">getComponent</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">getComponent</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span> | <span><a href="class/src/js/data/label.js~Label.html">Label</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber91">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber141">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Get the graph component at the given point, if it exists. If multiple objects overlap, the priority is (highest to lowest): Label, Node, Edge.</p>
+</div>
 
   
 
@@ -1004,15 +1032,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1023,8 +1053,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span> | <span><a href="class/src/js/data/label.js~Label.html">Label</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Object at the given point if it exists, null otherwise.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1051,18 +1082,19 @@
     
     
     
-    <span data-ice="name">hasComponent</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>, ignore: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">hasComponent</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, ignore: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span> | <span><a href="class/src/js/data/label.js~Label.html">Label</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber86">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber130">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Check if the graph has a component at the given point.</p>
+</div>
 
   
 
@@ -1076,21 +1108,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">ignore</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span> | <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span> | <span><a href="class/src/js/data/label.js~Label.html">Label</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Object to ignore checking. This is to prevent returning true when dragging items.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1101,8 +1136,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not the graph has a component at the point.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1129,18 +1165,19 @@
     
     
     
-    <span data-ice="name">hasEdge</span><span data-ice="signature">(start: <span>*</span>, dest: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span data-ice="name">hasEdge</span><span data-ice="signature">(start: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>, dest: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber110">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Check if the graph has an edge from start to dest.</p>
+</div>
 
   
 
@@ -1154,15 +1191,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">start</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The start node.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">dest</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The dest node.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1174,7 +1213,8 @@
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not the graph contains an edge from start to dest.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1201,18 +1241,19 @@
     
     
     
-    <span data-ice="name">isNodeCollision</span><span data-ice="signature">(testNode: <span>*</span>, x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">isNodeCollision</span><span data-ice="signature">(testNode: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>, x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber119">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber176">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Checks if there is a node collision by moving a node</p>
+</div>
 
   
 
@@ -1226,21 +1267,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">testNode</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The node to check collisions for.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the node.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the node.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1251,8 +1295,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not there is a collision.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1279,18 +1324,19 @@
     
     
     
-    <span data-ice="name">removeEdge</span><span data-ice="signature">(edge: <span>*</span>)</span>
+    <span data-ice="name">removeEdge</span><span data-ice="signature">(edge: <span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Remove an edge from the graph.</p>
+</div>
 
   
 
@@ -1304,9 +1350,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">edge</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/edge/edge.js~Edge.html">Edge</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The edge to remove.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1335,18 +1382,19 @@
     
     
     
-    <span data-ice="name">removeNode</span><span data-ice="signature">(node: <span>*</span>)</span>
+    <span data-ice="name">removeNode</span><span data-ice="signature">(node: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber73">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Remove a node from the graph.</p>
+</div>
 
   
 
@@ -1360,9 +1408,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">node</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The node to remove.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1395,14 +1444,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/graph.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Validate the graph. Called to check if imported graph is valid.</p>
+</div>
 
   
 
@@ -1414,7 +1464,8 @@
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not the graph is valid.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">

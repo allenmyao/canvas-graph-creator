@@ -105,11 +105,25 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import SidebarContent from &apos;../ui/sidebar-content&apos;;
 import * as Form from &apos;../ui/form&apos;;
 
+/**
+ * Sidebar content class for displaying graph data. This is the default sidebar type.
+ * @class SidebarDisplay
+ */
 class SidebarDisplay extends SidebarContent {
+
+  /**
+   * Constructs a SidebarDisplay instance.
+   * @param  {Graph} graph - The current Graph object.
+   * @constructs SidebarDisplay
+   */
   constructor(graph) {
     super(graph);
   }
 
+  /**
+   * Display tabs and update content.
+   * @override
+   */
   display() {
     this.tabs.replaceTabs({
       data: &apos;Data&apos;
@@ -121,24 +135,24 @@ class SidebarDisplay extends SidebarContent {
     this.tabs.selectTab(&apos;data&apos;);
   }
 
+  /**
+   * Update the sidebar with data from the graph.
+   * @override
+   */
   update() {
-    let html = this.displayGraph(this.graph);
-    this.tabs.getTabContentElement(&apos;data&apos;).querySelector(&apos;form&apos;).innerHTML = html;
-  }
-
-  displayGraph(graph) {
-    return Form.createForm([
+    let html = Form.createForm([
       {
         type: &apos;size&apos;,
-        value: graph.nodes.size,
+        value: this.graph.nodes.size,
         displayName: &apos;Nodes&apos;
       },
       {
         type: &apos;size&apos;,
-        value: graph.edges.size,
+        value: this.graph.edges.size,
         displayName: &apos;Edges&apos;
       }
     ]);
+    this.tabs.getTabContentElement(&apos;data&apos;).querySelector(&apos;form&apos;).innerHTML = html;
   }
 }
 

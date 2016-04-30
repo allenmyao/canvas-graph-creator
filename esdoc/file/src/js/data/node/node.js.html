@@ -102,7 +102,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/data/node/node.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">class Node {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Data representation of a graph node.
+ * @class Node
+ */
+class Node {
 
   static numNodes = 0;
   id = Node.numNodes++;
@@ -126,26 +130,13 @@
   selectedColor = &apos;#FF0000&apos;;
   lineWidth = 1; // numerical value for thickenss of line
 
+  /**
+   * Constructs a Node instance. Should not be called directly.
+   * @param  {number} x - x-coordinate of the node.
+   * @param  {number} y - y-coordinate of the node.
+   * @constructs Node
+   */
   constructor(x, y) {
-    // new.target not supported by Babel
-    // if (new.target === Node) {
-    //     throw TypeError(&apos;Node class is abstract; cannot construct Node instances directly&apos;);
-    // }
-
-    let methods = [
-      &apos;containsPoint&apos;,
-      &apos;distanceToPoint&apos;,
-      &apos;edgePointInDirection&apos;,
-      &apos;draw&apos;,
-      &apos;getAnglePoint&apos;
-    ];
-
-    for (let method of methods) {
-      if (typeof this[method] !== &apos;function&apos;) {
-        throw TypeError(&apos;Must override method: &apos; + method);
-      }
-    }
-
     if (typeof x === &apos;undefined&apos; || typeof y === &apos;undefined&apos;) {
       throw Error(`Node constructor requires two arguments: x, y. Actually passed in: ${x}, ${y}`);
     }
@@ -153,6 +144,11 @@
     this.y = y;
   }
 
+  /**
+   * Update the node position.
+   * @param {number} x - The new x-coordinate.
+   * @param {number} y - The new y-coordinate.
+   */
   setPos(x, y) {
     this.label.x += (x - this.x);
     this.label.y += (y - this.y);
@@ -163,26 +159,63 @@
     }
   }
 
+  /**
+   * Check if the node contains the given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @throws {Error} - Throws error if called.
+   * @abstract
+   */
   containsPoint(x, y) {
     throw Error(&apos;Can\&apos;t call methods from abstract Node class.&apos;);
   }
 
+  /**
+   * Find the distance from the node&apos;s coordinates to a given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @throws {Error} - Throws error if called.
+   * @abstract
+   */
   distanceToPoint(x, y) {
     throw Error(&apos;Can\&apos;t call methods from abstract Node class.&apos;);
   }
 
+  /**
+   * Find the point on the edge of the node in the direction of the given point.
+   * @param  {number} x - x-coordinate of the point.
+   * @param  {number} y - y-coordinate of the point.
+   * @throws {Error} - Throws error if called.
+   * @abstract
+   */
   edgePointInDirection(x, y) {
     throw Error(&apos;Can\&apos;t call methods from abstract Node class.&apos;);
   }
 
+  /**
+   * Draw the node on the given canvas context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   * @throws {Error} - Throws error if called.
+   * @abstract
+   */
   draw(context) {
     throw Error(&apos;Can\&apos;t call methods from abstract Node class.&apos;);
   }
 
-  getAnglePoint(context) {
+  /**
+   * Get the point on the edge of the node at the given angle.
+   * @param  {number} angle - The angle (clockwise from +x axis).
+   * @throws {Error} - Throws error if called.
+   * @abstract
+   */
+  getAnglePoint(angle) {
     throw Error(&apos;Can\&apos;t call methods from abstract Node class.&apos;);
   }
 
+  /**
+   * Draw the Label object associated with this node.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   */
   drawLabel(context) {
     this.label.draw(context);
   }

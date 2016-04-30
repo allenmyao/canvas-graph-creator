@@ -4549,13 +4549,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
@@ -4884,6 +4884,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/js/ui/sidebar-content.js~sidebarcontent#display",
+    "class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-method-display",
+    "src/js/ui/sidebar-content.js~SidebarContent#display",
+    "method"
+  ],
+  [
     "src/js/ui/sidebar-content.js~sidebarcontent#graph",
     "class/src/js/ui/sidebar-content.js~SidebarContent.html#instance-member-graph",
     "src/js/ui/sidebar-content.js~SidebarContent#graph",
@@ -4917,12 +4923,6 @@ window.esdocSearchIndex = [
     "src/js/ui/sidebar-display.js~sidebardisplay#display",
     "class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-display",
     "src/js/ui/sidebar-display.js~SidebarDisplay#display",
-    "method"
-  ],
-  [
-    "src/js/ui/sidebar-display.js~sidebardisplay#displaygraph",
-    "class/src/js/ui/sidebar-display.js~SidebarDisplay.html#instance-method-displayGraph",
-    "src/js/ui/sidebar-display.js~SidebarDisplay#displayGraph",
     "method"
   ],
   [

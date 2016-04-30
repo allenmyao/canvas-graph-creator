@@ -107,13 +107,31 @@ import Node from &apos;../data/node/node&apos;;
 import Edge from &apos;../data/edge/edge&apos;;
 import * as Form from &apos;../ui/form&apos;;
 
+/**
+ * Sidebar content class for handling selected items. This sidebar is used by the SelectTool.
+ * @class SidebarSelect
+ */
 class SidebarSelect extends SidebarContent {
+
+  /**
+   * The current selected object.
+   * @type {(Node|Edge)}
+   */
+  selectedObject = null;
+
+  /**
+   * Constructs a SidebarSelect instance.
+   * @param  {Graph} graph - The current Graph object.
+   * @constructs SidebarSelect
+   */
   constructor(graph) {
     super(graph);
-
-    this.selectedObject = null;
   }
 
+  /**
+   * Called to initially display the sidebar. Also adds event listeners to the forms.
+   * @override
+   */
   display() {
     this.tabs.replaceTabs({
       data: &apos;Data&apos;,
@@ -141,6 +159,11 @@ class SidebarSelect extends SidebarContent {
     }
   }
 
+  /**
+   * Update the sidebar with the selected object.
+   * @param  {Node|Edge} obj - The selected Node or Edge.
+   * @override
+   */
   update(obj) {
     let html;
     if (obj instanceof Node) {
@@ -163,6 +186,10 @@ class SidebarSelect extends SidebarContent {
     }
   }
 
+  /**
+   * Called when an &apos;input&apos; or &apos;change&apos; event is triggered by a form input. The field associated with that input is updated with the new value of the input.
+   * @param  {Event} event - Event object from the listener.
+   */
   updateObjectValues(event) {
     if (this.tabs.getTabContentElement(&apos;data&apos;).contains(event.target)) {
       let input = event.target;
@@ -182,6 +209,11 @@ class SidebarSelect extends SidebarContent {
     }
   }
 
+  /**
+   * Get HTML for displaying Graph data. This will be used when nothing is selected.
+   * @param  {Graph} graph - The Graph to display data for.
+   * @return {string} - HTML string to set as the sidebar content.
+   */
   displayGraph(graph) {
     return Form.createForm([
       {
@@ -197,6 +229,11 @@ class SidebarSelect extends SidebarContent {
     ]);
   }
 
+  /**
+   * Get HTML for displaying a form for editing Node fields.
+   * @param  {Node} node - The Node object to display.
+   * @return {string} - HTML string of a form with inputs for the Node&apos;s fields.
+   */
   displayNode(node) {
     return Form.createForm([
       {
@@ -250,6 +287,11 @@ class SidebarSelect extends SidebarContent {
     ]);
   }
 
+  /**
+   * Get HTML for displaying a form for editing Edge fields.
+   * @param  {Edge} edge - The Edge object to display.
+   * @return {string} - HTML string of a form with inputs for the Edge&apos;s fields.
+   */
   displayEdge(edge) {
     return Form.createForm([
       {
@@ -273,6 +315,11 @@ class SidebarSelect extends SidebarContent {
     ]);
   }
 
+  /**
+   * Get HTML for displaying a form for editing Label fields.
+   * @param  {Label} label - The Label object to display.
+   * @return {string} - HTML string of a form with inputs for the Label&apos;s fields.
+   */
   displayLabel(label) {
     return Form.createForm([
       {

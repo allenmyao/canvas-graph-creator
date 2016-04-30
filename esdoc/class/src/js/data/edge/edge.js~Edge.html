@@ -102,13 +102,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Edge from &apos;<span><a href="file/src/js/data/edge/edge.js.html#lineNumber10">canvas-graph-creator/src/js/data/edge/edge.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Edge from &apos;<span><a href="file/src/js/data/edge/edge.js.html#lineNumber13">canvas-graph-creator/src/js/data/edge/edge.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/data/edge/edge.js.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/data/edge/edge.js.html#lineNumber13">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +128,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Data representation of a graph edge.</p>
+</div>
 
   
 
@@ -156,13 +157,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(startNode: <span>*</span>, destNode: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(startNode: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>, destNode: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructs an Edge instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -395,13 +397,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Check if the edge contains a given point (within a distance threshold).</p>
+</div>
       </div>
     </td>
     <td>
@@ -426,7 +429,34 @@
       <div>
         
         
+        <div data-ice="description"><p>Remove the edge from all other graph objects associated with it.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Draw the edge on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -445,13 +475,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-drawArrow">drawArrow</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Draw an arrow on the destination side of the edge on the given context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -470,13 +501,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-drawArrow">drawArrow</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-drawLabel">drawLabel</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Draw the Label object associated with this edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -495,38 +527,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-drawLabel">drawLabel</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateCurvedEdgeLabel">updateCurvedEdgeLabel</a></span></span><span data-ice="signature">(oldStartPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldBezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldDestPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, startPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, bezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, destPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateCurvedEdgeLabel">updateCurvedEdgeLabel</a></span></span><span data-ice="signature">(oldStartPoint2D: <span>*</span>, oldBezierPoint2D: <span>*</span>, oldDestPoint2D: <span>*</span>, startPoint2D: <span>*</span>, bezierPoint2D: <span>*</span>, destPoint2D: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Update the position of the Label for a curved edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -551,7 +559,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Update the endpoints of the edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -576,7 +585,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Update endpoints for a normal edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -601,7 +611,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Update endpoints for a self-loop edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -620,13 +631,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateSelfLoopLabel">updateSelfLoopLabel</a></span></span><span data-ice="signature">(oldBezierPoint: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateSelfLoopLabel">updateSelfLoopLabel</a></span></span><span data-ice="signature">(oldBezierPoint: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Update the position of the Label for a self-loop edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -645,13 +657,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateStraightEdgeLabel">updateStraightEdgeLabel</a></span></span><span data-ice="signature">(oldStartPoint2D: <span>*</span>, oldBezierPoint2D: <span>*</span>, oldDestPoint2D: <span>*</span>, startPoint2D: <span>*</span>, bezierPoint2D: <span>*</span>, destPoint2D: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/edge/edge.js~Edge.html#instance-method-updateStraightEdgeLabel">updateStraightEdgeLabel</a></span></span><span data-ice="signature">(oldStartPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldBezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldDestPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, startPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, bezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, destPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Update the position of the Label for a straight edge.</p>
+</div>
       </div>
     </td>
     <td>
@@ -676,18 +689,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(startNode: <span>*</span>, destNode: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(startNode: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>, destNode: <span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructs an Edge instance. Should not be called directly.</p>
+</div>
 
   
 
@@ -701,15 +715,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">startNode</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Start node of the edge.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">destNode</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/data/node/node.js~Node.html">Node</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Destination node of the edge.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -745,7 +761,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber117">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber122">source</a></span></span>
     </span>
   </h3>
 
@@ -785,7 +801,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber53">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
@@ -825,7 +841,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber116">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber121">source</a></span></span>
     </span>
   </h3>
 
@@ -865,7 +881,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber77">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
@@ -905,7 +921,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber88">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber87">source</a></span></span>
     </span>
   </h3>
 
@@ -945,7 +961,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 
@@ -985,7 +1001,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -1025,7 +1041,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber115">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber120">source</a></span></span>
     </span>
   </h3>
 
@@ -1064,18 +1080,19 @@
     
     
     
-    <span data-ice="name">containsPoint</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">containsPoint</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber241">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber258">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Check if the edge contains a given point (within a distance threshold).</p>
+</div>
 
   
 
@@ -1089,15 +1106,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1108,8 +1127,9 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Whether or not the edge contains the point.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1140,14 +1160,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber91">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber93">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Remove the edge from all other graph objects associated with it.</p>
+</div>
 
   
 
@@ -1174,20 +1195,21 @@
     <span class="access" data-ice="access">public</span>
     
     
+    <span class="abstract" data-ice="abstract">abstract</span>
     
-    
-    <span data-ice="name">draw</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">draw</span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber245">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber268">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Draw the edge on the given canvas context.</p>
+</div>
 
   
 
@@ -1201,9 +1223,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Canvas 2D context.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1216,7 +1239,19 @@
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>Throws error if called.</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -1232,18 +1267,19 @@
     
     
     
-    <span data-ice="name">drawArrow</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">drawArrow</span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber253">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber284">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Draw an arrow on the destination side of the edge on the given context.</p>
+</div>
 
   
 
@@ -1257,9 +1293,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Canvas 2D context.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1288,18 +1325,19 @@
     
     
     
-    <span data-ice="name">drawLabel</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">drawLabel</span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber249">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber276">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Draw the Label object associated with this edge.</p>
+</div>
 
   
 
@@ -1313,9 +1351,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Canvas 2D context.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1344,18 +1383,19 @@
     
     
     
-    <span data-ice="name">updateCurvedEdgeLabel</span><span data-ice="signature">(oldStartPoint2D: <span>*</span>, oldBezierPoint2D: <span>*</span>, oldDestPoint2D: <span>*</span>, startPoint2D: <span>*</span>, bezierPoint2D: <span>*</span>, destPoint2D: <span>*</span>)</span>
+    <span data-ice="name">updateCurvedEdgeLabel</span><span data-ice="signature">(oldStartPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldBezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldDestPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, startPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, bezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, destPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber305">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber360">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update the position of the Label for a curved edge.</p>
+</div>
 
   
 
@@ -1369,39 +1409,45 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldStartPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous start point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldBezierPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous bezier point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldDestPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous destination point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">startPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current start point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">bezierPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current bezier point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">destPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current destination point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1434,14 +1480,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber184">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber195">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update the endpoints of the edge.</p>
+</div>
 
   
 
@@ -1474,14 +1521,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber123">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber131">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update endpoints for a normal edge. Called by updateEndpoints().</p>
+</div>
 
   
 
@@ -1514,14 +1562,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber114">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber119">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update endpoints for a self-loop edge. Called by updateEndpoints().</p>
+</div>
 
   
 
@@ -1550,18 +1599,19 @@
     
     
     
-    <span data-ice="name">updateSelfLoopLabel</span><span data-ice="signature">(oldBezierPoint: <span>*</span>)</span>
+    <span data-ice="name">updateSelfLoopLabel</span><span data-ice="signature">(oldBezierPoint: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber267">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber304">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update the position of the Label for a self-loop edge.</p>
+</div>
 
   
 
@@ -1575,9 +1625,24 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldBezierPoint</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous bezier point location.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">oldBezierPoint.x</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The x-coordinate of the bezier point.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">oldBezierPoint.y</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The y-coordinate of the bezier point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1606,18 +1671,19 @@
     
     
     
-    <span data-ice="name">updateStraightEdgeLabel</span><span data-ice="signature">(oldStartPoint2D: <span>*</span>, oldBezierPoint2D: <span>*</span>, oldDestPoint2D: <span>*</span>, startPoint2D: <span>*</span>, bezierPoint2D: <span>*</span>, destPoint2D: <span>*</span>)</span>
+    <span data-ice="name">updateStraightEdgeLabel</span><span data-ice="signature">(oldStartPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldBezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, oldDestPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, startPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, bezierPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>, destPoint2D: <span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber272">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/edge/edge.js.html#lineNumber318">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update the position of the Label for a straight edge.</p>
+</div>
 
   
 
@@ -1631,39 +1697,45 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldStartPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous start point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldBezierPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous bezier point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">oldDestPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The previous destination point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">startPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current start point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">bezierPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current bezier point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">destPoint2D</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/js/util/point-2d.js~Point2D.html">Point2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The current destination point.</p>
+</td>
     </tr>
 </tbody>
   </table>

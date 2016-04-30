@@ -104,8 +104,18 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/data/node/triangle-node.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import PolygonNode from &apos;./polygon-node&apos;;
 
+/**
+ * Node subclass for diamond nodes.
+ * @class TriangleNode
+ */
 class TriangleNode extends PolygonNode {
 
+  /**
+   * Constructs a TriangleNode instance.
+   * @param  {number} x - x-coordinate of the node.
+   * @param  {number} y - y-coordinate of the node.
+   * @constructs TriangleNode
+   */
   constructor(x, y) {
     super(x, y);
     this.inscribed = [ 30, 150, 270 ];

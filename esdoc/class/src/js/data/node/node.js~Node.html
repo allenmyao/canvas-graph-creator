@@ -102,13 +102,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Node from &apos;<span><a href="file/src/js/data/node/node.js.html#lineNumber1">canvas-graph-creator/src/js/data/node/node.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Node from &apos;<span><a href="file/src/js/data/node/node.js.html#lineNumber5">canvas-graph-creator/src/js/data/node/node.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/js/data/node/node.js.html#lineNumber1">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/js/data/node/node.js.html#lineNumber5">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -128,7 +128,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Data representation of a graph node.</p>
+</div>
 
   
 
@@ -156,13 +157,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructs a Node instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -239,19 +241,72 @@
       <span class="access" data-ice="access">public</span>
       
       
-      
+      <span class="abstract" data-ice="abstract">abstract</span>
       <span class="override" data-ice="override"></span>
     </td>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-containsPoint">containsPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Check if the node contains the given point.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-distanceToPoint">distanceToPoint</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Find the distance from the node&apos;s coordinates to a given point.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Draw the node on the given canvas context.</p>
+</div>
       </div>
     </td>
     <td>
@@ -270,13 +325,66 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-distanceToPoint">distanceToPoint</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-drawLabel">drawLabel</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Draw the Label object associated with this node.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-edgePointInDirection">edgePointInDirection</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Find the point on the edge of the node in the direction of the given point.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-getAnglePoint">getAnglePoint</a></span></span><span data-ice="signature">(angle: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Get the point on the edge of the node at the given angle.</p>
+</div>
       </div>
     </td>
     <td>
@@ -295,113 +403,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-draw">draw</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-setPos">setPos</a></span></span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-drawLabel">drawLabel</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-edgePointInDirection">edgePointInDirection</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-getAnglePoint">getAnglePoint</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/js/data/node/node.js~Node.html#instance-method-setPos">setPos</a></span></span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Update the node position.</p>
+</div>
       </div>
     </td>
     <td>
@@ -426,18 +435,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructs a Node instance. Should not be called directly.</p>
+</div>
 
   
 
@@ -451,15 +461,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the node.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the node.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -495,7 +507,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -535,7 +547,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber49">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber40">source</a></span></span>
     </span>
   </h3>
 
@@ -572,20 +584,21 @@
     <span class="access" data-ice="access">public</span>
     
     
+    <span class="abstract" data-ice="abstract">abstract</span>
     
-    
-    <span data-ice="name">containsPoint</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">containsPoint</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Check if the node contains the given point.</p>
+</div>
 
   
 
@@ -599,15 +612,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -620,7 +635,19 @@
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>Throws error if called.</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -634,20 +661,21 @@
     <span class="access" data-ice="access">public</span>
     
     
+    <span class="abstract" data-ice="abstract">abstract</span>
     
-    
-    <span data-ice="name">distanceToPoint</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">distanceToPoint</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber66">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Find the distance from the node&apos;s coordinates to a given point.</p>
+</div>
 
   
 
@@ -661,15 +689,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -682,7 +712,19 @@
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>Throws error if called.</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -696,20 +738,21 @@
     <span class="access" data-ice="access">public</span>
     
     
+    <span class="abstract" data-ice="abstract">abstract</span>
     
-    
-    <span data-ice="name">draw</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">draw</span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber74">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber97">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Draw the node on the given canvas context.</p>
+</div>
 
   
 
@@ -723,9 +766,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Canvas 2D context.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -738,7 +782,19 @@
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>Throws error if called.</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -754,18 +810,19 @@
     
     
     
-    <span data-ice="name">drawLabel</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">drawLabel</span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber82">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber115">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Draw the Label object associated with this node.</p>
+</div>
 
   
 
@@ -779,9 +836,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Canvas 2D context.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -808,20 +866,21 @@
     <span class="access" data-ice="access">public</span>
     
     
+    <span class="abstract" data-ice="abstract">abstract</span>
     
-    
-    <span data-ice="name">edgePointInDirection</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">edgePointInDirection</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber70">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber87">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Find the point on the edge of the node in the direction of the given point.</p>
+</div>
 
   
 
@@ -835,15 +894,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>x-coordinate of the point.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>y-coordinate of the point.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -856,7 +917,19 @@
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>Throws error if called.</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -870,20 +943,21 @@
     <span class="access" data-ice="access">public</span>
     
     
+    <span class="abstract" data-ice="abstract">abstract</span>
     
-    
-    <span data-ice="name">getAnglePoint</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">getAnglePoint</span><span data-ice="signature">(angle: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber78">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber107">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Get the point on the edge of the node at the given angle.</p>
+</div>
 
   
 
@@ -896,10 +970,11 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">context</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="name" data-depth="0">angle</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The angle (clockwise from +x axis).</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -912,7 +987,19 @@
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>Throws error if called.</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -928,18 +1015,19 @@
     
     
     
-    <span data-ice="name">setPos</span><span data-ice="signature">(x: <span>*</span>, y: <span>*</span>)</span>
+    <span data-ice="name">setPos</span><span data-ice="signature">(x: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, y: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/js/data/node/node.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Update the node position.</p>
+</div>
 
   
 
@@ -953,15 +1041,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">x</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The new x-coordinate.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The new y-coordinate.</p>
+</td>
     </tr>
 </tbody>
   </table>

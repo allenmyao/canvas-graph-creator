@@ -102,28 +102,57 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/ui/status-bar.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">class StatusBar {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Class for controlling updates to the status bar.
+ * @class StatusBar
+ */
+class StatusBar {
 
+  /**
+   * Reference to the UI instance.
+   * @type {UI}
+   */
   ui;
 
+  /**
+   * The element containing the status bar.
+   * @type {Element}
+   */
   statusBar;
 
+  /**
+   * Constructs a StatusBar object.
+   * @param  {UI} ui - Reference to the UI instance.
+   * @constructs StatusBar
+   */
   constructor(ui) {
     this.ui = ui;
     this.statusBar = document.getElementById(&apos;status-bar&apos;);
     this.initListeners();
   }
 
+  /**
+   * Initialize the event listeners.
+   */
   initListeners() {
     document.getElementById(&apos;reset-transform&apos;).addEventListener(&apos;click&apos;, (event) =&gt; {
       this.ui.canvas.reset();
     });
   }
 
+  /**
+   * Update the zoom level being displayed.
+   * @param  {number} scale - The current scale of the canvas.
+   */
   updateZoom(scale) {
     document.getElementById(&apos;zoom-input&apos;).value = `${Math.round(scale * 100)}%`;
   }
 
+  /**
+   * Update the mouse position being displayed.
+   * @param  {number} x - x-coordinate of mouse position in canvas coordinates.
+   * @param  {number} y - y-coordinate of mouse position in canvas coordinates.
+   */
   updateMouse(x, y) {
     document.getElementById(&apos;mouse-x&apos;).textContent = x.toFixed(2);
     document.getElementById(&apos;mouse-y&apos;).textContent = y.toFixed(2);

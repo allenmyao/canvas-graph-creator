@@ -104,8 +104,17 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/js/data/edge/solid-edge.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Edge from &apos;./edge&apos;;
 
+/**
+ * Edge subclass for solid edges.
+ * @class SolidEdge
+ */
 class SolidEdge extends Edge {
 
+  /**
+   * Draw the edge on the given canvas context.
+   * @param  {CanvasRenderingContext2D} context - Canvas 2D context.
+   * @override
+   */
   draw(context) {
     context.strokeStyle = this.isSelected ? this.selectedColor : this.color;
     context.lineWidth = this.lineWidth;

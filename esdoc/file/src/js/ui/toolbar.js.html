@@ -113,11 +113,28 @@ const TOOL_CLASS = &apos;tool&apos;;
 const TOOL_NAME_ATTR = &apos;data-tool&apos;;
 const TOOL_SELECTED_CLASS = &apos;btn-primary&apos;;
 
+/**
+ * Class for controlling state of the toolbar.
+ * @class Toolbar
+ */
 class Toolbar {
 
+  /**
+   * Reference to the UI instance.
+   * @type {UI}
+   */
   ui;
 
+  /**
+   * The element containing the toolbar.
+   * @type {Element}
+   */
   toolbar;
+
+  /**
+   * Map of tool names to tool instances.
+   * @type {Object.&lt;string,Tool&gt;}
+   */
   toolMap = {
     node: new NodeTool(),
     edge: new EdgeTool(),
@@ -126,15 +143,33 @@ class Toolbar {
     pan: new PanTool(),
     algorithm: new AlgorithmTool()
   };
+
+  /**
+   * Name of the curent tool.
+   * @type {String}
+   */
   currentTool;
+
+  /**
+   * Tool button of the current tool.
+   * @type {Element}
+   */
   currentToolElement;
 
+  /**
+   * Constructs a Toolbar instance.
+   * @param  {UI} ui - Reference to the UI instance.
+   * @constructs Toolbar
+   */
   constructor(ui) {
     this.ui = ui;
     this.toolbar = document.getElementById(&apos;toolbar&apos;);
     this.initListeners();
   }
 
+  /**
+   * Initialize event listeners.
+   */
   initListeners() {
     this.toolbar.addEventListener(&apos;click&apos;, (event) =&gt; {
       if (event.target.classList.contains(TOOL_CLASS)) {
@@ -143,10 +178,17 @@ class Toolbar {
     });
   }
 
+  /**
+   * Reset the toolbar state.
+   */
   reset() {
     this.selectToolByName(&apos;node&apos;);
   }
 
+  /**
+   * Select tool by passing the element associated with it.
+   * @param  {Element} toolElement - Button on the toolbar for the tool.
+   */
   selectTool(toolElement) {
     if (this.currentTool) {
       this.currentTool.cancel();
@@ -170,6 +212,10 @@ class Toolbar {
     this.ui.topBar.showModeInputs();
   }
 
+  /**
+   * Select a tool by name.
+   * @param  {string} toolName - Name of the tool.
+   */
   selectToolByName(toolName) {
     let toolElement = this.toolbar.querySelector(`.${TOOL_CLASS}[${TOOL_NAME_ATTR}=&quot;${toolName}&quot;]`);
     this.selectTool(toolElement);
