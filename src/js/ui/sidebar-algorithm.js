@@ -4,15 +4,27 @@ import Edge from '../data/edge/edge';
 import Stepper from '../algorithm/stepper';
 import scrollToElement from '../util/scroll-to-element';
 
+/**
+ * Sidebar that accompanies the AlgorithmTool.
+ * @class SidebarAlgorithm
+ */
 class SidebarAlgorithm extends SidebarContent {
 
-  graph;
+  /**
+   * An instance of a Stepper. Used for stepping through algorithm results.
+   * @type {Stepper}
+   */
   stepper;
+
+  /**
+   * Instance of the current algorithm.
+   * @type {AbstractAlgorithm}
+   */
   curAlgorithm;
 
   /**
    * Constructor calls the super, creates a new stepper object and then assigns algorithm specific button listeners to the sidebar
-   * @param  {graph} graph - Reference to the master graph object
+   * @param  {Graph} graph - Reference to the master graph object
    * @constructs SidebarAlgorithm
    */
   constructor(graph) {
@@ -64,6 +76,10 @@ class SidebarAlgorithm extends SidebarContent {
     });
   }
 
+  /**
+   * Called to check for hovering over a graph link (link that associates text with an object in the Graph).
+   * @param  {boolean} bool - Whether or not the graph link is currently being hovered over.
+   */
   hoverEvent(bool) {
     if (event.target.classList.contains('graph-link')) {
       let type = event.target.getAttribute('data-type');
@@ -72,6 +88,9 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
+  /**
+   * Runs the current algorithm and displays the results in the sidebar.
+   */
   run() {
     this.stepper.resetGraph();
     this.curAlgorithm.reset();
@@ -141,6 +160,9 @@ class SidebarAlgorithm extends SidebarContent {
     playBtn.disabled = false;
   }
 
+  /**
+   * Update the state of the buttons in the sidebar.
+   */
   updateStepGUI() {
     let prevBtn = document.getElementById('sidebar').querySelector('.algorithm-prev-btn');
     let nextBtn = document.getElementById('sidebar').querySelector('.algorithm-next-btn');
@@ -179,6 +201,12 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
+  /**
+   * Toggle the hover state of the associated Node or Edge when a graph link is being hovered.
+   * @param  {string}  type - String containing the type of the object.
+   * @param  {number}  id - ID of the object.
+   * @param  {boolean} isHovering - Whether or not the mouse is hovering over the graph link.
+   */
   toggleHover(type, id, isHovering) {
     if (type === 'node') {
       this.graph.forEachNode((node) => {
@@ -195,6 +223,10 @@ class SidebarAlgorithm extends SidebarContent {
     }
   }
 
+  /**
+   * Called when the sidebar content is switched to this.
+   * @override
+   */
   display() {
     this.tabs.replaceTabs({
       algorithm: 'Algorithm'
@@ -203,6 +235,11 @@ class SidebarAlgorithm extends SidebarContent {
     this.tabs.selectTab('algorithm');
   }
 
+  /**
+   * Create a graph link element using the specified Node or Edge.
+   * @param  {(Node|Edge)} obj - Node or Edge object to create a graph link for.
+   * @return {string} - String containing the HTML for the graph link to the specified Node or Edge.
+   */
   createLinkElement(obj) {
     let id = obj.id;
     let name;
@@ -221,6 +258,10 @@ class SidebarAlgorithm extends SidebarContent {
     `;
   }
 
+  /**
+   * Set the current algorithm to a new instance of the given algorithm class.
+   * @param {Object} AlgorithmClass - The algorihtm class
+   */
   setAlgorithm(AlgorithmClass) {
     this.curAlgorithm = new AlgorithmClass(this.graph);
     this.stepper.reset();
@@ -252,12 +293,15 @@ class SidebarAlgorithm extends SidebarContent {
     this.tabs.setTabContent('algorithm', html);
   }
 
+  /**
+   * Reset the graph. Calls resetGraph() of the Stepper instance.
+   */
   resetGraph() {
     this.stepper.resetGraph();
   }
 
   /**
-   * update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar
+   * Update does nothing now, at this point might not do anything ever since changing the algorithm type occurs in algorithm-tool and the top-bar.
    */
   update() {}
 }

@@ -5,16 +5,52 @@ import TopBar from '../ui/top-bar';
 import Canvas from '../ui/canvas';
 import * as Form from '../ui/form';
 
+/**
+ * Class for containing references to all UI controllers.
+ * @class UI
+ */
 class UI {
 
+  /**
+   * The current Graph object.
+   * @type {Graph}
+   */
   graph;
 
+  /**
+   * Instance of TopBar.
+   * @type {TopBar}
+   */
   topBar;
+
+  /**
+   * Instance of Toolbar.
+   * @type {Toolbar}
+   */
   toolbar;
+
+  /**
+   * Instance of Sidebar.
+   * @type {Sidebar}
+   */
   sidebar;
+
+  /**
+   * Instance of StatusBar.
+   * @type {StatusBar}
+   */
   statusBar;
+
+  /**
+   * Instance of Canvas.
+   * @type {Canvas}
+   */
   canvas;
 
+  /**
+   * Constructs an instance of UI.
+   * @constructs UI
+   */
   constructor() {
     this.topBar = new TopBar(this);
     this.toolbar = new Toolbar(this);
@@ -23,6 +59,10 @@ class UI {
     this.canvas = new Canvas(this);
   }
 
+  /**
+   * Initialize the UI state.
+   * @param  {Graph} graph - The current Graph object.
+   */
   init(graph) {
     this.graph = graph;
     this.sidebar.init(graph);
@@ -30,6 +70,10 @@ class UI {
     Form.init();
   }
 
+  /**
+   * Reset the UI state and set a new Graph object as the current graph.
+   * @param {Graph} newGraph - The new Graph object.
+   */
   resetGraph(newGraph) {
     this.graph = newGraph;
     this.toolbar.reset();
