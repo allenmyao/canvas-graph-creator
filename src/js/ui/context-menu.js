@@ -10,21 +10,59 @@ const MENU_SECTION_NAME_ATTRIBUTE = 'data-name';
 const MENU_ITEM_TYPE_ATTRIBUTE = 'data-type';
 const MENU_ITEM_DATA_ATTRIBUTE = 'data-data';
 
+/**
+ * The context menu html object which reacts to context clicks. 
+ * @class ContextMenu
+ */
 class ContextMenu {
 
+  /**
+   * An instance of the UI 
+   * @type {UI}
+   */
   ui;
 
+  /**
+   * An instance of the mouseHandler which interfaces the canvas with the graph
+   * @type {MouseHandler}
+   */
   mouseHandler;
 
+  /**
+   * An instance of the HTMLElement for the context menu
+   * @type {HTMLElement}
+   */
   contextMenu;
 
+  /**
+   * A boolean variable which tracks whether or not the context menu is displayed
+   * @type {Boolean}
+   */
   isDisplayed = false;
+  
+  /**
+   * A number variable which tracks the x-position of the context menu
+   * @type {Number}
+   */
   menuPosX;
+  
+  /**
+   * A number variable which tracks the y-position of the context menu
+   * @type {Number}
+   */
   menuPosY;
 
-  currentSection = null;
+  /**
+   * The currently selected component, can either be a node, an edge, or null
+   * @type {Object} 
+   */
   component;
 
+  /**
+   * Constructor for the context menu class
+   * @param {UI} ui -  reference to the master UI object
+   * @param {MouseHandler} mouseHandler - reference to the master mouseHandler object
+   */
   constructor(ui, mouseHandler) {
     this.ui = ui;
     this.mouseHandler = mouseHandler;
@@ -32,6 +70,9 @@ class ContextMenu {
     this.initListeners();
   }
 
+  /**
+   * Initializes the listeners for clicks upon the context-menu element
+   */
   initListeners() {
     this.contextMenu.addEventListener('mouseup', (event) => {
       let type = event.target.getAttribute(MENU_ITEM_TYPE_ATTRIBUTE);
@@ -83,6 +124,10 @@ class ContextMenu {
     this.isDisplayed = !this.isDisplayed;
   }
 
+  /**
+   * Repositions the context menu based on where the click was adjusting for clicks that might place the context menu off screen
+   * @param {HTMLEvent} event - click event that toggles the context menu opening
+   */
   repositionMenu(event) {
     let xpos = event.clientX;
     let ypos = event.clientY;
@@ -101,6 +146,12 @@ class ContextMenu {
     }
   }
 
+  /**
+   * Function called by canvas when context menu click happens
+   * @param {HTMLEvent} event - click event that toggles the context menu opening
+   * @param {Number} x - x position of the click event
+   * @param {Number} y - y position of the click event
+   */
   contextmenuEventListener(event, x, y) {
     this.menuPosX = x;
     this.menuPosY = y;

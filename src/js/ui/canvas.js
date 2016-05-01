@@ -3,27 +3,74 @@ import ContextMenu from '../ui/context-menu';
 
 const SCALE_MODIFIER = 0.9;
 
+/**
+ * Front end canvas frame which reacts to mouse-clicks upon it. 
+ * @class Canvas
+ */
 class Canvas {
 
+  /**
+   * An instance of the UI 
+   * @type {UI}
+   */
   ui;
 
+  /**
+   * An instance of the canvas element on the browser
+   * @type {HTMLCanvasElement}
+   */
   canvas;
+  
+  /**
+   * An instance of a rendering context
+   * @type {CanvasRenderingContext2D}
+   */
   context;
 
-  // scale of 0.5 means drawing at half size (0.5 pixels for each original pixel)
+  /**
+   * A number value which remembers the zoom factor
+   * @type {Number}
+   */
   scaleValue = 1;
+  
+  /**
+   * A number value which remembers the centered horizontal position on the graph
+   * @type {Number}
+   */
   dx = 0;
+  
+  /**
+   * A number value which remembers the centered vertical position on the graph
+   * @type {Number}
+   */
   dy = 0;
 
+  /**
+   * An instance of the mouseHandler which interfaces the canvas with the graph
+   * @type {MouseHandler}
+   */
   mouseHandler;
+  
+  /**
+   * An instance of the contextMenu
+   * @type {ContextMenu}
+   */
   contextMenu;
 
+  /**
+   * Constructor for the Canvas object
+   * @param {UI} ui - refers to the master ui object
+   */
   constructor(ui) {
     this.ui = ui;
     this.canvas = document.getElementById('canvas');
     this.context = this.canvas.getContext('2d');
   }
 
+  /**
+   * Initializes the mouse handler, context menu, and other listeners
+   * @param {Graph} graph - refers to the master graph object
+   */
   init(graph) {
     this.mouseHandler = new MouseHandler(graph);
     this.contextMenu = new ContextMenu(this.ui, this.mouseHandler);
@@ -61,6 +108,11 @@ class Canvas {
     this.context.clearRect(this.dx, this.dy, this.canvas.width / this.scale, this.canvas.height / this.scale);
   }
 
+  /**
+   * Functions gets the x-position of the click event on the full canvas
+   * @param {HTMLEvent} event - the click event which triggered this call
+   * @return {Number} x - The x-position of the click event on the full canvas
+   */
   getCanvasX(event) {
     let canvasX;
     if (event.target === this.canvas) {
@@ -72,6 +124,11 @@ class Canvas {
     return x;
   }
 
+  /**
+   * Functions gets the y-position of the click event on the full canvas
+   * @param {HTMLEvent} event - the click event which triggered this call
+   * @return {Number} y - The y-position of the click event on the full canvas
+   */
   getCanvasY(event) {
     let canvasY;
     if (event.target === this.canvas) {
@@ -102,6 +159,10 @@ class Canvas {
     this.context.translate(-1 * this.dx, -1 * this.dy);
   }
 
+  /**
+   * Creates all the listeners for every event which happens upon the canvas. 
+   * Based on the event it calls the relevant function. 
+   */  
   initListeners() {
     this.canvas.addEventListener('mousedown', (event) => {
       event.stopPropagation();
