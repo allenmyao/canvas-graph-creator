@@ -66,8 +66,7 @@ class Canvas {
     if (event.target === this.canvas) {
       canvasX = event.offsetX;
     } else {
-      let offsets = document.getElementById('canvas').getBoundingClientRect();
-      canvasX = event.screenX - offsets.left;
+      canvasX = event.pageX - this.canvas.offsetLeft;
     }
     let x = canvasX / this.scale + this.dx;
     return x;
@@ -78,8 +77,7 @@ class Canvas {
     if (event.target === this.canvas) {
       canvasY = event.offsetY;
     } else {
-      let offsets = document.getElementById('canvas').getBoundingClientRect();
-      canvasY = event.screenY - offsets.top;
+      canvasY = event.pageY - this.canvas.offsetTop;
     }
     let y = canvasY / this.scale + this.dy;
     return y;

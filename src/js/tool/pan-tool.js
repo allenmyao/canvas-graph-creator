@@ -20,8 +20,8 @@ class PanTool extends Tool {
   preSelectNone(event, graph, x, y) {
     this.startPosition.dx = ui.canvas.dx;
     this.startPosition.dy = ui.canvas.dy;
-    this.startPosition.x = event.screenX;
-    this.startPosition.y = event.screenY;
+    this.startPosition.x = event.clientX;
+    this.startPosition.y = event.clientY;
   }
 
   /**
@@ -61,8 +61,8 @@ class PanTool extends Tool {
    */
   dragNone(event, graph, x, y) {
     let scale = ui.canvas.scale;
-    ui.canvas.dx = this.startPosition.dx + (this.startPosition.x - event.screenX) / scale;
-    ui.canvas.dy = this.startPosition.dy + (this.startPosition.y - event.screenY) / scale;
+    ui.canvas.dx = this.startPosition.dx + (this.startPosition.x - event.clientX) / scale;
+    ui.canvas.dy = this.startPosition.dy + (this.startPosition.y - event.clientY) / scale;
     ui.canvas.update();
   }
 
