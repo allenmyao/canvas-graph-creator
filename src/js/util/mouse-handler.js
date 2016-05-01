@@ -70,9 +70,9 @@ class MouseHandler {
 
       // drop object
       if (this.graph.hasComponent(x, y, this.draggedObject)) {
-        currentTool.dropOnObject(event, this.graph, this.draggedObject, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
+        currentTool.dropOnObject(event, this.graph, this.draggedObject, this.graph.getComponent(x, y), x, y);
       } else {
-        currentTool.dropOnNone(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
+        currentTool.dropOnNone(event, this.graph, this.draggedObject, x, y);
       }
       this.draggedObject = null;
     } else if (this.mousePressed) {
@@ -128,15 +128,15 @@ class MouseHandler {
       }
     } else if (this.draggedObject) {
       // handle dragging object
-      currentTool.dragObject(event, this.graph, this.draggedObject, this.clickStartX, this.clickStartY, x, y);
+      currentTool.dragObject(event, this.graph, this.draggedObject, x, y);
       ui.sidebar.updateSidebar(this.draggedObject);
     } else if (this.graph.hasComponent(x, y)) {
       // handle dragging over object
-      currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), this.clickStartX, this.clickStartY, x, y);
+      currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), x, y);
       ui.sidebar.updateSidebar();
     } else {
       // handle dragging empty space
-      currentTool.dragNone(event, this.graph, this.clickStartX, this.clickStartY, x, y);
+      currentTool.dragNone(event, this.graph, x, y);
     }
   }
 
@@ -152,7 +152,7 @@ class MouseHandler {
     // check if dragging
     if (this.isRightDragging) {
       this.isRightDragging = false;
-      this.panTool.dropOnNone(event, this.graph, null, this.rightClickStartX, this.rightClickStartY, x, y);
+      this.panTool.dropOnNone(event, this.graph, null, x, y);
     } else if (this.rightMousePressed) {
       // click
       this.panTool.selectNone(event, this.graph, x, y);
@@ -177,7 +177,7 @@ class MouseHandler {
       }
     } else {
       // handle dragging
-      this.panTool.dragNone(event, this.graph, this.rightClickStartX, this.rightClickStartY, x, y);
+      this.panTool.dragNone(event, this.graph, x, y);
     }
   }
 

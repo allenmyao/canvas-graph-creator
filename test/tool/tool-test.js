@@ -16,12 +16,6 @@ describe('Tool', () => {
     it('should create instance of Tool', () => {
       tool.should.be.instanceOf(Tool);
     });
-
-    it('should accept an argument for an icon filepath', () => {
-      let filePath = 'test';
-      let toolWithIcon = new Tool(filePath);
-      (toolWithIcon.icon).should.be.equal(filePath);
-    });
   });
 
   describe('#hasModes', () => {
