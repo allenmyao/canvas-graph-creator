@@ -70,7 +70,7 @@ describe('NodeTool', () => {
   // should do same thing as selectNone
   describe('#dropOnNone', () => {
     it('should add node if no collisions detected', () => {
-      nodeTool.dropOnNone(null, graph, null, 0, 0, 0, 0);
+      nodeTool.dropOnNone(null, graph, null, 0, 0);
       (graph.nodes.size).should.be.equal(1);
     });
 
@@ -79,7 +79,7 @@ describe('NodeTool', () => {
       let radius = node.radius;
       graph.addNode(node);
 
-      nodeTool.dropOnNone(null, graph, null, 0, 0, radius + 1, 0);
+      nodeTool.dropOnNone(null, graph, null, radius + 1, 0);
       (graph.nodes.size).should.be.equal(1);
     });
   });

@@ -4,8 +4,6 @@ import Label from '../data/label';
 
 class MoveTool extends Tool {
 
-  name = 'Move Tool';
-
   objStartX;
   objStartY;
   startX;
@@ -19,22 +17,22 @@ class MoveTool extends Tool {
     return true;
   }
 
-  dragObject(event, graph, obj, startX, startY, x, y) {
+  dragObject(event, graph, obj, x, y) {
     if (obj instanceof Node || obj instanceof Label) {
       obj.setPos(x - (this.startX - this.objStartX), y - (this.startY - this.objStartY));
     }
   }
 
-  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
+  dropOnObject(event, graph, droppedObj, destObj, x, y) {
     if (droppedObj instanceof Node && destObj instanceof Node) {
       // stop dragging, and reset to starting position
       this.resetObjectPosition(droppedObj);
     } else {
-      this.dropOnNone(event, graph, droppedObj, startX, startY, x, y);
+      this.dropOnNone(event, graph, droppedObj, x, y);
     }
   }
 
-  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
+  dropOnNone(event, graph, droppedObj, x, y) {
     // check for overlap
     if (droppedObj instanceof Node) {
       if (graph.isNodeCollision(droppedObj, x, y)) {

@@ -7,8 +7,6 @@ import { Edge } from '../data/edge/edge';
  */
 class EraseTool extends Tool {
 
-  name = 'Erase Tool';
-
    /**
    * Commits to object selection when called by mouse handler
    * @param {Object} event mouse event

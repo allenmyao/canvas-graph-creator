@@ -10,8 +10,6 @@ import OctagonNode from '../data/node/octagon-node';
 
 class NodeTool extends Tool {
 
-  name = 'Node Tool';
-
   currentMode = 'circle';
   static modes = {
     circle: CircleNode,
@@ -114,7 +112,7 @@ class NodeTool extends Tool {
     this.addNode(this.currentMode, graph, x, y);
   }
 
-  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
+  dropOnNone(event, graph, droppedObj, x, y) {
     this.selectNone(event, graph, x, y);
   }
 

@@ -3,7 +3,6 @@ import Label from '../data/label';
 
 class SelectTool extends Tool {
 
-  name = 'Select Tool';
   sidebarType = 'select';
 
   selectedObject = null;

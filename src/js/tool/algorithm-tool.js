@@ -6,7 +6,6 @@ import ui from '../ui/ui';
 
 class AlgorithmTool extends Tool {
 
-  name = 'Algorithm Tool';
   sidebarType = 'algorithm';
 
   currentMode = 'traversal';

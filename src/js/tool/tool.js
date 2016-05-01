@@ -6,12 +6,23 @@ class Tool {
 
   sidebarType = 'display';
 
+  currentMode;
+  modes;
+
+  optionMap;
+  optionContent;
+
+  inputs;
+  inputTypes;
+
+  modeInputs;
+  modeInputTypes;
+
   /**
    * Constructs a Tool instance. Should not be called directly.
    * @constructs Tool
    */
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Returns a boolean indicating whether or not the tool has modes.
@@ -102,7 +113,7 @@ class Tool {
    * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
    * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
    */
-  dragObject(event, graph, srcObj, startX, startY, x, y) {}
+  dragObject(event, graph, srcObj, x, y) {}
 
   /**
    * Handler for object dropping on another object.
@@ -113,7 +124,7 @@ class Tool {
    * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
    * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
    */
-  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {}
+  dropOnObject(event, graph, droppedObj, destObj, x, y) {}
 
   /**
    * [dragOverObject description]
@@ -123,8 +134,8 @@ class Tool {
    * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
    * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
    */
-  dragOverObject(event, graph, obj, startX, startY, x, y) {
-    return this.dragNone(event, graph, startX, startY, x, y);
+  dragOverObject(event, graph, obj, x, y) {
+    this.dragNone(event, graph, x, y);
   }
 
   // mouse events on empty space
@@ -132,8 +143,8 @@ class Tool {
   preSelectNone(event, graph, x, y) {}
   preDragNone(event, graph, x, y) {}
   selectNone(event, graph, x, y) {}
-  dragNone(event, graph, startX, startY, x, y) {}
-  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {}
+  dragNone(event, graph, x, y) {}
+  dropOnNone(event, graph, droppedObj, x, y) {}
 
 }
 

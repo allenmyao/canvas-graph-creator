@@ -24,16 +24,16 @@ class SelectMoveTool extends Tool {
     return this.moveTool.preDragObject(...arguments);
   }
 
-  dragObject(event, graph, obj, startX, startY, x, y) {
+  dragObject(event, graph, obj, x, y) {
     this.selectTool.selectObject(event, graph, obj, x, y);
     this.moveTool.dragObject(...arguments);
   }
 
-  dropOnObject(event, graph, droppedObj, destObj, startX, startY, x, y) {
+  dropOnObject(event, graph, droppedObj, destObj, x, y) {
     this.moveTool.dropOnObject(...arguments);
   }
 
-  dropOnNone(event, graph, droppedObj, startX, startY, x, y) {
+  dropOnNone(event, graph, droppedObj, x, y) {
     this.moveTool.dropOnNone(...arguments);
   }
 

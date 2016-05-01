@@ -6,8 +6,6 @@ import CircleNode from '../data/node/circle-node';
 
 class EdgeTool extends Tool {
 
-  name = 'Edge Tool';
-
   currentMode = 'solid';
   static modes = {
     solid: SolidEdge,
