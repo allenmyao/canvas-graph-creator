@@ -1,12 +1,19 @@
 package utils;
 
 public class Utils {
-	//http://stackoverflow.com/questions/4062022/how-to-convert-words-to-a-number
+	/**
+	 * Converts a given word to an integer
+	 * 
+	 * @param inwords
+	 *            an english representation of a number
+	 * @return an integer representing the given input
+	 */
+	// http://stackoverflow.com/questions/4062022/how-to-convert-words-to-a-number
 	public static int inNumerals(String inwords) {
-		try
-		{
+		try {
 			return Integer.parseInt(inwords);
-		}catch(Exception e){}
+		} catch (Exception e) {
+		}
 		int wordnum = 0;
 		String[] arrinwords = inwords.split(" ");
 		int arrinwordsLength = arrinwords.length;
@@ -74,94 +81,94 @@ public class Utils {
 
 	public static int wordtonum(String word) {
 		int num = 0;
-		
-		if(word.equals("one")){
+
+		if (word.equals("one")) {
 			num = 1;
-			
-		}else if(word.equals("two")){
+
+		} else if (word.equals("two")) {
 			num = 2;
-			
-		}else if(word.equals("three")){
+
+		} else if (word.equals("three")) {
 			num = 3;
-			
-		}else if(word.equals("four")){
+
+		} else if (word.equals("four")) {
 			num = 4;
-			
-		}else if(word.equals("five")){
+
+		} else if (word.equals("five")) {
 			num = 5;
-			
-		}else if(word.equals("six")){
+
+		} else if (word.equals("six")) {
 			num = 6;
-			
-		}else if(word.equals("seven")){
+
+		} else if (word.equals("seven")) {
 			num = 7;
-			
-		}else if(word.equals("eight")){
+
+		} else if (word.equals("eight")) {
 			num = 8;
-			
-		}else if(word.equals("nine")){
+
+		} else if (word.equals("nine")) {
 			num = 9;
-			
-		}else if(word.equals("ten")){
+
+		} else if (word.equals("ten")) {
 			num = 10;
-			
-		}else if(word.equals("eleven")){
+
+		} else if (word.equals("eleven")) {
 			num = 11;
-			
-		}else if(word.equals("twelve")){
+
+		} else if (word.equals("twelve")) {
 			num = 12;
-			
-		}else if(word.equals("thirteen")){
+
+		} else if (word.equals("thirteen")) {
 			num = 13;
-			
-		}else if(word.equals("fourteen")){
+
+		} else if (word.equals("fourteen")) {
 			num = 14;
-			
-		}else if(word.equals("fifteen")){
+
+		} else if (word.equals("fifteen")) {
 			num = 15;
-			
-		}else if(word.equals("sixteen")){
+
+		} else if (word.equals("sixteen")) {
 			num = 16;
-			
-		}else if(word.equals("seventeen")){
+
+		} else if (word.equals("seventeen")) {
 			num = 17;
-			
-		}else if(word.equals("eighteen")){
+
+		} else if (word.equals("eighteen")) {
 			num = 18;
-			
-		}else if(word.equals("nineteen")){
+
+		} else if (word.equals("nineteen")) {
 			num = 19;
-			
-		}else if(word.equals("twenty")){
+
+		} else if (word.equals("twenty")) {
 			num = 20;
-			
-		}else if(word.equals("thirty")){
+
+		} else if (word.equals("thirty")) {
 			num = 30;
-			
-		}else if(word.equals("forty")){
+
+		} else if (word.equals("forty")) {
 			num = 40;
-			
-		}else if(word.equals("fifty")){
+
+		} else if (word.equals("fifty")) {
 			num = 50;
-			
-		}else if(word.equals("sixty")){
+
+		} else if (word.equals("sixty")) {
 			num = 60;
-			
-		}else if(word.equals("seventy")){
+
+		} else if (word.equals("seventy")) {
 			num = 70;
-			
-		}else if(word.equals("eighty")){
+
+		} else if (word.equals("eighty")) {
 			num = 80;
-			
-		}else if(word.equals("ninety")){
+
+		} else if (word.equals("ninety")) {
 			num = 90;
-			
-		}else if(word.equals("hundred")){
+
+		} else if (word.equals("hundred")) {
 			num = 100;
-			
-		}else if(word.equals("thousand")){
+
+		} else if (word.equals("thousand")) {
 			num = 1000;
-			
+
 		}
 		/*
 		 * default: num = "Invalid month"; break;

@@ -57,6 +57,12 @@ public class ImageUtils {
         cvMatchTemplate(src, tmp, result, CV_TM_CCOEFF_NORMED);
         return result;		
 	}
+	/**
+	 * Finds the coordinate of the best match for a given template image and screenshot
+	 * @param template the template image to search for
+	 * @param screenshot the image to search
+	 * @return the coordinate with the best match for the given template
+	 */
 	public static Point bestMatch(BufferedImage template, BufferedImage screenshot)
 	{
 		IplImage result = match(template, screenshot);
@@ -79,6 +85,12 @@ public class ImageUtils {
 		
 		return point;
 	}
+	/**
+	 * Performs a template match with the given template image and screenshot
+	 * @param template the template image to search for
+	 * @param screenshot the image to search
+	 * @return a list of all points that match the template image
+	 */
 	public static List<Point> templateMatch(BufferedImage template, BufferedImage screenshot)
     {
 
@@ -111,6 +123,12 @@ public class ImageUtils {
         return points;
 	}
 	
+	/**
+	 * Compares whether or not two objects are equal
+	 * @param image1 the first image to compare
+	 * @param image2 the second image to compare
+	 * @return true if the two images are equal
+	 */
 	public static boolean imageEquals(BufferedImage image1, BufferedImage image2)
 	{
 		DataBufferByte dbActual = (DataBufferByte)image1.getRaster().getDataBuffer();
@@ -126,6 +144,12 @@ public class ImageUtils {
 		return true;
 	}
 
+	/**
+	 * Creates an image based on how much the two given images differ
+	 * @param img1 the first image to diff
+	 * @param img2 the second image to diff
+	 * @return a difference image for the two given images
+	 */
 	public static BufferedImage getDifferenceImage(BufferedImage img1, BufferedImage img2) {
 	    int width1 = img1.getWidth(); // Change - getWidth() and getHeight() for BufferedImage
 	    int width2 = img2.getWidth(); // take no arguments

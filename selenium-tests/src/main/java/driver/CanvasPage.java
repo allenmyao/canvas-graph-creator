@@ -95,6 +95,7 @@ public abstract class CanvasPage {
 	{
 		new Actions(driver).moveToElement(canvas, point.x, point.y).contextClick().build().perform();   
 	}
+
 	private int steps(Point source, Point target, int stepDistance)
 	{
 		double diffX = (target.x - source.x);
@@ -102,6 +103,10 @@ public abstract class CanvasPage {
 		double distance = Math.sqrt(diffX * diffX + diffY * diffY);
 		return (int)(distance/stepDistance);
 	}
+	/**
+	 * Clicks and drags between all of the given points
+	 * @param points a list of all the points to drag between. Size must be at least 2
+	 */
 	public void clickAndDrag(List<Point> points)
 	{
 		if(points.size() < 2)
@@ -129,21 +134,41 @@ public abstract class CanvasPage {
 		actions = actions.release();
 		actions.build().perform();
 	}
+	/**
+	 * Clicks and drags between all of the given points
+	 * @param points a list of all the points to drag between. Size must be at least 2
+	 */
 	public void clickAndDrag(Point... points)
 	{
 		clickAndDrag(Arrays.asList(points));
 	}
 	
+	/**
+	 * Clicks on an element
+	 * @param cssSelector the CSS selector for the element to click on
+	 * @param offset the number of pixels offset from the upper right corner
+	 */
 	public void click(String cssSelector, Point offset)
 	{
 		click(driver.findElement(By.cssSelector(cssSelector)), offset);
 	}
-	
+	/**
+	 * Clicks on an element
+	 * @param element the web element to click on
+	 * @param offset the number of pixels offset from the upper right corner
+	 */
 	public void click(WebElement element, Point offset)
 	{
 		new Actions(driver).moveToElement(element, offset.x, offset.y).click().build().perform();
 	}
 
+	/**
+	 * Loads a resource image from a given path. If no image exists, a screenshot is taken and saved to the path
+	 * @param path the path to the desired resource image 
+	 * @return a buffered image representing the image
+	 * @throws URISyntaxException
+	 * @throws IOException
+	 */
 	public BufferedImage getResource(String path) throws URISyntaxException, IOException
 	{
 		File file = new File(path);
@@ -157,6 +182,9 @@ public abstract class CanvasPage {
 		return ImageIO.read(file);
 	}
 
+	/**
+	 * Waits for the webpage to be loaded
+	 */
 	//http://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
 	public void waitUntilLoaded()
 	{
@@ -170,12 +198,25 @@ public abstract class CanvasPage {
 	        }
 	    });
 	}
+	/**
+	 * Asserts that the current screenshot contains the image with a given path
+	 * @param path the path to the image to check for
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
 	public void assertContains(String path) throws IOException, URISyntaxException {
 		BufferedImage template = getResource(path);
 		//BufferedImage screenshot = ImageUtils.getDifferenceImage(initialScreenshot, getScreenshot());;
 		BufferedImage screenshot = getScreenshot();
 		assertTrue(ImageUtils.templateMatch(template, screenshot).size() >= 1);
 	}
+	/**
+	 * Asserts that the current screenshot has a given number of occurrences of an image 
+	 * @param path the path to the image to check for
+	 * @param count
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
 	public void assertContains(String path, int count) throws IOException, URISyntaxException
 	{
 		BufferedImage template = getResource(path);
@@ -184,12 +225,20 @@ public abstract class CanvasPage {
 		assertEquals(count, ImageUtils.templateMatch(template, screenshot).size());
 	}
 
+	/**
+	 * Visits the given website and selects the canvas object
+	 * @param website
+	 */
 	public void initialize(String website) {
 		waitUntilLoaded();
 		driver.get(website);
 
 		canvas = (new WebDriverWait(driver, DRIVER_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
 	}
+	/**
+	 * Scrolls the canvas by a given number of ticks
+	 * @param ticks the number of mouse wheel ticks to scroll
+	 */
 	public void scroll(Point ticks)
 	{
 		JavascriptExecutor jse = (JavascriptExecutor) driver;

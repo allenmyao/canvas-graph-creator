@@ -14,6 +14,11 @@ public class DriverFactory {
 	public static final String DEFAULT_BROWSER = "firefox";
 	public static final String DEFAULT_VERSION = "39.0";
 
+	/**
+	 * Creates a Selenium web driver based on a given browser name
+	 * @param name name of the desired browser
+	 * @return the web driver object
+	 */
 	public static WebDriver createDriver(String name) {
 		WebDriver driver;
 
@@ -29,6 +34,11 @@ public class DriverFactory {
 		return driver;
 	}
 
+	/**
+	 * Creates a Selenium web driver based on the given System properties
+	 * @return the web driver object
+	 * @throws MalformedURLException
+	 */
 	public static WebDriver createDriver() throws MalformedURLException {
 		String browser = System.getProperty("browser", DEFAULT_BROWSER);
 		String remote = System.getProperty("remote", "none");
@@ -42,6 +52,12 @@ public class DriverFactory {
 		}
 	}
 
+	/**
+	 * Creates a remote Selenium web driver that uses Sauce Labs
+	 * @param name name of the desired browser
+	 * @return
+	 * @throws MalformedURLException
+	 */
 	public static WebDriver createSauceDriver(String name) throws MalformedURLException {
 		String username = System.getenv("SAUCE_USERNAME");
 		String key = System.getenv("SAUCE_ACCESS_KEY");
