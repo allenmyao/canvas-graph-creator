@@ -15209,7 +15209,7 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n   * Helper function to construct empty objects by class name\n   * @param {string} name of element tyoe to allocate\n   * @returns {Object} the constructed object\n   ",
+                  "value": "*\n   * Helper function to construct empty objects by class name\n   * @param {string} name of element type to allocate\n   * @returns {Object} the constructed object\n   ",
                   "start": 7210,
                   "end": 7381,
                   "loc": {
@@ -16291,7 +16291,7 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n   * Helper function to construct empty objects by class name\n   * @param {string} name of element tyoe to allocate\n   * @returns {Object} the constructed object\n   ",
+                  "value": "*\n   * Helper function to construct empty objects by class name\n   * @param {string} name of element type to allocate\n   * @returns {Object} the constructed object\n   ",
                   "start": 7210,
                   "end": 7381,
                   "loc": {

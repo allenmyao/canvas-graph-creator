@@ -834,7 +834,7 @@
             "trailingComments": [
               {
                 "type": "Block",
-                "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing tyoe of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
+                "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing type of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
                 "start": 822,
                 "end": 1188,
                 "loc": {
@@ -1308,7 +1308,7 @@
             "leadingComments": [
               {
                 "type": "Block",
-                "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing tyoe of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
+                "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing type of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
                 "start": 822,
                 "end": 1188,
                 "loc": {
@@ -9356,7 +9356,7 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing tyoe of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
+                  "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing type of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
                   "start": 822,
                   "end": 1188,
                   "loc": {
@@ -9830,7 +9830,7 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing tyoe of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
+                  "value": "*\n   * @typedef InputType\n   * @type {object}\n   * @property {string} type - String representing type of input.\n   * @property {string} name - Name of the field.\n   * @property {string} displayName - Name to be displayed.\n   * @property {method} test - Function run to validate input.\n   * @property {boolean} required - Whether or not the input is required.\n   ",
                   "start": 822,
                   "end": 1188,
                   "loc": {

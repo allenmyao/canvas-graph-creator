@@ -153,11 +153,6 @@ describe(&apos;NodeTool&apos;, () =&gt; {
       nodeTool.selectObject(null, graph, edge, node1.radius * 3, 0);
       (graph.nodes.size).should.be.equal(3);
     });
-
-    // it(&apos;should not add node if object is an edge over a node&apos;, () =&gt; {
-    //   // TODO implement this
-    //   console.log(&apos;Not implemented yet&apos;);
-    // });
   });
 
   describe(&apos;#selectNone&apos;, () =&gt; {
@@ -179,7 +174,7 @@ describe(&apos;NodeTool&apos;, () =&gt; {
   // should do same thing as selectNone
   describe(&apos;#dropOnNone&apos;, () =&gt; {
     it(&apos;should add node if no collisions detected&apos;, () =&gt; {
-      nodeTool.dropOnNone(null, graph, null, 0, 0, 0, 0);
+      nodeTool.dropOnNone(null, graph, null, 0, 0);
       (graph.nodes.size).should.be.equal(1);
     });
 
@@ -188,7 +183,7 @@ describe(&apos;NodeTool&apos;, () =&gt; {
       let radius = node.radius;
       graph.addNode(node);
 
-      nodeTool.dropOnNone(null, graph, null, 0, 0, radius + 1, 0);
+      nodeTool.dropOnNone(null, graph, null, radius + 1, 0);
       (graph.nodes.size).should.be.equal(1);
     });
   });

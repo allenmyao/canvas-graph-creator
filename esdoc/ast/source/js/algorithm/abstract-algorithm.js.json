@@ -595,7 +595,7 @@
             "trailingComments": [
               {
                 "type": "Block",
-                "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing type of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
                 "start": 810,
                 "end": 1184,
                 "loc": {
@@ -687,7 +687,7 @@
             "leadingComments": [
               {
                 "type": "Block",
-                "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing type of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
                 "start": 810,
                 "end": 1184,
                 "loc": {
@@ -2152,7 +2152,7 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                  "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing type of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
                   "start": 810,
                   "end": 1184,
                   "loc": {
@@ -2244,7 +2244,7 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing tyoe of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
+                  "value": "*\r\n   * @typedef InputType\r\n   * @type {object}\r\n   * @property {string} type - String representing type of input.\r\n   * @property {string} name - Name of the field.\r\n   * @property {string} displayName - Name to be displayed.\r\n   * @property {method} test - Function run to validate input.\r\n   * @property {boolean} required - Whether or not the input is required.\r\n   ",
                   "start": 810,
                   "end": 1184,
                   "loc": {

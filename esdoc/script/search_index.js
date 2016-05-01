@@ -1447,19 +1447,19 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber76",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber71",
     "NodeTool #dropOnNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber77",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber72",
     "NodeTool #dropOnNone should add node if no collisions detected",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber82",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber77",
     "NodeTool #dropOnNone should not add node if colliding with another node",
     "test"
   ],
@@ -1477,19 +1477,19 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber59",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber54",
     "NodeTool #selectNone",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber60",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber55",
     "NodeTool #selectNone should add node if no collisions detected",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/node-tool-test.js.html#lineNumber65",
+    "test-file/test/tool/node-tool-test.js.html#lineNumber60",
     "NodeTool #selectNone should not add node if colliding with another node",
     "test"
   ],
@@ -2323,19 +2323,19 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber70",
+    "test-file/test/tool/tool-test.js.html#lineNumber64",
     "Tool ",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber71",
+    "test-file/test/tool/tool-test.js.html#lineNumber65",
     "Tool  should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber75",
+    "test-file/test/tool/tool-test.js.html#lineNumber69",
     "Tool  should be callable",
     "test"
   ],
@@ -2347,61 +2347,55 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber20",
-    "Tool #constructor should accept an argument for an icon filepath",
-    "test"
-  ],
-  [
-    "",
     "test-file/test/tool/tool-test.js.html#lineNumber16",
     "Tool #constructor should create instance of Tool",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber33",
+    "test-file/test/tool/tool-test.js.html#lineNumber27",
     "Tool #hasInputs",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber34",
+    "test-file/test/tool/tool-test.js.html#lineNumber28",
     "Tool #hasInputs should return false",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber27",
+    "test-file/test/tool/tool-test.js.html#lineNumber21",
     "Tool #hasModes",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber28",
+    "test-file/test/tool/tool-test.js.html#lineNumber22",
     "Tool #hasModes should return false",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber45",
+    "test-file/test/tool/tool-test.js.html#lineNumber39",
     "Tool #preDragObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber46",
+    "test-file/test/tool/tool-test.js.html#lineNumber40",
     "Tool #preDragObject should return true",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber39",
+    "test-file/test/tool/tool-test.js.html#lineNumber33",
     "Tool #preSelectObject",
     "test"
   ],
   [
     "",
-    "test-file/test/tool/tool-test.js.html#lineNumber40",
+    "test-file/test/tool/tool-test.js.html#lineNumber34",
     "Tool #preSelectObject should return true",
     "test"
   ],
@@ -4410,12 +4404,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/js/tool/tool.js~tool#icon",
-    "class/src/js/tool/tool.js~Tool.html#instance-member-icon",
-    "src/js/tool/tool.js~Tool#icon",
-    "member"
-  ],
-  [
     "src/js/tool/tool.js~tool#predragnone",
     "class/src/js/tool/tool.js~Tool.html#instance-method-preDragNone",
     "src/js/tool/tool.js~Tool#preDragNone",
@@ -4549,13 +4537,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],
   [
     "src/js/ui/canvas.js~canvas#scale",
-    "class/src/js/ui/canvas.js~Canvas.html#instance-set-scale",
+    "class/src/js/ui/canvas.js~Canvas.html#instance-get-scale",
     "src/js/ui/canvas.js~Canvas#scale",
     "member"
   ],

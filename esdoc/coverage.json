@@ -1,7 +1,7 @@
 {
-  "coverage": "51.21%",
-  "expectCount": 533,
-  "actualCount": 273,
+  "coverage": "63.34%",
+  "expectCount": 532,
+  "actualCount": 337,
   "files": {
     "src/js/algorithm/abstract-algorithm.js": {
       "expectCount": 4,
@@ -20,19 +20,10 @@
     },
     "src/js/tool/algorithm-tool.js": {
       "expectCount": 11,
-      "actualCount": 0,
+      "actualCount": 9,
       "undocumentLines": [
-        7,
-        53,
-        57,
-        54,
-        58,
-        37,
-        33,
-        62,
-        41,
-        49,
-        45
+        80,
+        89
       ]
     },
     "src/js/ui/canvas.js": {
@@ -140,16 +131,10 @@
     },
     "src/js/tool/edge-tool.js": {
       "expectCount": 8,
-      "actualCount": 0,
+      "actualCount": 6,
       "undocumentLines": [
-        7,
-        69,
-        73,
-        78,
-        81,
-        117,
-        111,
-        77
+        87,
+        86
       ]
     },
     "src/js/tool/erase-tool.js": {
@@ -226,18 +211,12 @@
     },
     "src/js/tool/move-tool.js": {
       "expectCount": 10,
-      "actualCount": 0,
+      "actualCount": 6,
       "undocumentLines": [
-        5,
-        22,
-        37,
-        28,
-        17,
-        18,
-        14,
-        50,
-        15,
-        16
+        29,
+        30,
+        27,
+        28
       ]
     },
     "src/js/data/node/node.js": {
@@ -250,14 +229,8 @@
     },
     "src/js/tool/node-tool.js": {
       "expectCount": 5,
-      "actualCount": 0,
-      "undocumentLines": [
-        11,
-        121,
-        117,
-        113,
-        107
-      ]
+      "actualCount": 5,
+      "undocumentLines": []
     },
     "src/js/data/node/octagon-node.js": {
       "expectCount": 4,
@@ -269,15 +242,9 @@
     },
     "src/js/tool/pan-tool.js": {
       "expectCount": 7,
-      "actualCount": 0,
+      "actualCount": 6,
       "undocumentLines": [
-        4,
-        25,
-        17,
-        32,
-        21,
-        10,
-        33
+        79
       ]
     },
     "src/js/data/node/pentagon-node.js": {
@@ -313,27 +280,14 @@
     },
     "src/js/tool/select-move-tool.js": {
       "expectCount": 8,
-      "actualCount": 0,
-      "undocumentLines": [
-        5,
-        11,
-        27,
-        36,
-        32,
-        23,
-        19,
-        15
-      ]
+      "actualCount": 8,
+      "undocumentLines": []
     },
     "src/js/tool/select-tool.js": {
       "expectCount": 5,
-      "actualCount": 0,
+      "actualCount": 4,
       "undocumentLines": [
-        4,
-        11,
-        35,
-        15,
-        32
+        46
       ]
     },
     "src/js/util/graph-serialize.js": {
@@ -455,31 +409,10 @@
       ]
     },
     "src/js/tool/tool.js": {
-      "expectCount": 22,
-      "actualCount": 0,
+      "expectCount": 21,
+      "actualCount": 20,
       "undocumentLines": [
-        1,
-        53,
-        34,
-        36,
-        28,
-        7,
-        29,
-        57,
-        46,
-        48,
-        58,
-        47,
-        18,
-        23,
-        11,
-        8,
-        55,
-        42,
-        54,
-        39,
-        56,
-        45
+        61
       ]
     },
     "src/js/ui/toolbar.js": {
