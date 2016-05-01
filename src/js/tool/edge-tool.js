@@ -4,6 +4,10 @@ import SolidEdge from '../data/edge/solid-edge';
 import DashedEdge from '../data/edge/dashed-edge';
 import CircleNode from '../data/node/circle-node';
 
+/**
+ * Tool for adding edges to the graph.
+ * @class EdgeTool
+ */
 class EdgeTool extends Tool {
 
   currentMode = 'solid';
@@ -64,10 +68,17 @@ class EdgeTool extends Tool {
   start = null;
   dest = null;
 
+  /**
+   * Cancel any
+   * @override
+   */
   cancel() {
     this.deselect();
   }
 
+  /**
+   * Deselect the selected node (if any).
+   */
   deselect() {
     if (this.start) {
       this.start.isSelected = false;
@@ -76,6 +87,11 @@ class EdgeTool extends Tool {
     this.dest = null;
   }
 
+  /**
+   * Called when a node is selected. Determines whether an edge should be added or not.
+   * @param  {Graph} graph - The current Graph object.
+   * @param  {Node} node - The selected node.
+   */
   selectNode(graph, node) {
     let EdgeClass = EdgeTool.modes[this.currentMode];
     if (this.start === null) {
@@ -106,12 +122,29 @@ class EdgeTool extends Tool {
     }
   }
 
+  /**
+   * Handler for object selection. For this tool, only nodes can be selected. When a second node is selected, an edge is created and the tool state is reset.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {(Node|Edge|Label)} obj - Selected graph component.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   * @override
+   */
   selectObject(event, graph, obj, x, y) {
     if (obj instanceof Node) {
       this.selectNode(graph, obj);
     }
   }
 
+  /**
+   * Handler for clicking empty space. Deselect any selected nodes.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   * @override
+   */
   selectNone(event, graph, x, y) {
     this.deselect();
   }

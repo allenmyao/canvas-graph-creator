@@ -4,6 +4,7 @@ import { Edge } from '../data/edge/edge';
 
 /**
  * Eraser Tool for removing nodes and edges from the graph using the mouse pointer.
+ * @class EraseTool
  */
 class EraseTool extends Tool {
 

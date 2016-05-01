@@ -53,19 +53,21 @@ class Tool {
         && typeof this.modeInputTypes !== 'undefined';
   }
 
+  /**
+   * Called when the mode is changed.
+   * @param  {string} mode - Name of the new mode.
+   */
   changeMode(mode) {
     this.currentMode = mode;
   }
 
   /**
    * Called when changing to this tool (if necessary).
-   * @abstract
    */
   activate() {}
 
   /**
    * Called when switching to a different tool to cancel any incomplete actions.
-   * @abstract
    */
   cancel() {}
 
@@ -127,10 +129,10 @@ class Tool {
   dropOnObject(event, graph, droppedObj, destObj, x, y) {}
 
   /**
-   * [dragOverObject description]
+   * Handler for dragging mouse over an object.
    * @param  {Event} event - Event object from event listener.
    * @param  {Graph} graph - The current graph object.
-   * @param  {[type]} obj    [description]
+   * @param  {(Node|Edge|Label)} obj - The object that the mouse is dragged over.
    * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
    * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
    */
@@ -138,12 +140,59 @@ class Tool {
     this.dragNone(event, graph, x, y);
   }
 
-  // mouse events on empty space
+  /**
+   * Handler for aborted selections.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   abortSelect(event, graph, x, y) {}
+
+  /**
+   * Called before the selectNone() handler.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   preSelectNone(event, graph, x, y) {}
+
+  /**
+   * Called before the dragNone() handler.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   preDragNone(event, graph, x, y) {}
+
+  /**
+   * Handler for clicking empty space.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   selectNone(event, graph, x, y) {}
+
+  /**
+   * Handler for dragging mouse on empty space.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   dragNone(event, graph, x, y) {}
+
+  /**
+   * Handler for dropping object on empty space.
+   * @param  {Event} event - Event object from event listener.
+   * @param  {Graph} graph - The current graph object.
+   * @param  {(Node|Edge|Label)} droppedObj - Dropped graph component.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   dropOnNone(event, graph, droppedObj, x, y) {}
 
 }
