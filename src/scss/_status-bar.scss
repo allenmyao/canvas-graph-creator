@@ -91,19 +91,31 @@
       }
 
       #serialization {
-        padding: 0 20px;
+        padding: 0 20px 0 10px;
+
+        fieldset {
+          margin: 0 10px;
+
+          &:not(:first-child) {
+            margin-left: 25px;
+          }
+        }
 
         button {
           display: inline-block;
           vertical-align: middle;
           height: 40px;
-          margin: 5px 0;
+          margin: 5px 5px 5px 0;
           padding: 2px;
 
           >img {
             height: 100%;
             pointer-events: none;
           }
+        }
+
+        #graph-uploader {
+          display: none;
         }
       }
     }
