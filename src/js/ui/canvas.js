@@ -4,13 +4,13 @@ import ContextMenu from '../ui/context-menu';
 const SCALE_MODIFIER = 0.9;
 
 /**
- * Front end canvas frame which reacts to mouse-clicks upon it. 
+ * Front end canvas frame which reacts to mouse-clicks upon it
  * @class Canvas
  */
 class Canvas {
 
   /**
-   * An instance of the UI 
+   * An instance of the UI
    * @type {UI}
    */
   ui;
@@ -20,7 +20,7 @@ class Canvas {
    * @type {HTMLCanvasElement}
    */
   canvas;
-  
+
   /**
    * An instance of a rendering context
    * @type {CanvasRenderingContext2D}
@@ -32,13 +32,13 @@ class Canvas {
    * @type {Number}
    */
   scaleValue = 1;
-  
+
   /**
    * A number value which remembers the centered horizontal position on the graph
    * @type {Number}
    */
   dx = 0;
-  
+
   /**
    * A number value which remembers the centered vertical position on the graph
    * @type {Number}
@@ -50,7 +50,7 @@ class Canvas {
    * @type {MouseHandler}
    */
   mouseHandler;
-  
+
   /**
    * An instance of the contextMenu
    * @type {ContextMenu}
@@ -160,9 +160,9 @@ class Canvas {
   }
 
   /**
-   * Creates all the listeners for every event which happens upon the canvas. 
-   * Based on the event it calls the relevant function. 
-   */  
+   * Creates all the listeners for every event which happens upon the canvas
+   * Based on the event it calls the relevant function
+   */
   initListeners() {
     this.canvas.addEventListener('mousedown', (event) => {
       event.stopPropagation();

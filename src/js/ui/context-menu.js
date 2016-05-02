@@ -11,13 +11,13 @@ const MENU_ITEM_TYPE_ATTRIBUTE = 'data-type';
 const MENU_ITEM_DATA_ATTRIBUTE = 'data-data';
 
 /**
- * The context menu html object which reacts to context clicks. 
+ * The context menu html object which reacts to context clicks
  * @class ContextMenu
  */
 class ContextMenu {
 
   /**
-   * An instance of the UI 
+   * An instance of the UI
    * @type {UI}
    */
   ui;
@@ -39,13 +39,13 @@ class ContextMenu {
    * @type {Boolean}
    */
   isDisplayed = false;
-  
+
   /**
    * A number variable which tracks the x-position of the context menu
    * @type {Number}
    */
   menuPosX;
-  
+
   /**
    * A number variable which tracks the y-position of the context menu
    * @type {Number}
@@ -54,7 +54,7 @@ class ContextMenu {
 
   /**
    * The currently selected component, can either be a node, an edge, or null
-   * @type {Object} 
+   * @type {Object}
    */
   component;
 
