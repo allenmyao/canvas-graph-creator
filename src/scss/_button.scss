@@ -46,11 +46,11 @@ button, input[type="button"] {
     }
 
     &:not(:disabled):not(:active):hover {
-      background: $primary-gray-light-color;
+      background: $primary-gray-lightest-color;
     }
 
     &:active {
-      background: $primary-gray-lightest-color;
+      background: $primary-gray-light-color;
     }
   }
 
