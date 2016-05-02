@@ -1,6 +1,10 @@
 import Dropdown from '../ui/dropdown';
 import * as Form from '../ui/form';
 
+/**
+ * Class for controlling the state of the top bar. Used for displaying tool-related UI elements.
+ * @class TopBar
+ */
 class TopBar {
 
   ui;
@@ -17,6 +21,11 @@ class TopBar {
   currentMode;
   currentModeElement;
 
+  /**
+   * Constructs a TopBar instance.
+   * @param  {UI} ui - Reference to the UI instance.
+   * @constructs TopBar
+   */
   constructor(ui) {
     this.ui = ui;
     this.topBar = document.getElementById('top-bar');
@@ -27,6 +36,9 @@ class TopBar {
     this.initListeners();
   }
 
+  /**
+   * Initialize the event listeners.
+   */
   initListeners() {
     this.modeSelect.addEventListener('change', (event) => {
       this.ui.toolbar.currentTool.changeMode(event.target.value);
@@ -58,6 +70,10 @@ class TopBar {
     });
   }
 
+  /**
+   * Toggle graph object selection. This is used for tool inputs that request a graph object.
+   * @param  {Event} event - Event object from the event listener.
+   */
   selectGraphObject(event) {
     let currentTool = this.ui.toolbar.currentTool;
     let output = event.target.parentNode.querySelector('output');
@@ -76,6 +92,12 @@ class TopBar {
     }
   }
 
+  /**
+   * Update the graph input after object selection.
+   * @param  {Element} input - The input element.
+   * @param  {(Node|Edge|Label)} obj - The selected graph object.
+   * @param  {boolean} hasError - Whether or not the input has an error.
+   */
   updateGraphInput(input, obj, hasError) {
     let currentTool = this.ui.toolbar.currentTool;
     if (hasError) {
@@ -96,6 +118,10 @@ class TopBar {
     currentTool.currentInput = null;
   }
 
+  /**
+   * Handles a change in tool inputs.
+   * @param  {Event} event - Event object from the event listener.
+   */
   updateInputValues(event) {
     let input = event.target;
     let name = input.name;
@@ -104,6 +130,10 @@ class TopBar {
     this.dropdown.updateOptionContent();
   }
 
+  /**
+   * Handles a change in mode-specific tool inputs.
+   * @param  {Event} event - Event object from the event listener.
+   */
   updateModeInputValues(event) {
     let currentTool = this.ui.toolbar.currentTool;
     if (!currentTool.submitModeInputs()) {
@@ -114,6 +144,10 @@ class TopBar {
     }
   }
 
+  /**
+   * Handles mode-specific tool input submission.
+   * @param  {Event} event - Event object from the event listener.
+   */
   submitModeInputValues(event) {
     let currentTool = this.ui.toolbar.currentTool;
     if (currentTool.submitModeInputs()) {
@@ -141,6 +175,10 @@ class TopBar {
     }
   }
 
+  /**
+   * Update the stored values of all mode-specific tool inputs.
+   * @param  {Object.<string,*>} inputData - Object containing names of inputs mapped to their values.
+   */
   updateAllModeInputValues(inputData) {
     let currentTool = this.ui.toolbar.currentTool;
     for (let name of Object.keys(inputData)) {
@@ -151,6 +189,9 @@ class TopBar {
     }
   }
 
+  /**
+   * Displays the tool modes in the Dropdown.
+   */
   showModes() {
     let currentTool = this.ui.toolbar.currentTool;
     if (currentTool.hasModes()) {
@@ -170,6 +211,9 @@ class TopBar {
     }
   }
 
+  /**
+   * Displays the tool inputs in the inputForm element.
+   */
   showInputs() {
     let currentTool = this.ui.toolbar.currentTool;
     if (currentTool.hasInputs()) {
@@ -186,6 +230,9 @@ class TopBar {
     }
   }
 
+  /**
+   * Displays the mode-specific tool inputs in the modeInputForm element.
+   */
   showModeInputs() {
     let currentTool = this.ui.toolbar.currentTool;
     if (currentTool.hasModeInputs()) {
