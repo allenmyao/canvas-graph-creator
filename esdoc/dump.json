@@ -14902,7 +14902,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "const nSerial = require('node-serialize');\nimport { Graph } from '../data/graph';\nimport { Node } from '../data/node/node';\nimport { Edge } from '../data/edge/edge';\nimport { Label } from '../data/label';\n\nimport { CircleNode } from '../data/node/circle-node';\nimport { TriangleNode } from '../data/node/triangle-node';\nimport { SquareNode } from '../data/node/square-node';\nimport { DiamondNode } from '../data/node/diamond-node';\nimport { PentagonNode } from '../data/node/pentagon-node';\nimport { HexagonNode } from '../data/node/hexagon-node';\nimport { OctagonNode } from '../data/node/octagon-node';\n\nimport { SolidEdge } from '../data/edge/solid-edge';\nimport { DashedEdge } from '../data/edge/dashed-edge';\n\nlet CIRCULARFLAG = '_$$ND_CC$$_';\nlet KEYPATHSEPARATOR = '_$$.$$_';\nlet IDTYPE = '_$$TYPE$$_';\nlet IDSET = '_$$SET$$_';\nlet IDNODE = '_$$NODE$$_';\nlet IDEDGE = '_$$EDGE$$_';\nlet IDLABEL = '_$$LABEL$$_';\nlet IDDATA = '_$$DATA$$_';\n\n/**\n * Serializer class takes care of saving\n * and loading graph via JSON manipulation\n */\nexport class Serializer {\n\n  static classesByName = {\n    CircleNode: CircleNode,\n    TriangleNode: TriangleNode,\n    SquareNode: SquareNode,\n    DiamondNode: DiamondNode,\n    PentagonNode: PentagonNode,\n    HexagonNode: HexagonNode,\n    OctagonNode: OctagonNode,\n    SolidEdge: SolidEdge,\n    DashedEdge: DashedEdge,\n    Label: Label\n  };\n\n  /**\n   * Serializer constructor\n   * @param {Graph} graph Current graph structure\n   * @param {function} resetFn function to reset graph\n   */\n  constructor(graph, resetFn) {\n    this.currentGraph = graph;\n    this.resetFn = resetFn;\n    this.quickString = '';\n\n    if (typeof document !== 'undefined') {\n      this.reader = new FileReader();\n      this.reader.addEventListener('load', (event) => {\n        this.uploadGraph();\n      });\n\n      this.uploader = document.getElementById('graph-uploader');\n      this.uploader.addEventListener('change', (event) => {\n        this.reader.readAsText(this.uploader.files[0]);\n      });\n      this.uploader.addEventListener('click', (event) => {\n        this.uploader.value = null;\n      });\n\n      this.downloadBtn = document.getElementById('load-graph-button');\n      this.downloadBtn.addEventListener('click', (event) => {\n        this.uploader.click();\n      });\n      this.downloadBtn = document.getElementById('save-graph-button');\n      this.downloadBtn.addEventListener('click', (event) => {\n        this.downloadGraph();\n      });\n      this.importBtn = document.getElementById('import-graph-button');\n      this.importBtn.addEventListener('click', (event) => {\n        this.importGraph();\n      });\n      this.exportBtn = document.getElementById('export-graph-button');\n      this.exportBtn.addEventListener('click', (event) => {\n        this.exportGraph();\n      });\n    }\n  }\n\n   /**\n   * Exports element of graph in object form\n   * @param {Object} elem is the element of graph to be exported\n   * @param {Object} cache is a remnant of the original serializer\n   * @param {string} path is a remnant of the original serializer\n   * @returns {Object} outputObj contains the element object data\n   */\n  exportElement(elem, cache, path) {\n    let outputObj = {};\n    let key;\n    let modKey;\n    let setElem;\n    let outElem;\n    cache[path] = elem;\n\n    for (let name of Object.keys(Serializer.classesByName)) {\n      if (elem instanceof Serializer.classesByName[name]) {\n        outputObj[IDTYPE] = name;\n        break;\n      }\n    }\n\n    for (key in elem) {\n      if (elem.hasOwnProperty(key)) {\n        if (typeof elem[key] === 'object' && elem[key] !== null) {\n          if (elem[key] instanceof Label) {\n            outputObj[IDLABEL + key] = this.exportElement(elem[key], cache, path + KEYPATHSEPARATOR + IDLABEL + key);\n          } else if (elem[key] instanceof Node) {\n            // Node Field Detected\n            outputObj[IDNODE + key] = elem[key].id;\n          } else if (elem[key] instanceof Edge) {\n            // Edge Field Detected\n            outputObj[IDEDGE + key] = elem[key].id;\n          } else if (elem[key] instanceof Array || elem[key] instanceof Set) {\n            if (elem[key] instanceof Set) {\n              modKey = IDSET + key;\n            } else {\n              modKey = key;\n            }\n            outputObj[modKey] = [];\n            for (setElem of elem[key]) {\n              if (setElem instanceof Node) {\n                // Node-Array Field Detected\n                outElem = IDNODE + setElem.id.toString();\n              } else if (setElem instanceof Edge) {\n                // Edge-Array Field Detected\n                outElem = IDEDGE + setElem.id.toString();\n              } else {\n                // Primitive-Array Field Detected\n                outElem = setElem;\n              }\n              outputObj[modKey].push(outElem);\n            }\n          } else {\n            outputObj[key] = nSerial.serialize(elem[key], false, outputObj[key], cache, path + KEYPATHSEPARATOR + key);\n          }\n        } else {\n          outputObj[key] = elem[key];\n        }\n      }\n    }\n    return outputObj;\n  }\n\n  /**\n   * Is called when user wants to download the graph\n   */\n  downloadGraph() {\n    let graphStr = JSON.stringify(this.serializeGraph());\n    let element = document.createElement('a');\n    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(graphStr));\n    element.setAttribute('download', 'graphdata.json');\n\n    element.style.display = 'none';\n    document.body.appendChild(element);\n\n    element.click();\n\n    document.body.removeChild(element);\n  }\n\n  /**\n   * Sets value of textbox to the serialzed graph in JSON form\n   */\n  exportGraph() {\n    let graphStr = JSON.stringify(this.serializeGraph());\n    this.quickString = graphStr;\n  }\n\n  /**\n   * Abstracts graph into outputOBj\n   * @returns {Object} outputObj JSON object that can be stringified, contains graph data\n   */\n  serializeGraph() {\n    let obj = this.currentGraph;\n    let cache = {};\n    let path = '$';\n    let outputObj = {};\n    let key;\n    let modKey;\n    let setElem;\n    let outElem;\n    cache[path] = obj;\n\n    for (key in obj) {\n      if (obj.hasOwnProperty(key)) {\n        if (typeof obj[key] === 'object' && obj[key] !== null) {\n          if (obj[key] instanceof Set) {\n            modKey = IDSET + key;\n            outputObj[modKey] = [];\n            for (setElem of obj[key]) {\n              if (setElem instanceof Node || setElem instanceof Edge) {\n                outElem = this.exportElement(setElem, cache,\n                    path + KEYPATHSEPARATOR + modKey + KEYPATHSEPARATOR + outputObj[modKey].length.toString());\n              } else {\n                outElem = nSerial.serialize(setElem, false, outElem, cache,\n                    path + KEYPATHSEPARATOR + modKey + KEYPATHSEPARATOR + outputObj[modKey].length.toString());\n                // Foreign Set Object\n              }\n              outputObj[modKey].push(outElem);\n            }\n          } else {\n            outputObj[key] = nSerial.serialize(obj[key], false, outputObj[key], cache, path + KEYPATHSEPARATOR + key);\n          }\n        } else {\n          outputObj[key] = obj[key];\n        }\n      }\n    }\n    return outputObj;\n  }\n\n  /**\n   * Helper function to construct empty objects by class name\n   * @param {string} name of element type to allocate\n   * @returns {Object} the constructed object\n   */\n  allocateElement(name) {\n    // Element allocation of type has type 'name'\n    if (name.indexOf('Node') >= 0) {\n      return new Serializer.classesByName[name](0, 0);\n    } else if (name.indexOf('Edge') >= 0) {\n      return new Serializer.classesByName[name](null, null);\n    } else if (name.indexOf('Label') >= 0) {\n      return new Serializer.classesByName[name](0, 0, null);\n    }\n    return null;\n  }\n\n  /**\n   * Reads the elem contents and converts it to a raw JSON object newElem\n   * @param {Object} elem is the element of graph to be imported\n   * @param {Object} newElem is the return element and contains the imported data\n   * @param {Object} nodeCache allows for loading references to existing nodes\n   * @param {Object} edgeCache allows for loading references to existing edges\n   * @returns {Object} newElem a fully initialized graph element.\n   */\n  importElement(elem, newElem, nodeCache, edgeCache) {\n    let key;\n    let modKey;\n    let refKey;\n    let arrayElem;\n    let addObj;\n   // Element found of type 'elem[IDTYPE]'\n    delete elem[IDTYPE];\n    for (key in elem) {\n      if (elem.hasOwnProperty(key)) {\n        if (key.indexOf(IDLABEL) === 0) {\n          modKey = key.substring(IDLABEL.length);\n          newElem[modKey] = this.importElement(elem[key], this.allocateElement(elem[key][IDTYPE]), nodeCache, edgeCache);\n        } else if (key.indexOf(IDNODE) === 0) {\n          modKey = key.substring(IDNODE.length);\n          newElem[modKey] = nodeCache[elem[key]];\n          // Inner Node found called\n        } else if (key.indexOf(IDEDGE) === 0) {\n          modKey = key.substring(IDEDGE.length);\n          newElem[modKey] = edgeCache[elem[key]];\n          // Inner Edge found called\n        } else if (elem[key] instanceof Array) {\n          if (key.indexOf(IDSET) === 0) {\n            // Inner Set found\n            modKey = key.substring(IDSET.length);\n            newElem[modKey] = new Set();\n          } else {\n            // Inner Array found\n            modKey = key;\n            newElem[modKey] = [];\n          }\n          for (arrayElem of elem[key]) {\n            if (typeof arrayElem === 'string' || arrayElem instanceof String) {\n              if (arrayElem.indexOf(IDNODE) === 0) {\n                refKey = Number(arrayElem.substring(IDNODE.length));\n                addObj = nodeCache[refKey];\n                // Inner-Set Node found\n              } else if (arrayElem.indexOf(IDEDGE) === 0) {\n                refKey = Number(arrayElem.substring(IDEDGE.length));\n                addObj = edgeCache[refKey];\n                // Inner-Set Edge found\n              } else {\n                addObj = nSerial.unserialize(arrayElem, elem);\n              }\n            } else {\n              addObj = nSerial.unserialize(arrayElem, elem);\n            }\n            if (newElem[modKey] instanceof Set) {\n              newElem[modKey].add(addObj);\n            } else {\n              newElem[modKey].push(addObj);\n            }\n          }\n        } else if (typeof elem[key] === 'string' || elem[key] instanceof String) {\n          // Inner String found\n          if (elem[key].indexOf(CIRCULARFLAG) === 0) {\n            throw new Error('Can\\'t deserialize a circular dependency in the top-level graph.');\n          } else {\n            newElem[key] = elem[key];\n          }\n        } else if (key === 'isSelected' || key === 'showTextCtrl') {\n          // Inner Generic found\n          newElem[key] = false;\n        } else {\n          newElem[key] = nSerial.unserialize(elem[key], elem);\n        }\n      }\n    }\n    return newElem;\n  }\n\n  /**\n   * Will not run if the JSON reader fails. Loads the graph from JSON file\n   */\n  uploadGraph() {\n    let obj;\n    let deserializeInfo;\n    if (typeof this.reader.result === 'undefined' || this.reader.result === '') {\n      return;\n    }\n    try {\n      obj = JSON.parse(this.reader.result);\n      deserializeInfo = this.deserializeGraph(obj);\n    } catch (ex) {\n      // Exception thrown from parser or deserializer. Abort.\n      throw ex;\n    }\n    // Graph Upload OK\n    Node.numNodes = deserializeInfo.nodes;\n    Edge.numEdges = deserializeInfo.edges;\n    this.resetFn(deserializeInfo.graph);\n  }\n\n  /**\n   * Imports the graph from JSON string\n   */\n  importGraph() {\n    let obj;\n    let deserializeInfo;\n    if (this.quickString === '') {\n      console.log('Nothing has been saved');\n      return;\n    }\n    try {\n      obj = JSON.parse(this.quickString);\n      deserializeInfo = this.deserializeGraph(obj);\n    } catch (ex) {\n      // Exception thrown from parser or deserializer. Abort.\n      throw ex;\n    }\n    // Graph Quickload OK\n    Node.numNodes = deserializeInfo.nodes;\n    Edge.numEdges = deserializeInfo.edges;\n    this.resetFn(deserializeInfo.graph);\n  }\n\n  /**\n   * Reads the graph data and creates new elements accordingly\n   * @param {Object} obj is the graph data contained in obj\n   * @returns {Object} data containing the graph and nodes and edge counts\n   */\n  deserializeGraph(obj) {\n    let newGraph = new Graph();\n    let key;\n    let modKey;\n    let maxNodeID = 0;\n    let nodeCache = {};\n    let maxEdgeID = 0;\n    let edgeCache = {};\n    let elem;\n    let newElem;\n    if (obj === null || obj === {}) {\n      // Bad Object\n      return null;\n    }\n    for (key in obj) {\n      if (obj.hasOwnProperty(key)) {\n        if (key.indexOf(IDSET) === 0 && obj[key] instanceof Array) {\n          modKey = key.substring(IDSET.length);\n          // Set found\n          newGraph[modKey] = new Set();\n          for (elem of obj[key]) {\n            if (elem[IDTYPE]) {\n              newElem = this.allocateElement(elem[IDTYPE]);\n              newElem.id = elem.id;\n              newElem[IDDATA] = elem;\n              if (newElem instanceof Node) {\n               // Cached Node with ID\n                nodeCache[newElem.id] = newElem;\n                maxNodeID = Math.max(maxNodeID, newElem.id);\n              } else if (newElem instanceof Edge) {\n                // Cached Edge with ID\n                edgeCache[newElem.id] = newElem;\n                maxEdgeID = Math.max(maxEdgeID, newElem.id);\n              }\n            } else {\n              newElem = nSerial.unserialize(elem, obj);\n            }\n            if (newElem !== null) {\n              newGraph[modKey].add(newElem);\n            }\n          }\n        } else if (typeof obj[key] === 'string' || obj[key] instanceof String) {\n          if (obj[key].indexOf(CIRCULARFLAG) === 0) {\n            throw new Error('Can\\'t deserialize a circular dependency in the top-level graph.');\n          } else {\n            newGraph[key] = obj[key];\n          }\n        } else {\n          newGraph[key] = nSerial.unserialize(obj[key], obj);\n        }\n      }\n    }\n    for (key in newGraph) {\n      if (newGraph.hasOwnProperty(key)) {\n        if (newGraph[key] instanceof Set) {\n          // Iterating Set\n          for (elem of newGraph[key]) {\n            if (elem[IDDATA]) {\n              this.importElement(elem[IDDATA], elem, nodeCache, edgeCache);\n              delete elem[IDDATA];\n            }\n          }\n        }\n      }\n    }\n\n    if (!newGraph.validate()) {\n      throw new Error('New Graph failed validation check');\n    }\n\n    return {\n      nodes: maxNodeID + 1,\n      edges: maxEdgeID + 1,\n      graph: newGraph\n    };\n  }\n\n  /**\n   * Resets the graph\n   * @param {Graph} newGraph is the graph data to reset with\n   */\n  resetGraph(newGraph) {\n     // Formality, in case it's triggered by something other than us.\n    if (newGraph instanceof Graph) {\n      this.currentGraph = newGraph;\n    }\n  }\n\n}\n"
+    "content": "const nSerial = require('node-serialize');\nimport { Graph } from '../data/graph';\nimport { Node } from '../data/node/node';\nimport { Edge } from '../data/edge/edge';\nimport { Label } from '../data/label';\n\nimport { CircleNode } from '../data/node/circle-node';\nimport { TriangleNode } from '../data/node/triangle-node';\nimport { SquareNode } from '../data/node/square-node';\nimport { DiamondNode } from '../data/node/diamond-node';\nimport { PentagonNode } from '../data/node/pentagon-node';\nimport { HexagonNode } from '../data/node/hexagon-node';\nimport { OctagonNode } from '../data/node/octagon-node';\n\nimport { SolidEdge } from '../data/edge/solid-edge';\nimport { DashedEdge } from '../data/edge/dashed-edge';\n\nlet CIRCULARFLAG = '_$$ND_CC$$_';\nlet KEYPATHSEPARATOR = '_$$.$$_';\nlet IDTYPE = '_$$TYPE$$_';\nlet IDSET = '_$$SET$$_';\nlet IDNODE = '_$$NODE$$_';\nlet IDEDGE = '_$$EDGE$$_';\nlet IDLABEL = '_$$LABEL$$_';\nlet IDDATA = '_$$DATA$$_';\n\n/**\n * Serializer class takes care of saving\n * and loading graph via JSON manipulation\n * @class Serializer\n */\nexport class Serializer {\n\n  static classesByName = {\n    CircleNode: CircleNode,\n    TriangleNode: TriangleNode,\n    SquareNode: SquareNode,\n    DiamondNode: DiamondNode,\n    PentagonNode: PentagonNode,\n    HexagonNode: HexagonNode,\n    OctagonNode: OctagonNode,\n    SolidEdge: SolidEdge,\n    DashedEdge: DashedEdge,\n    Label: Label\n  };\n\n  /**\n   * Serializer constructor\n   * @param {Graph} graph Current graph structure\n   * @param {function} resetFn Function to reset graph\n   */\n  constructor(graph, resetFn) {\n    this.currentGraph = graph;\n    this.resetFn = resetFn;\n    this.quickString = '';\n\n    if (typeof document !== 'undefined') {\n      this.reader = new FileReader();\n      this.reader.addEventListener('load', (event) => {\n        this.uploadGraph();\n      });\n\n      this.uploader = document.getElementById('graph-uploader');\n      this.uploader.addEventListener('change', (event) => {\n        this.reader.readAsText(this.uploader.files[0]);\n      });\n      this.uploader.addEventListener('click', (event) => {\n        this.uploader.value = null;\n      });\n\n      this.downloadBtn = document.getElementById('load-graph-button');\n      this.downloadBtn.addEventListener('click', (event) => {\n        this.uploader.click();\n      });\n      this.downloadBtn = document.getElementById('save-graph-button');\n      this.downloadBtn.addEventListener('click', (event) => {\n        this.downloadGraph();\n      });\n      this.importBtn = document.getElementById('import-graph-button');\n      this.importBtn.addEventListener('click', (event) => {\n        this.importGraph();\n      });\n      this.exportBtn = document.getElementById('export-graph-button');\n      this.exportBtn.addEventListener('click', (event) => {\n        this.exportGraph();\n      });\n    }\n  }\n\n   /**\n   * Exports element of graph in object form\n   * @param {Object} elem The element of graph to be exported\n   * @param {Object} cache A remnant of the original serializer\n   * @param {string} path A remnant of the original serializer\n   * @returns {Object} outputObj Contains the element object data\n   */\n  exportElement(elem, cache, path) {\n    let outputObj = {};\n    let key;\n    let modKey;\n    let setElem;\n    let outElem;\n    cache[path] = elem;\n\n    for (let name of Object.keys(Serializer.classesByName)) {\n      if (elem instanceof Serializer.classesByName[name]) {\n        outputObj[IDTYPE] = name;\n        break;\n      }\n    }\n\n    for (key in elem) {\n      if (elem.hasOwnProperty(key)) {\n        if (typeof elem[key] === 'object' && elem[key] !== null) {\n          if (elem[key] instanceof Label) {\n            outputObj[IDLABEL + key] = this.exportElement(elem[key], cache, path + KEYPATHSEPARATOR + IDLABEL + key);\n          } else if (elem[key] instanceof Node) {\n            // Node Field Detected\n            outputObj[IDNODE + key] = elem[key].id;\n          } else if (elem[key] instanceof Edge) {\n            // Edge Field Detected\n            outputObj[IDEDGE + key] = elem[key].id;\n          } else if (elem[key] instanceof Array || elem[key] instanceof Set) {\n            if (elem[key] instanceof Set) {\n              modKey = IDSET + key;\n            } else {\n              modKey = key;\n            }\n            outputObj[modKey] = [];\n            for (setElem of elem[key]) {\n              if (setElem instanceof Node) {\n                // Node-Array Field Detected\n                outElem = IDNODE + setElem.id.toString();\n              } else if (setElem instanceof Edge) {\n                // Edge-Array Field Detected\n                outElem = IDEDGE + setElem.id.toString();\n              } else {\n                // Primitive-Array Field Detected\n                outElem = setElem;\n              }\n              outputObj[modKey].push(outElem);\n            }\n          } else {\n            outputObj[key] = nSerial.serialize(elem[key], false, outputObj[key], cache, path + KEYPATHSEPARATOR + key);\n          }\n        } else {\n          outputObj[key] = elem[key];\n        }\n      }\n    }\n    return outputObj;\n  }\n\n  /**\n   * Is called when user wants to download the graph\n   */\n  downloadGraph() {\n    let graphStr = JSON.stringify(this.serializeGraph());\n    let element = document.createElement('a');\n    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(graphStr));\n    element.setAttribute('download', 'graphdata.json');\n\n    element.style.display = 'none';\n    document.body.appendChild(element);\n\n    element.click();\n\n    document.body.removeChild(element);\n  }\n\n  /**\n   * Sets value of textbox to the serialzed graph in JSON form\n   */\n  exportGraph() {\n    let graphStr = JSON.stringify(this.serializeGraph());\n    this.quickString = graphStr;\n  }\n\n  /**\n   * Abstracts graph into outputOBj\n   * @returns {Object} outputObj JSON object that can be stringified, contains graph data\n   */\n  serializeGraph() {\n    let obj = this.currentGraph;\n    let cache = {};\n    let path = '$';\n    let outputObj = {};\n    let key;\n    let modKey;\n    let setElem;\n    let outElem;\n    cache[path] = obj;\n\n    for (key in obj) {\n      if (obj.hasOwnProperty(key)) {\n        if (typeof obj[key] === 'object' && obj[key] !== null) {\n          if (obj[key] instanceof Set) {\n            modKey = IDSET + key;\n            outputObj[modKey] = [];\n            for (setElem of obj[key]) {\n              if (setElem instanceof Node || setElem instanceof Edge) {\n                outElem = this.exportElement(setElem, cache,\n                    path + KEYPATHSEPARATOR + modKey + KEYPATHSEPARATOR + outputObj[modKey].length.toString());\n              } else {\n                outElem = nSerial.serialize(setElem, false, outElem, cache,\n                    path + KEYPATHSEPARATOR + modKey + KEYPATHSEPARATOR + outputObj[modKey].length.toString());\n                // Foreign Set Object\n              }\n              outputObj[modKey].push(outElem);\n            }\n          } else {\n            outputObj[key] = nSerial.serialize(obj[key], false, outputObj[key], cache, path + KEYPATHSEPARATOR + key);\n          }\n        } else {\n          outputObj[key] = obj[key];\n        }\n      }\n    }\n    return outputObj;\n  }\n\n  /**\n   * Helper function to construct empty objects by class name\n   * @param {string} name Name of element type to allocate\n   * @returns {Object} outObj The constructed object\n   */\n  allocateElement(name) {\n    let outObj = null;\n    // Element allocation of type has type 'name'\n    if (name.indexOf('Node') >= 0) {\n      outObj = new Serializer.classesByName[name](0, 0);\n    } else if (name.indexOf('Edge') >= 0) {\n      outObj = new Serializer.classesByName[name](null, null);\n    } else if (name.indexOf('Label') >= 0) {\n      outObj = new Serializer.classesByName[name](0, 0, null);\n    }\n    return outObj;\n  }\n\n  /**\n   * Reads the elem contents and converts it to a raw JSON object newElem\n   * @param {Object} elem The element of graph to be imported\n   * @param {Object} newElem The return element and contains the imported data\n   * @param {Object} nodeCache Allows for loading references to existing nodes\n   * @param {Object} edgeCache Allows for loading references to existing edges\n   * @returns {Object} newElem A fully initialized graph element.\n   */\n  importElement(elem, newElem, nodeCache, edgeCache) {\n    let key;\n    let modKey;\n    let refKey;\n    let arrayElem;\n    let addObj;\n   // Element found of type 'elem[IDTYPE]'\n    delete elem[IDTYPE];\n    for (key in elem) {\n      if (elem.hasOwnProperty(key)) {\n        if (key.indexOf(IDLABEL) === 0) {\n          modKey = key.substring(IDLABEL.length);\n          newElem[modKey] = this.importElement(elem[key], this.allocateElement(elem[key][IDTYPE]), nodeCache, edgeCache);\n        } else if (key.indexOf(IDNODE) === 0) {\n          modKey = key.substring(IDNODE.length);\n          newElem[modKey] = nodeCache[elem[key]];\n          // Inner Node found called\n        } else if (key.indexOf(IDEDGE) === 0) {\n          modKey = key.substring(IDEDGE.length);\n          newElem[modKey] = edgeCache[elem[key]];\n          // Inner Edge found called\n        } else if (elem[key] instanceof Array) {\n          if (key.indexOf(IDSET) === 0) {\n            // Inner Set found\n            modKey = key.substring(IDSET.length);\n            newElem[modKey] = new Set();\n          } else {\n            // Inner Array found\n            modKey = key;\n            newElem[modKey] = [];\n          }\n          for (arrayElem of elem[key]) {\n            if (typeof arrayElem === 'string' || arrayElem instanceof String) {\n              if (arrayElem.indexOf(IDNODE) === 0) {\n                refKey = Number(arrayElem.substring(IDNODE.length));\n                addObj = nodeCache[refKey];\n                // Inner-Set Node found\n              } else if (arrayElem.indexOf(IDEDGE) === 0) {\n                refKey = Number(arrayElem.substring(IDEDGE.length));\n                addObj = edgeCache[refKey];\n                // Inner-Set Edge found\n              } else {\n                addObj = nSerial.unserialize(arrayElem, elem);\n              }\n            } else {\n              addObj = nSerial.unserialize(arrayElem, elem);\n            }\n            if (newElem[modKey] instanceof Set) {\n              newElem[modKey].add(addObj);\n            } else {\n              newElem[modKey].push(addObj);\n            }\n          }\n        } else if (typeof elem[key] === 'string' || elem[key] instanceof String) {\n          // Inner String found\n          if (elem[key].indexOf(CIRCULARFLAG) === 0) {\n            throw new Error('Can\\'t deserialize a circular dependency in the top-level graph.');\n          } else {\n            newElem[key] = elem[key];\n          }\n        } else if (key === 'isSelected' || key === 'showTextCtrl') {\n          // Inner Generic found\n          newElem[key] = false;\n        } else {\n          newElem[key] = nSerial.unserialize(elem[key], elem);\n        }\n      }\n    }\n    return newElem;\n  }\n\n  /**\n   * Will not run if the JSON reader fails. Loads the graph from JSON file\n   */\n  uploadGraph() {\n    let obj;\n    let deserializeInfo;\n    if (typeof this.reader.result === 'undefined' || this.reader.result === '') {\n      return;\n    }\n    try {\n      obj = JSON.parse(this.reader.result);\n      deserializeInfo = this.deserializeGraph(obj);\n    } catch (ex) {\n      // Exception thrown from parser or deserializer. Abort.\n      throw ex;\n    }\n    // Graph Upload OK\n    Node.numNodes = deserializeInfo.nodes;\n    Edge.numEdges = deserializeInfo.edges;\n    this.resetFn(deserializeInfo.graph);\n  }\n\n  /**\n   * Imports the graph from JSON string\n   */\n  importGraph() {\n    let obj;\n    let deserializeInfo;\n    if (this.quickString === '') {\n      throw new Error('Nothing has been saved');\n    }\n    try {\n      obj = JSON.parse(this.quickString);\n      deserializeInfo = this.deserializeGraph(obj);\n    } catch (ex) {\n      // Exception thrown from parser or deserializer. Abort.\n      throw ex;\n    }\n    // Graph Quickload OK\n    Node.numNodes = deserializeInfo.nodes;\n    Edge.numEdges = deserializeInfo.edges;\n    this.resetFn(deserializeInfo.graph);\n  }\n\n  /**\n   * Reads the graph data and creates new elements accordingly\n   * @param {Object} obj The pre-parsed serial graph data\n   * @returns {Object} importResult Data containing the graph and nodes and edge counts\n   */\n  deserializeGraph(obj) {\n    let importResult;\n    let newGraph = new Graph();\n    let key;\n    let modKey;\n    let maxNodeID = 0;\n    let nodeCache = {};\n    let maxEdgeID = 0;\n    let edgeCache = {};\n    let elem;\n    let newElem;\n    if (obj === null || obj === {}) {\n      // Bad Object\n      return null;\n    }\n    for (key in obj) {\n      if (obj.hasOwnProperty(key)) {\n        if (key.indexOf(IDSET) === 0 && obj[key] instanceof Array) {\n          modKey = key.substring(IDSET.length);\n          // Set found\n          newGraph[modKey] = new Set();\n          for (elem of obj[key]) {\n            if (elem[IDTYPE]) {\n              newElem = this.allocateElement(elem[IDTYPE]);\n              newElem.id = elem.id;\n              newElem[IDDATA] = elem;\n              if (newElem instanceof Node) {\n               // Cached Node with ID\n                nodeCache[newElem.id] = newElem;\n                maxNodeID = Math.max(maxNodeID, newElem.id);\n              } else if (newElem instanceof Edge) {\n                // Cached Edge with ID\n                edgeCache[newElem.id] = newElem;\n                maxEdgeID = Math.max(maxEdgeID, newElem.id);\n              }\n            } else {\n              newElem = nSerial.unserialize(elem, obj);\n            }\n            if (newElem !== null) {\n              newGraph[modKey].add(newElem);\n            }\n          }\n        } else if (typeof obj[key] === 'string' || obj[key] instanceof String) {\n          if (obj[key].indexOf(CIRCULARFLAG) === 0) {\n            throw new Error('Can\\'t deserialize a circular dependency in the top-level graph.');\n          } else {\n            newGraph[key] = obj[key];\n          }\n        } else {\n          newGraph[key] = nSerial.unserialize(obj[key], obj);\n        }\n      }\n    }\n    for (key in newGraph) {\n      if (newGraph.hasOwnProperty(key)) {\n        if (newGraph[key] instanceof Set) {\n          // Iterating Set\n          for (elem of newGraph[key]) {\n            if (elem[IDDATA]) {\n              this.importElement(elem[IDDATA], elem, nodeCache, edgeCache);\n              delete elem[IDDATA];\n            }\n          }\n        }\n      }\n    }\n\n    if (!newGraph.validate()) {\n      throw new Error('New Graph failed validation check');\n    }\n\n    importResult = {\n      nodes: maxNodeID + 1,\n      edges: maxEdgeID + 1,\n      graph: newGraph\n    };\n    return importResult;\n  }\n\n  /**\n   * Resets the graph\n   * @param {Graph} newGraph The graph data to reset with\n   */\n  resetGraph(newGraph) {\n     // Formality, in case it's triggered by something other than us.\n    if (newGraph instanceof Graph) {\n      this.currentGraph = newGraph;\n    }\n  }\n\n}\n"
   },
   {
     "__docId__": 560,
@@ -15106,7 +15106,13 @@
     "importPath": "canvas-graph-creator/src/js/util/graph-serialize.js",
     "importStyle": "{Serializer}",
     "description": "Serializer class takes care of saving\nand loading graph via JSON manipulation",
-    "lineNumber": 31,
+    "lineNumber": 32,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Serializer"
+      }
+    ],
     "interface": false
   },
   {
@@ -15119,7 +15125,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#constructor",
     "access": null,
     "description": "Serializer constructor",
-    "lineNumber": 51,
+    "lineNumber": 52,
     "params": [
       {
         "nullable": null,
@@ -15139,7 +15145,7 @@
         "spread": false,
         "optional": false,
         "name": "resetFn",
-        "description": "function to reset graph"
+        "description": "Function to reset graph"
       }
     ],
     "generator": false
@@ -15154,7 +15160,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#currentGraph",
     "access": null,
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 53,
     "undocument": true,
     "type": {
       "types": [
@@ -15172,7 +15178,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#resetFn",
     "access": null,
     "description": null,
-    "lineNumber": 53,
+    "lineNumber": 54,
     "undocument": true,
     "type": {
       "types": [
@@ -15190,7 +15196,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#quickString",
     "access": null,
     "description": null,
-    "lineNumber": 54,
+    "lineNumber": 55,
     "undocument": true,
     "type": {
       "types": [
@@ -15208,7 +15214,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#reader",
     "access": null,
     "description": null,
-    "lineNumber": 57,
+    "lineNumber": 58,
     "undocument": true,
     "type": {
       "types": [
@@ -15226,7 +15232,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#uploader",
     "access": null,
     "description": null,
-    "lineNumber": 62,
+    "lineNumber": 63,
     "undocument": true,
     "type": {
       "types": [
@@ -15244,7 +15250,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#downloadBtn",
     "access": null,
     "description": null,
-    "lineNumber": 70,
+    "lineNumber": 71,
     "undocument": true,
     "type": {
       "types": [
@@ -15262,7 +15268,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#downloadBtn",
     "access": null,
     "description": null,
-    "lineNumber": 74,
+    "lineNumber": 75,
     "undocument": true,
     "type": {
       "types": [
@@ -15280,7 +15286,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#importBtn",
     "access": null,
     "description": null,
-    "lineNumber": 78,
+    "lineNumber": 79,
     "undocument": true,
     "type": {
       "types": [
@@ -15298,7 +15304,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#exportBtn",
     "access": null,
     "description": null,
-    "lineNumber": 82,
+    "lineNumber": 83,
     "undocument": true,
     "type": {
       "types": [
@@ -15316,11 +15322,11 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#exportElement",
     "access": null,
     "description": "Exports element of graph in object form",
-    "lineNumber": 96,
+    "lineNumber": 97,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Object} outputObj contains the element object data"
+        "tagValue": "{Object} outputObj Contains the element object data"
       }
     ],
     "params": [
@@ -15332,7 +15338,7 @@
         "spread": false,
         "optional": false,
         "name": "elem",
-        "description": "is the element of graph to be exported"
+        "description": "The element of graph to be exported"
       },
       {
         "nullable": null,
@@ -15342,7 +15348,7 @@
         "spread": false,
         "optional": false,
         "name": "cache",
-        "description": "is a remnant of the original serializer"
+        "description": "A remnant of the original serializer"
       },
       {
         "nullable": null,
@@ -15352,7 +15358,7 @@
         "spread": false,
         "optional": false,
         "name": "path",
-        "description": "is a remnant of the original serializer"
+        "description": "A remnant of the original serializer"
       }
     ],
     "return": {
@@ -15361,7 +15367,7 @@
         "Object"
       ],
       "spread": false,
-      "description": "outputObj contains the element object data"
+      "description": "outputObj Contains the element object data"
     },
     "generator": false
   },
@@ -15375,7 +15381,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#downloadGraph",
     "access": null,
     "description": "Is called when user wants to download the graph",
-    "lineNumber": 156,
+    "lineNumber": 157,
     "params": [],
     "generator": false
   },
@@ -15389,7 +15395,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#exportGraph",
     "access": null,
     "description": "Sets value of textbox to the serialzed graph in JSON form",
-    "lineNumber": 173,
+    "lineNumber": 174,
     "params": [],
     "generator": false
   },
@@ -15403,7 +15409,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#quickString",
     "access": null,
     "description": null,
-    "lineNumber": 175,
+    "lineNumber": 176,
     "undocument": true,
     "type": {
       "types": [
@@ -15421,7 +15427,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#serializeGraph",
     "access": null,
     "description": "Abstracts graph into outputOBj",
-    "lineNumber": 182,
+    "lineNumber": 183,
     "unknown": [
       {
         "tagName": "@returns",
@@ -15449,11 +15455,11 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#allocateElement",
     "access": null,
     "description": "Helper function to construct empty objects by class name",
-    "lineNumber": 226,
+    "lineNumber": 227,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Object} the constructed object"
+        "tagValue": "{Object} outObj The constructed object"
       }
     ],
     "params": [
@@ -15465,7 +15471,7 @@
         "spread": false,
         "optional": false,
         "name": "name",
-        "description": "of element type to allocate"
+        "description": "Name of element type to allocate"
       }
     ],
     "return": {
@@ -15474,7 +15480,7 @@
         "Object"
       ],
       "spread": false,
-      "description": "the constructed object"
+      "description": "outObj The constructed object"
     },
     "generator": false
   },
@@ -15488,11 +15494,11 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#importElement",
     "access": null,
     "description": "Reads the elem contents and converts it to a raw JSON object newElem",
-    "lineNumber": 246,
+    "lineNumber": 248,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Object} newElem a fully initialized graph element."
+        "tagValue": "{Object} newElem A fully initialized graph element."
       }
     ],
     "params": [
@@ -15504,7 +15510,7 @@
         "spread": false,
         "optional": false,
         "name": "elem",
-        "description": "is the element of graph to be imported"
+        "description": "The element of graph to be imported"
       },
       {
         "nullable": null,
@@ -15514,7 +15520,7 @@
         "spread": false,
         "optional": false,
         "name": "newElem",
-        "description": "is the return element and contains the imported data"
+        "description": "The return element and contains the imported data"
       },
       {
         "nullable": null,
@@ -15524,7 +15530,7 @@
         "spread": false,
         "optional": false,
         "name": "nodeCache",
-        "description": "allows for loading references to existing nodes"
+        "description": "Allows for loading references to existing nodes"
       },
       {
         "nullable": null,
@@ -15534,7 +15540,7 @@
         "spread": false,
         "optional": false,
         "name": "edgeCache",
-        "description": "allows for loading references to existing edges"
+        "description": "Allows for loading references to existing edges"
       }
     ],
     "return": {
@@ -15543,7 +15549,7 @@
         "Object"
       ],
       "spread": false,
-      "description": "newElem a fully initialized graph element."
+      "description": "newElem A fully initialized graph element."
     },
     "generator": false
   },
@@ -15557,7 +15563,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#uploadGraph",
     "access": null,
     "description": "Will not run if the JSON reader fails. Loads the graph from JSON file",
-    "lineNumber": 320,
+    "lineNumber": 322,
     "params": [],
     "generator": false
   },
@@ -15571,7 +15577,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#importGraph",
     "access": null,
     "description": "Imports the graph from JSON string",
-    "lineNumber": 342,
+    "lineNumber": 344,
     "params": [],
     "generator": false
   },
@@ -15585,11 +15591,11 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#deserializeGraph",
     "access": null,
     "description": "Reads the graph data and creates new elements accordingly",
-    "lineNumber": 367,
+    "lineNumber": 368,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Object} data containing the graph and nodes and edge counts"
+        "tagValue": "{Object} importResult Data containing the graph and nodes and edge counts"
       }
     ],
     "params": [
@@ -15601,7 +15607,7 @@
         "spread": false,
         "optional": false,
         "name": "obj",
-        "description": "is the graph data contained in obj"
+        "description": "The pre-parsed serial graph data"
       }
     ],
     "return": {
@@ -15610,7 +15616,7 @@
         "Object"
       ],
       "spread": false,
-      "description": "data containing the graph and nodes and edge counts"
+      "description": "importResult Data containing the graph and nodes and edge counts"
     },
     "generator": false
   },
@@ -15624,7 +15630,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#resetGraph",
     "access": null,
     "description": "Resets the graph",
-    "lineNumber": 448,
+    "lineNumber": 451,
     "params": [
       {
         "nullable": null,
@@ -15634,7 +15640,7 @@
         "spread": false,
         "optional": false,
         "name": "newGraph",
-        "description": "is the graph data to reset with"
+        "description": "The graph data to reset with"
       }
     ],
     "generator": false
@@ -15649,7 +15655,7 @@
     "longname": "src/js/util/graph-serialize.js~Serializer#currentGraph",
     "access": null,
     "description": null,
-    "lineNumber": 451,
+    "lineNumber": 454,
     "undocument": true,
     "type": {
       "types": [

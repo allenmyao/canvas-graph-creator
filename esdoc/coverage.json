@@ -268,14 +268,14 @@
       "expectCount": 20,
       "actualCount": 12,
       "undocumentLines": [
-        52,
-        70,
-        82,
-        78,
-        54,
-        57,
         53,
-        62
+        71,
+        83,
+        79,
+        55,
+        58,
+        54,
+        63
       ]
     },
     "src/js/ui/sidebar.js": {
