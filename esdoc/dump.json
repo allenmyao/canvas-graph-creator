@@ -7225,7 +7225,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Tool from '../tool/tool';\nimport ui from '../ui/ui';\n\n/**\n * Tool for panning the canvas. No longer used directly.\n * @class PanTool\n */\nclass PanTool extends Tool {\n\n  startPosition = {};\n\n  /**\n   * Called before the selectNone() handler. Stores the initial position of the mouse and the display location of the canvas.\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  preSelectNone(event, graph, x, y) {\n    this.startPosition.dx = ui.canvas.dx;\n    this.startPosition.dy = ui.canvas.dy;\n    this.startPosition.x = event.screenX;\n    this.startPosition.y = event.screenY;\n  }\n\n  /**\n   * Handler for object dragging. Ignores the object and calls dragNone().\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {(Node|Edge|Label)} srcObj - Dragged graph component.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dragObject(event, graph, srcObj, x, y) {\n    this.dragNone(event, graph, x, y);\n  }\n\n  /**\n   * Handler for object dropping on another object. Ignores the object and calls dropOnNone().\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {(Node|Edge|Label)} droppedObj - Dropped graph component.\n   * @param  {(Node|Edge|Label)} destObj - Graph component that the object was dropped onto.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dropOnObject(event, graph, droppedObj, destObj, x, y) {\n    this.dropOnNone(event, graph, droppedObj, x, y);\n  }\n\n  /**\n   * Handler for dragging mouse on empty space. Updates the canvas position based on the current mouse position.\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dragNone(event, graph, x, y) {\n    let scale = ui.canvas.scale;\n    ui.canvas.dx = this.startPosition.dx + (this.startPosition.x - event.screenX) / scale;\n    ui.canvas.dy = this.startPosition.dy + (this.startPosition.y - event.screenY) / scale;\n    ui.canvas.update();\n  }\n\n  /**\n   * Handler for dropping object on empty space. Clears the stored mouse and canvas positions.\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {(Node|Edge|Label)} droppedObj - Dropped graph component.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dropOnNone(event, graph, droppedObj, x, y) {\n    this.startPosition = {};\n  }\n\n}\n\nexport { PanTool };\nexport default PanTool;\n"
+    "content": "import Tool from '../tool/tool';\nimport ui from '../ui/ui';\n\n/**\n * Tool for panning the canvas. No longer used directly.\n * @class PanTool\n */\nclass PanTool extends Tool {\n\n  startPosition = {};\n\n  /**\n   * Called before the selectNone() handler. Stores the initial position of the mouse and the display location of the canvas.\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  preSelectNone(event, graph, x, y) {\n    this.startPosition.dx = ui.canvas.dx;\n    this.startPosition.dy = ui.canvas.dy;\n    this.startPosition.x = event.clientX;\n    this.startPosition.y = event.clientY;\n  }\n\n  /**\n   * Handler for object dragging. Ignores the object and calls dragNone().\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {(Node|Edge|Label)} srcObj - Dragged graph component.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dragObject(event, graph, srcObj, x, y) {\n    this.dragNone(event, graph, x, y);\n  }\n\n  /**\n   * Handler for object dropping on another object. Ignores the object and calls dropOnNone().\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {(Node|Edge|Label)} droppedObj - Dropped graph component.\n   * @param  {(Node|Edge|Label)} destObj - Graph component that the object was dropped onto.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dropOnObject(event, graph, droppedObj, destObj, x, y) {\n    this.dropOnNone(event, graph, droppedObj, x, y);\n  }\n\n  /**\n   * Handler for dragging mouse on empty space. Updates the canvas position based on the current mouse position.\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dragNone(event, graph, x, y) {\n    let scale = ui.canvas.scale;\n    ui.canvas.dx = this.startPosition.dx + (this.startPosition.x - event.clientX) / scale;\n    ui.canvas.dy = this.startPosition.dy + (this.startPosition.y - event.clientY) / scale;\n    ui.canvas.update();\n  }\n\n  /**\n   * Handler for dropping object on empty space. Clears the stored mouse and canvas positions.\n   * @param  {Event} event - Event object from event listener.\n   * @param  {Graph} graph - The current graph object.\n   * @param  {(Node|Edge|Label)} droppedObj - Dropped graph component.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @override\n   */\n  dropOnNone(event, graph, droppedObj, x, y) {\n    this.startPosition = {};\n  }\n\n}\n\nexport { PanTool };\nexport default PanTool;\n"
   },
   {
     "__docId__": 272,
@@ -9245,7 +9245,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import MouseHandler from '../util/mouse-handler';\nimport ContextMenu from '../ui/context-menu';\n\nconst SCALE_MODIFIER = 0.9;\n\nclass Canvas {\n\n  ui;\n\n  canvas;\n  context;\n\n  // scale of 0.5 means drawing at half size (0.5 pixels for each original pixel)\n  scaleValue = 1;\n  dx = 0;\n  dy = 0;\n\n  mouseHandler;\n  contextMenu;\n\n  constructor(ui) {\n    this.ui = ui;\n    this.canvas = document.getElementById('canvas');\n    this.context = this.canvas.getContext('2d');\n  }\n\n  init(graph) {\n    this.mouseHandler = new MouseHandler(graph);\n    this.contextMenu = new ContextMenu(this.ui, this.mouseHandler);\n    this.initListeners();\n  }\n\n  resetGraph(newGraph) {\n    this.mouseHandler.resetGraph(newGraph);\n  }\n\n  resize(event) {\n    this.context.canvas.width = window.innerWidth;\n    this.context.canvas.height = window.innerHeight;\n    this.update();\n  }\n\n  get scale() {\n    return this.scaleValue;\n  }\n\n  set scale(scale) {\n    this.scaleValue = scale;\n    this.ui.statusBar.updateZoom(scale);\n  }\n\n  reset() {\n    this.dx = 0;\n    this.dy = 0;\n    this.scale = 1;\n    this.update();\n    this.ui.statusBar.updateMouse(0, 0);\n  }\n\n  clear() {\n    this.context.clearRect(this.dx, this.dy, this.canvas.width / this.scale, this.canvas.height / this.scale);\n  }\n\n  getCanvasX(event) {\n    let canvasX;\n    if (event.target === this.canvas) {\n      canvasX = event.offsetX;\n    } else {\n      let offsets = document.getElementById('canvas').getBoundingClientRect();\n      canvasX = event.screenX - offsets.left;\n    }\n    let x = canvasX / this.scale + this.dx;\n    return x;\n  }\n\n  getCanvasY(event) {\n    let canvasY;\n    if (event.target === this.canvas) {\n      canvasY = event.offsetY;\n    } else {\n      let offsets = document.getElementById('canvas').getBoundingClientRect();\n      canvasY = event.screenY - offsets.top;\n    }\n    let y = canvasY / this.scale + this.dy;\n    return y;\n  }\n\n  update() {\n    // reset the transformations done to the canvas\n    this.context.resetTransform();\n\n    // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies\n    // the translation before the scale.\n    // This is not what we want, since the scale is done relative to (0,0)\n    // and the position displayed at the top-left corner will no longer\n    // be (dx,dy), which means the coordinates under the mouse will change.\n\n    // scale both x- and y-axis\n    this.context.scale(this.scale, this.scale);\n\n    // context.translate(a, b) translates the canvas origin by (a,b).\n    // Since (dx,dy) are the coordinates calculated for the new origin, the\n    // canvas needs to be translated by (-dx,-dy).\n    this.context.translate(-1 * this.dx, -1 * this.dy);\n  }\n\n  initListeners() {\n    this.canvas.addEventListener('mousedown', (event) => {\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      if (event.button === 0 && !this.contextMenu.isDisplayed) {\n        this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);\n      } else if (event.button === 2) {\n        this.mouseHandler.rightDownListener(event, x, y);\n      }\n\n      if (this.contextMenu.isDisplayed) {\n        this.contextMenu.toggleContextMenu();\n      }\n    });\n\n    window.addEventListener('mouseup', (event) => {\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      if (event.button === 0) {\n        this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);\n      } else if (event.button === 2) {\n        this.mouseHandler.rightUpListener(event, x, y);\n      }\n    });\n\n    window.addEventListener('mousemove', (event) => {\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      if (event.button === 0 && event.buttons !== 2) {\n        this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);\n      } else if (event.button === 2 || event.buttons === 2) {\n        this.mouseHandler.rightMoveListener(event, x, y);\n      }\n    });\n\n    window.addEventListener('contextmenu', (event) => {\n      if (event.target === this.canvas) {\n        // prevent default context menu\n        event.preventDefault();\n      }\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      this.mouseHandler.contextmenuEventListener(event, x, y, this.contextMenu);\n    });\n\n    this.canvas.addEventListener('wheel', (event) => {\n      event.stopPropagation();\n      // prevent page scrolling (the default scroll behavior)\n      event.preventDefault();\n\n      // store the current scale value\n      let oldScale = this.scale;\n\n      // get the amount the mousewheel was scrolled\n      let delta = event.deltaY;\n      if (delta > 0) {\n        // scroll down\n        this.scale = Math.max(this.scale * SCALE_MODIFIER, 0.1);\n      } else if (delta < 0) {\n        // scroll up\n        this.scale = Math.min(this.scale / SCALE_MODIFIER, 10);\n      }\n\n      // get the mouse position (relative to the canvas element)\n      let mouseX = event.offsetX;\n      let mouseY = event.offsetY;\n\n      // Calculate the new position of the displayed origin (top left corner).\n      // (dx,dy) are the coordinates of the top-left corner.\n      // (x1,y1) and (x2,y2) are the coordinates at the mouse position before\n      // and after changing the scale, respectively.\n      //\n      // With the old scale value:\n      //     dx1 = dx\n      //     dy1 = dy\n      //     x1 = dx + mouseX / oldScale\n      //     y1 = dy + mouseY / oldScale\n      //\n      // With new scale:\n      //     dx2 = dx + mouseX / oldScale - mouseX / scale\n      //     dy2 = dy + mouseY / oldScale - mouseY / scale\n      //     x2 = dx2 + mouseX / scale\n      //        = dx + mouseX / oldScale - mouseX / scale + mouseX / scale\n      //        = dx + mouseX / oldScale\n      //        = x1\n      //     y2 = dy2 + mouseY / scale\n      //        = dy + mouseY / oldScale - mouseY / scale + mouseY / scale\n      //        = dy + mouseY / oldScale\n      //        = y1\n      //\n      // Note that (x1,y1) = (x2,y2) which means the coordinates under\n      // the mouse stays the same.\n      this.dx += mouseX / oldScale - mouseX / this.scale;\n      this.dy += mouseY / oldScale - mouseY / this.scale;\n\n      this.update();\n\n      this.ui.statusBar.updateZoom(this.scale);\n    });\n\n    document.addEventListener('selectstart', (event) => {\n      event.stopPropagation();\n      event.preventDefault();\n      return false;\n    });\n\n    document.addEventListener('dblclick', (event) => {\n      event.stopPropagation();\n      event.preventDefault();\n      return false;\n    });\n  }\n}\n\nexport { Canvas };\nexport default Canvas;\n"
+    "content": "import MouseHandler from '../util/mouse-handler';\nimport ContextMenu from '../ui/context-menu';\n\nconst SCALE_MODIFIER = 0.9;\n\n/**\n * Front end canvas frame which reacts to mouse-clicks upon it\n * @class Canvas\n */\nclass Canvas {\n\n  /**\n   * An instance of the UI\n   * @type {UI}\n   */\n  ui;\n\n  /**\n   * An instance of the canvas element on the browser\n   * @type {HTMLCanvasElement}\n   */\n  canvas;\n\n  /**\n   * An instance of a rendering context\n   * @type {CanvasRenderingContext2D}\n   */\n  context;\n\n  /**\n   * A number value which remembers the zoom factor\n   * @type {Number}\n   */\n  scaleValue = 1;\n\n  /**\n   * A number value which remembers the centered horizontal position on the graph\n   * @type {Number}\n   */\n  dx = 0;\n\n  /**\n   * A number value which remembers the centered vertical position on the graph\n   * @type {Number}\n   */\n  dy = 0;\n\n  /**\n   * An instance of the mouseHandler which interfaces the canvas with the graph\n   * @type {MouseHandler}\n   */\n  mouseHandler;\n\n  /**\n   * An instance of the contextMenu\n   * @type {ContextMenu}\n   */\n  contextMenu;\n\n  /**\n   * Constructor for the Canvas object\n   * @param {UI} ui - refers to the master ui object\n   */\n  constructor(ui) {\n    this.ui = ui;\n    this.canvas = document.getElementById('canvas');\n    this.context = this.canvas.getContext('2d');\n  }\n\n  /**\n   * Initializes the mouse handler, context menu, and other listeners\n   * @param {Graph} graph - refers to the master graph object\n   */\n  init(graph) {\n    this.mouseHandler = new MouseHandler(graph);\n    this.contextMenu = new ContextMenu(this.ui, this.mouseHandler);\n    this.initListeners();\n  }\n\n  resetGraph(newGraph) {\n    this.mouseHandler.resetGraph(newGraph);\n  }\n\n  resize(event) {\n    this.context.canvas.width = window.innerWidth;\n    this.context.canvas.height = window.innerHeight;\n    this.update();\n  }\n\n  get scale() {\n    return this.scaleValue;\n  }\n\n  set scale(scale) {\n    this.scaleValue = scale;\n    this.ui.statusBar.updateZoom(scale);\n  }\n\n  reset() {\n    this.dx = 0;\n    this.dy = 0;\n    this.scale = 1;\n    this.update();\n    this.ui.statusBar.updateMouse(0, 0);\n  }\n\n  clear() {\n    this.context.clearRect(this.dx, this.dy, this.canvas.width / this.scale, this.canvas.height / this.scale);\n  }\n\n  /**\n   * Functions gets the x-position of the click event on the full canvas\n   * @param {HTMLEvent} event - the click event which triggered this call\n   * @return {Number} x - The x-position of the click event on the full canvas\n   */\n  getCanvasX(event) {\n    let canvasX;\n    if (event.target === this.canvas) {\n      canvasX = event.offsetX;\n    } else {\r\n      canvasX = event.pageX - this.canvas.offsetLeft;\r\n    }\n    let x = canvasX / this.scale + this.dx;\n    return x;\n  }\n\n  /**\n   * Functions gets the y-position of the click event on the full canvas\n   * @param {HTMLEvent} event - the click event which triggered this call\n   * @return {Number} y - The y-position of the click event on the full canvas\n   */\n  getCanvasY(event) {\n    let canvasY;\n    if (event.target === this.canvas) {\n      canvasY = event.offsetY;\n    } else {\r\n      canvasY = event.pageY - this.canvas.offsetTop;\r\n    }\n    let y = canvasY / this.scale + this.dy;\n    return y;\n  }\n\n  update() {\n    // reset the transformations done to the canvas\n    this.context.resetTransform();\n\n    // context.setTransform(xScale, xSkew, ySkew, yScale, dx, dy) applies\n    // the translation before the scale.\n    // This is not what we want, since the scale is done relative to (0,0)\n    // and the position displayed at the top-left corner will no longer\n    // be (dx,dy), which means the coordinates under the mouse will change.\n\n    // scale both x- and y-axis\n    this.context.scale(this.scale, this.scale);\n\n    // context.translate(a, b) translates the canvas origin by (a,b).\n    // Since (dx,dy) are the coordinates calculated for the new origin, the\n    // canvas needs to be translated by (-dx,-dy).\n    this.context.translate(-1 * this.dx, -1 * this.dy);\n  }\n\n  /**\n   * Creates all the listeners for every event which happens upon the canvas\n   * Based on the event it calls the relevant function\n   */\n  initListeners() {\n    this.canvas.addEventListener('mousedown', (event) => {\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      if (event.button === 0 && !this.contextMenu.isDisplayed) {\n        this.mouseHandler.downListener(event, this.ui.toolbar.currentTool, x, y);\n      } else if (event.button === 2) {\n        this.mouseHandler.rightDownListener(event, x, y);\n      }\n\n      if (this.contextMenu.isDisplayed) {\n        this.contextMenu.toggleContextMenu();\n      }\n    });\n\n    window.addEventListener('mouseup', (event) => {\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      if (event.button === 0) {\n        this.mouseHandler.upListener(event, this.ui.toolbar.currentTool, x, y);\n      } else if (event.button === 2) {\n        this.mouseHandler.rightUpListener(event, x, y);\n      }\n    });\n\n    window.addEventListener('mousemove', (event) => {\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      if (event.button === 0 && event.buttons !== 2) {\n        this.mouseHandler.moveListener(event, this.ui.toolbar.currentTool, x, y);\n      } else if (event.button === 2 || event.buttons === 2) {\n        this.mouseHandler.rightMoveListener(event, x, y);\n      }\n    });\n\n    window.addEventListener('contextmenu', (event) => {\n      if (event.target === this.canvas) {\n        // prevent default context menu\n        event.preventDefault();\n      }\n      event.stopPropagation();\n      let x = this.getCanvasX(event);\n      let y = this.getCanvasY(event);\n\n      this.mouseHandler.contextmenuEventListener(event, x, y, this.contextMenu);\n    });\n\n    this.canvas.addEventListener('wheel', (event) => {\n      event.stopPropagation();\n      // prevent page scrolling (the default scroll behavior)\n      event.preventDefault();\n\n      // store the current scale value\n      let oldScale = this.scale;\n\n      // get the amount the mousewheel was scrolled\n      let delta = event.deltaY;\n      if (delta > 0) {\n        // scroll down\n        this.scale = Math.max(this.scale * SCALE_MODIFIER, 0.1);\n      } else if (delta < 0) {\n        // scroll up\n        this.scale = Math.min(this.scale / SCALE_MODIFIER, 10);\n      }\n\n      // get the mouse position (relative to the canvas element)\n      let mouseX = event.offsetX;\n      let mouseY = event.offsetY;\n\n      // Calculate the new position of the displayed origin (top left corner).\n      // (dx,dy) are the coordinates of the top-left corner.\n      // (x1,y1) and (x2,y2) are the coordinates at the mouse position before\n      // and after changing the scale, respectively.\n      //\n      // With the old scale value:\n      //     dx1 = dx\n      //     dy1 = dy\n      //     x1 = dx + mouseX / oldScale\n      //     y1 = dy + mouseY / oldScale\n      //\n      // With new scale:\n      //     dx2 = dx + mouseX / oldScale - mouseX / scale\n      //     dy2 = dy + mouseY / oldScale - mouseY / scale\n      //     x2 = dx2 + mouseX / scale\n      //        = dx + mouseX / oldScale - mouseX / scale + mouseX / scale\n      //        = dx + mouseX / oldScale\n      //        = x1\n      //     y2 = dy2 + mouseY / scale\n      //        = dy + mouseY / oldScale - mouseY / scale + mouseY / scale\n      //        = dy + mouseY / oldScale\n      //        = y1\n      //\n      // Note that (x1,y1) = (x2,y2) which means the coordinates under\n      // the mouse stays the same.\n      this.dx += mouseX / oldScale - mouseX / this.scale;\n      this.dy += mouseY / oldScale - mouseY / this.scale;\n\n      this.update();\n\n      this.ui.statusBar.updateZoom(this.scale);\n    });\n\n    document.addEventListener('selectstart', (event) => {\n      event.stopPropagation();\n      event.preventDefault();\n      return false;\n    });\n\n    document.addEventListener('dblclick', (event) => {\n      event.stopPropagation();\n      event.preventDefault();\n      return false;\n    });\n  }\n}\n\nexport { Canvas };\nexport default Canvas;\n"
   },
   {
     "__docId__": 318,
@@ -9280,9 +9280,14 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/canvas.js",
     "importStyle": "Canvas",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "description": "Front end canvas frame which reacts to mouse-clicks upon it",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Canvas"
+      }
+    ],
     "interface": false
   },
   {
@@ -9294,15 +9299,18 @@
     "memberof": "src/js/ui/canvas.js~Canvas",
     "longname": "src/js/ui/canvas.js~Canvas#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
+    "description": "Constructor for the Canvas object",
+    "lineNumber": 64,
     "params": [
       {
-        "name": "ui",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "UI"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ui",
+        "description": "refers to the master ui object"
       }
     ],
     "generator": false
@@ -9317,7 +9325,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#ui",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 65,
     "undocument": true,
     "type": {
       "types": [
@@ -9335,7 +9343,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#canvas",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 66,
     "undocument": true,
     "type": {
       "types": [
@@ -9353,7 +9361,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#context",
     "access": null,
     "description": null,
-    "lineNumber": 24,
+    "lineNumber": 67,
     "undocument": true,
     "type": {
       "types": [
@@ -9370,15 +9378,18 @@
     "memberof": "src/js/ui/canvas.js~Canvas",
     "longname": "src/js/ui/canvas.js~Canvas#init",
     "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
+    "description": "Initializes the mouse handler, context menu, and other listeners",
+    "lineNumber": 74,
     "params": [
       {
-        "name": "graph",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Graph"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "graph",
+        "description": "refers to the master graph object"
       }
     ],
     "generator": false
@@ -9393,7 +9404,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#mouseHandler",
     "access": null,
     "description": null,
-    "lineNumber": 28,
+    "lineNumber": 75,
     "undocument": true,
     "type": {
       "types": [
@@ -9411,7 +9422,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#contextMenu",
     "access": null,
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 76,
     "undocument": true,
     "type": {
       "types": [
@@ -9429,7 +9440,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#resetGraph",
     "access": null,
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 80,
     "undocument": true,
     "params": [
       {
@@ -9451,7 +9462,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#resize",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 84,
     "undocument": true,
     "params": [
       {
@@ -9473,7 +9484,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#scale",
     "access": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 90,
     "undocument": true,
     "type": {
       "types": [
@@ -9492,7 +9503,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#scale",
     "access": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 94,
     "undocument": true,
     "type": {
       "types": [
@@ -9511,7 +9522,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#scaleValue",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 95,
     "undocument": true,
     "type": {
       "types": [
@@ -9529,7 +9540,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#reset",
     "access": null,
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 99,
     "undocument": true,
     "params": [],
     "generator": false
@@ -9544,7 +9555,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#dx",
     "access": null,
     "description": null,
-    "lineNumber": 53,
+    "lineNumber": 100,
     "undocument": true,
     "type": {
       "types": [
@@ -9562,7 +9573,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#dy",
     "access": null,
     "description": null,
-    "lineNumber": 54,
+    "lineNumber": 101,
     "undocument": true,
     "type": {
       "types": [
@@ -9580,7 +9591,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#scale",
     "access": null,
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 102,
     "undocument": true,
     "type": {
       "types": [
@@ -9598,7 +9609,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#clear",
     "access": null,
     "description": null,
-    "lineNumber": 60,
+    "lineNumber": 107,
     "undocument": true,
     "params": [],
     "generator": false
@@ -9612,21 +9623,27 @@
     "memberof": "src/js/ui/canvas.js~Canvas",
     "longname": "src/js/ui/canvas.js~Canvas#getCanvasX",
     "access": null,
-    "description": null,
-    "lineNumber": 64,
-    "undocument": true,
+    "description": "Functions gets the x-position of the click event on the full canvas",
+    "lineNumber": 116,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "HTMLEvent"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "the click event which triggered this call"
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Number"
+      ],
+      "spread": false,
+      "description": "x - The x-position of the click event on the full canvas"
     },
     "generator": false
   },
@@ -9639,21 +9656,27 @@
     "memberof": "src/js/ui/canvas.js~Canvas",
     "longname": "src/js/ui/canvas.js~Canvas#getCanvasY",
     "access": null,
-    "description": null,
-    "lineNumber": 76,
-    "undocument": true,
+    "description": "Functions gets the y-position of the click event on the full canvas",
+    "lineNumber": 132,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "HTMLEvent"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "the click event which triggered this call"
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Number"
+      ],
+      "spread": false,
+      "description": "y - The y-position of the click event on the full canvas"
     },
     "generator": false
   },
@@ -9667,7 +9690,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#update",
     "access": null,
     "description": null,
-    "lineNumber": 88,
+    "lineNumber": 143,
     "undocument": true,
     "params": [],
     "generator": false
@@ -9681,9 +9704,8 @@
     "memberof": "src/js/ui/canvas.js~Canvas",
     "longname": "src/js/ui/canvas.js~Canvas#initListeners",
     "access": null,
-    "description": null,
-    "lineNumber": 107,
-    "undocument": true,
+    "description": "Creates all the listeners for every event which happens upon the canvas\nBased on the event it calls the relevant function",
+    "lineNumber": 166,
     "params": [],
     "generator": false
   },
@@ -9697,7 +9719,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#scale",
     "access": null,
     "description": null,
-    "lineNumber": 172,
+    "lineNumber": 231,
     "undocument": true,
     "type": {
       "types": [
@@ -9715,7 +9737,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#scale",
     "access": null,
     "description": null,
-    "lineNumber": 175,
+    "lineNumber": 234,
     "undocument": true,
     "type": {
       "types": [
@@ -9733,7 +9755,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#dx",
     "access": null,
     "description": null,
-    "lineNumber": 207,
+    "lineNumber": 266,
     "undocument": true,
     "type": {
       "types": [
@@ -9751,7 +9773,7 @@
     "longname": "src/js/ui/canvas.js~Canvas#dy",
     "access": null,
     "description": null,
-    "lineNumber": 208,
+    "lineNumber": 267,
     "undocument": true,
     "type": {
       "types": [
@@ -9770,7 +9792,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Node from '../data/node/node';\r\nimport Edge from '../data/edge/edge';\r\n\r\nconst MENU_TOGGLE_CLASS = 'context-menu--active';\r\n\r\nconst MENU_SECTION_CLASS = 'context-menu__section';\r\nconst MENU_SECTION_VISIBILITY_CLASS = 'context-menu__section--visible';\r\nconst MENU_SECTION_NAME_ATTRIBUTE = 'data-name';\r\n\r\nconst MENU_ITEM_TYPE_ATTRIBUTE = 'data-type';\r\nconst MENU_ITEM_DATA_ATTRIBUTE = 'data-data';\r\n\r\nclass ContextMenu {\r\n\r\n  ui;\r\n\r\n  mouseHandler;\r\n\r\n  contextMenu;\r\n\r\n  isDisplayed = false;\r\n  menuPosX;\r\n  menuPosY;\r\n\r\n  currentSection = null;\r\n  component;\r\n\r\n  constructor(ui, mouseHandler) {\r\n    this.ui = ui;\r\n    this.mouseHandler = mouseHandler;\r\n    this.contextMenu = document.getElementById('context-menu');\r\n    this.initListeners();\r\n  }\r\n\r\n  initListeners() {\r\n    this.contextMenu.addEventListener('mouseup', (event) => {\r\n      let type = event.target.getAttribute(MENU_ITEM_TYPE_ATTRIBUTE);\r\n      let value = event.target.getAttribute(MENU_ITEM_DATA_ATTRIBUTE);\r\n\r\n      if (type === 'add') {\r\n        this.mouseHandler.contextAdd(value, this.menuPosX, this.menuPosY);\r\n      } else if (type === 'toggle') {\r\n        this.mouseHandler.contextToggle(value);\r\n      } else if (type === 'delete') {\r\n        this.mouseHandler.contextDelete();\r\n      } else if (type === 'edit') {\r\n        this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.menuPosX, this.menuPosY);\r\n      } else if (type === 'save') {\r\n        let downloadLink = document.createElement('a');\r\n        downloadLink.href = this.ui.canvas.canvas.toDataURL('image/png');\r\n        downloadLink.download = 'canvas.png';\r\n        downloadLink.target = '_blank';\r\n        document.body.appendChild(downloadLink);\r\n        downloadLink.dispatchEvent(new MouseEvent('click'));\r\n        document.body.removeChild(downloadLink);\r\n      }\r\n\r\n      if (event.button !== 2) {\r\n        this.toggleContextMenu();\r\n      }\r\n    });\r\n\r\n    this.contextMenu.addEventListener('contextmenu', (event) => {\r\n      event.preventDefault();\r\n      this.toggleContextMenu();\r\n    });\r\n\r\n    document.addEventListener('click', (event) => {\r\n      if (!this.contextMenu.contains(event.target)) {\r\n        if (this.isDisplayed) {\r\n          this.toggleContextMenu();\r\n        }\r\n      }\r\n    });\r\n  }\r\n\r\n  toggleContextMenu() {\r\n    if (this.isDisplayed) {\r\n      this.contextMenu.classList.remove(MENU_TOGGLE_CLASS);\r\n    } else {\r\n      this.contextMenu.classList.add(MENU_TOGGLE_CLASS);\r\n    }\r\n    this.isDisplayed = !this.isDisplayed;\r\n  }\r\n\r\n  repositionMenu(event) {\r\n    let xpos = event.clientX;\r\n    let ypos = event.clientY;\r\n\r\n    this.contextMenu.style.left = xpos + 'px';\r\n    this.contextMenu.style.top = ypos + 'px';\r\n\r\n    let distanceRight = document.body.offsetWidth - xpos - this.contextMenu.offsetWidth;\r\n    let distanceBottom = document.body.offsetHeight - ypos - this.contextMenu.offsetHeight;\r\n\r\n    if (distanceRight < 0) {\r\n      this.contextMenu.style.left = `${xpos + distanceRight}px`;\r\n    }\r\n    if (distanceBottom < 0) {\r\n      this.contextMenu.style.top = `${ypos - this.contextMenu.offsetHeight}px`;\r\n    }\r\n  }\r\n\r\n  contextmenuEventListener(event, x, y) {\r\n    this.menuPosX = x;\r\n    this.menuPosY = y;\r\n\r\n    this.component = this.mouseHandler.contextComponent(event, this.menuPosX, this.menuPosY);\r\n\r\n    this.toggleContextMenu();\r\n\r\n    // hide all menu sections\r\n    let sectionElements = this.contextMenu.querySelectorAll(`.${MENU_SECTION_CLASS}`);\r\n    for (let i = 0; i < sectionElements.length; i++) {\r\n      sectionElements[i].classList.remove(MENU_SECTION_VISIBILITY_CLASS);\r\n    }\r\n\r\n    // populate array with names of menu sections to be displayed\r\n    let sections = [];\r\n    if (this.component !== null) {\r\n      sections.push('component');\r\n      if (this.component instanceof Node) {\r\n        sections.push('node');\r\n      } else if (this.component instanceof Edge) {\r\n        sections.push('edge');\r\n      }\r\n    } else {\r\n      sections.push('default');\r\n    }\r\n    sections.push('action');\r\n\r\n    // make menu sections visible\r\n    for (let section of sections) {\r\n      let sectionElement = this.contextMenu.querySelector(`.${MENU_SECTION_CLASS}[${MENU_SECTION_NAME_ATTRIBUTE}=\"${section}\"]`);\r\n      sectionElement.classList.add(MENU_SECTION_VISIBILITY_CLASS);\r\n    }\r\n\r\n    this.repositionMenu(event);\r\n  }\r\n\r\n}\r\n\r\nexport { ContextMenu };\r\nexport default ContextMenu;\r\n"
+    "content": "import Node from '../data/node/node';\r\nimport Edge from '../data/edge/edge';\r\n\r\nconst MENU_TOGGLE_CLASS = 'context-menu--active';\r\n\r\nconst MENU_SECTION_CLASS = 'context-menu__section';\r\nconst MENU_SECTION_VISIBILITY_CLASS = 'context-menu__section--visible';\r\nconst MENU_SECTION_NAME_ATTRIBUTE = 'data-name';\r\n\r\nconst MENU_ITEM_TYPE_ATTRIBUTE = 'data-type';\r\nconst MENU_ITEM_DATA_ATTRIBUTE = 'data-data';\r\n\r\n/**\r\n * The context menu html object which reacts to context clicks\r\n * @class ContextMenu\r\n */\r\nclass ContextMenu {\r\n\r\n  /**\r\n   * An instance of the UI\r\n   * @type {UI}\r\n   */\r\n  ui;\r\n\r\n  /**\r\n   * An instance of the mouseHandler which interfaces the canvas with the graph\r\n   * @type {MouseHandler}\r\n   */\r\n  mouseHandler;\r\n\r\n  /**\r\n   * An instance of the HTMLElement for the context menu\r\n   * @type {HTMLElement}\r\n   */\r\n  contextMenu;\r\n\r\n  /**\r\n   * A boolean variable which tracks whether or not the context menu is displayed\r\n   * @type {Boolean}\r\n   */\r\n  isDisplayed = false;\r\n\r\n  /**\r\n   * A number variable which tracks the x-position of the context menu\r\n   * @type {Number}\r\n   */\r\n  menuPosX;\r\n\r\n  /**\r\n   * A number variable which tracks the y-position of the context menu\r\n   * @type {Number}\r\n   */\r\n  menuPosY;\r\n\r\n  /**\r\n   * The currently selected component, can either be a node, an edge, or null\r\n   * @type {Object}\r\n   */\r\n  component;\r\n\r\n  /**\r\n   * Constructor for the context menu class\r\n   * @param {UI} ui -  reference to the master UI object\r\n   * @param {MouseHandler} mouseHandler - reference to the master mouseHandler object\r\n   */\r\n  constructor(ui, mouseHandler) {\r\n    this.ui = ui;\r\n    this.mouseHandler = mouseHandler;\r\n    this.contextMenu = document.getElementById('context-menu');\r\n    this.initListeners();\r\n  }\r\n\r\n  /**\r\n   * Initializes the listeners for clicks upon the context-menu element\r\n   */\r\n  initListeners() {\r\n    this.contextMenu.addEventListener('mouseup', (event) => {\r\n      let type = event.target.getAttribute(MENU_ITEM_TYPE_ATTRIBUTE);\r\n      let value = event.target.getAttribute(MENU_ITEM_DATA_ATTRIBUTE);\r\n\r\n      if (type === 'add') {\r\n        this.mouseHandler.contextAdd(value, this.menuPosX, this.menuPosY);\r\n      } else if (type === 'toggle') {\r\n        this.mouseHandler.contextToggle(value);\r\n      } else if (type === 'delete') {\r\n        this.mouseHandler.contextDelete();\r\n      } else if (type === 'edit') {\r\n        this.mouseHandler.contextSelect(event, this.ui.toolbar.currentTool, this.menuPosX, this.menuPosY);\r\n      } else if (type === 'save') {\r\n        let downloadLink = document.createElement('a');\r\n        downloadLink.href = this.ui.canvas.canvas.toDataURL('image/png');\r\n        downloadLink.download = 'canvas.png';\r\n        downloadLink.target = '_blank';\r\n        document.body.appendChild(downloadLink);\r\n        downloadLink.dispatchEvent(new MouseEvent('click'));\r\n        document.body.removeChild(downloadLink);\r\n      }\r\n\r\n      if (event.button !== 2) {\r\n        this.toggleContextMenu();\r\n      }\r\n    });\r\n\r\n    this.contextMenu.addEventListener('contextmenu', (event) => {\r\n      event.preventDefault();\r\n      this.toggleContextMenu();\r\n    });\r\n\r\n    document.addEventListener('click', (event) => {\r\n      if (!this.contextMenu.contains(event.target)) {\r\n        if (this.isDisplayed) {\r\n          this.toggleContextMenu();\r\n        }\r\n      }\r\n    });\r\n  }\r\n\r\n  toggleContextMenu() {\r\n    if (this.isDisplayed) {\r\n      this.contextMenu.classList.remove(MENU_TOGGLE_CLASS);\r\n    } else {\r\n      this.contextMenu.classList.add(MENU_TOGGLE_CLASS);\r\n    }\r\n    this.isDisplayed = !this.isDisplayed;\r\n  }\r\n\r\n  /**\r\n   * Repositions the context menu based on where the click was adjusting for clicks that might place the context menu off screen\r\n   * @param {HTMLEvent} event - click event that toggles the context menu opening\r\n   */\r\n  repositionMenu(event) {\r\n    let xpos = event.clientX;\r\n    let ypos = event.clientY;\r\n\r\n    this.contextMenu.style.left = xpos + 'px';\r\n    this.contextMenu.style.top = ypos + 'px';\r\n\r\n    let distanceRight = document.body.offsetWidth - xpos - this.contextMenu.offsetWidth;\r\n    let distanceBottom = document.body.offsetHeight - ypos - this.contextMenu.offsetHeight;\r\n\r\n    if (distanceRight < 0) {\r\n      this.contextMenu.style.left = `${xpos + distanceRight}px`;\r\n    }\r\n    if (distanceBottom < 0) {\r\n      this.contextMenu.style.top = `${ypos - this.contextMenu.offsetHeight}px`;\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Function called by canvas when context menu click happens\r\n   * @param {HTMLEvent} event - click event that toggles the context menu opening\r\n   * @param {Number} x - x position of the click event\r\n   * @param {Number} y - y position of the click event\r\n   */\r\n  contextmenuEventListener(event, x, y) {\r\n    this.menuPosX = x;\r\n    this.menuPosY = y;\r\n\r\n    this.component = this.mouseHandler.contextComponent(event, this.menuPosX, this.menuPosY);\r\n\r\n    this.toggleContextMenu();\r\n\r\n    // hide all menu sections\r\n    let sectionElements = this.contextMenu.querySelectorAll(`.${MENU_SECTION_CLASS}`);\r\n    for (let i = 0; i < sectionElements.length; i++) {\r\n      sectionElements[i].classList.remove(MENU_SECTION_VISIBILITY_CLASS);\r\n    }\r\n\r\n    // populate array with names of menu sections to be displayed\r\n    let sections = [];\r\n    if (this.component !== null) {\r\n      sections.push('component');\r\n      if (this.component instanceof Node) {\r\n        sections.push('node');\r\n      } else if (this.component instanceof Edge) {\r\n        sections.push('edge');\r\n      }\r\n    } else {\r\n      sections.push('default');\r\n    }\r\n    sections.push('action');\r\n\r\n    // make menu sections visible\r\n    for (let section of sections) {\r\n      let sectionElement = this.contextMenu.querySelector(`.${MENU_SECTION_CLASS}[${MENU_SECTION_NAME_ATTRIBUTE}=\"${section}\"]`);\r\n      sectionElement.classList.add(MENU_SECTION_VISIBILITY_CLASS);\r\n    }\r\n\r\n    this.repositionMenu(event);\r\n  }\r\n\r\n}\r\n\r\nexport { ContextMenu };\r\nexport default ContextMenu;\r\n"
   },
   {
     "__docId__": 346,
@@ -9910,9 +9932,14 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/context-menu.js",
     "importStyle": "ContextMenu",
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
+    "description": "The context menu html object which reacts to context clicks",
+    "lineNumber": 17,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "ContextMenu"
+      }
+    ],
     "interface": false
   },
   {
@@ -9924,21 +9951,28 @@
     "memberof": "src/js/ui/context-menu.js~ContextMenu",
     "longname": "src/js/ui/context-menu.js~ContextMenu#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 28,
-    "undocument": true,
+    "description": "Constructor for the context menu class",
+    "lineNumber": 66,
     "params": [
       {
-        "name": "ui",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "UI"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ui",
+        "description": "reference to the master UI object"
       },
       {
-        "name": "mouseHandler",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "MouseHandler"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "mouseHandler",
+        "description": "reference to the master mouseHandler object"
       }
     ],
     "generator": false
@@ -9953,7 +9987,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#ui",
     "access": null,
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 67,
     "undocument": true,
     "type": {
       "types": [
@@ -9971,7 +10005,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#mouseHandler",
     "access": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 68,
     "undocument": true,
     "type": {
       "types": [
@@ -9989,7 +10023,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#contextMenu",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 69,
     "undocument": true,
     "type": {
       "types": [
@@ -10006,9 +10040,8 @@
     "memberof": "src/js/ui/context-menu.js~ContextMenu",
     "longname": "src/js/ui/context-menu.js~ContextMenu#initListeners",
     "access": null,
-    "description": null,
-    "lineNumber": 35,
-    "undocument": true,
+    "description": "Initializes the listeners for clicks upon the context-menu element",
+    "lineNumber": 76,
     "params": [],
     "generator": false
   },
@@ -10022,7 +10055,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#toggleContextMenu",
     "access": null,
     "description": null,
-    "lineNumber": 77,
+    "lineNumber": 118,
     "undocument": true,
     "params": [],
     "generator": false
@@ -10037,7 +10070,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#isDisplayed",
     "access": null,
     "description": null,
-    "lineNumber": 83,
+    "lineNumber": 124,
     "undocument": true,
     "type": {
       "types": [
@@ -10054,15 +10087,18 @@
     "memberof": "src/js/ui/context-menu.js~ContextMenu",
     "longname": "src/js/ui/context-menu.js~ContextMenu#repositionMenu",
     "access": null,
-    "description": null,
-    "lineNumber": 86,
-    "undocument": true,
+    "description": "Repositions the context menu based on where the click was adjusting for clicks that might place the context menu off screen",
+    "lineNumber": 131,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "HTMLEvent"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "click event that toggles the context menu opening"
       }
     ],
     "generator": false
@@ -10076,27 +10112,38 @@
     "memberof": "src/js/ui/context-menu.js~ContextMenu",
     "longname": "src/js/ui/context-menu.js~ContextMenu#contextmenuEventListener",
     "access": null,
-    "description": null,
-    "lineNumber": 104,
-    "undocument": true,
+    "description": "Function called by canvas when context menu click happens",
+    "lineNumber": 155,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "HTMLEvent"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "click event that toggles the context menu opening"
       },
       {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "x position of the click event"
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "y position of the click event"
       }
     ],
     "generator": false
@@ -10111,7 +10158,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#menuPosX",
     "access": null,
     "description": null,
-    "lineNumber": 105,
+    "lineNumber": 156,
     "undocument": true,
     "type": {
       "types": [
@@ -10129,7 +10176,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#menuPosY",
     "access": null,
     "description": null,
-    "lineNumber": 106,
+    "lineNumber": 157,
     "undocument": true,
     "type": {
       "types": [
@@ -10147,7 +10194,7 @@
     "longname": "src/js/ui/context-menu.js~ContextMenu#component",
     "access": null,
     "description": null,
-    "lineNumber": 108,
+    "lineNumber": 159,
     "undocument": true,
     "type": {
       "types": [
@@ -13781,7 +13828,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Dropdown from '../ui/dropdown';\r\nimport * as Form from '../ui/form';\r\n\r\nclass TopBar {\r\n\r\n  ui;\r\n\r\n  topBar;\r\n\r\n  modeSelect;\r\n\r\n  dropdown;\r\n\r\n  inputForm;\r\n  modeInputForm;\r\n\r\n  currentMode;\r\n  currentModeElement;\r\n\r\n  constructor(ui) {\r\n    this.ui = ui;\r\n    this.topBar = document.getElementById('top-bar');\r\n    this.modeSelect = document.getElementById('mode-select');\r\n    this.inputForm = document.getElementById('tool-inputs-form');\r\n    this.modeInputForm = document.getElementById('tool-mode-inputs-form');\r\n    this.dropdown = new Dropdown(this.modeSelect);\r\n    this.initListeners();\r\n  }\r\n\r\n  initListeners() {\r\n    this.modeSelect.addEventListener('change', (event) => {\r\n      this.ui.toolbar.currentTool.changeMode(event.target.value);\r\n    });\r\n\r\n    this.inputForm.addEventListener('input', (event) => {\r\n      this.updateInputValues(event);\r\n    });\r\n\r\n    this.inputForm.addEventListener('change', (event) => {\r\n      this.updateInputValues(event);\r\n    });\r\n\r\n    this.modeInputForm.addEventListener('input', (event) => {\r\n      this.updateModeInputValues(event);\r\n    });\r\n\r\n    this.modeInputForm.addEventListener('input', (event) => {\r\n      this.updateModeInputValues(event);\r\n    });\r\n\r\n    this.modeInputForm.addEventListener('click', (event) => {\r\n      if (event.target.classList.contains('input-select-btn')) {\r\n        this.selectGraphObject(event);\r\n      }\r\n      if (event.target.classList.contains('form__submit-btn')) {\r\n        this.submitModeInputValues(event);\r\n      }\r\n    });\r\n  }\r\n\r\n  selectGraphObject(event) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    let output = event.target.parentNode.querySelector('output');\r\n    let input = output.parentNode.querySelector('input[type=\"hidden\"]');\r\n\r\n    if (currentTool.currentInput === input) {\r\n      currentTool.currentInput = null;\r\n      if (input.value) {\r\n        event.target.textContent = 'Change';\r\n      } else {\r\n        event.target.textContent = 'Select';\r\n      }\r\n    } else {\r\n      currentTool.currentInput = input;\r\n      event.target.textContent = 'Cancel';\r\n    }\r\n  }\r\n\r\n  updateGraphInput(input, obj, hasError) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (hasError) {\r\n      currentTool.currentInput = null;\r\n      return;\r\n    }\r\n\r\n    let id = obj.id;\r\n    input.value = id;\r\n\r\n    let name = input.name;\r\n    let output = input.parentNode.querySelector(`output[name=\"${name}\"]`);\r\n    output.value = `${input.getAttribute('data-type')} ${id}`;\r\n\r\n    let button = input.parentNode.querySelector('.input-select-btn');\r\n    button.textContent = 'Change';\r\n\r\n    currentTool.currentInput = null;\r\n  }\r\n\r\n  updateInputValues(event) {\r\n    let input = event.target;\r\n    let name = input.name;\r\n    let value = Form.getInputValue(input);\r\n    this.ui.toolbar.currentTool.inputs[name] = value;\r\n    this.dropdown.updateOptionContent();\r\n  }\r\n\r\n  updateModeInputValues(event) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (!currentTool.submitModeInputs()) {\r\n      let input = event.target;\r\n      let name = input.name;\r\n      let value = Form.getInputValueLocal(input, this.ui.graph);\r\n      currentTool.modeInputs[name] = value;\r\n    }\r\n  }\r\n\r\n  submitModeInputValues(event) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.submitModeInputs()) {\r\n      let form = this.modeInputForm;\r\n      let data = Form.getData(form, this.ui.graph);\r\n\r\n      let hasError = false;\r\n\r\n      for (let field of currentTool.modeInputTypes) {\r\n        let name = field.name;\r\n        let showError = !field.test(data[name]);\r\n        Form.displayError(form, name, showError);\r\n\r\n        if (showError && !hasError) {\r\n          hasError = true;\r\n        }\r\n      }\r\n\r\n      if (hasError) {\r\n        return;\r\n      }\r\n\r\n      this.updateAllModeInputValues(data);\r\n      currentTool.submitModeInputsCallback();\r\n    }\r\n  }\r\n\r\n  updateAllModeInputValues(inputData) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    for (let name of Object.keys(inputData)) {\r\n      if (name in currentTool.modeInputs) {\r\n        let value = inputData[name];\r\n        currentTool.modeInputs[name] = value;\r\n      }\r\n    }\r\n  }\r\n\r\n  showModes() {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.hasModes()) {\r\n      // populate modes list\r\n      let html = '';\r\n      for (let mode of Object.keys(currentTool.constructor.modes)) {\r\n        let selected = mode === currentTool.currentMode ? ' selected=\"true\"' : '';\r\n        html += `<option value=\"${mode}\" ${selected}>${mode}</option>`;\r\n      }\r\n\r\n      this.dropdown.optionMap = currentTool.optionMap;\r\n      this.dropdown.optionContent = currentTool.optionContent;\r\n      this.modeSelect.innerHTML = html;\r\n    } else {\r\n      // clear the modes\r\n      this.modeSelect.innerHTML = '';\r\n    }\r\n  }\r\n\r\n  showInputs() {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.hasInputs()) {\r\n      let inputTypes = Object.create(currentTool.inputTypes);\r\n      let inputs = currentTool.inputs;\r\n      for (let field of inputTypes) {\r\n        let name = field.name;\r\n        field.value = inputs[name];\r\n      }\r\n      let formContent = Form.createForm(inputTypes);\r\n      this.inputForm.innerHTML = formContent;\r\n    } else {\r\n      this.inputForm.innerHTML = '';\r\n    }\r\n  }\r\n\r\n  showModeInputs() {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.hasModeInputs()) {\r\n      let inputTypes = [];\r\n      let inputs = currentTool.modeInputs;\r\n      for (let fieldType of currentTool.modeInputTypes) {\r\n        let field = Object.create(fieldType);\r\n        let name = field.name;\r\n        field.value = inputs[name];\r\n        inputTypes.push(field);\r\n      }\r\n      let formContent = Form.createGraphForm(inputTypes, currentTool.submitModeInputs(), currentTool.submitModeInputsText());\r\n      this.modeInputForm.innerHTML = formContent;\r\n    } else {\r\n      this.modeInputForm.innerHTML = '';\r\n    }\r\n  }\r\n}\r\n\r\nexport { TopBar };\r\nexport default TopBar;\r\n"
+    "content": "import Dropdown from '../ui/dropdown';\r\nimport * as Form from '../ui/form';\r\n\r\n/**\r\n * Class for controlling the state of the top bar. Used for displaying tool-related UI elements.\r\n * @class TopBar\r\n */\r\nclass TopBar {\r\n\r\n  ui;\r\n\r\n  topBar;\r\n\r\n  modeSelect;\r\n\r\n  dropdown;\r\n\r\n  inputForm;\r\n  modeInputForm;\r\n\r\n  currentMode;\r\n  currentModeElement;\r\n\r\n  /**\r\n   * Constructs a TopBar instance.\r\n   * @param  {UI} ui - Reference to the UI instance.\r\n   * @constructs TopBar\r\n   */\r\n  constructor(ui) {\r\n    this.ui = ui;\r\n    this.topBar = document.getElementById('top-bar');\r\n    this.modeSelect = document.getElementById('mode-select');\r\n    this.inputForm = document.getElementById('tool-inputs-form');\r\n    this.modeInputForm = document.getElementById('tool-mode-inputs-form');\r\n    this.dropdown = new Dropdown(this.modeSelect);\r\n    this.initListeners();\r\n  }\r\n\r\n  /**\r\n   * Initialize the event listeners.\r\n   */\r\n  initListeners() {\r\n    this.modeSelect.addEventListener('change', (event) => {\r\n      this.ui.toolbar.currentTool.changeMode(event.target.value);\r\n    });\r\n\r\n    this.inputForm.addEventListener('input', (event) => {\r\n      this.updateInputValues(event);\r\n    });\r\n\r\n    this.inputForm.addEventListener('change', (event) => {\r\n      this.updateInputValues(event);\r\n    });\r\n\r\n    this.modeInputForm.addEventListener('input', (event) => {\r\n      this.updateModeInputValues(event);\r\n    });\r\n\r\n    this.modeInputForm.addEventListener('input', (event) => {\r\n      this.updateModeInputValues(event);\r\n    });\r\n\r\n    this.modeInputForm.addEventListener('click', (event) => {\r\n      if (event.target.classList.contains('input-select-btn')) {\r\n        this.selectGraphObject(event);\r\n      }\r\n      if (event.target.classList.contains('form__submit-btn')) {\r\n        this.submitModeInputValues(event);\r\n      }\r\n    });\r\n  }\r\n\r\n  /**\r\n   * Toggle graph object selection. This is used for tool inputs that request a graph object.\r\n   * @param  {Event} event - Event object from the event listener.\r\n   */\r\n  selectGraphObject(event) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    let output = event.target.parentNode.querySelector('output');\r\n    let input = output.parentNode.querySelector('input[type=\"hidden\"]');\r\n\r\n    if (currentTool.currentInput === input) {\r\n      currentTool.currentInput = null;\r\n      if (input.value) {\r\n        event.target.textContent = 'Change';\r\n      } else {\r\n        event.target.textContent = 'Select';\r\n      }\r\n    } else {\r\n      currentTool.currentInput = input;\r\n      event.target.textContent = 'Cancel';\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Update the graph input after object selection.\r\n   * @param  {Element} input - The input element.\r\n   * @param  {(Node|Edge|Label)} obj - The selected graph object.\r\n   * @param  {boolean} hasError - Whether or not the input has an error.\r\n   */\r\n  updateGraphInput(input, obj, hasError) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (hasError) {\r\n      currentTool.currentInput = null;\r\n      return;\r\n    }\r\n\r\n    let id = obj.id;\r\n    input.value = id;\r\n\r\n    let name = input.name;\r\n    let output = input.parentNode.querySelector(`output[name=\"${name}\"]`);\r\n    output.value = `${input.getAttribute('data-type')} ${id}`;\r\n\r\n    let button = input.parentNode.querySelector('.input-select-btn');\r\n    button.textContent = 'Change';\r\n\r\n    currentTool.currentInput = null;\r\n  }\r\n\r\n  /**\r\n   * Handles a change in tool inputs.\r\n   * @param  {Event} event - Event object from the event listener.\r\n   */\r\n  updateInputValues(event) {\r\n    let input = event.target;\r\n    let name = input.name;\r\n    let value = Form.getInputValue(input);\r\n    this.ui.toolbar.currentTool.inputs[name] = value;\r\n    this.dropdown.updateOptionContent();\r\n  }\r\n\r\n  /**\r\n   * Handles a change in mode-specific tool inputs.\r\n   * @param  {Event} event - Event object from the event listener.\r\n   */\r\n  updateModeInputValues(event) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (!currentTool.submitModeInputs()) {\r\n      let input = event.target;\r\n      let name = input.name;\r\n      let value = Form.getInputValueLocal(input, this.ui.graph);\r\n      currentTool.modeInputs[name] = value;\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Handles mode-specific tool input submission.\r\n   * @param  {Event} event - Event object from the event listener.\r\n   */\r\n  submitModeInputValues(event) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.submitModeInputs()) {\r\n      let form = this.modeInputForm;\r\n      let data = Form.getData(form, this.ui.graph);\r\n\r\n      let hasError = false;\r\n\r\n      for (let field of currentTool.modeInputTypes) {\r\n        let name = field.name;\r\n        let showError = !field.test(data[name]);\r\n        Form.displayError(form, name, showError);\r\n\r\n        if (showError && !hasError) {\r\n          hasError = true;\r\n        }\r\n      }\r\n\r\n      if (hasError) {\r\n        return;\r\n      }\r\n\r\n      this.updateAllModeInputValues(data);\r\n      currentTool.submitModeInputsCallback();\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Update the stored values of all mode-specific tool inputs.\r\n   * @param  {Object.<string,*>} inputData - Object containing names of inputs mapped to their values.\r\n   */\r\n  updateAllModeInputValues(inputData) {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    for (let name of Object.keys(inputData)) {\r\n      if (name in currentTool.modeInputs) {\r\n        let value = inputData[name];\r\n        currentTool.modeInputs[name] = value;\r\n      }\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Displays the tool modes in the Dropdown.\r\n   */\r\n  showModes() {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.hasModes()) {\r\n      // populate modes list\r\n      let html = '';\r\n      for (let mode of Object.keys(currentTool.constructor.modes)) {\r\n        let selected = mode === currentTool.currentMode ? ' selected=\"true\"' : '';\r\n        html += `<option value=\"${mode}\" ${selected}>${mode}</option>`;\r\n      }\r\n\r\n      this.dropdown.optionMap = currentTool.optionMap;\r\n      this.dropdown.optionContent = currentTool.optionContent;\r\n      this.modeSelect.innerHTML = html;\r\n    } else {\r\n      // clear the modes\r\n      this.modeSelect.innerHTML = '';\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Displays the tool inputs in the inputForm element.\r\n   */\r\n  showInputs() {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.hasInputs()) {\r\n      let inputTypes = Object.create(currentTool.inputTypes);\r\n      let inputs = currentTool.inputs;\r\n      for (let field of inputTypes) {\r\n        let name = field.name;\r\n        field.value = inputs[name];\r\n      }\r\n      let formContent = Form.createForm(inputTypes);\r\n      this.inputForm.innerHTML = formContent;\r\n    } else {\r\n      this.inputForm.innerHTML = '';\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Displays the mode-specific tool inputs in the modeInputForm element.\r\n   */\r\n  showModeInputs() {\r\n    let currentTool = this.ui.toolbar.currentTool;\r\n    if (currentTool.hasModeInputs()) {\r\n      let inputTypes = [];\r\n      let inputs = currentTool.modeInputs;\r\n      for (let fieldType of currentTool.modeInputTypes) {\r\n        let field = Object.create(fieldType);\r\n        let name = field.name;\r\n        field.value = inputs[name];\r\n        inputTypes.push(field);\r\n      }\r\n      let formContent = Form.createGraphForm(inputTypes, currentTool.submitModeInputs(), currentTool.submitModeInputsText());\r\n      this.modeInputForm.innerHTML = formContent;\r\n    } else {\r\n      this.modeInputForm.innerHTML = '';\r\n    }\r\n  }\r\n}\r\n\r\nexport { TopBar };\r\nexport default TopBar;\r\n"
   },
   {
     "__docId__": 520,
@@ -13795,9 +13842,14 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/ui/top-bar.js",
     "importStyle": "TopBar",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "Class for controlling the state of the top bar. Used for displaying tool-related UI elements.",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "TopBar"
+      }
+    ],
     "interface": false
   },
   {
@@ -13809,15 +13861,24 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
+    "description": "Constructs a TopBar instance.",
+    "lineNumber": 29,
+    "unknown": [
+      {
+        "tagName": "@constructs",
+        "tagValue": "TopBar"
+      }
+    ],
     "params": [
       {
-        "name": "ui",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "UI"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ui",
+        "description": "Reference to the UI instance."
       }
     ],
     "generator": false
@@ -13832,7 +13893,7 @@
     "longname": "src/js/ui/top-bar.js~TopBar#ui",
     "access": null,
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 30,
     "undocument": true,
     "type": {
       "types": [
@@ -13850,7 +13911,7 @@
     "longname": "src/js/ui/top-bar.js~TopBar#topBar",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 31,
     "undocument": true,
     "type": {
       "types": [
@@ -13868,7 +13929,7 @@
     "longname": "src/js/ui/top-bar.js~TopBar#modeSelect",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 32,
     "undocument": true,
     "type": {
       "types": [
@@ -13886,7 +13947,7 @@
     "longname": "src/js/ui/top-bar.js~TopBar#inputForm",
     "access": null,
     "description": null,
-    "lineNumber": 24,
+    "lineNumber": 33,
     "undocument": true,
     "type": {
       "types": [
@@ -13904,7 +13965,7 @@
     "longname": "src/js/ui/top-bar.js~TopBar#modeInputForm",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 34,
     "undocument": true,
     "type": {
       "types": [
@@ -13922,7 +13983,7 @@
     "longname": "src/js/ui/top-bar.js~TopBar#dropdown",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 35,
     "undocument": true,
     "type": {
       "types": [
@@ -13939,9 +14000,8 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#initListeners",
     "access": null,
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
+    "description": "Initialize the event listeners.",
+    "lineNumber": 42,
     "params": [],
     "generator": false
   },
@@ -13954,15 +14014,18 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#selectGraphObject",
     "access": null,
-    "description": null,
-    "lineNumber": 61,
-    "undocument": true,
+    "description": "Toggle graph object selection. This is used for tool inputs that request a graph object.",
+    "lineNumber": 77,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event object from the event listener."
       }
     ],
     "generator": false
@@ -13976,27 +14039,40 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#updateGraphInput",
     "access": null,
-    "description": null,
-    "lineNumber": 79,
-    "undocument": true,
+    "description": "Update the graph input after object selection.",
+    "lineNumber": 101,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "input",
-        "types": [
-          "*"
-        ]
+        "description": "The input element."
       },
       {
+        "nullable": null,
+        "types": [
+          "Node",
+          "Edge",
+          "Label"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "obj",
-        "types": [
-          "*"
-        ]
+        "description": "The selected graph object."
       },
       {
-        "name": "hasError",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hasError",
+        "description": "Whether or not the input has an error."
       }
     ],
     "generator": false
@@ -14010,15 +14086,18 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#updateInputValues",
     "access": null,
-    "description": null,
-    "lineNumber": 99,
-    "undocument": true,
+    "description": "Handles a change in tool inputs.",
+    "lineNumber": 125,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event object from the event listener."
       }
     ],
     "generator": false
@@ -14032,15 +14111,18 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#updateModeInputValues",
     "access": null,
-    "description": null,
-    "lineNumber": 107,
-    "undocument": true,
+    "description": "Handles a change in mode-specific tool inputs.",
+    "lineNumber": 137,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event object from the event listener."
       }
     ],
     "generator": false
@@ -14054,15 +14136,18 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#submitModeInputValues",
     "access": null,
-    "description": null,
-    "lineNumber": 117,
-    "undocument": true,
+    "description": "Handles mode-specific tool input submission.",
+    "lineNumber": 151,
     "params": [
       {
-        "name": "event",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event object from the event listener."
       }
     ],
     "generator": false
@@ -14076,15 +14161,18 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#updateAllModeInputValues",
     "access": null,
-    "description": null,
-    "lineNumber": 144,
-    "undocument": true,
+    "description": "Update the stored values of all mode-specific tool inputs.",
+    "lineNumber": 182,
     "params": [
       {
-        "name": "inputData",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Object.<string,*>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "inputData",
+        "description": "Object containing names of inputs mapped to their values."
       }
     ],
     "generator": false
@@ -14098,9 +14186,8 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#showModes",
     "access": null,
-    "description": null,
-    "lineNumber": 154,
-    "undocument": true,
+    "description": "Displays the tool modes in the Dropdown.",
+    "lineNumber": 195,
     "params": [],
     "generator": false
   },
@@ -14113,9 +14200,8 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#showInputs",
     "access": null,
-    "description": null,
-    "lineNumber": 173,
-    "undocument": true,
+    "description": "Displays the tool inputs in the inputForm element.",
+    "lineNumber": 217,
     "params": [],
     "generator": false
   },
@@ -14128,9 +14214,8 @@
     "memberof": "src/js/ui/top-bar.js~TopBar",
     "longname": "src/js/ui/top-bar.js~TopBar#showModeInputs",
     "access": null,
-    "description": null,
-    "lineNumber": 189,
-    "undocument": true,
+    "description": "Displays the mode-specific tool inputs in the modeInputForm element.",
+    "lineNumber": 236,
     "params": [],
     "generator": false
   },
@@ -15728,7 +15813,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Node from '../data/node/node';\nimport Edge from '../data/edge/edge';\nimport Label from '../data/label';\nimport ui from '../ui/ui';\n\nimport PanTool from '../tool/pan-tool';\n\nclass MouseHandler {\n\n  // distance the mouse needs to move to start a drag\n  // this prevents accidentally dragging a few pixels when actually trying to click\n  DRAG_THRESHOLD = 7;\n\n  selectedObject = null;\n  draggedObject = null;\n\n  clickStartX = null;\n  clickStartY = null;\n  mousePressed = false;\n  isDragging = false;\n\n  rightClickStartX = null;\n  rightClickStartY = null;\n  rightMousePressed = false;\n  isRightDragging = false;\n  wasRightDragging = false;\n\n  panTool = new PanTool();\n\n  constructor(graph) {\n    this.graph = graph;\n  }\n\n  resetGraph(newGraph) {\n    this.graph = newGraph;\n    this.selectedObject = null;\n    this.draggedObject = null;\n\n    this.clickStartX = null;\n    this.clickStartY = null;\n    this.mousePressed = false;\n    this.isDragging = false;\n  }\n\n  downListener(event, currentTool, x, y) {\n    this.mousePressed = true;\n    this.clickStartX = x;\n    this.clickStartY = y;\n\n    if (this.graph.hasComponent(x, y)) {\n      let component = this.graph.getComponent(x, y);\n      if (currentTool.preSelectObject(event, this.graph, component, x, y)) {\n        // console.log('Preselect Object Ok!');\n        this.selectedObject = component;\n      } else {\n        // console.log('Preselect Object Denied!');\n        this.selectedObject = null;\n      }\n    } else {\n      // console.log('Preselect None!');\n      currentTool.preSelectNone(event, this.graph, x, y);\n      this.selectedObject = null;\n    }\n  }\n\n  upListener(event, currentTool, x, y) {\n    // check if dragging\n    if (this.isDragging) {\n      this.isDragging = false;\n\n      // drop object\n      if (this.graph.hasComponent(x, y, this.draggedObject)) {\n        currentTool.dropOnObject(event, this.graph, this.draggedObject, this.graph.getComponent(x, y), x, y);\n      } else {\n        currentTool.dropOnNone(event, this.graph, this.draggedObject, x, y);\n      }\n      this.draggedObject = null;\n    } else if (this.mousePressed) {\n      // click\n      let component = null;\n      if (this.graph.hasComponent(x, y)) {\n        component = this.graph.getComponent(x, y);\n      }\n      if (component === this.selectedObject) {\n        if (component) {\n          currentTool.selectObject(event, this.graph, component, x, y);\n          ui.sidebar.updateSidebar(component);\n        } else {\n          currentTool.selectNone(event, this.graph, x, y);\n          ui.sidebar.updateSidebar();\n        }\n      } else {\n        currentTool.abortSelect(this.graph, x, y);\n      }\n    }\n    this.mousePressed = false;\n    this.selectedObject = null;\n  }\n\n  moveListener(event, currentTool, x, y) {\n    ui.statusBar.updateMouse(x, y);\n\n    if (!this.isDragging) {\n      // check for dragging\n      if (this.mousePressed) {\n        // check if mouse movement passes threshold\n        let dx = x - this.clickStartX;\n        let dy = y - this.clickStartY;\n\n        if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {\n          // console.log('Drag Threshold!');\n          this.isDragging = true;\n          if (this.selectedObject !== null) {\n            if (currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {\n              this.draggedObject = this.selectedObject;\n            } else {\n              this.selectedObject = null;\n              this.draggedObject = null;\n            }\n          } else {\n            currentTool.preDragNone(event, this.graph, x, y);\n            this.draggedObject = this.selectedObject;\n          }\n        }\n      } else {\n        // regular move\n        // hover effect?\n      }\n    } else if (this.draggedObject) {\n      // handle dragging object\n      currentTool.dragObject(event, this.graph, this.draggedObject, x, y);\n      ui.sidebar.updateSidebar(this.draggedObject);\n    } else if (this.graph.hasComponent(x, y)) {\n      // handle dragging over object\n      currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), x, y);\n      ui.sidebar.updateSidebar();\n    } else {\n      // handle dragging empty space\n      currentTool.dragNone(event, this.graph, x, y);\n    }\n  }\n\n  rightDownListener(event, x, y) {\n    this.rightMousePressed = true;\n    this.rightClickStartX = x;\n    this.rightClickStartY = y;\n\n    this.panTool.preSelectNone(event, this.graph, x, y);\n  }\n\n  rightUpListener(event, x, y) {\n    // check if dragging\n    if (this.isRightDragging) {\n      this.isRightDragging = false;\n      this.panTool.dropOnNone(event, this.graph, null, x, y);\n    } else if (this.rightMousePressed) {\n      // click\n      this.panTool.selectNone(event, this.graph, x, y);\n    }\n    this.rightMousePressed = false;\n  }\n\n  rightMoveListener(event, x, y) {\n    ui.statusBar.updateMouse(x, y);\n    if (!this.isRightDragging) {\n      // check for dragging\n      if (this.rightMousePressed) {\n        // check if mouse movement passes threshold\n        let dx = x - this.rightClickStartX;\n        let dy = y - this.rightClickStartY;\n\n        if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {\n          this.isRightDragging = true;\n          this.wasRightDragging = true;\n          this.panTool.preDragNone(this.graph, x, y);\n        }\n      }\n    } else {\n      // handle dragging\n      this.panTool.dragNone(event, this.graph, x, y);\n    }\n  }\n\n  contextmenuEventListener(event, x, y, contextMenu) {\n    if (this.wasRightDragging) {\n      // prevent default context menu\n      event.preventDefault();\n      this.wasRightDragging = false;\n    } else if (event.target === document.getElementById('canvas')) {\n      // open context menu if mouse was not right dragging\n      contextMenu.contextmenuEventListener(event, x, y);\n    }\n  }\n\n  contextComponent(event, x, y) {\n    if (this.graph.hasComponent(x, y)) {\n      this.selectedObject = this.graph.getComponent(x, y);\n    }\n    return this.selectedObject;\n  }\n\n  contextAdd(arg, x, y) {\n    if (arg === 'edge') {\n      ui.toolbar.selectToolByName('edge');\n      ui.toolbar.toolMap.edge.selectNode(this.graph, this.selectedObject);\n    } else {\n      ui.toolbar.selectToolByName('node');\n      ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);\n    }\n  }\n\n  contextToggle(arg) {\n    this.selectedObject[arg] = !this.selectedObject[arg];\n  }\n\n  contextDelete() {\n    if (this.selectedObject instanceof Node) {\n      this.graph.removeNode(this.selectedObject);\n    } else if (this.selectedObject instanceof Edge) {\n      this.graph.removeEdge(this.selectedObject);\n    } else if (this.selectedObject instanceof Label) {\n      this.selectedObject.content = '';\n    }\n  }\n\n  contextSelect(event, currentTool, x, y) {\n    currentTool.selectObject(event, this.graph, this.selectedObject, x, y);\n  }\n}\n\nexport { MouseHandler };\nexport default MouseHandler;\n"
+    "content": "import Node from '../data/node/node';\nimport Edge from '../data/edge/edge';\nimport Label from '../data/label';\nimport ui from '../ui/ui';\n\nimport PanTool from '../tool/pan-tool';\n\n/**\n * Mouse event handler. Calls the appropriate event handler for the current tool based on user actions.\n * @class MouseHandler\n */\nclass MouseHandler {\n\n  // distance the mouse needs to move to start a drag\n  // this prevents accidentally dragging a few pixels when actually trying to click\n  DRAG_THRESHOLD = 7;\n\n  selectedObject = null;\n  draggedObject = null;\n\n  clickStartX = null;\n  clickStartY = null;\n  mousePressed = false;\n  isDragging = false;\n\n  rightClickStartX = null;\n  rightClickStartY = null;\n  rightMousePressed = false;\n  isRightDragging = false;\n  wasRightDragging = false;\n\n  panTool = new PanTool();\n\n  /**\n   * Constructs a MouseHandler instance.\n   * @param  {Graph} graph - The current Graph object.\n   * @constructs MouseHandler\n   */\n  constructor(graph) {\n    this.graph = graph;\n  }\n\n  /**\n   * Update the graph reference.\n   * @param {Graph} newGraph - The new Graph object.\n   */\n  resetGraph(newGraph) {\n    this.graph = newGraph;\n    this.selectedObject = null;\n    this.draggedObject = null;\n\n    this.clickStartX = null;\n    this.clickStartY = null;\n    this.mousePressed = false;\n    this.isDragging = false;\n  }\n\n  /**\n   * Handles the mousedown event for the left mouse button.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {Tool} currentTool - The currently selected tool.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  downListener(event, currentTool, x, y) {\n    this.mousePressed = true;\n    this.clickStartX = x;\n    this.clickStartY = y;\n\n    if (this.graph.hasComponent(x, y)) {\n      let component = this.graph.getComponent(x, y);\n      if (currentTool.preSelectObject(event, this.graph, component, x, y)) {\n        // console.log('Preselect Object Ok!');\n        this.selectedObject = component;\n      } else {\n        // console.log('Preselect Object Denied!');\n        this.selectedObject = null;\n      }\n    } else {\n      // console.log('Preselect None!');\n      currentTool.preSelectNone(event, this.graph, x, y);\n      this.selectedObject = null;\n    }\n  }\n\n  /**\n   * Handles the mouseup event for the left mouse button.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {Tool} currentTool - The currently selected tool.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  upListener(event, currentTool, x, y) {\n    // check if dragging\n    if (this.isDragging) {\n      this.isDragging = false;\n\n      // drop object\n      if (this.graph.hasComponent(x, y, this.draggedObject)) {\n        currentTool.dropOnObject(event, this.graph, this.draggedObject, this.graph.getComponent(x, y), x, y);\n      } else {\n        currentTool.dropOnNone(event, this.graph, this.draggedObject, x, y);\n      }\n      this.draggedObject = null;\n    } else if (this.mousePressed) {\n      // click\n      let component = null;\n      if (this.graph.hasComponent(x, y)) {\n        component = this.graph.getComponent(x, y);\n      }\n      if (component === this.selectedObject) {\n        if (component) {\n          currentTool.selectObject(event, this.graph, component, x, y);\n          ui.sidebar.updateSidebar(component);\n        } else {\n          currentTool.selectNone(event, this.graph, x, y);\n          ui.sidebar.updateSidebar();\n        }\n      } else {\n        currentTool.abortSelect(this.graph, x, y);\n      }\n    }\n    this.mousePressed = false;\n    this.selectedObject = null;\n  }\n\n  /**\n   * Handles the mousemove event for the left mouse button.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {Tool} currentTool - The currently selected tool.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  moveListener(event, currentTool, x, y) {\n    ui.statusBar.updateMouse(x, y);\n\n    if (!this.isDragging) {\n      // check for dragging\n      if (this.mousePressed) {\n        // check if mouse movement passes threshold\n        let dx = x - this.clickStartX;\n        let dy = y - this.clickStartY;\n\n        if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {\n          // console.log('Drag Threshold!');\n          this.isDragging = true;\n          if (this.selectedObject !== null) {\n            if (currentTool.preDragObject(event, this.graph, this.selectedObject, x, y)) {\n              this.draggedObject = this.selectedObject;\n            } else {\n              this.selectedObject = null;\n              this.draggedObject = null;\n            }\n          } else {\n            currentTool.preDragNone(event, this.graph, x, y);\n            this.draggedObject = this.selectedObject;\n          }\n        }\n      } else {\n        // regular move\n        // hover effect?\n      }\n    } else if (this.draggedObject) {\n      // handle dragging object\n      currentTool.dragObject(event, this.graph, this.draggedObject, x, y);\n      ui.sidebar.updateSidebar(this.draggedObject);\n    } else if (this.graph.hasComponent(x, y)) {\n      // handle dragging over object\n      currentTool.dragOverObject(event, this.graph, this.graph.getComponent(x, y), x, y);\n      ui.sidebar.updateSidebar();\n    } else {\n      // handle dragging empty space\n      currentTool.dragNone(event, this.graph, x, y);\n    }\n  }\n\n  /**\n   * Handles the mousedown event for the right mouse button.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  rightDownListener(event, x, y) {\n    this.rightMousePressed = true;\n    this.rightClickStartX = x;\n    this.rightClickStartY = y;\n\n    this.panTool.preSelectNone(event, this.graph, x, y);\n  }\n\n  /**\n   * Handles the mouseup event for the right mouse button.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  rightUpListener(event, x, y) {\n    // check if dragging\n    if (this.isRightDragging) {\n      this.isRightDragging = false;\n      this.panTool.dropOnNone(event, this.graph, null, x, y);\n    } else if (this.rightMousePressed) {\n      // click\n      this.panTool.selectNone(event, this.graph, x, y);\n    }\n    this.rightMousePressed = false;\n  }\n\n  /**\n   * Handles the mousemove event for the right mouse button.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  rightMoveListener(event, x, y) {\n    ui.statusBar.updateMouse(x, y);\n    if (!this.isRightDragging) {\n      // check for dragging\n      if (this.rightMousePressed) {\n        // check if mouse movement passes threshold\n        let dx = x - this.rightClickStartX;\n        let dy = y - this.rightClickStartY;\n\n        if (Math.sqrt(dx * dx + dy * dy) >= this.DRAG_THRESHOLD) {\n          this.isRightDragging = true;\n          this.wasRightDragging = true;\n          this.panTool.preDragNone(this.graph, x, y);\n        }\n      }\n    } else {\n      // handle dragging\n      this.panTool.dragNone(event, this.graph, x, y);\n    }\n  }\n\n  /**\n   * Handles the contextmenu event.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @param  {ContextMenu} contextMenu - ContextMenu object.\n   */\n  contextmenuEventListener(event, x, y, contextMenu) {\n    if (this.wasRightDragging) {\n      // prevent default context menu\n      event.preventDefault();\n      this.wasRightDragging = false;\n    } else if (event.target === document.getElementById('canvas')) {\n      // open context menu if mouse was not right dragging\n      contextMenu.contextmenuEventListener(event, x, y);\n    }\n  }\n\n  /**\n   * Get the graph component that is under the mouse when the context menu event was triggered.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   * @return {(Node|Edge|Label)} - The object that is under the mouse.\n   */\n  contextComponent(event, x, y) {\n    if (this.graph.hasComponent(x, y)) {\n      this.selectedObject = this.graph.getComponent(x, y);\n    }\n    return this.selectedObject;\n  }\n\n  /**\n   * Handle the context menu \"add\" action.\n   * @param  {string} arg - Name of object to add.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  contextAdd(arg, x, y) {\n    if (arg === 'edge') {\n      ui.toolbar.selectToolByName('edge');\n      ui.toolbar.toolMap.edge.selectNode(this.graph, this.selectedObject);\n    } else {\n      ui.toolbar.selectToolByName('node');\n      ui.toolbar.toolMap.node.addNode(arg, this.graph, x, y);\n    }\n  }\n\n  /**\n   * Handle the context menu \"toggle\" action.\n   * @param  {string} arg - Name of the field to toggle.\n   */\n  contextToggle(arg) {\n    this.selectedObject[arg] = !this.selectedObject[arg];\n  }\n\n  /**\n   * Handle the context menu \"delete\" action.\n   */\n  contextDelete() {\n    if (this.selectedObject instanceof Node) {\n      this.graph.removeNode(this.selectedObject);\n    } else if (this.selectedObject instanceof Edge) {\n      this.graph.removeEdge(this.selectedObject);\n    } else if (this.selectedObject instanceof Label) {\n      this.selectedObject.content = '';\n    }\n  }\n\n  /**\n   * Handle context menu object selection.\n   * @param  {Event} event - The Event object from the event listener.\n   * @param  {Tool} currentTool - The currently selected tool.\n   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).\n   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).\n   */\n  contextSelect(event, currentTool, x, y) {\n    currentTool.selectObject(event, this.graph, this.selectedObject, x, y);\n  }\n}\n\nexport { MouseHandler };\nexport default MouseHandler;\n"
   },
   {
     "__docId__": 599,
@@ -15742,9 +15827,14 @@
     "export": true,
     "importPath": "canvas-graph-creator/src/js/util/mouse-handler.js",
     "importStyle": "MouseHandler",
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
+    "description": "Mouse event handler. Calls the appropriate event handler for the current tool based on user actions.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "MouseHandler"
+      }
+    ],
     "interface": false
   },
   {
@@ -15756,15 +15846,24 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
+    "description": "Constructs a MouseHandler instance.",
+    "lineNumber": 39,
+    "unknown": [
+      {
+        "tagName": "@constructs",
+        "tagValue": "MouseHandler"
+      }
+    ],
     "params": [
       {
-        "name": "graph",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Graph"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "graph",
+        "description": "The current Graph object."
       }
     ],
     "generator": false
@@ -15779,7 +15878,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#graph",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 40,
     "undocument": true,
     "type": {
       "types": [
@@ -15796,15 +15895,18 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#resetGraph",
     "access": null,
-    "description": null,
-    "lineNumber": 34,
-    "undocument": true,
+    "description": "Update the graph reference.",
+    "lineNumber": 47,
     "params": [
       {
-        "name": "newGraph",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Graph"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "newGraph",
+        "description": "The new Graph object."
       }
     ],
     "generator": false
@@ -15819,7 +15921,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#graph",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 48,
     "undocument": true,
     "type": {
       "types": [
@@ -15837,7 +15939,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 36,
+    "lineNumber": 49,
     "undocument": true,
     "type": {
       "types": [
@@ -15855,7 +15957,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#draggedObject",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 50,
     "undocument": true,
     "type": {
       "types": [
@@ -15873,7 +15975,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#clickStartX",
     "access": null,
     "description": null,
-    "lineNumber": 39,
+    "lineNumber": 52,
     "undocument": true,
     "type": {
       "types": [
@@ -15891,7 +15993,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#clickStartY",
     "access": null,
     "description": null,
-    "lineNumber": 40,
+    "lineNumber": 53,
     "undocument": true,
     "type": {
       "types": [
@@ -15909,7 +16011,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#mousePressed",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 54,
     "undocument": true,
     "type": {
       "types": [
@@ -15927,7 +16029,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#isDragging",
     "access": null,
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 55,
     "undocument": true,
     "type": {
       "types": [
@@ -15944,33 +16046,48 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#downListener",
     "access": null,
-    "description": null,
-    "lineNumber": 45,
-    "undocument": true,
+    "description": "Handles the mousedown event for the left mouse button.",
+    "lineNumber": 65,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "Tool"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "currentTool",
-        "types": [
-          "*"
-        ]
+        "description": "The currently selected tool."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -15985,7 +16102,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#mousePressed",
     "access": null,
     "description": null,
-    "lineNumber": 46,
+    "lineNumber": 66,
     "undocument": true,
     "type": {
       "types": [
@@ -16003,7 +16120,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#clickStartX",
     "access": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 67,
     "undocument": true,
     "type": {
       "types": [
@@ -16021,7 +16138,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#clickStartY",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 68,
     "undocument": true,
     "type": {
       "types": [
@@ -16039,7 +16156,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 54,
+    "lineNumber": 74,
     "undocument": true,
     "type": {
       "types": [
@@ -16057,7 +16174,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 57,
+    "lineNumber": 77,
     "undocument": true,
     "type": {
       "types": [
@@ -16075,7 +16192,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 62,
+    "lineNumber": 82,
     "undocument": true,
     "type": {
       "types": [
@@ -16092,33 +16209,48 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#upListener",
     "access": null,
-    "description": null,
-    "lineNumber": 66,
-    "undocument": true,
+    "description": "Handles the mouseup event for the left mouse button.",
+    "lineNumber": 93,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "Tool"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "currentTool",
-        "types": [
-          "*"
-        ]
+        "description": "The currently selected tool."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -16133,7 +16265,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#isDragging",
     "access": null,
     "description": null,
-    "lineNumber": 69,
+    "lineNumber": 96,
     "undocument": true,
     "type": {
       "types": [
@@ -16151,7 +16283,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#draggedObject",
     "access": null,
     "description": null,
-    "lineNumber": 77,
+    "lineNumber": 104,
     "undocument": true,
     "type": {
       "types": [
@@ -16169,7 +16301,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#mousePressed",
     "access": null,
     "description": null,
-    "lineNumber": 96,
+    "lineNumber": 123,
     "undocument": true,
     "type": {
       "types": [
@@ -16187,7 +16319,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 97,
+    "lineNumber": 124,
     "undocument": true,
     "type": {
       "types": [
@@ -16204,33 +16336,48 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#moveListener",
     "access": null,
-    "description": null,
-    "lineNumber": 100,
-    "undocument": true,
+    "description": "Handles the mousemove event for the left mouse button.",
+    "lineNumber": 134,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "Tool"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "currentTool",
-        "types": [
-          "*"
-        ]
+        "description": "The currently selected tool."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -16245,7 +16392,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#isDragging",
     "access": null,
     "description": null,
-    "lineNumber": 112,
+    "lineNumber": 146,
     "undocument": true,
     "type": {
       "types": [
@@ -16263,7 +16410,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#draggedObject",
     "access": null,
     "description": null,
-    "lineNumber": 115,
+    "lineNumber": 149,
     "undocument": true,
     "type": {
       "types": [
@@ -16281,7 +16428,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 117,
+    "lineNumber": 151,
     "undocument": true,
     "type": {
       "types": [
@@ -16299,7 +16446,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#draggedObject",
     "access": null,
     "description": null,
-    "lineNumber": 118,
+    "lineNumber": 152,
     "undocument": true,
     "type": {
       "types": [
@@ -16317,7 +16464,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#draggedObject",
     "access": null,
     "description": null,
-    "lineNumber": 122,
+    "lineNumber": 156,
     "undocument": true,
     "type": {
       "types": [
@@ -16334,27 +16481,38 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightDownListener",
     "access": null,
-    "description": null,
-    "lineNumber": 143,
-    "undocument": true,
+    "description": "Handles the mousedown event for the right mouse button.",
+    "lineNumber": 183,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -16369,7 +16527,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightMousePressed",
     "access": null,
     "description": null,
-    "lineNumber": 144,
+    "lineNumber": 184,
     "undocument": true,
     "type": {
       "types": [
@@ -16387,7 +16545,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightClickStartX",
     "access": null,
     "description": null,
-    "lineNumber": 145,
+    "lineNumber": 185,
     "undocument": true,
     "type": {
       "types": [
@@ -16405,7 +16563,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightClickStartY",
     "access": null,
     "description": null,
-    "lineNumber": 146,
+    "lineNumber": 186,
     "undocument": true,
     "type": {
       "types": [
@@ -16422,27 +16580,38 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightUpListener",
     "access": null,
-    "description": null,
-    "lineNumber": 151,
-    "undocument": true,
+    "description": "Handles the mouseup event for the right mouse button.",
+    "lineNumber": 197,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -16457,7 +16626,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#isRightDragging",
     "access": null,
     "description": null,
-    "lineNumber": 154,
+    "lineNumber": 200,
     "undocument": true,
     "type": {
       "types": [
@@ -16475,7 +16644,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightMousePressed",
     "access": null,
     "description": null,
-    "lineNumber": 160,
+    "lineNumber": 206,
     "undocument": true,
     "type": {
       "types": [
@@ -16492,27 +16661,38 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#rightMoveListener",
     "access": null,
-    "description": null,
-    "lineNumber": 163,
-    "undocument": true,
+    "description": "Handles the mousemove event for the right mouse button.",
+    "lineNumber": 215,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -16527,7 +16707,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#isRightDragging",
     "access": null,
     "description": null,
-    "lineNumber": 173,
+    "lineNumber": 225,
     "undocument": true,
     "type": {
       "types": [
@@ -16545,7 +16725,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#wasRightDragging",
     "access": null,
     "description": null,
-    "lineNumber": 174,
+    "lineNumber": 226,
     "undocument": true,
     "type": {
       "types": [
@@ -16562,33 +16742,48 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#contextmenuEventListener",
     "access": null,
-    "description": null,
-    "lineNumber": 184,
-    "undocument": true,
+    "description": "Handles the contextmenu event.",
+    "lineNumber": 243,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "y",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       },
       {
-        "name": "contextMenu",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "ContextMenu"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "contextMenu",
+        "description": "ContextMenu object."
       }
     ],
     "generator": false
@@ -16603,7 +16798,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#wasRightDragging",
     "access": null,
     "description": null,
-    "lineNumber": 188,
+    "lineNumber": 247,
     "undocument": true,
     "type": {
       "types": [
@@ -16620,33 +16815,49 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#contextComponent",
     "access": null,
-    "description": null,
-    "lineNumber": 195,
-    "undocument": true,
+    "description": "Get the graph component that is under the mouse when the context menu event was triggered.",
+    "lineNumber": 261,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Node",
+        "Edge",
+        "Label"
+      ],
+      "spread": false,
+      "description": "The object that is under the mouse."
     },
     "generator": false
   },
@@ -16660,7 +16871,7 @@
     "longname": "src/js/util/mouse-handler.js~MouseHandler#selectedObject",
     "access": null,
     "description": null,
-    "lineNumber": 197,
+    "lineNumber": 263,
     "undocument": true,
     "type": {
       "types": [
@@ -16677,27 +16888,38 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#contextAdd",
     "access": null,
-    "description": null,
-    "lineNumber": 202,
-    "undocument": true,
+    "description": "Handle the context menu \"add\" action.",
+    "lineNumber": 274,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "arg",
-        "types": [
-          "*"
-        ]
+        "description": "Name of object to add."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false
@@ -16711,15 +16933,18 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#contextToggle",
     "access": null,
-    "description": null,
-    "lineNumber": 212,
-    "undocument": true,
+    "description": "Handle the context menu \"toggle\" action.",
+    "lineNumber": 288,
     "params": [
       {
-        "name": "arg",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "arg",
+        "description": "Name of the field to toggle."
       }
     ],
     "generator": false
@@ -16733,9 +16958,8 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#contextDelete",
     "access": null,
-    "description": null,
-    "lineNumber": 216,
-    "undocument": true,
+    "description": "Handle the context menu \"delete\" action.",
+    "lineNumber": 295,
     "params": [],
     "generator": false
   },
@@ -16748,33 +16972,48 @@
     "memberof": "src/js/util/mouse-handler.js~MouseHandler",
     "longname": "src/js/util/mouse-handler.js~MouseHandler#contextSelect",
     "access": null,
-    "description": null,
-    "lineNumber": 226,
-    "undocument": true,
+    "description": "Handle context menu object selection.",
+    "lineNumber": 312,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "event",
-        "types": [
-          "*"
-        ]
+        "description": "The Event object from the event listener."
       },
       {
+        "nullable": null,
+        "types": [
+          "Tool"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "currentTool",
-        "types": [
-          "*"
-        ]
+        "description": "The currently selected tool."
       },
       {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "x",
-        "types": [
-          "*"
-        ]
+        "description": "Mouse x-coordinate (in canvas coordinates)."
       },
       {
-        "name": "y",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "Mouse y-coordinate (in canvas coordinates)."
       }
     ],
     "generator": false

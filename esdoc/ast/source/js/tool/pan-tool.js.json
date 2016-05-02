@@ -968,7 +968,7 @@
                               "column": 40
                             }
                           },
-                          "name": "screenX"
+                          "name": "clientX"
                         },
                         "computed": false
                       }
@@ -1126,7 +1126,7 @@
                               "column": 40
                             }
                           },
-                          "name": "screenY"
+                          "name": "clientY"
                         },
                         "computed": false
                       }
@@ -2515,7 +2515,7 @@
                                     "column": 80
                                   }
                                 },
-                                "name": "screenX"
+                                "name": "clientX"
                               },
                               "computed": false
                             },
@@ -2897,7 +2897,7 @@
                                     "column": 80
                                   }
                                 },
-                                "name": "screenY"
+                                "name": "clientY"
                               },
                               "computed": false
                             },
@@ -4272,7 +4272,7 @@
                                 "column": 40
                               }
                             },
-                            "name": "screenX"
+                            "name": "clientX"
                           },
                           "computed": false
                         }
@@ -4430,7 +4430,7 @@
                                 "column": 40
                               }
                             },
-                            "name": "screenY"
+                            "name": "clientY"
                           },
                           "computed": false
                         }
@@ -5819,7 +5819,7 @@
                                       "column": 80
                                     }
                                   },
-                                  "name": "screenX"
+                                  "name": "clientX"
                                 },
                                 "computed": false
                               },
@@ -6201,7 +6201,7 @@
                                       "column": 80
                                     }
                                   },
-                                  "name": "screenY"
+                                  "name": "clientY"
                                 },
                                 "computed": false
                               },
