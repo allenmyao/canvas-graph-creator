@@ -5,6 +5,10 @@ import ui from '../ui/ui';
 
 import PanTool from '../tool/pan-tool';
 
+/**
+ * Mouse event handler. Calls the appropriate event handler for the current tool based on user actions.
+ * @class MouseHandler
+ */
 class MouseHandler {
 
   // distance the mouse needs to move to start a drag
@@ -27,10 +31,19 @@ class MouseHandler {
 
   panTool = new PanTool();
 
+  /**
+   * Constructs a MouseHandler instance.
+   * @param  {Graph} graph - The current Graph object.
+   * @constructs MouseHandler
+   */
   constructor(graph) {
     this.graph = graph;
   }
 
+  /**
+   * Update the graph reference.
+   * @param {Graph} newGraph - The new Graph object.
+   */
   resetGraph(newGraph) {
     this.graph = newGraph;
     this.selectedObject = null;
@@ -42,6 +55,13 @@ class MouseHandler {
     this.isDragging = false;
   }
 
+  /**
+   * Handles the mousedown event for the left mouse button.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {Tool} currentTool - The currently selected tool.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   downListener(event, currentTool, x, y) {
     this.mousePressed = true;
     this.clickStartX = x;
@@ -63,6 +83,13 @@ class MouseHandler {
     }
   }
 
+  /**
+   * Handles the mouseup event for the left mouse button.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {Tool} currentTool - The currently selected tool.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   upListener(event, currentTool, x, y) {
     // check if dragging
     if (this.isDragging) {
@@ -97,6 +124,13 @@ class MouseHandler {
     this.selectedObject = null;
   }
 
+  /**
+   * Handles the mousemove event for the left mouse button.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {Tool} currentTool - The currently selected tool.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   moveListener(event, currentTool, x, y) {
     ui.statusBar.updateMouse(x, y);
 
@@ -140,6 +174,12 @@ class MouseHandler {
     }
   }
 
+  /**
+   * Handles the mousedown event for the right mouse button.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   rightDownListener(event, x, y) {
     this.rightMousePressed = true;
     this.rightClickStartX = x;
@@ -148,6 +188,12 @@ class MouseHandler {
     this.panTool.preSelectNone(event, this.graph, x, y);
   }
 
+  /**
+   * Handles the mouseup event for the right mouse button.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   rightUpListener(event, x, y) {
     // check if dragging
     if (this.isRightDragging) {
@@ -160,6 +206,12 @@ class MouseHandler {
     this.rightMousePressed = false;
   }
 
+  /**
+   * Handles the mousemove event for the right mouse button.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   rightMoveListener(event, x, y) {
     ui.statusBar.updateMouse(x, y);
     if (!this.isRightDragging) {
@@ -181,6 +233,13 @@ class MouseHandler {
     }
   }
 
+  /**
+   * Handles the contextmenu event.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   * @param  {ContextMenu} contextMenu - ContextMenu object.
+   */
   contextmenuEventListener(event, x, y, contextMenu) {
     if (this.wasRightDragging) {
       // prevent default context menu
@@ -192,6 +251,13 @@ class MouseHandler {
     }
   }
 
+  /**
+   * Get the graph component that is under the mouse when the context menu event was triggered.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   * @return {(Node|Edge|Label)} - The object that is under the mouse.
+   */
   contextComponent(event, x, y) {
     if (this.graph.hasComponent(x, y)) {
       this.selectedObject = this.graph.getComponent(x, y);
@@ -199,6 +265,12 @@ class MouseHandler {
     return this.selectedObject;
   }
 
+  /**
+   * Handle the context menu "add" action.
+   * @param  {string} arg - Name of object to add.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   contextAdd(arg, x, y) {
     if (arg === 'edge') {
       ui.toolbar.selectToolByName('edge');
@@ -209,10 +281,17 @@ class MouseHandler {
     }
   }
 
+  /**
+   * Handle the context menu "toggle" action.
+   * @param  {string} arg - Name of the field to toggle.
+   */
   contextToggle(arg) {
     this.selectedObject[arg] = !this.selectedObject[arg];
   }
 
+  /**
+   * Handle the context menu "delete" action.
+   */
   contextDelete() {
     if (this.selectedObject instanceof Node) {
       this.graph.removeNode(this.selectedObject);
@@ -223,6 +302,13 @@ class MouseHandler {
     }
   }
 
+  /**
+   * Handle context menu object selection.
+   * @param  {Event} event - The Event object from the event listener.
+   * @param  {Tool} currentTool - The currently selected tool.
+   * @param  {number} x - Mouse x-coordinate (in canvas coordinates).
+   * @param  {number} y - Mouse y-coordinate (in canvas coordinates).
+   */
   contextSelect(event, currentTool, x, y) {
     currentTool.selectObject(event, this.graph, this.selectedObject, x, y);
   }
