@@ -27,6 +27,7 @@ let IDDATA = '_$$DATA$$_';
 /**
  * Serializer class takes care of saving
  * and loading graph via JSON manipulation
+ * @class Serializer
  */
 export class Serializer {
 
@@ -46,7 +47,7 @@ export class Serializer {
   /**
    * Serializer constructor
    * @param {Graph} graph Current graph structure
-   * @param {function} resetFn function to reset graph
+   * @param {function} resetFn Function to reset graph
    */
   constructor(graph, resetFn) {
     this.currentGraph = graph;
@@ -88,10 +89,10 @@ export class Serializer {
 
    /**
    * Exports element of graph in object form
-   * @param {Object} elem is the element of graph to be exported
-   * @param {Object} cache is a remnant of the original serializer
-   * @param {string} path is a remnant of the original serializer
-   * @returns {Object} outputObj contains the element object data
+   * @param {Object} elem The element of graph to be exported
+   * @param {Object} cache A remnant of the original serializer
+   * @param {string} path A remnant of the original serializer
+   * @returns {Object} outputObj Contains the element object data
    */
   exportElement(elem, cache, path) {
     let outputObj = {};
@@ -220,28 +221,29 @@ export class Serializer {
 
   /**
    * Helper function to construct empty objects by class name
-   * @param {string} name of element type to allocate
-   * @returns {Object} the constructed object
+   * @param {string} name Name of element type to allocate
+   * @returns {Object} outObj The constructed object
    */
   allocateElement(name) {
+    let outObj = null;
     // Element allocation of type has type 'name'
     if (name.indexOf('Node') >= 0) {
-      return new Serializer.classesByName[name](0, 0);
+      outObj = new Serializer.classesByName[name](0, 0);
     } else if (name.indexOf('Edge') >= 0) {
-      return new Serializer.classesByName[name](null, null);
+      outObj = new Serializer.classesByName[name](null, null);
     } else if (name.indexOf('Label') >= 0) {
-      return new Serializer.classesByName[name](0, 0, null);
+      outObj = new Serializer.classesByName[name](0, 0, null);
     }
-    return null;
+    return outObj;
   }
 
   /**
    * Reads the elem contents and converts it to a raw JSON object newElem
-   * @param {Object} elem is the element of graph to be imported
-   * @param {Object} newElem is the return element and contains the imported data
-   * @param {Object} nodeCache allows for loading references to existing nodes
-   * @param {Object} edgeCache allows for loading references to existing edges
-   * @returns {Object} newElem a fully initialized graph element.
+   * @param {Object} elem The element of graph to be imported
+   * @param {Object} newElem The return element and contains the imported data
+   * @param {Object} nodeCache Allows for loading references to existing nodes
+   * @param {Object} edgeCache Allows for loading references to existing edges
+   * @returns {Object} newElem A fully initialized graph element.
    */
   importElement(elem, newElem, nodeCache, edgeCache) {
     let key;
@@ -343,8 +345,7 @@ export class Serializer {
     let obj;
     let deserializeInfo;
     if (this.quickString === '') {
-      console.log('Nothing has been saved');
-      return;
+      throw new Error('Nothing has been saved');
     }
     try {
       obj = JSON.parse(this.quickString);
@@ -361,10 +362,11 @@ export class Serializer {
 
   /**
    * Reads the graph data and creates new elements accordingly
-   * @param {Object} obj is the graph data contained in obj
-   * @returns {Object} data containing the graph and nodes and edge counts
+   * @param {Object} obj The pre-parsed serial graph data
+   * @returns {Object} importResult Data containing the graph and nodes and edge counts
    */
   deserializeGraph(obj) {
+    let importResult;
     let newGraph = new Graph();
     let key;
     let modKey;
@@ -434,16 +436,17 @@ export class Serializer {
       throw new Error('New Graph failed validation check');
     }
 
-    return {
+    importResult = {
       nodes: maxNodeID + 1,
       edges: maxEdgeID + 1,
       graph: newGraph
     };
+    return importResult;
   }
 
   /**
    * Resets the graph
-   * @param {Graph} newGraph is the graph data to reset with
+   * @param {Graph} newGraph The graph data to reset with
    */
   resetGraph(newGraph) {
      // Formality, in case it's triggered by something other than us.
